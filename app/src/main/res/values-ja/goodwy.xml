@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_g">Right Dialer</string>
+    <string name="transparent_call_screen_g">透過的な通話画面</string>
+    <string name="call_back_g">呼び出し</string>
+    <string name="missed_call_g">不在着信</string>
+    <string name="missed_calls_g">不在着信</string>
+    <string name="missed_call_notifications_g">不在着信通知</string>
+    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
+    <string name="call_notification_channel_g">Call notifications</string>
+
+    <string name="show_contact_thumbnails_g">連絡先のサムネイルを表示する</string>
+    <string name="hide_dialpad_letters_g">ダイヤルパッドの文字を非表示にする</string>
+
+    <string name="recommendation_dialog_contacts_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this application, then we recommend you to install our application to view and edit contacts.<br><br>
+            Thanks
+        ]]></string>
+</resources>

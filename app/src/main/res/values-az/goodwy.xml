@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_g">Right Dialer</string>
+    <string name="transparent_call_screen_g">Şəffaf Zəng Ekranı</string>
+    <string name="call_back_g">Geri zəng et</string>
+    <string name="missed_call_g">Buraxılmış zəng</string>
+    <string name="missed_calls_g">Buraxılmış zənglər</string>
+    <string name="missed_call_notifications_g">Buraxılmış zəng bildirişləri</string>
+    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
+    <string name="call_notification_channel_g">Call notifications</string>
+
+    <string name="show_contact_thumbnails_g">Kontakt miniatürlərini göstərin</string>
+    <string name="hide_dialpad_letters_g">Nömrə hərflərini gizlədin</string>
+
+    <string name="recommendation_dialog_contacts_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this application, then we recommend you to install our application to view and edit contacts.<br><br>
+            Thanks
+        ]]></string>
+</resources>

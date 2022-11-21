@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Простий Телефон</string>
+    <string name="app_launcher_name">Телефон</string>
+    <string name="default_phone_app_prompt">Будь ласка, зробіть цю програму типовою для телефонних викликів</string>
+    <string name="allow_displaying_over_other_apps">Дозвольте відображення над іншими додатками для надійної роботи</string>
+    <!-- Contacts -->
+    <string name="could_not_access_contacts">Не вдалося отримати доступ до контактів</string>
+    <!-- Recents -->
+    <string name="no_previous_calls">Попередні виклики не знайдено</string>
+    <string name="could_not_access_the_call_history">Не вдалося отримати доступ до історії викликів</string>
+    <string name="request_access">Запит на доступ</string>
+    <string name="remove_confirmation">Справді видалити вибрані елементи з історії викликів\?</string>
+    <string name="clear_history_confirmation">Справді видалити все з історії викликів\?</string>
+    <string name="show_grouped_calls">Згрупувати виклики</string>
+    <string name="clear_call_history">Очистити історію викликів</string>
+    <string name="show_call_details">Показати деталі виклику</string>
+    <!-- Dialpad -->
+    <string name="dialpad">Панель набору</string>
+    <string name="asterisk">Asterisk</string>
+    <string name="hashtag">Хештег</string>
+    <string name="call_number">Номер виклику</string>
+    <string name="dialpad_beeps">Enable beeps on dialpad button clicks</string>
+    <string name="dialpad_vibrations">Enable vibrations on dialpad button clicks</string>
+    <!-- Dialer -->
+    <string name="dialer">Телефон</string>
+    <string name="accept">Прийняти</string>
+    <string name="accept_call">Прийняти дзвінок</string>
+    <string name="decline">Відхилити</string>
+    <string name="decline_call">Відхилити дзвінок</string>
+    <string name="unknown_caller">Невідомий абонент</string>
+    <string name="is_calling">Дзвонить…</string>
+    <string name="dialing">Набір номера…</string>
+    <string name="call_ended">Виклик завершено</string>
+    <string name="call_ending">Завершення виклику</string>
+    <string name="ongoing_call">Поточний виклик</string>
+    <string name="select_sim">Оберіть SIM для цього дзвінка</string>
+    <string name="always_use_this_sim">Завжди використовувати цю SIM для даного номера</string>
+    <string name="unset_default_sim">Зняти вибір SIM за замовчуванням</string>
+    <string name="calls">Виклики</string>
+    <string name="turn_microphone_on">Увімкнути мікрофон</string>
+    <string name="turn_microphone_off">Вимкнути мікрофон</string>
+    <string name="turn_speaker_on">Увімкнути динамік</string>
+    <string name="turn_speaker_off">Вимкнути динамік</string>
+    <string name="show_dialpad">Показати цифрову панель</string>
+    <string name="hide_dialpad">Сховати цифрову панель</string>
+    <string name="end_call">Завершити виклик</string>
+    <string name="hold_call">Перевести в утримання</string>
+    <string name="resume_call">Зняти з утримання</string>
+    <string name="call_on_hold">Утримується</string>
+    <string name="call_swap">Поміняти</string>
+    <string name="call_merge">З\'єднати</string>
+    <string name="call_split">Роз\'єднати</string>
+    <string name="call_add">Додати дзвінок</string>
+    <string name="conference_manage">Керувати конференц-викликом</string>
+    <string name="conference">Конференц-виклик</string>
+    <string name="audio_route_speaker">Speaker</string>
+    <string name="audio_route_earpiece">Earpiece</string>
+    <string name="audio_route_bluetooth">Bluetooth</string>
+    <string name="audio_route_wired_headset">Wired Headset</string>
+    <string name="audio_route_wired_or_earpiece">Wired or Earpiece</string>
+    <string name="choose_audio_route">Choose audio route</string>
+    <!-- Speed dial -->
+    <string name="speed_dial">Швидкий виклик</string>
+    <string name="manage_speed_dial">Управління швидким викликом</string>
+    <string name="speed_dial_label">Натисніть на номер, щоб призначити йому контакт. Потім ви зможете швидко зателефонувати вказаному контакту, довго натискаючи вказаний номер на цифровій панелі.</string>
+    <!-- Settings -->
+    <string name="group_subsequent_calls">Групувати наступні дзвінки з тим самим номером у журналі викликів</string>
+    <string name="open_dialpad_by_default">За замовчуванням відкривати цифрову панель при запуску додатку</string>
+    <string name="disable_proximity_sensor">Вимикати датник наближення під час викликів</string>
+    <string name="disable_swipe_to_answer">Замінити перетягування на натискання під час відповіді на вхідні виклики</string>
+    <string name="show_incoming_calls_full_screen">Always display incoming calls on full screen</string>
+    <!-- FAQ -->
+    <string name="faq_1_title">I hear incoming calls, but the screen doesn\'t turn on. What can I do?</string>
+    <string name="faq_1_text">Such issues can have many device and system specific reasons, hard to say in general. You should look around in your device settings and make sure that the app is allowed to pop up when in background and allow displaying over other apps.</string>
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>

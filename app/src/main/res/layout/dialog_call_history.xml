@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/select_grouped_calls_holder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_recents_holder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/activity_margin"
+        android:paddingTop="@dimen/activity_margin"
+        android:paddingEnd="@dimen/activity_margin"
+        android:paddingBottom="@dimen/medium_margin">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/x25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/x50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.50" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/x75"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <ImageView
+            android:id="@+id/item_history_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:padding="@dimen/small_margin"
+            android:src="@drawable/ic_person_vector"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_history_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="@dimen/extra_big_text_size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_history_image"
+            tools:text="John Doe" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/oneButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="@dimen/activity_margin"
+            android:layout_marginRight="3dp"
+            android:background="@drawable/tab_background"
+            android:foreground="@drawable/ic_sms_vector"
+            android:foregroundGravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/x25"
+            app:layout_constraintTop_toBottomOf="@+id/item_history_name"
+            tools:ignore="AllCaps" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/twoButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_margin"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:background="@drawable/tab_background"
+            android:foreground="@drawable/ic_phone_vector"
+            android:foregroundGravity="center"
+            app:layout_constraintLeft_toLeftOf="@+id/x25"
+            app:layout_constraintRight_toRightOf="@+id/x50"
+            app:layout_constraintTop_toBottomOf="@+id/item_history_name"
+            tools:ignore="AllCaps" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/threeButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_margin"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:background="@drawable/tab_background"
+            android:foreground="@drawable/ic_add_person_vector"
+            android:foregroundGravity="center"
+            app:layout_constraintLeft_toLeftOf="@+id/x50"
+            app:layout_constraintRight_toRightOf="@+id/x75"
+            app:layout_constraintTop_toBottomOf="@+id/item_history_name"
+            tools:ignore="AllCaps" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/fourButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_margin"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:background="@drawable/tab_background"
+            android:foreground="@drawable/ic_delete_outline"
+            android:foregroundGravity="center"
+            app:layout_constraintLeft_toLeftOf="@+id/x75"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_history_name"
+            tools:ignore="AllCaps" />
+
+        <com.goodwy.commons.views.MyRecyclerView
+            android:id="@+id/select_history_calls_list"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="@dimen/activity_margin"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:background="@drawable/tab_background"
+            android:clipToPadding="false"
+            android:padding="@dimen/medium_margin"
+            android:scrollbars="none"
+            app:layoutManager="com.goodwy.commons.views.MyLinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@+id/oneButton" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/numberButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="@dimen/activity_margin"
+            android:layout_marginRight="3dp"
+            android:background="@drawable/tab_background"
+            android:foregroundGravity="center"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="+12345678912"
+            android:textAllCaps="false"
+            android:textColor="@color/color_accent"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/select_history_calls_list"
+            tools:ignore="AllCaps" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/blockButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_margin"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:background="@drawable/tab_background"
+            android:foregroundGravity="center"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/block_number"
+            android:textAllCaps="false"
+            android:textColor="@color/red_missed"
+            android:textSize="14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/numberButton"
+            tools:ignore="AllCaps" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

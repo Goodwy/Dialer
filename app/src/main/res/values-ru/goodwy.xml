@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_g">Right Dialer</string>
+    <string name="transparent_call_screen_g">Прозрачный фон экрана звонков</string>
+    <string name="call_back_g">Перезвонить</string>
+    <string name="missed_call_g">Пропущенный звонок</string>
+    <string name="missed_calls_g">Пропущенных звонков</string>
+    <string name="missed_call_notifications_g">Уведомления о пропущенных звонках</string>
+    <string name="call_notification_channel_high_priority_g">Уведомления о звонках с высоким приоритетом</string>
+    <string name="call_notification_channel_g">Уведомления о звонках</string>
+
+    <string name="show_contact_thumbnails_g">Показывать фото контакта</string>
+    <string name="hide_dialpad_letters_g">Скрыть буквы набора номера</string>
+
+    <string name="recommendation_dialog_contacts_g">
+        <![CDATA[
+            Привет,<br><br>
+            если вам нравится это приложение, то рекомендуем установить наше приложение для просмотра и редактирования контактов.<br><br>
+            Спасибо
+        ]]></string>
+
+    <string name="audio_route_speaker_g">Динамик</string>
+    <string name="audio_route_earpiece_g">Телефон</string>
+    <string name="audio_route_wired_or_earpiece_g">Динамик устройства или проводная гарнитура</string>
+</resources>

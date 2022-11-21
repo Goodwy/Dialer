@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_g">Right Dialer</string>
+    <string name="transparent_call_screen_g">Transparant oproepscherm</string>
+    <string name="call_back_g">Roepen</string>
+    <string name="missed_call_g">Gemiste oproep</string>
+    <string name="missed_calls_g">Gemiste oproepen</string>
+    <string name="missed_call_notifications_g">Meldingen voor gemiste oproepen</string>
+    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
+    <string name="call_notification_channel_g">Call notifications</string>
+
+    <string name="show_contact_thumbnails_g">Miniaturen van contactpersonen weergeven</string>
+    <string name="hide_dialpad_letters_g">Kiesblokletters verbergen</string>
+
+    <string name="recommendation_dialog_contacts_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this application, then we recommend you to install our application to view and edit contacts.<br><br>
+            Thanks
+        ]]></string>
+</resources>

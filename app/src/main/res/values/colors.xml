@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ripple_foreground">#33FFFFFF</color>
+    <color name="color_accent">#FF15B76C</color>
+    <color name="green_call">#FF67CE67</color>
+    <color name="red_call">#FFEB5545</color>
+</resources>

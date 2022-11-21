@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Simpel telefon</string>
+    <string name="app_launcher_name">Telefon</string>
+    <string name="default_phone_app_prompt">Vänligen gör den här appen till standardtelefonapp</string>
+    <string name="allow_displaying_over_other_apps">Tillåt visning över andra appar för att få ett tillförlitligt beteende</string>
+    <!-- Contacts -->
+    <string name="could_not_access_contacts">Det gick inte att komma åt dina kontakter</string>
+    <!-- Recents -->
+    <string name="no_previous_calls">Inga tidigare samtal hittades</string>
+    <string name="could_not_access_the_call_history">Det gick inte att komma åt samtalshistoriken</string>
+    <string name="request_access">Begär åtkomst</string>
+    <string name="remove_confirmation">Är du säker på att du vill ta bort de markerade objekten från samtalshistoriken\?</string>
+    <string name="clear_history_confirmation">Är du säker på att du vill ta bort allt från samtalshistoriken\?</string>
+    <string name="show_grouped_calls">Visa grupperade samtal</string>
+    <string name="clear_call_history">Rensa samtalshistorik</string>
+    <string name="show_call_details">Visa samtalsinformation</string>
+    <!-- Dialpad -->
+    <string name="dialpad">Knappsats</string>
+    <string name="asterisk">Stjärna</string>
+    <string name="hashtag">Fyrkant</string>
+    <string name="call_number">Ring nummer</string>
+    <string name="dialpad_beeps">Aktivera knappsatsljud</string>
+    <string name="dialpad_vibrations">Aktivera knappsatsvibration</string>
+    <!-- Dialer -->
+    <string name="dialer">Telefon</string>
+    <string name="accept">Svara</string>
+    <string name="accept_call">Acceptera samtal</string>
+    <string name="decline">Avvisa</string>
+    <string name="decline_call">Avvisa samtal</string>
+    <string name="unknown_caller">Okänd uppringare</string>
+    <string name="is_calling">Ringer…</string>
+    <string name="dialing">Ringer upp…</string>
+    <string name="call_ended">Samtalet har avslutats</string>
+    <string name="call_ending">Samtalet avslutas</string>
+    <string name="ongoing_call">Pågående samtal</string>
+    <string name="select_sim">Välj ett SIM för detta samtal</string>
+    <string name="always_use_this_sim">Använd alltid det här SIM-kortet för detta nummer</string>
+    <string name="unset_default_sim">Ta bort standard-SIM-kort</string>
+    <string name="calls">Samtal</string>
+    <string name="turn_microphone_on">Sätt på mikrofonen</string>
+    <string name="turn_microphone_off">Stäng av mikrofonen</string>
+    <string name="turn_speaker_on">Sätt på högtalaren</string>
+    <string name="turn_speaker_off">Stäng av högtalaren</string>
+    <string name="show_dialpad">Visa knappsats</string>
+    <string name="hide_dialpad">Dölj knappsats</string>
+    <string name="end_call">Avsluta samtal</string>
+    <string name="hold_call">Parkera samtal</string>
+    <string name="resume_call">Återuppta samtal</string>
+    <string name="call_on_hold">Parkerat</string>
+    <string name="call_swap">Växla mellan samtal</string>
+    <string name="call_merge">Koppla ihop samtal</string>
+    <string name="call_split">Koppla isär samtal</string>
+    <string name="call_add">Lägg till samtal</string>
+    <string name="conference_manage">Hantera konferenssamtal</string>
+    <string name="conference">Konferens</string>
+    <string name="audio_route_speaker">Speaker</string>
+    <string name="audio_route_earpiece">Earpiece</string>
+    <string name="audio_route_bluetooth">Bluetooth</string>
+    <string name="audio_route_wired_headset">Wired Headset</string>
+    <string name="audio_route_wired_or_earpiece">Wired or Earpiece</string>
+    <string name="choose_audio_route">Choose audio route</string>
+    <!-- Speed dial -->
+    <string name="speed_dial">Snabbuppringning</string>
+    <string name="manage_speed_dial">Hantera snabbuppringning</string>
+    <string name="speed_dial_label">Tryck på en siffra för att tilldela en kontakt till den. Du kan sedan snabbt ringa kontakten genom att trycka länge på siffran på knappsatsen.</string>
+    <!-- Settings -->
+    <string name="group_subsequent_calls">Gruppera samtal till och från samma nummer i samtalshistoriken</string>
+    <string name="open_dialpad_by_default">Öppna knappsatsen som standard när appen öppnas</string>
+    <string name="disable_proximity_sensor">Inaktivera närhetssensor under samtal</string>
+    <string name="disable_swipe_to_answer">Ersätt svepning vid besvarande av inkommande samtal med tryckning</string>
+    <string name="show_incoming_calls_full_screen">Visa alltid inkommande samtal i helskärm</string>
+    <!-- FAQ -->
+    <string name="faq_1_title">I hear incoming calls, but the screen doesn\'t turn on. What can I do?</string>
+    <string name="faq_1_text">Such issues can have many device and system specific reasons, hard to say in general. You should look around in your device settings and make sure that the app is allowed to pop up when in background and allow displaying over other apps.</string>
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>

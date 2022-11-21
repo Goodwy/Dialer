@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lihtne telefon</string>
+    <string name="app_launcher_name">Telefon</string>
+    <string name="default_phone_app_prompt">Palun muuda see rakendus helistamisel vaikimisi kasutatavaks rakenduseks</string>
+    <string name="allow_displaying_over_other_apps">Parima töökindluse tagamiseks palun luba seda rakendust käivtada teiste rakenduste peal</string>
+    <!-- Contacts -->
+    <string name="could_not_access_contacts">Puudub ligipääs telefoniraamatule</string>
+    <!-- Recents -->
+    <string name="no_previous_calls">Varasemaid kõnesid ei leidu</string>
+    <string name="could_not_access_the_call_history">Puudub ligipääs kõnede ajaloole</string>
+    <string name="request_access">Taotle õigusi</string>
+    <string name="remove_confirmation">Kas sa oled kindel, et soovid eemaldada valitud kirjed kõnede ajaloost\?</string>
+    <string name="clear_history_confirmation">Kas sa oled kindel, et soovid eemaldada kõik kirjed kõnede ajaloost\?</string>
+    <string name="show_grouped_calls">Näita rühmitatud kõnesid</string>
+    <string name="clear_call_history">Kustuta kõnede ajalugu</string>
+    <string name="show_call_details">Näita kõne teavet</string>
+    <!-- Dialpad -->
+    <string name="dialpad">Numbriklahvid</string>
+    <string name="asterisk">Tärn</string>
+    <string name="hashtag">Teemaviide</string>
+    <string name="call_number">Helista numbrile</string>
+    <string name="dialpad_beeps">Helisignaalide lubamine valimisnupu klõpsamisel</string>
+    <string name="dialpad_vibrations">Võimaldab vibratsiooni valimisnuppude klõpsamisel</string>
+    <!-- Dialer -->
+    <string name="dialer">Telefon</string>
+    <string name="accept">Nõustu</string>
+    <string name="accept_call">Vasta kõnele</string>
+    <string name="decline">Keeldu</string>
+    <string name="decline_call">Keeldu kõnest</string>
+    <string name="unknown_caller">Tundmatu helistaja</string>
+    <string name="is_calling">Helistab…</string>
+    <string name="dialing">Valin numbrit…</string>
+    <string name="call_ended">Kõne on lõppenud</string>
+    <string name="call_ending">Kõne on lõppemas</string>
+    <string name="ongoing_call">Käsil olev kõne</string>
+    <string name="select_sim">Vali selle kõne jaoks SIM-kaart</string>
+    <string name="always_use_this_sim">Alati kasuta seda SIM-kaarti selle numbri jaoks</string>
+    <string name="unset_default_sim">Eemalda vaikimisi SIM-kaardi seadistus</string>
+    <string name="calls">Kõned</string>
+    <string name="turn_microphone_on">Lülita mikrofon sisse</string>
+    <string name="turn_microphone_off">Lülita mikrofon välja</string>
+    <string name="turn_speaker_on">Lülita kõlar sisse</string>
+    <string name="turn_speaker_off">Lülita kõlar välja</string>
+    <string name="show_dialpad">Näita numbriklahvistikku</string>
+    <string name="hide_dialpad">Peida numbriklahvistik</string>
+    <string name="end_call">Lõpeta kõne</string>
+    <string name="hold_call">Pane kõne ootele</string>
+    <string name="resume_call">Jätka kõnet</string>
+    <string name="call_on_hold">Kõne on ootel</string>
+    <string name="call_swap">Vaheta kõned</string>
+    <string name="call_merge">Liida kõned</string>
+    <string name="call_split">Jaga kõne</string>
+    <string name="call_add">Lisa kõne</string>
+    <string name="conference_manage">Halda rühmakõnet</string>
+    <string name="conference">Rühmakõne</string>
+    <string name="audio_route_speaker">Kõlar</string>
+    <string name="audio_route_earpiece">Kõrvasisesed kõrvaklapid</string>
+    <string name="audio_route_bluetooth">Bluetooth</string>
+    <string name="audio_route_wired_headset">Juhtmega kõrvaklapid</string>
+    <string name="audio_route_wired_or_earpiece">Juhtmega või kõrvasisesed kõrvaklapid</string>
+    <string name="choose_audio_route">Vali heliruuting</string>
+    <!-- Speed dial -->
+    <string name="speed_dial">Kiirvalimine</string>
+    <string name="speed_dial_label">Klõpsa numbrit ja seosta ta konkreetse telefoniraamatu kirjega. Hiljem saad samale numbrile pikalt vajutades alustada kõnet määratud telefoninumbrile.</string>
+    <string name="manage_speed_dial">Halda kiirvalimist</string>
+    <!-- Settings -->
+    <string name="group_subsequent_calls">Rühmita kõnelogis samale numbrile tehtud järjest kõned</string>
+    <string name="open_dialpad_by_default">Rakenduse avamisel näita vaikimisi numbriklahvistikku</string>
+    <string name="disable_proximity_sensor">Kõnede ajaks lülita lähedusandur välja</string>
+    <string name="disable_swipe_to_answer">Kõnele vastamisel kasuta viipamise asemel klõpsimist</string>
+    <string name="show_incoming_calls_full_screen">Kuvage sissetulevad kõned alati täisekraanil</string>
+    <!-- FAQ -->
+    <string name="faq_1_title">Ma kuulen sissetulevaid kõnesid, kuid ekraan ei lülitu sisse. Mida ma saan teha\?</string>
+    <string name="faq_1_text">Sellistel probleemidel võib olla palju seadme- ja süsteemispetsiifilisi põhjusi, raske öelda üldiselt. Peaksite oma seadme seadetes ringi vaatama ja veenduma, et rakendusel on lubatud taustal hüpata ja lubada kuvamist üle teiste rakenduste.</string>
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>

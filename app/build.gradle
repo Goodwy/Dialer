@@ -1,0 +1,104 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+    compileSdkVersion 33
+
+    defaultConfig {
+        applicationId "com.goodwy.dialer"
+        minSdkVersion 23
+        targetSdkVersion 33
+        versionCode 310
+        versionName "3.1.0"
+        setProperty("archivesBaseName", "dialer")
+        buildConfigField("String", "GOOGLE_PLAY_LICENSING_KEY", "\"${getProperty(getProperties('local.properties'), 'GOOGLE_PLAY_LICENSE_KEY')}\"")
+        buildConfigField("String", "PRODUCT_ID_X1", "\"${getProperty(getProperties('local.properties'), 'PRODUCT_ID_X1')}\"")
+        buildConfigField("String", "PRODUCT_ID_X2", "\"${getProperty(getProperties('local.properties'), 'PRODUCT_ID_X2')}\"")
+        buildConfigField("String", "PRODUCT_ID_X3", "\"${getProperty(getProperties('local.properties'), 'PRODUCT_ID_X3')}\"")
+    }
+
+    signingConfigs {
+        if (keystorePropertiesFile.exists()) {
+            release {
+                keyAlias keystoreProperties['keyAlias']
+                keyPassword keystoreProperties['keyPassword']
+                storeFile file(keystoreProperties['storeFile'])
+                storePassword keystoreProperties['storePassword']
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            if (keystorePropertiesFile.exists()) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+
+    flavorDimensions "variants"
+    productFlavors {
+        core {}
+        fdroid {}
+        prepaid {}
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+def getProperties(String fileName) {
+    final Properties properties = new Properties()
+    def file = rootProject.file(fileName)
+    if (file.exists()) {
+        file.withInputStream { stream -> properties.load(stream) }
+    }
+    return properties
+}
+
+static def getProperty(Properties properties, String name) {
+    return properties.getProperty(name) ?: "$name missing"
+}
+
+dependencies {
+    implementation files('libs/commons-debug.aar')
+    implementation 'com.github.tibbi:IndicatorFastScroll:4524cd0b61'
+    implementation 'me.grantland:autofittextview:0.2.1'
+    implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.49'
+    implementation 'com.googlecode.libphonenumber:geocoder:2.185'
+    implementation 'me.leolin:ShortcutBadger:1.1.22@aar'
+    implementation 'com.mikhaellopez:rxanimation:2.1.0'
+    implementation 'com.anjlab.android.iab.v3:library:2.0.3'
+    implementation 'com.github.Liverm0r:BehavioRule:1.0.1'
+
+    api "com.github.tibbi:RecyclerView-FastScroller:5a95285b1f"
+    api 'com.google.android.material:material:1.8.0-alpha01'
+    api 'com.google.code.gson:gson:2.9.1'
+    api 'com.duolingo.open:rtl-viewpager:2.0.0'
+
+    api 'com.github.bumptech.glide:glide:4.13.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
+    implementation "androidx.core:core-ktx:1.8.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}

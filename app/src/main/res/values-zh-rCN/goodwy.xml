@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_g">Right Dialer</string>
+    <string name="transparent_call_screen_g">透明通話螢幕</string>
+    <string name="call_back_g">叫</string>
+    <string name="missed_call_g">未接來電</string>
+    <string name="missed_calls_g">未接來電</string>
+    <string name="missed_call_notifications_g">未接來電通知</string>
+    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
+    <string name="call_notification_channel_g">Call notifications</string>
+
+    <string name="show_contact_thumbnails_g">顯示聯繫人縮圖</string>
+    <string name="hide_dialpad_letters_g">隱藏撥號盤字母</string>
+
+    <string name="recommendation_dialog_contacts_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this application, then we recommend you to install our application to view and edit contacts.<br><br>
+            Thanks
+        ]]></string>
+</resources>

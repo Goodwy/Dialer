@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_g">Right Dialer</string>
+    <string name="transparent_call_screen_g">സുതാര്യമായ കോൾ സ്ക്രീൻ</string>
+    <string name="call_back_g">തിരിച്ചുവിളിക്കുക</string>
+    <string name="missed_call_g">മിസ്ഡ് കോൾ</string>
+    <string name="missed_calls_g">മിസ്സഡ് കോള്</string>
+    <string name="missed_call_notifications_g">മിസ്ഡ് കോൾ അറിയിപ്പുകൾ</string>
+    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
+    <string name="call_notification_channel_g">Call notifications</string>
+
+    <string name="show_contact_thumbnails_g">കോൺടാക്റ്റ് ലഘുചിത്രങ്ങൾ കാണിക്കുക</string>
+    <string name="hide_dialpad_letters_g">ഡയൽപാഡ് അക്ഷരങ്ങൾ മറയ്ക്കുക</string>
+
+    <string name="recommendation_dialog_contacts_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this application, then we recommend you to install our application to view and edit contacts.<br><br>
+            Thanks
+        ]]></string>
+</resources>

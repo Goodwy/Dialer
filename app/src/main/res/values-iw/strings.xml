@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">חייגן פשוט</string>
+    <string name="app_launcher_name">חייגן</string>
+    <string name="default_phone_app_prompt">אנא הפוך את האפליקציה הזו לחייגן ברירת המחדל</string>
+    <string name="allow_displaying_over_other_apps">אנא אפשר הצגה מעל אפליקציות אחרות לצורך התנהגות אמינה</string>
+    <!-- Contacts -->
+    <string name="could_not_access_contacts">לא ניתן היה לגשת לאנשי הקשר שלך נא אפשר ידנית דרך הגדרות האפליקציה</string>
+    <!-- Recents -->
+    <string name="no_previous_calls">לא נמצאו שיחות קודמות</string>
+    <string name="could_not_access_the_call_history">לא ניתן היה לגשת להיסטוריית השיחות נא התקן מחדש או אפשר הרשאות</string>
+    <string name="request_access">לבקש גישה</string>
+    <string name="remove_confirmation">האם אתה בטוח שברצונך להסיר את הפריטים שנבחרו מהיסטוריית השיחות\?</string>
+    <string name="clear_history_confirmation">האם אתה בטוח שברצונך לאפס את כל היסטוריית השיחות\?</string>
+    <string name="show_grouped_calls">הצג שיחות מקובצות</string>
+    <string name="clear_call_history">נקה היסטוריית שיחות</string>
+    <string name="show_call_details">הצג פרטי שיחה</string>
+    <!-- Dialpad -->
+    <string name="dialpad">חייגן</string>
+    <string name="asterisk">כוכבית</string>
+    <string name="hashtag">סולמית</string>
+    <string name="call_number">מספר שיחה</string>
+    <string name="dialpad_beeps">Enable beeps on dialpad button clicks</string>
+    <string name="dialpad_vibrations">Enable vibrations on dialpad button clicks</string>
+    <!-- Dialer -->
+    <string name="dialer">חייגן</string>
+    <string name="accept">לקבל</string>
+    <string name="accept_call">לקבל שיחה</string>
+    <string name="decline">לדחות</string>
+    <string name="decline_call">לדחות שיחה</string>
+    <string name="unknown_caller">מספר חסוי</string>
+    <string name="is_calling">מתקשר…</string>
+    <string name="dialing">חיוג…</string>
+    <string name="call_ended">השיחה הסתיימה</string>
+    <string name="call_ending">סיום שיחה</string>
+    <string name="ongoing_call">שיחה פעילה</string>
+    <string name="select_sim">בחר סים לשיחה זו</string>
+    <string name="always_use_this_sim">השתמש תמיד ב-סים הזה עבור המספר הזה</string>
+    <string name="unset_default_sim">בטל את הגדרת ברירת המחדל של סים</string>
+    <string name="calls">שיחות</string>
+    <string name="turn_microphone_on">הפעל את המיקרופון</string>
+    <string name="turn_microphone_off">כבה את המיקרופון</string>
+    <string name="turn_speaker_on">הפעל את הרמקול</string>
+    <string name="turn_speaker_off">כבה את הרמקול</string>
+    <string name="show_dialpad">הצג חייגן</string>
+    <string name="hide_dialpad">הסתר חייגן</string>
+    <string name="end_call">נתק שיחה</string>
+    <string name="hold_call">השהה שיחה</string>
+    <string name="resume_call">המשך שיחה</string>
+    <string name="call_on_hold">בהמתנה</string>
+    <string name="call_swap">החלפת שיחות</string>
+    <string name="call_merge">מזג שיחות</string>
+    <string name="call_split">פיצול שיחות</string>
+    <string name="call_add">הוסף שיחה</string>
+    <string name="conference_manage">ניהול שיחת ועידה</string>
+    <string name="conference">ועידה</string>
+    <string name="audio_route_speaker">Speaker</string>
+    <string name="audio_route_earpiece">Earpiece</string>
+    <string name="audio_route_bluetooth">Bluetooth</string>
+    <string name="audio_route_wired_headset">Wired Headset</string>
+    <string name="audio_route_wired_or_earpiece">Wired or Earpiece</string>
+    <string name="choose_audio_route">Choose audio route</string>
+    <!-- Speed dial -->
+    <string name="speed_dial">חיוג מהיר</string>
+    <string name="manage_speed_dial">נהל חיוג מהיר</string>
+    <string name="speed_dial_label">לחץ על מספר כדי להקצות לו איש קשר. לאחר מכן תוכל להתקשר במהירות לאיש הקשר שבחרת על ידי לחיצה ארוכה על המספר הנבחר בחייגן.</string>
+    <!-- Settings -->
+    <string name="group_subsequent_calls">מזג שיחות עוקבות עם אותו מספר ביומן השיחות</string>
+    <string name="open_dialpad_by_default">פתח את לוח החיוג כברירת מחדל כאשר האפליקציה נפתחת</string>
+    <string name="disable_proximity_sensor">השבת את חיישן הקרבה במהלך שיחות</string>
+    <string name="disable_swipe_to_answer">החלף החלקה בתגובה לשיחות נכנסות בלחיצה</string>
+    <string name="show_incoming_calls_full_screen">Always display incoming calls on full screen</string>
+    <!-- FAQ -->
+    <string name="faq_1_title">I hear incoming calls, but the screen doesn\'t turn on. What can I do?</string>
+    <string name="faq_1_text">Such issues can have many device and system specific reasons, hard to say in general. You should look around in your device settings and make sure that the app is allowed to pop up when in background and allow displaying over other apps.</string>
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>

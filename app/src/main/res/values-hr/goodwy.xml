@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_g">Right Dialer</string>
+    <string name="transparent_call_screen_g">Prozirni zaslon poziva</string>
+    <string name="call_back_g">Poziv</string>
+    <string name="missed_call_g">Propušteni poziv</string>
+    <string name="missed_calls_g">Propušteni pozivi</string>
+    <string name="missed_call_notifications_g">Obavijesti o propuštenim pozivima</string>
+    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
+    <string name="call_notification_channel_g">Call notifications</string>
+
+    <string name="show_contact_thumbnails_g">Pokaži minijature kontakata</string>
+    <string name="hide_dialpad_letters_g">Sakrij slova telefonske tipkovnice</string>
+
+    <string name="recommendation_dialog_contacts_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this application, then we recommend you to install our application to view and edit contacts.<br><br>
+            Thanks
+        ]]></string>
+</resources>

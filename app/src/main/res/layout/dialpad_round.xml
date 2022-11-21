@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialpad_holder"
+    android:layout_width="match_parent"
+    android:layout_height="400dp"
+    android:layout_alignParentBottom="true"
+    android:focusableInTouchMode="true"
+    android:background="@android:color/transparent"
+    android:layoutDirection="ltr"
+    tools:ignore="HardcodedText">
+
+    <RelativeLayout
+        android:id="@+id/dialpad_1_holder"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:foreground="@drawable/pulsing_background"
+        android:contentDescription="@string/one"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_1"
+            style="@style/DialpadNumberStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="1" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dialpad_2_holder"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:layout_marginBottom="@dimen/medium_margin"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:foreground="@drawable/pulsing_background"
+        android:contentDescription="@string/two"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_2"
+            style="@style/DialpadNumberStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="2" />
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_2_letters"
+            style="@style/DialpadLetterStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialpad_2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:gravity="center_horizontal"
+            android:text="ABC" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dialpad_3_holder"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:foreground="@drawable/pulsing_background"
+        android:contentDescription="@string/three"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_3"
+            style="@style/DialpadNumberStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="3" />
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_3_letters"
+            style="@style/DialpadLetterStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialpad_3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:gravity="center_horizontal"
+            android:text="DEF" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dialpad_4_holder"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:foreground="@drawable/pulsing_background"
+        android:contentDescription="@string/four"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintVertical_bias="0.35"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_4"
+            style="@style/DialpadNumberStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="4" />
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_4_letters"
+            style="@style/DialpadLetterStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialpad_4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:gravity="center_horizontal"
+            android:text="GHI" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dialpad_5_holder"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:foreground="@drawable/pulsing_background"
+        android:contentDescription="@string/five"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.35"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_5"
+            style="@style/DialpadNumberStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="5" />
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_5_letters"
+            style="@style/DialpadLetterStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialpad_5"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:gravity="center_horizontal"
+            android:text="JKL" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dialpad_6_holder"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:foreground="@drawable/pulsing_background"
+        android:contentDescription="@string/six"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintVertical_bias="0.35"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_6"
+            style="@style/DialpadNumberStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="6" />
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_6_letters"
+            style="@style/DialpadLetterStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialpad_6"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:gravity="center_horizontal"
+            android:text="MNO" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dialpad_7_holder"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:foreground="@drawable/pulsing_background"
+        android:contentDescription="@string/seven"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintVertical_bias="0.65"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_7"
+            style="@style/DialpadNumberStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="7" />
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_7_letters"
+            style="@style/DialpadLetterStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialpad_7"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:gravity="center_horizontal"
+            android:text="PQRS" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dialpad_8_holder"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:foreground="@drawable/pulsing_background"
+        android:contentDescription="@string/eight"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.65"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_8"
+            style="@style/DialpadNumberStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="8" />
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_8_letters"
+            style="@style/DialpadLetterStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialpad_8"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:gravity="center_horizontal"
+            android:text="TUV" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dialpad_9_holder"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:foreground="@drawable/pulsing_background"
+        android:contentDescription="@string/nine"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintVertical_bias="0.65"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_9"
+            style="@style/DialpadNumberStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="9" />
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_9_letters"
+            style="@style/DialpadLetterStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialpad_9"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:gravity="center_horizontal"
+            android:text="WXYZ" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dialpad_asterisk_holder"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:foreground="@drawable/pulsing_background"
+        android:contentDescription="@string/asterisk"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintVertical_bias="0.95"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/dialpad_asterisk"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/ic_asterisk" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dialpad_0_holder"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:foreground="@drawable/pulsing_background"
+        android:contentDescription="@string/zero"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.95"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_0"
+            style="@style/DialpadNumberStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/medium_margin"
+            android:text="0" />
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dialpad_0"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="-10dp"
+            android:gravity="center"
+            android:text="+"
+            android:textSize="@dimen/actionbar_text_size" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dialpad_hashtag_holder"
+        android:layout_width="82dp"
+        android:layout_height="82dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:foreground="@drawable/pulsing_background"
+        android:contentDescription="@string/hashtag"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintVertical_bias="0.95"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/dialpad_hashtag"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerInParent="true"
+            app:srcCompat="@drawable/ic_hashtag" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

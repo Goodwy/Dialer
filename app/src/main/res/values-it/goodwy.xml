@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_g">Right Dialer</string>
+    <string name="transparent_call_screen_g">Schermata di chiamata trasparente</string>
+    <string name="call_back_g">Chiamare</string>
+    <string name="missed_call_g">Chiamata persa</string>
+    <string name="missed_calls_g">Chiamate perse</string>
+    <string name="missed_call_notifications_g">Notifiche di chiamata senza risposta</string>
+    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
+    <string name="call_notification_channel_g">Call notifications</string>
+
+    <string name="show_contact_thumbnails_g">Mostra miniature dei contatti</string>
+    <string name="hide_dialpad_letters_g">Nascondere le lettere del tastierino</string>
+
+    <string name="recommendation_dialog_contacts_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this application, then we recommend you to install our application to view and edit contacts.<br><br>
+            Thanks
+        ]]></string>
+</resources>

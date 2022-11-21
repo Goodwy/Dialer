@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="contact_photo_size">88dp</dimen>
+    <dimen name="activity_padding_left_right">72dp</dimen>
+    <dimen name="contact_padding_left">72dp</dimen>
+
+    <!--collapsing toolbar-->
+    <dimen name="name_right_margin">78dp</dimen>
+</resources>

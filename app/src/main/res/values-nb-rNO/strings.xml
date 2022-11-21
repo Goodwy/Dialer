@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Enkel oppringer</string>
+    <string name="app_launcher_name">Oppringer</string>
+    <string name="default_phone_app_prompt">Gjør denne appen til standard telefonapp</string>
+    <string name="allow_displaying_over_other_apps">Please allow displaying over other apps for reliable behaviour</string>
+    <!-- Contacts -->
+    <string name="could_not_access_contacts">Kunne ikke få tilgang til kontaktene dine</string>
+    <!-- Recents -->
+    <string name="no_previous_calls">Ingen tidligere anrop er funnet</string>
+    <string name="could_not_access_the_call_history">Fikk ikke tilgang til anropsloggen</string>
+    <string name="request_access">Be om tilgang</string>
+    <string name="remove_confirmation">Er du sikker på at du vil fjerne de valgte elementene fra anropsloggen\?</string>
+    <string name="clear_history_confirmation">Er du sikker på at du vil fjerne alt fra anropsloggen\?</string>
+    <string name="show_grouped_calls">Vis grupperte anrop</string>
+    <string name="clear_call_history">Tøm anropsloggen</string>
+    <string name="show_call_details">Vis samtaledetaljer</string>
+    <!-- Dialpad -->
+    <string name="dialpad">Tastatur</string>
+    <string name="asterisk">Asterisk</string>
+    <string name="hashtag">Emneknagg</string>
+    <string name="call_number">Ring nummer</string>
+    <string name="dialpad_beeps">Enable beeps on dialpad button clicks</string>
+    <string name="dialpad_vibrations">Enable vibrations on dialpad button clicks</string>
+    <!-- Dialer -->
+    <string name="dialer">Oppringer</string>
+    <string name="accept">Godta</string>
+    <string name="accept_call">Godta samtalen</string>
+    <string name="decline">Avslå</string>
+    <string name="decline_call">Avslå samtalen</string>
+    <string name="unknown_caller">Ukjent innringer</string>
+    <string name="is_calling">Ringer…</string>
+    <string name="dialing">Ringer opp…</string>
+    <string name="call_ended">Anrop avsluttet</string>
+    <string name="call_ending">Samtaleslutt</string>
+    <string name="ongoing_call">Pågående samtale</string>
+    <string name="select_sim">Velg et SIM-kort for denne samtalen</string>
+    <string name="always_use_this_sim">Bruk alltid dette SIM-kortet for dette nummeret</string>
+    <string name="unset_default_sim">Deaktiver standard SIM</string>
+    <string name="calls">Samtaler</string>
+    <string name="turn_microphone_on">Slå på mikrofonen</string>
+    <string name="turn_microphone_off">Slå av mikrofonen</string>
+    <string name="turn_speaker_on">Slå på høyttaleren</string>
+    <string name="turn_speaker_off">Slå av høyttaleren</string>
+    <string name="show_dialpad">Vis tastaturet</string>
+    <string name="hide_dialpad">Skjul tastaturet</string>
+    <string name="end_call">Avslutt samtale</string>
+    <string name="hold_call">Hold call</string>
+    <string name="resume_call">Resume call</string>
+    <string name="call_on_hold">On Hold</string>
+    <string name="call_swap">Swap calls</string>
+    <string name="call_merge">Merge calls</string>
+    <string name="call_split">Split call</string>
+    <string name="call_add">Add call</string>
+    <string name="conference_manage">Manage conference call</string>
+    <string name="conference">Conference</string>
+    <string name="audio_route_speaker">Speaker</string>
+    <string name="audio_route_earpiece">Earpiece</string>
+    <string name="audio_route_bluetooth">Bluetooth</string>
+    <string name="audio_route_wired_headset">Wired Headset</string>
+    <string name="audio_route_wired_or_earpiece">Wired or Earpiece</string>
+    <string name="choose_audio_route">Choose audio route</string>
+    <!-- Speed dial -->
+    <string name="speed_dial">Hurtigvalg</string>
+    <string name="manage_speed_dial">Administrer hurtigvalg</string>
+    <string name="speed_dial_label">Klikk på et nummer for å tilordne en kontakt til det. Du kan deretter raskt ringe den oppgitte kontakten ved å trykke lenge på det gitte nummeret på oppringeren.</string>
+    <!-- Settings -->
+    <string name="group_subsequent_calls">Grupper påfølgende anrop med samme nummer i anropsloggen</string>
+    <string name="open_dialpad_by_default">Åpne talltastaturet som standard når appen åpnes</string>
+    <string name="disable_proximity_sensor">Deaktiver nærhetssensor under samtaler</string>
+    <string name="disable_swipe_to_answer">Erstatt sveiping ved å svare på innkommende anrop med å klikke</string>
+    <string name="show_incoming_calls_full_screen">Always display incoming calls on full screen</string>
+    <!-- FAQ -->
+    <string name="faq_1_title">I hear incoming calls, but the screen doesn\'t turn on. What can I do?</string>
+    <string name="faq_1_text">Such issues can have many device and system specific reasons, hard to say in general. You should look around in your device settings and make sure that the app is allowed to pop up when in background and allow displaying over other apps.</string>
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>

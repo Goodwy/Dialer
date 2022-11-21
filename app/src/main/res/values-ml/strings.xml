@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Simple Dialer</string>
+    <string name="app_launcher_name">ഡയലർ</string>
+    <string name="default_phone_app_prompt">Please make this app the default Phone app</string>
+    <string name="allow_displaying_over_other_apps">Please allow displaying over other apps for reliable behaviour</string>
+    <!-- Contacts -->
+    <string name="could_not_access_contacts">നിങ്ങളുടെ കോൺ‌ടാക്റ്റുകൾ‌ ആക്‌സസ് ചെയ്യാൻ‌ കഴിഞ്ഞില്ല</string>
+    <!-- Recents -->
+    <string name="no_previous_calls">മുമ്പത്തെ കോളുകളൊന്നും കണ്ടെത്തിയില്ല</string>
+    <string name="could_not_access_the_call_history">കോൾ ചരിത്രം ആക്‌സസ്സുചെയ്യാനായില്ല</string>
+    <string name="request_access">ആക്‌സസ്സ് അഭ്യർത്ഥിക്കുക</string>
+    <string name="remove_confirmation">കോൾ ചരിത്രത്തിൽ നിന്ന് തിരഞ്ഞെടുത്ത ഇനങ്ങൾ നീക്കംചെയ്യണമെന്ന് നിങ്ങൾക്ക് ഉറപ്പാണോ\?</string>
+    <string name="clear_history_confirmation">Are you sure you want to remove everything from the Call History\?</string>
+    <string name="show_grouped_calls">Show grouped calls</string>
+    <string name="clear_call_history">Clear call history</string>
+    <string name="show_call_details">Show call details</string>
+    <!-- Dialpad -->
+    <string name="dialpad">ഡയൽപാഡ്</string>
+    <string name="asterisk">Asterisk</string>
+    <string name="hashtag">Hashtag</string>
+    <string name="call_number">Call number</string>
+    <string name="dialpad_beeps">Enable beeps on dialpad button clicks</string>
+    <string name="dialpad_vibrations">Enable vibrations on dialpad button clicks</string>
+    <!-- Dialer -->
+    <string name="dialer">ഡയലർ</string>
+    <string name="accept">സ്വീകരിക്കുക</string>
+    <string name="accept_call">Accept call</string>
+    <string name="decline">നിരസിക്കുക</string>
+    <string name="decline_call">Decline call</string>
+    <string name="unknown_caller">അറിയപ്പെടാത്ത കോളർ</string>
+    <string name="is_calling">വിളിക്കുന്നു…</string>
+    <string name="dialing">ഡയൽ ചെയ്യുന്നു…</string>
+    <string name="call_ended">കോൾ അവസാനിച്ചു</string>
+    <string name="call_ending">കോൾ അവസാനിക്കുന്നു</string>
+    <string name="ongoing_call">തുടർന്നുകൊണ്ടിരിക്കുന്ന കോൾ</string>
+    <string name="select_sim">ഈ കോളിനായി ഒരു സിം തിരഞ്ഞെടുക്കുക</string>
+    <string name="always_use_this_sim">ഈ നമ്പറിനായി എല്ലായ്പ്പോഴും ഈ സിം ഉപയോഗിക്കുക</string>
+    <string name="unset_default_sim">Unset default SIM</string>
+    <string name="calls">Calls</string>
+    <string name="turn_microphone_on">Turn microphone on</string>
+    <string name="turn_microphone_off">Turn microphone off</string>
+    <string name="turn_speaker_on">Turn speaker on</string>
+    <string name="turn_speaker_off">Turn speaker off</string>
+    <string name="show_dialpad">Show dialpad</string>
+    <string name="hide_dialpad">Hide dialpad</string>
+    <string name="end_call">End call</string>
+    <string name="hold_call">Hold call</string>
+    <string name="resume_call">Resume call</string>
+    <string name="call_on_hold">On Hold</string>
+    <string name="call_swap">Swap calls</string>
+    <string name="call_merge">Merge calls</string>
+    <string name="call_split">Split call</string>
+    <string name="call_add">Add call</string>
+    <string name="conference_manage">Manage conference call</string>
+    <string name="conference">Conference</string>
+    <string name="audio_route_speaker">Speaker</string>
+    <string name="audio_route_earpiece">Earpiece</string>
+    <string name="audio_route_bluetooth">Bluetooth</string>
+    <string name="audio_route_wired_headset">Wired Headset</string>
+    <string name="audio_route_wired_or_earpiece">Wired or Earpiece</string>
+    <string name="choose_audio_route">Choose audio route</string>
+    <!-- Speed dial -->
+    <string name="speed_dial">സ്പീഡ് ഡയൽ</string>
+    <string name="manage_speed_dial">സ്പീഡ് ഡയൽ നിയന്ത്രിക്കുക</string>
+    <string name="speed_dial_label">കോൺ‌ടാക്റ്റ് നൽകുന്നതിന് ഒരു നമ്പറിൽ ക്ലിക്കുചെയ്യുക. ഡയലറിൽ നൽകിയ നമ്പർ ദീർഘനേരം അമർത്തിയാൽ, നിങ്ങൾ നൽകിയ കോൺടാക്റ്റിനെ വേഗത്തിൽ വിളിക്കാം.</string>
+    <!-- Settings -->
+    <string name="group_subsequent_calls">കോൾ ലോഗിൽ അതേ നമ്പറുള്ള കോളുകൾ ഗ്രൂപ്പുചെയ്യുക</string>
+    <string name="open_dialpad_by_default">Open the dialpad by default when the app opens</string>
+    <string name="disable_proximity_sensor">Disable proximity sensor during calls</string>
+    <string name="disable_swipe_to_answer">Replace swiping at responding to incoming calls with clicking an incoming call</string>
+    <string name="show_incoming_calls_full_screen">Always display incoming calls on full screen</string>
+    <!-- FAQ -->
+    <string name="faq_1_title">I hear incoming calls, but the screen doesn\'t turn on. What can I do?</string>
+    <string name="faq_1_text">Such issues can have many device and system specific reasons, hard to say in general. You should look around in your device settings and make sure that the app is allowed to pop up when in background and allow displaying over other apps.</string>
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>

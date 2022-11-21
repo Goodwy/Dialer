@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Paprastas rinkiklis</string>
+    <string name="app_launcher_name">Telefonas</string>
+    <string name="default_phone_app_prompt">Padarykite šią programėlę numatytąja telefono programėle</string>
+    <string name="allow_displaying_over_other_apps">Prašome leisti rodyti per kitas programas, kad būtų užtikrintas patikimas elgesys</string>
+    <!-- Contacts -->
+    <string name="could_not_access_contacts">Nepavyko gauti prieigos prie adresatų</string>
+    <!-- Recents -->
+    <string name="no_previous_calls">Nerasta jokių ankstesnių skambučių</string>
+    <string name="could_not_access_the_call_history">Nepavyko pasiekti skambučių istorijos</string>
+    <string name="request_access">Prašyti prieigos</string>
+    <string name="remove_confirmation">Ar tikrai norite pašalinti pasirinktus elementus iš skambučių istorijos\?</string>
+    <string name="clear_history_confirmation">Ar tikrai norite viską ištrinti iš skambučių istorijos\?</string>
+    <string name="show_grouped_calls">Rodyti sugrupuotus skambučius</string>
+    <string name="clear_call_history">Išvalyti skambučių istoriją</string>
+    <string name="show_call_details">Rodyti skambučio informaciją</string>
+    <!-- Dialpad -->
+    <string name="dialpad">Numerio rinkiklis</string>
+    <string name="asterisk">Žvaigždutė</string>
+    <string name="hashtag">Grotelėmis</string>
+    <string name="call_number">Skambinti numeriu</string>
+    <string name="dialpad_beeps">Enable beeps on dialpad button clicks</string>
+    <string name="dialpad_vibrations">Enable vibrations on dialpad button clicks</string>
+    <!-- Dialer -->
+    <string name="dialer">Numerio rinkiklis</string>
+    <string name="accept">Priimti</string>
+    <string name="accept_call">Atsiliepti</string>
+    <string name="decline">Atmesti</string>
+    <string name="decline_call">Atmesti skambutį</string>
+    <string name="unknown_caller">Nežinomas skambintojas</string>
+    <string name="is_calling">Skambina…</string>
+    <string name="dialing">Numerio rinkimas…</string>
+    <string name="call_ended">Skambutis baigtas</string>
+    <string name="call_ending">Skambučio pabaiga</string>
+    <string name="ongoing_call">Vykdomas skambutis</string>
+    <string name="select_sim">Pasirinkite SIM kortelę šiam skambučiui</string>
+    <string name="always_use_this_sim">Šiam numeriui visada naudoti šią SIM kortelę</string>
+    <string name="unset_default_sim">Atšaukti numatytąją SIM kortelę</string>
+    <string name="calls">Skambučiai</string>
+    <string name="turn_microphone_on">Įjungti mikrofoną</string>
+    <string name="turn_microphone_off">Išjungti mikrofoną</string>
+    <string name="turn_speaker_on">Įjungti garsiakalbį</string>
+    <string name="turn_speaker_off">Išjungti garsiakalbį</string>
+    <string name="show_dialpad">Rodyti numerio rinkiklį</string>
+    <string name="hide_dialpad">Slėpti numerio rinkiklį</string>
+    <string name="end_call">Užbaigti skambutį</string>
+    <string name="hold_call">Sulaikyti skambutį</string>
+    <string name="resume_call">Tęsti skambutį</string>
+    <string name="call_on_hold">Sulaikyta</string>
+    <string name="call_swap">Keitimasis skambučiais</string>
+    <string name="call_merge">Sujungti skambučius</string>
+    <string name="call_split">Padalintas skambutis</string>
+    <string name="call_add">Pridėti skambutį</string>
+    <string name="conference_manage">Tvarkyti konferencinį skambutį</string>
+    <string name="conference">Konferencija</string>
+    <string name="audio_route_speaker">Speaker</string>
+    <string name="audio_route_earpiece">Earpiece</string>
+    <string name="audio_route_bluetooth">Bluetooth</string>
+    <string name="audio_route_wired_headset">Wired Headset</string>
+    <string name="audio_route_wired_or_earpiece">Wired or Earpiece</string>
+    <string name="choose_audio_route">Choose audio route</string>
+    <!-- Speed dial -->
+    <string name="speed_dial">Spartusis rinkimas</string>
+    <string name="manage_speed_dial">Tvarkyti spartųjį rinkimą</string>
+    <string name="speed_dial_label">Spustelėkite ant skaitmens, kad priskirtumėte jam adresatą. Tuomet, numerio rinkiklyje ilgai laikydami nurodytą skaitmenį, galėsite greitai pradėti skambinti nurodytam adresatui.</string>
+    <!-- Settings -->
+    <string name="group_subsequent_calls">Skambučių žurnale sugrupuokite paskesnius skambučius su tuo pačiu numeriu</string>
+    <string name="open_dialpad_by_default">Atveriant programėlę, automatiškai pagal numatymą atverti numerio rinkiklį</string>
+    <string name="disable_proximity_sensor">Skambučių metu išjungti artumo jutiklį</string>
+    <string name="disable_swipe_to_answer">Atsiliepiant į įeinančius skambučius perbraukimą pakeiskite paspaudimu</string>
+    <string name="show_incoming_calls_full_screen">Visada rodykite įeinančius skambučius per visą ekraną</string>
+    <!-- FAQ -->
+    <string name="faq_1_title">I hear incoming calls, but the screen doesn\'t turn on. What can I do?</string>
+    <string name="faq_1_text">Such issues can have many device and system specific reasons, hard to say in general. You should look around in your device settings and make sure that the app is allowed to pop up when in background and allow displaying over other apps.</string>
+    <!--
+        Haven't found some strings? There's more at
+        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
+    -->
+</resources>
