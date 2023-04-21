@@ -1,7 +1,10 @@
 package com.goodwy.dialer.helpers
 
 import android.content.Context
+import android.media.RingtoneManager
 import android.net.Uri
+import com.goodwy.commons.extensions.getDefaultAlarmSound
+import com.goodwy.commons.extensions.getDefaultAlarmTitle
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.goodwy.commons.helpers.BaseConfig
@@ -11,10 +14,6 @@ class Config(context: Context) : BaseConfig(context) {
     companion object {
         fun newInstance(context: Context) = Config(context)
     }
-
-    var speedDial: String
-        get() = prefs.getString(SPEED_DIAL, "")!!
-        set(speedDial) = prefs.edit().putString(SPEED_DIAL, speedDial).apply()
 
     fun getSpeedDialValues(): ArrayList<SpeedDial> {
         val speedDialType = object : TypeToken<List<SpeedDial>>() {}.type
@@ -39,6 +38,9 @@ class Config(context: Context) : BaseConfig(context) {
     fun removeCustomSIM(number: String) {
         prefs.edit().remove(REMEMBER_SIM_PREFIX + number).apply()
     }
+    var showTabs: Int
+        get() = prefs.getInt(SHOW_TABS, ALL_TABS_MASK)
+        set(showTabs) = prefs.edit().putInt(SHOW_TABS, showTabs).apply()
 
     var groupSubsequentCalls: Boolean
         get() = prefs.getBoolean(GROUP_SUBSEQUENT_CALLS, true)
@@ -56,18 +58,6 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(DISABLE_SWIPE_TO_ANSWER, true)
         set(disableSwipeToAnswer) = prefs.edit().putBoolean(DISABLE_SWIPE_TO_ANSWER, disableSwipeToAnswer).apply()
 
-    var showTabs: Int
-        get() = prefs.getInt(SHOW_TABS, ALL_TABS_MASK)
-        set(showTabs) = prefs.edit().putInt(SHOW_TABS, showTabs).apply()
-
-    var favoritesContactsOrder: String
-        get() = prefs.getString(FAVORITES_CONTACTS_ORDER, "")!!
-        set(order) = prefs.edit().putString(FAVORITES_CONTACTS_ORDER, order).apply()
-
-    var isCustomOrderSelected: Boolean
-        get() = prefs.getBoolean(FAVORITES_CUSTOM_ORDER_SELECTED, false)
-        set(selected) = prefs.edit().putBoolean(FAVORITES_CUSTOM_ORDER_SELECTED, selected).apply()
-
     var wasOverlaySnackbarConfirmed: Boolean
         get() = prefs.getBoolean(WAS_OVERLAY_SNACKBAR_CONFIRMED, false)
         set(wasOverlaySnackbarConfirmed) = prefs.edit().putBoolean(WAS_OVERLAY_SNACKBAR_CONFIRMED, wasOverlaySnackbarConfirmed).apply()
@@ -75,6 +65,10 @@ class Config(context: Context) : BaseConfig(context) {
     var dialpadVibration: Boolean
         get() = prefs.getBoolean(DIALPAD_VIBRATION, true)
         set(dialpadVibration) = prefs.edit().putBoolean(DIALPAD_VIBRATION, dialpadVibration).apply()
+
+    var hideDialpadNumbers: Boolean
+        get() = prefs.getBoolean(HIDE_DIALPAD_NUMBERS, false)
+        set(hideDialpadNumbers) = prefs.edit().putBoolean(HIDE_DIALPAD_NUMBERS, hideDialpadNumbers).apply()
 
     var dialpadBeeps: Boolean
         get() = prefs.getBoolean(DIALPAD_BEEPS, false)
@@ -84,12 +78,12 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(ALWAYS_SHOW_FULLSCREEN, false)
         set(alwaysShowFullscreen) = prefs.edit().putBoolean(ALWAYS_SHOW_FULLSCREEN, alwaysShowFullscreen).apply()
 
-    //My
+    //Goodwy
     var showIncomingCallsFullScreen: Boolean
         get() = prefs.getBoolean(SHOW_INCOMING_CALLS_FULL_SCREEN, false)
         set(showIncomingCallsFullScreen) = prefs.edit().putBoolean(SHOW_INCOMING_CALLS_FULL_SCREEN, showIncomingCallsFullScreen).apply()
 
-    var transparentCallScreen: Boolean
+    var transparentCallScreen: Boolean  //not used
         get() = prefs.getBoolean(TRANSPARENT_CALL_SCREEN, false)
         set(transparentCallScreen) = prefs.edit().putBoolean(TRANSPARENT_CALL_SCREEN, transparentCallScreen).apply()
 
@@ -101,12 +95,49 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(MISSED_CALL_NOTIFICATIONS, false)
         set(missedCallNotifications) = prefs.edit().putBoolean(MISSED_CALL_NOTIFICATIONS, missedCallNotifications).apply()
 
-    var showContactThumbnails: Boolean
-        get() = prefs.getBoolean(SHOW_CONTACT_THUMBNAILS, true)
-        set(showContactThumbnails) = prefs.edit().putBoolean(SHOW_CONTACT_THUMBNAILS, showContactThumbnails).apply()
-
     var hideDialpadLetters: Boolean
         get() = prefs.getBoolean(HIDE_DIALPAD_LETTERS, false)
         set(hideDialpadLetters) = prefs.edit().putBoolean(HIDE_DIALPAD_LETTERS, hideDialpadLetters).apply()
+
+    var backgroundCallScreen: Int
+        get() = prefs.getInt(BACKGROUND_CALL_SCREEN, BLUR_AVATAR)
+        set(backgroundCallScreen) = prefs.edit().putInt(BACKGROUND_CALL_SCREEN, backgroundCallScreen).apply()
+
+    //Timer
+    var timerSeconds: Int
+        get() = prefs.getInt(TIMER_SECONDS, 300)
+        set(lastTimerSeconds) = prefs.edit().putInt(TIMER_SECONDS, lastTimerSeconds).apply()
+
+    var timerVibrate: Boolean
+        get() = prefs.getBoolean(TIMER_VIBRATE, false)
+        set(timerVibrate) = prefs.edit().putBoolean(TIMER_VIBRATE, timerVibrate).apply()
+
+    var timerSoundUri: String
+        get() = prefs.getString(TIMER_SOUND_URI, context.getDefaultAlarmSound(RingtoneManager.TYPE_ALARM).uri)!!
+        set(timerSoundUri) = prefs.edit().putString(TIMER_SOUND_URI, timerSoundUri).apply()
+
+    var timerSoundTitle: String
+        get() = prefs.getString(TIMER_SOUND_TITLE, context.getDefaultAlarmTitle(RingtoneManager.TYPE_ALARM))!!
+        set(timerSoundTitle) = prefs.edit().putString(TIMER_SOUND_TITLE, timerSoundTitle).apply()
+
+    var timerTitle: String?
+        get() = prefs.getString(TIMER_TITLE, null)
+        set(label) = prefs.edit().putString(TIMER_TITLE, label).apply()
+
+    var timerLabel: String?
+        get() = prefs.getString(TIMER_LABEL, null)
+        set(label) = prefs.edit().putString(TIMER_LABEL, label).apply()
+
+    var timerDescription: String?
+        get() = prefs.getString(TIMER_DESCRIPTION, null)
+        set(label) = prefs.edit().putString(TIMER_DESCRIPTION, label).apply()
+
+    var timerChannelId: String?
+        get() = prefs.getString(TIMER_CHANNEL_ID, null)
+        set(id) = prefs.edit().putString(TIMER_CHANNEL_ID, id).apply()
+
+    var timerMaxReminderSecs: Int
+        get() = prefs.getInt(TIMER_MAX_REMINDER_SECS, DEFAULT_MAX_TIMER_REMINDER_SECS)
+        set(timerMaxReminderSecs) = prefs.edit().putInt(TIMER_MAX_REMINDER_SECS, timerMaxReminderSecs).apply()
 }
 

@@ -12,7 +12,8 @@ import com.goodwy.commons.activities.BaseSimpleActivity
 import com.goodwy.commons.dialogs.NewAppDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
-import com.goodwy.commons.models.SimpleContact
+import com.goodwy.commons.models.contacts.Contact
+import com.goodwy.dialer.activities.DialerActivity
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.dialogs.SelectSIMDialog
@@ -44,7 +45,7 @@ fun BaseSimpleActivity.callContactWithSim(recipient: String, useMainSIM: Boolean
 }
 
 // handle private contacts differently, only Goodwy Contacts can open them
-fun Activity.startContactDetailsIntent(contact: SimpleContact) {
+fun Activity.startContactDetailsIntent(contact: Contact) {
     val simpleContacts = "com.goodwy.contacts"
     val simpleContactsDebug = "com.goodwy.contacts.debug"
     if ((0..config.appRecommendationDialogCount).random() == 2 && (!isPackageInstalled(simpleContacts) && !isPackageInstalled(simpleContactsDebug))) {
@@ -90,7 +91,11 @@ fun SimpleActivity.getHandleToUse(intent: Intent?, phoneNumber: String, callback
                 }
                 defaultHandle != null -> callback(defaultHandle)
                 else -> {
-                    SelectSIMDialog(this, phoneNumber) { handle ->
+                    SelectSIMDialog(this, phoneNumber, onDismiss = {
+                        if (this is DialerActivity) {
+                            finish()
+                        }
+                    }) { handle ->
                         callback(handle)
                     }
                 }

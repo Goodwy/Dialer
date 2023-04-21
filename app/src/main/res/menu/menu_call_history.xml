@@ -4,8 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="AppCompatResource">
     <item
+        android:id="@+id/favorite"
+        android:icon="@drawable/ic_star_outline_vector"
+        android:title="@string/add_to_favorites"
+        android:visible="false"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/delete"
         android:icon="@drawable/ic_delete_outline"
         android:title="@string/delete"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/share"
+        android:icon="@drawable/ic_share_vector"
+        android:title="@string/share"
+        app:showAsAction="ifRoom" />
 </menu>

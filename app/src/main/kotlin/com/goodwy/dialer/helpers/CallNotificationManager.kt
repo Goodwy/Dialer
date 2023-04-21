@@ -70,7 +70,7 @@ class CallNotificationManager(private val context: Context) {
 
             var callerNumberType = ""
             if (callContact.name == callContact.number) {
-                val country = getCountryByNumber(context, callContact.number)
+                val country = if (callContact.number.startsWith("+")) getCountryByNumber(context, callContact.number) else ""
                 if (country != "") callerNumberType = country
             } else callerNumberType = callContact.numberLabel
 

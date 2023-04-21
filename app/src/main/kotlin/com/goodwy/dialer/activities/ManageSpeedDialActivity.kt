@@ -3,9 +3,9 @@ package com.goodwy.dialer.activities
 import android.os.Bundle
 import com.google.gson.Gson
 import com.goodwy.commons.extensions.updateTextColors
+import com.goodwy.commons.helpers.ContactsHelper
 import com.goodwy.commons.helpers.NavigationIcon
-import com.goodwy.commons.helpers.SimpleContactsHelper
-import com.goodwy.commons.models.SimpleContact
+import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.dialer.R
 import com.goodwy.dialer.adapters.SpeedDialAdapter
 import com.goodwy.dialer.dialogs.SelectContactDialog
@@ -15,16 +15,20 @@ import com.goodwy.dialer.models.SpeedDial
 import kotlinx.android.synthetic.main.activity_manage_speed_dial.*
 
 class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
-    private var allContacts = ArrayList<SimpleContact>()
+    private var allContacts = ArrayList<Contact>()
     private var speedDialValues = ArrayList<SpeedDial>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manage_speed_dial)
 
+        updateMaterialActivityViews(manage_speed_dial_coordinator, manage_speed_dial_holder, useTransparentNavigation = true, useTopSearchMenu = false)
+        setupMaterialScrollListener(manage_speed_dial_scrollview, manage_speed_dial_toolbar)
+
         speedDialValues = config.getSpeedDialValues()
         updateAdapter()
-        SimpleContactsHelper(this).getAvailableContacts(false) { contacts ->
+        ContactsHelper(this).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
             allContacts = contacts
         }
 
@@ -50,7 +54,7 @@ class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
 
             SelectContactDialog(this, allContacts) { selectedContact ->
                 speedDialValues.first { it.id == clickedContact.id }.apply {
-                    displayName = selectedContact.name
+                    displayName = selectedContact.getNameToDisplay()
                     number = selectedContact.phoneNumbers.first().normalizedNumber
                 }
                 updateAdapter()

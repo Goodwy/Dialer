@@ -2,7 +2,9 @@ package com.goodwy.dialer.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.telecom.TelecomManager
@@ -15,8 +17,13 @@ import com.goodwy.dialer.extensions.getHandleToUse
 class DialerActivity : SimpleActivity() {
     private var callNumber: Uri? = null
 
+    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (Build.VERSION.SDK_INT != Build.VERSION_CODES.O) {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
 
         if (intent.action == Intent.ACTION_CALL && intent.data != null) {
             callNumber = intent.data
@@ -36,6 +43,12 @@ class DialerActivity : SimpleActivity() {
     @SuppressLint("MissingPermission")
     private fun initOutgoingCall() {
         try {
+            if (isNumberBlocked(callNumber.toString().replace("tel:", ""), getBlockedNumbers())) {
+                toast(R.string.calling_blocked_number)
+                finish()
+                return
+            }
+
             getHandleToUse(intent, callNumber.toString()) { handle ->
                 if (handle != null) {
                     Bundle().apply {

@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.provider.CallLog.Calls
 import android.text.SpannableString
 import android.text.TextUtils
+import android.text.format.DateUtils
 import android.util.TypedValue
 import android.view.*
 import android.widget.PopupMenu
@@ -14,7 +15,7 @@ import com.goodwy.commons.dialogs.ConfirmationDialog
 import com.goodwy.commons.dialogs.FeatureLockedDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
-import com.goodwy.commons.models.SimpleContact
+import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MyRecyclerView
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.CallHistoryActivity
@@ -37,6 +38,8 @@ import kotlinx.android.synthetic.main.item_recent_call.view.item_recents_number
 import kotlinx.android.synthetic.main.item_recent_call.view.item_recents_sim_id
 import kotlinx.android.synthetic.main.item_recent_call.view.item_recents_sim_image
 import kotlinx.android.synthetic.main.item_recent_call.view.item_recents_type
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.minutes
 
 class RecentCallsAdapter(
     activity: SimpleActivity,
@@ -81,7 +84,7 @@ class RecentCallsAdapter(
             findItem(R.id.cab_call_sim_2).isVisible = hasMultipleSIMs && isOneItemSelected && showIcon
             findItem(R.id.cab_remove_default_sim).isVisible = isOneItemSelected && activity.config.getCustomSIM(selectedNumber) != "" && showIcon
 
-            findItem(R.id.cab_block_number).title = activity.addLockedLabelIfNeeded(R.string.block_number)
+            findItem(R.id.cab_block_number).title = activity.getString(R.string.block_number)//activity.addLockedLabelIfNeeded(R.string.block_number)
             findItem(R.id.cab_block_number).isVisible = isNougatPlus() && showIcon
             findItem(R.id.cab_add_number).isVisible = isOneItemSelected && showIcon
             findItem(R.id.cab_send_sms).isVisible = showIcon
@@ -174,11 +177,12 @@ class RecentCallsAdapter(
     }
 
     private fun tryBlocking() {
-        if (activity.isOrWasThankYouInstalled()) {
+        /*if (activity.isOrWasThankYouInstalled()) {
             askConfirmBlock()
         } else {
             FeatureLockedDialog(activity) { }
-        }
+        }*/
+        askConfirmBlock()
     }
 
     private fun askConfirmBlock() {
@@ -275,11 +279,11 @@ class RecentCallsAdapter(
         }
     }
 
-    private fun findContactByCall(recentCall: RecentCall): SimpleContact? {
+    private fun findContactByCall(recentCall: RecentCall): Contact? {
         return (activity as MainActivity).cachedContacts.find { it.name == recentCall.name && it.doesHavePhoneNumber(recentCall.phoneNumber) }
     }
 
-    private fun launchContactDetailsIntent(contact: SimpleContact?) {
+    private fun launchContactDetailsIntent(contact: Contact?) {
         if (contact != null) {
             activity.startContactDetailsIntent(contact)
         }
@@ -309,9 +313,10 @@ class RecentCallsAdapter(
             if (getLastItem() == call || !context.config.useDividers) divider?.visibility = View.INVISIBLE else divider?.visibility = View.VISIBLE
 
             item_recents_frame.isSelected = selectedKeys.contains(call.id)
+            //val name = findContactByCall(call)?.getNameToDisplay() ?: call.name
             var nameToShow = SpannableString(call.name)
 
-            if (nameToShow[0].toString() == "+") nameToShow = SpannableString(getPhoneNumberFormat(activity, number = nameToShow.toString()))
+            if (nameToShow.startsWith("+")) nameToShow = SpannableString(getPhoneNumberFormat(activity, number = nameToShow.toString()))
             if (call.neighbourIDs.isNotEmpty()) {
                 nameToShow = SpannableString("$nameToShow (${call.neighbourIDs.size + 1})")
             }
@@ -331,20 +336,28 @@ class RecentCallsAdapter(
                     beVisible()
                     setTextColor(textColor)
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize * 0.8f)
-                    if (call.phoneNumber == call.name) {
-                        val country = getCountryByNumber(activity, call.phoneNumber)
-                        text = country
+                    text = if (call.phoneNumber == call.name) {
+                        val country = if (call.phoneNumber.startsWith("+")) getCountryByNumber(activity, call.phoneNumber) else ""
+                        country
                     } else {
-                        val phoneNumberNormalizer = getPhoneNumberFormat(activity, number = call.phoneNumber)
-                        val phoneNumber = if (call.phoneNumber[0].toString() == "+") phoneNumberNormalizer else call.phoneNumber
-                        text = if (call.specificType.isNotEmpty() && call.specificNumber.isNotEmpty()) call.specificType else phoneNumber
+                        val phoneNumber = if (call.phoneNumber.startsWith("+")) getPhoneNumberFormat(activity, number = call.phoneNumber) else call.phoneNumber
+                        if (call.specificType.isNotEmpty() && call.specificNumber.isNotEmpty()) call.specificType else phoneNumber
                         //setTextColor(if (call.type == Calls.MISSED_TYPE) redColor else textColor)
                     }
                 }
             }
 
             item_recents_date_time.apply {
-                text = call.startTS.formatDateOrTime(context, hideTimeAtOtherDays = hideTimeAtOtherDays, false)
+
+                val relativeDate = DateUtils.getRelativeDateTimeString(
+                    context,
+                    call.startTS * 1000L,
+                    1.minutes.inWholeMilliseconds,
+                    2.days.inWholeMilliseconds,
+                    0,
+                )
+                val date = call.startTS.formatDateOrTime(context, hideTimeAtOtherDays = hideTimeAtOtherDays, false)
+                text = if (showIcon && activity.config.useRelativeDate) relativeDate else date
                 //setTextColor(if (call.type == Calls.MISSED_TYPE) redColor else textColor)
                 setTextColor(textColor)
                 setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize * 0.8f)
@@ -360,8 +373,10 @@ class RecentCallsAdapter(
             item_recents_sim_image.beVisibleIf(areMultipleSIMsAvailable && call.simID != -1)
             item_recents_sim_id.beVisibleIf(areMultipleSIMsAvailable && call.simID != -1)
             if (areMultipleSIMsAvailable && call.simID != -1) {
-                item_recents_sim_image.applyColorFilter(textColor)
-                item_recents_sim_id.setTextColor(textColor.getContrastColor())
+                val simColor = if (!activity.config.colorSimIcons) textColor else if (call.simID == 1) accentColor else properPrimaryColor
+                item_recents_sim_image.applyColorFilter(simColor)
+                item_recents_sim_image.alpha = if (!activity.config.colorSimIcons) 0.6f else 1f
+                item_recents_sim_id.setTextColor(simColor.getContrastColor())
                 item_recents_sim_id.text = call.simID.toString()
             }
 
@@ -439,7 +454,7 @@ class RecentCallsAdapter(
                 findItem(R.id.cab_call_sim_1).isVisible = areMultipleSIMsAvailable
                 findItem(R.id.cab_call_sim_2).isVisible = areMultipleSIMsAvailable
                 findItem(R.id.cab_view_details).isVisible = contact != null
-                findItem(R.id.cab_block_number).title = activity.addLockedLabelIfNeeded(R.string.block_number)
+                findItem(R.id.cab_block_number).title = activity.getString(R.string.block_number)//activity.addLockedLabelIfNeeded(R.string.block_number)
                 findItem(R.id.cab_block_number).isVisible = isNougatPlus()
                 findItem(R.id.cab_remove_default_sim).isVisible = activity.config.getCustomSIM(selectedNumber) != ""
             }

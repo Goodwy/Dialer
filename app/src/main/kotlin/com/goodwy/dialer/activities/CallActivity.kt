@@ -11,14 +11,14 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.RippleDrawable
 import android.media.AudioManager
+import android.net.Uri
 import android.os.*
 import android.telecom.Call
 import android.telecom.CallAudioState
-import android.view.MotionEvent
-import android.view.View
-import android.view.WindowManager
+import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.PopupMenu
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.helpers.setWindowTransparency
@@ -27,8 +27,7 @@ import com.goodwy.dialer.R
 import com.goodwy.dialer.dialogs.DynamicBottomSheetChooserDialog
 import com.goodwy.dialer.extensions.*
 import com.goodwy.dialer.helpers.*
-import com.goodwy.dialer.models.AudioRoute
-import com.goodwy.dialer.models.CallContact
+import com.goodwy.dialer.models.*
 import com.mikhaellopez.rxanimation.*
 import com.mikhaellopez.rxanimation.fadeIn
 import com.mikhaellopez.rxanimation.fadeOut
@@ -36,6 +35,8 @@ import kotlinx.android.synthetic.main.activity_call.*
 import kotlinx.android.synthetic.main.activity_call.dialpad_input
 import kotlinx.android.synthetic.main.activity_call.dialpad_wrapper
 import kotlinx.android.synthetic.main.dialpad.*
+import org.greenrobot.eventbus.EventBus
+import java.util.concurrent.TimeUnit
 import kotlin.math.max
 import kotlin.math.min
 
@@ -66,6 +67,7 @@ class CallActivity : SimpleActivity() {
 
     @SuppressLint("MissingSuperCall", "MissingPermission")
     override fun onCreate(savedInstanceState: Bundle?) {
+        showTransparentTop = true
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_call)
 
@@ -74,6 +76,8 @@ class CallActivity : SimpleActivity() {
             return
         }
 
+        if (config.backgroundCallScreen == TRANSPARENT_BACKGROUND) checkPermission()
+
         updateTextColors(call_holder)
         initButtons()
         audioManager.mode = AudioManager.MODE_IN_CALL
@@ -81,39 +85,43 @@ class CallActivity : SimpleActivity() {
         CallManager.addListener(callCallback)
         updateCallContactInfo(CallManager.getPrimaryCall())
 
-        if (config.transparentCallScreen && hasPermission(PERMISSION_READ_STORAGE)) {
-            val wallpaperManager = WallpaperManager.getInstance(this)
-            val wallpaperBlur = BlurFactory.fileToBlurBitmap(wallpaperManager.getDrawable(), this, 0.2f, 25f)
-            if (wallpaperBlur != null) {
-                val drawable: Drawable = BitmapDrawable(resources, wallpaperBlur)
-                call_holder.background = drawable
-                call_holder.background.alpha = 60
-                if (isQPlus()) {
-                    call_holder.background.colorFilter = BlendModeColorFilter(Color.DKGRAY, BlendMode.SOFT_LIGHT)
-                } else {
-                    call_holder.background.setColorFilter(Color.DKGRAY, PorterDuff.Mode.DARKEN)
+        if (config.backgroundCallScreen == TRANSPARENT_BACKGROUND || config.backgroundCallScreen == BLUR_AVATAR || config.backgroundCallScreen == AVATAR) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                if (config.backgroundCallScreen == TRANSPARENT_BACKGROUND && hasPermission(PERMISSION_READ_STORAGE)) {
+                    val wallpaperManager = WallpaperManager.getInstance(this)
+                    val wallpaperBlur = BlurFactory.fileToBlurBitmap(wallpaperManager.drawable, this, 0.2f, 25f)
+                    if (wallpaperBlur != null) {
+                        val drawable: Drawable = BitmapDrawable(resources, wallpaperBlur)
+                        call_holder.background = drawable
+                        call_holder.background.alpha = 60
+                        if (isQPlus()) {
+                            call_holder.background.colorFilter = BlendModeColorFilter(Color.DKGRAY, BlendMode.SOFT_LIGHT)
+                        } else {
+                            call_holder.background.setColorFilter(Color.DKGRAY, PorterDuff.Mode.DARKEN)
+                        }
+                    }
                 }
-
-                arrayOf(caller_name_label, caller_number, call_status_label, call_decline_label, call_accept_label,
-                    dialpad_1, dialpad_2, dialpad_3, dialpad_4, dialpad_5, dialpad_6, dialpad_7, dialpad_8, dialpad_9,
-                    dialpad_0, dialpad_plus, dialpad_input,
-                    dialpad_2_letters, dialpad_3_letters, dialpad_4_letters, dialpad_5_letters,
-                    dialpad_6_letters, dialpad_7_letters, dialpad_8_letters, dialpad_9_letters,
-                    on_hold_caller_name, on_hold_label
-                ).forEach {
-                    it.setTextColor(Color.WHITE)
-                }
-
-                arrayOf(call_toggle_microphone, call_toggle_speaker, call_dialpad, dialpad_close, call_sim_image,
-                    call_toggle_hold, call_add_contact, call_add, call_swap, call_merge, call_manage, imageView,
-                    dialpad_asterisk, dialpad_hashtag
-                ).forEach {
-                    it.applyColorFilter(Color.WHITE)
-                }
-
-                call_sim_id.setTextColor(Color.WHITE.getContrastColor())
             }
-            // Прозрачные статусбар и навибар
+
+            arrayOf(caller_name_label, caller_number, call_status_label, call_decline_label, call_accept_label,
+                dialpad_1, dialpad_2, dialpad_3, dialpad_4, dialpad_5, dialpad_6, dialpad_7, dialpad_8, dialpad_9,
+                dialpad_0, dialpad_plus, dialpad_input,
+                dialpad_2_letters, dialpad_3_letters, dialpad_4_letters, dialpad_5_letters,
+                dialpad_6_letters, dialpad_7_letters, dialpad_8_letters, dialpad_9_letters,
+                on_hold_caller_name, on_hold_label, call_message_label, call_remind_label
+            ).forEach {
+                it.setTextColor(Color.WHITE)
+            }
+
+            arrayOf(call_toggle_microphone, call_toggle_speaker, call_dialpad, dialpad_close, call_sim_image,
+                call_toggle_hold, call_add_contact, call_add, call_swap, call_merge, call_manage, imageView,
+                dialpad_asterisk, dialpad_hashtag
+            ).forEach {
+                it.applyColorFilter(Color.WHITE)
+            }
+
+            call_sim_id.setTextColor(Color.WHITE.getContrastColor())
+            // Transparent status bar and navigation bar
             setWindowTransparency(false) { statusBarSize, bottomNavigationBarSize, leftNavigationBarSize, rightNavigationBarSize ->
                 call_holder.setPadding(leftNavigationBarSize, statusBarSize, rightNavigationBarSize, bottomNavigationBarSize)
                 updateStatusbarColor(Color.BLACK)
@@ -122,7 +130,7 @@ class CallActivity : SimpleActivity() {
         } else {
             arrayOf(call_toggle_microphone, call_toggle_speaker, call_dialpad, dialpad_close, call_sim_image,
                 call_toggle_hold, call_add_contact, call_add, call_swap, call_merge, call_manage, imageView,
-                dialpad_asterisk, dialpad_hashtag
+                dialpad_asterisk, dialpad_hashtag, call_message, call_remind
             ).forEach {
                 it.applyColorFilter(getProperTextColor())
             }
@@ -170,7 +178,7 @@ class CallActivity : SimpleActivity() {
     override fun onResume() {
         super.onResume()
         updateState()
-        if (config.transparentCallScreen && hasPermission(PERMISSION_READ_STORAGE)) {
+        if (config.backgroundCallScreen == TRANSPARENT_BACKGROUND || config.backgroundCallScreen == BLUR_AVATAR || config.backgroundCallScreen == AVATAR) {
             updateStatusbarColor(Color.BLACK)
             updateNavigationBarColor(Color.BLACK)
         }
@@ -188,6 +196,16 @@ class CallActivity : SimpleActivity() {
         }
     }
 
+    private fun refreshTimers() {
+//        timerHelper.getTimers { timers ->
+//            runOnUiThread {
+//                toast("Reqwer")
+//                //startTimerService(this)
+//                endCall(true)
+//            }
+//        }
+    }
+
     override fun onBackPressed() {
         if (dialpad_wrapper.isVisible()) {
             hideDialpad()
@@ -203,6 +221,7 @@ class CallActivity : SimpleActivity() {
     }
 
     private fun initButtons() {
+
         if (config.disableSwipeToAnswer) {
             call_draggable.beGone()
             call_draggable_background.beGone()
@@ -435,7 +454,7 @@ class CallActivity : SimpleActivity() {
     }
 
     private fun dialpadPressed(char: Char) {
-        CallManager.keypad(this, char)
+        CallManager.keypad(char)
         dialpad_input.addCharacter(char)
     }
 
@@ -533,7 +552,7 @@ class CallActivity : SimpleActivity() {
         val drawable = if (!isMicrophoneOff) R.drawable.ic_microphone_vector else R.drawable.ic_microphone_off_vector
         call_toggle_microphone.setImageDrawable(getDrawable(drawable))
 
-        if (config.transparentCallScreen && hasPermission(PERMISSION_READ_STORAGE)) {
+        if (config.backgroundCallScreen == TRANSPARENT_BACKGROUND || config.backgroundCallScreen == BLUR_AVATAR || config.backgroundCallScreen == AVATAR) {
             val color = if (isMicrophoneOff) Color.WHITE else Color.GRAY
             call_toggle_microphone.background.applyColorFilter(color)
             val colorIcon = if (isMicrophoneOff) Color.BLACK else Color.WHITE
@@ -600,7 +619,7 @@ class CallActivity : SimpleActivity() {
             .shake()
             .subscribe()
 
-        if (config.transparentCallScreen && hasPermission(PERMISSION_READ_STORAGE)) {
+        if (config.backgroundCallScreen == TRANSPARENT_BACKGROUND || config.backgroundCallScreen == BLUR_AVATAR || config.backgroundCallScreen == AVATAR) {
             val color = if (isOnHold) Color.WHITE else Color.GRAY
             call_toggle_hold.background.applyColorFilter(color)
             val colorIcon = if (isOnHold) Color.BLACK else Color.WHITE
@@ -632,7 +651,7 @@ class CallActivity : SimpleActivity() {
                 caller_number.text = "${callContact!!.number} - ${callContact!!.numberLabel}"
             }
         } else {
-            val country = getCountryByNumber(this, callContact!!.number)
+            val country = if (callContact!!.number.startsWith("+")) getCountryByNumber(this, callContact!!.number) else ""
             if (country != "") {
                 caller_number.text = country
             } else caller_number.beGone()
@@ -642,6 +661,93 @@ class CallActivity : SimpleActivity() {
             caller_avatar.setImageBitmap(avatar)
         } else {
             caller_avatar.setImageDrawable(null)
+        }
+
+        call_message.apply {
+            setOnClickListener {
+                val wrapper: Context = ContextThemeWrapper(this@CallActivity, getPopupMenuTheme())
+                val popupMenu = PopupMenu(wrapper, call_message, Gravity.END)
+                popupMenu.menu.add(1, 1, 1, getString(R.string.other))
+                popupMenu.menu.add(1, 2, 2, getString(R.string.message_call_later))
+                popupMenu.menu.add(1, 3, 3, getString(R.string.message_on_my_way))
+                popupMenu.menu.add(1, 4, 4, getString(R.string.message_cant_talk_right_now))
+                popupMenu.setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        1 -> {
+                            sendSMS(callContact!!.number, " ")
+                            endCall()
+                        }
+                        else -> {
+                            sendSMS(callContact!!.number, item.title.toString())
+                            endCall()
+                        }
+                    }
+                    true
+                }
+                popupMenu.show()
+
+            //sendSMS(callContact!!.number, "textMessage")
+            }
+            setOnLongClickListener { toast(R.string.send_sms); true; }
+        }
+
+        call_remind.setOnClickListener {
+            this.handleNotificationPermission { permission ->
+                if (permission) {
+                    val wrapper: Context = ContextThemeWrapper(this@CallActivity, getPopupMenuTheme())
+                    val popupMenu = PopupMenu(wrapper, call_remind, Gravity.END)
+                    popupMenu.menu.add(1, 1, 1, String.format(resources.getQuantityString(R.plurals.minutes, 10, 10)))
+                    popupMenu.menu.add(1, 2, 2, String.format(resources.getQuantityString(R.plurals.minutes, 30, 30)))
+                    popupMenu.menu.add(1, 3, 3, String.format(resources.getQuantityString(R.plurals.minutes, 60, 60)))
+                    popupMenu.setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+                            1 -> {
+                                startTimer(600)
+                                endCall()
+                            }
+                            2 -> {
+                                startTimer(1800)
+                                endCall()
+                            }
+                            else -> {
+                                startTimer(3600)
+                                endCall()
+                            }
+                        }
+                        true
+                    }
+                    popupMenu.show()
+                } else {
+                    toast(R.string.no_post_notifications_permissions)
+                }
+            }
+        }
+    }
+
+    private fun startTimer(duration: Int) {
+        timerHelper.getTimers { timers ->
+            val runningTimers = timers.filter { it.state is TimerState.Running && it.id == 1 }
+            runningTimers.forEach { timer ->
+                EventBus.getDefault().post(TimerEvent.Delete(timer.id!!))
+            }
+            val newTimer = createNewTimer()
+            newTimer.id = 1
+            newTimer.title = callContact!!.name
+            newTimer.label = callContact!!.number
+            newTimer.seconds = duration
+            newTimer.vibrate = true
+            timerHelper.insertOrUpdateTimer(newTimer)
+            EventBus.getDefault().post(TimerEvent.Start(1, duration.secondsToMillis))
+        }
+    }
+
+    private val Int.secondsToMillis get() = TimeUnit.SECONDS.toMillis(this.toLong())
+
+    private fun sendSMS(number: String, text: String) {
+        Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.fromParts("smsto", number, null)
+            putExtra("sms_body", text)
+            launchActivityIntent(this)
         }
     }
 
@@ -742,15 +848,52 @@ class CallActivity : SimpleActivity() {
         controls_two_calls.beVisibleIf(hasCallOnHold && dialpad_wrapper.isGone())
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private fun updateCallContactInfo(call: Call?) {
         getCallContact(applicationContext, call) { contact ->
             if (call != CallManager.getPrimaryCall()) {
                 return@getCallContact
             }
             callContact = contact
-            val avatar = if (!call.isConference()) callContactAvatarHelper.getCallContactAvatar(contact) else null
+
+            if (config.backgroundCallScreen == BLUR_AVATAR || config.backgroundCallScreen == AVATAR) {
+                val avatar = if (!call.isConference()) callContactAvatarHelper.getCallContactAvatar(contact, false) else null
+                if (avatar != null) {
+                    val avatarBlur = BlurFactory.fileToBlurBitmap(avatar, this, 0.6f, 25f)
+                    val bg = when (config.backgroundCallScreen) {
+                        BLUR_AVATAR -> avatarBlur
+                        AVATAR -> avatar
+                        else -> null
+                    }
+                    val windowHeight = window.decorView.height
+                    val windowWidth = window.decorView.width
+                    if (bg != null && windowWidth != 0) {
+                        val aspectRatio = windowHeight / windowWidth
+                        val drawable: Drawable = BitmapDrawable(resources, bg.cropCenter(bg.width/aspectRatio, bg.height))
+                        call_holder.background = drawable
+                        call_holder.background.alpha = 60
+                        if (isQPlus()) {
+                            call_holder.background.colorFilter = BlendModeColorFilter(Color.DKGRAY, BlendMode.SOFT_LIGHT)
+                        } else {
+                            call_holder.background.setColorFilter(Color.DKGRAY, PorterDuff.Mode.DARKEN)
+                        }
+                    }
+                } else {
+                    val bg = BlurFactory.fileToBlurBitmap(resources.getDrawable(R.drawable.button_gray_bg, theme), this, 0.6f, 25f)
+                    val drawable: Drawable = BitmapDrawable(resources, bg)
+                    call_holder.background = drawable
+                    call_holder.background.alpha = 60
+                    if (isQPlus()) {
+                        call_holder.background.colorFilter = BlendModeColorFilter(Color.DKGRAY, BlendMode.SOFT_LIGHT)
+                    } else {
+                        call_holder.background.setColorFilter(Color.DKGRAY, PorterDuff.Mode.DARKEN)
+                    }
+                }
+            }
+
+            val avatarRound = if (!call.isConference()) callContactAvatarHelper.getCallContactAvatar(contact) else null
             runOnUiThread {
-                updateOtherPersonsInfo(avatar)
+                updateOtherPersonsInfo(avatarRound)
                 checkCalledSIMCard()
             }
         }
@@ -807,7 +950,7 @@ class CallActivity : SimpleActivity() {
                 call_status_label.text = "${callDuration.getFormattedDuration()} (${getString(R.string.call_ended)})"
                 Handler().postDelayed({
                     finishAndRemoveTask()
-                }, 3000)
+                }, 2000)
             }
         } else {
             call_status_label.text = getString(R.string.call_ended)
@@ -911,12 +1054,21 @@ class CallActivity : SimpleActivity() {
             view.applyColorFilter(getProperBackgroundColor().getContrastColor())
         }*/
 
-        if (config.transparentCallScreen && hasPermission(PERMISSION_READ_STORAGE)) {
+        if (config.backgroundCallScreen == TRANSPARENT_BACKGROUND || config.backgroundCallScreen == BLUR_AVATAR || config.backgroundCallScreen == AVATAR) {
             val color = if (enabled) Color.WHITE else Color.GRAY
             view.background.applyColorFilter(color)
             val colorIcon = if (enabled) Color.BLACK else Color.WHITE
             view.applyColorFilter(colorIcon)
         }
         view.background.alpha = if (enabled) 255 else 60
+    }
+
+    private fun checkPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            if (!hasPermission(PERMISSION_READ_STORAGE)) {
+                config.backgroundCallScreen = BLUR_AVATAR
+                toast(R.string.no_storage_permissions)
+            }
+        }
     }
 }

@@ -40,7 +40,7 @@
         android:translateY="105">
         <path
             android:pathData="M8.5,22.75C8.09,22.75 7.75,22.41 7.75,22V19C7.75,18.59 8.09,18.25 8.5,18.25C8.91,18.25 9.25,18.59 9.25,19V22C9.25,22.41 8.91,22.75 8.5,22.75Z"
-            android:fillColor="#000000"/>
+            android:fillColor="#FF000000"/>
     </group>
     <group
         android:scaleY="16"
@@ -49,6 +49,6 @@
         android:translateY="105">
         <path
             android:pathData="M8.5,22.75C8.09,22.75 7.75,22.41 7.75,22V19C7.75,18.59 8.09,18.25 8.5,18.25C8.91,18.25 9.25,18.59 9.25,19V22C9.25,22.41 8.91,22.75 8.5,22.75Z"
-            android:fillColor="#000000"/>
+            android:fillColor="#FF000000"/>
     </group>
 </vector>

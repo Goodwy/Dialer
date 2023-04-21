@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
@@ -15,8 +16,8 @@ android {
         applicationId "com.goodwy.dialer"
         minSdkVersion 23
         targetSdkVersion 33
-        versionCode 310
-        versionName "3.1.0"
+        versionCode 420
+        versionName "4.2.0"
         setProperty("archivesBaseName", "dialer")
         buildConfigField("String", "GOOGLE_PLAY_LICENSING_KEY", "\"${getProperty(getProperties('local.properties'), 'GOOGLE_PLAY_LICENSE_KEY')}\"")
         buildConfigField("String", "PRODUCT_ID_X1", "\"${getProperty(getProperties('local.properties'), 'PRODUCT_ID_X1')}\"")
@@ -89,8 +90,9 @@ dependencies {
     implementation 'com.anjlab.android.iab.v3:library:2.0.3'
     implementation 'com.github.Liverm0r:BehavioRule:1.0.1'
 
-    api "com.github.tibbi:RecyclerView-FastScroller:5a95285b1f"
-    api 'com.google.android.material:material:1.8.0-alpha01'
+    //api "com.github.goodwy:RecyclerView-FastScroller:cd067e83e4"
+    //api "com.github.tibbi:RecyclerView-FastScroller:5a95285b1f"
+    api 'com.google.android.material:material:1.8.0'
     api 'com.google.code.gson:gson:2.9.1'
     api 'com.duolingo.open:rtl-viewpager:2.0.0'
 
@@ -98,6 +100,14 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
     implementation "androidx.core:core-ktx:1.8.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'androidx.room:room-runtime:2.5.0'
+    kapt 'androidx.room:room-compiler:2.5.0'
+    implementation 'joda-time:joda-time:2.10.13'
+
+    //timer
+    implementation 'org.greenrobot:eventbus:3.3.1'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 }
 repositories {
     mavenCentral()

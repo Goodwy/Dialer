@@ -8,11 +8,12 @@ import com.goodwy.commons.adapters.MyRecyclerViewAdapter
 import com.goodwy.commons.dialogs.CallConfirmationDialog
 import com.goodwy.commons.dialogs.RadioGroupDialog
 import com.goodwy.commons.extensions.*
+import com.goodwy.commons.helpers.ContactsHelper
 import com.goodwy.commons.helpers.MyContactsContentProvider
 import com.goodwy.commons.helpers.PERMISSION_READ_CONTACTS
-import com.goodwy.commons.helpers.SimpleContactsHelper
+import com.goodwy.commons.helpers.SMT_PRIVATE
 import com.goodwy.commons.models.RadioItem
-import com.goodwy.commons.models.SimpleContact
+import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.adapters.ContactsAdapter
@@ -24,7 +25,7 @@ import kotlinx.android.synthetic.main.fragment_letters_layout.view.*
 import java.util.*
 
 class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet), RefreshItemsListener {
-    private var allContacts = ArrayList<SimpleContact>()
+    private var allContacts = ArrayList<Contact>()
 
     override fun setupFragment() {
         favorites_fragment.setBackgroundColor(context.getProperBackgroundColor())
@@ -52,28 +53,35 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
     }
 
     override fun refreshItems(callback: (() -> Unit)?) {
-        val privateCursor = context?.getMyContactsCursor(true, true)
-        SimpleContactsHelper(context).getAvailableContacts(true) { contacts ->
+        ContactsHelper(context).getContacts { contacts ->
             allContacts = contacts
 
-            val privateContacts = MyContactsContentProvider.getSimpleContacts(context, privateCursor)
-            if (privateContacts.isNotEmpty()) {
-                allContacts.addAll(privateContacts)
-                allContacts.sort()
+            if (SMT_PRIVATE !in context.baseConfig.ignoredContactSources) {
+                val privateCursor = context?.getMyContactsCursor(true, true)
+                val privateContacts = MyContactsContentProvider.getContacts(context, privateCursor).map {
+                    it.copy(starred = 1)
+                }
+                if (privateContacts.isNotEmpty()) {
+                    allContacts.addAll(privateContacts)
+                    allContacts.sort()
+                }
             }
+            val favorites = contacts.filter { it.starred == 1 } as ArrayList<Contact>
 
-            if (activity!!.config.isCustomOrderSelected) {
-                allContacts = sortByCustomOrder(allContacts)
+            allContacts = if (activity!!.config.isCustomOrderSelected) {
+                sortByCustomOrder(favorites)
+            } else {
+                favorites
             }
 
             activity?.runOnUiThread {
-                gotContacts(contacts)
+                gotContacts(allContacts)
                 callback?.invoke()
             }
         }
     }
 
-    private fun gotContacts(contacts: ArrayList<SimpleContact>) {
+    private fun gotContacts(contacts: ArrayList<Contact>) {
         setupLetterFastscroller(contacts)
         if (contacts.isEmpty()) {
             fragment_placeholder.beVisible()
@@ -91,13 +99,14 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
                     refreshItemsListener = this,
                     showDeleteButton = false,
                     enableDrag = true,
+                    showNumber = context.baseConfig.showPhoneNumbers
                 ) {
                     if (context.config.showCallConfirmation) {
-                        CallConfirmationDialog(activity as SimpleActivity, (it as SimpleContact).name) {
+                        CallConfirmationDialog(activity as SimpleActivity, (it as Contact).getNameToDisplay()) {
                             callContact(it)
                         }
                     } else {
-                        callContact(it as SimpleContact)
+                        callContact(it as Contact)
                     }
                 }.apply {
                     fragment_list.adapter = this
@@ -121,7 +130,7 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
         }
     }
 
-    private fun sortByCustomOrder(favorites: List<SimpleContact>): ArrayList<SimpleContact> {
+    private fun sortByCustomOrder(favorites: List<Contact>): ArrayList<Contact> {
         val favoritesOrder = activity!!.config.favoritesContactsOrder
 
         if (favoritesOrder.isEmpty()) {
@@ -135,7 +144,7 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
         return ArrayList(sorted)
     }
 
-    private fun saveCustomOrderToPrefs(items: ArrayList<SimpleContact>) {
+    private fun saveCustomOrderToPrefs(items: ArrayList<Contact>) {
         activity?.apply {
             val orderIds = items.map { it.contactId }
             val orderGsonString = Gson().toJson(orderIds)
@@ -143,9 +152,11 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
         }
     }
 
-    private fun callContact(simpleContact: SimpleContact) {
+    private fun callContact(simpleContact: Contact) {
         val phoneNumbers = simpleContact.phoneNumbers
-        if (phoneNumbers.size <= 1) {
+        if (phoneNumbers.isEmpty()) {
+            return
+        } else if (phoneNumbers.size <= 1) {
             activity?.launchCallIntent(phoneNumbers.first().normalizedNumber)
         } else {
             val primaryNumber = simpleContact.phoneNumbers.find { it.isPrimary }
@@ -165,10 +176,10 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
         }
     }
 
-    private fun setupLetterFastscroller(contacts: ArrayList<SimpleContact>) {
+    private fun setupLetterFastscroller(contacts: ArrayList<Contact>) {
         letter_fastscroller.setupWithRecyclerView(fragment_list, { position ->
             try {
-                val name = contacts[position].name
+                val name = contacts[position].getNameToDisplay()
                 val character = if (name.isNotEmpty()) name.substring(0, 1) else ""
                 FastScrollItemIndicator.Text(character.toUpperCase(Locale.getDefault()).normalizeString())
             } catch (e: Exception) {
@@ -185,10 +196,10 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
 
     override fun onSearchQueryChanged(text: String) {
         val contacts = allContacts.filter {
-            it.name.contains(text, true) || it.doesContainPhoneNumber(text)
+            it.name.contains(text, true) || it.doesContainPhoneNumber(text, search = true)
         }.sortedByDescending {
             it.name.startsWith(text, true)
-        }.toMutableList() as ArrayList<SimpleContact>
+        }.toMutableList() as ArrayList<Contact>
 
         fragment_placeholder.beVisibleIf(contacts.isEmpty())
         (fragment_list.adapter as? ContactsAdapter)?.updateItems(contacts, text)

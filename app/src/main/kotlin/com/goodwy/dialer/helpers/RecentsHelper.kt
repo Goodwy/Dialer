@@ -5,7 +5,7 @@ import android.content.Context
 import android.provider.CallLog.Calls
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
-import com.goodwy.commons.models.SimpleContact
+import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.extensions.getAvailableSIMCardLabels
@@ -24,8 +24,8 @@ class RecentsHelper(private val context: Context) {
                 return@ensureBackgroundThread
             }
 
-            SimpleContactsHelper(context).getAvailableContacts(false) { contacts ->
-                val privateContacts = MyContactsContentProvider.getSimpleContacts(context, privateCursor)
+            ContactsHelper(context).getContacts { contacts ->
+                val privateContacts = MyContactsContentProvider.getContacts(context, privateCursor)
                 if (privateContacts.isNotEmpty()) {
                     contacts.addAll(privateContacts)
                 }
@@ -36,7 +36,8 @@ class RecentsHelper(private val context: Context) {
     }
 
     @SuppressLint("NewApi")
-    private fun getRecents(contacts: ArrayList<SimpleContact>, groupSubsequentCalls: Boolean, callback: (ArrayList<RecentCall>) -> Unit) {
+    private fun getRecents(contacts: ArrayList<Contact>, groupSubsequentCalls: Boolean, callback: (ArrayList<RecentCall>) -> Unit) {
+
         var recentCalls = ArrayList<RecentCall>()
         var previousRecentCallFrom = ""
         var previousStartTS = 0
@@ -65,7 +66,7 @@ class RecentsHelper(private val context: Context) {
             val limitedUri = uri.buildUpon()
                 .appendQueryParameter(Calls.LIMIT_PARAM_KEY, QUERY_LIMIT)
                 .build()
-            val sortOrder = "${Calls._ID} DESC"
+            val sortOrder = "${Calls._ID} DESC" //TODO Sort call
             context.contentResolver.query(limitedUri, projection, null, null, sortOrder)
         } else {
             val sortOrder = "${Calls._ID} DESC LIMIT $QUERY_LIMIT"
@@ -86,6 +87,7 @@ class RecentsHelper(private val context: Context) {
                 val id = cursor.getIntValue(Calls._ID)
                 val number = cursor.getStringValue(Calls.NUMBER) ?: continue
                 var name = cursor.getStringValue(Calls.CACHED_NAME)
+                var unknown = false
                 if (name == null || name.isEmpty()) {
                     name = number
                 }
@@ -96,11 +98,11 @@ class RecentsHelper(private val context: Context) {
                     } else {
                         val normalizedNumber = number.normalizePhoneNumber()
                         if (normalizedNumber!!.length >= COMPARABLE_PHONE_NUMBER_LENGTH) {
-                            name = contacts.firstOrNull { contact ->
+                            name = contacts.filter { it.phoneNumbers.isNotEmpty() }.firstOrNull { contact ->
                                 val curNumber = contact.phoneNumbers.first().normalizedNumber
                                 if (curNumber.length >= COMPARABLE_PHONE_NUMBER_LENGTH) {
                                     if (curNumber.substring(curNumber.length - COMPARABLE_PHONE_NUMBER_LENGTH) == normalizedNumber.substring(normalizedNumber.length - COMPARABLE_PHONE_NUMBER_LENGTH)) {
-                                        contactsNumbersMap[number] = contact.name
+                                        contactsNumbersMap[number] = contact.getNameToDisplay()
                                         return@firstOrNull true
                                     }
                                 }
@@ -118,6 +120,7 @@ class RecentsHelper(private val context: Context) {
 
                 if (name.isEmpty()) {
                     name = context.getString(R.string.unknown)
+                    unknown = true
                 }
 
                 var photoUri = cursor.getStringValue(Calls.CACHED_PHOTO_URI) ?: ""
@@ -167,7 +170,7 @@ class RecentsHelper(private val context: Context) {
                     specificType = context.getPhoneNumberTypeText(phoneNumberType, phoneNumberLabel)
                 }
 
-                val recentCall = RecentCall(id, number, name, photoUri, startTS, duration, type, neighbourIDs, simID, specificNumber, specificType)
+                val recentCall = RecentCall(id, number, name, photoUri, startTS, duration, type, neighbourIDs, simID, specificNumber, specificType, unknown)
 
                 // if we have multiple missed calls from the same number, show it just once
                 if (!groupSubsequentCalls || "$number$name$simID" != previousRecentCallFrom) {

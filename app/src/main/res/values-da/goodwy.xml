@@ -3,6 +3,7 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Gennemsigtig opkaldsskærm</string>
     <string name="call_back_g">Kalde</string>
+    <string name="call_back_person_g">Call back %s</string>
     <string name="missed_call_g">Ubesvaret opkald</string>
     <string name="missed_calls_g">Ubesvarede opkald</string>
     <string name="missed_call_notifications_g">Meddelelser om ubesvarede opkald</string>
@@ -18,4 +19,16 @@
             if you like this application, then we recommend you to install our application to view and edit contacts.<br><br>
             Thanks
         ]]></string>
+
+    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
+    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
+    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
+
+    <!-- Timer -->
+    <string name="timer">Timer</string>
+    <string name="timers_notification_msg">Timers are running</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d timer is running</item>
+        <item quantity="other">%d timers are running</item>
+    </plurals>
 </resources>

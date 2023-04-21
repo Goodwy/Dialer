@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="AlwaysShowAction,AppCompatResource">
     <item
         android:id="@+id/create_new_contact"
         android:icon="@drawable/ic_plus_vector"
@@ -13,29 +15,30 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="collapseActionView|always"/>
     <item
-        android:id="@+id/sort"
-        android:icon="@drawable/ic_sort_vector"
-        android:title="@string/sort_by"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/clear_call_history"
         android:icon="@drawable/ic_clear_all"
         android:title="@string/clear_call_history"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/sort"
+        android:icon="@drawable/ic_sort_vector"
+        android:showAsAction="always"
+        android:title="@string/sort_by"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/filter"
+        android:icon="@drawable/ic_filter_vector"
+        android:title="@string/filter"
+        app:showAsAction="always" />
     <item
         android:id="@+id/settings"
         android:title="@string/settings"
-        android:icon="@drawable/ic_more_horiz"
+        android:icon="@drawable/ic_settings_hexagon"
         app:showAsAction="always"/>
     <item
         android:id="@+id/about"
         android:icon="@drawable/ic_info_vector"
         android:title="@string/about"
-        android:visible="false"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/more_apps_from_us"
-        android:title="@string/more_apps_from_us"
         android:visible="false"
         app:showAsAction="never" />
 </menu>

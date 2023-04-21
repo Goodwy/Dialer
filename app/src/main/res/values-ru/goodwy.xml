@@ -3,6 +3,7 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Прозрачный фон экрана звонков</string>
     <string name="call_back_g">Перезвонить</string>
+    <string name="call_back_person_g">Перезвоните %s</string>
     <string name="missed_call_g">Пропущенный звонок</string>
     <string name="missed_calls_g">Пропущенных звонков</string>
     <string name="missed_call_notifications_g">Уведомления о пропущенных звонках</string>
@@ -22,4 +23,14 @@
     <string name="audio_route_speaker_g">Динамик</string>
     <string name="audio_route_earpiece_g">Телефон</string>
     <string name="audio_route_wired_or_earpiece_g">Динамик устройства или проводная гарнитура</string>
+
+    <!-- Timer -->
+    <string name="timer">Таймер</string>
+    <string name="timers_notification_msg">Таймеры запущены</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d таймер запущен</item>
+        <item quantity="few">%d таймера запущены</item>
+        <item quantity="many">%d таймеров запущено</item>
+        <item quantity="other">%d таймеров запущено</item>
+    </plurals>
 </resources>

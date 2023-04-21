@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import com.goodwy.commons.activities.ManageBlockedNumbersActivity
+import com.goodwy.commons.dialogs.BottomSheetChooserDialog
 import com.goodwy.commons.dialogs.ChangeDateTimeFormatDialog
 import com.goodwy.commons.dialogs.RadioGroupDialog
 import com.goodwy.commons.dialogs.SettingsIconDialog
@@ -14,11 +15,17 @@ import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.FAQItem
 import com.goodwy.commons.models.RadioItem
+import com.goodwy.commons.models.SimpleListItem
 import com.goodwy.dialer.App.Companion.isProVersion
 import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
 import com.goodwy.dialer.dialogs.ManageVisibleTabsDialog
+import com.goodwy.dialer.extensions.areMultipleSIMsAvailable
 import com.goodwy.dialer.extensions.config
+import com.goodwy.dialer.helpers.AVATAR
+import com.goodwy.dialer.helpers.BLUR_AVATAR
+import com.goodwy.dialer.helpers.THEME_BACKGROUND
+import com.goodwy.dialer.helpers.TRANSPARENT_BACKGROUND
 import kotlinx.android.synthetic.main.activity_settings.*
 import java.util.*
 import kotlin.system.exitProcess
@@ -27,8 +34,19 @@ class SettingsActivity : SimpleActivity() {
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
+        isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+
+        updateMaterialActivityViews(settings_coordinator, settings_holder, useTransparentNavigation = false, useTopSearchMenu = false)
+        setupMaterialScrollListener(settings_nested_scrollview, settings_toolbar)
+        // TODO TRANSPARENT Navigation Bar
+        if (config.transparentNavigationBar) {
+            setWindowTransparency(true) { _, bottomNavigationBarSize, leftNavigationBarSize, rightNavigationBarSize ->
+                settings_coordinator.setPadding(leftNavigationBarSize, 0, rightNavigationBarSize, 0)
+                updateNavigationBarColor(getProperBackgroundColor())
+            }
+        }
     }
 
     @SuppressLint("MissingSuperCall")
@@ -41,23 +59,29 @@ class SettingsActivity : SimpleActivity() {
         setupDefaultTab()
         setupManageShownTabs()
         setupBottomNavigationBar()
+        setupNavigationBarStyle()
         setupUseIconTabs()
         setupScreenSlideAnimation()
         setupMaterialDesign3()
         setupSettingsIcon()
+        setupUseColoredContacts()
+        setupColorSimIcons()
+        setupOpenSearch()
         setupManageBlockedNumbers()
         setupManageSpeedDial()
         setupChangeDateTimeFormat()
         setupFontSize()
         setupDialPadOpen()
-        setupShowDividers()
-        setupShowContactThumbnails()
-        setupUseColoredContacts()
+        setupBackgroundCallScreen()
         setupTransparentCallScreen()
         setupAlwaysShowFullscreen()
         setupMissedCallNotifications()
         setupHideDialpadLetters()
+        setupDialpadNumbers()
         setupGroupSubsequentCalls()
+        setupShowDividers()
+        setupShowContactThumbnails()
+        setupShowPhoneNumbers()
         setupStartNameWithSurname()
         setupShowCallConfirmation()
         setupUseEnglish()
@@ -68,13 +92,40 @@ class SettingsActivity : SimpleActivity() {
         setupDialpadVibrations()
         setupDialpadBeeps()
         setupDisableSwipeToAnswer()
+        setupUseRelativeDate()
         updateTextColors(settings_holder)
 
-        arrayOf(divider_general, divider_calls, divider_list_view, divider_other).forEach {
-            it.setBackgroundColor(getProperTextColor())
-        }
-        arrayOf(settings_appearance_label, settings_general_label, settings_calls_label, settings_list_view_label, settings_other_label).forEach {
+        arrayOf(
+            settings_appearance_label,
+            settings_tabs_label,
+            settings_general_label,
+            settings_calls_label,
+            settings_list_view_label,
+            settings_other_label).forEach {
             it.setTextColor(getProperPrimaryColor())
+        }
+
+        arrayOf(
+            settings_color_customization_holder,
+            settings_tabs_holder,
+            settings_general_holder,
+            settings_calls_holder,
+            settings_list_view_holder,
+            settings_other_holder
+        ).forEach {
+            it.background.applyColorFilter(getBottomNavigationBackgroundColor())
+        }
+
+        arrayOf(
+            settings_customize_colors_chevron,
+            settings_manage_shown_tabs_chevron,
+            settings_manage_blocked_numbers_chevron,
+            settings_manage_speed_dial_chevron,
+            settings_change_date_time_format_chevron,
+            settings_tip_jar_chevron,
+            settings_about_chevron
+        ).forEach {
+            it.applyColorFilter(getProperTextColor())
         }
     }
 
@@ -100,7 +151,6 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupCustomizeColors() {
-        settings_customize_colors_chevron.applyColorFilter(getProperTextColor())
         settings_customize_colors_label.text = if (isOrWasThankYouInstalled() || isProVersion()) {
             getString(R.string.customize_colors)
         } else {
@@ -108,11 +158,12 @@ class SettingsActivity : SimpleActivity() {
         }
         settings_customize_colors_holder.setOnClickListener {
             //handleCustomizeColorsClick()
-            if (isOrWasThankYouInstalled() || isProVersion()) {
+            /*if (isOrWasThankYouInstalled() || isProVersion()) {
                 startCustomizationActivity()
             } else {
                 launchPurchase()
-            }
+            }*/
+            startCustomizationActivity(true, isOrWasThankYouInstalled() || isProVersion(), BuildConfig.GOOGLE_PLAY_LICENSING_KEY, BuildConfig.PRODUCT_ID_X1, BuildConfig.PRODUCT_ID_X2, BuildConfig.PRODUCT_ID_X3)
         }
     }
 
@@ -213,6 +264,28 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupNavigationBarStyle() {
+        settings_navigation_bar_style.text = getNavigationBarStyleText()
+        settings_navigation_bar_style_holder.setOnClickListener {
+            launchNavigationBarStyleDialog()
+        }
+    }
+
+    private fun launchNavigationBarStyleDialog() {
+        BottomSheetChooserDialog.createChooser(
+            fragmentManager = supportFragmentManager,
+            title = R.string.tab_navigation,
+            items = arrayOf(
+                SimpleListItem(0, R.string.top, R.drawable.ic_tab_top, selected = !config.bottomNavigationBar),
+                SimpleListItem(1, R.string.bottom, R.drawable.ic_tab_bottom, selected = config.bottomNavigationBar)
+            )
+        ) {
+            config.bottomNavigationBar = it.id == 1
+            config.tabsChanged = true
+            settings_navigation_bar_style.text = getNavigationBarStyleText()
+        }
+    }
+
     private fun setupUseIconTabs() {
         settings_use_icon_tabs.isChecked = config.useIconTabs
         settings_use_icon_tabs_holder.setOnClickListener {
@@ -269,6 +342,14 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupShowPhoneNumbers() {
+        settings_show_phone_numbers.isChecked = config.showPhoneNumbers
+        settings_show_phone_numbers_holder.setOnClickListener {
+            settings_show_phone_numbers.toggle()
+            config.showPhoneNumbers = settings_show_phone_numbers.isChecked
+        }
+    }
+
     private fun setupUseColoredContacts() {
         settings_colored_contacts.isChecked = config.useColoredContacts
         settings_colored_contacts_holder.setOnClickListener {
@@ -277,19 +358,72 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun setupTransparentCallScreen() {
-        if (hasPermission(PERMISSION_READ_STORAGE)) {
-            settings_transparent_call_screen.isChecked = config.transparentCallScreen
-        } else settings_transparent_call_screen.isChecked = false
-        settings_transparent_call_screen_holder.setOnClickListener {
-            if (hasPermission(PERMISSION_READ_STORAGE)) {
-                settings_transparent_call_screen.toggle()
-                config.transparentCallScreen = settings_transparent_call_screen.isChecked
+    private fun setupBackgroundCallScreen() {
+        settings_background_call_screen.text = getBackgroundCallScreenText()
+        settings_background_call_screen_holder.setOnClickListener {
+            val items = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                arrayListOf(
+                    RadioItem(THEME_BACKGROUND, getString(R.string.theme)),
+                    RadioItem(BLUR_AVATAR, getString(R.string.blurry_contact_photo)),
+                    RadioItem(AVATAR, getString(R.string.contact_photo))
+                )
             } else {
-                handlePermission(PERMISSION_READ_STORAGE) {
-                    if (it) {
-                        settings_transparent_call_screen.toggle()
-                        config.transparentCallScreen = settings_transparent_call_screen.isChecked
+                arrayListOf(
+                    RadioItem(THEME_BACKGROUND, getString(R.string.theme)),
+                    RadioItem(BLUR_AVATAR, getString(R.string.blurry_contact_photo)),
+                    RadioItem(AVATAR, getString(R.string.contact_photo)),
+                    RadioItem(TRANSPARENT_BACKGROUND, getString(R.string.blurry_wallpaper))
+                )
+            }
+
+            RadioGroupDialog(this@SettingsActivity, items, config.backgroundCallScreen) {
+                if (it as Int == TRANSPARENT_BACKGROUND) {
+                    if (hasPermission(PERMISSION_READ_STORAGE)) {
+                        config.backgroundCallScreen = it
+                        settings_background_call_screen.text = getBackgroundCallScreenText()
+                    } else {
+                        handlePermission(PERMISSION_READ_STORAGE) { permission ->
+                            if (permission) {
+                                config.backgroundCallScreen = it
+                                settings_background_call_screen.text = getBackgroundCallScreenText()
+                            } else {
+                                toast(R.string.no_storage_permissions)
+                            }
+                        }
+                    }
+                } else {
+                    config.backgroundCallScreen = it
+                    settings_background_call_screen.text = getBackgroundCallScreenText()
+                }
+            }
+        }
+    }
+
+    private fun getBackgroundCallScreenText() = getString(
+        when (config.backgroundCallScreen) {
+            BLUR_AVATAR -> R.string.blurry_contact_photo
+            AVATAR -> R.string.contact_photo
+            TRANSPARENT_BACKGROUND -> R.string.blurry_wallpaper
+            else -> R.string.theme
+        }
+    )
+
+    private fun setupTransparentCallScreen() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) settings_transparent_call_screen_holder.beGone()
+        else {
+            if (hasPermission(PERMISSION_READ_STORAGE)) {
+                settings_transparent_call_screen.isChecked = config.transparentCallScreen
+            } else settings_transparent_call_screen.isChecked = false
+            settings_transparent_call_screen_holder.setOnClickListener {
+                if (hasPermission(PERMISSION_READ_STORAGE)) {
+                    settings_transparent_call_screen.toggle()
+                    config.transparentCallScreen = settings_transparent_call_screen.isChecked
+                } else {
+                    handlePermission(PERMISSION_READ_STORAGE) {
+                        if (it) {
+                            settings_transparent_call_screen.toggle()
+                            config.transparentCallScreen = settings_transparent_call_screen.isChecked
+                        }
                     }
                 }
             }
@@ -317,6 +451,14 @@ class SettingsActivity : SimpleActivity() {
         settings_hide_dialpad_letters_holder.setOnClickListener {
             settings_hide_dialpad_letters.toggle()
             config.hideDialpadLetters = settings_hide_dialpad_letters.isChecked
+        }
+    }
+
+    private fun setupDialpadNumbers() {
+        settings_hide_dialpad_numbers.isChecked = config.hideDialpadNumbers
+        settings_hide_dialpad_numbers_holder.setOnClickListener {
+            settings_hide_dialpad_numbers.toggle()
+            config.hideDialpadNumbers = settings_hide_dialpad_numbers.isChecked
         }
     }
 
@@ -361,6 +503,23 @@ class SettingsActivity : SimpleActivity() {
                 config.settingsIcon = it as Int
                 settings_icon.setImageResource(getSettingsIcon(it))
             }
+        }
+    }
+
+    private fun setupColorSimIcons() {
+        settings_color_sim_card_icons_holder.beGoneIf(!areMultipleSIMsAvailable())
+        settings_color_sim_card_icons.isChecked = config.colorSimIcons
+        settings_color_sim_card_icons_holder.setOnClickListener {
+            settings_color_sim_card_icons.toggle()
+            config.colorSimIcons = settings_color_sim_card_icons.isChecked
+        }
+    }
+
+    private fun setupOpenSearch() {
+        settings_open_search.isChecked = config.openSearch
+        settings_open_search_holder.setOnClickListener {
+            settings_open_search.toggle()
+            config.openSearch = settings_open_search.isChecked
         }
     }
 
@@ -426,6 +585,14 @@ class SettingsActivity : SimpleActivity() {
         settings_disable_swipe_to_answer_holder.setOnClickListener {
             settings_disable_swipe_to_answer.toggle()
             config.disableSwipeToAnswer = settings_disable_swipe_to_answer.isChecked
+        }
+    }
+
+    private fun setupUseRelativeDate() {
+        settings_relative_date.isChecked = config.useRelativeDate
+        settings_relative_date_holder.setOnClickListener {
+            settings_relative_date.toggle()
+            config.useRelativeDate = settings_relative_date.isChecked
         }
     }
 }

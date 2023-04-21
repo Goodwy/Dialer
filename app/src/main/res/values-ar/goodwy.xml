@@ -3,6 +3,7 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">شاشة مكالمة شفافة</string>
     <string name="call_back_g">دعا</string>
+    <string name="call_back_person_g">Call back %s</string>
     <string name="missed_call_g">مكالمة فائتة</string>
     <string name="missed_calls_g">مكالمات</string>
     <string name="missed_call_notifications_g">إشعارات المكالمات الفائتة</string>
@@ -18,4 +19,20 @@
             if you like this application, then we recommend you to install our application to view and edit contacts.<br><br>
             Thanks
         ]]></string>
+
+    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
+    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
+    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
+
+    <!-- Timer -->
+    <string name="timer">Timer</string>
+    <string name="timers_notification_msg">أجهزة ضبط الوقت قيد التشغيل</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="zero">جهاز ضبط الوقت %d قيد التشغيل</item>
+        <item quantity="one">جهاز ضبط الوقت %d قيد التشغيل</item>
+        <item quantity="two">جهاز ضبط الوقت %d قيد التشغيل</item>
+        <item quantity="few">جهاز ضبط الوقت %d قيد التشغيل</item>
+        <item quantity="many">اجهزة ضبط الوقت %d قيد التشغيل</item>
+        <item quantity="other">جهاز ضبط الوقت %d قيد التشغيل</item>
+    </plurals>
 </resources>

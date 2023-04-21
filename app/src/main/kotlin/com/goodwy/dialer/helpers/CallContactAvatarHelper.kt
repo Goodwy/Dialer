@@ -12,7 +12,7 @@ import com.goodwy.dialer.models.CallContact
 
 class CallContactAvatarHelper(private val context: Context) {
     @SuppressLint("NewApi")
-    fun getCallContactAvatar(callContact: CallContact?): Bitmap? {
+    fun getCallContactAvatar(callContact: CallContact?, round: Boolean = true): Bitmap? {
         var bitmap: Bitmap? = null
         if (callContact?.photoUri?.isNotEmpty() == true) {
             val photoUri = Uri.parse(callContact.photoUri)
@@ -24,7 +24,7 @@ class CallContactAvatarHelper(private val context: Context) {
                 } else {
                     MediaStore.Images.Media.getBitmap(contentResolver, photoUri)
                 }
-                bitmap = getCircularBitmap(bitmap!!)
+                bitmap = if (round) getCircularBitmap(bitmap!!) else bitmap
             } catch (ignored: Exception) {
                 return null
             }
