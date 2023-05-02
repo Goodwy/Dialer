@@ -40,6 +40,6 @@
         android:title="@string/block_number" />
     <item
         android:id="@+id/cab_remove"
-        android:icon="@drawable/ic_delete_vector"
+        android:icon="@drawable/ic_delete_outline"
         android:title="@string/delete" />
 </menu>

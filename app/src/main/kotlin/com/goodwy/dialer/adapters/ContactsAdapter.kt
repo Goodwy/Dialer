@@ -32,10 +32,7 @@ import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MyRecyclerView
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.SimpleActivity
-import com.goodwy.dialer.extensions.areMultipleSIMsAvailable
-import com.goodwy.dialer.extensions.callContactWithSim
-import com.goodwy.dialer.extensions.config
-import com.goodwy.dialer.extensions.startContactDetailsIntent
+import com.goodwy.dialer.extensions.*
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import java.util.*
 
@@ -175,12 +172,12 @@ class ContactsAdapter(
         }
 
         val recipient = TextUtils.join(";", numbers)
-        activity.launchSendSMSIntent(recipient)
+        activity.launchSendSMSIntentRecommendation(recipient)
     }
 
     private fun viewContactDetails() {
         val contact = getSelectedItems().firstOrNull() ?: return
-        activity.startContactDetailsIntent(contact)
+        activity.startContactDetailsIntentRecommendation(contact)
     }
 
     private fun askConfirmDelete() {
@@ -376,6 +373,6 @@ class ContactsAdapter(
     }
 
     private fun viewContactInfo(contact: Contact) {
-        activity.startContactDetailsIntent(contact)
+        activity.startContactDetailsIntentRecommendation(contact)
     }
 }

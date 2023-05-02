@@ -1,6 +1,7 @@
 package com.goodwy.dialer.activities
 
 import android.os.Bundle
+import com.goodwy.commons.extensions.hideKeyboard
 import com.google.gson.Gson
 import com.goodwy.commons.extensions.updateTextColors
 import com.goodwy.commons.helpers.ContactsHelper
@@ -12,6 +13,7 @@ import com.goodwy.dialer.dialogs.SelectContactDialog
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.interfaces.RemoveSpeedDialListener
 import com.goodwy.dialer.models.SpeedDial
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_manage_speed_dial.*
 
 class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
@@ -37,11 +39,20 @@ class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
 
     override fun onResume() {
         super.onResume()
-        setupToolbar(manage_speed_dial_toolbar, NavigationIcon.Arrow)
+        setupToolbar(manage_speed_dial_toolbar, NavigationIcon.Arrow, navigationClick = false)
+        manage_speed_dial_toolbar.setNavigationOnClickListener {
+            hideKeyboard()
+            onBackPressed()
+        }
     }
 
     override fun onStop() {
         super.onStop()
+        config.speedDial = Gson().toJson(speedDialValues)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
         config.speedDial = Gson().toJson(speedDialValues)
     }
 

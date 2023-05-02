@@ -19,6 +19,7 @@ import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupMenu
+import androidx.appcompat.content.res.AppCompatResources
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.helpers.setWindowTransparency
@@ -108,7 +109,9 @@ class CallActivity : SimpleActivity() {
                 dialpad_0, dialpad_plus, dialpad_input,
                 dialpad_2_letters, dialpad_3_letters, dialpad_4_letters, dialpad_5_letters,
                 dialpad_6_letters, dialpad_7_letters, dialpad_8_letters, dialpad_9_letters,
-                on_hold_caller_name, on_hold_label, call_message_label, call_remind_label
+                on_hold_caller_name, on_hold_label, call_message_label, call_remind_label,
+                call_toggle_microphone_label, call_dialpad_label, call_toggle_speaker_label, call_add_label,
+                call_swap_label, call_merge_label, call_toggle_label, call_add_contact_label, call_manage_label
             ).forEach {
                 it.setTextColor(Color.WHITE)
             }
@@ -504,12 +507,14 @@ class CallActivity : SimpleActivity() {
                     getString(if (isSpeakerOn) R.string.turn_speaker_off else R.string.turn_speaker_on)
                 }
                 // show speaker icon when a headset is connected, a headset icon maybe confusing to some
-                if (route == AudioRoute.WIRED_HEADSET || route == AudioRoute.EARPIECE) {
+                if (/*route == AudioRoute.WIRED_HEADSET || */route == AudioRoute.EARPIECE) {
                     setImageResource(R.drawable.ic_volume_down_vector)
                 } else {
                     setImageResource(route.iconRes)
                 }
             }
+            val supportAudioRoutes = CallManager.getSupportedAudioRoutes()
+            call_toggle_speaker_label.text = if (supportAudioRoutes.size == 2) getString(R.string.audio_route_speaker) else  getString(route.stringRes)
             toggleButtonColor(call_toggle_speaker, enabled = route != AudioRoute.EARPIECE && route != AudioRoute.WIRED_HEADSET)
             createOrUpdateAudioRouteChooser(supportedAudioRoutes, create = false)
 
@@ -563,6 +568,7 @@ class CallActivity : SimpleActivity() {
         audioManager.isMicrophoneMute = isMicrophoneOff
         CallManager.inCallService?.setMuted(isMicrophoneOff)
         call_toggle_microphone.contentDescription = getString(if (isMicrophoneOff) R.string.turn_microphone_on else R.string.turn_microphone_off)
+        //call_toggle_microphone_label.text = getString(if (isMicrophoneOff) R.string.turn_microphone_on else R.string.turn_microphone_off)
     }
 
     private fun toggleDialpadVisibility() {
@@ -574,7 +580,7 @@ class CallActivity : SimpleActivity() {
         dialpad_close.beVisible()
         arrayOf(caller_avatar, caller_name_label, caller_number, call_status_label,
             call_sim_image, call_sim_id, call_toggle_microphone, call_dialpad_holder,
-            call_toggle_speaker, call_add_contact_holder, call_manage).forEach {
+            call_toggle_speaker, call_add_contact_holder, call_manage, call_manage_label).forEach {
             it.beGone()
         }
         controls_single_call.beGone()
@@ -612,8 +618,10 @@ class CallActivity : SimpleActivity() {
     private fun toggleHold() {
         val isOnHold = CallManager.toggleHold()
         val drawable = if (isOnHold) R.drawable.ic_pause_crossed_vector else R.drawable.ic_pause_vector
-        call_toggle_hold.setImageDrawable(getDrawable(drawable))
-        call_toggle_hold.contentDescription = getString(if (isOnHold) R.string.resume_call else R.string.hold_call)
+        call_toggle_hold.setImageDrawable(AppCompatResources.getDrawable(this, drawable))
+        val description = getString(if (isOnHold) R.string.resume_call else R.string.hold_call)
+        call_toggle_label.text = description
+        call_toggle_hold.contentDescription = description
         hold_status_label.beVisibleIf(isOnHold)
         RxAnimation.from(hold_status_label)
             .shake()
@@ -629,7 +637,7 @@ class CallActivity : SimpleActivity() {
     }
 
     private fun addContact() {
-        val number = if (callContact!!.number.isNotEmpty()) callContact!!.number else ""
+        val number = callContact!!.number.ifEmpty { "" }
         Intent().apply {
             action = Intent.ACTION_INSERT_OR_EDIT
             type = "vnd.android.cursor.item/contact"
@@ -643,7 +651,7 @@ class CallActivity : SimpleActivity() {
             return
         }
 
-        caller_name_label.text = if (callContact!!.name.isNotEmpty()) callContact!!.name else getString(R.string.unknown_caller)
+        caller_name_label.text = callContact!!.name.ifEmpty { getString(R.string.unknown_caller) }
         if (callContact!!.number.isNotEmpty() && callContact!!.number != callContact!!.name) {
             caller_number.text = callContact!!.number
 
@@ -667,10 +675,10 @@ class CallActivity : SimpleActivity() {
             setOnClickListener {
                 val wrapper: Context = ContextThemeWrapper(this@CallActivity, getPopupMenuTheme())
                 val popupMenu = PopupMenu(wrapper, call_message, Gravity.END)
-                popupMenu.menu.add(1, 1, 1, getString(R.string.other))
-                popupMenu.menu.add(1, 2, 2, getString(R.string.message_call_later))
-                popupMenu.menu.add(1, 3, 3, getString(R.string.message_on_my_way))
-                popupMenu.menu.add(1, 4, 4, getString(R.string.message_cant_talk_right_now))
+                popupMenu.menu.add(1, 1, 1, R.string.other).setIcon(R.drawable.ic_transparent)
+                popupMenu.menu.add(1, 2, 2, R.string.message_call_later).setIcon(R.drawable.ic_clock_vector)
+                popupMenu.menu.add(1, 3, 3, R.string.message_on_my_way).setIcon(R.drawable.ic_run)
+                popupMenu.menu.add(1, 4, 4, R.string.message_cant_talk_right_now).setIcon(R.drawable.ic_microphone_off_vector)
                 popupMenu.setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         1 -> {
@@ -684,7 +692,24 @@ class CallActivity : SimpleActivity() {
                     }
                     true
                 }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    popupMenu.setForceShowIcon(true)
+                }
                 popupMenu.show()
+                // icon coloring
+                popupMenu.menu.apply {
+                    for(index in 0 until this.size()){
+                        val item = this.getItem(index)
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            item.icon!!.colorFilter = BlendModeColorFilter(
+                                getProperTextColor(), BlendMode.SRC_IN
+                            )
+                        } else {
+                            item.icon!!.setColorFilter(getProperTextColor(), PorterDuff.Mode.SRC_IN)
+                        }
+                    }
+                }
 
             //sendSMS(callContact!!.number, "textMessage")
             }
@@ -808,6 +833,7 @@ class CallActivity : SimpleActivity() {
         }
 
         call_manage.beVisibleIf(call.hasCapability(Call.Details.CAPABILITY_MANAGE_CONFERENCE))
+        call_manage_label.beVisibleIf(call.hasCapability(Call.Details.CAPABILITY_MANAGE_CONFERENCE))
         if (dialpad_wrapper.isGone()) {
             setActionButtonEnabled(call_swap_holder, state == Call.STATE_ACTIVE)
             setActionButtonEnabled(call_merge_holder, state == Call.STATE_ACTIVE)
@@ -929,6 +955,7 @@ class CallActivity : SimpleActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun endCall() {
         CallManager.reject()
         disableProximitySensor()
@@ -950,11 +977,13 @@ class CallActivity : SimpleActivity() {
                 call_status_label.text = "${callDuration.getFormattedDuration()} (${getString(R.string.call_ended)})"
                 Handler().postDelayed({
                     finishAndRemoveTask()
-                }, 2000)
+                    if (CallManager.getPhoneState() != NoCall) startActivity(Intent(this, CallActivity::class.java))
+                }, 500)
             }
         } else {
             call_status_label.text = getString(R.string.call_ended)
             finish()
+            if (CallManager.getPhoneState() != NoCall) startActivity(Intent(this, CallActivity::class.java))
         }
     }
 

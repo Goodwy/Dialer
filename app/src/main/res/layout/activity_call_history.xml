@@ -348,7 +348,7 @@
                 android:layout_marginRight="11dp"
                 android:layout_marginBottom="56dp"
                 android:background="@drawable/button_background"
-                android:gravity="left|center_vertical"
+                android:gravity="center_vertical"
                 android:paddingLeft="23dp"
                 android:paddingRight="23dp"
                 android:text="@string/block_number"

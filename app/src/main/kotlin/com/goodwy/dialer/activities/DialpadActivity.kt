@@ -21,10 +21,8 @@ import android.view.ViewConfiguration
 import androidx.core.view.isVisible
 import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import com.goodwy.commons.dialogs.CallConfirmationDialog
-import com.goodwy.commons.dialogs.RadioGroupDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
-import com.goodwy.commons.models.RadioItem
 import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.dialer.R
 import com.goodwy.dialer.adapters.ContactsAdapter
@@ -39,6 +37,10 @@ import java.util.*
 import kotlin.math.roundToInt
 import android.animation.AnimatorListenerAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.goodwy.commons.dialogs.ConfirmationDialog
+import com.goodwy.dialer.helpers.CallManager
+import com.goodwy.dialer.helpers.NoCall
+import com.google.gson.Gson
 import me.grantland.widget.AutofitHelper
 
 class DialpadActivity : SimpleActivity() {
@@ -128,7 +130,7 @@ class DialpadActivity : SimpleActivity() {
         dialpad_input.onTextChangeListener { dialpadValueChanged(it) }
         dialpad_input.requestFocus()
         AutofitHelper.create(dialpad_input)
-        ContactsHelper(this).getContacts{ gotContacts(it) }
+        //ContactsHelper(this).getContacts{ gotContacts(it) }
         dialpad_input.disableKeyboard()
 
 //        ContactsHelper(this).getContacts { allContacts ->
@@ -138,6 +140,11 @@ class DialpadActivity : SimpleActivity() {
         ContactsHelper(this).getContacts(showOnlyContactsWithNumbers = true) { allContacts ->
             gotContacts(allContacts)
         }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        speedDialValues = config.getSpeedDialValues()
     }
 
     private fun initLetters() {
@@ -156,12 +163,15 @@ class DialpadActivity : SimpleActivity() {
                 it.beVisible()
             }
 
-            val fontSize = getTextSize() - 8f//resources.getDimension(R.dimen.small_text_size)
-            arrayOf(
-                dialpad_2_letters, dialpad_3_letters, dialpad_4_letters, dialpad_5_letters, dialpad_6_letters, dialpad_7_letters, dialpad_8_letters,
-                dialpad_9_letters
-            ).forEach {
-                it.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize)
+            hasRussianLocale = Locale.getDefault().language == "ru"
+            if (!hasRussianLocale) {
+                val fontSize = getTextSize() - 8f//resources.getDimension(R.dimen.small_text_size)
+                arrayOf(
+                    dialpad_2_letters, dialpad_3_letters, dialpad_4_letters, dialpad_5_letters, dialpad_6_letters, dialpad_7_letters, dialpad_8_letters,
+                    dialpad_9_letters
+                ).forEach {
+                    it.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize)
+                }
             }
         }
 
@@ -193,12 +203,13 @@ class DialpadActivity : SimpleActivity() {
     @SuppressLint("MissingSuperCall")
     override fun onResume() {
         super.onResume()
+        speedDialValues = config.getSpeedDialValues()
         initLetters()
         setupOptionsMenu()
         updateTextColors(dialpad_holder)
         dialpad_clear_char.applyColorFilter(getProperTextColor())
         //updateNavigationBarColor(getProperBackgroundColor())
-        setupToolbar(dialpad_toolbar, NavigationIcon.Arrow)
+        setupToolbar(dialpad_toolbar, NavigationIcon.Arrow, navigationClick = false)
 
         arrayOf(dialpad_asterisk, dialpad_hashtag).forEach {
             it.applyColorFilter(getProperTextColor())
@@ -255,6 +266,21 @@ class DialpadActivity : SimpleActivity() {
                 else -> return@setOnMenuItemClickListener false
             }
             return@setOnMenuItemClickListener true
+        }
+        dialpad_toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
+    }
+
+    override fun onBackPressed() {
+        when (CallManager.getPhoneState()) {
+            NoCall -> {
+                finish()
+            }
+            else -> {
+                startActivity(Intent(this, CallActivity::class.java))
+                super.onBackPressed()
+            }
         }
     }
 
@@ -491,6 +517,10 @@ class DialpadActivity : SimpleActivity() {
             if (speedDial?.isValid() == true) {
                 initCall(speedDial.number, -1)
                 return true
+            } else {
+                ConfirmationDialog(this, getString(R.string.open_speed_dial_manage)) {
+                    startActivity(Intent(applicationContext, ManageSpeedDialActivity::class.java))
+                }
             }
         }
         return false

@@ -100,10 +100,15 @@ class RecentsHelper(private val context: Context) {
                         if (normalizedNumber!!.length >= COMPARABLE_PHONE_NUMBER_LENGTH) {
                             name = contacts.filter { it.phoneNumbers.isNotEmpty() }.firstOrNull { contact ->
                                 val curNumber = contact.phoneNumbers.first().normalizedNumber
-                                if (curNumber.length >= COMPARABLE_PHONE_NUMBER_LENGTH) {
-                                    if (curNumber.substring(curNumber.length - COMPARABLE_PHONE_NUMBER_LENGTH) == normalizedNumber.substring(normalizedNumber.length - COMPARABLE_PHONE_NUMBER_LENGTH)) {
-                                        contactsNumbersMap[number] = contact.getNameToDisplay()
-                                        return@firstOrNull true
+                                if (curNumber != "") {
+                                    if (curNumber.length >= COMPARABLE_PHONE_NUMBER_LENGTH) {
+                                        if (curNumber.substring(curNumber.length - COMPARABLE_PHONE_NUMBER_LENGTH) == normalizedNumber.substring(
+                                                normalizedNumber.length - COMPARABLE_PHONE_NUMBER_LENGTH
+                                            )
+                                        ) {
+                                            contactsNumbersMap[number] = contact.getNameToDisplay()
+                                            return@firstOrNull true
+                                        }
                                     }
                                 }
                                 false

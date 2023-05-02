@@ -16,6 +16,7 @@ import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.FAQItem
 import com.goodwy.commons.models.RadioItem
 import com.goodwy.commons.models.SimpleListItem
+import com.goodwy.dialer.App.Companion.isPlayStoreInstalled
 import com.goodwy.dialer.App.Companion.isProVersion
 import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
@@ -42,7 +43,7 @@ class SettingsActivity : SimpleActivity() {
         setupMaterialScrollListener(settings_nested_scrollview, settings_toolbar)
         // TODO TRANSPARENT Navigation Bar
         if (config.transparentNavigationBar) {
-            setWindowTransparency(true) { _, bottomNavigationBarSize, leftNavigationBarSize, rightNavigationBarSize ->
+            setWindowTransparency(true) { _, _, leftNavigationBarSize, rightNavigationBarSize ->
                 settings_coordinator.setPadding(leftNavigationBarSize, 0, rightNavigationBarSize, 0)
                 updateNavigationBarColor(getProperBackgroundColor())
             }
@@ -55,23 +56,26 @@ class SettingsActivity : SimpleActivity() {
         setupToolbar(settings_toolbar, NavigationIcon.Arrow)
 
         setupPurchaseThankYou()
+
         setupCustomizeColors()
-        setupDefaultTab()
-        setupManageShownTabs()
-        setupBottomNavigationBar()
-        setupNavigationBarStyle()
-        setupUseIconTabs()
-        setupScreenSlideAnimation()
+        setupDialPadOpen()
         setupMaterialDesign3()
         setupSettingsIcon()
         setupUseColoredContacts()
         setupColorSimIcons()
+
+        setupDefaultTab()
+        setupManageShownTabs()
+        //setupBottomNavigationBar()
+        setupNavigationBarStyle()
+        setupUseIconTabs()
+        setupScreenSlideAnimation()
         setupOpenSearch()
+
         setupManageBlockedNumbers()
         setupManageSpeedDial()
         setupChangeDateTimeFormat()
         setupFontSize()
-        setupDialPadOpen()
         setupBackgroundCallScreen()
         setupTransparentCallScreen()
         setupAlwaysShowFullscreen()
@@ -135,7 +139,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupPurchaseThankYou() {
-        settings_purchase_thank_you_holder.beGoneIf(isOrWasThankYouInstalled() || isProVersion())
+        settings_purchase_thank_you_holder.beGoneIf(isOrWasThankYouInstalled() || isProVersion() || config.isPro)
         settings_purchase_thank_you_holder.setOnClickListener {
             launchPurchase() //launchPurchaseThankYouIntent()
         }
@@ -151,19 +155,13 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupCustomizeColors() {
-        settings_customize_colors_label.text = if (isOrWasThankYouInstalled() || isProVersion()) {
+        settings_customize_colors_label.text = if (isOrWasThankYouInstalled() || isProVersion() || config.isPro) {
             getString(R.string.customize_colors)
         } else {
             getString(R.string.customize_colors_locked)
         }
         settings_customize_colors_holder.setOnClickListener {
-            //handleCustomizeColorsClick()
-            /*if (isOrWasThankYouInstalled() || isProVersion()) {
-                startCustomizationActivity()
-            } else {
-                launchPurchase()
-            }*/
-            startCustomizationActivity(true, isOrWasThankYouInstalled() || isProVersion(), BuildConfig.GOOGLE_PLAY_LICENSING_KEY, BuildConfig.PRODUCT_ID_X1, BuildConfig.PRODUCT_ID_X2, BuildConfig.PRODUCT_ID_X3)
+            startCustomizationActivity(true, isOrWasThankYouInstalled() || isProVersion() || config.isPro, BuildConfig.GOOGLE_PLAY_LICENSING_KEY, BuildConfig.PRODUCT_ID_X1, BuildConfig.PRODUCT_ID_X2, BuildConfig.PRODUCT_ID_X3, playStoreInstalled = isPlayStoreInstalled())
         }
     }
 
@@ -226,6 +224,7 @@ class SettingsActivity : SimpleActivity() {
             RadioGroupDialog(this@SettingsActivity, items, config.fontSize) {
                 config.fontSize = it as Int
                 settings_font_size.text = getFontSizeText()
+                config.tabsChanged = true
             }
         }
     }
@@ -524,7 +523,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupTipJar() {
-        settings_tip_jar_holder.beVisibleIf(isOrWasThankYouInstalled() || isProVersion())
+        settings_tip_jar_holder.beVisibleIf(isOrWasThankYouInstalled() || isProVersion() || config.isPro)
         settings_tip_jar_chevron.applyColorFilter(getProperTextColor())
         settings_tip_jar_holder.setOnClickListener {
             launchPurchase()
@@ -549,11 +548,11 @@ class SettingsActivity : SimpleActivity() {
             FAQItem(R.string.faq_9_title_commons, R.string.faq_9_text_commons)
         )
 
-        startAboutActivity(R.string.app_name_g, licenses, BuildConfig.VERSION_NAME, faqItems, true, BuildConfig.GOOGLE_PLAY_LICENSING_KEY, BuildConfig.PRODUCT_ID_X1, BuildConfig.PRODUCT_ID_X2, BuildConfig.PRODUCT_ID_X3)
+        startAboutActivity(R.string.app_name_g, licenses, BuildConfig.VERSION_NAME, faqItems, true, BuildConfig.GOOGLE_PLAY_LICENSING_KEY, BuildConfig.PRODUCT_ID_X1, BuildConfig.PRODUCT_ID_X2, BuildConfig.PRODUCT_ID_X3, playStoreInstalled = isPlayStoreInstalled())
     }
 
     private fun launchPurchase() {
-        startPurchaseActivity(R.string.app_name_g, BuildConfig.GOOGLE_PLAY_LICENSING_KEY, BuildConfig.PRODUCT_ID_X1, BuildConfig.PRODUCT_ID_X2, BuildConfig.PRODUCT_ID_X3)
+        startPurchaseActivity(R.string.app_name_g, BuildConfig.GOOGLE_PLAY_LICENSING_KEY, BuildConfig.PRODUCT_ID_X1, BuildConfig.PRODUCT_ID_X2, BuildConfig.PRODUCT_ID_X3, playStoreInstalled = isPlayStoreInstalled())
     }
 
     private fun setupDisableProximitySensor() {

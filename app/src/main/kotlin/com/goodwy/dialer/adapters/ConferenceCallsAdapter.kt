@@ -66,7 +66,8 @@ class ConferenceCallsAdapter(
                 data.removeAt(position)
                 notifyItemRemoved(position)
                 if (data.size == 1) {
-                    activity.finish()
+                    //activity.finish()
+                    activity.onBackPressed()
                 }
             }
             //itemView.item_conference_call_end.applyColorFilter(textColor)
@@ -77,7 +78,8 @@ class ConferenceCallsAdapter(
                 data.removeAt(position)
                 notifyItemRemoved(position)
                 if (data.size == 1) {
-                    activity.finish()
+                    //activity.finish()
+                    activity.onBackPressed()
                 }
             }
         }

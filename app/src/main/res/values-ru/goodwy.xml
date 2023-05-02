@@ -13,16 +13,10 @@
     <string name="show_contact_thumbnails_g">Показывать фото контакта</string>
     <string name="hide_dialpad_letters_g">Скрыть буквы набора номера</string>
 
-    <string name="recommendation_dialog_contacts_g">
-        <![CDATA[
-            Привет,<br><br>
-            если вам нравится это приложение, то рекомендуем установить наше приложение для просмотра и редактирования контактов.<br><br>
-            Спасибо
-        ]]></string>
-
     <string name="audio_route_speaker_g">Динамик</string>
     <string name="audio_route_earpiece_g">Телефон</string>
     <string name="audio_route_wired_or_earpiece_g">Динамик устройства или проводная гарнитура</string>
+    <string name="open_speed_dial_manage">Открыть управление быстрым вызовом?</string>
 
     <!-- Timer -->
     <string name="timer">Таймер</string>

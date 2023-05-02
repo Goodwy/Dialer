@@ -229,7 +229,7 @@ class RecentCallsAdapter(
     private fun sendSMS() {
         val numbers = getSelectedItems().map { it.phoneNumber }
         val recipient = TextUtils.join(";", numbers)
-        activity.launchSendSMSIntent(recipient)
+        activity.launchSendSMSIntentRecommendation(recipient)
     }
 
     private fun showCallDetails() {
@@ -285,7 +285,7 @@ class RecentCallsAdapter(
 
     private fun launchContactDetailsIntent(contact: Contact?) {
         if (contact != null) {
-            activity.startContactDetailsIntent(contact)
+            activity.startContactDetailsIntentRecommendation(contact)
         }
     }
 

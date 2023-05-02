@@ -8,6 +8,7 @@ import android.provider.ContactsContract
 import android.telecom.PhoneAccount
 import android.telecom.PhoneAccountHandle
 import android.telecom.TelecomManager
+import androidx.appcompat.content.res.AppCompatResources
 import com.goodwy.commons.activities.BaseSimpleActivity
 import com.goodwy.commons.dialogs.NewAppDialog
 import com.goodwy.commons.extensions.*
@@ -44,32 +45,53 @@ fun BaseSimpleActivity.callContactWithSim(recipient: String, useMainSIM: Boolean
     }
 }
 
-// handle private contacts differently, only Goodwy Contacts can open them
-fun Activity.startContactDetailsIntent(contact: Contact) {
+fun Activity.launchSendSMSIntentRecommendation(recipient: String) {
+    val simpleSmsMessenger = "com.goodwy.smsmessenger"
+    val simpleSmsMessengerDebug = "com.goodwy.smsmessenger.debug"
+    if ((0..config.appRecommendationDialogCount).random() == 2 && (!isPackageInstalled(simpleSmsMessenger) && !isPackageInstalled(simpleSmsMessengerDebug))) {
+        NewAppDialog(this, simpleSmsMessenger, getString(R.string.recommendation_dialog_messages_g), getString(R.string.right_sms_messenger),
+            AppCompatResources.getDrawable(this, R.mipmap.ic_sms_messenger)) {
+            launchSendSMSIntent(recipient)
+        }
+    } else {
+        launchSendSMSIntent(recipient)
+    }
+}
+
+fun Activity.startContactDetailsIntentRecommendation(contact: Contact) {
     val simpleContacts = "com.goodwy.contacts"
     val simpleContactsDebug = "com.goodwy.contacts.debug"
     if ((0..config.appRecommendationDialogCount).random() == 2 && (!isPackageInstalled(simpleContacts) && !isPackageInstalled(simpleContactsDebug))) {
         NewAppDialog(this, simpleContacts, getString(R.string.recommendation_dialog_contacts_g), getString(R.string.right_contacts),
-            getDrawable(R.drawable.ic_launcher_contacts)) {}
+            AppCompatResources.getDrawable(this, R.mipmap.ic_contacts)) {
+            startContactDetailsIntent(contact)
+        }
     } else {
-        if (contact.rawId > 1000000 && contact.contactId > 1000000 && contact.rawId == contact.contactId &&
-            (isPackageInstalled(simpleContacts) || isPackageInstalled(simpleContactsDebug))
-        ) {
-            Intent().apply {
-                action = Intent.ACTION_VIEW
-                putExtra(CONTACT_ID, contact.rawId)
-                putExtra(IS_PRIVATE, true)
-                `package` = if (isPackageInstalled(simpleContacts)) simpleContacts else simpleContactsDebug
-                setDataAndType(ContactsContract.Contacts.CONTENT_LOOKUP_URI, "vnd.android.cursor.dir/person")
-                launchActivityIntent(this)
-            }
-        } else {
-            ensureBackgroundThread {
-                val lookupKey = SimpleContactsHelper(this).getContactLookupKey((contact).rawId.toString())
-                val publicUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, lookupKey)
-                runOnUiThread {
-                    launchViewContactIntent(publicUri)
-                }
+        startContactDetailsIntent(contact)
+    }
+}
+
+// handle private contacts differently, only Goodwy Contacts can open them
+fun Activity.startContactDetailsIntent(contact: Contact) {
+    val simpleContacts = "com.goodwy.contacts"
+    val simpleContactsDebug = "com.goodwy.contacts.debug"
+    if (contact.rawId > 1000000 && contact.contactId > 1000000 && contact.rawId == contact.contactId &&
+        (isPackageInstalled(simpleContacts) || isPackageInstalled(simpleContactsDebug))
+    ) {
+        Intent().apply {
+            action = Intent.ACTION_VIEW
+            putExtra(CONTACT_ID, contact.rawId)
+            putExtra(IS_PRIVATE, true)
+            `package` = if (isPackageInstalled(simpleContacts)) simpleContacts else simpleContactsDebug
+            setDataAndType(ContactsContract.Contacts.CONTENT_LOOKUP_URI, "vnd.android.cursor.dir/person")
+            launchActivityIntent(this)
+        }
+    } else {
+        ensureBackgroundThread {
+            val lookupKey = SimpleContactsHelper(this).getContactLookupKey((contact).rawId.toString())
+            val publicUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, lookupKey)
+            runOnUiThread {
+                launchViewContactIntent(publicUri)
             }
         }
     }

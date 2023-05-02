@@ -16,8 +16,8 @@ android {
         applicationId "com.goodwy.dialer"
         minSdkVersion 23
         targetSdkVersion 33
-        versionCode 420
-        versionName "4.2.0"
+        versionCode 432
+        versionName "4.3.2"
         setProperty("archivesBaseName", "dialer")
         buildConfigField("String", "GOOGLE_PLAY_LICENSING_KEY", "\"${getProperty(getProperties('local.properties'), 'GOOGLE_PLAY_LICENSE_KEY')}\"")
         buildConfigField("String", "PRODUCT_ID_X1", "\"${getProperty(getProperties('local.properties'), 'PRODUCT_ID_X1')}\"")

@@ -12,7 +12,7 @@ import com.goodwy.dialer.activities.MainActivity
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.adapters.ContactsAdapter
 import com.goodwy.dialer.extensions.launchCreateNewContactIntent
-import com.goodwy.dialer.extensions.startContactDetailsIntent
+import com.goodwy.dialer.extensions.startContactDetailsIntentRecommendation
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import kotlinx.android.synthetic.main.fragment_contacts.view.*
 import kotlinx.android.synthetic.main.fragment_letters_layout.view.*
@@ -98,7 +98,7 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
             if (currAdapter == null) {
                 ContactsAdapter(activity as SimpleActivity, contacts, fragment_list, this, showIcon = false, showNumber = context.baseConfig.showPhoneNumbers) {
                     val contact = it as Contact
-                    activity?.startContactDetailsIntent(contact)
+                    activity?.startContactDetailsIntentRecommendation(contact)
                 }.apply {
                     fragment_list.adapter = this
                 }

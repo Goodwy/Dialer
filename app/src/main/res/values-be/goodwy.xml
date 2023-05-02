@@ -13,16 +13,10 @@
     <string name="show_contact_thumbnails_g">Паказаць мініяцюры кантактаў</string>
     <string name="hide_dialpad_letters_g">Схаваць літары панэлі набору</string>
 
-    <string name="recommendation_dialog_contacts_g">
-        <![CDATA[
-            Hey,<br><br>
-            if you like this application, then we recommend you to install our application to view and edit contacts.<br><br>
-            Thanks
-        ]]></string>
-
     <string name="audio_route_speaker_g">Дынамік</string>
     <string name="audio_route_earpiece_g">Тэлефон</string>
     <string name="audio_route_wired_or_earpiece_g">Дынамік прылады або правадная гарнітура</string>
+    <string name="open_speed_dial_manage">Адкрыць кіраванне хуткім наборам?</string>
 
     <!-- Timer -->
     <string name="timer">Таймер</string>

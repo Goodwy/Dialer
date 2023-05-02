@@ -85,26 +85,26 @@ class CallHistoryActivity : SimpleActivity(), RefreshItemsListener {
         //threeButton.foreground.applyColorFilter(getProperPrimaryColor())
         //fourButton.foreground.applyColorFilter(getProperPrimaryColor())
 
-        var drawableSMS = resources.getDrawable(R.drawable.ic_messages)
+        var drawableSMS = AppCompatResources.getDrawable(this, R.drawable.ic_messages)
         drawableSMS = DrawableCompat.wrap(drawableSMS!!)
         DrawableCompat.setTint(drawableSMS, getProperPrimaryColor())
         DrawableCompat.setTintMode(drawableSMS, PorterDuff.Mode.SRC_IN)
         oneButton.setCompoundDrawablesWithIntrinsicBounds(null, drawableSMS, null, null)
 
-        var drawableCall = resources.getDrawable(R.drawable.ic_phone_vector)
+        var drawableCall = AppCompatResources.getDrawable(this, R.drawable.ic_phone_vector)
         drawableCall = DrawableCompat.wrap(drawableCall!!)
         DrawableCompat.setTint(drawableCall, getProperPrimaryColor())
         DrawableCompat.setTintMode(drawableCall, PorterDuff.Mode.SRC_IN)
         twoButton.setCompoundDrawablesWithIntrinsicBounds(null, drawableCall, null, null)
 
-        var drawableInfo = resources.getDrawable(R.drawable.ic_videocam_vector)
+        var drawableInfo = AppCompatResources.getDrawable(this, R.drawable.ic_videocam_vector)
         drawableInfo = DrawableCompat.wrap(drawableInfo!!)
         DrawableCompat.setTint(drawableInfo, getProperPrimaryColor())
         DrawableCompat.setTintMode(drawableInfo, PorterDuff.Mode.SRC_IN)
         threeButton.setCompoundDrawablesWithIntrinsicBounds(null, drawableInfo, null, null)
         threeButton.alpha = 0.5f
 
-        var drawableShare = resources.getDrawable(R.drawable.ic_mail_vector)
+        var drawableShare = AppCompatResources.getDrawable(this, R.drawable.ic_mail_vector)
         drawableShare = DrawableCompat.wrap(drawableShare!!)
         DrawableCompat.setTint(drawableShare, getProperPrimaryColor())
         DrawableCompat.setTintMode(drawableShare, PorterDuff.Mode.SRC_IN)
@@ -172,6 +172,12 @@ class CallHistoryActivity : SimpleActivity(), RefreshItemsListener {
             call_history_list.background = whiteBackgroundHistory
             call_history_number_container.background = whiteButton
             call_history_number_container.setPadding(padding, padding ,padding ,padding)
+            contact_messengers_actions_holder.background = whiteButton
+            contact_messengers_actions_holder.setPadding(padding, padding ,padding ,padding)
+            contact_emails_holder.background = whiteButton
+            contact_emails_holder.setPadding(padding, padding ,padding ,padding)
+            contact_events_holder.background = whiteButton
+            contact_events_holder.setPadding(padding, padding ,padding ,padding)
             val blockcolor = if (isNumberBlocked(getCurrentPhoneNumber(), getBlockedNumbers())) { getProperPrimaryColor() } else { red }
             blockButton.setTextColor(blockcolor)
             blockButton.setPadding(padding, padding ,padding ,padding)
@@ -185,21 +191,23 @@ class CallHistoryActivity : SimpleActivity(), RefreshItemsListener {
     private fun setupMenu() {
         call_history_toolbar.menu.apply {
             updateMenuItemColors(this)
-            findItem(R.id.favorite).setOnMenuItemClickListener {
-                val newIsStarred = if (contact!!.starred == 1) 0 else 1
-                ensureBackgroundThread {
-                    val contacts = arrayListOf(contact!!)
-                    if (newIsStarred == 1) {
-                        ContactsHelper(this@CallHistoryActivity).addFavorites(contacts)
-                    } else {
-                        ContactsHelper(this@CallHistoryActivity).removeFavorites(contacts)
+            if (contact != null) {
+                findItem(R.id.favorite).setOnMenuItemClickListener {
+                    val newIsStarred = if (contact!!.starred == 1) 0 else 1
+                    ensureBackgroundThread {
+                        val contacts = arrayListOf(contact!!)
+                        if (newIsStarred == 1) {
+                            ContactsHelper(this@CallHistoryActivity).addFavorites(contacts)
+                        } else {
+                            ContactsHelper(this@CallHistoryActivity).removeFavorites(contacts)
+                        }
                     }
+                    contact!!.starred = newIsStarred
+                    val favoriteIcon = getStarDrawable(contact!!.starred == 1)
+                    favoriteIcon!!.setTint(getProperBackgroundColor().getContrastColor())
+                    findItem(R.id.favorite).icon = favoriteIcon
+                    true
                 }
-                contact!!.starred = newIsStarred
-                val favoriteIcon = getStarDrawable(contact!!.starred == 1)
-                favoriteIcon.setTint(getProperBackgroundColor().getContrastColor())
-                findItem(R.id.favorite).icon = favoriteIcon
-                true
             }
             findItem(R.id.delete).setOnMenuItemClickListener {
                 askConfirmRemove()
@@ -218,11 +226,11 @@ class CallHistoryActivity : SimpleActivity(), RefreshItemsListener {
         }
     }
 
-    private fun getStarDrawable(on: Boolean) = resources.getDrawable(if (on) R.drawable.ic_star_vector else R.drawable.ic_star_outline_vector)
+    private fun getStarDrawable(on: Boolean) = AppCompatResources.getDrawable(this, if (on) R.drawable.ic_star_vector else R.drawable.ic_star_outline_vector)
 
     private fun updateBackgroundHistory(color: Int = getProperBackgroundColor()) {
         val whiteBackgroundHistory = resources.getColoredDrawableWithColor(R.drawable.call_history_background_white, white)
-        if (baseConfig.backgroundColor == white || baseConfig.backgroundColor == gray) {
+        if (baseConfig.backgroundColor == white || baseConfig.backgroundColor == gray || (baseConfig.isUsingSystemTheme && !isUsingSystemDarkTheme())) {
             call_history_list.background = whiteBackgroundHistory
         }
     }
@@ -260,9 +268,11 @@ class CallHistoryActivity : SimpleActivity(), RefreshItemsListener {
                     if (recents.isEmpty()) {
                         call_history_list_container.beGone()
                         call_history_placeholder_container.beVisible()
+                        call_history_toolbar.menu.findItem(R.id.delete).isVisible = false
                     } else {
                         call_history_list_container.beVisible()
                         call_history_placeholder_container.beGone()
+                        call_history_toolbar.menu.findItem(R.id.delete).isVisible = true
                         gotRecents(allRecentCall)
                         updateBackgroundColors()
                         updateBackgroundHistory()
@@ -299,9 +309,11 @@ class CallHistoryActivity : SimpleActivity(), RefreshItemsListener {
         if (recents.isEmpty()) {
             call_history_list_container.beGone()
             call_history_placeholder_container.beVisible()
+            call_history_toolbar.menu.findItem(R.id.delete).isVisible = false
         } else {
             call_history_list_container.beVisible()
             call_history_placeholder_container.beGone()
+            call_history_toolbar.menu.findItem(R.id.delete).isVisible = true
 
             val currAdapter = call_history_list.adapter
             val recent = recents.filter { it.phoneNumber == getCurrentPhoneNumber()}.toMutableList() as ArrayList<RecentCall>
@@ -392,7 +404,7 @@ class CallHistoryActivity : SimpleActivity(), RefreshItemsListener {
     private fun setupFavorite() {
         call_history_toolbar.menu.findItem(R.id.favorite).isVisible = true
         val favoriteIcon = getStarDrawable(contact!!.starred == 1)
-        favoriteIcon.setTint(getProperBackgroundColor().getContrastColor())
+        favoriteIcon!!.setTint(getProperBackgroundColor().getContrastColor())
         call_history_toolbar.menu.findItem(R.id.favorite).icon = favoriteIcon
     }
 
@@ -539,7 +551,7 @@ class CallHistoryActivity : SimpleActivity(), RefreshItemsListener {
                     contact_messengers_actions_holder.addView(this)
 
                     val whiteButton = AppCompatResources.getDrawable(this@CallHistoryActivity, R.drawable.call_history_button_white)
-                    if (baseConfig.backgroundColor == white || baseConfig.backgroundColor == gray) {
+                    if (baseConfig.backgroundColor == white || baseConfig.backgroundColor == gray || (baseConfig.isUsingSystemTheme && !isUsingSystemDarkTheme())) {
                         contact_messengers_actions_holder.background = whiteButton
                         val padding = resources.getDimensionPixelOffset(R.dimen.small_margin)
                         contact_messengers_actions_holder.setPadding(padding, padding ,padding ,padding)
@@ -828,7 +840,7 @@ class CallHistoryActivity : SimpleActivity(), RefreshItemsListener {
                     }
 
                     val whiteButton = AppCompatResources.getDrawable(this@CallHistoryActivity, R.drawable.call_history_button_white)
-                    if (baseConfig.backgroundColor == white || baseConfig.backgroundColor == gray) {
+                    if (baseConfig.backgroundColor == white || baseConfig.backgroundColor == gray || (baseConfig.isUsingSystemTheme && !isUsingSystemDarkTheme())) {
                         contact_emails_holder.background = whiteButton
                         val padding = resources.getDimensionPixelOffset(R.dimen.small_margin)
                         contact_emails_holder.setPadding(padding, padding ,padding ,padding)
@@ -887,7 +899,7 @@ class CallHistoryActivity : SimpleActivity(), RefreshItemsListener {
                         copyOnLongClick(it.value)
 
                         val whiteButton = AppCompatResources.getDrawable(this@CallHistoryActivity, R.drawable.call_history_button_white)
-                        if (baseConfig.backgroundColor == white || baseConfig.backgroundColor == gray) {
+                        if (baseConfig.backgroundColor == white || baseConfig.backgroundColor == gray || (baseConfig.isUsingSystemTheme && !isUsingSystemDarkTheme())) {
                             contact_events_holder.background = whiteButton
                             val padding = resources.getDimensionPixelOffset(R.dimen.small_margin)
                             contact_events_holder.setPadding(padding, padding, padding, padding)
@@ -968,7 +980,7 @@ class CallHistoryActivity : SimpleActivity(), RefreshItemsListener {
 
             if (call.phoneNumber == call.name || isDestroyed || isFinishing) {
                 //SimpleContactsHelper(this).loadContactImage(call.photoUri, call_history_image, call.name, letter = false)
-                val drawable = resources.getDrawable(R.drawable.placeholder_contact)
+                val drawable = AppCompatResources.getDrawable(this, R.drawable.placeholder_contact)
                 if (baseConfig.useColoredContacts) {
                     val color = letterBackgroundColors[Math.abs(call.name.hashCode()) % letterBackgroundColors.size].toInt()
                     (drawable as LayerDrawable).findDrawableByLayerId(R.id.placeholder_contact_background).applyColorFilter(color)
@@ -993,7 +1005,7 @@ class CallHistoryActivity : SimpleActivity(), RefreshItemsListener {
 
             oneButton.apply {
                 setOnClickListener {
-                    launchSendSMSIntent(call.phoneNumber)
+                    launchSendSMSIntentRecommendation(call.phoneNumber)
                 }
                 setOnLongClickListener { toast(R.string.send_sms); true; }
             }
@@ -1013,6 +1025,7 @@ class CallHistoryActivity : SimpleActivity(), RefreshItemsListener {
         } else {
             call_history_list_container.beGone()
             call_history_placeholder_container.beVisible()
+            call_history_toolbar.menu.findItem(R.id.delete).isVisible = false
         }
     }
 
@@ -1103,7 +1116,7 @@ class CallHistoryActivity : SimpleActivity(), RefreshItemsListener {
     }
 
     private fun viewContactInfo(contact: Contact) {
-        this.startContactDetailsIntent(contact)
+        this.startContactDetailsIntentRecommendation(contact)
     }
 
     private fun launchShare() {

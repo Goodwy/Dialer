@@ -75,7 +75,6 @@ class MainActivity : SimpleActivity() {
         config.tabsChanged = false
         updateMaterialActivityViews(main_coordinator, main_holder, useTransparentNavigation = false, useTopSearchMenu = config.bottomNavigationBar)
         // TODO TRANSPARENT Navigation Bar
-        var bottomPadding = 0
         if (!config.bottomNavigationBar) {
             setWindowTransparency(true) { _, bottomNavigationBarSize, leftNavigationBarSize, rightNavigationBarSize ->
                 main_coordinator.setPadding(leftNavigationBarSize, 0, rightNavigationBarSize, 0)
@@ -135,7 +134,8 @@ class MainActivity : SimpleActivity() {
         super.onResume()
         if (storedShowTabs != config.showTabs || config.tabsChanged || storedShowPhoneNumbers != config.showPhoneNumbers) {
             config.lastUsedViewPagerPage = 0
-            System.exit(0)
+            finish()
+            startActivity(intent)
             return
         }
 
@@ -279,8 +279,6 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-//        setupSearch(main_toolbar.menu)
-//        main_toolbar.setOnMenuItemClickListener { menuItem ->
         main_menu.getToolbar().inflateMenu(R.menu.menu)
         main_menu.toggleHideOnScroll(false)
         main_menu.setupMenu()
@@ -295,6 +293,8 @@ class MainActivity : SimpleActivity() {
             getCurrentFragment()?.onSearchQueryChanged(text)
         }
 
+//        setupSearch(main_toolbar.menu)
+//        main_toolbar.setOnMenuItemClickListener { menuItem ->
         main_menu.getToolbar().setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.clear_call_history -> clearCallHistory()

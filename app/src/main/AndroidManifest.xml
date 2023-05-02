@@ -49,7 +49,6 @@
     <application
         android:name=".App"
         android:allowBackup="true"
-        android:appCategory="productivity"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_launcher_name"
         android:roundIcon="@mipmap/ic_launcher"
@@ -141,7 +140,6 @@
             android:name=".activities.CallActivity"
             android:excludeFromRecents="true"
             android:exported="false"
-            android:noHistory="true"
             android:label="@string/ongoing_call"
             android:launchMode="singleInstance"
             android:screenOrientation="nosensor"
@@ -159,7 +157,7 @@
             android:name=".activities.DialpadActivity"
             android:configChanges="orientation"
             android:exported="true"
-            android:label=""
+            android:label="@string/app_launcher_name"
             android:screenOrientation="nosensor"
             android:parentActivityName=".activities.MainActivity"
             android:windowSoftInputMode="stateHidden">

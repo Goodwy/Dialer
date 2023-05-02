@@ -34,4 +34,11 @@
     <dimen name="top_toolbar_search_height">48dp</dimen>
 
     <dimen name="snackbar_bottom_margin">52dp</dimen>
+
+    <!--call button-->
+    <dimen name="vertical_bias_avatar">0.10</dimen>
+    <dimen name="vertical_bias_button">0.5</dimen>
+    <dimen name="vertical_bias_call_end">0.88</dimen>
+    <dimen name="margin_button_vertical">0.88</dimen>
+    <dimen name="margin_button_horizontal">230dp</dimen>
 </resources>
