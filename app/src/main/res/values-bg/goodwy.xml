@@ -3,26 +3,52 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Прозрачен екран за обаждания</string>
     <string name="call_back_g">Обаждам се</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">Обадете се обратно на %s</string>
     <string name="missed_call_g">Пропуснато обаждане</string>
     <string name="missed_calls_g">Пропуснати обаждания</string>
     <string name="missed_call_notifications_g">Известия за пропуснати повиквания</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Известия за обаждания с висок приоритет</string>
+    <string name="call_notification_channel_g">Известия за обаждания</string>
+    <string name="dialpad_preferences">Предпочитания за клавиатурата за набиране</string>
+    <string name="call_start_end_vibration">Вибриране при започване и приключване на повикване</string>
 
     <string name="show_contact_thumbnails_g">Показване на миниатюри за контакт</string>
     <string name="hide_dialpad_letters_g">Скриване на буквите на диалпада</string>
+    <string name="show_caller_description_g">Показване на допълнителна информация за обаждащия се</string>
+    <string name="nickname">Прякор</string>
+    <string name="company">Фирма</string>
+    <string name="call_anonymously">Обаждане анонимно (с префикс #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Предупреждение</h4>
+             Номерът ще бъде извикан с префикс #31# <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             Уверете се, че вашият оператор поддържа услугата за скриване на номера, когато използвате префикс #31#. <br>
+             Вашият доставчик на услуги може да наложи допълнителна такса за тази услуга.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Слушалката на устройството</string>
+    <string name="open_speed_dial_manage">Отваряне на управлението на бързото набиране?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">Таймер</string>
+    <string name="timers_notification_msg">Таймерите са включени</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d таймер е включен</item>
+        <item quantity="other">%d таймери са включени</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Защо трябва да отключа устройството си, за да отговоря на входящо повикване?</string>
+    <string name="faq_1_text_dialer_g">Операционната система блокира достъпа на приложенията до заключения екран. Трябва да разрешите на приложението достъп до заключения екран. Например в MIUI трябва да разрешите достъп до Настройки => Известия => Известия на заключения екран.</string>
+    <string name="faq_2_title_dialer_g">Как да копирам или поставя номер на екрана за набиране?</string>
+    <string name="faq_2_text_dialer_g">Натиснете продължително бутона за повикване, за да поставите съдържанието на клипборда. Ако номерът вече е въведен, продължително натискане на бутона за повикване го копира в клипборда.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Стил на бутона за отговор</string>
+    <string name="buttons">Бутони</string>
+    <string name="answer_slider">Плъзгач</string>
+    <string name="answer_slider_outline">Плъзгач за контур</string>
+    <string name="answer_slider_vertical">Вертикален плъзгач</string>
 </resources>

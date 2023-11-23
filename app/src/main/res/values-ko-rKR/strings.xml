@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--TODO Edit-->
+    <string name="app_name">간단한 다이얼러</string>
+    <string name="app_launcher_name">다이얼러</string>
+    <string name="default_phone_app_prompt">이 앱을 기본 전화 앱으로 설정해 주세요</string>
+    <string name="allow_displaying_over_other_apps">안정적인 동작을 위해 다른 앱 위에 표시를 허용하세요</string>
+
+    <!-- Contacts -->
+    <string name="could_not_access_contacts">연락처에 액세스할 수 없습니다.</string>
+
+    <!-- Recents -->
+    <string name="no_previous_calls">이전 통화를 찾을 수 없습니다</string>
+    <string name="could_not_access_the_call_history">통화 내역에 액세스할 수 없습니다</string>
+    <string name="request_access">액세스 요청</string>
+    <string name="remove_confirmation">선택한 항목을 통화 내역에서 제거하시겠습니까? </string>
+    <string name="clear_history_confirmation">통화 기록에서 모든 항목을 제거하시겠습니까? </string>
+    <string name="clear_call_history">통화 기록 지우기</string>
+    <string name="show_call_details">통화 세부 정보 표시</string>
+
+    <!-- Dialpad -->
+    <string name="dialpad">다이얼패드</string>
+    <string name="asterisk">별표</string>
+    <string name="hashtag">해시태그</string>
+    <string name="call_number">통화 번호</string>
+    <string name="dialpad_beeps">다이얼패드 버튼 클릭 시 신호음 활성화</string>
+    <string name="dialpad_vibrations">다이얼패드 버튼 클릭 시 진동 활성화</string>
+
+    <!-- Dialer -->
+    <string name="dialer">다이얼러</string>
+    <string name="accept">수락</string>
+    <string name="accept_call">전화 수락</string>
+    <string name="decline">거절</string>
+    <string name="decline_call">통화 거절</string>
+    <string name="unknown_caller">알 수 없는 발신자</string>
+    <string name="is_calling">호출 중…</string>
+    <string name="dialing">전화 걸기…</string>
+    <string name="call_ended">통화 종료</string>
+    <string name="call_ending">통화 종료</string>
+    <string name="ongoing_call">진행 중인 통화</string>
+    <string name="select_sim">이 통화에 사용할 SIM 선택</string>
+    <string name="always_use_this_sim">이 번호에 항상 이 SIM 사용</string>
+    <string name="unset_default_sim">기본 SIM 설정 해제</string>
+    <string name="calls">통화</string>
+    <string name="turn_microphone_on">마이크 켜기</string>
+    <string name="turn_microphone_off">마이크 끄기</string>
+    <string name="turn_speaker_on">스피커 켜기</string>
+    <string name="turn_speaker_off">스피커 끄기</string>
+    <string name="show_dialpad">다이얼패드 표시</string>
+    <string name="hide_dialpad">다이얼패드 숨기기</string>
+    <string name="end_call">통화 종료</string>
+    <string name="hold_call">통화 보류</string>
+    <string name="resume_call">통화 재개</string>
+    <string name="call_on_hold">통화 중</string>
+    <string name="call_swap">통화 스왑</string>
+    <string name="call_merge">통화 병합</string>
+    <string name="call_split">통화 분할</string>
+    <string name="call_add">통화 추가</string>
+    <string name="conference_manage">전화 회의 관리</string>
+    <string name="conference">회의</string>
+    <string name="audio_route_speaker">스피커</string>
+    <string name="audio_route_bluetooth">블루투스</string>
+    <string name="audio_route_wired_headset">유선 헤드셋</string>
+    <string name="audio_route_wired_or_earpiece">유선 또는 이어피스</string>
+    <string name="choose_audio_route">오디오 경로 선택</string>
+    <string name="calling_blocked_number">발신 중인 번호가 차단되었습니다</string>
+
+    <!-- Speed dial -->
+    <string name="speed_dial">단축 다이얼</string>
+    <string name="manage_speed_dial">단축 다이얼 관리</string>
+    <string name="speed_dial_label">연락처를 할당할 번호를 클릭합니다. 그런 다음 다이얼러에서 지정된 번호를 길게 눌러 지정된 연락처로 빠르게 전화를 걸 수 있습니다.</string>
+
+    <!-- Settings -->
+    <string name="group_subsequent_calls">통화 기록에서 같은 번호의 후속 통화를 그룹화</string>
+    <string name="open_dialpad_by_default">앱이 열릴 때 기본적으로 다이얼패드를 엽니다</string>
+    <string name="disable_proximity_sensor">통화 중 근접 센서 비활성화</string>
+    <string name="disable_swipe_to_answer">수신 전화에 응답할 때 스와이프를 클릭으로 대체</string>
+    <string name="show_incoming_calls_full_screen">수신 전화를 항상 전체 화면으로 표시</string>
+    <string name="hide_dialpad_numbers">다이얼패드 번호 숨기기</string>
+    <string name="export_call_history">통화 기록 내보내기</string>
+    <string name="import_call_history">통화 기록 가져오기</string>
+
+    <!-- FAQ -->
+    <string name="faq_1_title">수신 전화 소리가 들리지만 화면이 켜지지 않습니다. 어떻게 해야 하나요? </string>
+    <string name="faq_1_text">이러한 문제는 기기 및 시스템별로 다양한 원인이 있을 수 있으므로 일반적으로 말하기는 어렵습니다. 기기 설정을 살펴보고 앱이 백그라운드에서 팝업되도록 허용되어 있는지, 다른 앱 위에 표시되도록 허용되어 있는지 확인해야 합니다.</string>
+</resources>

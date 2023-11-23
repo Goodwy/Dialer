@@ -33,14 +33,19 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/cab_send_sms"
-        android:icon="@drawable/ic_sms_vector"
+        android:icon="@drawable/ic_messages"
         android:showAsAction="always"
         android:title="@string/send_sms"
         app:showAsAction="always" />
     <item
         android:id="@+id/cab_block_number"
-        android:icon="@drawable/ic_minus_circle_vector"
+        android:icon="@drawable/ic_block_vector"
         android:title="@string/block_number"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/cab_unblock_number"
+        android:icon="@drawable/ic_show_block"
+        android:title="@string/unblock_number"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/cab_show_call_details"

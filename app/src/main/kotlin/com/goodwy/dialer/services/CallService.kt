@@ -11,10 +11,8 @@ import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.isOutgoing
 import com.goodwy.dialer.extensions.powerManager
 import com.goodwy.dialer.extensions.showMessageNotification
-import com.goodwy.dialer.helpers.CallManager
-import com.goodwy.dialer.helpers.CallNotificationManager
-import com.goodwy.dialer.helpers.NoCall
-import com.goodwy.dialer.helpers.getCallContact
+import com.goodwy.dialer.helpers.*
+import com.goodwy.dialer.helpers.CallManager.Companion.getPhoneSize
 
 class CallService : InCallService() {
     private val callNotificationManager by lazy { CallNotificationManager(this) }
@@ -36,18 +34,38 @@ class CallService : InCallService() {
         CallManager.inCallService = this
         call.registerCallback(callListener)
 
-        val isScreenLocked = (getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager).isDeviceLocked
-        if (!powerManager.isInteractive || call.isOutgoing() || isScreenLocked || config.showIncomingCallsFullScreen) {
-            try {
-                callNotificationManager.setupNotification(true)
-                startActivity(CallActivity.getStartIntent(this))
-            } catch (e: Exception) {
-                // seems like startActivity can throw AndroidRuntimeException and ActivityNotFoundException, not yet sure when and why, lets show a notification
-                callNotificationManager.setupNotification()
+        //val isScreenLocked = (getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager).isDeviceLocked
+        when {
+            !powerManager.isInteractive /*|| isScreenLocked*/ -> {
+                try {
+                    startActivity(CallActivity.getStartIntent(this))
+                    callNotificationManager.setupNotification(true)
+                } catch (e: Exception) {
+                    // seems like startActivity can throw AndroidRuntimeException and ActivityNotFoundException, not yet sure when and why, lets show a notification
+                    callNotificationManager.setupNotification()
+                }
             }
-        } else {
-            callNotificationManager.setupNotification()
+            call.isOutgoing() -> {
+                try {
+                    startActivity(CallActivity.getStartIntent(this, needSelectSIM = call.details.accountHandle == null))
+                    callNotificationManager.setupNotification(true)
+                } catch (e: Exception) {
+                    // seems like startActivity can throw AndroidRuntimeException and ActivityNotFoundException, not yet sure when and why, lets show a notification
+                    callNotificationManager.setupNotification()
+                }
+            }
+            config.showIncomingCallsFullScreen && getPhoneSize() < 2 -> {
+                try {
+                    startActivity(CallActivity.getStartIntent(this))
+                    callNotificationManager.setupNotification(true)
+                } catch (e: Exception) {
+                    // seems like startActivity can throw AndroidRuntimeException and ActivityNotFoundException, not yet sure when and why, lets show a notification
+                    callNotificationManager.setupNotification()
+                }
+            }
+            else -> callNotificationManager.setupNotification()
         }
+        if (!call.isOutgoing() && !powerManager.isInteractive && config.flashForAlerts) MyCameraImpl.newInstance(this).toggleSOS()
     }
 
     override fun onCallRemoved(call: Call) {
@@ -71,6 +89,7 @@ class CallService : InCallService() {
                     showMessageNotification(callContact)
                 }
             }
+            if (config.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
         }
     }
 
@@ -84,6 +103,7 @@ class CallService : InCallService() {
     override fun onDestroy() {
         super.onDestroy()
         callNotificationManager.cancelNotification()
+        if (config.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
     }
 }
 

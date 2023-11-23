@@ -3,26 +3,53 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Pantalla de llamada transparente</string>
     <string name="call_back_g">Llamar</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">Llama al %s</string>
     <string name="missed_call_g">Llamada perdida</string>
     <string name="missed_calls_g">Llamadas perdidas</string>
     <string name="missed_call_notifications_g">Notificaciones de llamadas perdidas</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Notificaciones de llamada alta prioridad</string>
+    <string name="call_notification_channel_g">Notificaciones de llamada</string>
+    <string name="dialpad_preferences">Preferencias del teclado de marcación</string>
+    <string name="call_start_end_vibration">Vibrar cuando la llamada comienza y termina</string>
 
     <string name="show_contact_thumbnails_g">Mostrar miniaturas de contactos</string>
     <string name="hide_dialpad_letters_g">Ocultar letras de dialpad</string>
+    <string name="show_caller_description_g">Mostrar información adicional sobre la persona que llama</string>
+    <string name="nickname">Apodo</string>
+    <string name="company">Compañía</string>
+    <string name="call_anonymously">Llamar de forma anónima (con el prefijo #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Advertencia</h4>
+            El número se llamará con el prefijo #31# <br><br>
+                <h6"><i>  #31#%s</i></h6>
+            Asegúrese de que su operador admite el servicio de ocultación de números cuando utilice el prefijo #31#.. <br>
+            Su proveedor de servicios puede cobrarle una tarifa adicional por este servicio..
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Auricular del dispositivo</string>
+    <string name="open_speed_dial_manage">¿Abrir la administración de marcación rápida?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">Temporizador</string>
+    <string name="timers_notification_msg">Los temporizadores están en marcha</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d temporizador están funcionando</item>
+        <item quantity="many">%d temporizadores están funcionando</item>
+        <item quantity="other">%d temporizadores están funcionando</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">¿Por qué tengo que desbloquear el dispositivo para responder a una llamada entrante?</string>.
+    <string name="faq_1_text_dialer_g">El sistema operativo bloquea el acceso de las aplicaciones a la pantalla de bloqueo. Debes permitir que la aplicación acceda a la pantalla de bloqueo. Por ejemplo, en MIUI tienes que permitir el acceso a Ajustes => Notificaciones => Notificaciones en la pantalla de bloqueo.</string>
+    <string name="faq_2_title_dialer_g">¿Cómo copiar o pegar un número en la pantalla de marcación? </string>
+    <string name="faq_2_text_dialer_g">Una pulsación larga en el botón de llamada pega el contenido del portapapeles. Si el número ya está introducido, una pulsación larga del botón de llamada lo copia en el portapapeles.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Estilo del botón de respuesta</string>
+    <string name="buttons">Botones</string>
+    <string name="answer_slider">Deslizador</string>
+    <string name="answer_slider_outline">Deslizador con contorno</string>
+    <string name="answer_slider_vertical">Deslizador vertical</string>
 </resources>

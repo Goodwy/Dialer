@@ -4,32 +4,43 @@ import android.content.Context
 import android.util.AttributeSet
 import com.goodwy.commons.dialogs.CallConfirmationDialog
 import com.goodwy.commons.extensions.*
-import com.goodwy.commons.helpers.ContactsHelper
-import com.goodwy.commons.helpers.MyContactsContentProvider
-import com.goodwy.commons.helpers.PERMISSION_READ_CALL_LOG
-import com.goodwy.commons.helpers.SMT_PRIVATE
+import com.goodwy.commons.helpers.*
+import com.goodwy.commons.models.contacts.Contact
+import com.goodwy.commons.views.MyRecyclerView
+import com.goodwy.dialer.App
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.adapters.RecentCallsAdapter
+import com.goodwy.dialer.databinding.FragmentRecentsBinding
 import com.goodwy.dialer.extensions.config
+import com.goodwy.dialer.helpers.MIN_RECENTS_THRESHOLD
 import com.goodwy.dialer.helpers.RecentsHelper
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import com.goodwy.dialer.models.RecentCall
-import kotlinx.android.synthetic.main.fragment_recents.view.*
+import java.util.Calendar
 
-class RecentsFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment(context, attributeSet), RefreshItemsListener {
-    private var allRecentCalls = ArrayList<RecentCall>()
+class RecentsFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment<MyViewPagerFragment.RecentsInnerBinding>(context, attributeSet),
+    RefreshItemsListener {
+    private lateinit var binding: FragmentRecentsBinding
+    private var allRecentCalls = listOf<RecentCall>()
+    private var recentsAdapter: RecentCallsAdapter? = null
+
+    override fun onFinishInflate() {
+        super.onFinishInflate()
+        binding = FragmentRecentsBinding.bind(this)
+        innerBinding = RecentsInnerBinding(binding)
+    }
 
     override fun setupFragment() {
-        recents_fragment.setBackgroundColor(context.getProperBackgroundColor())
+        binding.recentsFragment.setBackgroundColor(context.getProperBackgroundColor())
         val placeholderResId = if (context.hasPermission(PERMISSION_READ_CALL_LOG)) {
             R.string.no_previous_calls
         } else {
             R.string.could_not_access_the_call_history
         }
 
-        recents_placeholder.text = context.getString(placeholderResId)
-        recents_placeholder_2.apply {
+        binding.recentsPlaceholder.text = context.getString(placeholderResId)
+        binding.recentsPlaceholder2.apply {
             underlineText()
             setOnClickListener {
                 requestCallLogPermission()
@@ -38,49 +49,26 @@ class RecentsFragment(context: Context, attributeSet: AttributeSet) : MyViewPage
     }
 
     override fun setupColors(textColor: Int, primaryColor: Int, properPrimaryColor: Int) {
-        recents_placeholder.setTextColor(textColor)
-        recents_placeholder_2.setTextColor(properPrimaryColor)
+        binding.recentsPlaceholder.setTextColor(textColor)
+        binding.recentsPlaceholder2.setTextColor(properPrimaryColor)
 
-        (recents_list?.adapter as? RecentCallsAdapter)?.apply {
-            initDrawables()
+        recentsAdapter?.apply {
+            initDrawables(textColor)
             updateTextColor(textColor)
         }
     }
 
     override fun refreshItems(callback: (() -> Unit)?) {
-        val privateCursor = context?.getMyContactsCursor(false, true)
+        val privateCursor = context?.getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
         val groupSubsequentCalls = context?.config?.groupSubsequentCalls ?: false
-        RecentsHelper(context).getRecentCalls(groupSubsequentCalls) { recents ->
-            ContactsHelper(context).getContacts { contacts ->
+        val querySize = allRecentCalls.size.coerceAtLeast(MIN_RECENTS_THRESHOLD)
+        RecentsHelper(context).getRecentCalls(groupSubsequentCalls, querySize) { recents ->
+            ContactsHelper(context).getContactsForRecents { contacts ->
                 val privateContacts = MyContactsContentProvider.getContacts(context, privateCursor)
 
-                recents.filter { it.phoneNumber == it.name }.forEach { recent ->
-                    var wasNameFilled = false
-                    if (privateContacts.isNotEmpty()) {
-                        val privateContact = privateContacts.firstOrNull { it.doesContainPhoneNumber(recent.phoneNumber) }
-                        if (privateContact != null) {
-                            recent.name = privateContact.getNameToDisplay()
-                            wasNameFilled = true
-                        }
-                    }
-
-                    if (!wasNameFilled) {
-                        val contact = contacts.filter { it.phoneNumbers.isNotEmpty() }.firstOrNull { it.phoneNumbers.first().normalizedNumber == recent.phoneNumber }
-                        if (contact != null) {
-                            recent.name = contact.getNameToDisplay()
-                        }
-                    }
-                }
-
                 allRecentCalls = recents
-
-                // hide private contacts from recent calls
-                if (SMT_PRIVATE in context.baseConfig.ignoredContactSources) {
-                    allRecentCalls = recents.filterNot { recent ->
-                        val privateNumbers = privateContacts.flatMap { it.phoneNumbers }.map { it.value }
-                        recent.phoneNumber in privateNumbers
-                    } as ArrayList
-                }
+                    .setNamesIfEmpty(contacts, privateContacts)
+                    .hidePrivateContacts(privateContacts, SMT_PRIVATE in context.baseConfig.ignoredContactSources)
 
                 activity?.runOnUiThread {
                     gotRecents(allRecentCalls)
@@ -89,19 +77,22 @@ class RecentsFragment(context: Context, attributeSet: AttributeSet) : MyViewPage
         }
     }
 
-    private fun gotRecents(recents: ArrayList<RecentCall>) {
+    private fun gotRecents(recents: List<RecentCall>) {
         if (recents.isEmpty()) {
-            recents_placeholder.beVisible()
-            recents_placeholder_2.beGoneIf(context.hasPermission(PERMISSION_READ_CALL_LOG))
-            recents_list.beGone()
+            binding.apply {
+                recentsPlaceholder.beVisible()
+                recentsPlaceholder2.beGoneIf(context.hasPermission(PERMISSION_READ_CALL_LOG))
+                recentsList.beGone()
+            }
         } else {
-            recents_placeholder.beGone()
-            recents_placeholder_2.beGone()
-            recents_list.beVisible()
+            binding.apply {
+                recentsPlaceholder.beGone()
+                recentsPlaceholder2.beGone()
+                recentsList.beVisible()
+            }
 
-            val currAdapter = recents_list.adapter
-            if (currAdapter == null) {
-                RecentCallsAdapter(activity as SimpleActivity, recents, recents_list, this, showOverflowMenu = false, showIcon = true, hideTimeAtOtherDays = true) {
+            if (binding.recentsList.adapter == null) {
+                recentsAdapter = RecentCallsAdapter(activity as SimpleActivity, recents.toMutableList(), binding.recentsList, this, showOverflowMenu = true, hideTimeAtOtherDays = true) {
                     val recentCall = it as RecentCall
                     if (context.config.showCallConfirmation) {
                         CallConfirmationDialog(activity as SimpleActivity, recentCall.name) {
@@ -110,15 +101,43 @@ class RecentsFragment(context: Context, attributeSet: AttributeSet) : MyViewPage
                     } else {
                         activity?.launchCallIntent(recentCall.phoneNumber)
                     }
-                }.apply {
-                    recents_list.adapter = this
                 }
 
+                binding.recentsList.adapter = recentsAdapter
+
                 if (context.areSystemAnimationsEnabled) {
-                    recents_list.scheduleLayoutAnimation()
+                    binding.recentsList.scheduleLayoutAnimation()
                 }
+
+                binding.recentsList.endlessScrollListener = object : MyRecyclerView.EndlessScrollListener {
+                    override fun updateTop() {}
+
+                    override fun updateBottom() {
+                        getMoreRecentCalls()
+                    }
+                }
+
             } else {
-                (currAdapter as RecentCallsAdapter).updateItems(recents)
+                recentsAdapter?.updateItems(recents)
+            }
+        }
+    }
+
+    private fun getMoreRecentCalls() {
+        val privateCursor = context?.getMyContactsCursor(false, true)
+        val groupSubsequentCalls = context?.config?.groupSubsequentCalls ?: false
+        val querySize = allRecentCalls.size.plus(MIN_RECENTS_THRESHOLD)
+        RecentsHelper(context).getRecentCalls(groupSubsequentCalls, querySize) { recents ->
+            ContactsHelper(context).getContactsForRecents { contacts ->
+                val privateContacts = MyContactsContentProvider.getContacts(context, privateCursor)
+
+                allRecentCalls = recents
+                    .setNamesIfEmpty(contacts, privateContacts)
+                    .hidePrivateContacts(privateContacts, SMT_PRIVATE in context.baseConfig.ignoredContactSources)
+
+                activity?.runOnUiThread {
+                    gotRecents(allRecentCalls)
+                }
             }
         }
     }
@@ -126,8 +145,8 @@ class RecentsFragment(context: Context, attributeSet: AttributeSet) : MyViewPage
     private fun requestCallLogPermission() {
         activity?.handlePermission(PERMISSION_READ_CALL_LOG) {
             if (it) {
-                recents_placeholder.text = context.getString(R.string.no_previous_calls)
-                recents_placeholder_2.beGone()
+                binding.recentsPlaceholder.text = context.getString(R.string.no_previous_calls)
+                binding.recentsPlaceholder2.beGone()
 
                 val groupSubsequentCalls = context?.config?.groupSubsequentCalls ?: false
                 RecentsHelper(context).getRecentCalls(groupSubsequentCalls) { recents ->
@@ -140,8 +159,8 @@ class RecentsFragment(context: Context, attributeSet: AttributeSet) : MyViewPage
     }
 
     override fun onSearchClosed() {
-        recents_placeholder.beVisibleIf(allRecentCalls.isEmpty())
-        (recents_list.adapter as? RecentCallsAdapter)?.updateItems(allRecentCalls)
+        binding.recentsPlaceholder.beVisibleIf(allRecentCalls.isEmpty())
+        recentsAdapter?.updateItems(allRecentCalls)
     }
 
     override fun onSearchQueryChanged(text: String) {
@@ -151,7 +170,37 @@ class RecentsFragment(context: Context, attributeSet: AttributeSet) : MyViewPage
             it.name.startsWith(text, true)
         }.toMutableList() as ArrayList<RecentCall>
 
-        recents_placeholder.beVisibleIf(recentCalls.isEmpty())
-        (recents_list.adapter as? RecentCallsAdapter)?.updateItems(recentCalls, text)
+        binding.recentsPlaceholder.beVisibleIf(recentCalls.isEmpty())
+        recentsAdapter?.updateItems(recentCalls, text)
     }
+}
+
+// hide private contacts from recent calls
+private fun List<RecentCall>.hidePrivateContacts(privateContacts: List<Contact>, shouldHide: Boolean): List<RecentCall> {
+    return if (shouldHide) {
+        filterNot { recent ->
+            val privateNumbers = privateContacts.flatMap { it.phoneNumbers }.map { it.value }
+            recent.phoneNumber in privateNumbers
+        }
+    } else {
+        this
+    }
+}
+
+private fun List<RecentCall>.setNamesIfEmpty(contacts: List<Contact>, privateContacts: List<Contact>): ArrayList<RecentCall> {
+    val contactsWithNumbers = contacts.filter { it.phoneNumbers.isNotEmpty() }
+    return map { recent ->
+        if (recent.phoneNumber == recent.name) {
+            val privateContact = privateContacts.firstOrNull { it.doesContainPhoneNumber(recent.phoneNumber) }
+            val contact = contactsWithNumbers.firstOrNull { it.phoneNumbers.first().normalizedNumber == recent.phoneNumber }
+
+            when {
+                privateContact != null -> recent.copy(name = privateContact.getNameToDisplay())
+                contact != null -> recent.copy(name = contact.getNameToDisplay())
+                else -> recent
+            }
+        } else {
+            recent
+        }
+    } as ArrayList
 }

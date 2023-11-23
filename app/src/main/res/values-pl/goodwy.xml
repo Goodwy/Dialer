@@ -2,29 +2,55 @@
 <resources>
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Przezroczysty ekran połączenia</string>
-    <string name="call_back_g">Nazwać</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_g">Oddzwoń</string>
+    <string name="call_back_person_g">Oddzwoń %s</string>
     <string name="missed_call_g">Nieodebranych</string>
     <string name="missed_calls_g">Nieodebrane połączenia</string>
     <string name="missed_call_notifications_g">Powiadomienia o nieodebranych połączeniach</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Powiadomienia o połączeniach o wysokim priorytecie</string>
+    <string name="call_notification_channel_g">Powiadomienia o połączeniach</string>
+    <string name="dialpad_preferences">Preferencje klawiatury numerycznej</string>
+    <string name="call_start_end_vibration">Wibracje, gdy połączenie jest rozpoczynane i kończone</string>
 
     <string name="show_contact_thumbnails_g">Pokazywanie miniatur kontaktów</string>
     <string name="hide_dialpad_letters_g">Ukryj litery klawiatury numerycznej</string>
+    <string name="show_caller_description_g">Wyświetlanie dodatkowych informacji o dzwoniącym</string>
+    <string name="nickname">Przydomek</string>
+    <string name="company">Firma</string>
+    <string name="call_anonymously">Zadzwoń anonimowo (z prefiksem #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Ostrzeżenie</h4>
+            Numer będzie wywoływany z prefiksem #31# <br><br>
+                <h6"><i>  #31#%s</i></h6>
+            Upewnij się, że Twój operator obsługuje usługę ukrywania numeru podczas korzystania z prefiksu #31#. <br>
+            Dostawca usług może naliczyć dodatkową opłatę za tę usługę.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Słuchawka urządzenia</string>
+    <string name="open_speed_dial_manage">Otworzyć zarządzanie szybkim wybieraniem?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">Minutnik</string>
+    <string name="timers_notification_msg">Minutniki są uruchomione</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="few">%d timers are running</item>
-        <item quantity="many">%d timers are running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d minutnik jest uruchomiony</item>
+        <item quantity="few">%d minutniki są uruchomione</item>
+        <item quantity="many">%d minutników jest uruchomionych</item>
+        <item quantity="other">%d minutników jest uruchomionych</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Dlaczego muszę odblokować urządzenie, aby odebrać połączenie przychodzące?</string>
+    <string name="faq_1_text_dialer_g">System operacyjny blokuje aplikacjom dostęp do ekranu blokady. Musisz zezwolić aplikacji na dostęp do ekranu blokady. Na przykład w MIUI musisz zezwolić na dostęp do Ustawienia => Powiadomienia => Powiadomienia na ekranie blokady.</string>
+    <string name="faq_2_title_dialer_g">Jak skopiować lub wkleić numer na ekranie dialera?</string>
+    <string name="faq_2_text_dialer_g">Naciśnij długo przycisk połączenia, aby wkleić zawartość schowka. Jeśli numer jest już wprowadzony, długie naciśnięcie przycisku połączenia kopiuje go do schowka.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Styl przycisku odpowiedzi</string>
+    <string name="buttons">Przyciski</string>
+    <string name="answer_slider">Suwak</string>
+    <string name="answer_slider_outline">Suwak konspektu</string>
+    <string name="answer_slider_vertical">Pionowy suwak</string>
 </resources>

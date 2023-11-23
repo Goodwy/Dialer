@@ -12,7 +12,6 @@
     <string name="request_access">Toegang aanvragen</string>
     <string name="remove_confirmation">Geselecteerde items uit de gespreksgeschiedenis verwijderen\?</string>
     <string name="clear_history_confirmation">De volledige gespreksgeschiedenis verwijderen\?</string>
-    <string name="show_grouped_calls">Gesprekken gegroepeerd weergeven</string>
     <string name="clear_call_history">Gespreksgeschiedenis wissen</string>
     <string name="show_call_details">Gespreksgegevens tonen</string>
     <!-- Dialpad -->
@@ -34,9 +33,9 @@
     <string name="call_ended">Gesprek beëindigd</string>
     <string name="call_ending">Einde gesprek</string>
     <string name="ongoing_call">Huidig gesprek</string>
-    <string name="select_sim">Kies een SIM-kaart voor dit gesprek</string>
-    <string name="always_use_this_sim">Altijd deze SIM voor dit nummer gebruiken</string>
-    <string name="unset_default_sim">Standaard-SIM uitzetten</string>
+    <string name="select_sim">Kies een simkaart voor dit gesprek</string>
+    <string name="always_use_this_sim">Altijd deze simkaart voor dit nummer gebruiken</string>
+    <string name="unset_default_sim">Geen standaard-simkaart</string>
     <string name="calls">Gesprekken</string>
     <string name="turn_microphone_on">Microfoon inschakelen</string>
     <string name="turn_microphone_off">Microfoon uitschakelen</string>
@@ -55,7 +54,6 @@
     <string name="conference_manage">Groepsgesprek beheren</string>
     <string name="conference">Groepsgesprek</string>
     <string name="audio_route_speaker">Luidspreker(s)</string>
-    <string name="audio_route_earpiece">Oordopje(s)</string>
     <string name="audio_route_bluetooth">Bluetooth</string>
     <string name="audio_route_wired_headset">Bedrade koptelefoon</string>
     <string name="audio_route_wired_or_earpiece">Bedraad of via oordopje(s)</string>
@@ -72,6 +70,8 @@
     <string name="disable_swipe_to_answer">Vervang vegen door klikken bij het aannemen van gesprekken</string>
     <string name="show_incoming_calls_full_screen">Inkomende gesprekken altijd op volledig scherm tonen</string>
     <string name="hide_dialpad_numbers">Toetsenblokcijfers verbergen</string>
+    <string name="export_call_history">Gespreksgeschiedenis exporteren</string>
+    <string name="import_call_history">Gespreksgeschiedenis importeren</string>
     <!-- FAQ -->
     <string name="faq_1_title">Ik hoor dat er een gesprek binnenkomt, maar het scherm gaat niet aan. Wat kan ik doen\?</string>
     <string name="faq_1_text">Dit soort problemen kan vele oorzaken hebben, specifiek voor bepaalde apparaten en software. Controleer in ieder geval of voor deze app in de systeeminstellingen \"Weergeven vóór andere apps\" is toegestaan en of bij meldingen voor inkomende gesprekken \"Weergeven op scherm\" is ingeschakeld.</string>

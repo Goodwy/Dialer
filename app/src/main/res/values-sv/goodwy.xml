@@ -3,26 +3,52 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Transparent samtalsskärm</string>
     <string name="call_back_g">Kalla</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">Ring tillbaka %s</string>
     <string name="missed_call_g">Missat samtal</string>
     <string name="missed_calls_g">Missade samtal</string>
     <string name="missed_call_notifications_g">Aviseringar om missade samtal</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Aviseringar om samtal med hög prioritet</string>
+    <string name="call_notification_channel_g">Samtalsaviseringar</string>
+    <string name="dialpad_preferences">Inställningar för knappsats</string>
+    <string name="call_start_end_vibration">Vibrera när samtalet börjar och slutar</string>
 
     <string name="show_contact_thumbnails_g">Visa kontaktminiatyrer</string>
     <string name="hide_dialpad_letters_g">Dölj knappsatsbokstäver</string>
+    <string name="show_caller_description_g">Visa ytterligare information om den som ringer</string>
+    <string name="nickname">Smeknamn</string>
+    <string name="company">Företag</string>
+    <string name="call_anonymously">Ring anonymt (med prefix #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Varning</h4>
+            Numret kommer att ringas upp med prefixet #31# <br><br>
+                <h6"><i>  #31#%s</i></h6>
+            Kontrollera att din operatör stöder tjänsten för dolda nummer när du använder prefixet #31#. <br>
+            Din tjänsteleverantör kan ta ut en extra avgift för denna tjänst.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Enhetens hörsnäcka</string>
+    <string name="open_speed_dial_manage">Öppna kortnummerhanteringen?</string>
 
     <!-- Timer -->
     <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timers_notification_msg">Timers är igång</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d timer är igång</item>
+        <item quantity="other">%d timers är igång</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Varför måste jag låsa upp min enhet för att svara på ett inkommande samtal?</string>
+    <string name="faq_1_text_dialer_g">Operativsystemet blockerar appar från att komma åt låsskärmen. Du måste tillåta appen att komma åt låsskärmen. Till exempel, i MIUI måste du tillåta åtkomst till Inställningar => Aviseringar => Aviseringar på låsskärmen.</string>
+    <string name="faq_2_title_dialer_g">Hur kopierar eller klistrar jag in ett nummer på uppringningsskärmen?</string>
+    <string name="faq_2_text_dialer_g">Långt tryck på samtalsknappen för att klistra in innehållet i urklipp. Om numret redan är inmatat kopierar ett långt tryck på samtalsknappen det till urklippet.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Svarsknappstil</string>
+    <string name="buttons">Knappar</string>
+    <string name="answer_slider">Slider</string>
+    <string name="answer_slider_outline">Konturreglage</string>
+    <string name="answer_slider_vertical">Vertikal skjutreglage</string>
 </resources>

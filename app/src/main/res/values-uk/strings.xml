@@ -12,7 +12,6 @@
     <string name="request_access">Запит на доступ</string>
     <string name="remove_confirmation">Справді видалити вибрані елементи з історії викликів\?</string>
     <string name="clear_history_confirmation">Справді видалити все з історії викликів\?</string>
-    <string name="show_grouped_calls">Згрупувати виклики</string>
     <string name="clear_call_history">Очистити історію викликів</string>
     <string name="show_call_details">Показати деталі виклику</string>
     <!-- Dialpad -->
@@ -55,7 +54,6 @@
     <string name="conference_manage">Керувати конференц-викликом</string>
     <string name="conference">Конференц-виклик</string>
     <string name="audio_route_speaker">Динамік</string>
-    <string name="audio_route_earpiece">Навушники</string>
     <string name="audio_route_bluetooth">Bluetooth</string>
     <string name="audio_route_wired_headset">Провідна гарнітура</string>
     <string name="audio_route_wired_or_earpiece">Провідний або навушник</string>
@@ -72,6 +70,8 @@
     <string name="disable_swipe_to_answer">Замінити перетягування на натискання під час відповіді на вхідні виклики</string>
     <string name="show_incoming_calls_full_screen">Завжди відображати вхідні дзвінки на весь екран</string>
     <string name="hide_dialpad_numbers">Приховати номери цифрової клавіатури</string>
+    <string name="export_call_history">Експорт журналу дзвінків</string>
+    <string name="import_call_history">Імпорт історії дзвінків</string>
     <!-- FAQ -->
     <string name="faq_1_title">Я чую вхідні дзвінки, але екран не вмикається. Що я можу зробити\?</string>
     <string name="faq_1_text">Такі проблеми можуть мати багато специфічних для пристрою та системи причин, важко сказати в цілому. Вам слід подивитися в налаштуваннях свого пристрою та переконатися, що застосунку дозволено відображати у фоновому режимі та дозволяти відображення над іншими застосунками.</string>

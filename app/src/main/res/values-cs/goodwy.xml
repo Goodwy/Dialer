@@ -3,26 +3,53 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Průhledná obrazovka hovoru</string>
     <string name="call_back_g">Zavolat</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">Zavolejte zpět %s</string>
     <string name="missed_call_g">Zmeškaný hovor</string>
     <string name="missed_calls_g">Zmeškané hovory</string>
     <string name="missed_call_notifications_g">Oznámení o zmeškaných hovorech</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Oznámení o hovorech s vysokou prioritou</string>
+    <string name="call_notification_channel_g">Oznámení o hovorech</string>
+    <string name="dialpad_preferences">Předvolby číselníku</string>
+    <string name="call_start_end_vibration">Vibrace při zahájení a ukončení hovoru</string>
 
     <string name="show_contact_thumbnails_g">Zobrazení miniatur kontaktů</string>
     <string name="hide_dialpad_letters_g">Skrytí písmen číselníku</string>
+    <string name="show_caller_description_g">Zobrazit další informace o volajícím</string>
+    <string name="nickname">Přezdívka</string>
+    <string name="company">Společnost</string>
+    <string name="call_anonymously">Volejte anonymně (s předčíslím #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Upozornění</h4>
+             Číslo bude voláno s předvolbou #31# <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             Ujistěte se, že váš operátor podporuje službu skrývání čísel při použití předvolby #31#. <br>
+             Váš poskytovatel služeb může za tuto službu účtovat dodatečný poplatek.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Sluchátko zařízení</string>
+    <string name="open_speed_dial_manage">Otevřít správu rychlého vytáčení?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">Časovač</string>
+    <string name="timers_notification_msg">Časovače běží</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d časovač běží</item>
+        <item quantity="few">%d časovače běží</item>
+        <item quantity="many">%d časovačů běží</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Proč musím odemknout zařízení, abych mohl přijmout příchozí hovor?</string>
+    <string name="faq_1_text_dialer_g">Operační systém blokuje aplikacím přístup k obrazovce uzamčení. Aplikaci musíte povolit přístup k zamykací obrazovce. Například v MIUI musíte povolit přístup k Nastavení => Oznámení => Oznámení na zamykací obrazovce.</string>
+    <string name="faq_2_title_dialer_g">Jak zkopíruji nebo vložím číslo na obrazovku vytáčení?</string>
+    <string name="faq_2_text_dialer_g">Dlouhým stisknutím tlačítka volání vložte obsah schránky. Pokud je číslo již zadáno, dlouhým stisknutím tlačítka volání jej zkopírujete do schránky.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Styl tlačítka odpovědi</string>
+    <string name="buttons">Tlačítka</string>
+    <string name="answer_slider">Posuvník</string>
+    <string name="answer_slider_outline">Posuvník obrysu</string>
+    <string name="answer_slider_vertical">Vertikální posuvník</string>
 </resources>

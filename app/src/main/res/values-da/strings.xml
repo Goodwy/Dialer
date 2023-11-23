@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--TODO Edit-->
     <string name="app_name">Simple Dialer</string>
     <string name="app_launcher_name">Opkald</string>
     <string name="default_phone_app_prompt">Vælg venligst denne app som standard til opkald</string>
@@ -12,7 +13,6 @@
     <string name="request_access">Anmod om adgang</string>
     <string name="remove_confirmation">Er du sikker på du vil fjerne de valgte emner fra opkaldshistorikken\?</string>
     <string name="clear_history_confirmation">Er du sikker på at du vil fjerne alt i opkaldshistorikken\?</string>
-    <string name="show_grouped_calls">Vis gruppérede opkald</string>
     <string name="clear_call_history">Ryd opkaldshistorik</string>
     <string name="show_call_details">Vis opkaldsdetaljer</string>
     <!-- Dialpad -->
@@ -55,7 +55,6 @@
     <string name="conference_manage">Administrer konference kald</string>
     <string name="conference">Konference</string>
     <string name="audio_route_speaker">Højttaler</string>
-    <string name="audio_route_earpiece">Øresnegl</string>
     <string name="audio_route_bluetooth">Bluetooth</string>
     <string name="audio_route_wired_headset">Trådet Headset</string>
     <string name="audio_route_wired_or_earpiece">Trådet eller Øresnegl</string>
@@ -72,12 +71,10 @@
     <string name="disable_swipe_to_answer">Erstat swipe ved besvarelse af indgående opkald med at klikke på</string>
     <string name="show_incoming_calls_full_screen">Vis altid indkommende opkald i fuldskærm</string>
     <string name="hide_dialpad_numbers">Skjul nummertastatur</string>
+    <string name="export_call_history">Export call history</string>
+    <string name="import_call_history">Import call history</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Jeg hører indgående opkald, men skærmen tændes ikke. Hvad kan jeg gøre?</string>
     <string name="faq_1_text">Sådanne problemer kan have mange enheds- og systemspecifikke årsager, svært at sige generelt. Du skal kigge rundt i dine enhedsindstillinger og sørge for, at appen får lov til at dukke op, når den er i baggrunden og tillade visning over andre apps.</string>
-    <!--
-        Kan du ikke finde nogle strenge? Der er mere på
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
-    -->
 </resources>

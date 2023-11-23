@@ -9,13 +9,26 @@
     <string name="missed_call_notifications_g">Повідомлення про пропущені дзвінки</string>
     <string name="call_notification_channel_high_priority_g">Сповіщення про дзвінки з високим пріоритетом</string>
     <string name="call_notification_channel_g">Сповіщення про дзвінки</string>
+    <string name="dialpad_preferences">Параметри кнопок набору</string>
+    <string name="call_start_end_vibration">Вібрація під час початку та завершення виклику</string>
 
     <string name="show_contact_thumbnails_g">Показувати фото контакту</string>
     <string name="hide_dialpad_letters_g">Приховати літери цифрової клавіатури</string>
+    <string name="show_caller_description_g">Показати додаткову інформацію про абонента</string>
+    <string name="nickname">Псевдонім</string>
+    <string name="company">Організація</string>
+    <string name="call_anonymously">Дзвонити анонімно (з префіксом #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Попередження</h4>
+            Номер буде набрано з префіксом #31# <br><br>
+                <h6"><i>  #31#%s</i></h6>
+            Переконайтеся, що ваш оператор підтримує послугу приховування номера при використанні префікса #31#. <br>
+            Ваш оператор може стягувати додаткову плату за цю послугу.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Динамік</string>
     <string name="audio_route_earpiece_g">Телефон</string>
-    <string name="audio_route_wired_or_earpiece_g">Динамік пристрою або дротова гарнітура</string>
     <string name="open_speed_dial_manage">Відкрити управління швидким викликом?</string>
 
     <!-- Timer -->
@@ -27,4 +40,17 @@
         <item quantity="many">%d таймерів працюють</item>
         <item quantity="other">%d таймерів працюють</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Чому для відповіді на вхідний виклик необхідно розблокувати пристрій?</string>
+    <string name="faq_1_text_dialer_g">Операційна система блокує доступ додатків до екрана блокування. Необхідно дозволити застосунку доступ до екрана блокування. Наприклад, у MIUI необхідно дозволити доступ у Налаштування => Повідомлення => Повідомлення на екрані блокування.</string>
+    <string name="faq_2_title_dialer_g">Як скопіювати або вставити номер на екрані набору номера?</string>
+    <string name="faq_2_text_dialer_g">Тривале натискання на кнопку виклику вставляє вміст буфера обміну. Якщо номер уже введено, тривале натискання на кнопку виклику копіює його в буфер обміну.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Стиль кнопок відповіді</string>
+    <string name="buttons">Кнопки</string>
+    <string name="answer_slider">Слайдер</string>
+    <string name="answer_slider_outline">Слайдер з контуром</string>
+    <string name="answer_slider_vertical">Вертикальний слайдер</string>
 </resources>

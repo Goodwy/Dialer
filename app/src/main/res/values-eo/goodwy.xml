@@ -3,26 +3,52 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Travidebla Voka Ekrano</string>
     <string name="call_back_g">Voki reen</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">Revoku %s</string>
     <string name="missed_call_g">Maltrafita voko</string>
     <string name="missed_calls_g">Maltrafitaj vokoj</string>
     <string name="missed_call_notifications_g">Sciigoj pri maltrafvoko</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Alvokaj sciigoj alta prioritato</string>
+    <string name="call_notification_channel_g">Alvokaj sciigoj</string>
+    <string name="dialpad_preferences">Dialpad-preferoj</string>
+    <string name="call_start_end_vibration">Vibru kiam via voko komenciĝas kaj finiĝas</string>
 
     <string name="show_contact_thumbnails_g">Montru kontaktajn bildetojn</string>
     <string name="hide_dialpad_letters_g">Kaŝi la literojn</string>
+    <string name="show_caller_description_g">Montri pliajn informojn pri alvokanto</string>
+    <string name="nickname">Alnomo</string>
+    <string name="company">Kompanio</string>
+    <string name="call_anonymously">Voku anonime (kun prefikso #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Averto</h4>
+             La numero estos nomita kun la prefikso #31# <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             Certiĝu, ke via telefonisto subtenas la numeron kaŝantan servon kiam vi uzas la #31# prefikson. <br>
+             Via provizanto de servoj povas pagi kroman kotizon por ĉi tiu servo.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Το ακουστικό της συσκευής\</string>
+    <string name="open_speed_dial_manage">Malfermi la rapidan telefonadon administri?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">Temporizilo</string>
+    <string name="timers_notification_msg">Οι χρονοδιακόπτες τρέχουν</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d tempigilo funkcias</item>
+        <item quantity="other">%d tempigiloj funkcias</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Kial mi bezonas malŝlosi mian aparaton por respondi al envenanta voko?</string>
+    <string name="faq_1_text_dialer_g">La operaciumo malhelpas al aplikaĵoj aliro al la ŝlosila ekrano. Vi devas permesi al la aplikaĵo aliri la ŝlosan ekranon. Ekzemple, en MIUI, vi devas permesi aliron al Agordoj => Sciigoj => Sciigoj sur la ŝlosila ekrano.</string>
+    <string name="faq_2_title_dialer_g">Kiel mi kopias aŭ algluas numeron sur la telefona ekrano?</string>
+    <string name="faq_2_text_dialer_g"> Longpremu la vokbutonon por alglui la enhavon de la tondujo. Se la numero jam estas enigita, longa premo sur la vokobutono kopias ĝin al la tondujo.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Stilo de Respondbutono</string>
+    <string name="buttons">Butonoj</string>
+    <string name="answer_slider">Slider</string>
+    <string name="answer_slider_outline">Konturna glitilo</string>
+    <string name="answer_slider_vertical">Vertikala Glitilo</string>
 </resources>

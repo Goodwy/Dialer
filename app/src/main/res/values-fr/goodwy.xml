@@ -2,28 +2,54 @@
 <resources>
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Écran d’appel transparent</string>
-    <string name="call_back_g">Appeler</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_g">Rappeler</string>
+    <string name="call_back_person_g">Rappeler %s</string>
     <string name="missed_call_g">Appel manqué</string>
     <string name="missed_calls_g">Appels manqués</string>
     <string name="missed_call_notifications_g">Notifications d’appels manqués</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Notifications d’appel haute priorité</string>
+    <string name="call_notification_channel_g">Notifications d’appel</string>
+    <string name="dialpad_preferences">Préférences du pavé numérique</string>
+    <string name="call_start_end_vibration">Vibreur lorsque votre appel est en début et en fin</string>
 
     <string name="show_contact_thumbnails_g">Afficher les vignettes de contact</string>
     <string name="hide_dialpad_letters_g">Masquer les lettres du pavé numérique</string>
+    <string name="show_caller_description_g">Afficher des informations supplémentaires sur l’appelant</string>
+    <string name="nickname">Surnom</string>
+    <string name="company">Compagnie</string>
+    <string name="call_anonymously">Appelez de manière anonyme (avec le préfixe #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Avertissement</h4>
+            Le numéro sera appelé avec le préfixe #31# <br><br>
+                <h6"><i>  #31#%s</i></h6>
+            Assurez-vous que votre opérateur prend en charge le service de masquage de numéros lorsque vous utilisez le préfixe #31#. <br>
+            Votre fournisseur de services peut facturer des frais supplémentaires pour ce service.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Ecouteur de l’appareil</string>
+    <string name="open_speed_dial_manage">Ouvrir la gestion de numérotation abrégée ?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">Minuteur</string>
+    <string name="timers_notification_msg">Les minuteurs sont en cours d’exécution</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="many">%d timers are running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d minuteur est en cours d’exécution</item>
+        <item quantity="many">%d minuteurs sont en cours d’exécution</item>
+        <item quantity="other">%d minuteurs sont en cours d’exécution</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Pourquoi dois-je déverrouiller mon appareil pour répondre à un appel entrant?</string>.
+    <string name="faq_1_text_dialer_g">Le système d’exploitation empêche les applications d’accéder à l’écran de verrouillage. Vous devez autoriser l’application à accéder à l’écran de verrouillage. Par exemple, dans MIUI, vous devez autoriser l’accès à Paramètres => Notifications => Notifications sur l’écran de verrouillage.</string>
+    <string name="faq_2_title_dialer_g">Comment copier ou coller un numéro sur l’écran de numérotation?</string>
+    <string name="faq_2_text_dialer_g">Une pression longue sur le bouton d’appel colle le contenu du presse-papiers. Si le numéro est déjà saisi, une pression longue sur le bouton d’appel le copie dans le presse-papiers.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Style de bouton de réponse</string>
+    <string name="buttons">Boutons</string>
+    <string name="answer_slider">Slider</string>
+    <string name="answer_slider_outline">Slider avec contour</string>
+    <string name="answer_slider_vertical">Slider vertical</string>
 </resources>

@@ -3,26 +3,53 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">מסך שיחה שקוף</string>
     <string name="call_back_g">טלפן</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">התקשר בחזרה %s</string>
     <string name="missed_call_g">שיחה שלא נענתה</string>
     <string name="missed_calls_g">שיחות שלא נענו</string>
     <string name="missed_call_notifications_g">התראות על שיחות שלא נענו</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">התראות שיחות בעדיפות גבוהה</string>
+    <string name="call_notification_channel_g">התראות שיחות</string>
+    <string name="dialpad_preferences">העדפות לוח חיוג</string>
+    <string name="call_start_end_vibration">רטט כאשר השיחה מתחילה ומסתיימת</string>
 
     <string name="show_contact_thumbnails_g">הצגת תמונות ממוזערות של אנשי קשר</string>
     <string name="hide_dialpad_letters_g">הסתרת אותיות פנקס חיוג</string>
+    <string name="show_caller_description_g">הצג מידע נוסף על המתקשר</string>
+    <string name="nickname">כינוי</string>
+    <string name="company">חברה</string>
+    <string name="call_anonymously">התקשר באופן אנונימי (עם קידומת #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>אזהרה</h4>
+             המספר ייקרא עם הקידומת #31# <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             ודא שהמפעיל שלך תומך בשירות הסתרת המספרים בעת שימוש בקידומת #31#. <br>
+             ספק השירות שלך עשוי לגבות תשלום נוסף עבור שירות זה.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">האפרכסת של המכשיר</string>
+    <string name="open_speed_dial_manage">לפתוח את החיוג המהיר לנהל?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">טיימר</string>
+    <string name="timers_notification_msg">טיימר פועל</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d טיימר פועל</item>
+        <item quantity="two">%d טיימרים פועלים</item>
+        <item quantity="other">%d טיימרים פועלים</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">מדוע אני צריך לבטל את נעילת המכשיר שלי כדי לענות לשיחה נכנסת?</string>
+    <string name="faq_1_text_dialer_g">מערכת ההפעלה חוסמת גישה של אפליקציות למסך הנעילה. עליך לאפשר לאפליקציה לגשת למסך הנעילה. לדוגמה, ב-MIUI, עליך לאפשר גישה להגדרות => התראות => התראות במסך הנעילה.</string>
+    <string name="faq_2_title_dialer_g">כיצד אוכל להעתיק או להדביק מספר במסך החייגן?</string>
+    <string name="faq_2_text_dialer_g">לחץ לחיצה ארוכה על לחצן ההתקשרות כדי להדביק את תוכן הלוח. אם המספר כבר הוזן, לחיצה ארוכה על לחצן ההתקשרות תעתיק אותו ללוח.</string>
+
+    <!-- סגנון תשובה -->
+    <string name="answer_style">סגנון כפתור תשובה</string>
+    <string name="buttons">כפתורים</string>
+    <string name="answer_slider">מחוון</string>
+    <string name="answer_slider_outline">מחוון מתאר</string>
+    <string name="answer_slider_vertical">מחוון אנכי</string>
 </resources>

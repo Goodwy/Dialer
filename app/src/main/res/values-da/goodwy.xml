@@ -3,26 +3,52 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Gennemsigtig opkaldsskærm</string>
     <string name="call_back_g">Kalde</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">Ring tilbage %s</string>
     <string name="missed_call_g">Ubesvaret opkald</string>
     <string name="missed_calls_g">Ubesvarede opkald</string>
     <string name="missed_call_notifications_g">Meddelelser om ubesvarede opkald</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Opkaldsmeddelelser høj prioritet</string>
+    <string name="call_notification_channel_g">Opkaldsmeddelelser</string>
+    <string name="dialpad_preferences">Indstillinger for tastatur</string>
+    <string name="call_start_end_vibration">Vibrere, når dit opkald starter og slutter</string>
 
     <string name="show_contact_thumbnails_g">Vis miniaturebilleder af kontakter</string>
     <string name="hide_dialpad_letters_g">Skjul dialpad-bogstaver</string>
+    <string name="show_caller_description_g">Vis yderligere opkaldsoplysninger</string>
+    <string name="nickname">Kælenavn</string>
+    <string name="company">Firma</string>
+    <string name="call_anonymously">Ring anonymt (med præfiks #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Advarsel</h4>
+             Nummeret vil blive kaldt med præfikset #31# <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             Sørg for, at din operatør understøtter nummerskjulningstjenesten, når du bruger præfikset #31#. <br>
+             Din tjenesteudbyder kan opkræve et ekstra gebyr for denne tjeneste.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Enhedens ørestykke</string>
+    <string name="open_speed_dial_manage">Åbn hurtigopkaldsstyringen?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">Æggeur</string>
+    <string name="timers_notification_msg">Æggeuret kører</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d timer kører</item>
+        <item quantity="other">%d timere kører</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Hvorfor skal jeg låse min enhed op for at besvare et indgående opkald?</string>
+    <string name="faq_1_text_dialer_g">operativsystemet blokerer apps fra at få adgang til låseskærmen. Du skal give appen tilladelse til at få adgang til låseskærmen. For eksempel skal du i MIUI tillade adgang til Indstillinger => Meddelelser => Meddelelser på låseskærmen.</string>
+    <string name="faq_2_title_dialer_g">Hvordan kopierer eller indsætter jeg et nummer på opkaldsskærmen?</string>
+    <string name="faq_2_text_dialer_g">Tryk længe på opkaldsknappen for at indsætte indholdet af udklipsholderen. Hvis nummeret allerede er indtastet, vil et langt tryk på opkaldsknappen kopiere det til udklipsholderen.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Svarknapstil</string>
+    <string name="buttons">Knapper</string>
+    <string name="answer_slider">Slider</string>
+    <string name="answer_slider_outline">Konturskyder</string>
+    <string name="answer_slider_vertical">Lodret skyder</string>
 </resources>

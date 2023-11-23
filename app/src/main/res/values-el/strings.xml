@@ -12,7 +12,6 @@
     <string name="request_access">Αίτηση πρόσβασης</string>
     <string name="remove_confirmation">Είστε βέβαιοι ότι θέλετε να καταργήσετε τα επιλεγμένα στοιχεία από το ιστορικό κλήσεων;</string>
     <string name="clear_history_confirmation">Είστε βέβαιοι ότι θέλετε να αφαιρέσετε τα πάντα από το ιστορικό κλήσεων;</string>
-    <string name="show_grouped_calls">Προβολή ομαδοποιημένων κλήσεων</string>
     <string name="clear_call_history">Διαγραφή ιστορικού κλήσεων</string>
     <string name="show_call_details">Προβολή λεπτομερειών κλήσης</string>
     <!-- Dialpad -->
@@ -55,7 +54,6 @@
     <string name="conference_manage">Διαχείριση Συνδιάσκεψης</string>
     <string name="conference">Συνδιάσκεψη</string>
     <string name="audio_route_speaker">Ηχείο</string>
-    <string name="audio_route_earpiece">Ακουστικα</string>
     <string name="audio_route_bluetooth">Bluetooth</string>
     <string name="audio_route_wired_headset">Ενσύρματα κεφαλής</string>
     <string name="audio_route_wired_or_earpiece">Ενσύρματα ή ακουστικά</string>
@@ -72,9 +70,13 @@
     <string name="disable_swipe_to_answer">Αντικατάσταση Σάρωσης με Κλικ στην απάντηση εισερχόμενων κλήσεων</string>
     <string name="show_incoming_calls_full_screen">Να εμφανίζονται πάντα οι εισερχόμενες κλήσεις σε πλήρη οθόνη</string>
     <string name="hide_dialpad_numbers">Απόκρυψη αριθμών πληκτρολογίου</string>
+    <string name="export_call_history">Εξαγωγή ιστορικού κλήσεων</string>
+    <string name="import_call_history">Εισαγωγή ιστορικού κλήσεων</string>
+
     <!-- FAQ -->
     <string name="faq_1_title">Ακούω εισερχόμενες κλήσεις, αλλά η οθόνη δεν ανάβει. Τι μπορώ να κάνω;</string>
     <string name="faq_1_text">Τέτοια θέματα μπορεί να έχουν πολλούς λόγους που σχετίζονται με τη συσκευή και το σύστημα, και είναι δύσκολο να ειπωθούν γενικά. Θα πρέπει να ψάξετε στις ρυθμίσεις της συσκευής σας και να βεβαιωθείτε ότι η εφαρμογή επιτρέπεται να εμφανίζεται όταν βρίσκεται στο παρασκήνιο και να επιτρέπει την εμφάνισή της πάνω από άλλες εφαρμογές.</string>
+
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

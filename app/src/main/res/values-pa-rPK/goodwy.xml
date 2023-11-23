@@ -1,28 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_g">Right Dialer</string>
-    <string name="transparent_call_screen_g">Transparent Call Screen</string>
-    <string name="call_back_g">Call back</string>
-    <string name="call_back_person_g">Call back %s</string>
-    <string name="missed_call_g">Missed call</string>
-    <string name="missed_calls_g">Missed calls</string>
-    <string name="missed_call_notifications_g">Missed call notifications</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="transparent_call_screen_g">شفاف کال اسکرین</string>
+    <string name="call_back_g">واپس کال کریں۔</string>
+    <string name="call_back_person_g">%s کو واپس کال کریں۔</string>
+    <string name="missed_call_g">مسڈ کال</string>
+    <string name="missed_calls_g">مسڈ کالز</string>
+    <string name="missed_call_notifications_g">مسڈ کال کی اطلاعات</string>
+    <string name="call_notification_channel_high_priority_g">کال کی اطلاعات اعلی ترجیح</string>
+    <string name="call_notification_channel_g">کال اطلاعات</string>
+    <string name="dialpad_preferences">ڈائل پیڈ کی ترجیحات</string>
+    <string name="call_start_end_vibration">آپ کی کال شروع اور ختم ہونے پر وائبریٹ کریں۔</string>
 
-    <string name="show_contact_thumbnails_g">Show contact thumbnails</string>
-    <string name="hide_dialpad_letters_g">Hide dialpad letters</string>
+    <string name="show_contact_thumbnails_g">رابطے کے تھمب نیلز دکھائیں۔</string>
+    <string name="hide_dialpad_letters_g">ڈائل پیڈ کے خطوط چھپائیں۔</string>
+    <string name="show_caller_description_g">اضافی کالر کی معلومات دکھائیں۔</string>
+    <string name="nickname">عرفی نام</string>
+    <string name="company">کمپنی</string>
+    <string name="call_anonymously">گمنام طور پر کال کریں (سابقہ نمبر 31# کے ساتھ)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>انتباہ</h4>
+             نمبر کو سابقہ نمبر 31# کے ساتھ کال کیا جائے گا۔ <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             اس بات کو یقینی بنائیں کہ آپ کا آپریٹر #31# سابقہ استعمال کرتے وقت نمبر چھپانے کی خدمت کو سپورٹ کرتا ہے۔ <br>
+             آپ کا خدمت فراہم کنندہ اس خدمت کے لیے اضافی فیس وصول کر سکتا ہے۔
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">آلہ کا ایئر پیس</string>
+    <string name="open_speed_dial_manage">سپیڈ ڈائل کا انتظام کھولیں؟</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">سماں والا</string>
+    <string name="timers_notification_msg">سماں والے چالو کیتے جا رہے اے</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">؜‫%d‬؜ سماں والا چالو کیتا جا رہا اے</item>
+        <item quantity="other">؜‫%d‬؜ سماں والے چالو کیتے جا رہے اے</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">آنے والی کال کا جواب دینے کے لیے مجھے اپنے آلے کو غیر مقفل کرنے کی ضرورت کیوں ہے؟</string>
+    <string name="faq_1_text_dialer_g">آپریٹنگ سسٹم ایپس کو لاک اسکرین تک رسائی سے روک رہا ہے۔ آپ کو ایپ کو لاک اسکرین تک رسائی کی اجازت دینے کی ضرورت ہے۔ مثال کے طور پر، MIUI میں، آپ کو ترتیبات => اطلاعات => لاک اسکرین پر اطلاعات تک رسائی کی اجازت دینی ہوگی۔</string>
+    <string name="faq_2_title_dialer_g">میں ڈائلر اسکرین پر نمبر کو کاپی یا پیسٹ کیسے کروں؟</string>
+    <string name="faq_2_text_dialer_g">کلپ بورڈ کے مواد کو پیسٹ کرنے کے لیے کال بٹن کو دیر تک دبائیں۔ اگر نمبر پہلے ہی درج ہے، تو کال بٹن پر دیر تک دبانے سے اسے کلپ بورڈ پر کاپی ہو جاتا ہے۔</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">جواب بٹن کا انداز</string>
+    <string name="buttons">بٹن</string>
+    <string name="answer_slider">سلائیڈر</string>
+    <string name="answer_slider_outline">آؤٹ لائن سلائیڈر</string>
+    <string name="answer_slider_vertical">عمودی سلائیڈر</string>
 </resources>

@@ -15,13 +15,14 @@
         app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle" />
 
     <FrameLayout
-        android:id="@+id/conference_frame"
+        android:id="@+id/conferenceFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/activity_padding_left_right"
         android:layout_marginTop="?attr/actionBarSize">
 
         <com.goodwy.commons.views.MyRecyclerView
-            android:id="@+id/conference_list"
+            android:id="@+id/conferenceList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"

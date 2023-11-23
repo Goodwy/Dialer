@@ -12,7 +12,6 @@
     <string name="request_access">לבקש גישה</string>
     <string name="remove_confirmation">האם אתה בטוח שברצונך להסיר את הפריטים שנבחרו מהיסטוריית השיחות\?</string>
     <string name="clear_history_confirmation">האם אתה בטוח שברצונך לאפס את כל היסטוריית השיחות\?</string>
-    <string name="show_grouped_calls">הצג שיחות מקובצות</string>
     <string name="clear_call_history">נקה היסטוריית שיחות</string>
     <string name="show_call_details">הצג פרטי שיחה</string>
     <!-- Dialpad -->
@@ -54,13 +53,12 @@
     <string name="call_add">הוסף שיחה</string>
     <string name="conference_manage">ניהול שיחת ועידה</string>
     <string name="conference">ועידה</string>
-    <string name="audio_route_speaker">Speaker</string>
-    <string name="audio_route_earpiece">Earpiece</string>
-    <string name="audio_route_bluetooth">Bluetooth</string>
-    <string name="audio_route_wired_headset">Wired Headset</string>
-    <string name="audio_route_wired_or_earpiece">Wired or Earpiece</string>
-    <string name="choose_audio_route">Choose audio route</string>
-    <string name="calling_blocked_number">The number you are calling is blocked</string>
+    <string name="audio_route_speaker">רמקול</string> <!--TODO Edit-->
+    <string name="audio_route_bluetooth">בלוטוט</string>
+    <string name="audio_route_wired_headset">אוזניות קוויות</string>
+    <string name="audio_route_wired_or_earpiece">חוטי או אוזנייה</string>
+    <string name="choose_audio_route">בחר מסלול שמע</string>
+    <string name="calling_blocked_number">המספר שאתה מתקשר אליו חסום</string>
     <!-- Speed dial -->
     <string name="speed_dial">חיוג מהיר</string>
     <string name="manage_speed_dial">נהל חיוג מהיר</string>
@@ -70,12 +68,15 @@
     <string name="open_dialpad_by_default">פתח את לוח החיוג כברירת מחדל כאשר האפליקציה נפתחת</string>
     <string name="disable_proximity_sensor">השבת את חיישן הקרבה במהלך שיחות</string>
     <string name="disable_swipe_to_answer">החלף החלקה בתגובה לשיחות נכנסות בלחיצה</string>
-    <string name="show_incoming_calls_full_screen">Always display incoming calls on full screen</string>
-    <string name="hide_dialpad_numbers">Hide dialpad numbers</string>
+    <string name="show_incoming_calls_full_screen">הצג תמיד שיחות נכנסות במסך מלא</string>
+    <string name="hide_dialpad_numbers">הסתר מספרי לוח החיוג</string>
+    <string name="export_call_history">ייצוא היסטוריית שיחות</string>
+    <string name="import_call_history">ייבא היסטוריית שיחות</string>
 
     <!-- FAQ -->
-    <string name="faq_1_title">I hear incoming calls, but the screen doesn\'t turn on. What can I do?</string>
-    <string name="faq_1_text">Such issues can have many device and system specific reasons, hard to say in general. You should look around in your device settings and make sure that the app is allowed to pop up when in background and allow displaying over other apps.</string>
+    <string name="faq_1_title">אני שומע שיחות נכנסות, אבל המסך לא נדלק. מה אני יכול לעשות?</string>
+    <string name="faq_1_text">לבעיות כאלה יכולות להיות סיבות רבות למכשיר ולמערכת, שקשה לומר באופן כללי. כדאי להסתכל מסביב בהגדרות המכשיר ולוודא שהאפליקציה מורשית לצוץ ברקע ולאפשר הצגה מעל אפליקציות אחרות.</string>
+
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

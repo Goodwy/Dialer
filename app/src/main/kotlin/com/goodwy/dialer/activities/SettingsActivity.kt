@@ -3,49 +3,117 @@ package com.goodwy.dialer.activities
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.Menu
+import androidx.activity.result.contract.ActivityResultContracts
 import com.goodwy.commons.activities.ManageBlockedNumbersActivity
-import com.goodwy.commons.dialogs.BottomSheetChooserDialog
-import com.goodwy.commons.dialogs.ChangeDateTimeFormatDialog
-import com.goodwy.commons.dialogs.RadioGroupDialog
-import com.goodwy.commons.dialogs.SettingsIconDialog
+import com.goodwy.commons.dialogs.*
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.FAQItem
 import com.goodwy.commons.models.RadioItem
+import com.goodwy.commons.models.Release
 import com.goodwy.commons.models.SimpleListItem
-import com.goodwy.dialer.App.Companion.isPlayStoreInstalled
-import com.goodwy.dialer.App.Companion.isProVersion
 import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
+import com.goodwy.dialer.databinding.ActivitySettingsBinding
+import com.goodwy.dialer.dialogs.ExportCallHistoryDialog
 import com.goodwy.dialer.dialogs.ManageVisibleTabsDialog
 import com.goodwy.dialer.extensions.areMultipleSIMsAvailable
 import com.goodwy.dialer.extensions.config
-import com.goodwy.dialer.helpers.AVATAR
-import com.goodwy.dialer.helpers.BLUR_AVATAR
-import com.goodwy.dialer.helpers.THEME_BACKGROUND
-import com.goodwy.dialer.helpers.TRANSPARENT_BACKGROUND
-import kotlinx.android.synthetic.main.activity_settings.*
+import com.goodwy.dialer.helpers.RecentsHelper
+import com.goodwy.dialer.models.RecentCall
+import com.goodwy.dialer.helpers.*
+import kotlinx.serialization.SerializationException
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import java.util.*
 import kotlin.system.exitProcess
 
 class SettingsActivity : SimpleActivity() {
+    companion object {
+        private const val CALL_HISTORY_FILE_TYPE = "application/json"
+    }
 
-    @SuppressLint("MissingSuperCall")
+    private val productIdX1 = BuildConfig.PRODUCT_ID_X1
+    private val productIdX2 = BuildConfig.PRODUCT_ID_X2
+    private val productIdX3 = BuildConfig.PRODUCT_ID_X3
+    private val subscriptionIdX1 = BuildConfig.SUBSCRIPTION_ID_X1
+    private val subscriptionIdX2 = BuildConfig.SUBSCRIPTION_ID_X2
+    private val subscriptionIdX3 = BuildConfig.SUBSCRIPTION_ID_X3
+
+    private val purchaseHelper = PurchaseHelper(this)
+    private val binding by viewBinding(ActivitySettingsBinding::inflate)
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        if (uri != null) {
+            toast(R.string.importing)
+            importCallHistory(uri)
+        }
+    }
+
+    private val saveDocument = registerForActivityResult(ActivityResultContracts.CreateDocument(CALL_HISTORY_FILE_TYPE)) { uri ->
+        if (uri != null) {
+            toast(R.string.exporting)
+            RecentsHelper(this).getRecentCalls(false, Int.MAX_VALUE) { recents ->
+                exportCallHistory(recents, uri)
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_settings)
+        setContentView(binding.root)
 
-        updateMaterialActivityViews(settings_coordinator, settings_holder, useTransparentNavigation = false, useTopSearchMenu = false)
-        setupMaterialScrollListener(settings_nested_scrollview, settings_toolbar)
-        // TODO TRANSPARENT Navigation Bar
-        if (config.transparentNavigationBar) {
-            setWindowTransparency(true) { _, _, leftNavigationBarSize, rightNavigationBarSize ->
-                settings_coordinator.setPadding(leftNavigationBarSize, 0, rightNavigationBarSize, 0)
-                updateNavigationBarColor(getProperBackgroundColor())
+        binding.apply {
+            updateMaterialActivityViews(settingsCoordinator, settingsHolder, useTransparentNavigation = true, useTopSearchMenu = false)
+            setupMaterialScrollListener(settingsNestedScrollview, settingsToolbar)
+//            // TODO TRANSPARENT Navigation Bar
+//            if (config.transparentNavigationBar) {
+//                setWindowTransparency(true) { _, _, leftNavigationBarSize, rightNavigationBarSize ->
+//                    settingsCoordinator.setPadding(leftNavigationBarSize, 0, rightNavigationBarSize, 0)
+//                    updateNavigationBarColor(getProperBackgroundColor())
+//                }
+//            }
+        }
+
+        if (isPlayStoreInstalled()) {
+            //PlayStore
+            purchaseHelper.initBillingClient()
+            val iapList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3)
+            val subList: ArrayList<String> = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3)
+            purchaseHelper.retrieveDonation(iapList, subList)
+
+            purchaseHelper.isIapPurchased.observe(this) {
+                when (it) {
+                    is Tipping.Succeeded -> {
+                        config.isPro = true
+                        updatePro()
+                    }
+                    is Tipping.NoTips -> {
+                        config.isPro = false
+                        updatePro()
+                    }
+                    is Tipping.FailedToLoad -> {
+                    }
+                }
+            }
+
+            purchaseHelper.isSupPurchased.observe(this) {
+                when (it) {
+                    is Tipping.Succeeded -> {
+                        config.isProSubs = true
+                        updatePro()
+                    }
+                    is Tipping.NoTips -> {
+                        config.isProSubs = false
+                        updatePro()
+                    }
+                    is Tipping.FailedToLoad -> {
+                    }
+                }
             }
         }
     }
@@ -53,83 +121,116 @@ class SettingsActivity : SimpleActivity() {
     @SuppressLint("MissingSuperCall")
     override fun onResume() {
         super.onResume()
-        setupToolbar(settings_toolbar, NavigationIcon.Arrow)
+        setupToolbar(binding.settingsToolbar, NavigationIcon.Arrow)
 
         setupPurchaseThankYou()
 
         setupCustomizeColors()
         setupDialPadOpen()
         setupMaterialDesign3()
-        setupSettingsIcon()
+        setupOverflowIcon()
         setupUseColoredContacts()
+        setupContactsColorList()
         setupColorSimIcons()
+        setupSimCardColorList()
+        setupDialpadStyle()
 
         setupDefaultTab()
         setupManageShownTabs()
-        //setupBottomNavigationBar()
         setupNavigationBarStyle()
         setupUseIconTabs()
         setupScreenSlideAnimation()
         setupOpenSearch()
 
+        setupCallsExport()
+        setupCallsImport()
         setupManageBlockedNumbers()
         setupManageSpeedDial()
         setupChangeDateTimeFormat()
         setupFontSize()
         setupBackgroundCallScreen()
         setupTransparentCallScreen()
+        setupAnswerStyle()
+        setupCallerDescription()
         setupAlwaysShowFullscreen()
         setupMissedCallNotifications()
+        setupFlashForAlerts()
         setupHideDialpadLetters()
         setupDialpadNumbers()
         setupGroupSubsequentCalls()
+
         setupShowDividers()
         setupShowContactThumbnails()
         setupShowPhoneNumbers()
         setupStartNameWithSurname()
+
         setupShowCallConfirmation()
         setupUseEnglish()
         setupLanguage()
-        setupTipJar()
-        setupAbout()
         setupDisableProximitySensor()
         setupDialpadVibrations()
+        setupCallStartEndVibrations()
         setupDialpadBeeps()
         setupDisableSwipeToAnswer()
         setupUseRelativeDate()
-        updateTextColors(settings_holder)
 
-        arrayOf(
-            settings_appearance_label,
-            settings_tabs_label,
-            settings_general_label,
-            settings_calls_label,
-            settings_list_view_label,
-            settings_other_label).forEach {
-            it.setTextColor(getProperPrimaryColor())
+        setupTipJar()
+        setupAbout()
+
+        setupOptionsMenu()
+
+        updateTextColors(binding.settingsHolder)
+
+        binding.apply {
+            arrayOf(
+                settingsAppearanceLabel,
+                settingsTabsLabel,
+                settingsGeneralLabel,
+                settingsDialpadLabel,
+                settingsCallsLabel,
+                settingsListViewLabel,
+                settingsOtherLabel).forEach {
+                it.setTextColor(getProperPrimaryColor())
+            }
+
+            arrayOf(
+                settingsColorCustomizationHolder,
+                settingsTabsHolder,
+                settingsGeneralHolder,
+                settingsDialpadHolder,
+                settingsCallsHolder,
+                settingsListViewHolder,
+                settingsOtherHolder
+            ).forEach {
+                it.background.applyColorFilter(getBottomNavigationBackgroundColor())
+            }
+
+            arrayOf(
+                settingsCustomizeColorsChevron,
+                settingsManageShownTabsChevron,
+                settingsExportCallsChevron,
+                settingsImportCallsChevron,
+                settingsManageBlockedNumbersChevron,
+                settingsManageSpeedDialChevron,
+                settingsChangeDateTimeFormatChevron,
+                settingsTipJarChevron,
+                settingsAboutChevron,
+                settingsDialpadStyleChevron
+            ).forEach {
+                it.applyColorFilter(getProperTextColor())
+            }
         }
+    }
 
-        arrayOf(
-            settings_color_customization_holder,
-            settings_tabs_holder,
-            settings_general_holder,
-            settings_calls_holder,
-            settings_list_view_holder,
-            settings_other_holder
-        ).forEach {
-            it.background.applyColorFilter(getBottomNavigationBackgroundColor())
-        }
-
-        arrayOf(
-            settings_customize_colors_chevron,
-            settings_manage_shown_tabs_chevron,
-            settings_manage_blocked_numbers_chevron,
-            settings_manage_speed_dial_chevron,
-            settings_change_date_time_format_chevron,
-            settings_tip_jar_chevron,
-            settings_about_chevron
-        ).forEach {
-            it.applyColorFilter(getProperTextColor())
+    private fun updatePro(isPro: Boolean = isPro() || isOrWasThankYouInstalled() || isCollection()) {
+        binding.apply {
+            settingsPurchaseThankYouHolder.beGoneIf(isPro)
+            settingsCustomizeColorsLabel.text = if (isPro) {
+                getString(R.string.customize_colors)
+            } else {
+                getString(R.string.customize_colors_locked)
+            }
+            settingsTipJarHolder.beVisibleIf(isPro)
         }
     }
 
@@ -139,66 +240,98 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupPurchaseThankYou() {
-        settings_purchase_thank_you_holder.beGoneIf(isOrWasThankYouInstalled() || isProVersion() || config.isPro)
-        settings_purchase_thank_you_holder.setOnClickListener {
-            launchPurchase() //launchPurchaseThankYouIntent()
+        binding.apply {
+            settingsPurchaseThankYouHolder.beGoneIf(isOrWasThankYouInstalled() || isPro())
+            settingsPurchaseThankYouHolder.setOnClickListener {
+                launchPurchase()
+            }
+            moreButton.setOnClickListener {
+                launchPurchase()
+            }
+            val appDrawable = resources.getColoredDrawableWithColor(this@SettingsActivity, R.drawable.ic_plus_support, getProperPrimaryColor())
+            purchaseLogo.setImageDrawable(appDrawable)
+            val drawable = resources.getColoredDrawableWithColor(this@SettingsActivity, R.drawable.button_gray_bg, getProperPrimaryColor())
+            moreButton.background = drawable
+            moreButton.setTextColor(getProperBackgroundColor())
+            moreButton.setPadding(2, 2, 2, 2)
         }
-        moreButton.setOnClickListener {
-            launchPurchase()
-        }
-        val appDrawable = resources.getColoredDrawableWithColor(R.drawable.ic_plus_support, getProperPrimaryColor())
-        purchase_logo.setImageDrawable(appDrawable)
-        val drawable = resources.getColoredDrawableWithColor(R.drawable.button_gray_bg, getProperPrimaryColor())
-        moreButton.background = drawable
-        moreButton.setTextColor(getProperBackgroundColor())
-        moreButton.setPadding(2,2,2,2)
     }
 
     private fun setupCustomizeColors() {
-        settings_customize_colors_label.text = if (isOrWasThankYouInstalled() || isProVersion() || config.isPro) {
+        binding.settingsCustomizeColorsLabel.text = if (isOrWasThankYouInstalled() || isPro() || isCollection()) {
             getString(R.string.customize_colors)
         } else {
             getString(R.string.customize_colors_locked)
         }
-        settings_customize_colors_holder.setOnClickListener {
-            startCustomizationActivity(true, isOrWasThankYouInstalled() || isProVersion() || config.isPro, BuildConfig.GOOGLE_PLAY_LICENSING_KEY, BuildConfig.PRODUCT_ID_X1, BuildConfig.PRODUCT_ID_X2, BuildConfig.PRODUCT_ID_X3, playStoreInstalled = isPlayStoreInstalled())
+        binding.settingsCustomizeColorsHolder.setOnClickListener {
+            startCustomizationActivity(
+                true,
+                isCollection = isOrWasThankYouInstalled() || isCollection(),
+                licensingKey = BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
+                productIdX1 = productIdX1,
+                productIdX2 = productIdX2,
+                productIdX3 = productIdX3,
+                subscriptionIdX1 = subscriptionIdX1,
+                subscriptionIdX2 = subscriptionIdX2,
+                subscriptionIdX3 = subscriptionIdX3,
+                playStoreInstalled = isPlayStoreInstalled()
+            )
         }
     }
 
     private fun setupUseEnglish() {
-        settings_use_english_holder.beVisibleIf((config.wasUseEnglishToggled || Locale.getDefault().language != "en") && !isTiramisuPlus())
-        settings_use_english.isChecked = config.useEnglish
-        settings_use_english_holder.setOnClickListener {
-            settings_use_english.toggle()
-            config.useEnglish = settings_use_english.isChecked
-            exitProcess(0)
+        binding.apply {
+            settingsUseEnglishHolder.beVisibleIf((config.wasUseEnglishToggled || Locale.getDefault().language != "en") && !isTiramisuPlus())
+            settingsUseEnglish.isChecked = config.useEnglish
+            settingsUseEnglishHolder.setOnClickListener {
+                settingsUseEnglish.toggle()
+                config.useEnglish = settingsUseEnglish.isChecked
+                exitProcess(0)
+            }
         }
     }
 
     private fun setupLanguage() {
-        settings_language.text = Locale.getDefault().displayLanguage
-        settings_language_holder.beVisibleIf(isTiramisuPlus())
-
-        settings_language_holder.setOnClickListener {
-            launchChangeAppLanguageIntent()
+        binding.apply {
+            settingsLanguage.text = Locale.getDefault().displayLanguage
+            settingsLanguageHolder.beVisibleIf(isTiramisuPlus())
+            settingsLanguageHolder.setOnClickListener {
+                launchChangeAppLanguageIntent()
+            }
         }
     }
 
     // support for device-wise blocking came on Android 7, rely only on that
     @TargetApi(Build.VERSION_CODES.N)
     private fun setupManageBlockedNumbers() {
-        settings_manage_blocked_numbers_chevron.applyColorFilter(getProperTextColor())
-        settings_manage_blocked_numbers_holder.beVisibleIf(isNougatPlus())
-        settings_manage_blocked_numbers_holder.setOnClickListener {
-            Intent(this, ManageBlockedNumbersActivity::class.java).apply {
+        binding.settingsManageBlockedNumbersHolder.beVisibleIf(isNougatPlus())
+        binding.settingsManageBlockedNumbersCount.text = getBlockedNumbers().size.toString()
+
+        val getProperTextColor = getProperTextColor()
+        val red = resources.getColor(R.color.red_missed)
+        val colorUnknown = if (baseConfig.blockUnknownNumbers) red else getProperTextColor
+        val alphaUnknown = if (baseConfig.blockUnknownNumbers) 1f else 0.6f
+        binding.settingsManageBlockedNumbersIconUnknown.apply {
+            applyColorFilter(colorUnknown)
+            alpha = alphaUnknown
+        }
+
+        val colorHidden = if (baseConfig.blockHiddenNumbers) red else getProperTextColor
+        val alphaHidden = if (baseConfig.blockHiddenNumbers) 1f else 0.6f
+        binding.settingsManageBlockedNumbersIconHidden.apply {
+            applyColorFilter(colorHidden)
+            alpha = alphaHidden
+        }
+
+        binding.settingsManageBlockedNumbersHolder.setOnClickListener {
+            Intent(this@SettingsActivity, ManageBlockedNumbersActivity::class.java).apply {
                 startActivity(this)
             }
         }
     }
 
     private fun setupManageSpeedDial() {
-        settings_manage_speed_dial_chevron.applyColorFilter(getProperTextColor())
-        settings_manage_speed_dial_holder.setOnClickListener {
+        binding.settingsManageSpeedDialHolder.setOnClickListener {
             Intent(this, ManageSpeedDialActivity::class.java).apply {
                 startActivity(this)
             }
@@ -206,15 +339,14 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupChangeDateTimeFormat() {
-        settings_change_date_time_format_chevron.applyColorFilter(getProperTextColor())
-        settings_change_date_time_format_holder.setOnClickListener {
+        binding.settingsChangeDateTimeFormatHolder.setOnClickListener {
             ChangeDateTimeFormatDialog(this) {}
         }
     }
 
     private fun setupFontSize() {
-        settings_font_size.text = getFontSizeText()
-        settings_font_size_holder.setOnClickListener {
+        binding.settingsFontSize.text = getFontSizeText()
+        binding.settingsFontSizeHolder.setOnClickListener {
             val items = arrayListOf(
                 RadioItem(FONT_SIZE_SMALL, getString(R.string.small)),
                 RadioItem(FONT_SIZE_MEDIUM, getString(R.string.medium)),
@@ -223,15 +355,15 @@ class SettingsActivity : SimpleActivity() {
 
             RadioGroupDialog(this@SettingsActivity, items, config.fontSize) {
                 config.fontSize = it as Int
-                settings_font_size.text = getFontSizeText()
+                binding.settingsFontSize.text = getFontSizeText()
                 config.tabsChanged = true
             }
         }
     }
 
     private fun setupDefaultTab() {
-        settings_default_tab.text = getDefaultTabText()
-        settings_default_tab_holder.setOnClickListener {
+        binding.settingsDefaultTab.text = getDefaultTabText()
+        binding.settingsDefaultTabHolder.setOnClickListener {
             val items = arrayListOf(
                 RadioItem(TAB_LAST_USED, getString(R.string.last_used_tab)),
                 RadioItem(TAB_FAVORITES, getString(R.string.favorites_tab)),
@@ -240,7 +372,7 @@ class SettingsActivity : SimpleActivity() {
 
             RadioGroupDialog(this@SettingsActivity, items, config.defaultTab) {
                 config.defaultTab = it as Int
-                settings_default_tab.text = getDefaultTabText()
+                binding.settingsDefaultTab.text = getDefaultTabText()
             }
         }
     }
@@ -254,18 +386,9 @@ class SettingsActivity : SimpleActivity() {
         }
     )
 
-    private fun setupBottomNavigationBar() {
-        settings_bottom_navigation_bar.isChecked = config.bottomNavigationBar
-        settings_bottom_navigation_bar_holder.setOnClickListener {
-            settings_bottom_navigation_bar.toggle()
-            config.bottomNavigationBar = settings_bottom_navigation_bar.isChecked
-            config.tabsChanged = true
-        }
-    }
-
     private fun setupNavigationBarStyle() {
-        settings_navigation_bar_style.text = getNavigationBarStyleText()
-        settings_navigation_bar_style_holder.setOnClickListener {
+        binding.settingsNavigationBarStyle.text = getNavigationBarStyleText()
+        binding.settingsNavigationBarStyleHolder.setOnClickListener {
             launchNavigationBarStyleDialog()
         }
     }
@@ -275,35 +398,36 @@ class SettingsActivity : SimpleActivity() {
             fragmentManager = supportFragmentManager,
             title = R.string.tab_navigation,
             items = arrayOf(
-                SimpleListItem(0, R.string.top, R.drawable.ic_tab_top, selected = !config.bottomNavigationBar),
-                SimpleListItem(1, R.string.bottom, R.drawable.ic_tab_bottom, selected = config.bottomNavigationBar)
+                SimpleListItem(0, R.string.top, imageRes = R.drawable.ic_tab_top, selected = !config.bottomNavigationBar),
+                SimpleListItem(1, R.string.bottom, imageRes = R.drawable.ic_tab_bottom, selected = config.bottomNavigationBar)
             )
         ) {
             config.bottomNavigationBar = it.id == 1
             config.tabsChanged = true
-            settings_navigation_bar_style.text = getNavigationBarStyleText()
+            binding.settingsNavigationBarStyle.text = getNavigationBarStyleText()
         }
     }
 
     private fun setupUseIconTabs() {
-        settings_use_icon_tabs.isChecked = config.useIconTabs
-        settings_use_icon_tabs_holder.setOnClickListener {
-            settings_use_icon_tabs.toggle()
-            config.useIconTabs = settings_use_icon_tabs.isChecked
-            config.tabsChanged = true
+        binding.apply {
+            settingsUseIconTabs.isChecked = config.useIconTabs
+            settingsUseIconTabsHolder.setOnClickListener {
+                settingsUseIconTabs.toggle()
+                config.useIconTabs = settingsUseIconTabs.isChecked
+                config.tabsChanged = true
+            }
         }
     }
 
     private fun setupManageShownTabs() {
-        settings_manage_shown_tabs_chevron.applyColorFilter(getProperTextColor())
-        settings_manage_shown_tabs_holder.setOnClickListener {
+        binding.settingsManageShownTabsHolder.setOnClickListener {
             ManageVisibleTabsDialog(this)
         }
     }
 
     private fun setupScreenSlideAnimation() {
-        settings_screen_slide_animation.text = getScreenSlideAnimationText()
-        settings_screen_slide_animation_holder.setOnClickListener {
+        binding.settingsScreenSlideAnimation.text = getScreenSlideAnimationText()
+        binding.settingsScreenSlideAnimationHolder.setOnClickListener {
             val items = arrayListOf(
                 RadioItem(0, getString(R.string.no)),
                 RadioItem(1, getString(R.string.screen_slide_animation_zoomout)),
@@ -312,66 +436,94 @@ class SettingsActivity : SimpleActivity() {
             RadioGroupDialog(this@SettingsActivity, items, config.screenSlideAnimation) {
                 config.screenSlideAnimation = it as Int
                 config.tabsChanged = true
-                settings_screen_slide_animation.text = getScreenSlideAnimationText()
+                binding.settingsScreenSlideAnimation.text = getScreenSlideAnimationText()
             }
         }
     }
 
     private fun setupDialPadOpen() {
-        settings_open_dialpad_at_launch.isChecked = config.openDialPadAtLaunch
-        settings_open_dialpad_at_launch_holder.setOnClickListener {
-            settings_open_dialpad_at_launch.toggle()
-            config.openDialPadAtLaunch = settings_open_dialpad_at_launch.isChecked
+        binding.apply {
+            settingsOpenDialpadAtLaunch.isChecked = config.openDialPadAtLaunch
+            settingsOpenDialpadAtLaunchHolder.setOnClickListener {
+                settingsOpenDialpadAtLaunch.toggle()
+                config.openDialPadAtLaunch = settingsOpenDialpadAtLaunch.isChecked
+            }
         }
     }
 
     private fun setupShowDividers() {
-        settings_show_dividers.isChecked = config.useDividers
-        settings_show_dividers_holder.setOnClickListener {
-            settings_show_dividers.toggle()
-            config.useDividers = settings_show_dividers.isChecked
+        binding.apply {
+            settingsShowDividers.isChecked = config.useDividers
+            settingsShowDividersHolder.setOnClickListener {
+                settingsShowDividers.toggle()
+                config.useDividers = settingsShowDividers.isChecked
+            }
         }
     }
 
     private fun setupShowContactThumbnails() {
-        settings_show_contact_thumbnails.isChecked = config.showContactThumbnails
-        settings_show_contact_thumbnails_holder.setOnClickListener {
-            settings_show_contact_thumbnails.toggle()
-            config.showContactThumbnails = settings_show_contact_thumbnails.isChecked
+        binding.apply {
+            settingsShowContactThumbnails.isChecked = config.showContactThumbnails
+            settingsShowContactThumbnailsHolder.setOnClickListener {
+                settingsShowContactThumbnails.toggle()
+                config.showContactThumbnails = settingsShowContactThumbnails.isChecked
+            }
         }
     }
 
     private fun setupShowPhoneNumbers() {
-        settings_show_phone_numbers.isChecked = config.showPhoneNumbers
-        settings_show_phone_numbers_holder.setOnClickListener {
-            settings_show_phone_numbers.toggle()
-            config.showPhoneNumbers = settings_show_phone_numbers.isChecked
+        binding.apply {
+            settingsShowPhoneNumbers.isChecked = config.showPhoneNumbers
+            settingsShowPhoneNumbersHolder.setOnClickListener {
+                settingsShowPhoneNumbers.toggle()
+                config.showPhoneNumbers = settingsShowPhoneNumbers.isChecked
+            }
         }
     }
 
     private fun setupUseColoredContacts() {
-        settings_colored_contacts.isChecked = config.useColoredContacts
-        settings_colored_contacts_holder.setOnClickListener {
-            settings_colored_contacts.toggle()
-            config.useColoredContacts = settings_colored_contacts.isChecked
+        binding.apply {
+            settingsColoredContacts.isChecked = config.useColoredContacts
+            settingsColoredContactsHolder.setOnClickListener {
+                settingsColoredContacts.toggle()
+                config.useColoredContacts = settingsColoredContacts.isChecked
+                settingsContactColorListHolder.beVisibleIf(config.useColoredContacts)
+            }
+        }
+    }
+
+    private fun setupContactsColorList() {
+        binding.apply {
+            settingsContactColorListHolder.beVisibleIf(config.useColoredContacts)
+            settingsContactColorListIcon.setImageResource(getContactsColorListIcon(config.contactColorList))
+            settingsContactColorListHolder.setOnClickListener {
+                ColorListDialog(this@SettingsActivity) {
+                    config.contactColorList = it as Int
+                    settingsContactColorListIcon.setImageResource(getContactsColorListIcon(it))
+                }
+            }
         }
     }
 
     private fun setupBackgroundCallScreen() {
-        settings_background_call_screen.text = getBackgroundCallScreenText()
-        settings_background_call_screen_holder.setOnClickListener {
+        val pro = isOrWasThankYouInstalled() || isPro() || isCollection()
+        val black = if (pro) getString(R.string.black) else getString(R.string.black_locked)
+        binding.settingsBackgroundCallScreen.text = getBackgroundCallScreenText()
+        binding.settingsBackgroundCallScreenHolder.setOnClickListener {
             val items = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 arrayListOf(
                     RadioItem(THEME_BACKGROUND, getString(R.string.theme)),
                     RadioItem(BLUR_AVATAR, getString(R.string.blurry_contact_photo)),
-                    RadioItem(AVATAR, getString(R.string.contact_photo))
+                    RadioItem(AVATAR, getString(R.string.contact_photo)),
+                    RadioItem(BLACK_BACKGROUND, black)
                 )
             } else {
                 arrayListOf(
                     RadioItem(THEME_BACKGROUND, getString(R.string.theme)),
                     RadioItem(BLUR_AVATAR, getString(R.string.blurry_contact_photo)),
                     RadioItem(AVATAR, getString(R.string.contact_photo)),
-                    RadioItem(TRANSPARENT_BACKGROUND, getString(R.string.blurry_wallpaper))
+                    RadioItem(TRANSPARENT_BACKGROUND, getString(R.string.blurry_wallpaper)),
+                    RadioItem(BLACK_BACKGROUND, black)
                 )
             }
 
@@ -379,20 +531,27 @@ class SettingsActivity : SimpleActivity() {
                 if (it as Int == TRANSPARENT_BACKGROUND) {
                     if (hasPermission(PERMISSION_READ_STORAGE)) {
                         config.backgroundCallScreen = it
-                        settings_background_call_screen.text = getBackgroundCallScreenText()
+                        binding.settingsBackgroundCallScreen.text = getBackgroundCallScreenText()
                     } else {
                         handlePermission(PERMISSION_READ_STORAGE) { permission ->
                             if (permission) {
                                 config.backgroundCallScreen = it
-                                settings_background_call_screen.text = getBackgroundCallScreenText()
+                                binding.settingsBackgroundCallScreen.text = getBackgroundCallScreenText()
                             } else {
                                 toast(R.string.no_storage_permissions)
                             }
                         }
                     }
+                } else if (it == BLACK_BACKGROUND) {
+                    if (pro) {
+                        config.backgroundCallScreen = it
+                        binding.settingsBackgroundCallScreen.text = getBackgroundCallScreenText()
+                    } else {
+                        launchPurchase()
+                    }
                 } else {
                     config.backgroundCallScreen = it
-                    settings_background_call_screen.text = getBackgroundCallScreenText()
+                    binding.settingsBackgroundCallScreen.text = getBackgroundCallScreenText()
                 }
             }
         }
@@ -403,25 +562,28 @@ class SettingsActivity : SimpleActivity() {
             BLUR_AVATAR -> R.string.blurry_contact_photo
             AVATAR -> R.string.contact_photo
             TRANSPARENT_BACKGROUND -> R.string.blurry_wallpaper
+            BLACK_BACKGROUND -> R.string.black
             else -> R.string.theme
         }
     )
 
     private fun setupTransparentCallScreen() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) settings_transparent_call_screen_holder.beGone()
-        else {
-            if (hasPermission(PERMISSION_READ_STORAGE)) {
-                settings_transparent_call_screen.isChecked = config.transparentCallScreen
-            } else settings_transparent_call_screen.isChecked = false
-            settings_transparent_call_screen_holder.setOnClickListener {
+        binding.apply {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) settingsTransparentCallScreenHolder.beGone()
+            else {
                 if (hasPermission(PERMISSION_READ_STORAGE)) {
-                    settings_transparent_call_screen.toggle()
-                    config.transparentCallScreen = settings_transparent_call_screen.isChecked
-                } else {
-                    handlePermission(PERMISSION_READ_STORAGE) {
-                        if (it) {
-                            settings_transparent_call_screen.toggle()
-                            config.transparentCallScreen = settings_transparent_call_screen.isChecked
+                    settingsTransparentCallScreen.isChecked = config.transparentCallScreen
+                } else settingsTransparentCallScreen.isChecked = false
+                settingsTransparentCallScreenHolder.setOnClickListener {
+                    if (hasPermission(PERMISSION_READ_STORAGE)) {
+                        settingsTransparentCallScreen.toggle()
+                        config.transparentCallScreen = settingsTransparentCallScreen.isChecked
+                    } else {
+                        handlePermission(PERMISSION_READ_STORAGE) {
+                            if (it) {
+                                settingsTransparentCallScreen.toggle()
+                                config.transparentCallScreen = settingsTransparentCallScreen.isChecked
+                            }
                         }
                     }
                 }
@@ -429,111 +591,338 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupAnswerStyle() {
+        binding.settingsAnswerStyle.text = getAnswerStyleText()
+        binding.settingsAnswerStyleHolder.setOnClickListener {
+            launchAnswerStyleDialog()
+        }
+    }
+
+    private fun launchAnswerStyleDialog() {
+        val pro = isOrWasThankYouInstalled() || isPro() || isCollection()
+        val sliderOutline = addLockedLabelIfNeeded(R.string.answer_slider_outline, pro)
+        val sliderVertical = addLockedLabelIfNeeded(R.string.answer_slider_vertical, pro)
+        BottomSheetChooserDialog.createChooser(
+            fragmentManager = supportFragmentManager,
+            title = R.string.answer_style,
+            items = arrayOf(
+                SimpleListItem(0, text = getString(R.string.buttons), imageRes = R.drawable.ic_answer_buttons, selected = config.answerStyle == ANSWER_BUTTON),
+                SimpleListItem(1, text = getString(R.string.answer_slider), imageRes = R.drawable.ic_slider, selected = config.answerStyle == ANSWER_SLIDER),
+                SimpleListItem(2, text = sliderOutline, imageRes = R.drawable.ic_slider_outline, selected = config.answerStyle == ANSWER_SLIDER_OUTLINE),
+                SimpleListItem(3, text = sliderVertical, imageRes = R.drawable.ic_slider_vertical, selected = config.answerStyle == ANSWER_SLIDER_VERTICAL)
+            )
+        ) {
+            if (it.id == ANSWER_SLIDER_OUTLINE || it.id == ANSWER_SLIDER_VERTICAL) {
+                if (pro) {
+                    config.answerStyle = it.id
+                    binding.settingsAnswerStyle.text = getAnswerStyleText()
+                } else {
+                    launchPurchase()
+                }
+            } else {
+                config.answerStyle = it.id
+                binding.settingsAnswerStyle.text = getAnswerStyleText()
+            }
+        }
+    }
+
+    private fun getAnswerStyleText() = getString(
+        when (config.answerStyle) {
+            ANSWER_SLIDER -> R.string.answer_slider
+            ANSWER_SLIDER_OUTLINE -> R.string.answer_slider_outline
+            ANSWER_SLIDER_VERTICAL -> R.string.answer_slider_vertical
+            else -> R.string.buttons
+        }
+    )
+
+    private fun setupCallerDescription() {
+        binding.settingsShowCallerDescription.text = getCallerDescriptionText()
+        binding.settingsShowCallerDescriptionHolder.setOnClickListener {
+            val items = arrayListOf(
+                RadioItem(SHOW_CALLER_NOTHING, getString(R.string.nothing)),
+                RadioItem(SHOW_CALLER_COMPANY, getString(R.string.company)),
+                RadioItem(SHOW_CALLER_NICKNAME, getString(R.string.nickname)))
+
+            RadioGroupDialog(this@SettingsActivity, items, config.showCallerDescription) {
+                config.showCallerDescription = it as Int
+                binding.settingsShowCallerDescription.text = getCallerDescriptionText()
+            }
+        }
+    }
+
+    private fun getCallerDescriptionText() = getString(
+        when (config.showCallerDescription) {
+            SHOW_CALLER_COMPANY -> R.string.company
+            SHOW_CALLER_NICKNAME -> R.string.nickname
+            else -> R.string.nothing
+        }
+    )
+
     private fun setupAlwaysShowFullscreen() {
-        settings_always_show_fullscreen.isChecked = config.showIncomingCallsFullScreen
-        settings_always_show_fullscreen_holder.setOnClickListener {
-            settings_always_show_fullscreen.toggle()
-            config.showIncomingCallsFullScreen = settings_always_show_fullscreen.isChecked
+        binding.apply {
+            settingsAlwaysShowFullscreen.isChecked = config.showIncomingCallsFullScreen
+            settingsAlwaysShowFullscreenHolder.setOnClickListener {
+                settingsAlwaysShowFullscreen.toggle()
+                config.showIncomingCallsFullScreen = settingsAlwaysShowFullscreen.isChecked
+            }
+        }
+    }
+
+    private fun setupCallsExport() {
+        binding.settingsExportCallsHolder.setOnClickListener {
+            ExportCallHistoryDialog(this) { filename ->
+                saveDocument.launch(filename)
+            }
+        }
+    }
+
+    private fun setupCallsImport() {
+        binding.settingsImportCallsHolder.setOnClickListener {
+            getContent.launch(CALL_HISTORY_FILE_TYPE)
+        }
+    }
+
+    private fun importCallHistory(uri: Uri) {
+        try {
+            val jsonString = contentResolver.openInputStream(uri)!!.use { inputStream ->
+                inputStream.bufferedReader().readText()
+            }
+
+            val objects = Json.decodeFromString<List<RecentCall>>(jsonString)
+
+            if (objects.isEmpty()) {
+                toast(R.string.no_entries_for_importing)
+                return
+            }
+
+            RecentsHelper(this).restoreRecentCalls(this, objects) {
+                toast(R.string.importing_successful)
+            }
+        } catch (_: SerializationException) {
+            toast(R.string.invalid_file_format)
+        } catch (_: IllegalArgumentException) {
+            toast(R.string.invalid_file_format)
+        } catch (e: Exception) {
+            showErrorToast(e)
+        }
+    }
+
+    private fun exportCallHistory(recents: List<RecentCall>, uri: Uri) {
+        if (recents.isEmpty()) {
+            toast(R.string.no_entries_for_exporting)
+        } else {
+            try {
+                val outputStream = contentResolver.openOutputStream(uri)!!
+
+                val jsonString = Json.encodeToString(recents)
+                outputStream.use {
+                    it.write(jsonString.toByteArray())
+                }
+                toast(R.string.exporting_successful)
+            } catch (e: Exception) {
+                showErrorToast(e)
+            }
         }
     }
 
     private fun setupMissedCallNotifications() {
-        settings_missed_call_notifications.isChecked = config.missedCallNotifications
-        settings_missed_call_notifications_holder.setOnClickListener {
-            settings_missed_call_notifications.toggle()
-            config.missedCallNotifications = settings_missed_call_notifications.isChecked
+        binding.apply {
+            settingsMissedCallNotifications.isChecked = config.missedCallNotifications
+            settingsMissedCallNotificationsHolder.setOnClickListener {
+                settingsMissedCallNotifications.toggle()
+                config.missedCallNotifications = settingsMissedCallNotifications.isChecked
+            }
+        }
+    }
+
+    private fun setupFlashForAlerts() {
+        binding.apply {
+            settingsFlashForAlerts.isChecked = config.flashForAlerts
+            settingsFlashForAlertsHolder.setOnClickListener {
+                settingsFlashForAlerts.toggle()
+                config.flashForAlerts = settingsFlashForAlerts.isChecked
+            }
         }
     }
 
     private fun setupHideDialpadLetters() {
-        settings_hide_dialpad_letters.isChecked = config.hideDialpadLetters
-        settings_hide_dialpad_letters_holder.setOnClickListener {
-            settings_hide_dialpad_letters.toggle()
-            config.hideDialpadLetters = settings_hide_dialpad_letters.isChecked
+        binding.apply {
+            settingsHideDialpadLetters.isChecked = config.hideDialpadLetters
+            settingsHideDialpadLettersHolder.setOnClickListener {
+                settingsHideDialpadLetters.toggle()
+                config.hideDialpadLetters = settingsHideDialpadLetters.isChecked
+            }
         }
     }
 
     private fun setupDialpadNumbers() {
-        settings_hide_dialpad_numbers.isChecked = config.hideDialpadNumbers
-        settings_hide_dialpad_numbers_holder.setOnClickListener {
-            settings_hide_dialpad_numbers.toggle()
-            config.hideDialpadNumbers = settings_hide_dialpad_numbers.isChecked
+        binding.apply {
+            settingsHideDialpadNumbers.isChecked = config.hideDialpadNumbers
+            settingsHideDialpadNumbersHolder.setOnClickListener {
+                settingsHideDialpadNumbers.toggle()
+                config.hideDialpadNumbers = settingsHideDialpadNumbers.isChecked
+            }
         }
     }
 
     private fun setupGroupSubsequentCalls() {
-        settings_group_subsequent_calls.isChecked = config.groupSubsequentCalls
-        settings_group_subsequent_calls_holder.setOnClickListener {
-            settings_group_subsequent_calls.toggle()
-            config.groupSubsequentCalls = settings_group_subsequent_calls.isChecked
+        binding.apply {
+            settingsGroupSubsequentCalls.isChecked = config.groupSubsequentCalls
+            settingsGroupSubsequentCallsHolder.setOnClickListener {
+                settingsGroupSubsequentCalls.toggle()
+                config.groupSubsequentCalls = settingsGroupSubsequentCalls.isChecked
+            }
         }
     }
 
     private fun setupStartNameWithSurname() {
-        settings_start_name_with_surname.isChecked = config.startNameWithSurname
-        settings_start_name_with_surname_holder.setOnClickListener {
-            settings_start_name_with_surname.toggle()
-            config.startNameWithSurname = settings_start_name_with_surname.isChecked
+        binding.apply {
+            settingsStartNameWithSurname.isChecked = config.startNameWithSurname
+            settingsStartNameWithSurnameHolder.setOnClickListener {
+                settingsStartNameWithSurname.toggle()
+                config.startNameWithSurname = settingsStartNameWithSurname.isChecked
+            }
         }
     }
 
     private fun setupShowCallConfirmation() {
-        settings_show_call_confirmation.isChecked = config.showCallConfirmation
-        settings_show_call_confirmation_holder.setOnClickListener {
-            settings_show_call_confirmation.toggle()
-            config.showCallConfirmation = settings_show_call_confirmation.isChecked
+        binding.apply {
+            settingsShowCallConfirmation.isChecked = config.showCallConfirmation
+            settingsShowCallConfirmationHolder.setOnClickListener {
+                settingsShowCallConfirmation.toggle()
+                config.showCallConfirmation = settingsShowCallConfirmation.isChecked
+            }
         }
     }
 
     private fun setupMaterialDesign3() {
-        settings_material_design_3.isChecked = config.materialDesign3
-        settings_material_design_3_holder.setOnClickListener {
-            settings_material_design_3.toggle()
-            config.materialDesign3 = settings_material_design_3.isChecked
-            config.tabsChanged = true
+        binding.apply {
+            settingsMaterialDesign3.isChecked = config.materialDesign3
+            settingsMaterialDesign3Holder.setOnClickListener {
+                settingsMaterialDesign3.toggle()
+                config.materialDesign3 = settingsMaterialDesign3.isChecked
+                config.tabsChanged = true
+            }
         }
     }
 
-    private fun setupSettingsIcon() {
-        settings_icon.applyColorFilter(getProperTextColor())
-        settings_icon.setImageResource(getSettingsIcon(config.settingsIcon))
-        settings_icon_holder.setOnClickListener {
-            SettingsIconDialog(this) {
-                config.settingsIcon = it as Int
-                settings_icon.setImageResource(getSettingsIcon(it))
+    private fun setupOverflowIcon() {
+        binding.apply {
+            settingsOverflowIcon.applyColorFilter(getProperTextColor())
+            settingsOverflowIcon.setImageResource(getOverflowIcon(baseConfig.overflowIcon))
+            settingsOverflowIconHolder.setOnClickListener {
+                OverflowIconDialog(this@SettingsActivity) {
+                    settingsOverflowIcon.setImageResource(getOverflowIcon(baseConfig.overflowIcon))
+                }
             }
         }
     }
 
     private fun setupColorSimIcons() {
-        settings_color_sim_card_icons_holder.beGoneIf(!areMultipleSIMsAvailable())
-        settings_color_sim_card_icons.isChecked = config.colorSimIcons
-        settings_color_sim_card_icons_holder.setOnClickListener {
-            settings_color_sim_card_icons.toggle()
-            config.colorSimIcons = settings_color_sim_card_icons.isChecked
+        binding.apply {
+            settingsColorSimCardIconsHolder.beGoneIf(!areMultipleSIMsAvailable())
+            settingsColorSimCardIcons.isChecked = config.colorSimIcons
+            settingsColorSimCardIconsHolder.setOnClickListener {
+                settingsColorSimCardIcons.toggle()
+                config.colorSimIcons = settingsColorSimCardIcons.isChecked
+                settingsSimCardColorListHolder.beVisibleIf(config.colorSimIcons)
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setupSimCardColorList() {
+        binding.apply {
+            settingsSimCardColorListHolder.beVisibleIf(config.colorSimIcons && areMultipleSIMsAvailable())
+            settingsSimCardColorListIcon1.setColorFilter(config.simIconsColors[1])
+            settingsSimCardColorListIcon2.setColorFilter(config.simIconsColors[2])
+            if (isOrWasThankYouInstalled() || isPro() || isCollection()) {
+                settingsSimCardColorListIcon1.setOnClickListener {
+                    ColorPickerDialog(
+                        this@SettingsActivity,
+                        config.simIconsColors[1],
+                        addDefaultColorButton = true,
+                        colorDefault = resources.getColor(R.color.ic_dialer),
+                        title = resources.getString(R.string.color_sim_card_icons)
+                    ) { wasPositivePressed, color ->
+                        if (wasPositivePressed) {
+                            if (hasColorChanged(config.simIconsColors[1], color)) {
+                                addSimCardColor(1, color)
+                                settingsSimCardColorListIcon1.setColorFilter(color)
+                            }
+                        }
+                    }
+                }
+                settingsSimCardColorListIcon2.setOnClickListener {
+                    ColorPickerDialog(
+                        this@SettingsActivity,
+                        config.simIconsColors[2],
+                        addDefaultColorButton = true,
+                        colorDefault = resources.getColor(R.color.color_primary),
+                        title = resources.getString(R.string.color_sim_card_icons)
+                    ) { wasPositivePressed, color ->
+                        if (wasPositivePressed) {
+                            if (hasColorChanged(config.simIconsColors[2], color)) {
+                                addSimCardColor(2, color)
+                                settingsSimCardColorListIcon2.setColorFilter(color)
+                            }
+                        }
+                    }
+                }
+            } else {
+                settingsSimCardColorListLabel.text = "${getString(R.string.change_color)} (${getString(R.string.feature_locked)})"
+                arrayOf(
+                    settingsSimCardColorListIcon1,
+                    settingsSimCardColorListIcon2
+                ).forEach {
+                    it.setOnClickListener {
+                        launchPurchase()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun addSimCardColor(index: Int, color: Int) {
+        val recentColors = config.simIconsColors
+
+        recentColors.removeAt(index)
+        recentColors.add(index, color)
+
+        baseConfig.simIconsColors = recentColors
+    }
+
+    private fun hasColorChanged(old: Int, new: Int) = Math.abs(old - new) > 1
+
+    private fun setupDialpadStyle() {
+        binding.settingsDialpadStyleHolder.setOnClickListener {
+            startActivity(Intent(applicationContext, SettingsDialpadActivity::class.java))
         }
     }
 
     private fun setupOpenSearch() {
-        settings_open_search.isChecked = config.openSearch
-        settings_open_search_holder.setOnClickListener {
-            settings_open_search.toggle()
-            config.openSearch = settings_open_search.isChecked
+        binding.apply {
+            settingsOpenSearch.isChecked = config.openSearch
+            settingsOpenSearchHolder.setOnClickListener {
+                settingsOpenSearch.toggle()
+                config.openSearch = settingsOpenSearch.isChecked
+            }
         }
     }
 
     private fun setupTipJar() {
-        settings_tip_jar_holder.beVisibleIf(isOrWasThankYouInstalled() || isProVersion() || config.isPro)
-        settings_tip_jar_chevron.applyColorFilter(getProperTextColor())
-        settings_tip_jar_holder.setOnClickListener {
-            launchPurchase()
+        binding.settingsTipJarHolder.apply {
+            beVisibleIf(isOrWasThankYouInstalled() || isPro())
+            background.applyColorFilter(getBottomNavigationBackgroundColor().lightenColor(4))
+            setOnClickListener {
+                launchPurchase()
+            }
         }
     }
 
     private fun setupAbout() {
-        settings_about_chevron.applyColorFilter(getProperTextColor())
-        settings_about_version.text = "Version: " + BuildConfig.VERSION_NAME
-        settings_about_holder.setOnClickListener {
+        binding.settingsAboutVersion.text = "Version: " + BuildConfig.VERSION_NAME
+        binding.settingsAboutHolder.setOnClickListener {
             launchAbout()
         }
     }
@@ -542,56 +931,118 @@ class SettingsActivity : SimpleActivity() {
         val licenses = LICENSE_GLIDE or LICENSE_INDICATOR_FAST_SCROLL
 
         val faqItems = arrayListOf(
+            FAQItem(R.string.faq_1_title, R.string.faq_1_text),
+            FAQItem(R.string.faq_1_title_dialer_g, R.string.faq_1_text_dialer_g),
+            FAQItem(R.string.faq_2_title_dialer_g, R.string.faq_2_text_dialer_g),
             FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons_g),
             //FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons),
             FAQItem(R.string.faq_7_title_commons, R.string.faq_7_text_commons),
             FAQItem(R.string.faq_9_title_commons, R.string.faq_9_text_commons)
         )
 
-        startAboutActivity(R.string.app_name_g, licenses, BuildConfig.VERSION_NAME, faqItems, true, BuildConfig.GOOGLE_PLAY_LICENSING_KEY, BuildConfig.PRODUCT_ID_X1, BuildConfig.PRODUCT_ID_X2, BuildConfig.PRODUCT_ID_X3, playStoreInstalled = isPlayStoreInstalled())
+        startAboutActivity(
+            appNameId = R.string.app_name_g,
+            licenseMask = licenses,
+            versionName = BuildConfig.VERSION_NAME,
+            faqItems = faqItems,
+            showFAQBeforeMail = true,
+            licensingKey = BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
+            productIdX1 = productIdX1, productIdX2 = productIdX2, productIdX3 = productIdX3,
+            subscriptionIdX1 = subscriptionIdX1, subscriptionIdX2 = subscriptionIdX2, subscriptionIdX3 = subscriptionIdX3,
+            playStoreInstalled = isPlayStoreInstalled()
+        )
     }
 
     private fun launchPurchase() {
-        startPurchaseActivity(R.string.app_name_g, BuildConfig.GOOGLE_PLAY_LICENSING_KEY, BuildConfig.PRODUCT_ID_X1, BuildConfig.PRODUCT_ID_X2, BuildConfig.PRODUCT_ID_X3, playStoreInstalled = isPlayStoreInstalled())
+        startPurchaseActivity(
+            R.string.app_name_g,
+            BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
+            productIdX1, productIdX2, productIdX3,
+            subscriptionIdX1, subscriptionIdX2, subscriptionIdX3,
+            playStoreInstalled = isPlayStoreInstalled()
+        )
     }
 
     private fun setupDisableProximitySensor() {
-        settings_disable_proximity_sensor.isChecked = config.disableProximitySensor
-        settings_disable_proximity_sensor_holder.setOnClickListener {
-            settings_disable_proximity_sensor.toggle()
-            config.disableProximitySensor = settings_disable_proximity_sensor.isChecked
+        binding.apply {
+            settingsDisableProximitySensor.isChecked = config.disableProximitySensor
+            settingsDisableProximitySensorHolder.setOnClickListener {
+                settingsDisableProximitySensor.toggle()
+                config.disableProximitySensor = settingsDisableProximitySensor.isChecked
+            }
         }
     }
 
     private fun setupDialpadVibrations() {
-        settings_dialpad_vibration.isChecked = config.dialpadVibration
-        settings_dialpad_vibration_holder.setOnClickListener {
-            settings_dialpad_vibration.toggle()
-            config.dialpadVibration = settings_dialpad_vibration.isChecked
+        binding.apply {
+            settingsCallVibration.isChecked = config.callVibration
+            settingsCallVibrationHolder.setOnClickListener {
+                settingsCallVibration.toggle()
+                config.callVibration = settingsCallVibration.isChecked
+            }
+        }
+    }
+
+    private fun setupCallStartEndVibrations() {
+        binding.apply {
+            settingsCallStartEndVibration.isChecked = config.callStartEndVibration
+            settingsCallStartEndVibrationHolder.setOnClickListener {
+                settingsCallStartEndVibration.toggle()
+                config.callStartEndVibration = settingsCallStartEndVibration.isChecked
+            }
         }
     }
 
     private fun setupDialpadBeeps() {
-        settings_dialpad_beeps.isChecked = config.dialpadBeeps
-        settings_dialpad_beeps_holder.setOnClickListener {
-            settings_dialpad_beeps.toggle()
-            config.dialpadBeeps = settings_dialpad_beeps.isChecked
+        binding.apply {
+            settingsDialpadBeeps.isChecked = config.dialpadBeeps
+            settingsDialpadBeepsHolder.setOnClickListener {
+                settingsDialpadBeeps.toggle()
+                config.dialpadBeeps = settingsDialpadBeeps.isChecked
+            }
         }
     }
 
     private fun setupDisableSwipeToAnswer() {
-        settings_disable_swipe_to_answer.isChecked = config.disableSwipeToAnswer
-        settings_disable_swipe_to_answer_holder.setOnClickListener {
-            settings_disable_swipe_to_answer.toggle()
-            config.disableSwipeToAnswer = settings_disable_swipe_to_answer.isChecked
+        binding.apply {
+            settingsDisableSwipeToAnswer.isChecked = config.disableSwipeToAnswer
+            settingsDisableSwipeToAnswerHolder.setOnClickListener {
+                settingsDisableSwipeToAnswer.toggle()
+                config.disableSwipeToAnswer = settingsDisableSwipeToAnswer.isChecked
+            }
         }
     }
 
     private fun setupUseRelativeDate() {
-        settings_relative_date.isChecked = config.useRelativeDate
-        settings_relative_date_holder.setOnClickListener {
-            settings_relative_date.toggle()
-            config.useRelativeDate = settings_relative_date.isChecked
+        binding.apply {
+            settingsRelativeDate.isChecked = config.useRelativeDate
+            settingsRelativeDateHolder.setOnClickListener {
+                settingsRelativeDate.toggle()
+                config.useRelativeDate = settingsRelativeDate.isChecked
+            }
+        }
+    }
+
+    private fun setupOptionsMenu() {
+        val id = 483 //TODO changelog
+        binding.settingsToolbar.menu.apply {
+            findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
+        }
+        binding.settingsToolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.whats_new -> {
+                    showWhatsNewDialog(id)
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun showWhatsNewDialog(id: Int) {
+        arrayListOf<Release>().apply {
+            add(Release(id, R.string.release_483)) //TODO changelog
+            WhatsNewDialog(this@SettingsActivity, this)
         }
     }
 }

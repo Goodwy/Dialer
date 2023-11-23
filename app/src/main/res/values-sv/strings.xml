@@ -12,7 +12,6 @@
     <string name="request_access">Begär åtkomst</string>
     <string name="remove_confirmation">Är du säker på att du vill ta bort de markerade objekten från samtalshistoriken\?</string>
     <string name="clear_history_confirmation">Är du säker på att du vill ta bort allt från samtalshistoriken\?</string>
-    <string name="show_grouped_calls">Visa grupperade samtal</string>
     <string name="clear_call_history">Rensa samtalshistorik</string>
     <string name="show_call_details">Visa samtalsinformation</string>
     <!-- Dialpad -->
@@ -55,7 +54,6 @@
     <string name="conference_manage">Hantera konferenssamtal</string>
     <string name="conference">Konferens</string>
     <string name="audio_route_speaker">Högtalare</string>
-    <string name="audio_route_earpiece">Lur</string>
     <string name="audio_route_bluetooth">Bluetooth</string>
     <string name="audio_route_wired_headset">Kabelanslutet headset</string>
     <string name="audio_route_wired_or_earpiece">Kabel eller lur</string>
@@ -72,6 +70,8 @@
     <string name="disable_swipe_to_answer">Ersätt svepning vid besvarande av inkommande samtal med tryckning</string>
     <string name="show_incoming_calls_full_screen">Visa alltid inkommande samtal i helskärm</string>
     <string name="hide_dialpad_numbers">Dölj knappsatsens siffror</string>
+    <string name="export_call_history">Exportera samtalshistorik</string>
+    <string name="import_call_history">Importera samtalshistorik</string>
     <!-- FAQ -->
     <string name="faq_1_title">Jag hör inkommande samtal men skärmen vaknar inte. Vad gör jag\?</string>
     <string name="faq_1_text">Sådana problem kan bero specifikt på apparat eller ditt sytem, det är svårt att svara på generellt. Du bör kolla i dina inställningar och säkerställa att appen har behörighet att synas i förgrunden och tillåts att synas över andra appar.</string>

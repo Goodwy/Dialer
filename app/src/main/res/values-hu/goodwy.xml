@@ -3,26 +3,52 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Átlátszó hívás képernyő</string>
     <string name="call_back_g">Hív</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">Hívjon vissza %s</string>
     <string name="missed_call_g">Nem fogadott hívás</string>
     <string name="missed_calls_g">Nem fogadott hívások</string>
     <string name="missed_call_notifications_g">Nem fogadott hívásokról szóló értesítések</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Kiemelt prioritású hívásértesítések</string>
+    <string name="call_notification_channel_g">Hívásértesítések</string>
+    <string name="dialpad_preferences">Tárcsázóprogram beállításai</string>
+    <string name="call_start_end_vibration">Rezgés a hívás kezdetekor és végén</string>
 
     <string name="show_contact_thumbnails_g">Névjegy miniatűrök megjelenítése</string>
     <string name="hide_dialpad_letters_g">Tárcsázó betűk elrejtése</string>
+    <string name="show_caller_description_g">További hívóinformációk megjelenítése</string>
+    <string name="nickname">Becenév</string>
+    <string name="company">Cég</string>
+    <string name="call_anonymously">Névtelen hívás (#31# előtaggal)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Figyelmeztetés</h4>
+             A számot a #31# <br><br> előtaggal hívják
+                 <h6"><i> #31#%s</i></h6>
+             Győződjön meg arról, hogy szolgáltatója támogatja a számrejtő szolgáltatást a #31# előtag használatakor. <br>
+             A szolgáltató további díjat számíthat fel ezért a szolgáltatásért.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Az eszköz fülhallgatója</string>
+    <string name="open_speed_dial_manage">Nyissa meg a gyorstárcsázási kezelést?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">Időzítő</string>
+    <string name="timers_notification_msg">Az időzítő megy</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d időzítő elindult</item>
+        <item quantity="other">%d időzítők elindultak</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Miért kell feloldanom az eszközöm zárolását a bejövő hívások fogadásához?</string>
+    <string name="faq_1_text_dialer_g">Az operációs rendszer megakadályozza, hogy az alkalmazások hozzáférjenek a lezárási képernyőhöz. Engedélyeznie kell az alkalmazás számára a lezárási képernyő elérését. Például a MIUI-ban engedélyeznie kell a hozzáférést a Beállítások => Értesítések => Értesítések a lezárási képernyőn.</string>
+    <string name="faq_2_title_dialer_g">Hogyan másolhatok ki vagy illeszthetek be egy számot a tárcsázó képernyőre?</string>
+    <string name="faq_2_text_dialer_g">Nyomja le hosszan a hívás gombot a vágólap tartalmának beillesztéséhez. Ha a szám már be van írva, a hívás gomb hosszan tartó megnyomása a vágólapra másolja.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Válasz gombstílus</string>
+    <string name="buttons">Gombok</string>
+    <string name="answer_slider">Csúszka</string>
+    <string name="answer_slider_outline">Körvonal csúszka</string>
+    <string name="answer_slider_vertical">Függőleges csúszka</string>
 </resources>

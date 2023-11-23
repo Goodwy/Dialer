@@ -12,7 +12,6 @@
     <string name="request_access">ആക്‌സസ്സ് അഭ്യർത്ഥിക്കുക</string>
     <string name="remove_confirmation">കോൾ ചരിത്രത്തിൽ നിന്ന് തിരഞ്ഞെടുത്ത ഇനങ്ങൾ നീക്കം ചെയ്യണമെന്ന് തീർച്ചയാണോ\?</string>
     <string name="clear_history_confirmation">കോൾ ചരിത്രത്തിൽ നിന്ന് എല്ലാം നീക്കം ചെയ്യണമെന്ന് തീർച്ചയാണോ\?</string>
-    <string name="show_grouped_calls">Show grouped calls</string>
     <string name="clear_call_history">Clear call history</string>
     <string name="show_call_details">കോൾ വിശദാംശങ്ങൾ കാണിക്കുക</string>
     <!-- Dialpad -->
@@ -55,7 +54,6 @@
     <string name="conference_manage">സമ്മേളന ചർച്ച കൈകാര്യം ചെയ്യുക</string>
     <string name="conference">സമ്മേളനം</string>
     <string name="audio_route_speaker">സ്പീക്കർ</string>
-    <string name="audio_route_earpiece">ഇയർപീസ്</string>
     <string name="audio_route_bluetooth">ബ്ലൂടൂത്ത്</string>
     <string name="audio_route_wired_headset">വയർഡ് ഹെഡ്സെറ്റ്</string>
     <string name="audio_route_wired_or_earpiece">വയർഡ് അല്ലെങ്കിൽ ഇയർപീസ്</string>
@@ -72,9 +70,13 @@
     <string name="disable_swipe_to_answer">ഇൻകമിംഗ് കോളുകളോട് പ്രതികരിക്കുമ്പോൾ സ്വൈപ്പിംഗ് മാറ്റി പകരം ഇൻകമിംഗ് കോളിൽ ക്ലിക്ക് ചെയ്യുക</string>
     <string name="show_incoming_calls_full_screen">എല്ലായ്‌പ്പോഴും ഇൻകമിംഗ് കോളുകൾ പൂർണ്ണ സ്‌ക്രീനിൽ പ്രദർശിപ്പിക്കുക</string>
     <string name="hide_dialpad_numbers">Hide dialpad numbers</string>
+    <string name="export_call_history">Export call history</string>
+    <string name="import_call_history">Import call history</string>
+
     <!-- FAQ -->
     <string name="faq_1_title">ഞാൻ ഇൻകമിംഗ് കോളുകൾ കേൾക്കുന്നു, പക്ഷേ സ്ക്രീൻ ഓണാക്കുന്നില്ല. എനിക്ക് എന്ത് ചെയ്യാൻ കഴിയും\?</string>
     <string name="faq_1_text">അത്തരം പ്രശ്നങ്ങൾക്ക് ഉപകരണത്തിനും സിസ്റ്റത്തിനും പ്രത്യേക കാരണങ്ങളുണ്ടാകാം, പൊതുവായി പറയാൻ പ്രയാസമാണ്. നിങ്ങളുടെ ഉപകരണ ക്രമീകരണങ്ങളിൽ നിങ്ങൾ ചുറ്റും നോക്കുകയും പശ്ചാത്തലത്തിലായിരിക്കുമ്പോൾ ആപ്പ് പോപ്പ് അപ്പ് ചെയ്യാൻ അനുവദിക്കുകയും മറ്റ് ആപ്പുകളിൽ പ്രദർശിപ്പിക്കാൻ അനുവദിക്കുകയും വേണം.</string>
+
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

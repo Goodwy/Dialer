@@ -1,46 +1,60 @@
 package com.goodwy.dialer.activities
 
 import android.os.Bundle
-import com.goodwy.commons.extensions.hideKeyboard
 import com.google.gson.Gson
+import com.goodwy.commons.dialogs.RadioGroupDialog
+import com.goodwy.commons.extensions.getMyContactsCursor
+import com.goodwy.commons.extensions.hideKeyboard
 import com.goodwy.commons.extensions.updateTextColors
+import com.goodwy.commons.extensions.viewBinding
 import com.goodwy.commons.helpers.ContactsHelper
+import com.goodwy.commons.helpers.MyContactsContentProvider
 import com.goodwy.commons.helpers.NavigationIcon
+import com.goodwy.commons.models.PhoneNumber
+import com.goodwy.commons.models.RadioItem
 import com.goodwy.commons.models.contacts.Contact
-import com.goodwy.dialer.R
 import com.goodwy.dialer.adapters.SpeedDialAdapter
+import com.goodwy.dialer.databinding.ActivityManageSpeedDialBinding
 import com.goodwy.dialer.dialogs.SelectContactDialog
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.interfaces.RemoveSpeedDialListener
 import com.goodwy.dialer.models.SpeedDial
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_manage_speed_dial.*
 
 class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
-    private var allContacts = ArrayList<Contact>()
-    private var speedDialValues = ArrayList<SpeedDial>()
+    private val binding by viewBinding(ActivityManageSpeedDialBinding::inflate)
+
+    private var allContacts = mutableListOf<Contact>()
+    private var speedDialValues = mutableListOf<SpeedDial>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_manage_speed_dial)
+        setContentView(binding.root)
 
-        updateMaterialActivityViews(manage_speed_dial_coordinator, manage_speed_dial_holder, useTransparentNavigation = true, useTopSearchMenu = false)
-        setupMaterialScrollListener(manage_speed_dial_scrollview, manage_speed_dial_toolbar)
+        binding.apply {
+            updateMaterialActivityViews(manageSpeedDialCoordinator, manageSpeedDialHolder, useTransparentNavigation = true, useTopSearchMenu = false)
+            setupMaterialScrollListener(manageSpeedDialScrollview, manageSpeedDialToolbar)
+        }
 
         speedDialValues = config.getSpeedDialValues()
         updateAdapter()
+
         ContactsHelper(this).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
-            allContacts = contacts
+            allContacts.addAll(contacts)
+
+            val privateCursor = getMyContactsCursor(false, true)
+            val privateContacts = MyContactsContentProvider.getContacts(this, privateCursor)
+            allContacts.addAll(privateContacts)
+            allContacts.sort()
         }
 
-        updateTextColors(manage_speed_dial_scrollview)
+        updateTextColors(binding.manageSpeedDialScrollview)
     }
 
     override fun onResume() {
         super.onResume()
-        setupToolbar(manage_speed_dial_toolbar, NavigationIcon.Arrow, navigationClick = false)
-        manage_speed_dial_toolbar.setNavigationOnClickListener {
+        setupToolbar(binding.manageSpeedDialToolbar, NavigationIcon.Arrow, navigationClick = false)
+        binding.manageSpeedDialToolbar.setNavigationOnClickListener {
             hideKeyboard()
             onBackPressed()
         }
@@ -57,21 +71,37 @@ class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
     }
 
     private fun updateAdapter() {
-        SpeedDialAdapter(this, speedDialValues, this, speed_dial_list) {
+        SpeedDialAdapter(this, speedDialValues, this, binding.speedDialList) {
             val clickedContact = it as SpeedDial
             if (allContacts.isEmpty()) {
                 return@SpeedDialAdapter
             }
 
             SelectContactDialog(this, allContacts) { selectedContact ->
-                speedDialValues.first { it.id == clickedContact.id }.apply {
-                    displayName = selectedContact.getNameToDisplay()
-                    number = selectedContact.phoneNumbers.first().normalizedNumber
+                if (selectedContact.phoneNumbers.size > 1) {
+                    val radioItems = selectedContact.phoneNumbers.mapIndexed { index, item ->
+                        RadioItem(index, item.normalizedNumber, item)
+                    }
+                    val userPhoneNumbersList = selectedContact.phoneNumbers.map { it.value }
+                    val checkedItemId = userPhoneNumbersList.indexOf(clickedContact.number)
+                    RadioGroupDialog(this, ArrayList(radioItems), checkedItemId = checkedItemId) { selectedValue ->
+                        val selectedNumber = selectedValue as PhoneNumber
+                        speedDialValues.first { it.id == clickedContact.id }.apply {
+                            displayName = selectedContact.getNameToDisplay()
+                            number = selectedNumber.normalizedNumber
+                        }
+                        updateAdapter()
+                    }
+                } else {
+                    speedDialValues.first { it.id == clickedContact.id }.apply {
+                        displayName = selectedContact.getNameToDisplay()
+                        number = selectedContact.phoneNumbers.first().normalizedNumber
+                    }
+                    updateAdapter()
                 }
-                updateAdapter()
             }
         }.apply {
-            speed_dial_list.adapter = this
+            binding.speedDialList.adapter = this
         }
     }
 

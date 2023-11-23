@@ -1,19 +1,17 @@
 package com.goodwy.dialer.adapters
 
 import android.view.Menu
-import android.view.View
 import android.view.ViewGroup
 import com.goodwy.commons.adapters.MyRecyclerViewAdapter
 import com.goodwy.commons.views.MyRecyclerView
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.SimpleActivity
+import com.goodwy.dialer.databinding.ItemSpeedDialBinding
 import com.goodwy.dialer.interfaces.RemoveSpeedDialListener
 import com.goodwy.dialer.models.SpeedDial
-import kotlinx.android.synthetic.main.item_speed_dial.view.*
-import java.util.*
 
 class SpeedDialAdapter(
-    activity: SimpleActivity, var speedDialValues: ArrayList<SpeedDial>, private val removeListener: RemoveSpeedDialListener,
+    activity: SimpleActivity, var speedDialValues: List<SpeedDial>, private val removeListener: RemoveSpeedDialListener,
     recyclerView: MyRecyclerView, itemClick: (Any) -> Unit
 ) : MyRecyclerViewAdapter(activity, recyclerView, itemClick) {
     init {
@@ -46,12 +44,15 @@ class SpeedDialAdapter(
 
     override fun onActionModeDestroyed() {}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = createViewHolder(R.layout.item_speed_dial, parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return createViewHolder(ItemSpeedDialBinding.inflate(layoutInflater, parent, false).root)
+    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val speedDial = speedDialValues[position]
         holder.bindView(speedDial, true, true) { itemView, layoutPosition ->
-            setupView(itemView, speedDial)
+            val binding = ItemSpeedDialBinding.bind(itemView)
+            setupView(binding, speedDial)
         }
         bindViewHolder(holder)
     }
@@ -66,12 +67,12 @@ class SpeedDialAdapter(
         finishActMode()
     }
 
-    private fun setupView(view: View, speedDial: SpeedDial) {
-        view.apply {
+    private fun setupView(binding: ItemSpeedDialBinding, speedDial: SpeedDial) {
+        binding.apply {
             var displayName = "${speedDial.id}. "
             displayName += if (speedDial.isValid()) speedDial.displayName else ""
 
-            speed_dial_label.apply {
+            speedDialLabel.apply {
                 text = displayName
                 isSelected = selectedKeys.contains(speedDial.hashCode())
                 setTextColor(textColor)

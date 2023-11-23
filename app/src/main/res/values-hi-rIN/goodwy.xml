@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_g">Right Dialer</string>
+    <string name='transparent_call_screen_g'>पारदर्शी कॉल स्क्रीन</string>
+    <string name='call_back_g'>वापस कॉल करें</string>
+    <string name='call_back_person_g'>%s पर वापस कॉल करें</string>
+    <string name='missed_call_g'>मिस्ड कॉल</string>
+    <string name='missed_calls_g'>मिस्ड कॉल</string>
+    <string name='missed_call_notifications_g'>मिस्ड कॉल सूचनाएं</string>
+    <string name='call_notification_channel_high_priority_g'>कॉल सूचनाएं उच्च प्राथमिकता</string>
+    <string name='call_notification_channel_g'>कॉल सूचनाएं</string>
+    <string name='call_start_end_vibration'>जब आपकी कॉल शुरू और खत्म हो तो कंपन करें</string>
+
+    <string name='dialpad_preferences'>डायलपैड प्राथमिकताएं</string>
+    <string name='show_contact_thumbnels_g'>संपर्क थंबनेल दिखाएं</string>
+    <string name='hide_dialpad_letters_g'>डायलपैड अक्षर छुपाएं</string>
+    <string name='show_caller_description_g'>अतिरिक्त कॉलर जानकारी दिखाएं</string>
+    <string name="nickname">उपनाम</string>
+    <string name='company'>कंपनी</string>
+    <string name='call_anonymously'>गुमनाम रूप से कॉल करें (उपसर्ग #31# के साथ)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>चेतावनी</h4>
+            नंबर को उपसर्ग #31# के साथ कॉल किया जाएगा <br><br>
+                <h6"><i>  #31#%s</i></h6>
+            सुनिश्चित करें कि #31# उपसर्ग का उपयोग करते समय आपका ऑपरेटर नंबर छिपाने की सेवा का समर्थन करता है। <br>
+            आपका सेवा प्रदाता इस सेवा के लिए अतिरिक्त शुल्क ले सकता है।
+        ]]>
+    </string>
+
+    <string name="audio_route_earpiece_g">डिवाइस का इयरपीस</string>
+    <string name="open_speed_dial_manage">स्पीड डायल प्रबंधन खोलें?</string>
+
+    <!-- Timer -->
+    <string name="timer">घड़ी</string>
+    <string name="timers_notification_msg">टाइमर चल रहे हैं</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d टाइमर चल रहा है</item>
+        <item quantity="other">%d टाइमर चल रहे हैं</item>
+    </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">इनकमिंग कॉल का उत्तर देने के लिए मुझे अपने डिवाइस को अनलॉक क्यों करना होगा?</string>
+    <string name="faq_1_text_dialer_g">आपका ऑपरेटिंग सिस्टम लॉक स्क्रीन तक ऐप की पहुंच को रोक रहा है। आपको ऐप को लॉक स्क्रीन तक पहुंचने की अनुमति देनी होगी। उदाहरण के लिए MIUI में आपको एक्सेस इनेबल करना होगा Settings => Notifications => Lock screen notifications.</string>
+    <string name="faq_2_title_dialer_g">मैं डायलिंग स्क्रीन पर किसी नंबर को कॉपी या पेस्ट कैसे करूँ?</string>
+    <string name="faq_2_text_dialer_g">कॉल बटन को देर तक दबाने से क्लिपबोर्ड की सामग्री चिपक जाएगी। यदि आपने पहले ही कोई नंबर दर्ज कर दिया है, तो कॉल बटन को देर तक दबाने पर नंबर क्लिपबोर्ड पर कॉपी हो जाएगा।</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">उत्तर शैली</string>
+    <string name="buttons">बटन</string>
+    <string name='answer_slider'>स्लाइडर</string>
+    <string name='answer_slider_outline'>आउटलाइन स्लाइडर</string>
+    <string name='answer_slider_vertical'>वर्टिकल स्लाइडर</string>
+</resources>

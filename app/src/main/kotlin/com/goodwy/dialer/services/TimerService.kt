@@ -122,14 +122,14 @@ class TimerService : Service() {
             builder.addAction(
                 R.drawable.ic_messages,
                 getString(R.string.message),
-                sendSMSPendingIntent(number)
+                sendSMSPendingIntentUpdateCurrent(number)
             )
         }
         if (number != "") {
             builder.addAction(
                 R.drawable.ic_phone_vector,
                 getString(R.string.call_back_g),
-                startCallPendingIntent(number)
+                startCallPendingIntentUpdateCurrent(number)
             )
         }
 

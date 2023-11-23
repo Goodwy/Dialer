@@ -2,30 +2,30 @@ package com.goodwy.dialer.activities
 
 import android.content.Intent
 import android.os.Bundle
+import com.goodwy.commons.extensions.viewBinding
 import com.goodwy.commons.helpers.NavigationIcon
-import com.goodwy.dialer.R
 import com.goodwy.dialer.adapters.ConferenceCallsAdapter
+import com.goodwy.dialer.databinding.ActivityConferenceBinding
 import com.goodwy.dialer.helpers.CallManager
 import com.goodwy.dialer.helpers.NoCall
-import com.goodwy.dialer.helpers.SingleCall
-import kotlinx.android.synthetic.main.activity_conference.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 class ConferenceActivity : SimpleActivity() {
+    private val binding by viewBinding(ActivityConferenceBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_conference)
-
-        updateMaterialActivityViews(conference_coordinator, conference_list, useTransparentNavigation = true, useTopSearchMenu = false)
-        setupMaterialScrollListener(conference_list, conference_toolbar)
-        conference_list.adapter = ConferenceCallsAdapter(this, conference_list, ArrayList(CallManager.getConferenceCalls())) {}
+        setContentView(binding.root)
+        binding.apply {
+            updateMaterialActivityViews(conferenceCoordinator, conferenceList, useTransparentNavigation = true, useTopSearchMenu = false)
+            setupMaterialScrollListener(conferenceList, conferenceToolbar)
+            conferenceList.adapter = ConferenceCallsAdapter(this@ConferenceActivity, conferenceList, ArrayList(CallManager.getConferenceCalls())) {}
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        setupToolbar(conference_toolbar, NavigationIcon.Arrow)
+        setupToolbar(binding.conferenceToolbar, NavigationIcon.Arrow)
     }
 
     override fun onBackPressed() {

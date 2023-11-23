@@ -16,10 +16,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="@dimen/vertical_bias_avatar"
-        tools:src="@drawable/ic_call_accept" />
+        tools:src="@drawable/ic_person"/>
 
     <com.goodwy.commons.views.MyTextView
-        android:id="@+id/caller_name_label"
+        android:id="@+id/callerNameLabel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/normal_margin"
@@ -28,32 +28,81 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/caller_avatar"
-        tools:text="Caller name" />
+        tools:text="Caller name"/>
+
+    <com.goodwy.commons.views.MyTextView
+        android:id="@+id/caller_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/call_status_text_size"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/callerNameLabel"
+        tools:text="Company (Job Position)"
+        tools:visibility="visible"/>
 
     <com.goodwy.commons.views.MyTextView
         android:id="@+id/caller_number"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/normal_margin"
+        android:layout_marginTop="@dimen/small_margin"
         android:gravity="center_horizontal"
         android:textSize="@dimen/call_status_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/caller_name_label"
-        tools:text="0912 345 678" />
+        app:layout_constraintTop_toBottomOf="@+id/caller_description"
+        tools:text="*0912 345 678"/>
 
-    <com.goodwy.commons.views.MyTextView
-        android:id="@+id/call_status_label"
+    <RelativeLayout
+        android:id="@+id/call_status_holder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_margin"
-        android:alpha="0.8"
-        android:textSize="@dimen/call_status_text_size"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/call_sim_image"
-        app:layout_constraintTop_toBottomOf="@+id/caller_number"
-        tools:text="Is Calling" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/caller_number">
+
+        <ImageView
+            android:id="@+id/call_sim_image"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:alpha="0.8"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_sim_vector"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+        <TextView
+            android:id="@+id/call_sim_id"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignTop="@+id/call_sim_image"
+            android:layout_alignBottom="@+id/call_sim_image"
+            android:layout_alignStart="@+id/call_sim_image"
+            android:layout_alignEnd="@+id/call_sim_image"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:textColor="@color/md_grey_black"
+            android:textSize="@dimen/bigger_text_size"
+            android:visibility="gone"
+            tools:text="1"
+            tools:visibility="visible"/>
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/call_status_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/call_sim_image"
+            android:layout_marginStart="@dimen/small_margin"
+            android:alpha="0.8"
+            android:textSize="@dimen/call_status_text_size"
+            tools:text="Is Calling"/>
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/hold_status_label"
@@ -67,42 +116,8 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/call_status_label"
-        tools:visibility="visible" />
-
-    <ImageView
-        android:id="@+id/call_sim_image"
-        android:layout_width="@dimen/normal_icon_size"
-        android:layout_height="0dp"
-        android:alpha="0.8"
-        android:background="?selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_sim_vector"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/call_status_label"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/call_status_label"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@+id/call_status_label"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/call_status_label"
-        tools:visibility="visible" />
-
-    <TextView
-        android:id="@+id/call_sim_id"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:alpha="0.8"
-        android:gravity="center"
-        android:textColor="@color/md_grey_black"
-        android:textSize="@dimen/bigger_text_size"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/call_sim_image"
-        app:layout_constraintEnd_toEndOf="@+id/call_sim_image"
-        app:layout_constraintStart_toStartOf="@+id/call_sim_image"
-        app:layout_constraintTop_toTopOf="@+id/call_sim_image"
-        tools:text="1"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@+id/call_status_holder"
+        tools:visibility="visible"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/on_hold_status_holder"
@@ -127,7 +142,7 @@
             app:layout_constraintEnd_toStartOf="@+id/on_hold_caller_name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_phone_vector" />
+            app:srcCompat="@drawable/ic_phone_vector"/>
 
         <com.goodwy.commons.views.MyTextView
             android:id="@+id/on_hold_caller_name"
@@ -141,7 +156,7 @@
             app:layout_constraintEnd_toStartOf="@+id/on_hold_label"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="0912 345 678" />
+            tools:text="0912 345 678"/>
 
         <com.goodwy.commons.views.MyTextView
             android:id="@+id/on_hold_label"
@@ -152,8 +167,7 @@
             android:textSize="@dimen/call_status_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
-
+            app:layout_constraintTop_toTopOf="@+id/imageView"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -161,10 +175,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        tools:visibility="gone">
+        tools:visibility="visible">
 
         <ImageView
-            android:id="@+id/call_toggle_microphone"
+            android:id="@+id/callToggleMicrophone"
             android:layout_width="82dp"
             android:layout_height="82dp"
             android:layout_marginEnd="@dimen/margin_button_horizontal"
@@ -176,7 +190,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="@dimen/vertical_bias_button" />
+            app:layout_constraintVertical_bias="@dimen/vertical_bias_button"/>
 
         <com.goodwy.commons.views.MyTextView
             android:id="@+id/call_toggle_microphone_label"
@@ -188,12 +202,12 @@
             android:maxLines="1"
             android:text="@string/mute"
             android:textSize="@dimen/normal_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/call_toggle_microphone"
-            app:layout_constraintStart_toStartOf="@+id/call_toggle_microphone"
-            app:layout_constraintTop_toBottomOf="@+id/call_toggle_microphone" />
+            app:layout_constraintEnd_toEndOf="@+id/callToggleMicrophone"
+            app:layout_constraintStart_toStartOf="@+id/callToggleMicrophone"
+            app:layout_constraintTop_toBottomOf="@+id/callToggleMicrophone"/>
 
         <LinearLayout
-            android:id="@+id/call_dialpad_holder"
+            android:id="@+id/callDialpadHolder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
@@ -210,12 +224,11 @@
                 android:id="@+id/call_dialpad"
                 android:layout_width="82dp"
                 android:layout_height="82dp"
-                android:paddingLeft="@dimen/bigger_margin"
+                android:paddingStart="@dimen/bigger_margin"
                 android:paddingTop="22dp"
-                android:paddingRight="@dimen/bigger_margin"
+                android:paddingEnd="@dimen/bigger_margin"
                 android:paddingBottom="18dp"
-                android:src="@drawable/ic_dialpad_vector" />
-
+                android:src="@drawable/ic_dialpad_vector"/>
         </LinearLayout>
 
         <com.goodwy.commons.views.MyTextView
@@ -228,12 +241,12 @@
             android:maxLines="1"
             android:text="@string/dialpad"
             android:textSize="@dimen/normal_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/call_dialpad_holder"
-            app:layout_constraintStart_toStartOf="@+id/call_dialpad_holder"
-            app:layout_constraintTop_toBottomOf="@+id/call_dialpad_holder" />
+            app:layout_constraintEnd_toEndOf="@+id/callDialpadHolder"
+            app:layout_constraintStart_toStartOf="@+id/callDialpadHolder"
+            app:layout_constraintTop_toBottomOf="@+id/callDialpadHolder"/>
 
         <ImageView
-            android:id="@+id/call_toggle_speaker"
+            android:id="@+id/callToggleSpeaker"
             android:layout_width="82dp"
             android:layout_height="82dp"
             android:layout_marginStart="@dimen/margin_button_horizontal"
@@ -245,10 +258,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="@dimen/vertical_bias_button" />
+            app:layout_constraintVertical_bias="@dimen/vertical_bias_button"/>
 
         <com.goodwy.commons.views.MyTextView
-            android:id="@+id/call_toggle_speaker_label"
+            android:id="@+id/callToggleSpeakerLabel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_margin"
@@ -257,12 +270,12 @@
             android:maxLines="1"
             android:text="@string/audio_route_speaker"
             android:textSize="@dimen/normal_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/call_toggle_speaker"
-            app:layout_constraintStart_toStartOf="@+id/call_toggle_speaker"
-            app:layout_constraintTop_toBottomOf="@+id/call_toggle_speaker" />
+            app:layout_constraintEnd_toEndOf="@+id/callToggleSpeaker"
+            app:layout_constraintStart_toStartOf="@+id/callToggleSpeaker"
+            app:layout_constraintTop_toBottomOf="@+id/callToggleSpeaker"/>
 
         <LinearLayout
-            android:id="@+id/call_add_holder"
+            android:id="@+id/callAddHolder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="42dp"
@@ -273,15 +286,14 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/call_toggle_speaker">
+            app:layout_constraintTop_toBottomOf="@+id/callToggleSpeaker">
 
             <ImageView
                 android:id="@+id/call_add"
                 android:layout_width="82dp"
                 android:layout_height="82dp"
                 android:padding="@dimen/bigger_margin"
-                android:src="@drawable/ic_add_call_vector" />
-
+                android:src="@drawable/ic_add_call_vector"/>
         </LinearLayout>
 
         <com.goodwy.commons.views.MyTextView
@@ -294,9 +306,9 @@
             android:maxLines="1"
             android:text="@string/call_add"
             android:textSize="@dimen/normal_text_size"
-            app:layout_constraintEnd_toEndOf="@+id/call_add_holder"
-            app:layout_constraintStart_toStartOf="@+id/call_add_holder"
-            app:layout_constraintTop_toBottomOf="@+id/call_add_holder" />
+            app:layout_constraintEnd_toEndOf="@+id/callAddHolder"
+            app:layout_constraintStart_toStartOf="@+id/callAddHolder"
+            app:layout_constraintTop_toBottomOf="@+id/callAddHolder"/>
 
         <LinearLayout
             android:id="@+id/call_swap_holder"
@@ -310,15 +322,14 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/call_add_holder">
+            app:layout_constraintTop_toBottomOf="@+id/callAddHolder">
 
             <ImageView
                 android:id="@+id/call_swap"
                 android:layout_width="82dp"
                 android:layout_height="82dp"
                 android:padding="@dimen/bigger_margin"
-                android:src="@drawable/ic_call_swap_vector" />
-
+                android:src="@drawable/ic_call_swap_vector"/>
         </LinearLayout>
 
         <com.goodwy.commons.views.MyTextView
@@ -333,7 +344,7 @@
             android:textSize="@dimen/normal_text_size"
             app:layout_constraintEnd_toEndOf="@+id/call_swap_holder"
             app:layout_constraintStart_toStartOf="@+id/call_swap_holder"
-            app:layout_constraintTop_toBottomOf="@+id/call_swap_holder" />
+            app:layout_constraintTop_toBottomOf="@+id/call_swap_holder"/>
 
         <LinearLayout
             android:id="@+id/call_merge_holder"
@@ -354,8 +365,7 @@
                 android:layout_width="82dp"
                 android:layout_height="82dp"
                 android:padding="@dimen/bigger_margin"
-                android:src="@drawable/ic_call_merge_vector" />
-
+                android:src="@drawable/ic_call_merge_vector"/>
         </LinearLayout>
 
         <com.goodwy.commons.views.MyTextView
@@ -370,7 +380,7 @@
             android:textSize="@dimen/normal_text_size"
             app:layout_constraintEnd_toEndOf="@+id/call_merge_holder"
             app:layout_constraintStart_toStartOf="@+id/call_merge_holder"
-            app:layout_constraintTop_toBottomOf="@+id/call_merge_holder" />
+            app:layout_constraintTop_toBottomOf="@+id/call_merge_holder"/>
 
         <ImageView
             android:id="@+id/call_toggle_hold"
@@ -384,7 +394,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/call_toggle_speaker" />
+            app:layout_constraintTop_toBottomOf="@+id/callToggleSpeaker"/>
 
         <com.goodwy.commons.views.MyTextView
             android:id="@+id/call_toggle_label"
@@ -398,7 +408,7 @@
             android:textSize="@dimen/normal_text_size"
             app:layout_constraintEnd_toEndOf="@+id/call_toggle_hold"
             app:layout_constraintStart_toStartOf="@+id/call_toggle_hold"
-            app:layout_constraintTop_toBottomOf="@+id/call_toggle_hold" />
+            app:layout_constraintTop_toBottomOf="@+id/call_toggle_hold"/>
 
         <LinearLayout
             android:id="@+id/call_add_contact_holder"
@@ -412,15 +422,14 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/call_toggle_speaker">
+            app:layout_constraintTop_toBottomOf="@+id/callToggleSpeaker">
 
             <ImageView
                 android:id="@+id/call_add_contact"
                 android:layout_width="82dp"
                 android:layout_height="82dp"
-                android:padding="@dimen/bigger_margin"
-                android:src="@drawable/ic_person_rounded" />
-
+                android:padding="@dimen/larger_margin"
+                android:src="@drawable/ic_person_rounded_outline"/>
         </LinearLayout>
 
         <com.goodwy.commons.views.MyTextView
@@ -435,7 +444,7 @@
             android:textSize="@dimen/normal_text_size"
             app:layout_constraintEnd_toEndOf="@+id/call_add_contact_holder"
             app:layout_constraintStart_toStartOf="@+id/call_add_contact_holder"
-            app:layout_constraintTop_toBottomOf="@+id/call_add_contact_holder" />
+            app:layout_constraintTop_toBottomOf="@+id/call_add_contact_holder"/>
 
         <ImageView
             android:id="@+id/call_manage"
@@ -454,7 +463,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="@dimen/vertical_bias_call_end"
-            tools:visibility="visible" />
+            tools:visibility="visible"/>
 
         <com.goodwy.commons.views.MyTextView
             android:id="@+id/call_manage_label"
@@ -469,53 +478,53 @@
             app:layout_constraintEnd_toEndOf="@+id/call_manage"
             app:layout_constraintStart_toStartOf="@+id/call_manage"
             app:layout_constraintTop_toBottomOf="@+id/call_manage"
-            tools:visibility="visible" />
+            tools:visibility="visible"/>
 
         <ImageView
             android:id="@+id/call_end"
             android:layout_width="@dimen/incoming_call_button_size"
             android:layout_height="@dimen/incoming_call_button_size"
             android:contentDescription="@string/end_call"
-            android:src="@drawable/ic_call_decline"
+            android:src="@drawable/ic_call_end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="@dimen/vertical_bias_call_end" />
+            app:layout_constraintVertical_bias="@dimen/vertical_bias_call_end"/>
 
-        <ImageView
-            android:id="@+id/dialpad_close"
-            android:layout_width="@dimen/dialpad_button_size"
-            android:layout_height="@dimen/dialpad_button_size"
-            android:layout_marginBottom="8dp"
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpadClose"
+            android:layout_width="82dp"
+            android:layout_height="@dimen/incoming_call_button_size"
             android:layout_marginStart="@dimen/margin_button_horizontal"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/hide_dialpad"
-            android:elevation="@dimen/medium_margin"
-            android:padding="18dp"
-            android:src="@drawable/ic_chevron_down_vector"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/hide"
+            android:textSize="@dimen/bigger_text_size"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="@dimen/vertical_bias_call_end"
-            tools:visibility="visible" />
+            tools:visibility="visible"/>
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/controls_single_call"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:constraint_referenced_ids="call_toggle_hold,call_add_holder"
-            tools:visibility="visible" />
+            app:constraint_referenced_ids="call_toggle_hold,callAddHolder"
+            tools:visibility="visible"/>
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/controls_two_calls"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:constraint_referenced_ids="call_swap_holder,call_merge_holder" />
+            app:constraint_referenced_ids="call_swap_holder,call_merge_holder"/>
 
         <RelativeLayout
             android:id="@+id/dialpad_wrapper"
@@ -548,30 +557,13 @@
                     android:gravity="center"
                     android:inputType="phone"
                     android:textCursorDrawable="@null"
-                    android:textSize="@dimen/dialpad_text_size" />
-                <!--
-                <ImageView
-                    android:id="@+id/dialpad_close"
-                    android:layout_width="@dimen/normal_icon_size"
-                    android:layout_height="@dimen/normal_icon_size"
-                    android:layout_alignTop="@+id/dialpad_input"
-                    android:layout_alignBottom="@+id/dialpad_input"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="@dimen/activity_margin"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="@string/hide_dialpad"
-                    android:elevation="@dimen/medium_margin"
-                    android:padding="@dimen/medium_margin"
-                    android:src="@drawable/ic_cross_vector" />-->
+                    android:textSize="@dimen/dialpad_text_size"/>
             </RelativeLayout>
 
             <include
                 android:id="@+id/dialpad_include"
-                layout="@layout/dialpad_round" />
-
+                layout="@layout/dialpad_call"/>
         </RelativeLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -581,21 +573,22 @@
         android:visibility="gone"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <ImageView
             android:id="@+id/call_remind"
             android:layout_width="36dp"
             android:layout_height="36dp"
+            android:layout_marginEnd="220dp"
             android:alpha="0.9"
             android:contentDescription="@string/send_sms"
             android:elevation="@dimen/medium_margin"
             android:src="@drawable/ic_alarm_filled_vector"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/call_decline"
-            app:layout_constraintStart_toStartOf="@+id/call_decline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.60" />
+            app:layout_constraintVertical_bias="0.60"/>
 
         <com.goodwy.commons.views.MyTextView
             android:id="@+id/call_remind_label"
@@ -607,21 +600,22 @@
             android:textSize="@dimen/normal_text_size"
             app:layout_constraintEnd_toEndOf="@+id/call_remind"
             app:layout_constraintStart_toStartOf="@+id/call_remind"
-            app:layout_constraintTop_toBottomOf="@+id/call_remind" />
+            app:layout_constraintTop_toBottomOf="@+id/call_remind"/>
 
         <ImageView
             android:id="@+id/call_message"
             android:layout_width="36dp"
             android:layout_height="36dp"
+            android:layout_marginStart="220dp"
             android:alpha="0.9"
             android:contentDescription="@string/send_sms"
             android:elevation="@dimen/medium_margin"
             android:src="@drawable/ic_messages"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/call_accept"
-            app:layout_constraintStart_toStartOf="@+id/call_accept"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.60" />
+            app:layout_constraintVertical_bias="0.60"/>
 
         <com.goodwy.commons.views.MyTextView
             android:id="@+id/call_message_label"
@@ -633,20 +627,20 @@
             android:textSize="@dimen/normal_text_size"
             app:layout_constraintEnd_toEndOf="@+id/call_message"
             app:layout_constraintStart_toStartOf="@+id/call_message"
-            app:layout_constraintTop_toBottomOf="@+id/call_message" />
+            app:layout_constraintTop_toBottomOf="@+id/call_message"/>
 
         <ImageView
             android:id="@+id/call_decline"
             android:layout_width="@dimen/incoming_call_button_size"
             android:layout_height="@dimen/incoming_call_button_size"
-            android:layout_marginEnd="@dimen/margin_button_horizontal"
+            android:layout_marginEnd="220dp"
             android:contentDescription="@string/decline_call"
-            android:src="@drawable/ic_call_decline"
+            android:src="@drawable/ic_call_end"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.85" />
+            app:layout_constraintVertical_bias="0.85"/>
 
         <com.goodwy.commons.views.MyTextView
             android:id="@+id/call_decline_label"
@@ -657,13 +651,13 @@
             android:textSize="@dimen/normal_text_size"
             app:layout_constraintEnd_toEndOf="@+id/call_decline"
             app:layout_constraintStart_toStartOf="@+id/call_decline"
-            app:layout_constraintTop_toBottomOf="@+id/call_decline" />
+            app:layout_constraintTop_toBottomOf="@+id/call_decline"/>
 
         <ImageView
             android:id="@+id/call_accept"
             android:layout_width="@dimen/incoming_call_button_size"
             android:layout_height="@dimen/incoming_call_button_size"
-            android:layout_marginStart="@dimen/margin_button_horizontal"
+            android:layout_marginStart="220dp"
             android:contentDescription="@string/accept_call"
             android:elevation="@dimen/medium_margin"
             android:src="@drawable/ic_call_accept"
@@ -671,7 +665,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.85" />
+            app:layout_constraintVertical_bias="0.85"/>
 
         <com.goodwy.commons.views.MyTextView
             android:id="@+id/call_accept_label"
@@ -683,36 +677,45 @@
             android:textSize="@dimen/normal_text_size"
             app:layout_constraintEnd_toEndOf="@+id/call_accept"
             app:layout_constraintStart_toStartOf="@+id/call_accept"
-            app:layout_constraintTop_toBottomOf="@+id/call_accept" />
+            app:layout_constraintTop_toBottomOf="@+id/call_accept"/>
 
-        <ImageView
+        <FrameLayout
             android:id="@+id/call_draggable_background"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/incoming_call_draggable_background_size"
-            android:alpha="0.2"
+            android:layout_marginHorizontal="@dimen/call_slider_margin"
             android:background="@drawable/call_draggable_background"
             android:contentDescription="@null"
-            android:padding="@dimen/medium_margin"
+            android:padding="@dimen/three_dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/call_accept"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/call_decline"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.85" />
+            app:layout_constraintVertical_bias="0.85">
+
+            <ImageView
+                android:id="@+id/call_draggable_background_icon"
+                android:layout_width="@dimen/incoming_call_button_size"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:contentDescription="@string/decline_call"
+                android:padding="@dimen/activity_margin"
+                android:src="@drawable/ic_phone_down_vector"
+                android:background="@drawable/pulsing_background"/>
+        </FrameLayout>
 
         <ImageView
             android:id="@+id/call_draggable"
             android:layout_width="@dimen/incoming_call_button_size"
             android:layout_height="@dimen/incoming_call_button_size"
-            android:background="@drawable/pulsing_background"
+            android:layout_marginStart="@dimen/three_dp"
             android:contentDescription="@string/decline_call"
             android:padding="@dimen/activity_margin"
+            android:alpha="0"
             android:src="@drawable/ic_phone_down_vector"
             app:layout_constraintBottom_toBottomOf="@+id/call_draggable_background"
-            app:layout_constraintEnd_toStartOf="@+id/call_accept"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/call_decline"
-            app:layout_constraintTop_toTopOf="@+id/call_draggable_background" />
+            app:layout_constraintStart_toStartOf="@+id/call_draggable_background"
+            app:layout_constraintTop_toTopOf="@+id/call_draggable_background"/>
 
         <ImageView
             android:id="@+id/call_left_arrow"
@@ -723,10 +726,9 @@
             android:padding="@dimen/medium_margin"
             android:src="@drawable/ic_chevron_left_vector"
             app:layout_constraintBottom_toBottomOf="@+id/call_draggable"
-            app:layout_constraintEnd_toStartOf="@+id/call_accept"
+            app:layout_constraintEnd_toStartOf="@+id/call_draggable"
             app:layout_constraintHorizontal_bias="0.15"
-            app:layout_constraintStart_toEndOf="@+id/call_decline"
-            app:layout_constraintTop_toTopOf="@+id/call_draggable" />
+            app:layout_constraintTop_toTopOf="@+id/call_draggable"/>
 
         <ImageView
             android:id="@+id/call_right_arrow"
@@ -737,10 +739,46 @@
             android:padding="@dimen/medium_margin"
             android:src="@drawable/ic_chevron_right_vector"
             app:layout_constraintBottom_toBottomOf="@+id/call_draggable"
-            app:layout_constraintEnd_toStartOf="@+id/call_accept"
             app:layout_constraintHorizontal_bias="0.85"
-            app:layout_constraintStart_toEndOf="@+id/call_decline"
-            app:layout_constraintTop_toTopOf="@+id/call_draggable" />
+            app:layout_constraintStart_toEndOf="@+id/call_draggable"
+            app:layout_constraintTop_toTopOf="@+id/call_draggable"/>
 
+        <ImageView
+            android:id="@+id/call_draggable_vertical"
+            android:layout_width="@dimen/incoming_call_button_size"
+            android:layout_height="@dimen/incoming_call_button_size"
+            android:contentDescription="@string/decline_call"
+            android:padding="@dimen/activity_margin"
+            android:background="@drawable/pulsing_background"
+            android:src="@drawable/ic_phone_down_vector"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.87"/>
+
+        <ImageView
+            android:id="@+id/call_up_arrow"
+            android:layout_width="@dimen/incoming_call_arrow_size"
+            android:layout_height="@dimen/incoming_call_arrow_size"
+            android:alpha="0.2"
+            android:contentDescription="@null"
+            android:padding="@dimen/medium_margin"
+            android:src="@drawable/ic_chevron_up_vector"
+            app:layout_constraintBottom_toTopOf="@+id/call_draggable_vertical"
+            app:layout_constraintStart_toStartOf="@+id/call_draggable_vertical"
+            app:layout_constraintEnd_toEndOf="@+id/call_draggable_vertical"/>
+
+        <ImageView
+            android:id="@+id/call_down_arrow"
+            android:layout_width="@dimen/incoming_call_arrow_size"
+            android:layout_height="@dimen/incoming_call_arrow_size"
+            android:alpha="0.2"
+            android:contentDescription="@null"
+            android:padding="@dimen/medium_margin"
+            android:src="@drawable/ic_chevron_down_vector"
+            app:layout_constraintTop_toBottomOf="@+id/call_draggable_vertical"
+            app:layout_constraintStart_toStartOf="@+id/call_draggable_vertical"
+            app:layout_constraintEnd_toEndOf="@+id/call_draggable_vertical"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

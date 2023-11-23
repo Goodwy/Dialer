@@ -3,6 +3,7 @@ package com.goodwy.dialer.extensions
 import android.annotation.SuppressLint
 import android.content.Context
 import android.telephony.TelephonyManager
+import android.text.BidiFormatter
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.geocoding.PhoneNumberOfflineGeocoder
@@ -65,3 +66,7 @@ fun getPhoneNumberType(context: Context, number: String): String? {
 
     return phoneUtil.getRegionCodeForCountryCode(phoneNumber.countryCode)
 }*/
+
+fun formatterUnicodeWrap(text: String): String {
+    return BidiFormatter.getInstance().unicodeWrap(text)
+}

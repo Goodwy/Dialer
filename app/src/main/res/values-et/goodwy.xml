@@ -3,26 +3,52 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Läbipaistev kõneekraan</string>
     <string name="call_back_g">Kutsuma</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">Helistage tagasi %s</string>
     <string name="missed_call_g">Vastamata kõne</string>
     <string name="missed_calls_g">Vastamata kõned</string>
     <string name="missed_call_notifications_g">Vastamata kõne teatised</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Kõrge prioriteediga kõnemärguanded</string>
+    <string name="call_notification_channel_g">Kõnemärguanded</string>
+    <string name="dialpad_preferences">Valimisplaadi eelistused</string>
+    <string name="call_start_end_vibration">Vibreerige, kui kõne algus ja lõpp on</string>
 
     <string name="show_contact_thumbnails_g">Kontakti pisipiltide kuvamine</string>
     <string name="hide_dialpad_letters_g">Peida dialpadi tähed</string>
+    <string name="show_caller_description_g">Näita helistaja lisateavet</string>
+    <string name="nickname">Hüüdnimi</string>
+    <string name="company">Ettevõte</string>
+    <string name="call_anonymously">Helistage anonüümselt (eesliitega #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Hoiatus</h4>
+             Numbrile helistatakse eesliitega #31# <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             Veenduge, et teie operaator toetaks numbri peitmise teenust, kui kasutate eesliidet #31#. <br>
+             Teie teenusepakkuja võib selle teenuse eest küsida lisatasu.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Seadme kuular</string>
+    <string name="open_speed_dial_manage">Kas avada kiirvalimise haldamine?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">Taimer</string>
+    <string name="timers_notification_msg">Taimerid töötavad</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d taimer töötab</item>
+        <item quantity="other">%d taimerit töötavad</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Miks pean sissetulevale kõnele vastamiseks oma seadme avama?</string>
+    <string name="faq_1_text_dialer_g">Operatsioonisüsteem blokeerib rakendustel juurdepääsu lukustuskuvale. Peate lubama rakendusel juurdepääsu lukustuskuvale. Näiteks MIUI-s peate lubama juurdepääsu lukustuskuval valikutele Seaded => Teavitused => Märguanded.</string>
+    <string name="faq_2_title_dialer_g">Kuidas numbrit helistamisekraanile kopeerida või kleepida?</string>
+    <string name="faq_2_text_dialer_g">Vajutage pikalt helistamisnuppu, et lõikelaua sisu kleepida. Kui number on juba sisestatud, kopeerib helistamisnupu pikk vajutus selle lõikepuhvrisse.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Vastusenupu stiil</string>
+    <string name="buttons">Nupud</string>
+    <string name="answer_slider">Liugur</string>
+    <string name="answer_slider_outline">Liigendi liugur</string>
+    <string name="answer_slider_vertical">Vertikaalne liugur</string>
 </resources>

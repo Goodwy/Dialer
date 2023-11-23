@@ -2,14 +2,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/copy_number"
+        android:title="@string/copy"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/paste_number"
+        android:title="@string/paste_g"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/cab_call_anonymously"
+        android:icon="@drawable/ic_phone_vector"
+        android:title="@string/call_anonymously" />
+    <item
+        android:id="@+id/settings_dialpad"
+        android:title="@string/dialpad_preferences"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/settings"
         android:title="@string/settings"
-        android:icon="@drawable/ic_more_horiz"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/add_number_to_contact"
         android:icon="@drawable/ic_plus_vector"
         android:title="@string/add_number_to_contact"
         android:visible="false"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
 </menu>

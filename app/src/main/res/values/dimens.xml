@@ -9,18 +9,17 @@
     <dimen name="call_notification_button_size">35dp</dimen>
     <dimen name="incoming_call_avatar_size">100dp</dimen>
 
-    <dimen name="caller_name_text_size">34sp</dimen>
-    <dimen name="call_status_text_size">20sp</dimen>
+    <dimen name="caller_name_text_size">26sp</dimen><!--34sp-->
+    <dimen name="call_status_text_size">18sp</dimen><!--20sp-->
 
     <!-- keep these 2 values in dp to avoid scaling -->
     <dimen name="dialpad_text_size">36sp</dimen><!--28sp-->
-    <dimen name="dialpad_letters_text_size">12dp</dimen>
 
     <!--Goodwy-->
     <dimen name="contact_photo_size">88dp</dimen>
     <dimen name="activity_padding_left_right">0dp</dimen>
     <dimen name="contact_padding_left">16dp</dimen>
-    <dimen name="contact_padding_top">4dp</dimen>
+    <dimen name="contact_padding_top">8dp</dimen>
 
     <!--collapsing toolbar-->
     <dimen name="toolbar_height">102dp</dimen>
@@ -39,6 +38,14 @@
     <dimen name="vertical_bias_avatar">0.10</dimen>
     <dimen name="vertical_bias_button">0.5</dimen>
     <dimen name="vertical_bias_call_end">0.88</dimen>
-    <dimen name="margin_button_vertical">0.88</dimen>
     <dimen name="margin_button_horizontal">230dp</dimen>
+
+    <!--dialpad button-->
+    <dimen name="dialpad_button_height">100dp</dimen>
+    <dimen name="dialpad_margin_bottom_ios">28dp</dimen>
+    <dimen name="dialpad_grid_height">420dp</dimen>
+    <dimen name="dialpad_ios_height">520dp</dimen>
+
+    <!--dialpad style-->
+    <dimen name="call_slider_margin">68dp</dimen>
 </resources>

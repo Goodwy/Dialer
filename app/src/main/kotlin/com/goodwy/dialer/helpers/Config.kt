@@ -1,13 +1,16 @@
 package com.goodwy.dialer.helpers
 
+import android.content.ComponentName
 import android.content.Context
 import android.media.RingtoneManager
-import android.net.Uri
+import android.telecom.PhoneAccountHandle
 import com.goodwy.commons.extensions.getDefaultAlarmSound
 import com.goodwy.commons.extensions.getDefaultAlarmTitle
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.goodwy.commons.helpers.BaseConfig
+import com.goodwy.dialer.extensions.getPhoneAccountHandleModel
+import com.goodwy.dialer.extensions.putPhoneAccountHandle
 import com.goodwy.dialer.models.SpeedDial
 
 class Config(context: Context) : BaseConfig(context) {
@@ -29,15 +32,27 @@ class Config(context: Context) : BaseConfig(context) {
         return speedDialValues
     }
 
-    fun saveCustomSIM(number: String, SIMlabel: String) {
-        prefs.edit().putString(REMEMBER_SIM_PREFIX + number, Uri.encode(SIMlabel)).apply()
+    fun saveCustomSIM(number: String, handle: PhoneAccountHandle) {
+        prefs.edit().putPhoneAccountHandle(REMEMBER_SIM_PREFIX + number, handle).apply()
     }
 
-    fun getCustomSIM(number: String) = prefs.getString(REMEMBER_SIM_PREFIX + number, "")
+    fun getCustomSIM(number: String): PhoneAccountHandle? {
+        val myPhoneAccountHandle = prefs.getPhoneAccountHandleModel(REMEMBER_SIM_PREFIX + number, null)
+        return if (myPhoneAccountHandle != null) {
+            val packageName = myPhoneAccountHandle.packageName
+            val className = myPhoneAccountHandle.className
+            val componentName = ComponentName(packageName, className)
+            val id = myPhoneAccountHandle.id
+            PhoneAccountHandle(componentName, id)
+        } else {
+            null
+        }
+    }
 
     fun removeCustomSIM(number: String) {
         prefs.edit().remove(REMEMBER_SIM_PREFIX + number).apply()
     }
+
     var showTabs: Int
         get() = prefs.getInt(SHOW_TABS, ALL_TABS_MASK)
         set(showTabs) = prefs.edit().putInt(SHOW_TABS, showTabs).apply()
@@ -102,6 +117,50 @@ class Config(context: Context) : BaseConfig(context) {
     var backgroundCallScreen: Int
         get() = prefs.getInt(BACKGROUND_CALL_SCREEN, BLUR_AVATAR)
         set(backgroundCallScreen) = prefs.edit().putInt(BACKGROUND_CALL_SCREEN, backgroundCallScreen).apply()
+
+    var showAllRecentInHistory: Boolean
+        get() = prefs.getBoolean(SHOW_ALL_RECENT_IN_HISTORY, true)
+        set(showAllRecentInHistory) = prefs.edit().putBoolean(SHOW_ALL_RECENT_IN_HISTORY, showAllRecentInHistory).apply()
+
+    var dialpadStyle: Int
+        get() = prefs.getInt(DIALPAD_STYLE, DIALPAD_ORIGINAL)
+        set(dialpadStyle) = prefs.edit().putInt(DIALPAD_STYLE, dialpadStyle).apply()
+
+    var dialpadSize: Int
+        get() = prefs.getInt(DIALPAD_SIZE, 100)
+        set(dialpadStyle) = prefs.edit().putInt(DIALPAD_SIZE, dialpadStyle).apply()
+
+    var callButtonPrimarySize: Int
+        get() = prefs.getInt(CALL_BUTTON_PRIMARY_SIZE, 100)
+        set(callButtonPrimarySize) = prefs.edit().putInt(CALL_BUTTON_PRIMARY_SIZE, callButtonPrimarySize).apply()
+
+    var callButtonSecondarySize: Int
+        get() = prefs.getInt(CALL_BUTTON_SECONDARY_SIZE, 100)
+        set(callButtonSecondarySize) = prefs.edit().putInt(CALL_BUTTON_SECONDARY_SIZE, callButtonSecondarySize).apply()
+
+    var currentSIMCardIndex: Int
+        get() = prefs.getInt(CURRENT_SIM_CARD_INDEX, 0) //0 - sim1, 1 - sim2
+        set(currentSIMCardIndex) = prefs.edit().putInt(CURRENT_SIM_CARD_INDEX, currentSIMCardIndex).apply()
+
+    var answerStyle: Int
+        get() = prefs.getInt(ANSWER_STYLE, ANSWER_BUTTON)
+        set(answerStyle) = prefs.edit().putInt(ANSWER_STYLE, answerStyle).apply()
+
+    var showCallerDescription: Int
+        get() = prefs.getInt(SHOW_CALLER_DESCRIPTION, SHOW_CALLER_NOTHING)
+        set(answerStyle) = prefs.edit().putInt(SHOW_CALLER_DESCRIPTION, answerStyle).apply()
+
+    var showWarningAnonymousCall: Boolean
+        get() = prefs.getBoolean(SHOW_WARNING_ANONYMOUS_CALL, true)
+        set(showWarningAnonymousCall) = prefs.edit().putBoolean(SHOW_WARNING_ANONYMOUS_CALL, showWarningAnonymousCall).apply()
+
+    var callVibration: Boolean
+        get() = prefs.getBoolean(CALL_VIBRATION, true)
+        set(callVibration) = prefs.edit().putBoolean(CALL_VIBRATION, callVibration).apply()
+
+    var callStartEndVibration: Boolean
+        get() = prefs.getBoolean(CALL_START_END_VIBRATION, true)
+        set(callStartEndVibration) = prefs.edit().putBoolean(CALL_START_END_VIBRATION, callStartEndVibration).apply()
 
     //Timer
     var timerSeconds: Int

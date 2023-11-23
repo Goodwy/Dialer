@@ -3,25 +3,51 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">透明通話螢幕</string>
     <string name="call_back_g">叫</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">回拨 %s</string>
     <string name="missed_call_g">未接來電</string>
     <string name="missed_calls_g">未接來電</string>
     <string name="missed_call_notifications_g">未接來電通知</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">来电通知高优先级</string>
+    <string name="call_notification_channel_g">来电通知</string>
+    <string name="dialpad_preferences">拨号盘偏好设置</string>
+    <string name="call_start_end_vibration">通话开始和结束时振动</string>
 
     <string name="show_contact_thumbnails_g">顯示聯繫人縮圖</string>
     <string name="hide_dialpad_letters_g">隱藏撥號盤字母</string>
+    <string name="show_caller_description_g">显示附加来电者信息</string>
+    <string name="nickname">昵称</string>
+    <string name="company">公司</string>
+    <string name="call_anonymously">匿名呼叫（前缀为 #31#）</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>警告</h4>
+             该号码将以 #31# 为前缀进行呼叫 <br><br>
+                 <h6"><i>#31#%s</i></h6>
+             使用 #31# 前缀时，请确保您的运营商支持号码隐藏服务。 <br>
+             您的服务提供商可能会为此服务收取额外费用。
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">设备的耳机</string>
+    <string name="open_speed_dial_manage">打开快速拨号管理？</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">定时器</string>
+    <string name="timers_notification_msg">计时器正在运行</string>
     <plurals name="timer_notification_msg">
-        <item quantity="other">%d timers are running</item>
+        <item quantity="other">%d 个计时器正在运行</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">为什么我需要解锁设备才能接听来电？</string>
+    <string name="faq_1_text_dialer_g">操作系统阻止应用程序访问锁定屏幕。你需要允许应用程序访问锁屏。例如，在 MIUI 中，你需要允许访问设置 => 通知 => 锁定屏幕上的通知。</string>
+    <string name="faq_2_title_dialer_g">如何在拨号屏幕上复制或粘贴号码？</string>
+    <string name="faq_2_text_dialer_g">长按呼叫按钮可粘贴剪贴板的内容。如果已输入号码，则长按呼叫按钮可将其复制到剪贴板。</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">接听按钮样式</string>
+    <string name="buttons">按钮样式</string>
+    <string name="answer_slider">滑块样式</string>
+    <string name="answer_slider_outline">带大纲的滑块</string>
+    <string name="answer_slider_vertical">垂直滑块</string>
 </resources>

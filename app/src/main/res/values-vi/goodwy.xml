@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_g">Right Dialer</string>
+    <string name="transparent_call_screen_g">Màn hình cuộc gọi trong suốt</string>
+    <string name="call_back_g">Gọi lại</string>
+    <string name="call_back_person_g">Gọi lại %s</string>
+    <string name="missed_call_g">Cuộc gọi nhỡ</string>
+    <string name="missed_calls_g">Cuộc gọi nhỡ</string>
+    <string name="missed_call_notifications_g">Thông báo cuộc gọi nhỡ</string>
+    <string name="call_notification_channel_high_priority_g">Thông báo cuộc gọi có mức độ ưu tiên cao</string>
+    <string name="call_notification_channel_g">Thông báo cuộc gọi</string>
+    <string name="dialpad_preferences">Tùy chọn bàn phím số</string>
+    <string name="call_start_end_vibration">Rung khi cuộc gọi của bạn bắt đầu và kết thúc</string>
+
+    <string name="show_contact_thumbnails_g">Hiển thị hình thu nhỏ liên hệ</string>
+    <string name="hide_dialpad_letters_g">Ẩn các chữ cái trên bàn phím quay số</string>
+    <string name="show_caller_description_g">Hiển thị thông tin bổ sung về người gọi</string>
+    <string name="nickname">Tên hiệu</string>
+    <string name="company">Công ty</string>
+    <string name="call_anonymously">Gọi ẩn danh (có đầu số #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Cảnh báo</h4>
+             Số này sẽ được gọi với tiền tố #31# <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             Đảm bảo rằng nhà cung cấp dịch vụ của bạn hỗ trợ dịch vụ ẩn số khi sử dụng tiền tố #31#. <br>
+             Nhà cung cấp dịch vụ của bạn có thể tính thêm phí cho dịch vụ này.
+        ]]>
+    </string>
+
+    <string name="audio_route_earpiece_g">Tai nghe của thiết bị</string>
+    <string name="open_speed_dial_manage">Mở quản lý quay số nhanh?</string>
+
+    <!-- Timer -->
+    <string name="timer">Hẹn giờ</string>
+    <string name="timers_notification_msg">Bộ hẹn giờ đang chạy</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="other">%d bộ tính giờ đang chạy</item>
+    </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Tại sao tôi phải mở khóa thiết bị của mình để trả lời cuộc gọi đến?</string>
+    <string name="faq_1_text_dialer_g">Hệ điều hành của bạn đang chặn quyền truy cập của ứng dụng vào màn hình khóa. Bạn cần cho phép ứng dụng truy cập vào màn hình khóa. Ví dụ: trong MIUI bạn cần kích hoạt quyền truy cập trong Cài đặt => Thông báo => Thông báo màn hình khóa.</string>
+    <string name="faq_2_title_dialer_g">Làm cách nào để sao chép hoặc dán một số trên màn hình quay số?</string>
+    <string name="faq_2_text_dialer_g">Nhấn và giữ nút gọi sẽ dán nội dung vào bảng tạm. Nếu bạn đã nhập một số, nhấn và giữ nút gọi sẽ sao chép số đó vào bảng nhớ tạm.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Phong cách trả lời</string>
+    <string name="buttons">Các nút</string>
+    <string name="answer_slider">Thanh trượt</string>
+    <string name="answer_slider_outline">Thanh trượt phác thảo</string>
+    <string name="answer_slider_vertical">Thanh trượt dọc</string>
+</resources>

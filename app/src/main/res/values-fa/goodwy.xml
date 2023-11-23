@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name_g">Right Dialer</string>
+    <string name="transparent_call_screen_g">صفحه تماس شفاف</string>
+    <string name="call_back_g">تماس بگیرید</string>
+    <string name="call_back_person_g">با شماره %s تماس بگیرید</string>
+    <string name="missed_call_g">تماس از دست رفته</string>
+    <string name="missed_calls_g">تماس های بی پاسخ</string>
+    <string name="missed_call_notifications_g">اعلان‌های تماس بی‌پاسخ</string>
+    <string name="call_notification_channel_high_priority_g">اعلان‌های تماس با اولویت بالا</string>
+    <string name="call_notification_channel_g">اعلان‌های تماس</string>
+    <string name="dialpad_preferences">تنظیمات صفحه شماره گیری</string>
+    <string name="call_start_end_vibration">لرزش زمانی که تماس شما شروع و پایان است</string>
+
+    <string name="show_contact_thumbnails_g">نمایش تصاویر کوچک مخاطب</string>
+    <string name="hide_dialpad_letters_g">پنهان کردن حروف صفحه شماره گیری</string>
+    <string name="show_caller_description_g">نمایش اطلاعات تماس گیرنده اضافی</string>
+    <string name="nickname">نام مستعار</string>
+    <string name="company">شرکت</string>
+    <string name="call_anonymously">تماس ناشناس (با پیشوند #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>هشدار</h4>
+             شماره با پیشوند #31# تماس گرفته خواهد شد <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             هنگام استفاده از پیشوند #31# مطمئن شوید که اپراتور شما از سرویس پنهان کردن شماره پشتیبانی می کند. <br>
+             ممکن است ارائه دهنده خدمات شما هزینه اضافی برای این سرویس دریافت کند.
+        ]]>
+    </string>
+
+    <string name="audio_route_earpiece_g">گوشی دستگاه</string>
+    <string name="open_speed_dial_manage">مدیریت شماره گیری سریع را باز کنید؟</string>
+
+    <!-- Timer -->
+    <string name="timer">تایمر</string>
+    <string name="timers_notification_msg">تایمرها در حال اجرا هستند</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d تایمر در حال اجراست</item>
+        <item quantity="other">%d تایمر در حال اجراست</item>
+    </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">چرا باید قفل دستگاهم را باز کنم تا به تماس ورودی پاسخ دهم؟</string>
+    <string name="faq_1_text_dialer_g">سیستم عامل شما دسترسی برنامه به صفحه قفل را مسدود می کند. باید به برنامه اجازه دسترسی به صفحه قفل را بدهید. به عنوان مثال در MIUI باید دسترسی را در تنظیمات => اعلان‌ها => اعلان‌های صفحه قفل فعال کنید.</string>
+    <string name="faq_2_title_dialer_g">چگونه یک عدد را در صفحه شماره گیری کپی یا جایگذاری کنم؟</string>
+    <string name="faq_2_text_dialer_g">با فشار طولانی دکمه تماس، محتویات کلیپ‌بورد جای‌گذاری می‌شود. اگر قبلاً شماره‌ای را وارد کرده‌اید، با فشار طولانی دکمه تماس، شماره در کلیپ‌بورد کپی می‌شود.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">سبک پاسخ</string>
+    <string name="buttons">دکمه‌ها</string>
+    <string name="answer_slider">لغزنده</string>
+    <string name="answer_slider_outline">لغزنده طرح کلی</string>
+    <string name="answer_slider_vertical">لغزنده عمودی</string>
+</resources>

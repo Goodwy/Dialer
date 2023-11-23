@@ -12,7 +12,6 @@
     <string name="request_access">Pedir acesso</string>
     <string name="remove_confirmation">Tem certeza de que deseja remover os itens selecionados do histórico de chamadas\?</string>
     <string name="clear_history_confirmation">Tem a certeza de que pretende remover tudo do histórico de chamadas\?</string>
-    <string name="show_grouped_calls">Mostrar chamadas em grupo</string>
     <string name="clear_call_history">Limpar registo de chamadas</string>
     <string name="show_call_details">Mostrar detalhes da chamada</string>
     <!-- Dialpad -->
@@ -55,7 +54,6 @@
     <string name="conference_manage">Gerir chamada de conferência</string>
     <string name="conference">Conferência</string>
     <string name="audio_route_speaker">Altifalante</string>
-    <string name="audio_route_earpiece">Auricular</string>
     <string name="audio_route_bluetooth">Bluetooth</string>
     <string name="audio_route_wired_headset">Auscultador de cabo</string>
     <string name="audio_route_wired_or_earpiece">Cabo ou auricular</string>
@@ -72,6 +70,8 @@
     <string name="disable_swipe_to_answer">Clicar em vez de deslizar para atender</string>
     <string name="show_incoming_calls_full_screen">Mostrar em ecrã completo as chamadas recebidas</string>
     <string name="hide_dialpad_numbers">Ocultar números no marcador</string>
+    <string name="export_call_history">Exportar registo de chamadas</string>
+    <string name="import_call_history">Importar registo de chamadas</string>
     <!-- FAQ -->
     <string name="faq_1_title">Estou a ouvir som mas o ecrã não liga. O que posso fazer\?</string>
     <string name="faq_1_text">Esses problemas podem ter muitos motivos específicos do dispositivo e do sistema, difíceis de dizer em geral. Aceda às definições do sistema e certifique-se de que concedeu as permissões necessárias tais como permitir exibição por cima das outras aplicações.</string>

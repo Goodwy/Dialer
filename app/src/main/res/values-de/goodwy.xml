@@ -3,26 +3,52 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Transparenter Anrufbildschirm</string>
     <string name="call_back_g">Rufen</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">Rückruf %s</string>
     <string name="missed_call_g">Verpasster Anruf</string>
     <string name="missed_calls_g">Verpasste Anrufe</string>
     <string name="missed_call_notifications_g">Benachrichtigungen über verpasste Anrufe</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Rufbenachrichtigungen hohe Priorität</string>
+    <string name="call_notification_channel_g">Rufbenachrichtigungen</string>
+    <string name="dialpad_preferences">Dialpad-Einstellungen</string>
+    <string name="call_start_end_vibration">Vibrieren, wenn Ihr Anruf beginnt und endet</string>
 
     <string name="show_contact_thumbnails_g">Kontakt-Miniaturansichten anzeigen</string>
     <string name="hide_dialpad_letters_g">Wählscheibenbuchstaben ausblenden</string>
+    <string name="show_caller_description_g">Zusätzliche Anruferinformationen anzeigen</string>
+    <string name="nickname">Spitzname</string>
+    <string name="company">Firma</string>
+    <string name="call_anonymously">Anonym anrufen (mit Vorwahl #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Warnung</h4>
+            Die Nummer wird mit der Vorwahl #31# angerufen <br><br>
+                <h6"><i>  #31#%s</i></h6>
+            Vergewissern Sie sich, dass Ihr Netzbetreiber den Rufnummernüberwachungsdienst unterstützt, wenn Sie die Vorwahl #31# verwenden. <br>
+            Ihr Dienstanbieter kann eine zusätzliche Gebühr für diesen Dienst verlangen..
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Kopfhörer des Geräts</string>
+    <string name="open_speed_dial_manage">Öffnen Sie die Kurzwahlverwaltung?</string>
 
     <!-- Timer -->
     <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timers_notification_msg">Die Timer laufen</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d Timer wird ausgeführt</item>
+        <item quantity="other">%d Timer werden ausgeführt</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Warum muss ich mein Gerät entsperren, um einen eingehenden Anruf zu beantworten? </string>.
+    <string name="faq_1_text_dialer_g">Das Betriebssystem blockiert den Zugriff von Anwendungen auf den Sperrbildschirm. Sie müssen der Anwendung den Zugriff auf den Sperrbildschirm erlauben. Zum Beispiel müssen Sie in MIUI den Zugriff auf Einstellungen => Benachrichtigungen => Benachrichtigungen auf dem Sperrbildschirm erlauben.</string>
+    <string name="faq_2_title_dialer_g">Wie kann man eine Nummer auf dem Wählbildschirm kopieren oder einfügen? </string>
+    <string name="faq_2_text_dialer_g">Ein langer Druck auf die Ruftaste fügt den Inhalt der Zwischenablage ein. Wenn die Nummer bereits eingegeben ist, wird sie durch einen langen Druck auf die Anruftaste in die Zwischenablage kopiert.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Antworttaste Stil</string>
+    <string name="buttons">Buttons</string>
+    <string name="answer_slider">Schieberegler</string>
+    <string name="answer_slider_outline">Schieberegler mit Umrandung</string>
+    <string name="answer_slider_vertical">Vertikaler Schieberegler</string>
 </resources>

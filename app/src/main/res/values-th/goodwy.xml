@@ -3,25 +3,51 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">หน้าจอการโทรแบบโปร่งใส</string>
     <string name="call_back_g">เรียก</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">โทรกลับ %s</string>
     <string name="missed_call_g">สายที่ไม่ได้รับ</string>
     <string name="missed_calls_g">สายที่ไม่ได้รับ</string>
     <string name="missed_call_notifications_g">การแจ้งเตือนสายที่ไม่ได้รับ</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">การแจ้งเตือนการโทรมีลำดับความสำคัญสูง</string>
+    <string name="call_notification_channel_g">การแจ้งเตือนการโทร</string>
+    <string name="dialpad_preferences">การตั้งค่าแป้นกดหมายเลข</string>
+    <string name="call_start_end_vibration">สั่นเมื่อสายเริ่มต้นและสิ้นสุด</string>
 
     <string name="show_contact_thumbnails_g">แสดงรูปขนาดย่อของที่ติดต่อ</string>
     <string name="hide_dialpad_letters_g">ซ่อนตัวอักษรแป้นกดหมายเลข</string>
+    <string name="show_caller_description_g">แสดงข้อมูลผู้โทรเพิ่มเติม</string>
+    <string name="nickname">ชื่อเล่น</string>
+    <string name="company">บริษัท</string>
+    <string name="call_anonymously">โทรโดยไม่ระบุชื่อ (พร้อมคํานําหน้า #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>คำเตือน</h4>
+             หมายเลขจะถูกเรียกโดยนำหน้า #31# <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             ตรวจสอบให้แน่ใจว่าผู้ให้บริการของคุณรองรับบริการซ่อนหมายเลขเมื่อใช้คำนำหน้า #31# <br>
+             ผู้ให้บริการของคุณอาจเรียกเก็บค่าธรรมเนียมเพิ่มเติมสำหรับบริการนี้
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">หูฟังของอุปกรณ์</string>
+    <string name="open_speed_dial_manage">เปิดจัดการการโทรด่วน?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">ตัวจับเวลา</string>
+    <string name="timers_notification_msg">ตัวจับเวลากำลังทำงาน</string>
     <plurals name="timer_notification_msg">
-        <item quantity="other">%d timers are running</item>
+        <item quantity="other">ตัวจับเวลา %d ตัวกำลังทำงานอยู่</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">เหตุใดฉันจึงต้องปลดล็อกอุปกรณ์เพื่อรับสายเรียกเข้า</string>
+    <string name="faq_1_text_dialer_g">ระบบปฏิบัติการบล็อกไม่ให้แอปเข้าถึงหน้าจอล็อก คุณต้องอนุญาตให้แอปเข้าถึงหน้าจอล็อก ตัวอย่างเช่น ใน MIUI คุณต้องอนุญาตให้เข้าถึงการตั้งค่า => การแจ้งเตือน => การแจ้งเตือนบนหน้าจอล็อก</string>
+    <string name="faq_2_title_dialer_g">ฉันจะคัดลอกหรือวางหมายเลขบนหน้าจอโทรออกได้อย่างไร</string>
+    <string name="faq_2_text_dialer_g">กดปุ่มโทรค้างไว้เพื่อวางเนื้อหาของคลิปบอร์ด หากป้อนหมายเลขแล้ว ให้กดปุ่มโทรค้างไว้เพื่อคัดลอกไปยังคลิปบอร์ด</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">รูปแบบปุ่มรับสาย</string>
+    <string name="buttons">ปุ่ม</string>
+    <string name="answer_slider">แถบเลื่อน</string>
+    <string name="answer_slider_outline">แถบเลื่อนเค้าร่าง</string>
+    <string name="answer_slider_vertical">แถบเลื่อนแนวตั้ง</string>
 </resources>

@@ -2,27 +2,53 @@
 <resources>
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Pantalla de chamada transparente</string>
-    <string name="call_back_g">Devolver a chamada</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_g">Volve chamar</string>
+    <string name="call_back_person_g">Volve chamar ao %s</string>
     <string name="missed_call_g">Chamada perdida</string>
     <string name="missed_calls_g">Chamadas perdidas</string>
     <string name="missed_call_notifications_g">Notificacións de chamadas perdidas</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Notificacións de chamadas de alta prioridade</string>
+    <string name="call_notification_channel_g">Notificacións de chamadas</string>
+    <string name="dialpad_preferences">Preferencias do teclado</string>
+    <string name="call_start_end_vibration">Vibra cando comeza e remata a túa chamada</string>
 
     <string name="show_contact_thumbnails_g">Mostrar miniaturas dos contactos</string>
     <string name="hide_dialpad_letters_g">Ocultar letras do teclado de marcación</string>
+    <string name="show_caller_description_g">Mostra información adicional da chamada</string>
+    <string name="nickname">Alcume</string>
+    <string name="company">Compañía</string>
+    <string name="call_anonymously">Chamar de forma anónima (co prefixo #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Aviso</h4>
+             O número chamarase co prefixo #31# <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             Asegúrate de que o teu operador admite o servizo de ocultación de números cando utilizas o prefixo #31#. <br>
+             O seu fornecedor de servizos pode cobrar unha taxa adicional por este servizo.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Auricular do dispositivo</string>
+    <string name="open_speed_dial_manage">Queres abrir a xestión de marcación rápida?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">Temporizador</string>
+    <string name="timers_notification_msg">Hai temporizadores activos</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d temporizador activado</item>
+        <item quantity="other">%d temporizadores activados</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Por que teño que desbloquear o meu dispositivo para responder a unha chamada entrante?</string>
+    <string name="faq_1_text_dialer_g">O sistema operativo está bloqueando o acceso das aplicacións á pantalla de bloqueo. Debes permitir que a aplicación acceda á pantalla de bloqueo. Por exemplo, en MIUI, cómpre permitir o acceso a Configuración => Notificacións => Notificacións na pantalla de bloqueo.</string>
+    <string name="faq_2_title_dialer_g">Como copio ou pego un número na pantalla do marcador?</string>
+    <string name="faq_2_text_dialer_g">Preme longamente o botón de chamada para pegar o contido do portapapeis. Se o número xa está introducido, unha pulsación longa no botón de chamada cópiao no portapapeis.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Estilo do botón de resposta</string>
+    <string name="buttons">Botóns</string>
+    <string name="answer_slider">Control deslizante</string>
+    <string name="answer_slider_outline">Control deslizante de esquema</string>
+    <string name="answer_slider_vertical">Deslizador vertical</string>
 </resources>

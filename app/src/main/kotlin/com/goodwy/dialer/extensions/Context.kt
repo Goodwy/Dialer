@@ -33,7 +33,6 @@ import com.goodwy.dialer.models.TimerState
 import com.goodwy.dialer.receivers.HideTimerReceiver
 import me.leolin.shortcutbadger.ShortcutBadger
 import java.util.*
-import kotlin.collections.ArrayList
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
@@ -42,8 +41,8 @@ val Context.audioManager: AudioManager get() = getSystemService(Context.AUDIO_SE
 val Context.powerManager: PowerManager get() = getSystemService(Context.POWER_SERVICE) as PowerManager
 
 @SuppressLint("MissingPermission")
-fun Context.getAvailableSIMCardLabels(): ArrayList<SIMAccount> {
-    val SIMAccounts = ArrayList<SIMAccount>()
+fun Context.getAvailableSIMCardLabels(): List<SIMAccount> {
+    val SIMAccounts = mutableListOf<SIMAccount>()
     try {
         telecomManager.callCapablePhoneAccounts.forEachIndexed { index, account ->
             val phoneAccount = telecomManager.getPhoneAccount(account)
@@ -82,22 +81,22 @@ fun Context.updateUnreadCountBadge(count: Int) {//conversations: List<RecentCall
 
 @SuppressLint("NewApi")
 fun Context.showMessageNotification(callContact: CallContact) {//(address: String, body: String, threadId: Long, bitmap: Bitmap?, sender: String) {
-    val id = 420// если нужно группировать = callContact.number.hashCode()
-    val callContactAvatarHelper = CallContactAvatarHelper(this)
-    val callContactAvatar = callContactAvatarHelper.getCallContactAvatar(callContact)
+    val id = 420 //if you need to group = callContact.number.hashCode()
+//    val callContactAvatarHelper = CallContactAvatarHelper(this)
+//    val callContactAvatar = callContactAvatarHelper.getCallContactAvatar(callContact)
     val callerName = if (callContact != null && callContact.name.isNotEmpty()) callContact.name
-    else if (callContact.numberLabel.isNotEmpty()) " - ${callContact.numberLabel}"
-    else this.getString(R.string.unknown_caller)
+                            else if (callContact.numberLabel.isNotEmpty()) " - ${callContact.numberLabel}"
+                            else this.getString(R.string.unknown_caller)
     config.numberMissedCalls = config.numberMissedCalls + 1
 
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-    val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+//    val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
     if (isOreoPlus()) {
-        val audioAttributes = AudioAttributes.Builder()
-            .setUsage(AudioAttributes.USAGE_NOTIFICATION)
-            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-            .setLegacyStreamType(AudioManager.STREAM_NOTIFICATION)
-            .build()
+//        val audioAttributes = AudioAttributes.Builder()
+//            .setUsage(AudioAttributes.USAGE_NOTIFICATION)
+//            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+//            .setLegacyStreamType(AudioManager.STREAM_NOTIFICATION)
+//            .build()
 
         val name = getString(R.string.missed_call_notifications_g)
         val importance = NotificationManager.IMPORTANCE_HIGH
@@ -110,8 +109,8 @@ fun Context.showMessageNotification(callContact: CallContact) {//(address: Strin
     val openAppIntent = CallActivity.getStartIntent(this)
 
     val pendingIntent = PendingIntent.getActivity(this, id, openAppIntent, PendingIntent.FLAG_MUTABLE)
-    val summaryText = getString(R.string.missed_call_g)
-    /*val markAsReadIntent = Intent(this, MarkAsReadReceiver::class.java).apply {
+    /*val summaryText = getString(R.string.missed_call_g)
+    val markAsReadIntent = Intent(this, MarkAsReadReceiver::class.java).apply {
     action = MARK_AS_READ
     putExtra(THREAD_ID, threadId)
 }
@@ -271,8 +270,8 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
         .setChannelId(channelId)
         .addAction(
-            R.drawable.ic_cross_vector,
-            getString(R.string.dismiss),
+            com.goodwy.commons.R.drawable.ic_cross_vector,
+            getString(com.goodwy.commons.R.string.dismiss),
             if (addDeleteIntent) {
                 reminderActivityIntent
             } else {
@@ -310,6 +309,16 @@ fun Context.getHideTimerPendingIntent(timerId: Int): PendingIntent {
     val intent = Intent(this, HideTimerReceiver::class.java)
     intent.putExtra(TIMER_ID, timerId)
     return PendingIntent.getBroadcast(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+}
+
+fun Context.startCallPendingIntentUpdateCurrent(recipient: String): PendingIntent {
+    return PendingIntent.getActivity(this, 0,
+        Intent(Intent.ACTION_CALL, Uri.fromParts("tel", recipient, null)), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+}
+
+fun Context.sendSMSPendingIntentUpdateCurrent(recipient: String): PendingIntent {
+    return PendingIntent.getActivity(this, 0,
+        Intent(Intent.ACTION_SENDTO, Uri.fromParts("smsto", recipient, null)), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
 fun Context.hideTimerNotification(timerId: Int) = hideNotification(timerId)

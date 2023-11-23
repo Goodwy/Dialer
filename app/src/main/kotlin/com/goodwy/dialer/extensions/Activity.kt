@@ -50,7 +50,7 @@ fun Activity.launchSendSMSIntentRecommendation(recipient: String) {
     val simpleSmsMessengerDebug = "com.goodwy.smsmessenger.debug"
     if ((0..config.appRecommendationDialogCount).random() == 2 && (!isPackageInstalled(simpleSmsMessenger) && !isPackageInstalled(simpleSmsMessengerDebug))) {
         NewAppDialog(this, simpleSmsMessenger, getString(R.string.recommendation_dialog_messages_g), getString(R.string.right_sms_messenger),
-            AppCompatResources.getDrawable(this, R.mipmap.ic_sms_messenger)) {
+            AppCompatResources.getDrawable(this, R.drawable.ic_sms_messenger)) {
             launchSendSMSIntent(recipient)
         }
     } else {
@@ -63,7 +63,7 @@ fun Activity.startContactDetailsIntentRecommendation(contact: Contact) {
     val simpleContactsDebug = "com.goodwy.contacts.debug"
     if ((0..config.appRecommendationDialogCount).random() == 2 && (!isPackageInstalled(simpleContacts) && !isPackageInstalled(simpleContactsDebug))) {
         NewAppDialog(this, simpleContacts, getString(R.string.recommendation_dialog_contacts_g), getString(R.string.right_contacts),
-            AppCompatResources.getDrawable(this, R.mipmap.ic_contacts)) {
+            AppCompatResources.getDrawable(this, R.drawable.ic_contacts)) {
             startContactDetailsIntent(contact)
         }
     } else {
@@ -105,12 +105,7 @@ fun SimpleActivity.getHandleToUse(intent: Intent?, phoneNumber: String, callback
             val defaultHandle = telecomManager.getDefaultOutgoingPhoneAccount(PhoneAccount.SCHEME_TEL)
             when {
                 intent?.hasExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE) == true -> callback(intent.getParcelableExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE)!!)
-                config.getCustomSIM(phoneNumber)?.isNotEmpty() == true -> {
-                    val storedLabel = Uri.decode(config.getCustomSIM(phoneNumber))
-                    val availableSIMs = getAvailableSIMCardLabels()
-                    val firstOrNull = availableSIMs.firstOrNull { it.label == storedLabel }?.handle ?: availableSIMs.first().handle
-                    callback(firstOrNull)
-                }
+                config.getCustomSIM(phoneNumber) != null -> callback(config.getCustomSIM(phoneNumber))
                 defaultHandle != null -> callback(defaultHandle)
                 else -> {
                     SelectSIMDialog(this, phoneNumber, onDismiss = {

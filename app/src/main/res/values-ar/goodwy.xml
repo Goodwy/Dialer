@@ -3,23 +3,36 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">شاشة مكالمة شفافة</string>
     <string name="call_back_g">دعا</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">اتصل مرة أخرى %s</string>
     <string name="missed_call_g">مكالمة فائتة</string>
     <string name="missed_calls_g">مكالمات</string>
     <string name="missed_call_notifications_g">إشعارات المكالمات الفائتة</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">أولوية عالية لإشعارات المكالمات</string>
+    <string name="call_notification_channel_g">إشعارات المكالمات</string>
+    <string name="dialpad_preferences">تفضيلات لوحة الطلب</string>
+    <string name="call_start_end_vibration">الاهتزاز عند بدء المكالمة وانتهائها</string>
 
     <string name="show_contact_thumbnails_g">إظهار الصور المصغرة لجهات الاتصال</string>
     <string name="hide_dialpad_letters_g">إخفاء حروف لوحة الطلب</string>
+    <string name="show_caller_description_g">إظهار معلومات المتصل الإضافية</string>
+    <string name="nickname">لقب</string>
+    <string name="company">شركة</string>
+    <string name="call_anonymously">الاتصال بشكل مجهول (مع البادئة #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>تحذير</h4>
+             سيتم الاتصال بالرقم بالبادئة #31# <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             تأكد من أن مشغل شبكة الجوال لديك يدعم خدمة إخفاء الأرقام عند استخدام البادئة #31#. <ر>
+             قد يفرض مزود الخدمة الخاص بك رسومًا إضافية مقابل هذه الخدمة.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">سماعة أذن الجهاز</string>
+    <string name="open_speed_dial_manage">فتح إدارة الاتصال السريع؟</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
+    <string name="timer">الموقت</string>
     <string name="timers_notification_msg">أجهزة ضبط الوقت قيد التشغيل</string>
     <plurals name="timer_notification_msg">
         <item quantity="zero">جهاز ضبط الوقت %d قيد التشغيل</item>
@@ -29,4 +42,17 @@
         <item quantity="many">اجهزة ضبط الوقت %d قيد التشغيل</item>
         <item quantity="other">جهاز ضبط الوقت %d قيد التشغيل</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">لماذا يتعين علي إلغاء قفل جهازي للرد على مكالمة واردة؟</string>
+    <string name="faq_1_text_dialer_g">يحظر نظام التشغيل لديك وصول التطبيق إلى شاشة القفل. تحتاج إلى السماح للتطبيق بالوصول إلى شاشة القفل. على سبيل المثال ، في MIUI ، تحتاج إلى تمكين الوصول في الإعدادات => الإشعارات => إخطارات شاشة القفل.</string>
+    <string name="faq_2_title_dialer_g">كيف أنسخ رقمًا أو ألصقه على شاشة الاتصال؟</string>
+    <string name="faq_2_text_dialer_g">سيؤدي الضغط لفترة طويلة على زر الاتصال إلى لصق محتويات الحافظة. إذا كنت قد أدخلت بالفعل رقمًا ، فسيؤدي الضغط مع الاستمرار على زر الاتصال إلى نسخ الرقم إلى الحافظة.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">نمط زر الإجابة</string>
+    <string name="buttons">الأزرار</string>
+    <string name="answer_slider">شريط التمرير</string>
+    <string name="answer_slider_outline">شريط تمرير المخطط التفصيلي</string>
+    <string name="answer_slider_vertical">شريط التمرير العمودي</string>
 </resources>

@@ -15,30 +15,43 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="collapseActionView|always"/>
     <item
-        android:id="@+id/clear_call_history"
-        android:icon="@drawable/ic_clear_all"
-        android:title="@string/clear_call_history"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/sort"
         android:icon="@drawable/ic_sort_vector"
         android:showAsAction="always"
         android:title="@string/sort_by"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
     <item
         android:id="@+id/filter"
         android:icon="@drawable/ic_filter_vector"
         android:title="@string/filter"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/change_view_type"
+        android:title="@string/change_view_type"
+        android:visible="false"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/column_count"
+        android:title="@string/column_count"
+        android:visible="false"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/clear_call_history"
+        android:title="@string/clear_call_history"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/show_blocked_numbers"
+        android:icon="@drawable/ic_show_block"
+        android:title="@string/blocked_numbers"
+        app:showAsAction="never" />
     <item
         android:id="@+id/settings"
         android:title="@string/settings"
         android:icon="@drawable/ic_settings_hexagon"
-        app:showAsAction="always"/>
+        app:showAsAction="never"/>
     <item
         android:id="@+id/about"
         android:icon="@drawable/ic_info_vector"
         android:title="@string/about"
-        android:visible="false"
         app:showAsAction="never" />
 </menu>

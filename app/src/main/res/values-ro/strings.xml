@@ -12,7 +12,6 @@
     <string name="request_access">Solicitați acces</string>
     <string name="remove_confirmation">Sunteți sigur că doriți să eliminați elementele selectate din istoricul apelurilor\?</string>
     <string name="clear_history_confirmation">Sunteți sigur că doriți să eliminați totul din istoricul apelurilor\?</string>
-    <string name="show_grouped_calls">Afișați apelurile grupate</string>
     <string name="clear_call_history">Ștergeți istoricul apelurilor</string>
     <string name="show_call_details">Afișați detaliile apelului</string>
     <!-- Dialpad -->
@@ -55,7 +54,6 @@
     <string name="conference_manage">Gestionați apelul de conferință</string>
     <string name="conference">Conferință</string>
     <string name="audio_route_speaker">Speaker</string>
-    <string name="audio_route_earpiece">Earpiece</string>
     <string name="audio_route_bluetooth">Bluetooth</string>
     <string name="audio_route_wired_headset">Wired Headset</string>
     <string name="audio_route_wired_or_earpiece">Wired or Earpiece</string>
@@ -72,10 +70,13 @@
     <string name="disable_swipe_to_answer">Înlocuiți glisarea pentru a răspunde la apelurile primite cu o singură apăsare</string>
     <string name="show_incoming_calls_full_screen">Afișați întotdeauna apelurile primite pe întreg ecranul</string>
     <string name="hide_dialpad_numbers">Hide dialpad numbers</string>
+    <string name="export_call_history">Export call history</string>
+    <string name="import_call_history">Import call history</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">Aud apelurile primite, dar ecranul nu se aprinde. Ce pot face\?</string>
     <string name="faq_1_text">Aceste probleme pot avea multe motive specifice dispozitivului și sistemului, fiind greu de spus în general. Ar trebui să vă uitați în setările dispozitivului și să vă asigurați că aplicația este permisă să apară atunci când este în fundal și că permite afișarea peste alte aplicații.</string>
+
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

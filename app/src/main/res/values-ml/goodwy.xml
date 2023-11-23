@@ -3,26 +3,52 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">സുതാര്യമായ കോൾ സ്ക്രീൻ</string>
     <string name="call_back_g">തിരിച്ചുവിളിക്കുക</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">തിരികെ വിളിക്കുക %s</string>
     <string name="missed_call_g">മിസ്ഡ് കോൾ</string>
     <string name="missed_calls_g">മിസ്സഡ് കോള്</string>
     <string name="missed_call_notifications_g">മിസ്ഡ് കോൾ അറിയിപ്പുകൾ</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">കോൾ അറിയിപ്പുകൾ ഉയർന്ന മുൻഗണന</string>
+    <string name="call_notification_channel_g">കോൾ അറിയിപ്പുകൾ</string>
+    <string name="dialpad_preferences">ഡയൽപാഡ് മുൻഗണനകൾ</string>
+    <string name="call_start_end_vibration">നിങ്ങളുടെ കോൾ ആരംഭിക്കുമ്പോഴും അവസാനിക്കുമ്പോഴും വൈബ്രേറ്റ് ചെയ്യുക</string>
 
     <string name="show_contact_thumbnails_g">കോൺടാക്റ്റ് ലഘുചിത്രങ്ങൾ കാണിക്കുക</string>
     <string name="hide_dialpad_letters_g">ഡയൽപാഡ് അക്ഷരങ്ങൾ മറയ്ക്കുക</string>
+    <string name="show_caller_description_g">അധിക കോളർ വിവരങ്ങൾ കാണിക്കുക</string>
+    <string name="nickname">വിളിപ്പേര്</string>
+    <string name="company">കമ്പനി</string>
+    <string name="call_anonymously">അജ്ഞാതമായി വിളിക്കുക (#31# പ്രിഫിക്‌സിനൊപ്പം)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>മുന്നറിയിപ്പ്</h4>
+             #31# <br><br> എന്ന പ്രിഫിക്‌സ് ഉപയോഗിച്ച് നമ്പറിലേക്ക് വിളിക്കപ്പെടും
+                 <h6"><i> #31#%s</i></h6>
+             #31# പ്രിഫിക്സ് ഉപയോഗിക്കുമ്പോൾ നമ്പർ മറയ്ക്കൽ സേവനത്തെ നിങ്ങളുടെ ഓപ്പറേറ്റർ പിന്തുണയ്ക്കുന്നുവെന്ന് ഉറപ്പാക്കുക. <br>
+             ഈ സേവനത്തിനായി നിങ്ങളുടെ സേവന ദാതാവ് അധിക ഫീസ് ഈടാക്കിയേക്കാം.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">ഉപകരണത്തിന്റെ ഇയർപീസ്</string>
+    <string name="open_speed_dial_manage">സ്പീഡ് ഡയൽ മാനേജ് തുറക്കണോ?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">ടൈമർ</string>
+    <string name="timers_notification_msg">ടൈമറുകൾ പ്രവർത്തിക്കുന്നു</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d ടൈമർ പ്രവർത്തിക്കുന്നു</item>
+        <item quantity="other">%d ടൈമറുകൾ പ്രവർത്തിക്കുന്നു</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">ഒരു ഇൻകമിംഗ് കോളിന് മറുപടി നൽകുന്നതിന് ഞാൻ എന്തിനാണ് എന്റെ ഉപകരണം അൺലോക്ക് ചെയ്യേണ്ടത്?</string>
+    <string name="faq_1_text_dialer_g">ലോക്ക് സ്‌ക്രീൻ ആക്‌സസ് ചെയ്യുന്നതിൽ നിന്ന് ഓപ്പറേറ്റിംഗ് സിസ്റ്റം ആപ്പുകളെ തടയുന്നു. ലോക്ക് സ്‌ക്രീൻ ആക്‌സസ് ചെയ്യാൻ നിങ്ങൾ ആപ്പിനെ അനുവദിക്കേണ്ടതുണ്ട്. ഉദാഹരണത്തിന്, MIUI-ൽ, ലോക്ക് സ്ക്രീനിലെ ക്രമീകരണങ്ങൾ => അറിയിപ്പുകൾ => അറിയിപ്പുകൾ എന്നതിലേക്ക് നിങ്ങൾ ആക്സസ് അനുവദിക്കേണ്ടതുണ്ട്.</string>
+    <string name="faq_2_title_dialer_g">എങ്ങനെയാണ് ഡയലർ സ്ക്രീനിൽ ഒരു നമ്പർ പകർത്തുകയോ ഒട്ടിക്കുകയോ ചെയ്യുക?</string>
+    <string name="faq_2_text_dialer_g">ക്ലിപ്പ്ബോർഡിലെ ഉള്ളടക്കങ്ങൾ ഒട്ടിക്കാൻ കോൾ ബട്ടൺ ദീർഘനേരം അമർത്തുക. നമ്പർ ഇതിനകം നൽകിയിട്ടുണ്ടെങ്കിൽ, കോൾ ബട്ടണിൽ ദീർഘനേരം അമർത്തിയാൽ അത് ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തുന്നു.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">ഉത്തര ബട്ടൺ ശൈലി</string>
+    <string name="buttons">ബട്ടണുകൾ</string>
+    <string name="answer_slider">സ്ലൈഡർ</string>
+    <string name="answer_slider_outline">ഔട്ട്‌ലൈൻ സ്ലൈഡർ</string>
+    <string name="answer_slider_vertical">ലംബ സ്ലൈഡർ</string>
 </resources>

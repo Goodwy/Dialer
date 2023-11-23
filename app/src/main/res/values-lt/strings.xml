@@ -12,7 +12,6 @@
     <string name="request_access">Prašyti prieigos</string>
     <string name="remove_confirmation">Ar tikrai norite pašalinti pasirinktus elementus iš skambučių istorijos\?</string>
     <string name="clear_history_confirmation">Ar tikrai norite viską ištrinti iš skambučių istorijos\?</string>
-    <string name="show_grouped_calls">Rodyti sugrupuotus skambučius</string>
     <string name="clear_call_history">Išvalyti skambučių istoriją</string>
     <string name="show_call_details">Rodyti skambučio informaciją</string>
     <!-- Dialpad -->
@@ -55,7 +54,6 @@
     <string name="conference_manage">Tvarkyti konferencinį skambutį</string>
     <string name="conference">Konferencija</string>
     <string name="audio_route_speaker">Speaker</string>
-    <string name="audio_route_earpiece">Earpiece</string>
     <string name="audio_route_bluetooth">Bluetooth</string>
     <string name="audio_route_wired_headset">Wired Headset</string>
     <string name="audio_route_wired_or_earpiece">Wired or Earpiece</string>
@@ -72,10 +70,13 @@
     <string name="disable_swipe_to_answer">Atsiliepiant į įeinančius skambučius perbraukimą pakeiskite paspaudimu</string>
     <string name="show_incoming_calls_full_screen">Visada rodykite įeinančius skambučius per visą ekraną</string>
     <string name="hide_dialpad_numbers">Hide dialpad numbers</string>
+    <string name="export_call_history">Export call history</string>
+    <string name="import_call_history">Import call history</string>
 
     <!-- FAQ -->
     <string name="faq_1_title">I hear incoming calls, but the screen doesn\'t turn on. What can I do?</string>
     <string name="faq_1_text">Such issues can have many device and system specific reasons, hard to say in general. You should look around in your device settings and make sure that the app is allowed to pop up when in background and allow displaying over other apps.</string>
+
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

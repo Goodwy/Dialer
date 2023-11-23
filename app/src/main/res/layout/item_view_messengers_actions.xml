@@ -5,7 +5,7 @@
     android:id="@+id/contact_messenger_action_holder"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/ripple_all_corners"
+    android:background="@drawable/button_white_bg_10dp_pressed"
     android:visibility="gone"
     tools:visibility="visible">
 
@@ -16,7 +16,7 @@
         android:paddingTop="@dimen/contact_padding_top"
         android:paddingBottom="@dimen/contact_padding_top"
         android:paddingStart="@dimen/contact_padding_left"
-        android:paddingEnd="4dp">
+        android:paddingEnd="14dp">
 
         <com.goodwy.commons.views.MyTextView
             android:id="@+id/contact_messenger_action_name"
@@ -57,7 +57,6 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="12dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:visibility="gone"
             tools:visibility="visible">

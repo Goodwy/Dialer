@@ -2,27 +2,53 @@
 <resources>
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Läpinäkyvä puhelunäyttö</string>
-    <string name="call_back_g">Kutsua</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_g">Soita takaisin</string>
+    <string name="call_back_person_g">Soita takaisin %s</string>
     <string name="missed_call_g">Vastaamaton puhelu</string>
     <string name="missed_calls_g">Vastaamattomat puhelut</string>
     <string name="missed_call_notifications_g">Vastaamattomien puhelujen ilmoitukset</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Puheluilmoitusten korkea prioriteetti</string>
+    <string name="call_notification_channel_g">Puheluilmoitukset</string>
+    <string name="dialpad_preferences">Dialpad-asetukset</string>
+    <string name="call_start_end_vibration">Värinä, kun puhelu alkaa ja päättyy</string>
 
     <string name="show_contact_thumbnails_g">Yhteystietojen pikkukuvien näyttäminen</string>
     <string name="hide_dialpad_letters_g">Piilota dialpad-kirjaimet</string>
+    <string name="show_caller_description_g">Näytä soittajan lisätiedot</string>
+    <string name="nickname">Lempinimi</string>
+    <string name="company">Yritys</string>
+    <string name="call_anonymously">Soita nimettömänä (etuliitteellä #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Varoitus</h4>
+             Numeroon soitetaan etuliitteellä #31# <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             Varmista, että operaattorisi tukee numeron piilotuspalvelua, kun käytät etuliitettä #31#. <br>
+             Palveluntarjoajasi saattaa veloittaa tästä palvelusta lisämaksun.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Laitteen kuuloke</string>
+    <string name="open_speed_dial_manage">Avaa pikavalinnan hallinta?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">Ajastin</string>
+    <string name="timers_notification_msg">Ajastuksia on käynnissä</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d ajastus on käynnissä</item>
+        <item quantity="other">%d ajastusta on käynnissä</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Miksi minun on avattava laitteeni lukitus vastatakseni saapuvaan puheluun? </string>.
+    <string name="faq_1_text_dialer_g">Käyttöjärjestelmä estää sovelluksia pääsemästä lukitusnäyttöön. Sinun on sallittava sovelluksen pääsy lukitusnäyttöön. Esimerkiksi MIUI:ssa sinun on sallittava pääsy lukitusnäytön Asetukset => Ilmoitukset => Ilmoitukset.</string>.
+    <string name="faq_2_title_dialer_g">Miten kopioida tai liittää numero valintanäytössä? </string>
+    <string name="faq_2_text_dialer_g">Soittonäppäimen pitkä painallus liittää leikepöydän sisällön. Jos numero on jo syötetty, soittopainikkeen pitkä painallus kopioi sen leikepöydälle.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Vastauspainikkeen tyyli</string>
+    <string name="buttons">Painikkeet</string>
+    <string name="answer_slider">Slider</string>
+    <string name="answer_slider_outline">Liukusäädin ääriviivalla</string>
+    <string name="answer_slider_vertical">Pystysuora liukusäädin</string>
 </resources>

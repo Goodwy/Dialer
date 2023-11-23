@@ -9,18 +9,19 @@ import com.goodwy.commons.helpers.ContactsHelper
 import com.goodwy.commons.helpers.MyContactsContentProvider
 import com.goodwy.commons.helpers.ensureBackgroundThread
 import com.goodwy.dialer.R
+import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.isConference
 import com.goodwy.dialer.models.CallContact
 
 fun getCallContact(context: Context, call: Call?, callback: (CallContact) -> Unit) {
     if (call.isConference()) {
-        callback(CallContact(context.getString(R.string.conference), "", "", ""))
+        callback(CallContact(context.getString(R.string.conference), "", "", "", ""))
         return
     }
 
     val privateCursor = context.getMyContactsCursor(false, true)
     ensureBackgroundThread {
-        val callContact = CallContact("", "", "", "")
+        val callContact = CallContact("", "", "", "", "")
         val handle = try {
             call?.details?.handle?.toString()
         } catch (e: NullPointerException) {
@@ -60,6 +61,20 @@ fun getCallContact(context: Context, call: Call?, callback: (CallContact) -> Uni
                         val specificPhoneNumber = contact.phoneNumbers.firstOrNull { it.value == number }
                         if (specificPhoneNumber != null) {
                             callContact.numberLabel = context.getPhoneNumberTypeText(specificPhoneNumber.type, specificPhoneNumber.label)
+                        }
+                    }
+
+                    val showCallerDescription = context.config.showCallerDescription
+                    if (showCallerDescription != SHOW_CALLER_NOTHING) {
+                        if (contact.organization.company.isNotEmpty() && showCallerDescription == SHOW_CALLER_COMPANY) {
+                            if (contact.organization.jobPosition.isNotEmpty()) {
+                                callContact.description = contact.organization.company + " (" + contact.organization.jobPosition + ")"
+                            } else {
+                                callContact.description = contact.organization.company
+                            }
+                        }
+                        if (contact.nickname.isNotEmpty() && showCallerDescription == SHOW_CALLER_NICKNAME) {
+                            callContact.description = contact.nickname
                         }
                     }
                 } else {

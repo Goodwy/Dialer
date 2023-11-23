@@ -3,26 +3,52 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Şəffaf Zəng Ekranı</string>
     <string name="call_back_g">Geri zəng et</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">%s nömrəsinə geri zəng edin</string>
     <string name="missed_call_g">Buraxılmış zəng</string>
     <string name="missed_calls_g">Buraxılmış zənglər</string>
     <string name="missed_call_notifications_g">Buraxılmış zəng bildirişləri</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Zəng bildirişləri yüksək prioritet</string>
+    <string name="call_notification_channel_g">Zəng bildirişləri</string>
+    <string name="dialpad_preferences">Yığım paneli üstünlükləri</string>
+    <string name="call_start_end_vibration">Zənginiz başlayanda və bitəndə titrəyin</string>
 
     <string name="show_contact_thumbnails_g">Kontakt miniatürlərini göstərin</string>
     <string name="hide_dialpad_letters_g">Nömrə hərflərini gizlədin</string>
+    <string name="show_caller_description_g">Əlavə zəng edən məlumatı göstərin</string>
+    <string name="nickname">Ləqəb</string>
+    <string name="company">Şirkət</string>
+    <string name="call_anonymously">Anonim zəng edin (#31# prefiksi ilə)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Xəbərdarlıq</h4>
+             Nömrə #31# prefiksi ilə çağırılacaq <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             #31# prefiksindən istifadə edərkən operatorunuzun nömrə gizlətmə xidmətini dəstəklədiyinə əmin olun. <br>
+             Xidmət provayderiniz bu xidmət üçün əlavə haqq tələb edə bilər.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Cihazın qulaqcığı</string>
+    <string name="open_speed_dial_manage">Sürətli yığım idarəsi açılsın?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">Taymer</string>
+    <string name="timers_notification_msg">Taymerlər işləyir</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d taymer işləyir</item>
+        <item quantity="other">%d taymer işləyir</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Daxil olan zəngə cavab vermək üçün niyə cihazın kilidini açmalıyam?</string>
+    <string name="faq_1_text_dialer_g">Əməliyyat sistemi proqramların kilid ekranına daxil olmasını əngəlləyir. Siz tətbiqin kilid ekranına daxil olmasına icazə verməlisiniz. Məsələn, MIUI-də siz Parametrlər => Bildirişlər => Kilid ekranında bildirişlərə girişə icazə verməlisiniz.</string>
+    <string name="faq_2_title_dialer_g">Nömrəni yığan ekranda necə kopyalaya və ya yapışdıra bilərəm?</string>
+    <string name="faq_2_text_dialer_g">Buferin məzmununu yapışdırmaq üçün zəng düyməsini uzun müddət basın. Əgər nömrə artıq daxil edilibsə, zəng düyməsini uzun basmaq onu mübadilə buferinə kopyalayır.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Cavab Düyməsi Üslubu</string>
+    <string name="buttons">Düymələr</string>
+    <string name="answer_slider">Slayder</string>
+    <string name="answer_slider_outline">Kontur kaydırıcısı</string>
+    <string name="answer_slider_vertical">Şaquli Sürgü</string>
 </resources>

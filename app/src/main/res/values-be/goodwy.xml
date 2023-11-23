@@ -7,15 +7,28 @@
     <string name="missed_call_g">Прапушчаны выклік</string>
     <string name="missed_calls_g">Прапушчаныя званкі</string>
     <string name="missed_call_notifications_g">Апавяшчэнні аб прапушчаных выкліках</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Апавяшчэнні аб выкліках з высокім прыярытэтам</string>
+    <string name="call_notification_channel_g">Апавяшчэнні аб выкліках</string>
+    <string name="dialpad_preferences">Параметры кнопак набору</string>
+    <string name="call_start_end_vibration">Вібрацыя пры пачатку і завяршэнні выкліку</string>
 
     <string name="show_contact_thumbnails_g">Паказаць мініяцюры кантактаў</string>
     <string name="hide_dialpad_letters_g">Схаваць літары панэлі набору</string>
+    <string name="show_caller_description_g">Паказаць дадатковую інфармацыю аб абаненце</string>
+    <string name="nickname">Псеўданім</string>
+    <string name="company">Кампанія</string>
+    <string name="call_anonymously">Тэлефанаваць ананімна (з прэфіксам #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Папярэджанне</h4>
+            Нумар будзе набраны з прэфіксам #31# <br><br>
+                <h6"><i>  #31#%s</i></h6>
+            Пераканайцеся, што ваш аператар падтрымлівае паслугу ўтойвання нумара пры выкарыстанні прэфікса #31#. <br>
+            Ваш аператар можа спаганяць дадатковую плату за гэтую паслугу.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Дынамік</string>
     <string name="audio_route_earpiece_g">Тэлефон</string>
-    <string name="audio_route_wired_or_earpiece_g">Дынамік прылады або правадная гарнітура</string>
     <string name="open_speed_dial_manage">Адкрыць кіраванне хуткім наборам?</string>
 
     <!-- Timer -->
@@ -27,4 +40,17 @@
         <item quantity="many">%d таймераў запушчана</item>
         <item quantity="other">%d таймераў запушчана</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Чаму для адказу на ўваходны выклік неабходна разблакаваць прыладу?</string>
+    <string name="faq_1_text_dialer_g">Аперацыйная сістэма блакуе доступ прыкладанняў да экрана блакавання. Неабходна дазволіць з дадаткам доступ да экрана блакавання. Напрыклад, у MIUI неабходна дазволіць доступ у Налады => Апавяшчэнні => Апавяшчэнні на экране блакавання.</string>
+    <string name="faq_2_title_dialer_g">Як скапіяваць ці ўставіць нумар на экране набору нумара?</string>
+    <string name="faq_2_text_dialer_g">Працяглы націск на кнопку выкліку ўстаўляе змесціва буфера абмену. Калі нумар ужо ўведзены, працяглы націск на кнопку выкліку капіюе яго ў буфер абмену.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Стыль кнопак адказу</string>
+    <string name="buttons">Кнопкі</string>
+    <string name="answer_slider">Слайдэр</string>
+    <string name="answer_slider_outline">Слайдэр з контурам</string>
+    <string name="answer_slider_vertical">Вертыкальны слайдэр</string>
 </resources>

@@ -12,7 +12,6 @@
     <string name="request_access">Erişim isteği</string>
     <string name="remove_confirmation">Seçilen ögeleri Arama Geçmişinden kaldırmak istediğinizden emin misiniz\?</string>
     <string name="clear_history_confirmation">Arama Geçmişindeki her şeyi kaldırmak istediğinizden emin misiniz\?</string>
-    <string name="show_grouped_calls">Gruplandırılmış aramaları göster</string>
     <string name="clear_call_history">Arama geçmişini temizle</string>
     <string name="show_call_details">Arama ayrıntılarını göster</string>
     <!-- Dialpad -->
@@ -55,7 +54,6 @@
     <string name="conference_manage">Konferans aramasını yönet</string>
     <string name="conference">Konferans</string>
     <string name="audio_route_speaker">Hoparlör</string>
-    <string name="audio_route_earpiece">Kulaklık</string>
     <string name="audio_route_bluetooth">Bluetooth</string>
     <string name="audio_route_wired_headset">Kablolu Kulaklık</string>
     <string name="audio_route_wired_or_earpiece">Kablolu veya Kulaklık</string>
@@ -72,6 +70,8 @@
     <string name="disable_swipe_to_answer">Gelen aramalara yanıt vermek için kaydırmayı tıklamayla değiştir</string>
     <string name="show_incoming_calls_full_screen">Gelen aramaları her zaman tam ekranda görüntüle</string>
     <string name="hide_dialpad_numbers">Tuş takımı numaralarını gizle</string>
+    <string name="export_call_history">Arama geçmişini dışa aktar</string>
+    <string name="import_call_history">Arama geçmişini içe aktar</string>
     <!-- FAQ -->
     <string name="faq_1_title">Gelen aramaları duyuyorum ama ekran açılmıyor. Ne yapabilirim\?</string>
     <string name="faq_1_text">Bu tür sorunların aygıta ve sisteme özgü birçok nedeni olabilir, genel olarak söylemek zor. Aygıt ayarlarınıza bakmalı ve uygulamanın arka plandayken açılmasına ve diğer uygulamaların üzerinde görüntülenmesine izin verildiğinden emin olmalısınız.</string>

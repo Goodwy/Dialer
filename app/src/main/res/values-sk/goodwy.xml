@@ -3,27 +3,53 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Priehľadná obrazovka hovoru</string>
     <string name="call_back_g">Zavolať</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">Zavolajte späť %s</string>
     <string name="missed_call_g">Zmeškaný hovor</string>
     <string name="missed_calls_g">Zmeškané hovory</string>
     <string name="missed_call_notifications_g">Upozornenia na zmeškané hovory</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Oznámenia o volaní s vysokou prioritou</string>
+    <string name="call_notification_channel_g">Oznámenia o volaní</string>
+    <string name="dialpad_preferences">Predvoľby číselnej klávesnice</string>
+    <string name="call_start_end_vibration">Vibrovanie pri začiatku a ukončení hovoru</string>
 
     <string name="show_contact_thumbnails_g">Zobrazenie miniatúr kontaktov</string>
     <string name="hide_dialpad_letters_g">Skrytie písmen klávesnice</string>
+    <string name="show_caller_description_g">Zobrazenie ďalších informácií o volajúcom</string>
+    <string name="nickname">Prezývka</string>
+    <string name="company">Spoločnosť</string>
+    <string name="call_anonymously">Zavolajte anonymne (s predvoľbou #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Upozornenie</h4>
+            Číslo bude volané s predvoľbou #31# <br><br>
+                <h6"><i>  #31#%s</i></h6>
+            Uistite sa, že váš operátor podporuje službu skrývania čísla pri použití prefixu #31#. <br>
+            Váš poskytovateľ služieb si môže za túto službu účtovať dodatočný poplatok.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Slúchadlo zariadenia</string>
+    <string name="open_speed_dial_manage">Otvoriť správu rýchlej voľby?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">Časovač</string>
+    <string name="timers_notification_msg">Sú spustené časovače</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="few">%d timers are running</item>
-        <item quantity="many">%d timers are running</item>
+        <item quantity="one">Beží %d časovač</item>
+        <item quantity="few">Bežia %d časovače</item>
+        <item quantity="many">Beží %d časovačov</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Prečo musím odomknúť svoje zariadenie, aby som mohol prijať prichádzajúci hovor?</string>
+    <string name="faq_1_text_dialer_g">Operačný systém blokuje aplikáciám prístup na uzamknutú obrazovku. Aplikácii musíte povoliť prístup k uzamknutej obrazovke. Napríklad v MIUI musíte povoliť prístup do Nastavenia => Upozornenia => Upozornenia na uzamknutej obrazovke.</string>
+    <string name="faq_2_title_dialer_g">Ako skopírujem alebo prilepím číslo na obrazovku vytáčania?</string>
+    <string name="faq_2_text_dialer_g">Dlhým stlačením tlačidla hovoru prilepíte obsah schránky. Ak je číslo už zadané, dlhým stlačením tlačidla hovoru ho skopírujete do schránky.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Štýl tlačidla odpovede</string>
+    <string name="buttons">Tlačidlá</string>
+    <string name="answer_slider">Posúvač</string>
+    <string name="answer_slider_outline">Posúvač obrysu</string>
+    <string name="answer_slider_vertical">Vertikálny posúvač</string>
 </resources>

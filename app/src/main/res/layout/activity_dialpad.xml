@@ -2,7 +2,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/dialpad_coordinator"
+    android:id="@+id/dialpadCoordinator"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,35 +10,33 @@
         android:id="@+id/dialpad_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/color_primary"
+        android:background="@color/default_background_color"
         app:menu="@menu/menu_dialpad"
-        app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle" />
+        app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle"/>
+
+    <com.goodwy.commons.views.MyEditText
+        android:id="@+id/dialpadInput"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginStart="56dp"
+        android:layout_marginEnd="56dp"
+        android:elevation="@dimen/tiny_margin"
+        android:paddingTop="@dimen/tiny_margin"
+        android:gravity="center"
+        android:inputType="phone"
+        android:layoutDirection="ltr"
+        android:textCursorDrawable="@null"
+        android:background="@null"
+        android:textSize="@dimen/dialpad_text_size"
+        tools:text="+1234567890"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/dialpad_holder"
+        android:id="@+id/dialpadHolder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:elevation="8dp"
+        android:layout_marginTop="?attr/actionBarSize"
         android:layout_alignParentBottom="true"
         android:focusableInTouchMode="true">
-
-        <com.goodwy.commons.views.MyEditText
-            android:id="@+id/dialpad_input"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_marginStart="56dp"
-            android:layout_marginEnd="56dp"
-            android:paddingTop="@dimen/medium_margin"
-            android:gravity="center"
-            android:inputType="phone"
-            android:layoutDirection="ltr"
-            android:textCursorDrawable="@null"
-            android:background="@null"
-            android:textSize="@dimen/dialpad_text_size"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="+1234567890"/>
 
         <com.goodwy.commons.views.MyTextView
             android:id="@+id/dialpad_add_number"
@@ -54,9 +52,9 @@
             android:textSize="@dimen/normal_text_size"
             android:background="@drawable/ripple_all_corners"
             android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dialpad_input"
             tools:visibility="visible"/>
 
         <com.goodwy.commons.views.MyTextView
@@ -82,10 +80,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:clipToPadding="false"
+            android:paddingBottom="64dp"
             android:scrollbars="none"
             android:visibility="gone"
             app:layoutManager="com.goodwy.commons.views.MyLinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/dialpad_call_button_holder"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dialpad_add_number"/>
 
         <com.reddit.indicatorfastscroll.FastScrollerView
@@ -109,127 +108,58 @@
             app:layout_constraintBottom_toTopOf="@+id/dialpad_divider"
             app:layout_constraintEnd_toStartOf="@+id/letter_fastscroller"
             app:layout_constraintTop_toTopOf="@+id/dialpad_list"
-            android:visibility="gone" />
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/dialpad_divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            app:layout_constraintBottom_toTopOf="@+id/dialpad_wrapper"/>
+            app:layout_constraintBottom_toTopOf="@+id/dialpadRoundWrapper"/>
         <!--android:background="@drawable/divider"-->
 
-        <include
-            android:id="@+id/dialpad_wrapper"
-            layout="@layout/dialpad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/dialpad_call_button_holder"/>
-
         <ImageView
-            android:id="@+id/dialpad_buttom_bg"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/theme_black_background_color"
-            app:layout_constraintTop_toTopOf="@+id/dialpad_call_button_holder"
+            android:id="@+id/dialpadRoundWrapperUp"
+            android:layout_width="@dimen/dialpad_phone_button_size"
+            android:layout_height="@dimen/dialpad_phone_button_size"
+            android:background="@drawable/circle_background_accent"
+            android:foreground="@drawable/button_round_pressed"
+            android:padding="@dimen/larger_margin"
+            android:layout_marginBottom="@dimen/about_margin"
+            android:src="@drawable/ic_dialpad_vector"
+            android:contentDescription="@string/show_dialpad"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <RelativeLayout
-            android:id="@+id/dialpad_down_holder"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/about_margin"
-            android:background="@drawable/ripple_all_corners"
-            android:contentDescription="@string/hide_dialpad"
-            app:layout_constraintBottom_toBottomOf="@+id/dialpad_call_button_holder"
-            app:layout_constraintEnd_toStartOf="@+id/dialpad_empty_button_holder"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/dialpad_call_button_holder">
-
-            <ImageView
-                android:id="@+id/dialpad_down"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_chevron_down_vector"/>
-
-        </RelativeLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/dialpad_empty_button_holder"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:paddingTop="@dimen/normal_margin"
-            android:paddingBottom="@dimen/normal_margin"
-            app:layout_constraintTop_toTopOf="@+id/dialpad_call_button_holder"
-            app:layout_constraintBottom_toBottomOf="@+id/dialpad_call_button_holder"
-            app:layout_constraintEnd_toStartOf="@+id/dialpad_clear_char_holder"
-            app:layout_constraintStart_toEndOf="@+id/dialpad_down_holder"/>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/dialpad_call_button_holder"
-            android:layout_width="wrap_content"
+        <include
+            android:id="@+id/dialpadRoundWrapper"
+            layout="@layout/dialpad_round"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/normal_margin"
-            android:paddingBottom="@dimen/normal_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/dialpad_clear_char_holder"
-            app:layout_constraintStart_toEndOf="@+id/dialpad_down_holder">
-
-            <ImageView
-                android:id="@+id/dialpad_call_button"
-                android:layout_width="@dimen/dialpad_phone_button_size"
-                android:layout_height="@dimen/dialpad_phone_button_size"
-                android:background="@drawable/circle_background_accent"
-                android:foreground="@drawable/button_round_pressed"
-                android:padding="@dimen/normal_margin"
-                android:src="@drawable/ic_phone_vector"
-                android:contentDescription="@string/call_number"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/dialpad_call_two_button"/>
-
-            <ImageView
-                android:id="@+id/dialpad_call_two_button"
-                android:layout_width="@dimen/dialpad_button_size_small"
-                android:layout_height="@dimen/dialpad_button_size_small"
-                android:layout_marginStart="@dimen/medium_margin"
-                android:background="@drawable/circle_background_accent"
-                android:foreground="@drawable/button_round_pressed"
-                android:contentDescription="@string/call_number"
-                android:padding="@dimen/normal_margin"
-                android:src="@drawable/ic_phone_two_vector"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="@+id/dialpad_call_button"
-                app:layout_constraintStart_toEndOf="@+id/dialpad_call_button"
-                tools:visibility="visible"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <RelativeLayout
-            android:id="@+id/dialpad_clear_char_holder"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="@dimen/about_margin"
-            android:background="@drawable/ripple_all_corners"
-            android:contentDescription="@string/delete"
-            app:layout_constraintBottom_toBottomOf="@+id/dialpad_call_button_holder"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/dialpad_empty_button_holder"
-            app:layout_constraintTop_toTopOf="@+id/dialpad_call_button_holder">
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <ImageView
-                android:id="@+id/dialpad_clear_char"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layoutDirection="ltr"
-                android:layout_centerInParent="true"
-                android:src="@drawable/ic_backspace" />
+        <include
+            android:id="@+id/dialpadClearWrapper"
+            layout="@layout/dialpad_grid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-        </RelativeLayout>
+        <include
+            android:id="@+id/dialpadRectWrapper"
+            layout="@layout/dialpad_rectangle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

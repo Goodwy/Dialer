@@ -18,6 +18,7 @@
         android:id="@+id/manage_speed_dial_scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/activity_padding_left_right"
         android:layout_marginTop="?attr/actionBarSize"
         android:fillViewport="true"
         android:scrollbars="none">

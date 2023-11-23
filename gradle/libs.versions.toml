@@ -1,0 +1,68 @@
+[versions]
+#jetbrains
+kotlin = "1.9.0"
+kotlinxSerializationJson = "1.5.1"
+#KSP
+ksp = "1.9.0-1.0.12"
+#Simple tools
+#simple-commons = "eceb48949e"
+#Gradle
+gradlePlugins-agp = "8.1.1"
+#Other
+indicatorFastScroll = "4524cd0b61"
+autofitTextView = "0.2.1"
+#Goodwy
+right-commons = "4316a7028d"
+badger = "1.1.22"
+libphonenumber = "8.12.49"
+geocoder = "2.185"
+rustore = "2.2.0"
+eventbus = "3.3.1"
+androidx-lifecycle = "2.6.1"
+behavioRule = "1.0.1"
+rxAnimation = "2.1.1"
+rxJava3 = "3.1.5"
+room = "2.6.0-beta01"
+#build
+app-build-compileSDKVersion = "34"
+app-build-targetSDK = "34"
+app-build-minimumSDK = "23"
+app-build-javaVersion = "VERSION_17"
+app-build-kotlinJVMTarget = "17"
+#versioning
+app-version-appId = "com.goodwy.dialer"
+app-version-versionCode = "483"
+app-version-versionName = "4.8.3"
+[libraries]
+#Simple Mobile Tools
+#simple-tools-commons = { module = "com.github.SimpleMobileTools:Simple-Commons", version.ref = "simple-commons" }
+#Kotlin
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+#Other
+indicator-fast-scroll = { module = "com.github.tibbi:IndicatorFastScroll", version.ref = "indicatorFastScroll" }
+autofit-text-view = { module = "me.grantland:autofittextview", version.ref = "autofitTextView" }
+#Goodwy
+goodwy-commons = { module = "com.github.Goodwy:Goodwy-Commons", version.ref = "right-commons" }
+shortcut-badger = { module = "me.leolin:ShortcutBadger", version.ref = "badger" }
+googlecode-libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "libphonenumber" }
+googlecode-geocoder = { module = "com.googlecode.libphonenumber:geocoder", version.ref = "geocoder" }
+rustore-client = { module = "ru.rustore.sdk:billingclient", version.ref = "rustore" }
+eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
+androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "androidx-lifecycle" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+behavio-rule = { module = "com.github.Liverm0r:BehavioRule", version.ref = "behavioRule" }
+rx-animation = { module = "com.mikhaellopez:rxanimation", version.ref = "rxAnimation" }
+rx-java = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxJava3" }
+[bundles]
+lifecycle = [
+    "androidx-lifecycle-runtime",
+    "androidx-lifecycle-viewModel",
+    "androidx-lifecycle-process",
+]
+[plugins]
+android = { id = "com.android.application", version.ref = "gradlePlugins-agp" }
+kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

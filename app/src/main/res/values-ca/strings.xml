@@ -12,7 +12,6 @@
     <string name="request_access">Sol·licita accés</string>
     <string name="remove_confirmation">Esteu segur que voleu eliminar els elements seleccionats de l\'historial de trucades\?</string>
     <string name="clear_history_confirmation">Esteu segur que voleu suprimir-ho tot de l\'historial de trucades\?</string>
-    <string name="show_grouped_calls">Mostra les trucades agrupades</string>
     <string name="clear_call_history">Neteja l\'historial de trucades</string>
     <string name="show_call_details">Mostra els detalls de la trucada</string>
     <!-- Dialpad -->
@@ -55,7 +54,6 @@
     <string name="conference_manage">Gestiona una trucada de conferència</string>
     <string name="conference">Conferència</string>
     <string name="audio_route_speaker">Altaveu</string>
-    <string name="audio_route_earpiece">Auricular</string>
     <string name="audio_route_bluetooth">Bluetooth</string>
     <string name="audio_route_wired_headset">Auriculars amb cable</string>
     <string name="audio_route_wired_or_earpiece">Amb cable o auricular</string>
@@ -72,6 +70,8 @@
     <string name="disable_swipe_to_answer">Substitueix el lliscament en respondre a les trucades entrants per fer clic</string>
     <string name="show_incoming_calls_full_screen">Mostra sempre les trucades entrants a pantalla completa</string>
     <string name="hide_dialpad_numbers">Oculta els números del teclat numèric</string>
+    <string name="export_call_history">Exporta l\'historial de trucades</string>
+    <string name="import_call_history">Importa l\'historial de trucades</string>
     <!-- FAQ -->
     <string name="faq_1_title">Sento trucades entrants, però la pantalla no s\'encén. Què puc fer\?</string>
     <string name="faq_1_text">Aquests problemes poden tenir moltes raons específiques del dispositiu i del sistema, difícils de dir en general. Hauríeu de mirar per la configuració del dispositiu i assegurar-vos que l\'aplicació pugui aparèixer en segon pla i permetre que es mostri sobre altres aplicacions.</string>

@@ -3,27 +3,53 @@
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Prozirni zaslon poziva</string>
     <string name="call_back_g">Poziv</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_person_g">Povratni poziv %s</string>
     <string name="missed_call_g">Propušteni poziv</string>
     <string name="missed_calls_g">Propušteni pozivi</string>
     <string name="missed_call_notifications_g">Obavijesti o propuštenim pozivima</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Obavijesti o pozivima visokog prioriteta</string>
+    <string name="call_notification_channel_g">Obavijesti o pozivima</string>
+    <string name="dialpad_preferences">Preference tipkovnice</string>
+    <string name="call_start_end_vibration">Vibrirajte kada je poziv započeo i završio</string>
 
     <string name="show_contact_thumbnails_g">Pokaži minijature kontakata</string>
     <string name="hide_dialpad_letters_g">Sakrij slova telefonske tipkovnice</string>
+    <string name="show_caller_description_g">Prikaži dodatne podatke o pozivatelju</string>
+    <string name="nickname">Přezdívka</string>
+    <string name="company">Tvrtka</string>
+    <string name="call_anonymously">Nazovite anonimno (s prefiksom #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Upozorenje</h4>
+             Broj će se pozivati s prefiksom #31# <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             Provjerite podržava li vaš operater uslugu skrivanja broja kada koristite prefiks #31#. <br>
+             Vaš davatelj usluga može naplatiti dodatnu naknadu za ovu uslugu.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">Slušalica uređaja</string>
+    <string name="open_speed_dial_manage">Otvorite upravljanje brzim biranjem?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">Brojač</string>
+    <string name="timers_notification_msg">Brojači su pokrenuti</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="few">%d timers are running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d brojač je pokrenut</item>
+        <item quantity="few">%d brojača su pokrenuta</item>
+        <item quantity="other">%d brojača je pokrenuto</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Zašto moram otključati svoj uređaj da bih odgovorio na dolazni poziv?</string>
+    <string name="faq_1_text_dialer_g">Operativni sustav blokira aplikacijama pristup zaključanom zaslonu. Aplikaciji morate dopustiti pristup zaključanom zaslonu. Na primjer, u MIUI-ju trebate dopustiti pristup Postavke => Obavijesti => Obavijesti na zaključanom zaslonu.</string>
+    <string name="faq_2_title_dialer_g">Kako mogu kopirati ili zalijepiti broj na zaslon brojčanika?</string>
+    <string name="faq_2_text_dialer_g">Dugo pritisnite gumb za pozivanje da zalijepite sadržaj međuspremnika. Ako je broj već unesen, dugi pritisak na tipku za pozivanje kopira ga u međuspremnik.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Stil gumba za odgovor</string>
+    <string name="buttons">Gumbi</string>
+    <string name="answer_slider">Klizač</string>
+    <string name="answer_slider_outline">Klizač obrisa</string>
+    <string name="answer_slider_vertical">Okomiti klizač</string>
 </resources>

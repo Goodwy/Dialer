@@ -95,6 +95,10 @@ class CallManager {
             }
         }
 
+        fun getPhoneSize(): Int {
+            return calls.size
+        }
+
         private fun getCallAudioState() = inCallService?.callAudioState
 
         fun getSupportedAudioRoutes(): Array<AudioRoute> {
@@ -152,11 +156,11 @@ class CallManager {
             call?.answer(VideoProfile.STATE_AUDIO_ONLY)
         }
 
-        fun reject() {
+        fun reject(rejectWithMessage: Boolean = false, textMessage: String? = null) {
             if (call != null) {
                 val state = getState()
                 if (state == Call.STATE_RINGING) {
-                    call!!.reject(false, null)
+                    call!!.reject(rejectWithMessage, textMessage)
                 } else if (state != Call.STATE_DISCONNECTED && state != Call.STATE_DISCONNECTING) {
                     call!!.disconnect()
                 }

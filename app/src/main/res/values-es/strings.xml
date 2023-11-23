@@ -12,7 +12,6 @@
     <string name="request_access">Solicitar acceso</string>
     <string name="remove_confirmation">¿Estás seguro que quieres eliminar los elementos seleccionados del historial de llamadas\?</string>
     <string name="clear_history_confirmation">¿Está seguro de que desea eliminar todo del historial de llamadas\?</string>
-    <string name="show_grouped_calls">Mostrar llamadas agrupadas</string>
     <string name="clear_call_history">Borrar historial de llamadas</string>
     <string name="show_call_details">Mostrar los detalles de la llamada</string>
     <!-- Dialpad -->
@@ -55,7 +54,6 @@
     <string name="conference_manage">Administrar conferencia</string>
     <string name="conference">Conferencia</string>
     <string name="audio_route_speaker">Altavoz</string>
-    <string name="audio_route_earpiece">Auricular</string>
     <string name="audio_route_bluetooth">Bluetooth</string>
     <string name="audio_route_wired_headset">Auricular con cable</string>
     <string name="audio_route_wired_or_earpiece">Auricular inalámbrico</string>
@@ -72,6 +70,8 @@
     <string name="disable_swipe_to_answer">Reemplazar deslizar para responder llamadas entrantes a pulsar</string>
     <string name="show_incoming_calls_full_screen">Siempre mostrar llamadas entrantes en pantalla completa</string>
     <string name="hide_dialpad_numbers">Ocultar los números del teclado</string>
+    <string name="export_call_history">Exportar el historial de llamadas</string>
+    <string name="import_call_history">Importar el historial de llamadas</string>
     <!-- FAQ -->
     <string name="faq_1_title">Escucho las llamadas entrantes, pero la pantalla no se enciende. ¿Qué puedo hacer\?</string>
     <string name="faq_1_text">Estos problemas pueden deberse a muchas razones específicas del dispositivo y del sistema, es difícil decirlo en general. Deberías mirar en la configuración de tu dispositivo y asegurarte de que la aplicación tiene permiso para aparecer cuando está en segundo plano y permitir la aplicación se muestre sobre otras aplicaciones.</string>

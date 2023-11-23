@@ -12,7 +12,6 @@
     <string name="request_access">Solicitar acesso</string>
     <string name="remove_confirmation">Tem certeza que quer remover os itens selecionados do Histórico de Chamadas\?</string>
     <string name="clear_history_confirmation">Tem certeza que quer remover tudo do Histórico de Chamadas\?</string>
-    <string name="show_grouped_calls">Mostrar chamadas agrupadas</string>
     <string name="clear_call_history">Limpar histórico de chamadas</string>
     <string name="show_call_details">Mostrar detalhes da chamada</string>
     <!-- Dialpad -->
@@ -55,7 +54,6 @@
     <string name="conference_manage">Gerenciar chamada em conferência</string>
     <string name="conference">Conferência</string>
     <string name="audio_route_speaker">Alto falante</string>
-    <string name="audio_route_earpiece">Fone de ouvido</string>
     <string name="audio_route_bluetooth">Bluetooth</string>
     <string name="audio_route_wired_headset">Headset com fio</string>
     <string name="audio_route_wired_or_earpiece">Wired or Earpiece</string>
@@ -72,9 +70,13 @@
     <string name="disable_swipe_to_answer">Clicar em vez de deslizar para responder chamadas</string>
     <string name="show_incoming_calls_full_screen">Sempre exibir as chamadas recebidas em tela cheia</string>
     <string name="hide_dialpad_numbers">Ocultar números do teclado</string>
+    <string name="export_call_history">Export call history</string>
+    <string name="import_call_history">Import call history</string>
+
     <!-- FAQ -->
     <string name="faq_1_title">Ouço chamadas recebidas, mas a tela não liga. O que eu posso fazer?</string>
     <string name="faq_1_text">Esses problemas podem ter muitos motivos específicos do dispositivo e do sistema, difíceis de dizer em geral. Você deve olhar em volta nas configurações do seu dispositivo e certificar-se de que o aplicativo pode aparecer quando estiver em segundo plano e permitir a exibição sobre outros aplicativos.</string>
+
     <!--
         Haven't found some strings? There's more at
         https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res

@@ -2,28 +2,55 @@
 <resources>
     <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Ecran de apel transparent</string>
-    <string name="call_back_g">Chema</string>
-    <string name="call_back_person_g">Call back %s</string>
+    <string name="call_back_g">Sună înapoi</string>
+    <string name="call_back_person_g">Sună înapoi %s</string>
     <string name="missed_call_g">Apel ratat</string>
     <string name="missed_calls_g">Apeluri pierdute</string>
     <string name="missed_call_notifications_g">Notificări privind apelurile pierdute</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Noificări de apel cu prioritate ridicată</string>
+    <string name="call_notification_channel_g">Noificări apeluri</string>
+    <string name="dialpad_preferences">Preferințe tastatură numerică</string>
+    <string name="call_start_end_vibration">Vibrați atunci când apelul este început și sfârșit</string>
 
     <string name="show_contact_thumbnails_g">Afișarea miniaturilor persoanelor de contact</string>
     <string name="hide_dialpad_letters_g">Ascunderea literelor tastaturii de dialpad</string>
+    <string name="show_caller_description_g">Afișați informații suplimentare despre apelant</string>
+    <string name="nickname">Poreclă</string>
+    <string name="company">Firmă</string>
+    <string name="call_anonymously">Sunați anonim (cu prefixul #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Avertisment</h4>
+            Numărul va fi apelat cu prefixul #31#. <br><br>
+                <h6"><i>  #31#%s</i></h6>
+            Asigurați-vă că operatorul dumneavoastră acceptă serviciul de ascundere a numerelor atunci când utilizați prefixul #31#. <br>
+            Furnizorul dumneavoastră de servicii poate percepe o taxă suplimentară pentru acest serviciu.
+        ]]>
+    </string>
 
-    <string name="audio_route_speaker_g">Device\'s speakerphone</string>
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="audio_route_wired_or_earpiece_g">Device\'s earpiece or wired headset</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    .
+    <string name="audio_route_earpiece_g">Auricularul dispozitivului</string>
+    <string name="open_speed_dial_manage">Deschideți gestionarea apelării rapide?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">Temporizator</string>
+    <string name="timers_notification_msg">Temporizatoarele sunt pornite</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="few">%d timers are running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d temporizatorul este pornit</item>
+        <item quantity="few">%d temporizatoarele sunt pornite</item>
+        <item quantity="other">%d de temporizatoare sunt pornite</item>
     </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">De ce trebuie să-mi deblochez dispozitivul pentru a răspunde la un apel primit?</string>.
+    <string name="faq_1_text_dialer_g">Sistemul de operare blochează accesul aplicațiilor la ecranul de blocare. Trebuie să permiteți aplicației să acceseze ecranul de blocare. De exemplu, în MIUI, trebuie să permiteți accesul la Settings => Notifications => Notifications on the lock screen.</string>.
+    <string name="faq_2_title_dialer_g">Cum se copiază sau se lipește un număr pe ecranul de apelare?</string>.
+    <string name="faq_2_text_dialer_g">O apăsare lungă pe butonul de apelare lipește conținutul clipboard-ului. Dacă numărul este deja introdus, o apăsare lungă pe butonul de apelare îl copiază în clipboard.</string>.
+
+    <!-- Answer style -->
+    <string name="answer_style">Stilul butonului de răspuns</string>.
+    <string name="buttons">Butoni</string>.
+    <string name="answer_slider">Slider</string>.
+    <string name="answer_slider_outline">Slider cu contur</string>
+    <string name="answer_slider_vertical">Slider vertical</string>
 </resources>
