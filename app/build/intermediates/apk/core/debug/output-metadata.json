@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.goodwy.dialer.debug",
+  "variantName": "coreDebug",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 483,
+      "versionName": "4.8.3",
+      "outputFile": "dialer-core-debug.apk"
+    }
+  ],
+  "elementType": "File"
+}

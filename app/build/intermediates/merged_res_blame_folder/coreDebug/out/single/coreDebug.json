@@ -1,0 +1,974 @@
+[
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_grey_black.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_grey_black.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_button_rounded.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/button_rounded.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_amber.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_amber.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_grey_black.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_grey_black.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-xhdpi_ic_slider.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-xhdpi/ic_slider.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_lime.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_lime.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_green.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_green.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_slider_vertical.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_slider_vertical.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_activity_call.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_call.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-anydpi-v24_ic_answer_buttons.xml.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-anydpi-v24/ic_answer_buttons.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_amber.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_amber.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-xhdpi_ic_answer_buttons.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-xhdpi/ic_answer_buttons.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_deep_purple.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_deep_purple.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_brown.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_brown.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_deep_purple.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_deep_purple.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_deep_orange.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_deep_orange.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_deep_orange.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_deep_orange.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_purple.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_purple.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_light_blue.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_light_blue.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_cyan.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_cyan.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_brown.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_brown.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_dialpad_grid.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialpad_grid.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_light_blue.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_light_blue.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/menu_menu_dialpad.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/menu/menu_dialpad.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-ldpi_ic_slider.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-ldpi/ic_slider.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_threema_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_threema_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_yellow.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_yellow.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_deep_purple.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_deep_purple.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/menu_menu_settings.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/menu/menu_settings.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_activity_call_history.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_call_history.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_red.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_red.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-ldpi_ic_slider_outline.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-ldpi/ic_slider_outline.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_brown.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_brown.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_fragment_contacts.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/fragment_contacts.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_teal.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_teal.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_red.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_red.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_pulsing_background.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/pulsing_background.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_grey_black.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_grey_black.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_indigo.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_indigo.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_light_green.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_light_green.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_green.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_green.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_monochrome.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_monochrome.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/menu_menu_recent_item_options.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/menu/menu_recent_item_options.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_show_block.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_show_block.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_background.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_activity_settings.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_grey_black.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_grey_black.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_item_view_email.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_view_email.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-hdpi_ic_phone_device.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-hdpi/ic_phone_device.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_layout_simple_recycler_view.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/layout_simple_recycler_view.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_monochrome.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_monochrome.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_green.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_green.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_item_view_messengers_actions.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_view_messengers_actions.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_dialog_manage_visible_tabs.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_manage_visible_tabs.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_deep_purple.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_deep_purple.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_dialpad_round.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialpad_round.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_item_view_event.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_view_event.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_whatsapp_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_whatsapp_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_placeholder_contact.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/placeholder_contact.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_background.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-xxxhdpi_ic_slider_outline.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-xxxhdpi/ic_slider_outline.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_monochrome.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_monochrome.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_activity_dialpad.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_dialpad.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_red.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_red.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_background.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_dialog_choose_social.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_choose_social.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_teal.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_teal.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_change.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_change.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/menu_menu_call_history.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/menu/menu_call_history.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_light_green.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_light_green.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_amber.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_amber.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_top_view.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/top_view.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_yellow.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_yellow.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_call_draggable_background.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/call_draggable_background.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_grey_black.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_grey_black.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/menu_cab_contacts.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/menu/cab_contacts.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_monochrome.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_monochrome.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_dialog_select_contact.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_select_contact.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_purple.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_purple.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-hdpi_ic_slider.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-hdpi/ic_slider.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_background.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_monochrome.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_monochrome.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_dialog_export_call_history.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_export_call_history.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_blue.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_blue.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-xhdpi_ic_phone_device.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-xhdpi/ic_phone_device.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_yellow.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_yellow.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_button_dialpad.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/button_dialpad.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_grey_black.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_grey_black.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/menu_menu_call_history_item_options.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/menu/menu_call_history_item_options.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_asterisk.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_asterisk.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_call_merge_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_call_merge_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_green.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_green.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_blue_grey.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_blue_grey.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_missed_call_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_missed_call_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_blue_grey.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_blue_grey.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_activity_settings_dialpad.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_settings_dialpad.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_deep_orange.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_deep_orange.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_cyan.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_cyan.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_telegram_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_telegram_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_yellow.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_yellow.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-xxxhdpi_ic_slider.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-xxxhdpi/ic_slider.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_fragment_recents.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/fragment_recents.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_bluetooth_audio_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_bluetooth_audio_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_pink.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_pink.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_deep_orange.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_deep_orange.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_yellow.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_yellow.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_incoming_call_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_incoming_call_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_deep_purple.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_deep_purple.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_item_choose_social.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_choose_social.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_green.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_green.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-xxxhdpi_ic_answer_buttons.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-xxxhdpi/ic_answer_buttons.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_brown.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_brown.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-anydpi-v24_ic_slider.xml.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-anydpi-v24/ic_slider.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-xxhdpi_ic_slider.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-xxhdpi/ic_slider.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_lime.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_lime.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_light_blue.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_light_blue.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-hdpi_ic_slider_outline.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-hdpi/ic_slider_outline.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_fragment_favorites.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/fragment_favorites.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_button_dialpad_background.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/button_dialpad_background.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_remind_call.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_remind_call.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-xxhdpi_ic_answer_buttons.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-xxhdpi/ic_answer_buttons.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_indigo.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_indigo.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_teal.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_teal.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_backspace.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_backspace.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-xxxhdpi_ic_phone_device.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-xxxhdpi/ic_phone_device.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_purple.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_purple.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_amber.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_amber.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-mdpi_ic_slider.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-mdpi/ic_slider.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_light_green.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_light_green.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_pink.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_pink.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_pink.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_pink.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_activity_manage_speed_dial.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_manage_speed_dial.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-ldpi_ic_answer_buttons.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-ldpi/ic_answer_buttons.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_blue_grey.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_blue_grey.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_red.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_red.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-anydpi-v24_ic_slider_outline.xml.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-anydpi-v24/ic_slider_outline.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_volume_up_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_volume_up_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_tab_background.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/tab_background.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_amber.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_amber.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_light_green.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_light_green.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_microphone_off_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_microphone_off_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_cyan.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_cyan.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_phone_green_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_phone_green_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_indigo.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_indigo.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-mdpi_ic_answer_buttons.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-mdpi/ic_answer_buttons.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_blue.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_blue.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_dialog_filter_contact_sources.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_filter_contact_sources.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_dialpad_call.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialpad_call.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_light_blue.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_light_blue.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_lime.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_lime.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-mdpi_ic_phone_device.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-mdpi/ic_phone_device.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_hashtag.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_hashtag.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_add_call_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_add_call_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_lime.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_lime.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_call_draggable_background_stroke.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/call_draggable_background_stroke.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_call_accept.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_call_accept.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_indigo.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_indigo.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_phone_down_red_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_phone_down_red_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_phone_down_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_phone_down_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_brown.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_brown.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_deep_orange.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_deep_orange.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_blue_grey.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_blue_grey.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_call_swap_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_call_swap_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_dialog_select_sim.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_select_sim.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_lime.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_lime.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-mdpi_ic_slider_outline.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-mdpi/ic_slider_outline.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_deep_purple.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_deep_purple.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-xxhdpi_ic_phone_device.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-xxhdpi/ic_phone_device.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/menu_menu.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/menu/menu.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_call_notification.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/call_notification.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_deep_orange.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_deep_orange.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_dialog_change_sorting.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_change_sorting.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-xhdpi_ic_slider_outline.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-xhdpi/ic_slider_outline.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_signal_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_signal_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_fragment_letters_layout.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/fragment_letters_layout.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_viber_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_viber_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_button_dialpad_press.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/button_dialpad_press.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-anydpi-v24_ic_phone_device.xml.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-anydpi-v24/ic_phone_device.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_lime.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_lime.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_green.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_green.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_headset_wired.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_headset_wired.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_pink.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_pink.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_brown.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_brown.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_dialpad_rectangle.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialpad_rectangle.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_dialog_show_grouped_calls.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_show_grouped_calls.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_purple.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_purple.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_blue.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_blue.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_activity_main.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_cyan.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_cyan.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_yellow.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_yellow.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_item_speed_dial.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_speed_dial.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_item_call_history.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_call_history.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_activity_conference.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_conference.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_blue_grey.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_blue_grey.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_amber.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_amber.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_backspace_x.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_backspace_x.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_call_end.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_call_end.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_pink.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_pink.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_cyan.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_cyan.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_background.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_background.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_indigo.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_indigo.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-anydpi-v26_ic_launcher_light_green.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-anydpi-v26/ic_launcher_light_green.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_blue_grey.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_blue_grey.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_light_blue.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_light_blue.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_blue.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_blue.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_volume_down_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_volume_down_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_pink.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_pink.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_shortcut_dialpad.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/shortcut_dialpad.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_teal.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_teal.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_item_filter_contact_source.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_filter_contact_source.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_item_conference_call.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_conference_call.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/menu_cab_recent_calls.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/menu/cab_recent_calls.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_light_blue.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_light_blue.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_teal.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_teal.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_outgoing_call_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_outgoing_call_vector.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_red.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_red.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-mdpi_ic_launcher_cyan.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-mdpi/ic_launcher_cyan.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_purple.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_purple.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_blue.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_blue.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xhdpi_ic_launcher_purple.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xhdpi/ic_launcher_purple.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-hdpi_ic_answer_buttons.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-hdpi/ic_answer_buttons.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_light_green.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_light_green.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-ldpi_ic_phone_device.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-ldpi/ic_phone_device.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_tab_indicator.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/tab_indicator.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable-xxhdpi_ic_slider_outline.png.flat",
+        "source": "com.goodwy.dialer.app-core-73:/drawable-xxhdpi/ic_slider_outline.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_teal.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_teal.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-hdpi_ic_launcher_blue.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-hdpi/ic_launcher_blue.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxxhdpi_ic_launcher_indigo.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxxhdpi/ic_launcher_indigo.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_launcher.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_launcher.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/mipmap-xxhdpi_ic_launcher_red.png.flat",
+        "source": "com.goodwy.dialer.app-main-81:/mipmap-xxhdpi/ic_launcher_red.png"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/layout_item_recent_call.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_recent_call.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-merged_res-77:/drawable_ic_call_split_vector.xml.flat",
+        "source": "com.goodwy.dialer.app-main-81:/drawable/ic_call_split_vector.xml"
+    }
+]

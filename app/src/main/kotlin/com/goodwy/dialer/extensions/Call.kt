@@ -1,5 +1,8 @@
 package com.goodwy.dialer.extensions
 
+import android.content.Context
+import android.net.Uri
+import android.provider.ContactsContract
 import android.telecom.Call
 import android.telecom.Call.STATE_CONNECTING
 import android.telecom.Call.STATE_DIALING
@@ -16,6 +19,17 @@ fun Call?.getStateCompat(): Int {
         isSPlus() -> details.state
         else -> state
     }
+}
+
+fun Context.isKnownContact(number: String): Boolean {
+    var contactName: String? = null
+    val uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number))
+    val cursor = contentResolver.query(uri, arrayOf(ContactsContract.PhoneLookup.DISPLAY_NAME), null, null , null)
+    if (cursor != null && cursor.moveToFirst()) {
+        contactName = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.PhoneLookup.DISPLAY_NAME))
+        cursor.close()
+    }
+    return contactName != null
 }
 
 fun Call?.getCallDuration(): Int {

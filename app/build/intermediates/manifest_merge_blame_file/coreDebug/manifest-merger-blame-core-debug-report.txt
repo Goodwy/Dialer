@@ -1,0 +1,1887 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.goodwy.dialer.debug"
+4    android:installLocation="auto"
+5    android:versionCode="483"
+6    android:versionName="4.8.3" >
+7
+8    <uses-sdk
+9        android:minSdkVersion="23"
+10        android:targetSdkVersion="34" />
+11
+12    <uses-permission android:name="android.permission.READ_CONTACTS" />
+12-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:6:5-72
+12-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:6:22-69
+13    <uses-permission
+13-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:7:5-8:38
+14        android:name="android.permission.READ_EXTERNAL_STORAGE"
+14-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:7:22-77
+15        android:maxSdkVersion="32" />
+15-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:8:9-35
+16    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+16-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:9:5-73
+16-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:9:22-70
+17    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+17-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:10:5-75
+17-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:10:22-72
+18    <uses-permission android:name="android.permission.CALL_PHONE" />
+18-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:11:5-69
+18-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:11:22-66
+19    <uses-permission android:name="android.permission.CALL_PRIVILEGED" />
+19-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:12:5-74
+19-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:12:22-71
+20    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+20-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:13:5-72
+20-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:13:22-69
+21    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+21-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:14:5-73
+21-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:14:22-70
+22    <uses-permission android:name="android.permission.WAKE_LOCK" />
+22-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:15:5-68
+22-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:15:22-65
+23    <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
+23-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:16:5-77
+23-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:16:22-74
+24    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+24-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:17:5-77
+24-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:17:22-74
+25    <uses-permission android:name="android.permission.MANAGE_OWN_CALLS" />
+25-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:18:5-75
+25-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:18:22-72
+26    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+26-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:19:5-80
+26-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:19:22-77
+27    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+27-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:20:5-71
+27-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:20:22-68
+28    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+28-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:21:5-78
+28-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:21:22-75
+29    <uses-permission android:name="android.telecom.action.CONFIGURE_PHONE_ACCOUNT" />
+29-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:22:5-86
+29-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:22:22-83
+30    <uses-permission android:name="android.permission.VIBRATE" />
+30-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:23:5-66
+30-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:23:22-63
+31    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+31-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:24:5-77
+31-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:24:22-74
+32    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+32-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:25:5-77
+32-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:25:22-74
+33    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+33-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:26:5-81
+33-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:26:22-78
+34    <uses-permission android:name="com.android.vending.BILLING" />
+34-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:27:5-67
+34-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:27:22-64
+35    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+35-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:28:5-76
+35-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:28:22-73
+36    <uses-permission
+36-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:30:5-32:38
+37        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+37-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:31:9-65
+38        android:maxSdkVersion="28" />
+38-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:32:9-35
+39    <uses-permission
+39-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:38:5-40:38
+40        android:name="android.permission.CAMERA"
+40-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:39:9-49
+41        android:maxSdkVersion="23" />
+41-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:40:9-35
+42    <uses-permission android:name="android.permission.FLASHLIGHT" />
+42-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:41:5-69
+42-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:41:22-66
+43
+44    <uses-feature
+44-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:42:5-44:35
+45        android:name="android.hardware.camera.flash"
+45-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:43:9-53
+46        android:required="true" />
+46-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:44:9-32
+47    <uses-feature
+47-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:45:5-47:36
+48        android:name="android.hardware.telephony"
+48-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:46:9-50
+49        android:required="false" />
+49-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:47:9-33
+50    <uses-feature
+50-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:48:5-50:36
+51        android:name="android.hardware.camera"
+51-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:49:9-47
+52        android:required="false" />
+52-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:50:9-33
+53
+54    <queries>
+54-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:52:5-66:15
+55        <package android:name="com.goodwy.dialer.debug" />
+55-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:53:9-59
+55-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:53:18-56
+56        <package android:name="com.goodwy.dialer" />
+56-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:54:9-53
+56-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:54:18-50
+57        <package android:name="com.goodwy.contacts.debug" />
+57-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:55:9-61
+57-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:55:18-58
+58        <package android:name="com.goodwy.contacts" />
+58-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:56:9-55
+58-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:56:18-52
+59        <package android:name="com.goodwy.smsmessenger.debug" />
+59-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:57:9-65
+59-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:57:18-62
+60        <package android:name="com.goodwy.smsmessenger" />
+60-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:58:9-59
+60-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:58:18-56
+61        <package android:name="com.goodwy.voicerecorder.debug" />
+61-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:59:9-66
+61-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:59:18-63
+62        <package android:name="com.goodwy.voicerecorder" />
+62-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:60:9-60
+62-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:60:18-57
+63        <package android:name="com.goodwy.gallery.debug" />
+63-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:61:9-60
+63-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:61:18-57
+64        <package android:name="com.goodwy.gallery" />
+64-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:62:9-54
+64-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:62:18-51
+65        <package android:name="com.goodwy.filemanager.debug" />
+65-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:63:9-64
+65-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:63:18-61
+66        <package android:name="com.goodwy.filemanager" />
+66-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:64:9-58
+66-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:64:18-55
+67        <package android:name="com.goodwy.audiobooklite" />
+67-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:65:9-60
+67-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:65:18-57
+68        <package android:name="com.goodwy.audiobook.debug" />
+68-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:9:9-62
+68-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:9:18-59
+69        <package android:name="com.goodwy.audiobook" />
+69-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:10:9-56
+69-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:10:18-53
+70        <package android:name="com.goodwy.files.debug" />
+70-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:13:9-58
+70-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:13:18-55
+71        <package android:name="com.goodwy.files" />
+71-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:14:9-52
+71-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:14:18-49
+72
+73        <intent>
+73-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:10:9-12:18
+74            <action android:name="ru.vk.store.provider.RemotePayTokenProvider" />
+74-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:11:13-82
+74-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:11:21-79
+75        </intent>
+76
+77        <package android:name="ru.sberbankmobile" />
+77-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:14:9-53
+77-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:14:18-50
+78        <package android:name="ru.sberbankmobile_alpha" />
+78-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:15:9-59
+78-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:15:18-56
+79        <package android:name="cb.ibank" />
+79-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:16:9-44
+79-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:16:18-41
+80        <package android:name="cb.ibank.vuz" />
+80-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:17:9-48
+80-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:17:18-45
+81        <package android:name="com.banksoyuz.artsofte" />
+81-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:18:9-58
+81-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:18:18-55
+82        <package android:name="com.bifit.atbbank" />
+82-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:19:9-53
+82-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:19:18-50
+83        <package android:name="com.bifit.dvbank" />
+83-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:20:9-52
+83-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:20:18-49
+84        <package android:name="com.bifit.mobile.citizen.MCBank" />
+84-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:21:9-67
+84-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:21:18-64
+85        <package android:name="com.bifit.mobile.citizen.belsocbank" />
+85-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:22:9-71
+85-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:22:18-68
+86        <package android:name="com.bifit.mobile.citizen.cfb" />
+86-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:23:9-64
+86-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:23:18-61
+87        <package android:name="com.bifit.mobile.citizen.efbank" />
+87-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:24:9-67
+87-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:24:18-64
+88        <package android:name="com.bifit.mobile.citizen.icbru" />
+88-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:25:9-66
+88-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:25:18-63
+89        <package android:name="com.bifit.mobile.citizen.invb" />
+89-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:26:9-65
+89-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:26:18-62
+90        <package android:name="com.bifit.mobile.citizen.kbnk" />
+90-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:27:9-65
+90-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:27:18-62
+91        <package android:name="com.bifit.mobile.citizen.mbb" />
+91-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:28:9-64
+91-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:28:18-61
+92        <package android:name="com.bifit.mobile.citizen.moskb" />
+92-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:29:9-66
+92-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:29:18-63
+93        <package android:name="com.bifit.mobile.citizen.nkbank" />
+93-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:30:9-67
+93-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:30:18-64
+94        <package android:name="com.bifit.mobile.citizen.okbank" />
+94-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:31:9-67
+94-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:31:18-64
+95        <package android:name="com.bifit.mobile.citizen.tenderbank" />
+95-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:32:9-71
+95-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:32:18-68
+96        <package android:name="com.bifit.mobile.citizen.thbank" />
+96-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:33:9-67
+96-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:33:18-64
+97        <package android:name="com.bifit.mobile.citizen.zarech" />
+97-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:34:9-67
+97-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:34:18-64
+98        <package android:name="com.bifit.mobile.private.bbr" />
+98-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:35:9-64
+98-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:35:18-61
+99        <package android:name="com.bifit.nrb" />
+99-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:36:9-49
+99-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:36:18-46
+100        <package android:name="com.bifit.pmobile.isbank" />
+100-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:37:9-60
+100-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:37:18-57
+101        <package android:name="com.bifit.rncbbeta" />
+101-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:38:9-54
+101-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:38:18-51
+102        <package android:name="com.bifit.vfbank" />
+102-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:39:9-52
+102-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:39:18-49
+103        <package android:name="com.bpc.crossplatform_trading.bpc_trading" />
+103-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:40:9-77
+103-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:40:18-74
+104        <package android:name="com.bssys.aversretail" />
+104-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:41:9-57
+104-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:41:18-54
+105        <package android:name="com.bssys.gutaretail" />
+105-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:42:9-56
+105-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:42:18-53
+106        <package android:name="com.bssys.novikomretail" />
+106-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:43:9-59
+106-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:43:18-56
+107        <package android:name="com.bssys.roscapretail" />
+107-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:44:9-58
+107-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:44:18-55
+108        <package android:name="com.bssys.stroylesretail" />
+108-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:45:9-60
+108-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:45:18-57
+109        <package android:name="com.bssys.uralfdretail" />
+109-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:46:9-58
+109-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:46:18-55
+110        <package android:name="com.bssys.vbrrretail" />
+110-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:47:9-56
+110-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:47:18-53
+111        <package android:name="com.cetelem.cetelem_android" />
+111-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:48:9-63
+111-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:48:18-60
+112        <package android:name="com.citibank.mobile.ru" />
+112-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:49:9-58
+112-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:49:18-55
+113        <package android:name="com.compassplus.mobicash.customer" />
+113-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:50:9-69
+113-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:50:18-66
+114        <package android:name="com.credituralbank.CUBmobilenew" />
+114-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:51:9-67
+114-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:51:18-64
+115        <package android:name="com.energobank.digital" />
+115-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:52:9-58
+115-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:52:18-55
+116        <package android:name="com.finservice.mobile" />
+116-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:53:9-57
+116-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:53:18-54
+117        <package android:name="com.hicebank.android" />
+117-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:54:9-56
+117-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:54:18-53
+118        <package android:name="com.idamob.tinkoff.android" />
+118-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:55:9-62
+118-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:55:18-59
+119        <package android:name="com.idamobile.android.LockoBank" />
+119-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:56:9-67
+119-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:56:18-64
+120        <package android:name="com.inbank.mobilebank" />
+120-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:57:9-57
+120-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:57:18-54
+121        <package android:name="com.intervale.sbp.atlas" />
+121-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:58:9-59
+121-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:58:18-56
+122        <package android:name="com.isimplelab.ibank.chelind" />
+122-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:59:9-64
+122-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:59:18-61
+123        <package android:name="com.isimplelab.ibank.kubankredit" />
+123-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:60:9-68
+123-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:60:18-65
+124        <package android:name="com.isimplelab.ibank.solidarnost" />
+124-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:61:9-68
+124-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:61:18-65
+125        <package android:name="com.isimplelab.ibank.toyota" />
+125-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:62:9-63
+125-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:62:18-60
+126        <package android:name="com.isimplelab.ionic.gorbank.prod" />
+126-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:63:9-69
+126-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:63:18-66
+127        <package android:name="com.isimplelab.ionic.kazan.fl" />
+127-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:64:9-65
+127-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:64:18-62
+128        <package android:name="com.isimplelab.ionic.round.prod" />
+128-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:65:9-67
+128-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:65:18-64
+129        <package android:name="com.isimplelab.ionic.slavia.prod" />
+129-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:66:9-68
+129-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:66:18-65
+130        <package android:name="com.isimplelab.ionic.standart" />
+130-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:67:9-65
+130-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:67:18-62
+131        <package android:name="com.isimplelab.isimpleceo.uglemet" />
+131-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:68:9-69
+131-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:68:18-66
+132        <package android:name="com.isimplelab.isimplemobile.payjet" />
+132-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:69:9-71
+132-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:69:18-68
+133        <package android:name="com.ltech.unistream" />
+133-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:70:9-55
+133-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:70:18-52
+134        <package android:name="com.metkombank.mobile" />
+134-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:71:9-57
+134-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:71:18-54
+135        <package android:name="com.mifors.izhcombank" />
+135-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:72:9-57
+135-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:72:18-54
+136        <package android:name="com.mmonline.mobile" />
+136-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:73:9-55
+136-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:73:18-52
+137        <package android:name="com.mob.android" />
+137-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:74:9-51
+137-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:74:18-48
+138        <package android:name="com.openbank" />
+138-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:75:9-48
+138-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:75:18-45
+139        <package android:name="com.openwaygroup.ic.panda.poidem" />
+139-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:76:9-68
+139-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:76:18-65
+140        <package android:name="com.priobank.prio" />
+140-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:77:9-53
+140-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:77:18-50
+141        <package android:name="com.smp.android" />
+141-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:78:9-51
+141-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:78:18-48
+142        <package android:name="com.snb.online" />
+142-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:79:9-50
+142-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:79:18-47
+143        <package android:name="com.tatsotsbank.dbomobile" />
+143-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:80:9-61
+143-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:80:18-58
+144        <package android:name="com.timerbank.retail" />
+144-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:81:9-56
+144-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:81:18-53
+145        <package android:name="com.tochka.bank" />
+145-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:82:9-51
+145-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:82:18-48
+146        <package android:name="com.yandex.bank" />
+146-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:83:9-51
+146-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:83:18-48
+147        <package android:name="cz.bsc.rc" />
+147-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:84:9-45
+147-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:84:18-42
+148        <package android:name="logo.com.mbanking" />
+148-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:85:9-53
+148-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:85:18-50
+149        <package android:name="ru.akbars.mobile" />
+149-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:86:9-52
+149-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:86:18-49
+150        <package android:name="ru.albank.online.aebit" />
+150-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:87:9-58
+150-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:87:18-55
+151        <package android:name="ru.alfabank.mobile.android" />
+151-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:88:9-62
+151-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:88:18-59
+152        <package android:name="ru.artsofte.russiafl" />
+152-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:89:9-56
+152-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:89:18-53
+153        <package android:name="ru.avangard.sbp_client" />
+153-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:90:9-58
+153-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:90:18-55
+154        <package android:name="ru.bank_hlynov.xbank" />
+154-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:91:9-56
+154-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:91:18-53
+155        <package android:name="ru.bankuralsib.mb.android" />
+155-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:92:9-61
+155-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:92:18-58
+156        <package android:name="ru.bcs.bcsbank" />
+156-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:93:9-50
+156-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:93:18-47
+157        <package android:name="ru.briginvest.sense" />
+157-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:94:9-55
+157-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:94:18-52
+158        <package android:name="ru.bspb" />
+158-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:95:9-43
+158-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:95:18-40
+159        <package android:name="ru.centrinvest.mobilebanking2018" />
+159-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:96:9-68
+159-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:96:18-65
+160        <package android:name="ru.chelyabinvestbank.investpay" />
+160-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:97:9-66
+160-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:97:18-63
+161        <package android:name="ru.elplat.elplat2" />
+161-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:98:9-53
+161-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:98:18-50
+162        <package android:name="ru.emb.android" />
+162-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:99:9-50
+162-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:99:18-47
+163        <package android:name="ru.faktura.avtograd.person" />
+163-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:100:9-62
+163-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:100:18-59
+164        <package android:name="ru.finambank.app" />
+164-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:101:9-52
+164-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:101:18-49
+165        <package android:name="ru.ftc.faktura.absolutbank" />
+165-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:102:9-62
+165-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:102:18-59
+166        <package android:name="ru.ftc.faktura.agropromkredit" />
+166-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:103:9-65
+166-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:103:18-62
+167        <package android:name="ru.ftc.faktura.agroros" />
+167-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:104:9-58
+167-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:104:18-55
+168        <package android:name="ru.ftc.faktura.akcept" />
+168-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:105:9-57
+168-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:105:18-54
+169        <package android:name="ru.ftc.faktura.akibank" />
+169-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:106:9-58
+169-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:106:18-55
+170        <package android:name="ru.ftc.faktura.alefbank" />
+170-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:107:9-59
+170-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:107:18-56
+171        <package android:name="ru.ftc.faktura.alexbank" />
+171-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:108:9-59
+171-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:108:18-56
+172        <package android:name="ru.ftc.faktura.baikalinvestbank" />
+172-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:109:9-67
+172-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:109:18-64
+173        <package android:name="ru.ftc.faktura.banksaratov" />
+173-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:110:9-62
+173-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:110:18-59
+174        <package android:name="ru.ftc.faktura.bgfbank" />
+174-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:111:9-58
+174-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:111:18-55
+175        <package android:name="ru.ftc.faktura.derzhava" />
+175-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:112:9-59
+175-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:112:18-56
+176        <package android:name="ru.ftc.faktura.dolinsk" />
+176-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:113:9-58
+176-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:113:18-55
+177        <package android:name="ru.ftc.faktura.etbank" />
+177-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:114:9-57
+177-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:114:18-54
+178        <package android:name="ru.ftc.faktura.expobank" />
+178-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:115:9-59
+178-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:115:18-56
+179        <package android:name="ru.ftc.faktura.finbank" />
+179-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:116:9-58
+179-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:116:18-55
+180        <package android:name="ru.ftc.faktura.forshtadt" />
+180-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:117:9-60
+180-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:117:18-57
+181        <package android:name="ru.ftc.faktura.gaztransbank" />
+181-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:118:9-63
+181-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:118:18-60
+182        <package android:name="ru.ftc.faktura.intesabank" />
+182-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:119:9-61
+182-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:119:18-58
+183        <package android:name="ru.ftc.faktura.iturup" />
+183-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:120:9-57
+183-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:120:18-54
+184        <package android:name="ru.ftc.faktura.jtbank" />
+184-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:121:9-57
+184-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:121:18-54
+185        <package android:name="ru.ftc.faktura.kbb" />
+185-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:122:9-54
+185-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:122:18-51
+186        <package android:name="ru.ftc.faktura.kbhmb" />
+186-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:123:9-56
+186-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:123:18-53
+187        <package android:name="ru.ftc.faktura.kremlevskiy" />
+187-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:124:9-62
+187-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:124:18-59
+188        <package android:name="ru.ftc.faktura.lanta" />
+188-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:125:9-56
+188-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:125:18-53
+189        <package android:name="ru.ftc.faktura.maritimebank" />
+189-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:126:9-63
+189-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:126:18-60
+190        <package android:name="ru.ftc.faktura.mfkbank" />
+190-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:127:9-58
+190-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:127:18-55
+191        <package android:name="ru.ftc.faktura.moscombank" />
+191-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:128:9-61
+191-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:128:18-58
+192        <package android:name="ru.ftc.faktura.multibank" />
+192-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:129:9-60
+192-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:129:18-57
+193        <package android:name="ru.ftc.faktura.nipbank" />
+193-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:130:9-58
+193-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:130:18-55
+194        <package android:name="ru.ftc.faktura.nokss" />
+194-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:131:9-56
+194-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:131:18-53
+195        <package android:name="ru.ftc.faktura.novobank" />
+195-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:132:9-59
+195-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:132:18-56
+196        <package android:name="ru.ftc.faktura.ns" />
+196-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:133:9-53
+196-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:133:18-50
+197        <package android:name="ru.ftc.faktura.nsbank" />
+197-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:134:9-57
+197-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:134:18-54
+198        <package android:name="ru.ftc.faktura.nskbl" />
+198-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:135:9-56
+198-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:135:18-53
+199        <package android:name="ru.ftc.faktura.orbank" />
+199-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:136:9-57
+199-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:136:18-54
+200        <package android:name="ru.ftc.faktura.primsoc" />
+200-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:137:9-58
+200-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:137:18-55
+201        <package android:name="ru.ftc.faktura.pskb" />
+201-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:138:9-55
+201-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:138:18-52
+202        <package android:name="ru.ftc.faktura.razvitiestolica" />
+202-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:139:9-66
+202-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:139:18-63
+203        <package android:name="ru.ftc.faktura.resokreditbank" />
+203-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:140:9-65
+203-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:140:18-62
+204        <package android:name="ru.ftc.faktura.rostfinance" />
+204-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:141:9-62
+204-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:141:18-59
+205        <package android:name="ru.ftc.faktura.sdm" />
+205-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:142:9-54
+205-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:142:18-51
+206        <package android:name="ru.ftc.faktura.siab" />
+206-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:143:9-55
+206-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:143:18-52
+207        <package android:name="ru.ftc.faktura.solidbank" />
+207-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:144:9-60
+207-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:144:18-57
+208        <package android:name="ru.ftc.faktura.tavrich" />
+208-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:145:9-58
+208-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:145:18-55
+209        <package android:name="ru.ftc.faktura.tkbbank" />
+209-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:146:9-58
+209-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:146:18-55
+210        <package android:name="ru.ftc.faktura.united" />
+210-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:147:9-57
+210-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:147:18-54
+211        <package android:name="ru.ftc.faktura.venetsbank" />
+211-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:148:9-61
+211-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:148:18-58
+212        <package android:name="ru.ftc.faktura.vesta" />
+212-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:149:9-56
+212-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:149:18-53
+213        <package android:name="ru.ftc.faktura.vlbb" />
+213-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:150:9-55
+213-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:150:18-52
+214        <package android:name="ru.ftc.faktura.zemskybank" />
+214-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:151:9-61
+214-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:151:18-58
+215        <package android:name="ru.gazprombank.android.mobilebank.app" />
+215-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:152:9-73
+215-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:152:18-70
+216        <package android:name="ru.gebank.ib" />
+216-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:153:9-48
+216-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:153:18-45
+217        <package android:name="ru.homecredit.mycredit" />
+217-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:154:9-58
+217-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:154:18-55
+218        <package android:name="ru.ibam.retailmobile" />
+218-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:155:9-56
+218-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:155:18-53
+219        <package android:name="ru.ilb.bbmobile" />
+219-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:156:9-51
+219-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:156:18-48
+220        <package android:name="ru.ipb.ubsmobile" />
+220-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:157:9-52
+220-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:157:18-49
+221        <package android:name="ru.isfront.android.kt" />
+221-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:158:9-57
+221-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:158:18-54
+222        <package android:name="ru.krk.ubsmobile" />
+222-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:159:9-52
+222-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:159:18-49
+223        <package android:name="ru.letobank.Prometheus" />
+223-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:160:9-58
+223-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:160:18-55
+224        <package android:name="ru.mcbankrus.MCBankRus" />
+224-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:161:9-58
+224-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:161:18-55
+225        <package android:name="ru.mkb.mobile" />
+225-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:162:9-49
+225-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:162:18-46
+226        <package android:name="ru.mts.money" />
+226-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:163:9-48
+226-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:163:18-45
+227        <package android:name="ru.mw" />
+227-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:164:9-41
+227-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:164:18-38
+228        <package android:name="ru.nbd.android" />
+228-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:165:9-50
+228-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:165:18-47
+229        <package android:name="ru.otpbank.mobile" />
+229-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:166:9-53
+229-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:166:18-50
+230        <package android:name="ru.raiffeisennews" />
+230-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:167:9-53
+230-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:167:18-50
+231        <package android:name="ru.rosbank.android" />
+231-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:168:9-54
+231-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:168:18-51
+232        <package android:name="ru.rosdorbank.physical" />
+232-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:169:9-58
+232-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:169:18-55
+233        <package android:name="ru.rshb.dbo" />
+233-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:170:9-47
+233-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:170:18-44
+234        <package android:name="ru.rubank.ubsmobile" />
+234-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:171:9-55
+234-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:171:18-52
+235        <package android:name="ru.rusnarbank.correqts.retail" />
+235-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:172:9-65
+235-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:172:18-62
+236        <package android:name="ru.sbi.android" />
+236-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:173:9-50
+236-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:173:18-47
+237        <package android:name="ru.simpls.brs2.mobbank" />
+237-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:174:9-58
+237-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:174:18-55
+238        <package android:name="ru.skbbank.ib" />
+238-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:175:9-49
+238-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:175:18-46
+239        <package android:name="ru.sngb.dbo.client.android" />
+239-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:176:9-62
+239-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:176:18-59
+240        <package android:name="ru.sovcomcard.halva.v1" />
+240-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:177:9-58
+240-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:177:18-55
+241        <package android:name="ru.unicredit.android" />
+241-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:178:9-56
+241-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:178:18-53
+242        <package android:name="ru.uralprombank.mobilebanknew.googleplay" />
+242-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:179:9-76
+242-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:179:18-73
+243        <package android:name="ru.vtb24.mobilebanking.android" />
+243-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:180:9-66
+243-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:180:18-63
+244        <package android:name="ru.vtkbank.android" />
+244-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:181:9-54
+244-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:181:18-51
+245        <package android:name="ru.yoo.money" />
+245-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:182:9-48
+245-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:182:18-45
+246        <package android:name="ru.zenit.android" />
+246-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:183:9-52
+246-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:183:18-49
+247
+248        <intent>
+248-->[ru.rustore.sdk:analytics:0.1.5] /Users/codigo/.gradle/caches/transforms-3/bf34117a4b1b9de917872f4038bc154d/transformed/jetified-analytics-0.1.5/AndroidManifest.xml:10:9-12:18
+249            <action android:name="ru.vk.store.provider.analytics.AnalyticsProvider" />
+249-->[ru.rustore.sdk:analytics:0.1.5] /Users/codigo/.gradle/caches/transforms-3/bf34117a4b1b9de917872f4038bc154d/transformed/jetified-analytics-0.1.5/AndroidManifest.xml:11:13-87
+249-->[ru.rustore.sdk:analytics:0.1.5] /Users/codigo/.gradle/caches/transforms-3/bf34117a4b1b9de917872f4038bc154d/transformed/jetified-analytics-0.1.5/AndroidManifest.xml:11:21-84
+250        </intent>
+251
+252        <package android:name="ru.vk.store" />
+252-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:10:9-47
+252-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:10:18-44
+253        <package android:name="ru.vk.store.qa" /> <!-- Internet browser activities. -->
+253-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:11:9-50
+253-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:11:18-47
+254        <intent>
+254-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:14:9-20:18
+255            <action android:name="android.intent.action.VIEW" />
+255-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:92:17-69
+255-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:92:25-66
+256
+257            <category android:name="android.intent.category.BROWSABLE" />
+257-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:217:17-78
+257-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:217:27-75
+258
+259            <data android:scheme="https" />
+259-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:93:17-73
+259-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:203:23-43
+260        </intent>
+261        <intent>
+261-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:21:9-23:18
+262            <action android:name="ru.vk.store.provider.feature.FeatureAvailabilityProvider" />
+262-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:22:13-95
+262-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:22:21-92
+263        </intent>
+264        <intent>
+264-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:24:9-26:18
+265            <action android:name="ru.vk.store.RequestIgnoreBatteryOptimizations" />
+265-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:25:13-84
+265-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:25:21-81
+266        </intent>
+267        <intent>
+267-->[com.android.billingclient:billing:6.0.1] /Users/codigo/.gradle/caches/transforms-3/a6e00c1f16325f850ef887742f3324e1/transformed/jetified-billing-6.0.1/AndroidManifest.xml:13:9-15:18
+268            <action android:name="com.android.vending.billing.InAppBillingService.BIND" />
+268-->[com.android.billingclient:billing:6.0.1] /Users/codigo/.gradle/caches/transforms-3/a6e00c1f16325f850ef887742f3324e1/transformed/jetified-billing-6.0.1/AndroidManifest.xml:14:13-91
+268-->[com.android.billingclient:billing:6.0.1] /Users/codigo/.gradle/caches/transforms-3/a6e00c1f16325f850ef887742f3324e1/transformed/jetified-billing-6.0.1/AndroidManifest.xml:14:21-88
+269        </intent>
+270    </queries>
+271
+272    <uses-feature
+272-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:23:5-25:36
+273        android:name="android.hardware.faketouch"
+273-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:24:9-50
+274        android:required="false" />
+274-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:25:9-33
+275    <uses-feature
+275-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:26:5-28:36
+276        android:name="android.hardware.screen.portrait"
+276-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:27:9-56
+277        android:required="false" />
+277-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:28:9-33
+278
+279    <uses-permission android:name="android.permission.INTERNET" />
+279-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:186:5-67
+279-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:186:22-64
+280    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+280-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:187:5-79
+280-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:187:22-76
+281
+282    <permission
+282-->[androidx.core:core:1.12.0] /Users/codigo/.gradle/caches/transforms-3/e51de6b26c7b4b7802bcd40560692a9c/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+283        android:name="com.goodwy.dialer.debug.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+283-->[androidx.core:core:1.12.0] /Users/codigo/.gradle/caches/transforms-3/e51de6b26c7b4b7802bcd40560692a9c/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+284        android:protectionLevel="signature" /> <!-- for android -->
+284-->[androidx.core:core:1.12.0] /Users/codigo/.gradle/caches/transforms-3/e51de6b26c7b4b7802bcd40560692a9c/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+285    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
+286    <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
+287    <!-- <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> -->
+288    <!-- <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" /> -->
+289    <!-- for Samsung -->
+290    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+290-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:19:5-86
+290-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:19:22-83
+291    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- for htc -->
+291-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:20:5-87
+291-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:20:22-84
+292    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+292-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:23:5-81
+292-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:23:22-78
+293    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" /> <!-- for sony -->
+293-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:24:5-83
+293-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:24:22-80
+294    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+294-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:27:5-88
+294-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:27:22-85
+295    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" /> <!-- for apex -->
+295-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:5-92
+295-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:28:22-89
+296    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
+296-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:5-84
+296-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:31:22-81
+297    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- for huawei -->
+297-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:5-83
+297-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:34:22-80
+298    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+298-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:5-91
+298-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:37:22-88
+299    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+299-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:5-92
+299-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:38:22-89
+300    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" /> <!-- for ZUK -->
+300-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:5-93
+300-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:39:22-90
+301    <uses-permission android:name="android.permission.READ_APP_BADGE" /> <!-- for OPPO -->
+301-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:5-73
+301-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:42:22-70
+302    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
+302-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:5-82
+302-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:45:22-79
+303    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" /> <!-- for EvMe -->
+303-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:5-83
+303-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:46:22-80
+304    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
+304-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:5-88
+304-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:49:22-85
+305    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
+305-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:5-89
+305-->[me.leolin:ShortcutBadger:1.1.22] /Users/codigo/.gradle/caches/transforms-3/d4e485162c3105f0b0cf829f33589a9f/transformed/jetified-ShortcutBadger-1.1.22/AndroidManifest.xml:50:22-86
+306
+307    <application
+307-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:68:5-538:19
+308        android:name="com.goodwy.dialer.App"
+308-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:69:9-28
+309        android:allowBackup="true"
+309-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:70:9-35
+310        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+310-->[androidx.core:core:1.12.0] /Users/codigo/.gradle/caches/transforms-3/e51de6b26c7b4b7802bcd40560692a9c/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+311        android:debuggable="true"
+312        android:extractNativeLibs="false"
+313        android:icon="@mipmap/ic_launcher"
+313-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:71:9-43
+314        android:label="@string/app_launcher_name"
+314-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:72:9-50
+315        android:localeConfig="@xml/locale_config"
+315-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:73:9-50
+316        android:roundIcon="@mipmap/ic_launcher"
+316-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:74:9-48
+317        android:supportsRtl="true"
+317-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:42:18-44
+318        android:testOnly="true"
+319        android:theme="@style/AppTheme" >
+319-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:75:9-40
+320        <activity
+320-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:78:9-82:50
+321            android:name="com.goodwy.dialer.activities.SplashActivity"
+321-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:79:13-54
+322            android:exported="false"
+322-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:80:13-37
+323            android:screenOrientation="nosensor"
+323-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:81:13-49
+324            android:theme="@style/SplashTheme" />
+324-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:82:13-47
+325
+326        <activity-alias
+326-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:525:9-537:26
+327            android:name="com.goodwy.dialer.activities.SplashActivity.Grey_black"
+327-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:526:13-65
+328            android:enabled="false"
+328-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:527:13-36
+329            android:exported="true"
+329-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:528:13-36
+330            android:icon="@mipmap/ic_launcher_grey_black"
+330-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:529:13-58
+331            android:roundIcon="@mipmap/ic_launcher_grey_black"
+331-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:530:13-63
+332            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+332-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:531:13-64
+333            <intent-filter>
+333-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+334                <action android:name="android.intent.action.MAIN" />
+334-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+334-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+335
+336                <category android:name="android.intent.category.LAUNCHER" />
+336-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+336-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+337            </intent-filter>
+338        </activity-alias>
+339        <activity-alias
+339-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:511:9-523:26
+340            android:name="com.goodwy.dialer.activities.SplashActivity.Blue_grey"
+340-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:512:13-64
+341            android:enabled="false"
+341-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:513:13-36
+342            android:exported="true"
+342-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:514:13-36
+343            android:icon="@mipmap/ic_launcher_blue_grey"
+343-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:515:13-57
+344            android:roundIcon="@mipmap/ic_launcher_blue_grey"
+344-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:516:13-62
+345            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+345-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:517:13-64
+346            <intent-filter>
+346-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+347                <action android:name="android.intent.action.MAIN" />
+347-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+347-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+348
+349                <category android:name="android.intent.category.LAUNCHER" />
+349-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+349-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+350            </intent-filter>
+351        </activity-alias>
+352        <activity-alias
+352-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:497:9-509:26
+353            android:name="com.goodwy.dialer.activities.SplashActivity.Brown"
+353-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:498:13-60
+354            android:enabled="false"
+354-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:499:13-36
+355            android:exported="true"
+355-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:500:13-36
+356            android:icon="@mipmap/ic_launcher_brown"
+356-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:501:13-53
+357            android:roundIcon="@mipmap/ic_launcher_brown"
+357-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:502:13-58
+358            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+358-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:503:13-64
+359            <intent-filter>
+359-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+360                <action android:name="android.intent.action.MAIN" />
+360-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+360-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+361
+362                <category android:name="android.intent.category.LAUNCHER" />
+362-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+362-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+363            </intent-filter>
+364        </activity-alias>
+365        <activity-alias
+365-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:483:9-495:26
+366            android:name="com.goodwy.dialer.activities.SplashActivity.Deep_orange"
+366-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:484:13-66
+367            android:enabled="false"
+367-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:485:13-36
+368            android:exported="true"
+368-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:486:13-36
+369            android:icon="@mipmap/ic_launcher_deep_orange"
+369-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:487:13-59
+370            android:roundIcon="@mipmap/ic_launcher_deep_orange"
+370-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:488:13-64
+371            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+371-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:489:13-64
+372            <intent-filter>
+372-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+373                <action android:name="android.intent.action.MAIN" />
+373-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+373-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+374
+375                <category android:name="android.intent.category.LAUNCHER" />
+375-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+375-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+376            </intent-filter>
+377        </activity-alias>
+378        <activity-alias
+378-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:470:9-481:26
+379            android:name="com.goodwy.dialer.activities.SplashActivity.Orange"
+379-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:471:13-61
+380            android:enabled="true"
+380-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:472:13-35
+381            android:exported="true"
+381-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:473:13-36
+382            android:icon="@mipmap/ic_launcher"
+382-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:474:13-47
+383            android:roundIcon="@mipmap/ic_launcher"
+383-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:475:13-52
+384            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+384-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:476:13-64
+385            <intent-filter>
+385-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+386                <action android:name="android.intent.action.MAIN" />
+386-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+386-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+387
+388                <category android:name="android.intent.category.LAUNCHER" />
+388-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+388-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+389            </intent-filter>
+390        </activity-alias>
+391        <activity-alias
+391-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:456:9-468:26
+392            android:name="com.goodwy.dialer.activities.SplashActivity.Amber"
+392-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:457:13-60
+393            android:enabled="false"
+393-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:458:13-36
+394            android:exported="true"
+394-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:459:13-36
+395            android:icon="@mipmap/ic_launcher_amber"
+395-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:460:13-53
+396            android:roundIcon="@mipmap/ic_launcher_amber"
+396-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:461:13-58
+397            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+397-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:462:13-64
+398            <intent-filter>
+398-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+399                <action android:name="android.intent.action.MAIN" />
+399-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+399-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+400
+401                <category android:name="android.intent.category.LAUNCHER" />
+401-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+401-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+402            </intent-filter>
+403        </activity-alias>
+404        <activity-alias
+404-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:442:9-454:26
+405            android:name="com.goodwy.dialer.activities.SplashActivity.Yellow"
+405-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:443:13-61
+406            android:enabled="false"
+406-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:444:13-36
+407            android:exported="true"
+407-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:445:13-36
+408            android:icon="@mipmap/ic_launcher_yellow"
+408-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:446:13-54
+409            android:roundIcon="@mipmap/ic_launcher_yellow"
+409-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:447:13-59
+410            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+410-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:448:13-64
+411            <intent-filter>
+411-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+412                <action android:name="android.intent.action.MAIN" />
+412-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+412-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+413
+414                <category android:name="android.intent.category.LAUNCHER" />
+414-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+414-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+415            </intent-filter>
+416        </activity-alias>
+417        <activity-alias
+417-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:428:9-440:26
+418            android:name="com.goodwy.dialer.activities.SplashActivity.Lime"
+418-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:429:13-59
+419            android:enabled="false"
+419-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:430:13-36
+420            android:exported="true"
+420-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:431:13-36
+421            android:icon="@mipmap/ic_launcher_lime"
+421-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:432:13-52
+422            android:roundIcon="@mipmap/ic_launcher_lime"
+422-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:433:13-57
+423            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+423-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:434:13-64
+424            <intent-filter>
+424-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+425                <action android:name="android.intent.action.MAIN" />
+425-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+425-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+426
+427                <category android:name="android.intent.category.LAUNCHER" />
+427-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+427-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+428            </intent-filter>
+429        </activity-alias>
+430        <activity-alias
+430-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:414:9-426:26
+431            android:name="com.goodwy.dialer.activities.SplashActivity.Light_green"
+431-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:415:13-66
+432            android:enabled="false"
+432-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:416:13-36
+433            android:exported="true"
+433-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:417:13-36
+434            android:icon="@mipmap/ic_launcher_light_green"
+434-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:418:13-59
+435            android:roundIcon="@mipmap/ic_launcher_light_green"
+435-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:419:13-64
+436            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+436-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:420:13-64
+437            <intent-filter>
+437-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+438                <action android:name="android.intent.action.MAIN" />
+438-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+438-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+439
+440                <category android:name="android.intent.category.LAUNCHER" />
+440-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+440-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+441            </intent-filter>
+442        </activity-alias>
+443        <activity-alias
+443-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:400:9-412:26
+444            android:name="com.goodwy.dialer.activities.SplashActivity.Green"
+444-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:401:13-60
+445            android:enabled="false"
+445-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:402:13-36
+446            android:exported="true"
+446-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:403:13-36
+447            android:icon="@mipmap/ic_launcher_green"
+447-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:404:13-53
+448            android:roundIcon="@mipmap/ic_launcher_green"
+448-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:405:13-58
+449            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+449-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:406:13-64
+450            <intent-filter>
+450-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+451                <action android:name="android.intent.action.MAIN" />
+451-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+451-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+452
+453                <category android:name="android.intent.category.LAUNCHER" />
+453-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+453-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+454            </intent-filter>
+455        </activity-alias>
+456        <activity-alias
+456-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:386:9-398:26
+457            android:name="com.goodwy.dialer.activities.SplashActivity.Teal"
+457-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:387:13-59
+458            android:enabled="false"
+458-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:388:13-36
+459            android:exported="true"
+459-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:389:13-36
+460            android:icon="@mipmap/ic_launcher_teal"
+460-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:390:13-52
+461            android:roundIcon="@mipmap/ic_launcher_teal"
+461-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:391:13-57
+462            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+462-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:392:13-64
+463            <intent-filter>
+463-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+464                <action android:name="android.intent.action.MAIN" />
+464-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+464-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+465
+466                <category android:name="android.intent.category.LAUNCHER" />
+466-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+466-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+467            </intent-filter>
+468        </activity-alias>
+469        <activity-alias
+469-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:372:9-384:26
+470            android:name="com.goodwy.dialer.activities.SplashActivity.Cyan"
+470-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:373:13-59
+471            android:enabled="false"
+471-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:374:13-36
+472            android:exported="true"
+472-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:375:13-36
+473            android:icon="@mipmap/ic_launcher_cyan"
+473-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:376:13-52
+474            android:roundIcon="@mipmap/ic_launcher_cyan"
+474-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:377:13-57
+475            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+475-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:378:13-64
+476            <intent-filter>
+476-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+477                <action android:name="android.intent.action.MAIN" />
+477-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+477-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+478
+479                <category android:name="android.intent.category.LAUNCHER" />
+479-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+479-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+480            </intent-filter>
+481        </activity-alias>
+482        <activity-alias
+482-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:358:9-370:26
+483            android:name="com.goodwy.dialer.activities.SplashActivity.Light_blue"
+483-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:359:13-65
+484            android:enabled="false"
+484-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:360:13-36
+485            android:exported="true"
+485-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:361:13-36
+486            android:icon="@mipmap/ic_launcher_light_blue"
+486-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:362:13-58
+487            android:roundIcon="@mipmap/ic_launcher_light_blue"
+487-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:363:13-63
+488            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+488-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:364:13-64
+489            <intent-filter>
+489-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+490                <action android:name="android.intent.action.MAIN" />
+490-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+490-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+491
+492                <category android:name="android.intent.category.LAUNCHER" />
+492-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+492-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+493            </intent-filter>
+494        </activity-alias>
+495        <activity-alias
+495-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:344:9-356:26
+496            android:name="com.goodwy.dialer.activities.SplashActivity.Blue"
+496-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:345:13-59
+497            android:enabled="false"
+497-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:346:13-36
+498            android:exported="true"
+498-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:347:13-36
+499            android:icon="@mipmap/ic_launcher_blue"
+499-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:348:13-52
+500            android:roundIcon="@mipmap/ic_launcher_blue"
+500-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:349:13-57
+501            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+501-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:350:13-64
+502            <intent-filter>
+502-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+503                <action android:name="android.intent.action.MAIN" />
+503-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+503-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+504
+505                <category android:name="android.intent.category.LAUNCHER" />
+505-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+505-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+506            </intent-filter>
+507        </activity-alias>
+508        <activity-alias
+508-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:330:9-342:26
+509            android:name="com.goodwy.dialer.activities.SplashActivity.Indigo"
+509-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:331:13-61
+510            android:enabled="false"
+510-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:332:13-36
+511            android:exported="true"
+511-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:333:13-36
+512            android:icon="@mipmap/ic_launcher_indigo"
+512-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:334:13-54
+513            android:roundIcon="@mipmap/ic_launcher_indigo"
+513-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:335:13-59
+514            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+514-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:336:13-64
+515            <intent-filter>
+515-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+516                <action android:name="android.intent.action.MAIN" />
+516-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+516-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+517
+518                <category android:name="android.intent.category.LAUNCHER" />
+518-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+518-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+519            </intent-filter>
+520        </activity-alias>
+521        <activity-alias
+521-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:316:9-328:26
+522            android:name="com.goodwy.dialer.activities.SplashActivity.Deep_purple"
+522-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:317:13-66
+523            android:enabled="false"
+523-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:318:13-36
+524            android:exported="true"
+524-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:319:13-36
+525            android:icon="@mipmap/ic_launcher_deep_purple"
+525-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:320:13-59
+526            android:roundIcon="@mipmap/ic_launcher_deep_purple"
+526-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:321:13-64
+527            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+527-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:322:13-64
+528            <intent-filter>
+528-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+529                <action android:name="android.intent.action.MAIN" />
+529-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+529-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+530
+531                <category android:name="android.intent.category.LAUNCHER" />
+531-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+531-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+532            </intent-filter>
+533        </activity-alias>
+534        <activity-alias
+534-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:302:9-314:26
+535            android:name="com.goodwy.dialer.activities.SplashActivity.Purple"
+535-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:303:13-61
+536            android:enabled="false"
+536-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:304:13-36
+537            android:exported="true"
+537-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:305:13-36
+538            android:icon="@mipmap/ic_launcher_purple"
+538-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:306:13-54
+539            android:roundIcon="@mipmap/ic_launcher_purple"
+539-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:307:13-59
+540            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+540-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:308:13-64
+541            <intent-filter>
+541-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+542                <action android:name="android.intent.action.MAIN" />
+542-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+542-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+543
+544                <category android:name="android.intent.category.LAUNCHER" />
+544-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+544-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+545            </intent-filter>
+546        </activity-alias>
+547        <activity-alias
+547-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:288:9-300:26
+548            android:name="com.goodwy.dialer.activities.SplashActivity.Pink"
+548-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:289:13-59
+549            android:enabled="false"
+549-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:290:13-36
+550            android:exported="true"
+550-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:291:13-36
+551            android:icon="@mipmap/ic_launcher_pink"
+551-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:292:13-52
+552            android:roundIcon="@mipmap/ic_launcher_pink"
+552-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:293:13-57
+553            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+553-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:294:13-64
+554            <intent-filter>
+554-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+555                <action android:name="android.intent.action.MAIN" />
+555-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+555-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+556
+557                <category android:name="android.intent.category.LAUNCHER" />
+557-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+557-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+558            </intent-filter>
+559        </activity-alias>
+560        <activity-alias
+560-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:274:9-286:26
+561            android:name="com.goodwy.dialer.activities.SplashActivity.Red"
+561-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:275:13-58
+562            android:enabled="false"
+562-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:276:13-36
+563            android:exported="true"
+563-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:277:13-36
+564            android:icon="@mipmap/ic_launcher_red"
+564-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:278:13-51
+565            android:roundIcon="@mipmap/ic_launcher_red"
+565-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:279:13-56
+566            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+566-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:280:13-64
+567            <intent-filter>
+567-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:282:13-285:29
+568                <action android:name="android.intent.action.MAIN" />
+568-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:17-69
+568-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:283:25-66
+569
+570                <category android:name="android.intent.category.LAUNCHER" />
+570-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:17-77
+570-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:284:27-74
+571            </intent-filter>
+572        </activity-alias>
+573
+574        <activity
+574-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:84:9-96:20
+575            android:name="com.goodwy.dialer.activities.MainActivity"
+575-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:85:13-52
+576            android:configChanges="orientation|screenSize"
+576-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:86:13-59
+577            android:exported="true"
+577-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:87:13-36
+578            android:screenOrientation="nosensor" >
+578-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:88:13-49
+579            <intent-filter>
+579-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:91:13-95:29
+580                <action android:name="android.intent.action.VIEW" />
+580-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:92:17-69
+580-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:92:25-66
+581
+582                <data android:mimeType="vnd.android.cursor.dir/calls" />
+582-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:93:17-73
+582-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:93:23-70
+583
+584                <category android:name="android.intent.category.DEFAULT" />
+584-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:17-76
+584-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:27-73
+585            </intent-filter>
+586        </activity>
+587        <activity
+587-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:98:9-104:69
+588            android:name="com.goodwy.commons.activities.PurchaseActivity"
+588-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:99:13-74
+589            android:configChanges="orientation"
+589-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:100:13-48
+590            android:exported="false"
+590-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:101:13-37
+591            android:label=""
+591-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:102:13-29
+592            android:parentActivityName="com.goodwy.dialer.activities.MainActivity"
+592-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:104:13-66
+593            android:screenOrientation="nosensor" />
+593-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:103:13-49
+594        <activity
+594-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:106:9-112:69
+595            android:name="com.goodwy.commons.activities.AboutActivity"
+595-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:107:13-71
+596            android:configChanges="orientation"
+596-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:108:13-48
+597            android:exported="false"
+597-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:109:13-37
+598            android:label="@string/about"
+598-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:110:13-42
+599            android:parentActivityName="com.goodwy.dialer.activities.MainActivity"
+599-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:112:13-66
+600            android:screenOrientation="nosensor" />
+600-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:111:13-49
+601        <activity
+601-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:114:9-119:73
+602            android:name="com.goodwy.commons.activities.CustomizationActivity"
+602-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:115:13-79
+603            android:configChanges="orientation"
+603-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:116:13-48
+604            android:exported="false"
+604-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:117:13-37
+605            android:label="@string/customize_colors"
+605-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:118:13-53
+606            android:parentActivityName="com.goodwy.dialer.activities.SettingsActivity" />
+606-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:119:13-70
+607        <activity
+607-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:121:9-128:45
+608            android:name="com.goodwy.commons.activities.ManageBlockedNumbersActivity"
+608-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:122:13-86
+609            android:configChanges="orientation"
+609-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:123:13-48
+610            android:enableOnBackInvokedCallback="true"
+610-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:64:13-55
+611            android:exported="false"
+611-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:124:13-37
+612            android:label="@string/blocked_numbers"
+612-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:125:13-52
+613            android:parentActivityName="com.goodwy.dialer.activities.SettingsActivity"
+613-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:127:13-70
+614            android:screenOrientation="nosensor" />
+614-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:126:13-49
+615        <activity
+615-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:130:9-136:73
+616            android:name="com.goodwy.dialer.activities.ManageSpeedDialActivity"
+616-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:131:13-63
+617            android:configChanges="orientation"
+617-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:132:13-48
+618            android:exported="false"
+618-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:133:13-37
+619            android:label="@string/speed_dial"
+619-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:134:13-47
+620            android:parentActivityName="com.goodwy.dialer.activities.SettingsActivity"
+620-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:136:13-70
+621            android:screenOrientation="nosensor" />
+621-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:135:13-49
+622        <activity
+622-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:138:9-144:69
+623            android:name="com.goodwy.dialer.activities.ConferenceActivity"
+623-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:139:13-58
+624            android:configChanges="orientation"
+624-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:140:13-48
+625            android:exported="false"
+625-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:141:13-37
+626            android:label="@string/conference"
+626-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:142:13-47
+627            android:parentActivityName="com.goodwy.dialer.activities.CallActivity"
+627-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:144:13-66
+628            android:screenOrientation="nosensor" />
+628-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:143:13-49
+629        <activity
+629-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:146:9-157:20
+630            android:name="com.goodwy.dialer.activities.SettingsActivity"
+630-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:147:13-56
+631            android:configChanges="orientation"
+631-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:148:13-48
+632            android:exported="true"
+632-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:149:13-36
+633            android:label="@string/settings"
+633-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:150:13-45
+634            android:parentActivityName="com.goodwy.dialer.activities.MainActivity" >
+634-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:151:13-66
+635            <intent-filter>
+635-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:153:13-156:29
+636                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+636-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:154:17-88
+636-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:154:25-85
+637
+638                <category android:name="android.intent.category.DEFAULT" />
+638-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:17-76
+638-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:27-73
+639            </intent-filter>
+640        </activity>
+641        <activity
+641-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:159:9-171:20
+642            android:name="com.goodwy.dialer.activities.SettingsDialpadActivity"
+642-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:160:13-63
+643            android:configChanges="orientation"
+643-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:161:13-48
+644            android:exported="true"
+644-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:162:13-36
+645            android:label="@string/dialpad_preferences"
+645-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:163:13-56
+646            android:parentActivityName="com.goodwy.dialer.activities.SettingsActivity"
+646-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:165:13-70
+647            android:screenOrientation="nosensor" >
+647-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:164:13-49
+648            <intent-filter>
+648-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:153:13-156:29
+649                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+649-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:154:17-88
+649-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:154:25-85
+650
+651                <category android:name="android.intent.category.DEFAULT" />
+651-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:17-76
+651-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:27-73
+652            </intent-filter>
+653        </activity>
+654
+655        <!-- launchMode="singleInstance" - incoming call is not displayed correctly on the locked screen -->
+656        <activity
+656-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:174:9-180:47
+657            android:name="com.goodwy.dialer.activities.CallActivity"
+657-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:175:13-52
+658            android:excludeFromRecents="true"
+658-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:176:13-46
+659            android:exported="false"
+659-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:177:13-37
+660            android:label="@string/ongoing_call"
+660-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:178:13-49
+661            android:screenOrientation="nosensor"
+661-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:179:13-49
+662            android:showOnLockScreen="true" />
+662-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:180:13-44
+663        <activity
+663-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:182:9-188:20
+664            android:name="com.goodwy.dialer.activities.CallHistoryActivity"
+664-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:183:13-59
+665            android:exported="false"
+665-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:184:13-37
+666            android:label="@string/recents"
+666-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:185:13-44
+667            android:parentActivityName="com.goodwy.dialer.activities.MainActivity"
+667-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:187:13-66
+668            android:screenOrientation="nosensor" >
+668-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:186:13-49
+669        </activity>
+670        <activity
+670-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:190:9-221:20
+671            android:name="com.goodwy.dialer.activities.DialpadActivity"
+671-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:191:13-55
+672            android:configChanges="orientation"
+672-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:192:13-48
+673            android:exported="true"
+673-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:193:13-36
+674            android:parentActivityName="com.goodwy.dialer.activities.MainActivity"
+674-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:195:13-66
+675            android:screenOrientation="nosensor"
+675-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:194:13-49
+676            android:windowSoftInputMode="stateHidden" >
+676-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:196:13-54
+677
+678            <!-- android:label="@string/dialpad" -->
+679
+680            <intent-filter>
+680-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:199:13-204:29
+681                <action android:name="android.intent.action.DIAL" />
+681-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:200:17-69
+681-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:200:25-66
+682
+683                <category android:name="android.intent.category.DEFAULT" />
+683-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:17-76
+683-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:27-73
+684
+685                <data android:scheme="tel" />
+685-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:93:17-73
+685-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:203:23-43
+686            </intent-filter>
+687            <intent-filter>
+687-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:206:13-210:29
+688                <action android:name="android.intent.action.DIAL" />
+688-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:200:17-69
+688-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:200:25-66
+689
+690                <category android:name="android.intent.category.DEFAULT" />
+690-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:17-76
+690-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:27-73
+691            </intent-filter>
+692            <intent-filter>
+692-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:212:13-220:29
+693                <action android:name="android.intent.action.VIEW" />
+693-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:92:17-69
+693-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:92:25-66
+694                <action android:name="android.intent.action.DIAL" />
+694-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:200:17-69
+694-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:200:25-66
+695
+696                <category android:name="android.intent.category.DEFAULT" />
+696-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:17-76
+696-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:27-73
+697                <category android:name="android.intent.category.BROWSABLE" />
+697-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:217:17-78
+697-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:217:27-75
+698
+699                <data android:scheme="tel" />
+699-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:93:17-73
+699-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:203:23-43
+700            </intent-filter>
+701        </activity>
+702        <activity
+702-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:223:9-235:20
+703            android:name="com.goodwy.dialer.activities.DialerActivity"
+703-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:224:13-54
+704            android:exported="true"
+704-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:225:13-36
+705            android:label="@string/dialer"
+705-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:226:13-43
+706            android:theme="@style/Theme.Transparent" >
+706-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:227:13-53
+707            <intent-filter>
+707-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:229:13-234:29
+708                <action android:name="android.intent.action.CALL" />
+708-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:230:17-69
+708-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:230:25-66
+709
+710                <category android:name="android.intent.category.DEFAULT" />
+710-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:17-76
+710-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:27-73
+711
+712                <data android:scheme="tel" />
+712-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:93:17-73
+712-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:203:23-43
+713            </intent-filter>
+714        </activity>
+715
+716        <service
+716-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:237:9-249:19
+717            android:name="com.goodwy.dialer.services.CallService"
+717-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:238:13-49
+718            android:enabled="true"
+718-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:239:13-35
+719            android:exported="true"
+719-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:240:13-36
+720            android:permission="android.permission.BIND_INCALL_SERVICE" >
+720-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:241:13-72
+721            <meta-data
+721-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:242:13-244:40
+722                android:name="android.telecom.IN_CALL_SERVICE_UI"
+722-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:243:17-66
+723                android:value="true" />
+723-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:244:17-37
+724
+725            <intent-filter>
+725-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:246:13-248:29
+726                <action android:name="android.telecom.InCallService" />
+726-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:247:17-72
+726-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:247:25-69
+727            </intent-filter>
+728        </service>
+729        <service
+729-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:251:9-258:19
+730            android:name="com.goodwy.dialer.services.SimpleCallScreeningService"
+730-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:252:13-64
+731            android:exported="true"
+731-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:253:13-36
+732            android:permission="android.permission.BIND_SCREENING_SERVICE" >
+732-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:254:13-75
+733            <intent-filter>
+733-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:255:13-257:29
+734                <action android:name="android.telecom.CallScreeningService" />
+734-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:256:17-79
+734-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:256:25-76
+735            </intent-filter>
+736        </service>
+737        <service android:name="com.goodwy.dialer.services.TimerService" />
+737-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:260:9-58
+737-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:260:18-55
+738
+739        <receiver android:name="com.goodwy.dialer.receivers.HideTimerReceiver" />
+739-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:262:9-65
+739-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:262:19-62
+740        <receiver
+740-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:264:9-272:20
+741            android:name="com.goodwy.dialer.receivers.CallActionReceiver"
+741-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:265:13-57
+742            android:enabled="true"
+742-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:266:13-35
+743            android:exported="true" >
+743-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:267:13-36
+744            <intent-filter>
+744-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:268:13-271:29
+745                <action android:name="com.goodwy.dialer.action.ACCEPT_CALL" />
+745-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:269:17-79
+745-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:269:25-76
+746                <action android:name="com.goodwy.dialer.action.DECLINE_CALL" />
+746-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:270:17-80
+746-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:270:25-77
+747            </intent-filter>
+748        </receiver>
+749
+750        <activity
+750-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:43:9-48:88
+751            android:name="com.goodwy.commons.activities.ContributorsActivity"
+751-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:44:13-78
+752            android:configChanges="orientation"
+752-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:45:13-48
+753            android:exported="false"
+753-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:46:13-37
+754            android:label="@string/contributors"
+754-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:47:13-49
+755            android:parentActivityName="com.goodwy.commons.activities.AboutActivity" />
+755-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:48:13-85
+756        <activity
+756-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:49:9-54:88
+757            android:name="com.goodwy.commons.activities.FAQActivity"
+757-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:50:13-69
+758            android:configChanges="orientation"
+758-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:51:13-48
+759            android:exported="false"
+759-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:52:13-37
+760            android:label="@string/frequently_asked_questions"
+760-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:53:13-63
+761            android:parentActivityName="com.goodwy.commons.activities.AboutActivity" />
+761-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:54:13-85
+762        <activity
+762-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:55:9-60:88
+763            android:name="com.goodwy.commons.activities.LicenseActivity"
+763-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:56:13-73
+764            android:configChanges="orientation"
+764-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:57:13-48
+765            android:exported="false"
+765-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:58:13-37
+766            android:label="@string/third_party_licences"
+766-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:59:13-57
+767            android:parentActivityName="com.goodwy.commons.activities.AboutActivity" />
+767-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:60:13-85
+768
+769        <receiver
+769-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:69:9-77:20
+770            android:name="com.goodwy.commons.receivers.SharedThemeReceiver"
+770-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:70:13-76
+771            android:enabled="true"
+771-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:71:13-35
+772            android:exported="true" >
+772-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:72:13-36
+773            <intent-filter>
+773-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:73:13-76:29
+774                <action android:name="com.goodwy.commons.SHARED_THEME_ACTIVATED" />
+774-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:74:17-84
+774-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:74:25-81
+775                <action android:name="com.goodwy.commons.SHARED_THEME_UPDATED" />
+775-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:75:17-82
+775-->[com.github.Goodwy:Goodwy-Commons:4316a7028d] /Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/AndroidManifest.xml:75:25-79
+776            </intent-filter>
+777        </receiver>
+778
+779        <activity
+779-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:190:9-195:58
+780            android:name="ru.rustore.sdk.billingclient.presentation.RuStoreBillingClientActivity"
+780-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:191:13-98
+781            android:configChanges="screenSize|keyboardHidden|keyboard"
+781-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:192:13-71
+782            android:launchMode="singleTask"
+782-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:193:13-44
+783            android:theme="@style/Theme.RuStoreBillingClient"
+783-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:194:13-62
+784            android:windowSoftInputMode="adjustResize" />
+784-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:195:13-55
+785        <activity
+785-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:196:9-201:58
+786            android:name="com.sdkit.paylib.paylibnative.ui.activity.PaylibNativeActivity"
+786-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:197:13-90
+787            android:configChanges="screenSize|keyboardHidden|keyboard"
+787-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:198:13-71
+788            android:launchMode="singleTask"
+788-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:199:13-44
+789            android:theme="@style/paylib_native_light_theme"
+789-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:200:13-61
+790            android:windowSoftInputMode="adjustResize" />
+790-->[ru.rustore.sdk:billingclient:2.2.0] /Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/AndroidManifest.xml:201:13-55
+791        <activity
+791-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:30:9-39:20
+792            android:name="ru.rustore.sdk.core.presentation.RuStoreCoreDialogWrapperActivity"
+792-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:31:13-93
+793            android:exported="false"
+793-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:32:13-37
+794            android:theme="@style/Theme.RuStoreSdk.Transparent" >
+794-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:33:13-64
+795            <intent-filter>
+795-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:34:13-38:29
+796                <action android:name="ru.rustore.sdk.core.presentation.RuStoreCoreDialogWrapperActivity" />
+796-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:35:17-108
+796-->[ru.rustore.sdk:core:0.1.10] /Users/codigo/.gradle/caches/transforms-3/d0ea0d128e928907e93720736a6aff86/transformed/jetified-core-0.1.10/AndroidManifest.xml:35:25-105
+797
+798                <category android:name="android.intent.category.DEFAULT" />
+798-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:17-76
+798-->/Users/codigo/Tuna/Dialer/app/src/main/AndroidManifest.xml:94:27-73
+799            </intent-filter>
+800        </activity>
+801
+802        <provider
+802-->[androidx.emoji2:emoji2:1.3.0] /Users/codigo/.gradle/caches/transforms-3/9a8c0aead3ea17c13c14ebbd232ba989/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+803            android:name="androidx.startup.InitializationProvider"
+803-->[androidx.emoji2:emoji2:1.3.0] /Users/codigo/.gradle/caches/transforms-3/9a8c0aead3ea17c13c14ebbd232ba989/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:25:13-67
+804            android:authorities="com.goodwy.dialer.debug.androidx-startup"
+804-->[androidx.emoji2:emoji2:1.3.0] /Users/codigo/.gradle/caches/transforms-3/9a8c0aead3ea17c13c14ebbd232ba989/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:26:13-68
+805            android:exported="false" >
+805-->[androidx.emoji2:emoji2:1.3.0] /Users/codigo/.gradle/caches/transforms-3/9a8c0aead3ea17c13c14ebbd232ba989/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:27:13-37
+806            <meta-data
+806-->[androidx.emoji2:emoji2:1.3.0] /Users/codigo/.gradle/caches/transforms-3/9a8c0aead3ea17c13c14ebbd232ba989/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+807                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+807-->[androidx.emoji2:emoji2:1.3.0] /Users/codigo/.gradle/caches/transforms-3/9a8c0aead3ea17c13c14ebbd232ba989/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:30:17-75
+808                android:value="androidx.startup" />
+808-->[androidx.emoji2:emoji2:1.3.0] /Users/codigo/.gradle/caches/transforms-3/9a8c0aead3ea17c13c14ebbd232ba989/transformed/jetified-emoji2-1.3.0/AndroidManifest.xml:31:17-49
+809            <meta-data
+809-->[androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /Users/codigo/.gradle/caches/transforms-3/92e747b2976cc5ce2af9fe8081519783/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:29:13-31:52
+810                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+810-->[androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /Users/codigo/.gradle/caches/transforms-3/92e747b2976cc5ce2af9fe8081519783/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:30:17-78
+811                android:value="androidx.startup" />
+811-->[androidx.lifecycle:lifecycle-process:2.7.0-alpha02] /Users/codigo/.gradle/caches/transforms-3/92e747b2976cc5ce2af9fe8081519783/transformed/jetified-lifecycle-process-2.7.0-alpha02/AndroidManifest.xml:31:17-49
+812            <meta-data
+812-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+813                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+813-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+814                android:value="androidx.startup" />
+814-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+815        </provider>
+816
+817        <service
+817-->[androidx.room:room-runtime:2.6.0-rc01] /Users/codigo/.gradle/caches/transforms-3/e8e36b3b99adeb397ecf13e2585bac25/transformed/room-runtime-2.6.0-rc01/AndroidManifest.xml:24:9-28:63
+818            android:name="androidx.room.MultiInstanceInvalidationService"
+818-->[androidx.room:room-runtime:2.6.0-rc01] /Users/codigo/.gradle/caches/transforms-3/e8e36b3b99adeb397ecf13e2585bac25/transformed/room-runtime-2.6.0-rc01/AndroidManifest.xml:25:13-74
+819            android:directBootAware="true"
+819-->[androidx.room:room-runtime:2.6.0-rc01] /Users/codigo/.gradle/caches/transforms-3/e8e36b3b99adeb397ecf13e2585bac25/transformed/room-runtime-2.6.0-rc01/AndroidManifest.xml:26:13-43
+820            android:exported="false" />
+820-->[androidx.room:room-runtime:2.6.0-rc01] /Users/codigo/.gradle/caches/transforms-3/e8e36b3b99adeb397ecf13e2585bac25/transformed/room-runtime-2.6.0-rc01/AndroidManifest.xml:27:13-37
+821
+822        <meta-data
+822-->[com.android.billingclient:billing:6.0.1] /Users/codigo/.gradle/caches/transforms-3/a6e00c1f16325f850ef887742f3324e1/transformed/jetified-billing-6.0.1/AndroidManifest.xml:19:9-21:37
+823            android:name="com.google.android.play.billingclient.version"
+823-->[com.android.billingclient:billing:6.0.1] /Users/codigo/.gradle/caches/transforms-3/a6e00c1f16325f850ef887742f3324e1/transformed/jetified-billing-6.0.1/AndroidManifest.xml:20:13-73
+824            android:value="6.0.1" />
+824-->[com.android.billingclient:billing:6.0.1] /Users/codigo/.gradle/caches/transforms-3/a6e00c1f16325f850ef887742f3324e1/transformed/jetified-billing-6.0.1/AndroidManifest.xml:21:13-34
+825
+826        <activity
+826-->[com.android.billingclient:billing:6.0.1] /Users/codigo/.gradle/caches/transforms-3/a6e00c1f16325f850ef887742f3324e1/transformed/jetified-billing-6.0.1/AndroidManifest.xml:23:9-27:75
+827            android:name="com.android.billingclient.api.ProxyBillingActivity"
+827-->[com.android.billingclient:billing:6.0.1] /Users/codigo/.gradle/caches/transforms-3/a6e00c1f16325f850ef887742f3324e1/transformed/jetified-billing-6.0.1/AndroidManifest.xml:24:13-78
+828            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+828-->[com.android.billingclient:billing:6.0.1] /Users/codigo/.gradle/caches/transforms-3/a6e00c1f16325f850ef887742f3324e1/transformed/jetified-billing-6.0.1/AndroidManifest.xml:25:13-96
+829            android:exported="false"
+829-->[com.android.billingclient:billing:6.0.1] /Users/codigo/.gradle/caches/transforms-3/a6e00c1f16325f850ef887742f3324e1/transformed/jetified-billing-6.0.1/AndroidManifest.xml:26:13-37
+830            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+830-->[com.android.billingclient:billing:6.0.1] /Users/codigo/.gradle/caches/transforms-3/a6e00c1f16325f850ef887742f3324e1/transformed/jetified-billing-6.0.1/AndroidManifest.xml:27:13-72
+831
+832        <service
+832-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/codigo/.gradle/caches/transforms-3/3f7e78ccf07ab5a049f8cd21a2e66cb0/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:28:9-34:19
+833            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+833-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/codigo/.gradle/caches/transforms-3/3f7e78ccf07ab5a049f8cd21a2e66cb0/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:29:13-103
+834            android:exported="false" >
+834-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/codigo/.gradle/caches/transforms-3/3f7e78ccf07ab5a049f8cd21a2e66cb0/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:30:13-37
+835            <meta-data
+835-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/codigo/.gradle/caches/transforms-3/3f7e78ccf07ab5a049f8cd21a2e66cb0/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:31:13-33:39
+836                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+836-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/codigo/.gradle/caches/transforms-3/3f7e78ccf07ab5a049f8cd21a2e66cb0/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:32:17-94
+837                android:value="cct" />
+837-->[com.google.android.datatransport:transport-backend-cct:3.1.8] /Users/codigo/.gradle/caches/transforms-3/3f7e78ccf07ab5a049f8cd21a2e66cb0/transformed/jetified-transport-backend-cct-3.1.8/AndroidManifest.xml:33:17-36
+838        </service>
+839        <service
+839-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/codigo/.gradle/caches/transforms-3/e798e9ddab7bfca6c57d914e09d75234/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:26:9-30:19
+840            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+840-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/codigo/.gradle/caches/transforms-3/e798e9ddab7bfca6c57d914e09d75234/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:27:13-117
+841            android:exported="false"
+841-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/codigo/.gradle/caches/transforms-3/e798e9ddab7bfca6c57d914e09d75234/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:28:13-37
+842            android:permission="android.permission.BIND_JOB_SERVICE" >
+842-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/codigo/.gradle/caches/transforms-3/e798e9ddab7bfca6c57d914e09d75234/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:29:13-69
+843        </service>
+844
+845        <receiver
+845-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/codigo/.gradle/caches/transforms-3/e798e9ddab7bfca6c57d914e09d75234/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:32:9-34:40
+846            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+846-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/codigo/.gradle/caches/transforms-3/e798e9ddab7bfca6c57d914e09d75234/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:33:13-132
+847            android:exported="false" />
+847-->[com.google.android.datatransport:transport-runtime:3.1.8] /Users/codigo/.gradle/caches/transforms-3/e798e9ddab7bfca6c57d914e09d75234/transformed/jetified-transport-runtime-3.1.8/AndroidManifest.xml:34:13-37
+848        <receiver
+848-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+849            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+849-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+850            android:directBootAware="false"
+850-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+851            android:enabled="true"
+851-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+852            android:exported="true"
+852-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+853            android:permission="android.permission.DUMP" >
+853-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+854            <intent-filter>
+854-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+855                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+855-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+855-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+856            </intent-filter>
+857            <intent-filter>
+857-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+858                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+858-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+858-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+859            </intent-filter>
+860            <intent-filter>
+860-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+861                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+861-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+861-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+862            </intent-filter>
+863            <intent-filter>
+863-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+864                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+864-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+864-->[androidx.profileinstaller:profileinstaller:1.3.0] /Users/codigo/.gradle/caches/transforms-3/f2f6efedc931310d27991fbd54a2a01c/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+865            </intent-filter>
+866        </receiver>
+867    </application>
+868
+869</manifest>

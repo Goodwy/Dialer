@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.goodwy.dialer.app-mergeCoreDebugResources-75:/values-km-rKH/values-km-rKH.xml",
+            "map": [
+                {
+                    "source": "/Users/codigo/.gradle/caches/transforms-3/117fae87604d1f337bec5fe14e7de585/transformed/jetified-core-2cb206415d/res/values-km-rKH/values-km-rKH.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,206,350,491,621,748,869,992,1126,1272,1401,1511,1615",
+                        "endColumns": "150,143,140,129,126,120,122,133,145,128,109,103,86",
+                        "endOffsets": "201,345,486,616,743,864,987,1121,1267,1396,1506,1610,1697"
+                    }
+                }
+            ]
+        }
+    ]
+}

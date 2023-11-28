@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.goodwy.dialer.app-mergeCoreDebugResources-75:/values-mk-rMK/values-mk-rMK.xml",
+            "map": [
+                {
+                    "source": "/Users/codigo/.gradle/caches/transforms-3/117fae87604d1f337bec5fe14e7de585/transformed/jetified-core-2cb206415d/res/values-mk-rMK/values-mk-rMK.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,216,367,503,639,780,909,1046,1175,1333,1488,1603,1705",
+                        "endColumns": "160,150,135,135,140,128,136,128,157,154,114,101,91",
+                        "endOffsets": "211,362,498,634,775,904,1041,1170,1328,1483,1598,1700,1792"
+                    }
+                }
+            ]
+        }
+    ]
+}

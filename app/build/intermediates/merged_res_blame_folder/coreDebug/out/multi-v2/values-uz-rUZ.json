@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.goodwy.dialer.app-mergeCoreDebugResources-75:/values-uz-rUZ/values-uz-rUZ.xml",
+            "map": [
+                {
+                    "source": "/Users/codigo/.gradle/caches/transforms-3/117fae87604d1f337bec5fe14e7de585/transformed/jetified-core-2cb206415d/res/values-uz-rUZ/values-uz-rUZ.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,218,356,493,633,773,895,1026,1173,1338,1485,1601,1698",
+                        "endColumns": "162,137,136,139,139,121,130,146,164,146,115,96,85",
+                        "endOffsets": "213,351,488,628,768,890,1021,1168,1333,1480,1596,1693,1779"
+                    }
+                }
+            ]
+        }
+    ]
+}

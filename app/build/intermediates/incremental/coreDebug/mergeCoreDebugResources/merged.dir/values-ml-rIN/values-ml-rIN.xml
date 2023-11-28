@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string msgid="1087209702421076105" name="fingerprint_acquired_imager_dirty">"വിരലടയാള സെൻസറിന് വൃത്തിയില്ല. അത് ശുചിയാക്കി വീണ്ടും ശ്രമിക്കുക."</string>
+    <string msgid="4596546021310923214" name="fingerprint_acquired_insufficient">"വിരലടയാളം പ്രോസസ്സ് ചെയ്യാനായില്ല. വീണ്ടും ശ്രമിക്കുക."</string>
+    <string msgid="735082772341716043" name="fingerprint_acquired_partial">"വിരലടയാളം ഭാഗികമായി തിരിച്ചറിഞ്ഞു. വീണ്ടും ശ്രമിക്കുക."</string>
+    <string msgid="6470642383109155969" name="fingerprint_acquired_too_fast">"വിരൽ വളരെ വേഗത്തിൽ നീക്കി. വീണ്ടും ശ്രമിക്കുക."</string>
+    <string msgid="59250885689661653" name="fingerprint_acquired_too_slow">"വിരൽ വളരെ പതുക്കെ നീക്കി. വീണ്ടും ശ്രമിക്കുക."</string>
+    <string msgid="4402024612660774395" name="fingerprint_error_canceled">"ഫിംഗർപ്രിന്റ് പ്രവർത്തനം റദ്ദാക്കി."</string>
+    <string msgid="7955921658939936596" name="fingerprint_error_hw_not_available">"ഫിംഗർപ്രിന്റ് ഹാർഡ്‌വെയർ ലഭ്യമല്ല."</string>
+    <string msgid="5536934748136933450" name="fingerprint_error_lockout">"നിരവധി തവണ ശ്രമിച്ചു. പിന്നീട് വീണ്ടും ശ്രമിക്കുക."</string>
+    <string msgid="1055819001126053318" name="fingerprint_error_no_space">"വിരലടയാളം സംഭരിക്കാനാവില്ല. നിലവിലുള്ള വിരലടയാളം നീക്കംചെയ്യുക."</string>
+    <string msgid="3927186043737732875" name="fingerprint_error_timeout">"വിരലടയാളം നൽകേണ്ട സമയം കഴിഞ്ഞു. വീണ്ടും ശ്രമിക്കുക."</string>
+    <string msgid="6107816084103552441" name="fingerprint_error_unable_to_process">"വീണ്ടും ശ്രമിക്കൂ."</string>
+    <string msgid="2690661881608146617" name="fingerprint_not_recognized">"തിരിച്ചറിഞ്ഞില്ല"</string>
+    <string msgid="4516019619850763049" name="fingerprints">"വിരലടയാളങ്ങൾ:"</string>
+</resources>

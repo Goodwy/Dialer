@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string msgid="1087209702421076105" name="fingerprint_acquired_imager_dirty">"Хурууны хээ мэдрэгч бохирдсон байна. Та цэвэрлэсний дараагаар дахин оролдоно уу."</string>
+    <string msgid="4596546021310923214" name="fingerprint_acquired_insufficient">"Хурууны хээ боловсруулж чадахгүй байна. Дахин оролдоно уу."</string>
+    <string msgid="735082772341716043" name="fingerprint_acquired_partial">"Хурууны хээг дутуу уншуулсан байна. Дахин оролдоно уу."</string>
+    <string msgid="6470642383109155969" name="fingerprint_acquired_too_fast">"Хуруугаа хэт хурдан хөдөлгөсөн байна. Дахин оролдоно уу."</string>
+    <string msgid="59250885689661653" name="fingerprint_acquired_too_slow">"Хуруу хэт удаан хөдөлгөсөн байна. Дахин оролдоно уу."</string>
+    <string msgid="4402024612660774395" name="fingerprint_error_canceled">"Хурууны хээний бүртгэл амжилтгүй боллоо."</string>
+    <string msgid="7955921658939936596" name="fingerprint_error_hw_not_available">"Хурууны хээний тоног төхөөрөмж бэлэн бус байна."</string>
+    <string msgid="5536934748136933450" name="fingerprint_error_lockout">"Хэтэрхий олон оролдлоо.  Түр хүлээгээд дахин оролдоно уу."</string>
+    <string msgid="1055819001126053318" name="fingerprint_error_no_space">"Хурууны хээг хадгалах боломжгүй байна. Одоо байгаа хурууны хээг арилгана уу."</string>
+    <string msgid="3927186043737732875" name="fingerprint_error_timeout">"Хурууны хээ оруулах хугацаа өнгөрсөн байна. Дахин оруулна уу."</string>
+    <string msgid="6107816084103552441" name="fingerprint_error_unable_to_process">"Дахин оролдно уу."</string>
+    <string msgid="2690661881608146617" name="fingerprint_not_recognized">"Танигдахгүй байна"</string>
+    <string msgid="4516019619850763049" name="fingerprints">"Хурууны хээ:"</string>
+</resources>

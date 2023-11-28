@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.goodwy.dialer.app-mergeCoreDebugResources-75:/values-w600dp-v13/values-w600dp-v13.xml",
+            "map": [
+                {
+                    "source": "/Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/res/values-w600dp-v13/values-w600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,125",
+                        "endColumns": "69,68",
+                        "endOffsets": "120,189"
+                    }
+                }
+            ]
+        }
+    ]
+}

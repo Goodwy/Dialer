@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.goodwy.dialer.app-mergeCoreDebugResources-75:/values-bn-rBD/values-bn-rBD.xml",
+            "map": [
+                {
+                    "source": "/Users/codigo/.gradle/caches/transforms-3/117fae87604d1f337bec5fe14e7de585/transformed/jetified-core-2cb206415d/res/values-bn-rBD/values-bn-rBD.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,231,389,543,692,838,962,1099,1235,1399,1542,1654,1751",
+                        "endColumns": "175,157,153,148,145,123,136,135,163,142,111,96,84",
+                        "endOffsets": "226,384,538,687,833,957,1094,1230,1394,1537,1649,1746,1831"
+                    }
+                }
+            ]
+        }
+    ]
+}

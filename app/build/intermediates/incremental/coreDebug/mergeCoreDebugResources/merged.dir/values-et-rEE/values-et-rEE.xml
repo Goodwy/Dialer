@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string msgid="1087209702421076105" name="fingerprint_acquired_imager_dirty">"Sõrmejäljeandur on must. Puhastage see ja proovige uuesti."</string>
+    <string msgid="4596546021310923214" name="fingerprint_acquired_insufficient">"Sõrmejälge ei õnnestunud töödelda. Proovige uuesti."</string>
+    <string msgid="735082772341716043" name="fingerprint_acquired_partial">"Tuvastati osaline sõrmejälg. Proovige uuesti."</string>
+    <string msgid="6470642383109155969" name="fingerprint_acquired_too_fast">"Sõrm liikus liiga kiiresti. Proovige uuesti."</string>
+    <string msgid="59250885689661653" name="fingerprint_acquired_too_slow">"Sõrm liikus liiga aeglaselt. Proovige uuesti."</string>
+    <string msgid="4402024612660774395" name="fingerprint_error_canceled">"Sõrmejälje toiming tühistati."</string>
+    <string msgid="7955921658939936596" name="fingerprint_error_hw_not_available">"Sõrmejälje riistvara pole saadaval."</string>
+    <string msgid="5536934748136933450" name="fingerprint_error_lockout">"Liiga palju katseid. Proovige hiljem uuesti."</string>
+    <string msgid="1055819001126053318" name="fingerprint_error_no_space">"Sõrmejälge ei saa salvestada. Eemaldage olemasolev sõrmejälg."</string>
+    <string msgid="3927186043737732875" name="fingerprint_error_timeout">"Sõrmejälje riistvara taimeri ajalõpp. Proovige uuesti."</string>
+    <string msgid="6107816084103552441" name="fingerprint_error_unable_to_process">"Proovige uuesti."</string>
+    <string msgid="2690661881608146617" name="fingerprint_not_recognized">"Ei tuvastatud"</string>
+    <string msgid="4516019619850763049" name="fingerprints">"Sõrmejäljed:"</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string msgid="1087209702421076105" name="fingerprint_acquired_imager_dirty">"O sensor de impresión dixital está sucio. Límpao e téntao de novo."</string>
+    <string msgid="4596546021310923214" name="fingerprint_acquired_insufficient">"Non se puido procesar a impresión dixital. Téntao de novo."</string>
+    <string msgid="735082772341716043" name="fingerprint_acquired_partial">"Detectouse unha impresión dixital parcial. Téntao de novo."</string>
+    <string msgid="6470642383109155969" name="fingerprint_acquired_too_fast">"O dedo moveuse demasiado rápido. Téntao de novo."</string>
+    <string msgid="59250885689661653" name="fingerprint_acquired_too_slow">"O dedo moveuse demasiado lento. Téntao de novo."</string>
+    <string msgid="4402024612660774395" name="fingerprint_error_canceled">"Cancelouse a operación da impresión dixital."</string>
+    <string msgid="7955921658939936596" name="fingerprint_error_hw_not_available">"Hardware de impresión dixital non dispoñible."</string>
+    <string msgid="5536934748136933450" name="fingerprint_error_lockout">"Demasiados intentos. Téntao de novo máis tarde."</string>
+    <string msgid="1055819001126053318" name="fingerprint_error_no_space">"Non se pode almacenar a impresión dixital. Elimina unha impresión dixital existente."</string>
+    <string msgid="3927186043737732875" name="fingerprint_error_timeout">"Esgotouse o tempo de espera da impresión dixital. Téntao de novo."</string>
+    <string msgid="6107816084103552441" name="fingerprint_error_unable_to_process">"Téntao de novo."</string>
+    <string msgid="2690661881608146617" name="fingerprint_not_recognized">"Non se recoñece"</string>
+    <string msgid="4516019619850763049" name="fingerprints">"Impresións dixitais:"</string>
+</resources>

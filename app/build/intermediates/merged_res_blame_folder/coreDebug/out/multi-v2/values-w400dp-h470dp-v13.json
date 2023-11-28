@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.goodwy.dialer.app-mergeCoreDebugResources-75:/values-w400dp-h470dp-v13/values-w400dp-h470dp-v13.xml",
+            "map": [
+                {
+                    "source": "/Users/codigo/.gradle/caches/transforms-3/0cbce8beec93f0fdb32da92c6119ea6b/transformed/jetified-billingclient-2.2.0/res/values-w400dp-h470dp-v13/values-w400dp-h470dp-v13.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "393"
+                    }
+                }
+            ]
+        }
+    ]
+}

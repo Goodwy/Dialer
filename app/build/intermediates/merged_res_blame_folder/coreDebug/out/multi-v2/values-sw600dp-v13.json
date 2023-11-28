@@ -1,0 +1,72 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.goodwy.dialer.app-mergeCoreDebugResources-75:/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "map": [
+                {
+                    "source": "/Users/codigo/Tuna/Dialer/app/src/main/res/values-sw600dp/dimens.xml",
+                    "from": {
+                        "startLines": "8,2,5",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "211,55,136",
+                        "endColumns": "50,49,48",
+                        "endOffsets": "257,100,180"
+                    },
+                    "to": {
+                        "startLines": "15,19,34",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "858,1076,1958",
+                        "endColumns": "50,49,48",
+                        "endOffsets": "904,1121,2002"
+                    }
+                },
+                {
+                    "source": "/Users/codigo/.gradle/caches/transforms-3/20376706afbf25d5daea10c95729d63f/transformed/appcompat-1.6.1/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,124,193,263,337,413,472,543",
+                        "endColumns": "68,68,69,73,75,58,70,67",
+                        "endOffsets": "119,188,258,332,408,467,538,606"
+                    }
+                },
+                {
+                    "source": "/Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,99,150,209,254,302,358,413,469,520,576,624,672,730,782,838,885,943,996,1054,1101,1150,1193",
+                        "endColumns": "43,50,58,44,47,55,54,55,50,55,47,47,57,51,55,46,57,52,57,46,48,42,45",
+                        "endOffsets": "94,145,204,249,297,353,408,464,515,571,619,667,725,777,833,880,938,991,1049,1096,1145,1188,1234"
+                    },
+                    "to": {
+                        "startLines": "10,11,12,13,14,16,17,18,29,30,31,35,36,37,38,39,40,41,42,43,44,45,46",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "611,655,706,765,810,909,965,1020,1688,1739,1795,2007,2055,2113,2165,2221,2268,2326,2379,2437,2484,2533,2576",
+                        "endColumns": "43,50,58,44,47,55,54,55,50,55,47,47,57,51,55,46,57,52,57,46,48,42,45",
+                        "endOffsets": "650,701,760,805,853,960,1015,1071,1734,1790,1838,2050,2108,2160,2216,2263,2321,2374,2432,2479,2528,2571,2617"
+                    }
+                },
+                {
+                    "source": "/Users/codigo/.gradle/caches/transforms-3/23786303768e686522845d94af2a7d51/transformed/material-1.9.0/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,10,11,12,13,14",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,115,185,256,328,386,444,553,617,673,732,795",
+                        "endLines": "2,3,4,5,6,7,9,10,11,12,13,17",
+                        "endColumns": "59,69,70,71,57,57,10,63,55,58,62,10",
+                        "endOffsets": "110,180,251,323,381,439,548,612,668,727,790,962"
+                    },
+                    "to": {
+                        "startLines": "20,21,22,23,24,25,26,28,32,33,47,48",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "1126,1186,1256,1327,1399,1457,1515,1624,1843,1899,2622,2685",
+                        "endLines": "20,21,22,23,24,25,27,28,32,33,47,51",
+                        "endColumns": "59,69,70,71,57,57,10,63,55,58,62,10",
+                        "endOffsets": "1181,1251,1322,1394,1452,1510,1619,1683,1894,1953,2680,2852"
+                    }
+                }
+            ]
+        }
+    ]
+}

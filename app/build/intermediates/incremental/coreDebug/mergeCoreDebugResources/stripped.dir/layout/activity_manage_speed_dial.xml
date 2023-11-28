@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/manage_speed_dial_coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/manage_speed_dial_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/color_primary"
+        app:title="@string/manage_speed_dial"
+        app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/manage_speed_dial_scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/activity_padding_left_right"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/manage_speed_dial_holder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:ignore="HardcodedText">
+
+            <com.goodwy.commons.views.MyTextView
+                android:id="@+id/manage_speed_dial_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/big_margin"
+                android:paddingTop="@dimen/medium_margin"
+                android:paddingEnd="@dimen/normal_margin"
+                android:paddingBottom="@dimen/normal_margin"
+                android:text="@string/speed_dial_label"
+                android:textSize="@dimen/normal_text_size"
+                android:textStyle="italic" />
+
+            <com.goodwy.commons.views.MyRecyclerView
+                android:id="@+id/speed_dial_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/normal_margin"
+                android:paddingEnd="@dimen/normal_margin"
+                android:clipToPadding="false"
+                android:scrollbars="none"
+                app:layoutManager="com.goodwy.commons.views.MyLinearLayoutManager" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

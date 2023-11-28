@@ -1,0 +1,146 @@
+[
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/activity_settings_dialpad.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_settings_dialpad.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/dialog_select_sim.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_select_sim.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/dialpad_rectangle.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialpad_rectangle.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/activity_settings.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_settings.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/dialog_show_grouped_calls.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_show_grouped_calls.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/item_view_email.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_view_email.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/dialog_change_sorting.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_change_sorting.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/dialog_manage_visible_tabs.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_manage_visible_tabs.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/top_view.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/top_view.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/fragment_recents.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/fragment_recents.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/item_choose_social.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_choose_social.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/item_view_messengers_actions.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_view_messengers_actions.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/call_notification.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/call_notification.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/activity_call_history.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_call_history.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/dialpad_call.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialpad_call.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/dialpad_round.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialpad_round.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/item_recent_call.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_recent_call.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/dialpad_grid.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialpad_grid.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/dialog_filter_contact_sources.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_filter_contact_sources.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/fragment_letters_layout.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/fragment_letters_layout.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/activity_dialpad.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_dialpad.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/activity_conference.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_conference.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/dialog_export_call_history.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_export_call_history.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/layout_simple_recycler_view.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/layout_simple_recycler_view.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/fragment_favorites.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/fragment_favorites.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/activity_call.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_call.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/activity_main.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/item_call_history.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_call_history.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/dialog_choose_social.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_choose_social.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/item_speed_dial.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_speed_dial.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/dialog_select_contact.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/dialog_select_contact.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/item_view_event.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_view_event.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/activity_manage_speed_dial.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/activity_manage_speed_dial.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/item_filter_contact_source.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_filter_contact_source.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/fragment_contacts.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/fragment_contacts.xml"
+    },
+    {
+        "merged": "com.goodwy.dialer.app-mergeCoreDebugResources-76:/layout/item_conference_call.xml",
+        "source": "com.goodwy.dialer.app-main-81:/layout/item_conference_call.xml"
+    }
+]

@@ -53,6 +53,9 @@ class CallManager {
                 listener.onAudioStateChanged(route)
             }
         }
+        fun getPhoneNumber(): String? {
+            return call?.details?.handle?.schemeSpecificPart
+        }
 
         fun getPhoneState(): PhoneState {
             return when (calls.size) {

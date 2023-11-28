@@ -1,0 +1,1662 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
+    <plurals name="by_days">
+        <item quantity="one">%d روز</item>
+        <item quantity="other">%d روز</item>
+    </plurals>
+    <plurals name="by_hours">
+        <item quantity="one">%d ساعت</item>
+        <item quantity="other">%d ساعت</item>
+    </plurals>
+    <plurals name="by_minutes">
+        <item quantity="one">%d دقیقه</item>
+        <item quantity="other">%d دقیقه</item>
+    </plurals>
+    <plurals name="by_months">
+        <item quantity="one">%d ماه</item>
+        <item quantity="other">%d ماه</item>
+    </plurals>
+    <plurals name="by_seconds">
+        <item quantity="one">%d ثانیه</item>
+        <item quantity="other">%d ثانیه</item>
+    </plurals>
+    <plurals name="by_weeks">
+        <item quantity="one">%d هفته</item>
+        <item quantity="other">%d هفته</item>
+    </plurals>
+    <plurals name="by_years">
+        <item quantity="one">%d سال</item>
+        <item quantity="other">%d سال</item>
+    </plurals>
+    <plurals name="column_counts">
+        <item quantity="one">%d column</item>
+        <item quantity="other">%d columns</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d روز</item>
+        <item quantity="other">%d روز</item>
+    </plurals>
+    <plurals name="days_before">
+        <item quantity="one">%d روز پیش</item>
+        <item quantity="other">%d روز پیش</item>
+    </plurals>
+    <plurals name="delete_contacts">
+        <item quantity="one">%d مخاطب</item>
+        <item quantity="other">%d مخاطب</item>
+    </plurals>
+    <plurals name="delete_items">
+        <item quantity="one">%d مورد</item>
+        <item quantity="other">%d مورد</item>
+    </plurals>
+    <plurals name="delete_warning">
+        <item quantity="one">WARNING: You are deleting %d folder</item>
+        <item quantity="other">WARNING: You are deleting %d folders</item>
+    </plurals>
+    <plurals name="deleting_items">
+        <item quantity="one">درحال حذف %d مورد</item>
+        <item quantity="other">درحال حذف %d مورد</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d ساعت</item>
+        <item quantity="other">%d ساعت</item>
+    </plurals>
+    <plurals name="hours_before">
+        <item quantity="one">%d ساعت پیش</item>
+        <item quantity="other">%d ساعت پیش</item>
+    </plurals>
+    <plurals name="in_days">
+        <item quantity="one">%d روز</item>
+        <item quantity="other">%d روز</item>
+    </plurals>
+    <plurals name="in_hours">
+        <item quantity="one">%d ساعت</item>
+        <item quantity="other">%d ساعت</item>
+    </plurals>
+    <plurals name="in_minutes">
+        <item quantity="one">%d دقیقه</item>
+        <item quantity="other">%d دقیقه</item>
+    </plurals>
+    <plurals name="in_months">
+        <item quantity="one">%d ماه</item>
+        <item quantity="other">%d ماه</item>
+    </plurals>
+    <plurals name="in_seconds">
+        <item quantity="one">%d ثانیه</item>
+        <item quantity="other">%d ثانیه</item>
+    </plurals>
+    <plurals name="in_weeks">
+        <item quantity="one">%d هفته</item>
+        <item quantity="other">%d هفته</item>
+    </plurals>
+    <plurals name="in_years">
+        <item quantity="one">%d سال</item>
+        <item quantity="other">%d سال</item>
+    </plurals>
+    <plurals name="items">
+        <item quantity="one">%d مورد</item>
+        <item quantity="other">%d مورد</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d دقیقه</item>
+        <item quantity="other">%d دقیقه</item>
+    </plurals>
+    <plurals name="minutes_before">
+        <item quantity="one">%d دقیقه پیش</item>
+        <item quantity="other">%d دقیقه پیش</item>
+    </plurals>
+    <plurals name="months">
+        <item quantity="one">%d ماه</item>
+        <item quantity="other">%d ماه</item>
+    </plurals>
+    <plurals name="months_before">
+        <item quantity="one">%d ماه پیش</item>
+        <item quantity="other">%d ماه پیش</item>
+    </plurals>
+    <plurals name="moving_items_into_bin">
+        <item quantity="one">Moving %d item into the Recycle Bin</item>
+        <item quantity="other">Moving %d items into the Recycle Bin</item>
+    </plurals>
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="one">%d اعلان جدید</item>
+    <item quantity="other">%d اعلان جدید</item>
+  </plurals>
+    <plurals name="row_counts">
+        <item quantity="one">%d row</item>
+        <item quantity="other">%d rows</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">%d ثانیه</item>
+        <item quantity="other">%d ثانیه</item>
+    </plurals>
+    <plurals name="seconds_before">
+        <item quantity="one">%d ثانیه پیش</item>
+        <item quantity="other">%d ثانیه پیش</item>
+    </plurals>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d تایمر در حال اجراست</item>
+        <item quantity="other">%d تایمر در حال اجراست</item>
+    </plurals>
+    <plurals name="trial_expires_days">
+        <item quantity="one">Your trial expires in %d day.</item>
+        <item quantity="other">Your trial expires in %d days.</item>
+    </plurals>
+    <plurals name="weeks">
+        <item quantity="one">%d هفته</item>
+        <item quantity="other">%d هفته</item>
+    </plurals>
+    <plurals name="weeks_before">
+        <item quantity="one">%d هفته پیش</item>
+        <item quantity="other">%d هفته پیش</item>
+    </plurals>
+    <plurals name="years">
+        <item quantity="one">%d سال</item>
+        <item quantity="other">%d سال</item>
+    </plurals>
+    <plurals name="years_before">
+        <item quantity="one">%d سال پیش</item>
+        <item quantity="other">%d سال پیش</item>
+    </plurals>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"پیمایش به صفحه اصلی"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"رفتن به بالا"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"گزینه‌های بیشتر"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"تمام"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"دیدن همه"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"انتخاب برنامه"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"خاموش"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"روشن"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"‎Alt+‎"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"‎Ctrl+‎"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"حذف"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"‎Function+‎"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"‎Meta+‎"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"‎Shift+‎"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"فاصله"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"‎Sym+‎"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"منو+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"جستجو…‏"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"پاک کردن پُرسمان"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"درخواست جستجو"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"جستجو"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"ارسال پُرسمان"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"جستجوی گفتاری"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"هم‌رسانی با"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"هم‌رسانی با <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"کوچک کردن"</string>
+    <string name="about">درباره</string>
+    <string name="about_footer">Made with ❤️ in Slovakia</string>
+    <string name="about_summary">
+        <![CDATA[
+            <i>
+            ما برای زمان شما ارزش قائل هستیم و می خواهیم بدون تبلیغات از برنامه ما لذت ببرید. اگر برای شما لذت و سودمندی به ارمغان اورده است، در نظر بگیرید که به توسعه ان کمک کنید. <br><br>
+             قدردانی از کار سخت ما و به اشتراک گذاشتن برداشت خود را، ان را به ما کمک خواهد کرد برای تحقق بخشیدن به ایده های جدید و به شما ارائه ویژگی های شگفت انگیز حتی بیشتر.
+            </i>
+        ]]></string>
+    <string name="accent_color">رنگ لهجه</string>
+    <string name="accent_color_black_and_white">رنگ تأکید برای شِمای سیاه &amp; سفید</string>
+    <string name="accent_color_white">رنگ تأکید برای شِمای سفید</string>
+    <string name="accept">پذیرش</string>
+    <string name="accept_call">پذیرفتن تماس</string>
+    <string name="access_storage_prompt">Please grant our app access to all your files, it might not work well without it.</string>
+    <string name="action_on_message_click">عملیات روی پیام کلیک</string>
+    <string name="action_support_project">پشتیبانی پروژه</string>
+    <string name="add_a_blocked_number">افزودن یک شماره مسدود شده</string>
+    <string name="add_address">افزودن آدرس</string>
+    <string name="add_blocked_number_helper_text">Enter a number or a pattern (e.g. *12345*, +1*8888) to block all calls and messages from numbers matching the pattern.</string>
+    <string name="add_contact">Add contact</string>
+    <string name="add_email">افزودن ایمیل</string>
+    <string name="add_event">افزودن رویداد</string>
+    <string name="add_favorites">افزودن موردعلاقه‌ها</string>
+    <string name="add_fingerprint">افزودن اثر انگشت</string>
+    <string name="add_group">یک گروه اضافه کنید</string>
+    <string name="add_im">افزودن IM</string>
+    <string name="add_new_sound">Add a new sound</string>
+    <string name="add_notes">یادداشت‌ها را اضافه کنید</string>
+    <string name="add_number">افزودن شماره</string>
+    <string name="add_number_to_contact">افزودن شماره به مخاطبین</string>
+    <string name="add_password">Add password</string>
+    <string name="add_related_person">افزودن شخص مرتبط</string>
+    <string name="add_to_existing_contact">Add to an existing contact</string>
+    <string name="add_to_favorites">افزودن به موردعلاقه‌ها</string>
+    <string name="add_website">افزودن وب سایت</string>
+    <string name="additional_info">اطلاعات اضافی</string>
+    <string name="alarm">هشدار</string>
+    <string name="alarm_goes_off_in">Time remaining till the alarm goes off:\n%s</string>
+    <string name="alarm_warning">Please make sure the alarm works properly before relying on it. It could misbehave due to system restrictions related to battery saving.</string>
+    <string name="album">آلبوم</string>
+    <string name="allow_access_more_media">Allow access to more media</string>
+    <string name="allow_alarm_scheduled_messages">You must allow the app accessing internal alarms, else it cannot send scheduled messages.</string>
+    <string name="allow_alarm_sleep_timer">You must allow the app accessing internal alarms, else it cannot turn off the application after sleep timer.</string>
+    <string name="allow_displaying_over_other_apps">برای عملکرد صحیح برنامه لطفا اجازه دهید روی برنامه‌های دیگر نمایش داده شود</string>
+    <string name="allow_full_screen_notifications_incoming_calls">You must allow the app displaying full screen notifications, else you may miss some incoming calls.</string>
+    <string name="allow_full_screen_notifications_reminders">You must allow the app displaying full screen notifications, else you may miss some reminders.</string>
+    <string name="allow_location_permission">You must allow the app accessing your location, else it won\'t know it.</string>
+    <string name="allow_notifications_files">You must allow the app displaying notifications, else it cannot show the progress bar.</string>
+    <string name="allow_notifications_incoming_calls">You must allow the app displaying notifications, else it cannot show incoming calls.</string>
+    <string name="allow_notifications_incoming_messages">You must allow the app displaying notifications, else it cannot show incoming messages.</string>
+    <string name="allow_notifications_music_player">You must allow the app displaying notifications, else it cannot play songs.</string>
+    <string name="allow_notifications_reminders">You must allow the app displaying notifications, else it cannot show reminders.</string>
+    <string name="allow_notifications_voice_recorder">You must allow the app displaying notifications, else it cannot record audio.</string>
+    <string name="altitude">ارتفاع از سطح دريا</string>
+    <string name="always">همیشه</string>
+    <string name="always_use_this_sim">برای این شماره همیشه از همین سیم‌کارت استفاده کن</string>
+    <string name="an_error_occurred">یک خطا رخ داد: %s</string>
+    <string name="android_lame_title">AndroidLame (mp3 encoder)</string>
+    <string name="anniversary">Anniversary</string>
+    <string name="answer_slider">لغزنده</string>
+    <string name="answer_slider_outline">لغزنده طرح کلی</string>
+    <string name="answer_slider_vertical">لغزنده عمودی</string>
+    <string name="answer_style">سبک پاسخ</string>
+    <string name="apng_title">APNG Android (animated WebP support)</string>
+    <string name="app_corrupt">App Corrupt</string>
+    <string name="app_icon_color">رنگ آیکون برنامه</string>
+    <string name="app_icon_color_warning">WARNING: Some launchers do not handle app icon customization properly. In case the icon will disappear, try launching the app via Google Play or some widget, if available.
+        Once launched, just set back the default orange icon #F57C00. You might have to reinstall the app in the worst case.</string>
+    <string name="app_launcher_name">تلفن</string>
+    <string name="app_launcher_short">App Launcher</string>
+    <string name="app_name">تلفن ساده</string>
+    <string name="app_name_g">Right Dialer</string>
+    <string name="app_on_sd_card">You seem to have the app installed on an SD card, that makes the app widgets unavailable. You won\'t even see them on the list of available widgets.
+        It is a system limitation, so if you want to use the widgets, you have to move the app back on the internal storage.</string>
+    <string name="app_version">نسخه برنامه: %s</string>
+    <string name="append">افزودن \'_1\' به انتها</string>
+    <string name="append_filenames">افزودن به انتهای نام پرونده</string>
+    <string name="apply_to_all">اعمال به همه</string>
+    <string name="apply_to_all_apps">اعمال رنگ‌ها به همه برنامه‌های آسان</string>
+    <string name="april">آوریل</string>
+    <string name="april_short">Apr</string>
+    <string name="are_you_sure_delete">Are you sure you want to delete this item?</string>
+    <string name="are_you_sure_recycle_bin">Are you sure you want to move this item into the Recycle Bin?</string>
+    <string name="artist">هنرمند</string>
+    <string name="ascending">Ascending</string>
+    <string name="asterisk">ستاره</string>
+    <string name="at_start">At start</string>
+    <string name="audio">Audio</string>
+    <string name="audio_record_view_title">Audio Record View (audio visualization)</string>
+    <string name="audio_route_bluetooth">بلوتوث</string>
+    <string name="audio_route_earpiece_g">گوشی دستگاه</string>
+    <string name="audio_route_speaker">بلندگو</string>
+    <string name="audio_route_wired_headset">هدست سیمی</string>
+    <string name="audio_route_wired_or_earpiece">سیمی یا هدفون</string>
+    <string name="august">آگوست</string>
+    <string name="august_short">Aug</string>
+    <string name="authenticate">Authenticate</string>
+    <string name="authentication_blocked">Authentication blocked, please try again in a moment</string>
+    <string name="authentication_failed">احراز هویت ناموفق</string>
+    <string name="auto_light_dark_theme">Auto light / dark</string>
+    <string name="auto_theme">Auto</string>
+    <string name="autofittextview_title">AutoFitTextView (resizing text)</string>
+    <string name="back">Back</string>
+    <string name="background_color">رنگ پس‌زمینه</string>
+    <string name="backups">Backups</string>
+    <string name="before_asking_question">Before you ask a question, please first read the</string>
+    <string name="before_asking_question_read_faq">Before you ask a question, please check the app settings and read the Frequently Asked Questions first. Maybe the solution is there.</string>
+    <string name="before_rate_read_faq">Before you rate us, please check the app settings and read the Frequently Asked Questions first. If you have any problems, maybe the solution is there.</string>
+    <string name="billing_change_to_google_play">Change to Google Play</string>
+    <string name="billing_change_to_ru_store">Change to RuStore</string>
+    <string name="billing_general_error">Error</string>
+    <string name="billing_product_confirmed">Product confirmed/substantiated</string>
+    <string name="billing_product_deleted">Purchase canceled</string>
+    <string name="billing_purchase_confirm_in_progress">Confirming the purchase…</string>
+    <string name="billing_purchase_delete_in_progress">Deleting the purchase…</string>
+    <string name="billing_subscriptions">Subscriptions</string>
+    <string msgid="2102429900219199821" name="biometric_or_screen_lock_prompt_message">"برای ادامه، از زیست‌سنجشی یا قفل صفحه استفاده کنید"</string>
+    <string msgid="1160635338192065472" name="biometric_prompt_message">"برای ادامه، از زیست‌سنجشی استفاده کنید"</string>
+    <string name="biometrics">Biometrics</string>
+    <string name="birthday">Birthday</string>
+    <string name="black">سیاه</string>
+    <string name="black_locked">مشکی (قفل شده)</string>
+    <string name="black_white">سیاه &amp; سفید</string>
+    <string name="block_confirmation">Are you sure you want to block \"%s\"?</string>
+    <string name="block_contact">Block contact</string>
+    <string name="block_contact_fail">Contact could not be blocked</string>
+    <string name="block_contact_success">Contact blocked</string>
+    <string name="block_hidden_calls">Block calls from hidden numbers</string>
+    <string name="block_hidden_messages">Block messages from hidden numbers</string>
+    <string name="block_not_stored_calls">Block calls from not stored contacts</string>
+    <string name="block_not_stored_messages">Block messages from not stored contacts</string>
+    <string name="block_number">مسدود کردن شماره</string>
+    <string name="block_numbers">مسدود کردن شماره‌ها</string>
+    <string name="blocked_numbers">شماره‌های مسدود شده</string>
+    <string name="blurry_contact_photo">عکس مخاطب تار</string>
+    <string name="blurry_wallpaper">کاغذ دیواری تار</string>
+    <string name="bottom">زیر</string>
+    <string name="bottom_navigation_bar">Bottom navigation bar</string>
+    <string name="bottom_navigation_bar_color">رنگ نوار پیمایش پایین</string>
+    <string name="bottom_navigation_bar_summary">The tab bar will move to the bottom</string>
+    <string name="bottomsheet_action_collapse">جمع کردن برگ زیرین</string>
+    <string name="bottomsheet_action_expand">ازهم بازکردن برگ زیرین</string>
+    <string name="bottomsheet_action_expand_halfway">گسترده کردن تا نیمه</string>
+    <string name="bottomsheet_drag_handle_clicked">روی دستگیره کشاندن دوضربه زده شد</string>
+    <string name="bottomsheet_drag_handle_content_description">دستگیره کشاندن</string>
+    <string name="button_primary">دکمه اصلی</string>
+    <string name="button_secondary">دکمه ثانویه</string>
+    <string name="buttons">دکمه‌ها</string>
+    <string name="calculator_short">Calculator</string>
+    <string name="calendar_short">Calendar</string>
+    <string name="call">Call</string>
+    <string name="call_add">افزودن تماس</string>
+    <string name="call_anonymously">تماس ناشناس (با پیشوند #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>هشدار</h4>
+             شماره با پیشوند #31# تماس گرفته خواهد شد <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             هنگام استفاده از پیشوند #31# مطمئن شوید که اپراتور شما از سرویس پنهان کردن شماره پشتیبانی می کند. <br>
+             ممکن است ارائه دهنده خدمات شما هزینه اضافی برای این سرویس دریافت کند.
+        ]]>
+    </string>
+    <string name="call_back_g">تماس بگیرید</string>
+    <string name="call_back_person_g">با شماره %s تماس بگیرید</string>
+    <string name="call_ended">تماس پایان یافت</string>
+    <string name="call_ending">پایان دادن مکالمه</string>
+    <string name="call_from_sim_1">تماس با سیم‌کارت 1</string>
+    <string name="call_from_sim_2">تماس با سیم‌کارت 2</string>
+    <string name="call_history_tab">تاریخچه تماس</string>
+    <string name="call_merge">Merge calls</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"پاسخ دادن"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"ویدیو"</string>
+    <string name="call_notification_channel_g">اعلان‌های تماس</string>
+    <string name="call_notification_channel_high_priority_g">اعلان‌های تماس با اولویت بالا</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"رد کردن"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"قطع تماس"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"تماس ورودی"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"تماس درحال انجام"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"درحال غربال کردن تماس ورودی"</string>
+    <string name="call_number">شماره تماس</string>
+    <string name="call_on_hold">در انتظار</string>
+    <string name="call_person">Call %s</string>
+    <string name="call_screen_background">پس‌زمینه صفحه تماس</string>
+    <string name="call_split">Split call</string>
+    <string name="call_start_end_vibration">لرزش زمانی که تماس شما شروع و پایان است</string>
+    <string name="call_swap">Swap calls</string>
+    <string name="calling_blocked_number">شماره‌ای که با آن تماس گرفته‌اید مسدود است</string>
+    <string name="calls">تماس‌ها</string>
+    <string name="camera">دوربین</string>
+    <string name="camera_short">Camera</string>
+    <string name="cancel">لغو</string>
+    <string name="cannot_be_undone">This action cannot be undone.</string>
+    <string name="cannot_hide_files">Starting from Android 11 you cannot hide files and folders like that anymore</string>
+    <string name="cannot_rename_folder">Cannot rename this folder</string>
+    <string name="change_color">تغییر رنگ</string>
+    <string name="change_cover_image">تغییر تصویر پوشش</string>
+    <string name="change_date_and_time_format">Change date and time format</string>
+    <string name="change_filter">تغییر پالایش</string>
+    <string name="change_order">Change order</string>
+    <string name="change_view_type">تغییر حالت نمایش</string>
+    <string name="changing_color_description">تغییر یک رنگ آن را به شِما سفارشی تعویض خواهد میکند</string>
+    <string name="character_counter_content_description">نویسه‌های واردشده %1$d از %2$d</string>
+    <string name="character_counter_overflowed_content_description">محدودیت نویسه از حد مجاز %1$d از %2$d بیشتر شده است</string>
+    <string name="choose_audio_route">انتخاب مسیر صدا</string>
+    <string name="choose_contact">Choose contact</string>
+    <string name="choose_file">Choose file</string>
+    <string name="choose_photo">Choose photo</string>
+    <string name="choose_video">Choose video</string>
+    <string name="clean_theme_g">Clean</string>
+    <string name="clear_cache">پاک کردن انباره</string>
+    <string name="clear_call_history">پاک کردن تاریخچه تماس</string>
+    <string name="clear_history_confirmation">مطمئنید که می‌خواهید تمام تاریخچه تماس حدف کنید؟</string>
+    <string name="clear_text_end_icon_content_description">پاک کردن نوشتار</string>
+    <string name="click_select_destination">Click here to select destination</string>
+    <string name="clock_short">Clock</string>
+    <string name="close">Close</string>
+    <string msgid="406453423630273620" name="close_drawer">"بستن منوی پیمایش"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"بستن برگ"</string>
+    <string name="collection">مجموعه</string>
+    <string name="collection_summary">ساخت یک مجموعه برای باز کردن برنامه</string>
+    <string name="color">رنگ</string>
+    <string name="color_customization">Color customization</string>
+    <string name="color_sim_card_icons">رنگ آیکون سیم کارت</string>
+    <string name="color_summary">تنظیم دستی رنگ اولیه، لهجه، پس زمینه، متن و نوار ناوبری</string>
+    <string name="color_title">رنگ</string>
+    <string name="colored_contacts">نمادهای رنگی مخاطبین</string>
+    <string name="column_count">Column count</string>
+    <string name="company">شرکت</string>
+    <string name="concept_theme_g">Concept</string>
+    <string name="conference">Conference</string>
+    <string name="conference_manage">Manage conference call</string>
+    <string name="confirm_calling_person">Confirm calling %s</string>
+    <string name="confirm_create_doc_for_new_folder_text">Please press \'&lt;b>Save&lt;/b>\' at the bottom of the next screen to create the new folder.</string>
+    <string msgid="5912733858573823945" name="confirm_device_credential_password">"استفاده از گذرواژه"</string>
+    <string name="confirm_folder_access_title">Confirm folder access</string>
+    <string name="confirm_selection">Confirm selection</string>
+    <string name="confirm_storage_access_android_text">Please allow the app accessing the selected storage on the next screen by pressing \'Use this folder\' at the bottom.</string>
+    <string name="confirm_storage_access_android_text_specific">Please allow accessing \'&lt;b>%s&lt;/b>\' on the next screen by pressing \'&lt;b>Use this folder&lt;/b>\' at the bottom.</string>
+    <string name="confirm_storage_access_text">Please choose the top folder of the SD card on the next screen, to grant write access</string>
+    <string name="confirm_storage_access_text_sd">If you don\'t see the SD card, try this</string>
+    <string name="confirm_storage_access_title">Confirm external storage access</string>
+    <string name="confirm_usb_storage_access_text">Please choose the top folder of the USB device on the next screen, to grant access</string>
+    <string name="contact_color_list">فهرست رنگهای اشنا</string>
+    <string name="contact_details">Contact details</string>
+    <string name="contact_photo">عکس تماس</string>
+    <string name="contacts_short">Contacts</string>
+    <string name="contacts_tab">مخاطب</string>
+    <string name="contributors">Contributors</string>
+    <string name="contributors_label">
+        <![CDATA[
+            This list contains everyone that noticeably helped any app within the Simple Mobile Tools suite, not only this one. Translations are handled by volunteers,
+            let us know if you want to help too. The guide to translating is at <a href="https://github.com/SimpleMobileTools/General-Discussion#how-can-i-suggest-an-edit-to-a-file">this website</a>, or just contact us at <a href="mailto:hello@simplemobiletools.com">hello@simplemobiletools.com</a> if you have any questions.
+            Thanks to all contributors and other supporters!
+        ]]>
+    </string>
+    <string name="contributors_label_g">
+        <![CDATA[
+            This list contains everyone that noticeably helped any app within the Goodwy suite, not only this one. Translations are handled by volunteers,
+            let us know if you want to help too. The guide to translating is at <a href="https://github.com/Goodwy/Discussion">this website</a>, or just contact us at <a href="mailto:goodwy.dev@gmail.com">goodwy.dev@gmail.com</a> if you have any questions.
+            Thanks to all contributors and other supporters!
+        ]]>
+    </string>
+    <string name="copy">رونوشت</string>
+    <string name="copy_code">کد را کپی کنید</string>
+    <string name="copy_failed">Could not copy the files</string>
+    <string name="copy_move">رونوشت / جابه‌جایی</string>
+    <string name="copy_move_failed">An error occurred</string>
+    <string name="copy_number_to_clipboard">رونوشت شماره به بریده‌دان</string>
+    <string name="copy_to">رونوشت به</string>
+    <string name="copy_to_clipboard">رونوشت به بریده‌دان</string>
+    <string name="copying">درحال رونوشت…</string>
+    <string name="copying_success">Files copied successfully</string>
+    <string name="copying_success_one">File copied successfully</string>
+    <string name="copying_success_partial">Some files could not be copied</string>
+    <string name="copyright">v %1$s\nCopyright © Simple Mobile Tools %2$d</string>
+    <string name="copyright_g">v %1$s\nCopyright © Goodwy %2$d</string>
+    <string name="could_not_access_contacts">دسترسی به مخاطبین شما امکان‌پذیر نیست</string>
+    <string name="could_not_access_the_call_history">دسترسی به تاریخچهٔ تماس شما امکان‌پذیر نیست</string>
+    <string name="could_not_create_file">Could not create file %s</string>
+    <string name="could_not_create_folder">Could not create folder %s</string>
+    <string name="create_new">ساخت جدید</string>
+    <string name="create_new_contact">Create new contact</string>
+    <string name="create_new_folder">ساخت پوشهٔ جدید</string>
+    <string name="create_shortcut">ساخت میانبر</string>
+    <string name="create_shortcut_pro">ساخت میانبر (Pro)</string>
+    <string name="cropper_title">Android Image Cropper (image crop and rotate)</string>
+    <string name="custom">سفارشی</string>
+    <string name="customization_theme_summary">انتخاب تم ها و رنگ های رابط</string>
+    <string name="customize_colors">سفارشی سازی رنگ‌ها</string>
+    <string name="customize_colors_locked">سفارشی سازی رنگ‌ها (قفل )</string>
+    <string name="customize_notifications">سفارشی سازی اعلانات</string>
+    <string name="customize_widget_colors">سفارشی سازی رنگ‌های ویجت</string>
+    <string name="dark_red">قرمز تاریک</string>
+    <string name="dark_theme">تاریک</string>
+    <string name="date_added">Date added</string>
+    <string name="date_created">Date created</string>
+    <string name="date_taken">تاریخ گرفتن</string>
+    <string name="date_time_pattern_info">You can use the following patterns to name your file automatically:\n\n%Y - year\n%M - month\n%D - day\n%h - hour\n%m - minute\n%s - second</string>
+    <string name="days_raw">روز</string>
+    <string name="december">دسامبر</string>
+    <string name="december_short">Dec</string>
+    <string name="decline">نپذیرفتن</string>
+    <string name="decline_call">نپذیرفتن تماس</string>
+    <string name="default_color">پیش‌گزیده</string>
+    <string msgid="8038256446254964252" name="default_error_message">"ورودی نامعتبر"</string>
+    <string msgid="4776854077120974966" name="default_error_msg">"خطای ناشناس"</string>
+    <string name="default_folder_to_open_g">پوشه برای باز کردن در شروع برنامه</string>
+    <string name="default_phone_app_prompt">لطفا این برنامه را به عنوان پیش‌گزیده تنظیم کنید</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"پنجره بالاپر"</string>
+    <string name="default_tab">زبانه پیش فرض</string>
+    <string name="default_tab_to_open">Tab to open at app start</string>
+    <string name="delete">حذف</string>
+    <string name="deleting_folder">درحال حذف پوشهٔ \'%s\'</string>
+    <string name="deletion_confirmation">Are you sure you want to delete %s?</string>
+    <string name="deletion_confirmation_short">Delete %s?</string>
+    <string name="deprecated_app">DEPRECATED: This version of the app is no longer maintained, get the Pro version at https://play.google.com/store/apps/details?id=com.simplemobiletools.xxx.pro</string>
+    <string name="deprecated_app_g">DEPRECATED: This version of the app is no longer maintained, get the Pro version at https://play.google.com/store/apps/details?id=com.goodwy.xxx.pro</string>
+    <string name="descending">Descending</string>
+    <string name="destination">مقصد</string>
+    <string name="details">جزئیات</string>
+    <string name="developer_description">A group of simple, open source Android apps with customizable widgets, without ads and unnecessary permissions.</string>
+    <string name="development">Development</string>
+    <string name="device_os">سیستم عامل دستگاه: %s</string>
+    <string name="dial_number">شماره گردان</string>
+    <string name="dialer">تلفن</string>
+    <string name="dialer_short">Dialer</string>
+    <string name="dialing">شماره‌گیری…</string>
+    <string name="dialpad">شماره‌گیر</string>
+    <string name="dialpad_beeps">فعال کردن صدا هنگام لمس دکمه‌های شماره‌گیر</string>
+    <string name="dialpad_preferences">تنظیمات صفحه شماره گیری</string>
+    <string name="dialpad_vibrations">فعال کردن لرزش هنگام لمس دکمه‌های شماره‌گیر</string>
+    <string name="direct_children_count">Direct children count</string>
+    <string name="disable_proximity_sensor">غیرفعال کردن حسگر مجاورت هنگام مکالمه</string>
+    <string name="disable_swipe_to_answer">پاسخ دادن به تماس با استفاده از کلیک به جای کشیدن</string>
+    <string name="discard">دورانداختن</string>
+    <string name="disclaimer">Disclaimer</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="do_not_ask_again">Do not ask again in this session</string>
+    <string name="do_not_show_again">Do not show again</string>
+    <string name="donate">اهدا</string>
+    <string name="donate_new">Hello,&lt;br>&lt;br>hope you are enjoying the app. It contains no ads and we aren\'t collecting your data either, please support its development by purchasing &lt;a href=https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou>Simple Thank You&lt;/a>. You will also have all app features including color customization unlocked.&lt;br>&lt;br>Thank you!</string>
+    <string name="donate_please">
+        <![CDATA[
+            Hello,<br><br>
+            hope you are enjoying the app. It contains no ads, please support its development by purchasing the <a href="https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou">Simple Thank You</a> app, it will also prevent this dialog from showing up again.<br><br>
+            Thank you!
+        ]]>
+    </string>
+    <string name="donate_short">Support us by purchasing &lt;a href=https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou>Simple Thank You&lt;/a> please, it will also unlock all app features including color customization.</string>
+    <string name="donate_text_g">
+        <![CDATA[
+            For those who do not use Google Play, it is possible to unlock all functions of the application. <br>
+            If you like our apps which are offline, non-intrusive and have no ads, please consider supporting us in some way. We would be very grateful.<br><br>
+            Thank you!
+        ]]>
+    </string>
+    <string name="download">بارگیری</string>
+    <string name="draw_short">Draw</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"منوی کرکره‌ای"</string>
+    <string name="duration">مدت</string>
+    <string name="during_day_at">During the day at %02d:%02d</string>
+    <string name="during_day_at_hh_mm">During the day at hh:mm</string>
+    <string name="edit">Edit</string>
+    <string name="edit_with">ویرایش با</string>
+    <string name="eight">Eight</string>
+    <string name="email">ایمیل</string>
+    <string name="email_label">Send your feedback or suggestions to</string>
+    <string name="empty_and_disable_recycle_bin">Empty and disable the Recycle Bin</string>
+    <string name="empty_name">لطفا یک نام وارد کنید</string>
+    <string name="empty_password">Please enter the password</string>
+    <string name="empty_password_new">Please enter a password</string>
+    <string name="empty_recycle_bin">Empty the Recycle Bin</string>
+    <string name="empty_recycle_bin_confirmation">Are you sure you want to empty the Recycle Bin? The files will be permanently lost.</string>
+    <string name="enable_automatic_backups">Enable automatic backups</string>
+    <string name="enable_pull_to_refresh">Enable pull-to-refresh from the top</string>
+    <string name="end_call">پایان تماس</string>
+    <string name="enter_password">Enter password</string>
+    <string name="enter_pin">پین را وارد کنید</string>
+    <string name="error">Error: %s</string>
+    <string name="error_icon_content_description">خطا</string>
+    <string name="espresso_title">Espresso (testing helper)</string>
+    <string name="event_bus_title">Event Bus (communication within the app)</string>
+    <string name="every_day">Every day</string>
+    <string name="exclude">مستثنی</string>
+    <string name="exclude_folder">Exclude folder</string>
+    <string name="excluded">(مستثنی)</string>
+    <string name="excluded_folders">شاخه‌های مستثنی شده</string>
+    <string name="exif">EXIF</string>
+    <string name="exif_removed">EXIF values removed successfully</string>
+    <string name="exoplayer_title">ExoPlayer (video player)</string>
+    <string name="export_blocked_numbers">Export blocked numbers</string>
+    <string name="export_call_history">خروجی گرفتن تاریخچهٔ تماس</string>
+    <string name="export_settings">برون‌ریزی تنظیمات</string>
+    <string name="exporting">درحال برون‌ریزی…</string>
+    <string name="exporting_failed">برون‌ریزی شکست خورد</string>
+    <string name="exporting_some_entries_failed">Exporting some entries failed</string>
+    <string name="exporting_successful">برون‌ریزی با موفقیت انجام شد</string>
+    <string name="exposed_dropdown_menu_content_description">نمایش منوی کرکره‌ای</string>
+    <string name="exposure_time">زمان نوردهی</string>
+    <string name="extension">پسوند</string>
+    <string name="extension_cannot_be_empty">پسوند نمیتواند خالی باشد</string>
+    <string name="extra_large">خیلی بزرگ</string>
+    <string name="f_number">F-number</string>
+    <string msgid="4562557128765735254" name="face_or_screen_lock_prompt_message">"برای ادامه، از تشخیص چهره یا قفل صفحه استفاده کنید"</string>
+    <string msgid="2282389249605674226" name="face_prompt_message">"برای ادامه، از چهره‌تان استفاده کنید"</string>
+    <string name="faq_100_text_commons_g">A private contact is created within an application. This contact will not be visible to other applications.
+        If you uninstall the app, all private contacts will be deleted along with the app, so back up your contacts before uninstalling the app.</string>
+    <string name="faq_100_title_commons_g">What is a private contact?</string>
+    <string name="faq_101_text_commons_g">When you create a contact, you must select the source of the contact: %s</string>
+    <string name="faq_101_title_commons_g">How to create a private contact?</string>
+    <string name="faq_10_text_commons">Try clearing your Google Play app cache and restarting your device. It is some Google Play glitch, not really related to the app itself.</string>
+    <string name="faq_10_title_commons">I have purchased the app, but I cannot download it on another device.</string>
+    <string name="faq_1_text">این مشکل ممکن است بسته به دلایل مشکلات مختلفی در دستگاه و سامانه رخ دهد، بنابراین جواب کلی برای آن سخت است. باید تنظیمات دستگاهتان را بررسی کنید و مطمئن شوید که برنامه اجازه دارد در پس‌زمینه اجرا شود و روی برنامه‌های دیگر نمایش داده شود.</string>
+    <string name="faq_1_text_commons">It is most likely because you moved the app on an SD card. There is an Android system limitation which hides the given app widgets
+        in that case. The only solution is to move the app back onto the Internal Storage via your device settings.</string>
+    <string name="faq_1_text_dialer_g">سیستم عامل شما دسترسی برنامه به صفحه قفل را مسدود می کند. باید به برنامه اجازه دسترسی به صفحه قفل را بدهید. به عنوان مثال در MIUI باید دسترسی را در تنظیمات => اعلان‌ها => اعلان‌های صفحه قفل فعال کنید.</string>
+    <string name="faq_1_title">من صدای تماس ورودی را می‌شنوم اما نمایشگر روشن نمی‌شود. باید چه کاری انجام دهم؟</string>
+    <string name="faq_1_title_commons">How come I don\'t see this apps widget on the list of widgets?</string>
+    <string name="faq_1_title_dialer_g">چرا باید قفل دستگاهم را باز کنم تا به تماس ورودی پاسخ دهم؟</string>
+    <string name="faq_2_text_commons">
+        <![CDATA[
+            Yes, of course. You can spread the word about the apps or give good feedback and ratings. You can also help by translating the apps in a new language, or just update some existing translations.
+            The guide to translating is at <a href="https://github.com/SimpleMobileTools/General-Discussion#how-can-i-suggest-an-edit-to-a-file">this website</a>, or just contact us at <a href="mailto:hello@simplemobiletools.com">hello@simplemobiletools.com</a> if you have any questions.
+        ]]>
+    </string>
+    <string name="faq_2_text_commons_g">
+        <![CDATA[
+            Yes, of course. You can spread the word about the apps or give good feedback and ratings. You can also help by translating the apps in a new language, or just update some existing translations.
+        You can find the guide at https://github.com/Goodwy/Discussion , or just shoot me a message at goodwy.dev@gmail.com if you need help.
+        ]]>
+    </string>
+    <string name="faq_2_text_dialer_g">با فشار طولانی دکمه تماس، محتویات کلیپ‌بورد جای‌گذاری می‌شود. اگر قبلاً شماره‌ای را وارد کرده‌اید، با فشار طولانی دکمه تماس، شماره در کلیپ‌بورد کپی می‌شود.</string>
+    <string name="faq_2_title_commons">I want to support you, but I cannot donate money. Is there anything else I can do?</string>
+    <string name="faq_2_title_dialer_g">چگونه یک عدد را در صفحه شماره گیری کپی یا جایگذاری کنم؟</string>
+    <string name="faq_3_text_commons">Sadly, you cannot. Files are deleted instantly after the confirmation dialog, there is no trashbin available.</string>
+    <string name="faq_3_title_commons">I deleted some files by mistake, how can I recover them?</string>
+    <string name="faq_4_text_commons">Yep, as you drag a widget on your home screen a widget config screen appears. You will see colored squares at the bottom left corner, just press them to pick a new color. You can use the slider for adjusting the alpha too.</string>
+    <string name="faq_4_title_commons">I don\'t like the widget colors, can I change them?</string>
+    <string name="faq_5_text_commons">If they were really deleted, you cannot. However, there is a Recycle Bin enabled by default, it will cause the files just be moved in the Bin instead of deleting them.</string>
+    <string name="faq_5_title_commons">Can I somehow restore deleted files?</string>
+    <string name="faq_6_text_commons">It is caused by your launcher not supporting icon customization properly. Try launching the app via Google Play or some widget, if available.
+        Once launched, just set back the default orange icon #F57C00. You might have to reinstall the app in the worst case.</string>
+    <string name="faq_6_title_commons">The app launcher icon disappeared. What can I do?</string>
+    <string name="faq_7_text_commons">Payments are fully handled by Google, their system glitches from time to time. Just clear your Google Play app cache and restart your device, then retry downloading it.</string>
+    <string name="faq_7_title_commons">The money has been deducted from my bank account, but I cannot download the app. What can I do?</string>
+    <string name="faq_8_text_commons">As your app version is no longer updated, the bugs you have maybe spotted will never be fixed. There will also be no new functions added. You can purchase the Pro version on Google Play for a small sum of money.
+        It is a one time payment, which means that once you purchase it, you will never have to pay again. Not even after getting a new device. If you won\'t like the Pro version, you can just uninstall it within a few hours and you will automatically get your money back.
+        If you want a refund anytime later, just contact us at hello@simplemobiletools.com and you will get it.</string>
+    <string name="faq_8_text_commons_g">As your app version is no longer updated, the bugs you have maybe spotted will never be fixed. There will also be no new functions added. You can purchase the Pro version on Google Play for a small sum of money.
+        It is a one time payment, which means that once you purchase it, you will never have to pay again. Not even after getting a new device. If you won\'t like the Pro version, you can just uninstall it within a few hours and you will automatically get your money back.
+        If you want a refund anytime later, just contact us at goodwy.dev@gmail.com and you will get it.</string>
+    <string name="faq_8_title_commons">Why should I upgrade to the Pro version?</string>
+    <string name="faq_9_text_commons">There are multiple ways of doing that. The first one is starting the selection mode by long pressing one item, then short clicking on others to select them. The second way is similar to selecting items on PCs with a mouse,
+        just start the selection mode by long pressing one item, then with your finger still down drag it across other items for selecting. The third way of selecting multiple items is long pressing one item, then long pressing another one and everything in between gets selected. If you
+        want to select all items, just long press one item, then click at the selected item counter at the top left corner. That will select or unselect all everything.</string>
+    <string name="faq_9_title_commons">How can I select multiple items at once?</string>
+    <string name="favorites">موردعلاقه‌ها</string>
+    <string name="favorites_tab">موردعلاقه</string>
+    <string name="feature_locked">Locked</string>
+    <string name="features_locked">This feature is locked, please purchase &lt;a href=https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou>Simple Thank You&lt;/a> for unlocking the full app.&lt;br>&lt;br>It is a one time payment only and if you won\'t be satisfied, we can refund you.</string>
+    <string name="february">فوریه</string>
+    <string name="february_short">Feb</string>
+    <string name="file">پرونده</string>
+    <string name="file_already_exists">پرونده \"%s\" هم‌اکنون وجود دارد</string>
+    <string name="file_already_exists_overwrite">پرونده \"%s\" هم‌اکنون وجود دارد. بازنویسی شود؟</string>
+    <string name="file_manager_short">File Manager</string>
+    <string name="file_operations">File operations</string>
+    <string name="file_saved">پرونده با موفقیت ذخیره شد</string>
+    <string name="filename">نام پرونده</string>
+    <string name="filename_cannot_be_empty">نام پرونده نمیتواند خالی باشد</string>
+    <string name="filename_invalid_characters">نام پرونده دارای نویسه‌های نامعتبر است</string>
+    <string name="filename_invalid_characters_placeholder">نام پرونده \'%s\' دارای نویسه‌های نامعتبر است</string>
+    <string name="filename_without_json">Filename (without .json)</string>
+    <string name="filename_without_txt">Filename (without .txt)</string>
+    <string name="filename_without_zip">Filename (without .zip)</string>
+    <string name="files">Files</string>
+    <string name="files_count">تعداد همه پرونده‌ها</string>
+    <string name="files_restored_successfully">Files have been restored successfully</string>
+    <string name="files_summary">File manager</string>
+    <string name="files_tab">پرونده‌ها</string>
+    <string name="filter">پالایش</string>
+    <string name="filter_pro">پالایش (Pro)</string>
+    <string name="filters_title">Android Photo Filters (image filters)</string>
+    <string name="fingerprint">اثر انگشت</string>
+    <string msgid="1087209702421076105" name="fingerprint_acquired_imager_dirty">"حسگر اثر انگشت کثیف است. لطفاً آن را تمیز کنید و دوباره امتحان نمایید."</string>
+    <string msgid="4596546021310923214" name="fingerprint_acquired_insufficient">"اثرانگشت پردازش نشد. لطفاً دوباره امتحان کنید."</string>
+    <string msgid="735082772341716043" name="fingerprint_acquired_partial">"بخشی از اثر انگشت شناسایی شد. لطفاً دوباره امتحان کنید."</string>
+    <string msgid="6470642383109155969" name="fingerprint_acquired_too_fast">"حرکت انگشت خیلی سریع بود. لطفاً دوباره امتحان کنید."</string>
+    <string msgid="59250885689661653" name="fingerprint_acquired_too_slow">"حرکت انگشت خیلی آهسته بود. لطفاً دوباره امتحان کنید."</string>
+    <string msgid="5462024216548165325" name="fingerprint_dialog_icon_description">"نماد اثر انگشت"</string>
+    <string msgid="1072308044213194243" name="fingerprint_dialog_touch_sensor">"حسگر اثر انگشت را لمس کنید"</string>
+    <string msgid="4402024612660774395" name="fingerprint_error_canceled">"عملکرد اثر انگشت لغو شد."</string>
+    <string msgid="8216738333501875566" name="fingerprint_error_hw_not_available">"سخت‌افزار اثر انگشت در دسترس نیست."</string>
+    <string msgid="6306988885793029438" name="fingerprint_error_hw_not_present">"این دستگاه حسگر اثر انگشت ندارد"</string>
+    <string msgid="7291787166416782245" name="fingerprint_error_lockout">"تعداد تلاش‌ها بیش از حد مجاز است. لطفاً بعداً دوباره امتحان کنید."</string>
+    <string msgid="7520712796891883488" name="fingerprint_error_no_fingerprints">"اثر انگشتی ثبت نشده است."</string>
+    <string msgid="1055819001126053318" name="fingerprint_error_no_space">"ذخیره اثر انگشت ممکن نیست. لطفاً یک اثر انگشت موجود را حذف کنید."</string>
+    <string msgid="3927186043737732875" name="fingerprint_error_timeout">"مهلت زمانی ثبت اثر انگشت به پایان رسید. دوباره امتحان کنید."</string>
+    <string msgid="6107816084103552441" name="fingerprint_error_unable_to_process">"دوباره امتحان کنید."</string>
+    <string msgid="7627716295344353987" name="fingerprint_error_user_canceled">"کاربر عملیات اثر انگشت را لغو کرد"</string>
+    <string msgid="3873359464293253009" name="fingerprint_not_recognized">"شناسایی نشد"</string>
+    <string msgid="8382576858490514495" name="fingerprint_or_screen_lock_prompt_message">"برای ادامه، از اثر انگشت یا قفل صفحه استفاده کنید"</string>
+    <string msgid="7449360011861769080" name="fingerprint_prompt_message">"برای ادامه، از اثر انگشتتان استفاده کنید"</string>
+    <string name="fingerprint_setup_successfully">Protection setup successfully. Please reinstall the app in case of problems with reseting it.</string>
+    <string msgid="4516019619850763049" name="fingerprints">"اثر انگشت:"</string>
+    <string name="first_name">نام</string>
+    <string name="five">Five</string>
+    <string name="flash_for_alerts">فلش برای هشدار</string>
+    <string name="flashlight_short">Flashlight</string>
+    <string name="focal_length">فاصله کانونی</string>
+    <string name="folder">پوشه</string>
+    <string name="folder_already_exists">پوشه \"%s\" هم‌اکنون وجود دارد</string>
+    <string name="follow_us">پیگیری ما</string>
+    <string name="font_size">اندازهٔ قلم</string>
+    <string name="force_portrait_mode">Force portrait mode</string>
+    <string name="foreground_color">رنگ پیش‌زمینه</string>
+    <string name="four">Four</string>
+    <string name="frequently_asked_questions">Frequently asked questions</string>
+    <string name="friday">جمعه</string>
+    <string name="friday_letter">ج</string>
+    <string name="friday_short">جمعه</string>
+    <string name="full_name">نام کامل</string>
+    <string name="gallery_short">Gallery</string>
+    <string name="general">عمومی</string>
+    <string name="general_settings">General</string>
+    <string msgid="3791785319221634505" name="generic_error_no_device_credential">"پین، الگو، یا گذرواژه‌ای تنظیم نشده است."</string>
+    <string msgid="1807436368654974044" name="generic_error_no_keyguard">"این دستگاه از پین، الگو، یا گذرواژه پشتیبانی نمی‌کند."</string>
+    <string msgid="7309881387583143581" name="generic_error_user_canceled">"کاربر اصالت‌سنجی را لغو کرد."</string>
+    <string name="genre">Genre</string>
+    <string name="gesture_views_title">Gesture Views (zoomable images)</string>
+    <string name="get">دریافت</string>
+    <string name="get_simple_phone">Get Simple Phone</string>
+    <string name="gif_drawable_title">Gif Drawable (loading GIFs)</string>
+    <string name="glide_title">Glide (image loading and caching)</string>
+    <string name="go_to_settings">رفتن به تنظیمات</string>
+    <string name="gps_coordinates">مختصات جی‌پی‌اس</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="gray_theme">خاکستری</string>
+    <string name="grid">شبکه</string>
+    <string name="grid_pro">شبکه (Pro)</string>
+    <string name="group_subsequent_calls">گروه‌بندی تماس‌های پشت‌هم از یک شماره در تاریخچهٔ تماس</string>
+    <string name="groups_tab">گروه‌ها</string>
+    <string name="gson_title">Gson (JSON parser)</string>
+    <string name="hashtag">مربع</string>
+    <string name="hello">Hello :)</string>
+    <string name="help_us">Help us</string>
+    <string name="hide">مخفی</string>
+    <string name="hide_blocked_numbers">مخفی کردن مسدود شده</string>
+    <string name="hide_dialpad">بستن شماره‌گیر</string>
+    <string name="hide_dialpad_letters_g">پنهان کردن حروف صفحه شماره گیری</string>
+    <string name="hide_dialpad_numbers">مخفی کردن اعداد شماره‌گیر</string>
+    <string name="hide_folder">مخفی کردن پوشه</string>
+    <string name="hide_line_numbers">Hide line numbers</string>
+    <string name="hide_the_recycle_bin">Hide the Recycle Bin</string>
+    <string name="hide_year">مخفی کردن سال</string>
+    <string name="hold_call">انتظار تماس</string>
+    <string name="home">Home</string>
+    <string name="home_fax">Home Fax</string>
+    <string name="home_folder_g">پوشهی خانه</string>
+    <string name="hours_letter">س</string>
+    <string name="hours_raw">ساعت</string>
+    <string name="icon_content_description">نماد کادر گفتگو</string>
+    <string name="import_blocked_numbers">Import blocked numbers</string>
+    <string name="import_call_history">وارد کردن تاریخچهٔ تماس</string>
+    <string name="import_settings">درون‌ریزی تنظیمات</string>
+    <string name="importing">درحال درون‌ریزی…</string>
+    <string name="importing_failed">درون‌ریزی شکست خورد</string>
+    <string name="importing_some_entries_failed">Importing some entries failed</string>
+    <string name="importing_successful">درون‌ریزی با موفقیت انجام شد</string>
+    <string name="improved_color_customization">Improved color customization</string>
+    <string name="in_april">در آوریل</string>
+    <string name="in_august">در آگوست</string>
+    <string name="in_december">در دسامبر</string>
+    <string name="in_february">در فوریه</string>
+    <string name="in_january">در ژانویه</string>
+    <string name="in_july">در جولای</string>
+    <string name="in_june">در ژوئن</string>
+    <string name="in_march">در مارس</string>
+    <string name="in_may">در می</string>
+    <string name="in_november">در نوامبر</string>
+    <string name="in_october">در اکتبر</string>
+    <string msgid="6827826412747255547" name="in_progress">"درحال انجام"</string>
+    <string name="in_september">در سپتامبر</string>
+    <string name="incoming_call">تماس ورودی</string>
+    <string name="increase_column_count">افزایش تعداد ستون</string>
+    <string msgid="7933458017204019916" name="indeterminate">"برخی موارد علامت‌گذاری شده است"</string>
+    <string name="indicator_fast_scroll_title">Indicator Fast Scroll (letters on scrollbar)</string>
+    <string name="insert_pattern">الگو را وارد کنید</string>
+    <string name="insert_text_here">متن را اینجا وارد کنید</string>
+    <string name="internal">داخلی</string>
+    <string name="internal_storage">Internal Storage</string>
+    <string name="invalid_destination">Could not write to the selected destination</string>
+    <string name="invalid_file_format">قالب پروندهٔ نامعتبر</string>
+    <string name="invalid_name">The name contains invalid characters</string>
+    <string name="invalid_password">Incorrect password</string>
+    <string name="invert_color">رنگ را معکوس کنید</string>
+    <string name="invite_friends">Invite friends</string>
+    <string name="invite_via">Invite via</string>
+    <string name="is_calling">تماس گرفته…</string>
+    <string name="iso_speed">سرعت ISO</string>
+    <string name="it_is_free">It is free till: %s. If you download it till then, you will be able to use it for free forever.</string>
+    <string name="item_view_role_description">برگه</string>
+    <string name="items_selected">موارد گزیده شدند</string>
+    <string name="january">ژانویه</string>
+    <string name="january_short">Jan</string>
+    <string name="joda_title">Joda-Time (Java date replacement)</string>
+    <string name="july">جولای</string>
+    <string name="july_short">July</string>
+    <string name="june">ژوئن</string>
+    <string name="june_short">June</string>
+    <string name="keep_both">نگه‌داشتن هر دو</string>
+    <string name="keep_last_modified">Keep old last-modified value at file operations</string>
+    <string name="keyboard_short">Keyboard</string>
+    <string name="kids_mode">Kids mode</string>
+    <string name="kids_mode_summary">Simplified interface, choose coloring</string>
+    <string name="kotlin_title">Kotlin (programming language)</string>
+    <string name="label">برچسب</string>
+    <string name="landscape_column_count">Landscape column count</string>
+    <string name="language">Language</string>
+    <string name="large">بزرگ</string>
+    <string name="last_modified">اخرین اصلاح</string>
+    <string name="last_used_g">اخرین استفاده</string>
+    <string name="last_used_tab">Last used one</string>
+    <string name="later">بعدا</string>
+    <string name="launcher_short">Launcher</string>
+    <string name="leak_canary_title">Leak Canary (memory leak detector)</string>
+    <string name="learn_more">بیشتر بدانید</string>
+    <string name="library">کتابخانه</string>
+    <string name="lifebuoy_summary">اگر به دلایلی شما می توانید برنامه ما استطاعت نیست، اما واقعا می خواهید به استفاده از تمام ویژگی ها، فقط به ما ایمیل</string>
+    <string name="lifebuoy_title">ما از شما حمایت خواهیم کرد</string>
+    <string name="light_theme">روشن</string>
+    <string name="limited_supply">عرضه محدود</string>
+    <string name="lines_count">شمارش خطوط</string>
+    <string name="list">لیست</string>
+    <string name="list_view">List view</string>
+    <string name="loading">Loading…</string>
+    <string name="lock_folder">قفل کردن پوشه</string>
+    <string name="lock_folder_notice">This protection works in this app only, it is not supposed to replace a real systemwide folder encryption.</string>
+    <string name="lock_folder_pro">قفل کردن پوشه (Pro)</string>
+    <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"جمع کردن برگ زیرین"</string>
+    <string msgid="1555567894577437024" name="m3c_bottom_sheet_dismiss_description">"بستن برگ زیرین"</string>
+    <string msgid="8403354765404029791" name="m3c_bottom_sheet_drag_handle_description">"دستگیره کشاندن"</string>
+    <string msgid="6670819569745899763" name="m3c_bottom_sheet_expand_description">"ازهم باز کردن برگ زیرین"</string>
+    <string msgid="3010635850035863127" name="m3c_bottom_sheet_pane_title">"برگ زیرین"</string>
+    <string msgid="8166741421776570875" name="m3c_date_input_headline">"تاریخ واردشده"</string>
+    <string msgid="229313757840775812" name="m3c_date_input_headline_description">"‏تاریخ واردشده: %1$s"</string>
+    <string msgid="6116910750161463197" name="m3c_date_input_invalid_for_pattern">"‏تاریخ با الگوی موردانتظار مطابقت ندارد: %1$s"</string>
+    <string msgid="2521768508935305279" name="m3c_date_input_invalid_not_allowed">"‏تاریخ مجاز نیست: %1$s"</string>
+    <string msgid="7052898923934555305" name="m3c_date_input_invalid_year_range">"‏تاریخ خارج از بازه زمانی %1$s تا %2$s است"</string>
+    <string msgid="2895559812010326913" name="m3c_date_input_label">"تاریخ"</string>
+    <string msgid="1237013946323089826" name="m3c_date_input_no_input_description">"هیچ‌کدام"</string>
+    <string msgid="7306227249789210568" name="m3c_date_input_title">"انتخاب تاریخ"</string>
+    <string msgid="7605002211875882969" name="m3c_date_picker_headline">"تاریخ انتخابی"</string>
+    <string msgid="3664277305226978227" name="m3c_date_picker_headline_description">"‏انتخاب فعلی: %1$s"</string>
+    <string msgid="8436650776581492840" name="m3c_date_picker_navigate_to_year_description">"‏پیمایش به سال %1$s"</string>
+    <string msgid="5811000998184572395" name="m3c_date_picker_no_selection_description">"هیچ‌کدام"</string>
+    <string msgid="7813882352367152251" name="m3c_date_picker_scroll_to_earlier_years">"برای نمایش سال‌های قبل پیمایش کنید"</string>
+    <string msgid="5727367015496556177" name="m3c_date_picker_scroll_to_later_years">"برای نمایش سال‌های بعد پیمایش کنید"</string>
+    <string msgid="1804346892470238807" name="m3c_date_picker_switch_to_calendar_mode">"رفتن به روش ورودی تقویم"</string>
+    <string msgid="395627960681594326" name="m3c_date_picker_switch_to_day_selection">"برای انتخاب سال، تند بکشید یا برای برگشتن به انتخاب روز، ضربه بزنید"</string>
+    <string msgid="2219746470065162704" name="m3c_date_picker_switch_to_input_mode">"رفتن به حالت ورودی نوشتاری"</string>
+    <string msgid="7142101321095356500" name="m3c_date_picker_switch_to_next_month">"تغییر به ماه بعدی"</string>
+    <string msgid="228438865139394590" name="m3c_date_picker_switch_to_previous_month">"تغییر به ماه قبلی"</string>
+    <string msgid="791651718641787594" name="m3c_date_picker_switch_to_year_selection">"رفتن به انتخاب سال"</string>
+    <string msgid="7430790972741451689" name="m3c_date_picker_title">"انتخاب تاریخ"</string>
+    <string msgid="3199387177749801575" name="m3c_date_picker_today_description">"امروز"</string>
+    <string msgid="2068382232816991922" name="m3c_date_picker_year_picker_pane_title">"انتخابگر سال نمایان است"</string>
+    <string msgid="3190049423327661366" name="m3c_date_range_input_invalid_range_input">"محدوده تاریخ واردشده نامعتبر است"</string>
+    <string msgid="3148384720560189467" name="m3c_date_range_input_title">"تاریخ‌ها را وارد کنید"</string>
+    <string msgid="2138321128465719402" name="m3c_date_range_picker_day_in_range">"در محدوده"</string>
+    <string msgid="4947636797751277713" name="m3c_date_range_picker_end_headline">"تاریخ پایان"</string>
+    <string msgid="602077859540990149" name="m3c_date_range_picker_scroll_to_next_month">"برای نمایش ماه بعد پیمایش کنید"</string>
+    <string msgid="4592174524846109496" name="m3c_date_range_picker_scroll_to_previous_month">"برای نمایش ماه قبل پیمایش کنید"</string>
+    <string msgid="4665981448952749820" name="m3c_date_range_picker_start_headline">"تاریخ شروع"</string>
+    <string msgid="3134165431120340385" name="m3c_date_range_picker_title">"تاریخ‌ها را انتخاب کنید"</string>
+    <string msgid="7617233117134790350" name="m3c_dialog">"کادر گفتگو"</string>
+    <string msgid="3177828188723359358" name="m3c_dropdown_menu_collapsed">"جمع شد"</string>
+    <string msgid="2360841780724299882" name="m3c_dropdown_menu_expanded">"ازهم باز شد"</string>
+    <string msgid="6152806324422087846" name="m3c_search_bar_search">"جستجو"</string>
+    <string msgid="6152755701819882931" name="m3c_snackbar_dismiss">"بستن"</string>
+    <string msgid="7655536806087401899" name="m3c_suggestions_available">"پیشنهادهای زیر"</string>
+    <string msgid="2786685010796619560" name="m3c_time_picker_am">"ق.ظ."</string>
+    <string msgid="2349193472625211372" name="m3c_time_picker_hour">"ساعت"</string>
+    <string msgid="9179527532316922345" name="m3c_time_picker_hour_24h_suffix">"‏%1$d ساعت"</string>
+    <string msgid="8876759303332837035" name="m3c_time_picker_hour_selection">"انتخاب ساعت"</string>
+    <string msgid="3458167507790628988" name="m3c_time_picker_hour_suffix">"‏ساعت %1$d"</string>
+    <string msgid="6973808109666874069" name="m3c_time_picker_hour_text_field">"برای ساعت"</string>
+    <string msgid="4313071914266462005" name="m3c_time_picker_minute">"دقیقه"</string>
+    <string msgid="4699133535056739733" name="m3c_time_picker_minute_selection">"انتخاب دقیقه"</string>
+    <string msgid="5064177921781937179" name="m3c_time_picker_minute_suffix">"‏%1$d دقیقه"</string>
+    <string msgid="7661234488295443182" name="m3c_time_picker_minute_text_field">"برای دقیقه"</string>
+    <string msgid="5865171949528594571" name="m3c_time_picker_period_toggle_description">"انتخاب ق.ظ. یا ب.ظ."</string>
+    <string msgid="6616362054113087709" name="m3c_time_picker_pm">"ب.ظ."</string>
+    <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"نمایش نکته‌ابزار"</string>
+    <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"نکته‌ابزار"</string>
+    <string name="m3u_parser_title">M3U Parser (m3u playlist file handling)</string>
+    <string name="main_number">Main</string>
+    <string name="main_screen">Main screen</string>
+    <string name="make_sure_latest">Also make sure that you are using the latest app version.</string>
+    <string name="make_sure_upgrade">Also note that this app version is no longer being developed, get the Pro one for many improvements.</string>
+    <string name="manage_automatic_backups">Manage automatic backups</string>
+    <string name="manage_blocked_numbers">مدیریت شماره‌های مسدود شده</string>
+    <string name="manage_excluded_folders">مدیریت شاخه‌های مستثنی</string>
+    <string name="manage_shown_tabs">Manage shown tabs</string>
+    <string name="manage_speed_dial">مدیریت شماره‌گیری سریع</string>
+    <string name="march">مارس</string>
+    <string name="march_short">Mar</string>
+    <string name="material_clock_toggle_content_description">انتخاب .ق.ظ. یا ب.ظ.</string>
+    <string name="material_design_3">Material Design 3</string>
+    <string name="material_design_3_summary">Changes the appearance of some elements of the application</string>
+    <string name="material_hour_24h_suffix">%1$s ساعت</string>
+    <string name="material_hour_selection">انتخاب ساعت</string>
+    <string name="material_hour_suffix">ساعت %1$s</string>
+    <string name="material_minute_selection">انتخاب دقیقه</string>
+    <string name="material_minute_suffix">%1$s دقیقه</string>
+    <string name="material_timepicker_am">ق.ظ</string>
+    <string name="material_timepicker_clock_mode_description">برای وارد کردن زمان، به حالت ساعت تغییر وضعیت دهید.</string>
+    <string name="material_timepicker_hour">ساعت</string>
+    <string name="material_timepicker_minute">دقیقه</string>
+    <string name="material_timepicker_pm">ب.ظ</string>
+    <string name="material_timepicker_select_time">انتخاب زمان</string>
+    <string name="material_timepicker_text_input_mode_description">برای وارد کردن زمان، به حالت ورودی نوشتاری تغییر وضعیت دهید.</string>
+    <string name="maximum_share_reached">شما نمی‌توانید همه این مخاطبین را یکباره به اشتراک بگذارید</string>
+    <string name="may">می</string>
+    <string name="may_short">May</string>
+    <string name="maybe">شاید</string>
+    <string name="medium">متوسط</string>
+    <string name="merge">ادغام</string>
+    <string name="message">پیام</string>
+    <string name="message_call_later">ميتونم بعدا بهت زنگ بزنم؟</string>
+    <string name="message_cant_talk_right_now">ببخشيد، الان نميتونم حرف بزنم.</string>
+    <string name="message_on_my_way">من در راهم .</string>
+    <string name="middle_name">نام میانی</string>
+    <string name="migrating">Migrating</string>
+    <string name="minutes_letter">د</string>
+    <string name="minutes_raw">دقیقه</string>
+    <string name="missed_call">تماس از دست رفته</string>
+    <string name="missed_call_g">تماس از دست رفته</string>
+    <string name="missed_call_notifications_g">اعلان‌های تماس بی‌پاسخ</string>
+    <string name="missed_calls_g">تماس های بی پاسخ</string>
+    <string name="mobile">Mobile</string>
+    <string name="monday">دوشنبه</string>
+    <string name="monday_letter">د</string>
+    <string name="monday_short">دوشنبه</string>
+    <string name="more_apps">More apps</string>
+    <string name="more_apps_from_us">More apps from us</string>
+    <string name="more_info">More info</string>
+    <string name="more_options">More options</string>
+    <string name="move">جابه‌جایی</string>
+    <string name="move_items_into_recycle_bin">Move items into the Recycle Bin instead of deleting</string>
+    <string name="move_to">جابه‌جایی به</string>
+    <string name="move_to_bottom">جابه‌جایی به پایین</string>
+    <string name="move_to_recycle_bin_confirmation">Are you sure you want to move %s into the Recycle Bin?</string>
+    <string name="move_to_top">جابه‌جایی به بالا</string>
+    <string name="moving">درحال جابه‌جایی…</string>
+    <string name="moving_recycle_bin_items_disabled">Moving Recycle bin items is disabled, please use Restore</string>
+    <string name="moving_success">Files moved successfully</string>
+    <string name="moving_success_one">File moved successfully</string>
+    <string name="moving_success_partial">Some files could not be moved</string>
+    <string name="mtrl_badge_numberless_content_description">اعلان جدید</string>
+    <string name="mtrl_chip_close_icon_content_description">برداشتن %1$s</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">بیش از %1$d اعلان جدید</string>
+    <string name="mtrl_picker_a11y_next_month">تغییر به ماه بعدی</string>
+    <string name="mtrl_picker_a11y_prev_month">تغییر به ماه قبلی</string>
+    <string name="mtrl_picker_announce_current_selection">انتخاب کنونی: %1$s</string>
+    <string name="mtrl_picker_cancel">لغو</string>
+    <string name="mtrl_picker_confirm">تأیید</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">انتخاب تاریخ</string>
+    <string name="mtrl_picker_date_header_unselected">تاریخ انتخابی</string>
+    <string name="mtrl_picker_day_of_week_column_header">ستون روز: %1$s</string>
+    <string name="mtrl_picker_invalid_format">قالب نامعتبر است.</string>
+    <string name="mtrl_picker_invalid_format_example">مثال: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">قالب: %1$s</string>
+    <string name="mtrl_picker_invalid_range">محدوده نامعتبر است.</string>
+    <string name="mtrl_picker_navigate_to_year_description">رفتن به سال %1$s</string>
+    <string name="mtrl_picker_out_of_range">خارج از محدوده: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">تاریخ شروع – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – تاریخ پایان</string>
+    <string name="mtrl_picker_range_header_selected">%1$s – %2$s</string>
+    <string name="mtrl_picker_range_header_title">انتخاب محدوده</string>
+    <string name="mtrl_picker_range_header_unselected">تاریخ شروع – تاریخ پایان</string>
+    <string name="mtrl_picker_save">ذخیره</string>
+    <string name="mtrl_picker_text_input_date_hint">تاریخ</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">تاریخ پایان</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">تاریخ شروع</string>
+    <string name="mtrl_picker_text_input_day_abbr">d</string>
+    <string name="mtrl_picker_text_input_month_abbr">m</string>
+    <string name="mtrl_picker_text_input_year_abbr">y</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">رفتن به روش ورودی تقویم</string>
+    <string name="mtrl_picker_toggle_to_day_selection">رفتن به رفتن به حالت انتخاب روز ضربه بزنید</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">رفتن به حالت ورودی نوشتاری</string>
+    <string name="mtrl_picker_toggle_to_year_selection">برای رفتن به حالت انتخاب سال ضربه بزنید</string>
+    <string name="mtrl_timepicker_cancel">لغو</string>
+    <string name="mtrl_timepicker_confirm">تأیید</string>
+    <string name="music_player_short">Music Player</string>
+    <string name="must_make_default_caller_id_app">Can\'t block unknown numbers without caller ID permission.</string>
+    <string name="must_make_default_dialer">You have to make this app the default dialer app to make use of blocked numbers.</string>
+    <string name="mute">قطع</string>
+    <string name="name">نام</string>
+    <string name="name_taken">A file or folder with that name already exists</string>
+    <string msgid="542007171693138492" name="navigation_menu">"منوی پیمایش"</string>
+    <string name="never">هرگز</string>
+    <string name="new_app">
+        <![CDATA[
+            Hey,<br><br>
+            just letting you know that some new apps have been released recently:<br><br>
+            <a href="%1$s">%2$s</a><br><br>
+            <a href="%3$s">%4$s</a><br><br>
+            <a href="%5$s">%6$s</a><br><br>
+            You can download them by pressing their titles or icons.<br><br>
+            Thanks
+        ]]>
+    </string>
+    <string name="next">بعدی</string>
+    <string name="nickname">نام مستعار</string>
+    <string name="nine">Nine</string>
+    <string name="no">خیر</string>
+    <string name="no_access_to_contacts">این برنامه به مخاطبین‌تان دسترسی ندارد</string>
+    <string name="no_app_found">برنامهٔ معتبری پیدا نشد</string>
+    <string name="no_audio_permissions">مجوز صدا مورد نیاز است</string>
+    <string name="no_browser_found">No browser found</string>
+    <string name="no_camera_permissions">مجوز دوربین مورد نیاز است</string>
+    <string name="no_connection">بدون اتصال</string>
+    <string name="no_contacts_found">مخاطبی پیدا نشد</string>
+    <string name="no_contacts_permission">مجوز مخاطبین مورد نیاز است</string>
+    <string name="no_email_client_found">No email client found</string>
+    <string name="no_entries_for_exporting">No entries for exporting have been found</string>
+    <string name="no_entries_for_importing">No entries for importing have been found</string>
+    <string name="no_files_selected">پرونده‌ای گزیده نشده است</string>
+    <string name="no_fingerprints_registered">You have no fingerprints registered, please add some in the Settings of your device</string>
+    <string name="no_items_found">موردی پیدا نشد.</string>
+    <string name="no_new_entries_for_importing">No new entries for importing have been found</string>
+    <string name="no_new_items">No new items have been found</string>
+    <string name="no_permission">No permission</string>
+    <string name="no_phone_call_permission">App does not have the permission to initiate phone calls, please grant it in the device settings</string>
+    <string name="no_phone_number_found">No phone number has been found</string>
+    <string name="no_previous_calls">هیچ تماس قبلی پیدا نشد</string>
+    <string name="no_purchase_found">No purchase found.</string>
+    <string name="no_reminder">No reminder</string>
+    <string name="no_sound">No sound</string>
+    <string name="no_space">The destination does not have enough space available.\nRequired %1$s, available %2$s</string>
+    <string name="no_storage_permissions">مجوز انبار مورد نیاز است</string>
+    <string name="none">هیچکدام</string>
+    <string name="not_blocking_anyone">You are not blocking anyone.</string>
+    <string msgid="6610465462668679431" name="not_selected">"انتخاب‌نشده"</string>
+    <string name="notes">یادداشت‌ها</string>
+    <string name="notes_short">Notes</string>
+    <string name="nothing">Nothing</string>
+    <string name="notice">This app uses the following third party libraries to make my life easier. Thank you.</string>
+    <string name="notification">اعلان</string>
+    <string name="notification_sound">Notification sound</string>
+    <string name="notifications">Notifications</string>
+    <string name="notifications_disabled">Notifications of this application are disabled. Please go in your device settings for enabling them.</string>
+    <string name="november">نوامبر</string>
+    <string name="november_short">Nov</string>
+    <string name="number">شماره</string>
+    <string name="number_picker_title">Number Picker (customizable number picker)</string>
+    <string name="october">اکتبر</string>
+    <string name="october_short">Oct</string>
+    <string msgid="875452955155264703" name="off">"خاموش"</string>
+    <string name="ok">باشه</string>
+    <string msgid="8655164131929253426" name="on">"روشن"</string>
+    <string name="one">One</string>
+    <string name="ongoing_call">تماس در حال انجام</string>
+    <string name="open">باز کردن</string>
+    <string name="open_biometric_dialog">Open biometric ID verification dialog</string>
+    <string name="open_dialpad_by_default">باز کردن شماره‌گیر به طور پیش‌فرض هنگام باز شدن برنامه</string>
+    <string name="open_in_maps">باز کردن در Maps</string>
+    <string name="open_search_when_open_contacts">باز کردن جستجو هنگام باز کردن زبانه اشناها</string>
+    <string name="open_speed_dial_manage">مدیریت شماره گیری سریع را باز کنید؟</string>
+    <string name="open_the_recycle_bin">Open the Recycle Bin</string>
+    <string name="open_with">بازکردن با</string>
+    <string name="other">Other</string>
+    <string name="other_help">Other help</string>
+    <string name="otto_title">Otto (event bus)</string>
+    <string name="out_of_memory_error">خطای خروج از حافظه</string>
+    <string name="outgoing_call">تماس خروجی</string>
+    <string name="overflow_icon">شمایل سرریز</string>
+    <string name="overwrite">بازنویسی</string>
+    <string name="pager">Pager</string>
+    <string name="panorama_view_title">VR Panorama View (displaying panoramas)</string>
+    <string name="participants_title">Participants</string>
+    <string name="password">Password</string>
+    <string name="password_protect_file_deletion">Password protect file deletion and moving</string>
+    <string name="password_protect_hidden_items">Password protect hidden item visibility</string>
+    <string name="password_protect_whole_app">Password protect the whole application</string>
+    <string name="password_toggle_content_description">نمایش گذرواژه</string>
+    <string name="paste_g">درج</string>
+    <string name="path">مسیر</string>
+    <string name="pattern">الگو</string>
+    <string name="pattern_renaming">الگو</string>
+    <string name="pattern_title">PatternLockView (pattern protection)</string>
+    <string name="pdf_view_pager_title">PDFViewPager (PDF viewer)</string>
+    <string name="pdf_viewer_title">Android PdfViewer (PDF viewer)</string>
+    <string name="per_month">%s/ماه</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="phone_storage">Phone storage</string>
+    <string name="phone_storage_hidden">Phone storage (not visible by other apps)</string>
+    <string name="photoview_title">PhotoView (zoomable GIFs)</string>
+    <string name="picasso_title">Picasso (image loading and caching)</string>
+    <string name="pin">پین</string>
+    <string name="pin_item">Pin item</string>
+    <string name="pin_must_be_4_digits_long">PIN must be at least 4 digits long</string>
+    <string name="place_finger">لطفا انگشت خود را روی حسگر اثر انگشت قرار دهید</string>
+    <string name="playbook">PlayBook</string>
+    <string name="playbooks">PlayBooks</string>
+    <string name="playbooks_summary">Audiobook player</string>
+    <string name="player_g">بازیکن</string>
+    <string name="playpause">پخش / مکث</string>
+    <string name="please_enter_pin">لطفا یک پین وارد کنید</string>
+    <string name="please_select_destination">Please select a destination</string>
+    <string name="plus_summary">با کمک شما می توانیم ویژگی های بیشتری را پیاده سازی کنیم و برنامه را حتی بهتر کنیم</string>
+    <string name="plus_title">از ما حمایت کنید</string>
+    <string name="portrait_column_count">Portrait column count</string>
+    <string name="pref_category_appearance">ظاهر</string>
+    <string name="pref_pay_summary">Get the paid app to support future developments and extra features</string>
+    <string name="pref_theme_summary">یک تم از پیش نصب شده را انتخاب کنید</string>
+    <string name="prepend_filenames">افزودن به ابتدای نام پرونده</string>
+    <string name="prevent_phone_from_sleeping">Prevent phone from sleeping while the app is in foreground</string>
+    <string name="previous">قبلی</string>
+    <string name="primary_color">رنگ اصلی</string>
+    <string name="primary_sim_card">سیم کارت اصلی</string>
+    <string name="print">چاپ</string>
+    <string name="print_pro">چاپ (Pro)</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="pro_app_refund">Don\'t forget that if you uninstall any paid app within 2 hours, you will automatically be refunded. If you want a refund anytime later, just contact us at hello@simplemobiletools.com and you will get it. That makes it easy to try it out :)</string>
+    <string name="pro_app_refund_g">Don\'t forget that if you uninstall any paid app within 2 hours, you will automatically be refunded. If you want a refund anytime later, just contact us at goodwy.dev@gmail.com and you will get it. That makes it easy to try it out :)</string>
+    <string name="proceed_with_deletion">Are you sure you want to proceed with the deletion?</string>
+    <string name="properties">ویژگی‌ها</string>
+    <string name="protection_setup_successfully">Password setup successfully. Please reinstall the app in case you forget it.</string>
+    <string name="purchase">Purchase</string>
+    <string name="purchase_simple_thank_you">Purchase Simple Thank You</string>
+    <string name="purchase_simple_thank_you_g">Purchase Goodwy Thank You</string>
+    <string name="purchase_thank_you">
+        <![CDATA[
+            Please purchase <a href="https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou">Simple Thank You</a> to unlock this function and support the development. Thanks!
+        ]]>
+    </string>
+    <string name="quality">Quality</string>
+    <string name="random">تصادفی</string>
+    <string msgid="5941395253238309765" name="range_end">"پایان محدوده"</string>
+    <string msgid="7097486360902471446" name="range_start">"شروع محدوده"</string>
+    <string name="rate">امتیاز</string>
+    <string name="rate_our_app">Rate our app please :)</string>
+    <string name="rate_us">امتیاز به ما</string>
+    <string name="rate_us_prompt">Hello,\n\nit looks like you are using this app for quite a while already, and we really appreciate it.\n\nIf we can ask you a favor, please rate us on Google Play. That would really help us a lot.\n\nNo matter how you decide, you will not see this message again.\n\nThanks!</string>
+    <string name="read_faq">Read FAQ</string>
+    <string name="read_it">Read it</string>
+    <string name="recent_files_tab">پرونده‌های اخیر</string>
+    <string name="recents">اخیر</string>
+    <string name="recommendation_dialog_contacts_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our app to view and edit contacts.<br><br>
+            Thanks
+        ]]></string>
+    <string name="recommendation_dialog_dialer_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our call app.<br><br>
+            Thanks
+        ]]></string>
+    <string name="recommendation_dialog_gallery_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our photo viewing and editing app.<br><br>
+            Thanks
+        ]]></string>
+    <string name="recommendation_dialog_messages_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our messaging app.<br><br>
+            Thanks
+        ]]></string>
+    <string name="record_audio">Record audio</string>
+    <string name="record_video">Record video</string>
+    <string name="recorder_g">ضبط</string>
+    <string name="recycle_bin">زباله‌دان</string>
+    <string name="recycle_bin_cleaning_interval">Recycle Bin cleaning interval</string>
+    <string name="recycle_bin_emptied">The Recycle Bin has been emptied successfully</string>
+    <string name="recycle_bin_empty">The Recycle Bin is empty</string>
+    <string name="redo">انجام دوباره</string>
+    <string name="reduce_column_count">کاهش تعداد ستون</string>
+    <string name="relation_acquaintance_g">Acquaintance</string>
+    <string name="relation_agent_g">Agent</string>
+    <string name="relation_assistant_g">Assistant</string>
+    <string name="relation_aunt_g">Aunt</string>
+    <string name="relation_brother_g">Brother</string>
+    <string name="relation_brother_in_law_g">Brother-in-law</string>
+    <string name="relation_child_g">Child</string>
+    <string name="relation_co_resident_g">Co-resident</string>
+    <string name="relation_co_worker_g">Co-worker</string>
+    <string name="relation_colleague_g">Colleague</string>
+    <string name="relation_contact_g">Contact</string>
+    <string name="relation_crush_g">Crush</string>
+    <string name="relation_date_g">Date</string>
+    <string name="relation_daughter_g">Daughter</string>
+    <string name="relation_daughter_in_law_g">Daughter-in-law</string>
+    <string name="relation_domestic_partner_g">Domestic Partner</string>
+    <string name="relation_emergency_g">Emergency Contact</string>
+    <string name="relation_father_g">Father</string>
+    <string name="relation_father_in_law_g">Father-in-law</string>
+    <string name="relation_friend_g">Friend</string>
+    <string name="relation_g">ارتباط</string>
+    <string name="relation_grandchild_g">Grandchild</string>
+    <string name="relation_granddaughter_g">Granddaughter</string>
+    <string name="relation_grandfather_g">Grandfather</string>
+    <string name="relation_grandmother_g">Grandmother</string>
+    <string name="relation_grandparent_g">Grandparent</string>
+    <string name="relation_grandson_g">Grandson</string>
+    <string name="relation_hint_g">شخص مرتبط</string>
+    <string name="relation_husband_g">Husband</string>
+    <string name="relation_kin_alt_g">Relative</string>
+    <string name="relation_kin_g">Kin</string>
+    <string name="relation_manager_g">Manager</string>
+    <string name="relation_me_g">Me</string>
+    <string name="relation_met_g">Met</string>
+    <string name="relation_mother_g">Mother</string>
+    <string name="relation_mother_in_law_g">Mother-in-law</string>
+    <string name="relation_muse_g">Muse</string>
+    <string name="relation_neighbor_g">Neighbor</string>
+    <string name="relation_nephew_g">Nephew</string>
+    <string name="relation_niece_g">Niece</string>
+    <string name="relation_parent_g">Parent</string>
+    <string name="relation_partner_g">Partner</string>
+    <string name="relation_referred_by_g">Referred by</string>
+    <string name="relation_relative_g">Relative</string>
+    <string name="relation_sibling_g">Sibling</string>
+    <string name="relation_sister_g">Sister</string>
+    <string name="relation_sister_in_law_g">Sister-in-law</string>
+    <string name="relation_son_g">Son</string>
+    <string name="relation_son_in_law_g">Son-in-law</string>
+    <string name="relation_spouse_g">Spouse</string>
+    <string name="relation_subordinate_g">Subordinate</string>
+    <string name="relation_superior_g">Boss</string>
+    <string name="relation_sweetheart_g">Sweetheart</string>
+    <string name="relation_uncle_g">Uncle</string>
+    <string name="relation_wife_g">Wife</string>
+    <string name="relations_g">شخص ذي صلة</string>
+    <string name="relative_date">تاریخ نسبی</string>
+    <string name="remind_me">به من یاداوری کن</string>
+    <string name="reminder_triggers_in">Time remaining till the reminder triggers:\n%s</string>
+    <string name="reminder_warning">Please make sure the reminders work properly before relying on them. Check your device battery and notification settings, if there is nothing blocking the reminders, or killing the app in the background.</string>
+    <string name="remove">برداشتن</string>
+    <string name="remove_all">Remove all</string>
+    <string name="remove_all_description">Remove all folders from the list of excluded\? This will not delete the folders.</string>
+    <string name="remove_confirmation">مطمئنید که می‌خواهید مورد انتخاب شده را از تاریخچه تماس حدف کنید؟</string>
+    <string name="remove_exif">Remove EXIF</string>
+    <string name="remove_exif_confirmation">Are you sure you want to remove EXIF values like GPS coordinates, camera model etc?</string>
+    <string name="remove_from_favorites">برداشتن از موردعلاقه‌ها</string>
+    <string name="rename">تغییر نام</string>
+    <string name="rename_date_time_pattern">%Y - سال\n%M - ماه\n%D - روز\n%h - ساعت\n%m - دقیقه\n%s - ثانیه\n%i - افزایش اعداد با شروع از 1</string>
+    <string name="rename_file">تغییرنام پرونده</string>
+    <string name="rename_file_error">نمی‌توان پرونده را تغییرنام داد</string>
+    <string name="rename_folder">تغییرنام پوشه</string>
+    <string name="rename_folder_empty">نام پوشه نمی‌تواند خالی باشد</string>
+    <string name="rename_folder_error">نمی‌توان پوشه را تغییرنام داد</string>
+    <string name="rename_folder_exists">یک پوشه با همین نام هم‌اکنون وجود دارد</string>
+    <string name="rename_folder_ok">پوشه با موفقیت تغییرنام یافت</string>
+    <string name="rename_folder_root">نمی‌توان پوشهٔ ریشه یک انبار را تغییرنام داد</string>
+    <string name="rename_in_sd_card_system_restriction">The system does not allow renaming in this folder</string>
+    <string name="rename_internal_system_restriction">Cannot rename folders directly on internal storage, only subfolders</string>
+    <string name="renaming_folder">درحال تغییرنام پوشه</string>
+    <string name="repeat_pattern">الگو را تکرار کنید</string>
+    <string name="repeat_pin">پین را تکرار کنید</string>
+    <string name="reprint_title">Reprint (fingerprint protection)</string>
+    <string name="request_access">درخواست دسترسی</string>
+    <string name="request_the_required_permissions">درخواست مجوزهای مورد نیاز</string>
+    <string name="resize">Resize</string>
+    <string name="resolution">وضوح</string>
+    <string name="restart_required">Application restart required</string>
+    <string name="restore_all_files">Restore all files</string>
+    <string name="restore_defaults">بازیابی پیش‌گزیده‌ها</string>
+    <string name="restore_purchase">Restore purchase</string>
+    <string name="restore_selected_files">Restore selected files</string>
+    <string name="restore_this_file">Restore this file</string>
+    <string name="restored_previous_purchase_please_restart">Restored previous purchase. Please restart the app to make use of all features.</string>
+    <string name="restoring_purchase">Restoring purchase…</string>
+    <string name="resume_call">ادامه تماس</string>
+    <string name="right_contacts">Right Contacts</string>
+    <string name="right_dialer">Right Dialer</string>
+    <string name="right_files">Right Files</string>
+    <string name="right_gallery">Right Gallery</string>
+    <string name="right_sms_messenger">Right Messages</string>
+    <string name="right_voice_recorder">Right Voice Memos</string>
+    <string name="robolectric_title">Robolectric (testing framework)</string>
+    <string name="root">ریشه</string>
+    <string name="round_play_icon">گرد بازی / مکث آیکون</string>
+    <string name="round_play_icon_summary">نماد بازی/ مکث در رنگ اولیه رنگ آمیزی شده است</string>
+    <string name="row_count">Row count</string>
+    <string name="rtl_viewpager_title">RtlViewPager (right to left swiping)</string>
+    <string name="sanselan_title">Apache Sanselan (reading image metadata)</string>
+    <string name="saturday">شنبه</string>
+    <string name="saturday_letter">ش</string>
+    <string name="saturday_short">شنبه</string>
+    <string name="save">ذخیره</string>
+    <string name="save_as">ذخیره به عنوان</string>
+    <string name="save_before_closing">شما تغییرات ذخیره نشده دارید. قبل از خروج ذخیره شوند؟</string>
+    <string name="save_recordings_in_summary">با شروع از آندروید 10 ، برنامه دسترسی به فایل های خود را ندارد</string>
+    <string name="saving">درحال ذخیره…</string>
+    <string name="saving_label">ذخیره</string>
+    <string name="scanning">Scanning…</string>
+    <string msgid="5659570757430909869" name="screen_lock_prompt_message">"برای ادامه، قفل صفحه‌تان را وارد کنید"</string>
+    <string name="screen_slide_animation">انیمیشن اسلاید صفحه</string>
+    <string name="screen_slide_animation_depth">عمق</string>
+    <string name="screen_slide_animation_zoomout">بزرگنمایی</string>
+    <string name="scrolling">Scrolling</string>
+    <string name="sd_card">کارت حافظه</string>
+    <string name="sd_card_usb_same">SD card and USB device paths cannot be the same</string>
+    <string name="search">جست‌وجو</string>
+    <string name="search_albums">Search albums</string>
+    <string name="search_apps">Search apps</string>
+    <string name="search_artists">Search artists</string>
+    <string name="search_calls">Search calls</string>
+    <string name="search_contacts">Search contacts</string>
+    <string name="search_conversations">Search conversations</string>
+    <string name="search_events">Search events</string>
+    <string name="search_favorites">Search favorites</string>
+    <string name="search_files">Search files</string>
+    <string name="search_files_and_folders">Search files and folders</string>
+    <string name="search_folders">Search folders</string>
+    <string name="search_groups">Search groups</string>
+    <string name="search_history">Search history</string>
+    <string name="search_in_placeholder">Search in %s</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"جستجو"</string>
+    <string name="search_playlists">Search playlists</string>
+    <string name="search_recordings">Search recordings</string>
+    <string name="search_text">Search text</string>
+    <string name="search_tracks">Search tracks</string>
+    <string name="seconds_letter">ث</string>
+    <string name="seconds_raw">ثانیه</string>
+    <string name="security">Security</string>
+    <string name="select_a_different_color">گزینش یک رنگ متفاوت</string>
+    <string name="select_all">گزینش همه</string>
+    <string name="select_destination">گزینش مقصد</string>
+    <string name="select_file">گزینش یک پرونده</string>
+    <string name="select_folder">گزینش یک پوشه</string>
+    <string name="select_photo">گزینش تصویر</string>
+    <string name="select_sim">انتخاب سیم‌کارت برای تماس</string>
+    <string name="select_storage">گزینش انبار</string>
+    <string name="select_text">گزینش متن</string>
+    <string msgid="6043586758067023" name="selected">"انتخاب شد"</string>
+    <string name="send_email">Send email</string>
+    <string name="send_sms">Send SMS</string>
+    <string name="september">سپتامبر</string>
+    <string name="september_short">Sept</string>
+    <string name="set_as">تنظیم به عنوان</string>
+    <string name="set_as_default">تنظیم به عنوان پیش‌گزیده</string>
+    <string name="settings">تنظیمات</string>
+    <string name="settings_exported_successfully">Settings exported successfully</string>
+    <string name="settings_icon">نماد تنظیمات</string>
+    <string name="settings_imported_successfully">Settings imported successfully</string>
+    <string name="seven">Seven</string>
+    <string name="share">اشتراک گذاری</string>
+    <string name="share_colors_success">Colors updated successfully. A new Theme called \'Shared\' has been added, please use that for updating all app colors in the future.</string>
+    <string name="share_text">Hey, come check out %1$s at %2$s</string>
+    <string name="share_via">اشتراک گذاری به وسیلهٔ</string>
+    <string name="shared">اشتراک گذاری شد</string>
+    <string name="shared_theme_note">Note that even though you are using the Pro app version, you still need Simple Thank You for technical reasons. It takes care of the color synchronization.</string>
+    <string name="shortcut">Shortcut</string>
+    <string name="show_blocked_numbers">نمایش مسدود شده</string>
+    <string name="show_button_blocked_numbers">نشان دادن دکمه برای مخفی نکردن تماسهای مسدود شده</string>
+    <string name="show_call_confirmation_dialog">Show a call confirmation dialog before initiating a call</string>
+    <string name="show_call_details">نمایش اطلاعات تماس</string>
+    <string name="show_caller_description_g">نمایش اطلاعات تماس گیرنده اضافی</string>
+    <string name="show_contact_thumbnails_g">نمایش تصاویر کوچک مخاطب</string>
+    <string name="show_dialpad">نمایش شماره‌گیر</string>
+    <string name="show_dividers">نمایش تقسیم کننده ها</string>
+    <string name="show_hidden_items">نمایش موارد مخفی</string>
+    <string name="show_incoming_calls_full_screen">تماس‌های ورودی همیشه بصورت تمام‌صفحه نمایش داده شوند</string>
+    <string name="show_info_bubble">Show an info bubble at scrolling items by scrollbar dragging</string>
+    <string name="show_line_numbers">Show line numbers</string>
+    <string name="show_phone_numbers_g">نمایش شماره تلفن</string>
+    <string name="show_search">Show a search bar</string>
+    <string name="show_the_recycle_bin">Show the Recycle Bin</string>
+    <string name="sideloaded_app">
+        <![CDATA[
+            It looks like your app version is corrupt. Please download the original version <a href="%s">here</a>.
+        ]]>
+    </string>
+    <string name="simple_app_launcher">Simple App Launcher</string>
+    <string name="simple_calculator">ماشین حساب آسان</string>
+    <string name="simple_calendar">تقویم آسان</string>
+    <string name="simple_camera">دوربین آسان</string>
+    <string name="simple_clock">ساعت آسان</string>
+    <string name="simple_contacts">مخاطبین آسان</string>
+    <string name="simple_dialer">Simple Dialer</string>
+    <string name="simple_draw">نقاشی آسان</string>
+    <string name="simple_file_manager">مدیر پروندهٔ آسان</string>
+    <string name="simple_flashlight">Simple Flashlight</string>
+    <string name="simple_gallery">گالری آسان</string>
+    <string name="simple_keyboard">Simple Keyboard</string>
+    <string name="simple_launcher">Simple Launcher</string>
+    <string name="simple_music_player">پخش کنندهٔ آهنگ آسان</string>
+    <string name="simple_notes">یادداشت آسان</string>
+    <string name="simple_renaming">تغییرنام آسان</string>
+    <string name="simple_sms_messenger">پیام‌رسان اس‌ام‌اس آسان</string>
+    <string name="simple_thank_you">Simple Thank You</string>
+    <string name="simple_voice_recorder">Simple Voice Recorder</string>
+    <string name="six">Six</string>
+    <string name="size">اندازه</string>
+    <string name="skip">بعدی</string>
+    <string name="skip_delete_confirmation">Always skip delete confirmation dialog</string>
+    <string name="skip_the_recycle_bin">Skip the Recycle Bin, delete files directly</string>
+    <string name="sleep_timer">Sleep timer</string>
+    <string name="small">کوچک</string>
+    <string name="sms_messenger_short">SMS Messenger</string>
+    <string name="sms_mms_title">SMS MMS (SMS and MMS handling)</string>
+    <string name="snooze">Snooze</string>
+    <string name="snooze_time">Snooze time</string>
+    <string name="social">Social</string>
+    <string name="solarized">آفتابی</string>
+    <string name="song_title">عنوان آهنگ</string>
+    <string name="sort_by">مرتب سازی بر اساس</string>
+    <string name="sort_numeric_parts">Sort numeric parts by actual value</string>
+    <string name="sort_randomly">Sort randomly</string>
+    <string name="source">منبع</string>
+    <string name="source_and_destination_same">Source and destination cannot be the same</string>
+    <string name="source_file_doesnt_exist">پروندهٔ منبع %s وجود ندارد</string>
+    <string name="special_thanks_to">Special thanks to</string>
+    <string name="speech_bubble">حباب گفتار</string>
+    <string name="speed_dial">شماره‌گیری سریع</string>
+    <string name="speed_dial_label">یک شماره را انتخاب کنید تا مخاطبی را به آن اختصاص دهید. با لمس طولانی آن شماره در شماره‌گیر می‌توانید به سرعت با آن تماس بگیرید.</string>
+    <string name="start_free_trial">Start free trial</string>
+    <string name="start_name_with_surname">Start name with surname</string>
+    <string name="start_week_on">Start week on</string>
+    <string name="startup">راه‌انداز</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="stetho_title">Stetho (debugging databases)</string>
+    <string name="stop_showing_excluded">Stop showing excluded</string>
+    <string name="stop_showing_hidden">توقف نمایش رسانه‌های مخفی</string>
+    <string name="storage">Storage</string>
+    <string name="string_to_add">رشته برای افزودن</string>
+    <string name="subsampling_title">Subsampling Scale Image View (zoomable imageviews)</string>
+    <string name="sunday">یک‌شنبه</string>
+    <string name="sunday_first">Start week on Sunday</string>
+    <string name="sunday_letter">ی</string>
+    <string name="sunday_short">یک‌شنبه</string>
+    <string name="support">Support</string>
+    <string name="support_project_summary">Get one of our paid apps to support future development and unlock extra features</string>
+    <string name="surname">Surname</string>
+    <string msgid="2561197295334830845" name="switch_role">"کلید"</string>
+    <string name="system_default">System default</string>
+    <string name="system_folder_copy_restriction">The system does not allow copying into this folder, please pick another one</string>
+    <string name="system_folder_restriction">The system does not allow the operation in this folder, please pick another one</string>
+    <string name="system_service_disabled">System service for selecting files and folders is unavailable</string>
+    <string name="system_sounds">System sounds</string>
+    <string msgid="1672349317127674378" name="tab">"برگه"</string>
+    <string name="tab_navigation">ناوبری زبانه</string>
+    <string name="tabs">برگه ها</string>
+    <string name="take_photo">Take photo</string>
+    <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> درصد."</string>
+    <string name="temporarily_show_excluded">Temporarily show excluded</string>
+    <string name="temporarily_show_hidden">نمایش موقت رسانه‌های مخفی</string>
+    <string name="text">متن</string>
+    <string name="text_color">رنگ متن</string>
+    <string name="text_cursor_color">رنگ مکاننمای متن</string>
+    <string name="thank_you">ممنونیم</string>
+    <string name="thank_you_short">Thank You</string>
+    <string name="theme">شِما</string>
+    <string name="themes">تم</string>
+    <string name="themes_summary">"با دقت انتخاب تم های نرم افزار ، تغییر خودکار تم و پشتیبانی از تم سیستم برای آندروید 12+ "</string>
+    <string name="third_party_licences">Third party licences</string>
+    <string name="three">Three</string>
+    <string name="thumbnails">Thumbnails</string>
+    <string name="thursday">پنج‌شنبه</string>
+    <string name="thursday_letter">پ</string>
+    <string name="thursday_short">پنج‌شنبه</string>
+    <string name="time_remaining">Time remaining:\n%s</string>
+    <string name="timer">تایمر</string>
+    <string name="timers_notification_msg">تایمرها در حال اجرا هستند</string>
+    <string name="tip_excellent">پشتیبانی عالی</string>
+    <string name="tip_incredible">پشتیبانی عالی</string>
+    <string name="tip_jar">پشتیبانی</string>
+    <string name="tip_kind">پشتیبانی خوب</string>
+    <string name="title">عنوان</string>
+    <string name="today">امروز</string>
+    <string name="toggle_filename">Toggle filename visibility</string>
+    <string name="tomorrow">فردا</string>
+    <string name="too_many_incorrect_attempts">Too many incorrect unlock attempts.\nTry again in %d seconds.</string>
+    <string msgid="3765533235322692011" name="tooltip_description">"نکته‌ابزار"</string>
+    <string msgid="3124740595719787496" name="tooltip_label">"نمایش نکته‌ابزار"</string>
+    <string name="top">بالا</string>
+    <string name="top_app_bar_colored">نوار برنامه رنگی بالا</string>
+    <string name="translation">Translation</string>
+    <string name="translation_arabic">Arabic</string>
+    <string name="translation_azerbaijani">Azerbaijani</string>
+    <string name="translation_basque">Basque</string>
+    <string name="translation_bengali">Bengali</string>
+    <string name="translation_breton">Breton</string>
+    <string name="translation_bulgarian">Bulgarian</string>
+    <string name="translation_catalan">Catalan</string>
+    <string name="translation_chinese_cn">Chinese (Simplified)</string>
+    <string name="translation_chinese_hk">Chinese (Hong Kong)</string>
+    <string name="translation_chinese_tw">Chinese (Traditional)</string>
+    <string name="translation_croatian">Croatian</string>
+    <string name="translation_czech">Czech</string>
+    <string name="translation_danish">Danish</string>
+    <string name="translation_dutch">Dutch</string>
+    <string name="translation_english">English</string>
+    <string name="translation_finnish">Finnish</string>
+    <string name="translation_french">French</string>
+    <string name="translation_galician">Galician</string>
+    <string name="translation_german">German</string>
+    <string name="translation_greek">Greek</string>
+    <string name="translation_hebrew">Hebrew</string>
+    <string name="translation_hindi">Hindi</string>
+    <string name="translation_hungarian">Hungarian</string>
+    <string name="translation_indonesian">Indonesian</string>
+    <string name="translation_italian">Italian</string>
+    <string name="translation_japanese">Japanese</string>
+    <string name="translation_korean">Korean</string>
+    <string name="translation_lithuanian">Lithuanian</string>
+    <string name="translation_nepali">Nepali</string>
+    <string name="translation_norwegian">Norwegian</string>
+    <string name="translation_persian">Persian</string>
+    <string name="translation_polish">Polish</string>
+    <string name="translation_portuguese">Portuguese</string>
+    <string name="translation_romanian">Romanian</string>
+    <string name="translation_russian">Russian</string>
+    <string name="translation_serbian">Serbian</string>
+    <string name="translation_slovak">Slovak</string>
+    <string name="translation_slovenian">Slovenian</string>
+    <string name="translation_spanish">Spanish</string>
+    <string name="translation_swedish">Swedish</string>
+    <string name="translation_tamil">Tamil</string>
+    <string name="translation_turkish">Turkish</string>
+    <string name="translation_ukrainian">Ukrainian</string>
+    <string name="translation_vietnamese">Vietnamese</string>
+    <string name="translation_welsh">Welsh</string>
+    <string name="transparent">شفاف</string>
+    <string name="transparent_bar">Transparent bars</string>
+    <string name="transparent_call_screen_g">صفحه تماس شفاف</string>
+    <string name="transparent_color">رنگ شفاف</string>
+    <string name="transparent_navigation_bar">Transparent bottom navigation bar</string>
+    <string name="trial_end_description">Please upgrade to the Pro version to enjoy the app to the fullest.\n\nYou just have to pay for it once in a lifetime and if you won\'t be satisfied, you can uninstall it and get a refund.\n\nSee you there :)</string>
+    <string name="trial_expired">Trial expired</string>
+    <string name="trial_expires_soon">Your trial expires soon.</string>
+    <string name="trial_start_description">Thank you for using our app. You can use this unlocked version for &lt;font color=\'#FFFFFF\'>%d days&lt;/font>. Once the trial ends, please consider upgrading to the Pro version. It has a huge amount of new features, modern design, no ads and many other improvements.
+        \n\nYou just have to pay for it once in a lifetime and if you won\'t be satisfied, you can uninstall it and get a refund.\n\nHope you\'ll like it :)</string>
+    <string name="tuesday">سه‌شنبه</string>
+    <string name="tuesday_letter">س</string>
+    <string name="tuesday_short">سه‌شنبه</string>
+    <string name="turn_microphone_off">خاموش کردن میکروفون</string>
+    <string name="turn_microphone_on">روشن کردن میکروفون</string>
+    <string name="turn_speaker_off">خاموش کردن بلندگو</string>
+    <string name="turn_speaker_on">روشن کردن بلندگو</string>
+    <string name="two">Two</string>
+    <string name="type_2_characters">حداقل دو نویسه برای شروع جست‌وجو بنویسید.</string>
+    <string name="unblock">Unblock</string>
+    <string name="unblock_confirmation">Are you sure you want to unblock \"%s\"?</string>
+    <string name="unblock_contact">Unblock contact</string>
+    <string name="unblock_contact_fail">Contact could not be unblocked</string>
+    <string name="unblock_contact_success">Contact unblocked</string>
+    <string name="unblock_number">شماره مسدود کردن</string>
+    <string name="unblock_numbers">باز کردن قفل شماره ها</string>
+    <string name="undo">برگرداندن</string>
+    <string name="undo_changes">برگرداندن تغییرات</string>
+    <string name="undo_changes_confirmation">آیا از برگرداندن تغییرات خود مطمئنید؟</string>
+    <string name="uneven_grid">Uneven Grid</string>
+    <string name="unhide">آشکار</string>
+    <string name="unhide_folder">آشکار کردن پوشه</string>
+    <string name="unknown">ناشناس</string>
+    <string name="unknown_caller">تماس ناشناس</string>
+    <string name="unknown_error_occurred">An unknown error occurred</string>
+    <string name="unlock">Unlock</string>
+    <string name="unlock_folder">باز کردن قفل پوشه</string>
+    <string name="unlock_for_one_final_day">Unlock the app for one final day</string>
+    <string name="unpin_item">Unpin item</string>
+    <string name="unset_default_sim">برداشتن سیم‌کارت پیش‌فرض</string>
+    <string name="update_thank_you">Please update Simple Thank You to the latest version</string>
+    <string name="update_thank_you_g">Please update Goodwy Thank You to the latest version</string>
+    <string name="updating">Updating…</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="upgrade_calendar">You have to migrate locally stored events manually via exporting in an .ics file, then importing. You can find both export/import buttons at the main screen menu.</string>
+    <string name="upgrade_to_pro">Upgrade to Pro</string>
+    <string name="upgrade_to_pro_long">Your app version will not be updated anymore. Please upgrade to the Pro version to receive new fixes and other improvements.</string>
+    <string name="upgrade_to_pro_long_click">Your app version will not be updated anymore. Please upgrade to the Pro version to receive new fixes and other improvements by clicking here.</string>
+    <string name="upgraded_from_free">Hello,\n\nseems like you just upgraded from the free version. Once you are happy with this one and maybe migrated your data over, you can uninstall the old free one to avoid launching it accidentally as you will not need it anymore.\n\nThanks!</string>
+    <string name="upgraded_from_free_calendar">Hello,\n\nseems like you just upgraded from the free version. If you want to migrate your locally stored events over, you have to do it manually by exporting them into an .ics file in the free app version and importing here through the top menu. \n\nOnce you are satisfied with your setup in the Pro version, you can uninstall the old free one as you won\'t need it anymore.\n\nThanks!</string>
+    <string name="upgraded_from_free_contacts">Hello,\n\nseems like you just upgraded from the free version. If you had any contacts stored under \"%s\", you have to migrate them manually by exporting in a .vcf file from the free app version and importing here through the top menu.\n\nOnce you are satisfied with your setup in the Pro version, you can uninstall the old free one as you won\'t need it anymore.\n\nThanks!</string>
+    <string name="upgraded_from_free_gallery">Hello,\n\nseems like you just upgraded from the free version. Once you are happy with this one and maybe migrated your settings and favorites over, you can uninstall the old free one to avoid launching it accidentally as you will not need it anymore.\n\nThanks!</string>
+    <string name="upgraded_from_free_notes">Hello,\n\nseems like you just upgraded from the free version. If you want to migrate your notes over, you have to do it manually by exporting them into a file in the free app version and importing here through the top menu. \n\nOnce you are satisfied with your setup in the Pro version, you can uninstall the old free one as you won\'t need it anymore.\n\nThanks!</string>
+    <string name="upgraded_to_pro">Hello,\n\nseems like you already have the Pro app version too. Once you are happy with it and maybe migrated your data over, you can uninstall this one to avoid launching it accidentally as you will not need it anymore.\n\nThanks!</string>
+    <string name="upgraded_to_pro_gallery">Hello,\n\nseems like you already have the Pro app version too. Once you are happy with it and maybe migrated your settings and favorites over, you can uninstall this one to avoid launching it accidentally as you will not need it anymore.\n\nThanks!</string>
+    <string name="usb">یو‌اس‌بی</string>
+    <string name="usb_detected">You seem to have an USB device attached to your device. To make sure its files appear properly, you need to grant additional permissions.</string>
+    <string name="use_24_hour_time_format">Use 24-hour time format</string>
+    <string msgid="6524145989441579428" name="use_biometric_label">"استفاده از زیست‌سنجشی"</string>
+    <string msgid="5385448280139639016" name="use_biometric_or_screen_lock_label">"استفاده از زیست‌سنجشی یا قفل صفحه"</string>
+    <string name="use_custom_sorting">Use custom sorting</string>
+    <string name="use_default">استفاده از پیش‌گزیده</string>
+    <string name="use_english_language">استفاده از زبان انگلیسی</string>
+    <string msgid="6533512708069459542" name="use_face_label">"استفاده از چهره"</string>
+    <string msgid="2116180187159450292" name="use_face_or_screen_lock_label">"استفاده از قفل صفحه یا چهره"</string>
+    <string msgid="6961788485681412417" name="use_fingerprint_label">"استفاده از اثر انگشت"</string>
+    <string msgid="7577690399303139443" name="use_fingerprint_or_screen_lock_label">"استفاده از اثر انگشت یا قفل صفحه"</string>
+    <string name="use_for_this_folder">Use for this folder only</string>
+    <string name="use_icon_tabs">استفاده از آیکون های زبانه</string>
+    <string name="use_icon_tabs_summary">آیکون ها به جای متن بر روی زبانه ها</string>
+    <string name="use_same_snooze">Always use same snooze time</string>
+    <string msgid="5459869335976243512" name="use_screen_lock_label">"از قفل صفحه استفاده کنید"</string>
+    <string name="value">Value</string>
+    <string name="value_cannot_be_empty">Value cannot be empty</string>
+    <string name="value_copied_to_clipboard">مقدار به بریده‌دان رونوشت شد</string>
+    <string name="value_copied_to_clipboard_show">مقدار به بریده‌دان رونوشت شد:\n%s</string>
+    <string name="version_placeholder">Version %s</string>
+    <string name="vibrate_on_button_press">لرزش با فشار دادن دکمه</string>
+    <string name="video_call">تماس تصویری</string>
+    <string name="view_contact_details">نمایش جزئیات مخاطب</string>
+    <string name="visibility">Visibility</string>
+    <string name="voice_recorder_short">Voice Recorder</string>
+    <string name="voicerecorder">VoiceMemos</string>
+    <string name="voicerecorder_summary">Voice recorder</string>
+    <string name="wallpapers">Wallpapers</string>
+    <string name="website">Website</string>
+    <string name="website_label">For the source codes visit</string>
+    <string name="wednesday">چهارشنبه</string>
+    <string name="wednesday_letter">چ</string>
+    <string name="wednesday_short">چهارشنبه</string>
+    <string name="week_number_short">wk.</string>
+    <string name="welcome_to_app_name">Welcome to %s!</string>
+    <string name="whats_new">چه چیز جدید است</string>
+    <string name="whats_new_disclaimer">* only the bigger updates are listed here, there are always some smaller improvements too</string>
+    <string name="white">سفید</string>
+    <string name="why_upgrade">هم‌اکنون نسخهٔ حرفه‌ای را بگیر!</string>
+    <string name="why_upgrade_advanced_photo_editor">Advanced photo editor</string>
+    <string name="why_upgrade_advanced_photo_video_editor">Advanced photo &amp; video editor</string>
+    <string name="why_upgrade_attendees_emails">Attendees and email reminders</string>
+    <string name="why_upgrade_background_color_customization">Background color customization</string>
+    <string name="why_upgrade_basic_version">پایه</string>
+    <string name="why_upgrade_batch_renaming">Advanced batch file renaming</string>
+    <string name="why_upgrade_checklists">Checklists</string>
+    <string name="why_upgrade_contact_filtering">Contact filtering</string>
+    <string name="why_upgrade_contact_private_contacts">Privately stored contacts</string>
+    <string name="why_upgrade_customizable_contact_ringtones">Customizable contact ringtones</string>
+    <string name="why_upgrade_date_and_time_format">Date and time format customization</string>
+    <string name="why_upgrade_different_note_per_widget">Different note and colors per widget</string>
+    <string name="why_upgrade_duplicate_contact_merging">Improved duplicate contact merging</string>
+    <string name="why_upgrade_easy_event_importing">Easy event importing</string>
+    <string name="why_upgrade_file_compression">File compression support</string>
+    <string name="why_upgrade_file_importing">File importing support</string>
+    <string name="why_upgrade_folder_locking">Individual folder locking</string>
+    <string name="why_upgrade_font_size_customization">Font size customization</string>
+    <string name="why_upgrade_footer">100% Money Back Guarantee</string>
+    <string name="why_upgrade_footer_one_time_payment">One time payment</string>
+    <string name="why_upgrade_heic_support">HEIC/HEIF file support</string>
+    <string name="why_upgrade_improved_design">Improved design</string>
+    <string name="why_upgrade_many_other_improvements">Many other improvements</string>
+    <string name="why_upgrade_new_widgets">New widgets</string>
+    <string name="why_upgrade_no_ads">بدونه تبلیغات</string>
+    <string name="why_upgrade_no_internet_access">بدونه دسترسی به اینترنت</string>
+    <string name="why_upgrade_note_locking">Note locking</string>
+    <string name="why_upgrade_printing_support">Printing support</string>
+    <string name="why_upgrade_private_contact_sharing">Optional private contact sharing within our apps</string>
+    <string name="why_upgrade_pro_version">حرفه‌ای</string>
+    <string name="why_upgrade_recents_tab">Tab with recent files</string>
+    <string name="why_upgrade_shortcuts">Home screen shortcuts</string>
+    <string name="why_upgrade_time_zone_support">Time zone support</string>
+    <string name="why_upgrade_zooming">Zooming</string>
+    <string name="widget_locked_pro">The widget is locked.\nPlease upgrade to the Pro version to unlock it.</string>
+    <string name="widgets">ابزارک‌ها</string>
+    <string name="work">Work</string>
+    <string name="work_fax">Work Fax</string>
+    <string name="wrong_folder_selected">Wrong folder selected, please select path \'%s\'</string>
+    <string name="wrong_pattern">الگو اشتباه است</string>
+    <string name="wrong_pin">پین اشتباه است</string>
+    <string name="wrong_root_selected">Wrong folder selected, please select the main folder of your SD card</string>
+    <string name="wrong_root_selected_usb">Wrong folder selected, please select the main folder of your USB device</string>
+    <string name="yes">بله</string>
+    <string name="yesterday">دیروز</string>
+    <string name="your_sounds">Your sounds</string>
+    <string name="zero">Zero</string>
+    <string name="zip4j_title">Zip4j (ZIP compression and decompression)</string>
+</resources>

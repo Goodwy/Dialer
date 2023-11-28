@@ -1,18 +1,22 @@
 package com.goodwy.dialer.services
 
+import android.Manifest
 import android.app.KeyguardManager
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.telecom.CallAudioState
 import android.telecom.Call
 import android.telecom.DisconnectCause
 import android.telecom.InCallService
+import android.util.Log
+import androidx.core.app.ActivityCompat
+import com.goodwy.commons.helpers.isPiePlus
 import com.goodwy.dialer.activities.CallActivity
-import com.goodwy.dialer.extensions.config
-import com.goodwy.dialer.extensions.isOutgoing
-import com.goodwy.dialer.extensions.powerManager
-import com.goodwy.dialer.extensions.showMessageNotification
+import com.goodwy.dialer.extensions.*
 import com.goodwy.dialer.helpers.*
 import com.goodwy.dialer.helpers.CallManager.Companion.getPhoneSize
+import com.goodwy.dialer.receivers.CallActionReceiver
 
 class CallService : InCallService() {
     private val callNotificationManager by lazy { CallNotificationManager(this) }
@@ -28,14 +32,27 @@ class CallService : InCallService() {
         }
     }
 
+    fun sendBroadcastAccept(context: Context) {
+        val intent = Intent(context, CallActionReceiver::class.java)
+        intent.action = ACCEPT_CALL
+        context.sendBroadcast(intent)
+    }
+
     override fun onCallAdded(call: Call) {
         super.onCallAdded(call)
         CallManager.onCallAdded(call)
         CallManager.inCallService = this
         call.registerCallback(callListener)
-
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+            val phone = CallManager.getPhoneNumber()
+            val isKnownContact = isKnownContact(phone ?: "")
+            if (isPiePlus() && !isKnownContact) {
+                sendBroadcastAccept(this)
+            }
+        }
         //val isScreenLocked = (getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager).isDeviceLocked
         when {
+
             !powerManager.isInteractive /*|| isScreenLocked*/ -> {
                 try {
                     startActivity(CallActivity.getStartIntent(this))

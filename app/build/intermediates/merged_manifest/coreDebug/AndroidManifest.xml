@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.goodwy.dialer.debug"
+    android:installLocation="auto"
+    android:versionCode="483"
+    android:versionName="4.8.3" >
+
+    <uses-sdk
+        android:minSdkVersion="23"
+        android:targetSdkVersion="34" />
+
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.CALL_PRIVILEGED" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.MANAGE_OWN_CALLS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.telecom.action.CONFIGURE_PHONE_ACCOUNT" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="com.android.vending.BILLING" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission
+        android:name="android.permission.CAMERA"
+        android:maxSdkVersion="23" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <queries>
+        <package android:name="com.goodwy.dialer.debug" />
+        <package android:name="com.goodwy.dialer" />
+        <package android:name="com.goodwy.contacts.debug" />
+        <package android:name="com.goodwy.contacts" />
+        <package android:name="com.goodwy.smsmessenger.debug" />
+        <package android:name="com.goodwy.smsmessenger" />
+        <package android:name="com.goodwy.voicerecorder.debug" />
+        <package android:name="com.goodwy.voicerecorder" />
+        <package android:name="com.goodwy.gallery.debug" />
+        <package android:name="com.goodwy.gallery" />
+        <package android:name="com.goodwy.filemanager.debug" />
+        <package android:name="com.goodwy.filemanager" />
+        <package android:name="com.goodwy.audiobooklite" />
+        <package android:name="com.goodwy.audiobook.debug" />
+        <package android:name="com.goodwy.audiobook" />
+        <package android:name="com.goodwy.files.debug" />
+        <package android:name="com.goodwy.files" />
+
+        <intent>
+            <action android:name="ru.vk.store.provider.RemotePayTokenProvider" />
+        </intent>
+
+        <package android:name="ru.sberbankmobile" />
+        <package android:name="ru.sberbankmobile_alpha" />
+        <package android:name="cb.ibank" />
+        <package android:name="cb.ibank.vuz" />
+        <package android:name="com.banksoyuz.artsofte" />
+        <package android:name="com.bifit.atbbank" />
+        <package android:name="com.bifit.dvbank" />
+        <package android:name="com.bifit.mobile.citizen.MCBank" />
+        <package android:name="com.bifit.mobile.citizen.belsocbank" />
+        <package android:name="com.bifit.mobile.citizen.cfb" />
+        <package android:name="com.bifit.mobile.citizen.efbank" />
+        <package android:name="com.bifit.mobile.citizen.icbru" />
+        <package android:name="com.bifit.mobile.citizen.invb" />
+        <package android:name="com.bifit.mobile.citizen.kbnk" />
+        <package android:name="com.bifit.mobile.citizen.mbb" />
+        <package android:name="com.bifit.mobile.citizen.moskb" />
+        <package android:name="com.bifit.mobile.citizen.nkbank" />
+        <package android:name="com.bifit.mobile.citizen.okbank" />
+        <package android:name="com.bifit.mobile.citizen.tenderbank" />
+        <package android:name="com.bifit.mobile.citizen.thbank" />
+        <package android:name="com.bifit.mobile.citizen.zarech" />
+        <package android:name="com.bifit.mobile.private.bbr" />
+        <package android:name="com.bifit.nrb" />
+        <package android:name="com.bifit.pmobile.isbank" />
+        <package android:name="com.bifit.rncbbeta" />
+        <package android:name="com.bifit.vfbank" />
+        <package android:name="com.bpc.crossplatform_trading.bpc_trading" />
+        <package android:name="com.bssys.aversretail" />
+        <package android:name="com.bssys.gutaretail" />
+        <package android:name="com.bssys.novikomretail" />
+        <package android:name="com.bssys.roscapretail" />
+        <package android:name="com.bssys.stroylesretail" />
+        <package android:name="com.bssys.uralfdretail" />
+        <package android:name="com.bssys.vbrrretail" />
+        <package android:name="com.cetelem.cetelem_android" />
+        <package android:name="com.citibank.mobile.ru" />
+        <package android:name="com.compassplus.mobicash.customer" />
+        <package android:name="com.credituralbank.CUBmobilenew" />
+        <package android:name="com.energobank.digital" />
+        <package android:name="com.finservice.mobile" />
+        <package android:name="com.hicebank.android" />
+        <package android:name="com.idamob.tinkoff.android" />
+        <package android:name="com.idamobile.android.LockoBank" />
+        <package android:name="com.inbank.mobilebank" />
+        <package android:name="com.intervale.sbp.atlas" />
+        <package android:name="com.isimplelab.ibank.chelind" />
+        <package android:name="com.isimplelab.ibank.kubankredit" />
+        <package android:name="com.isimplelab.ibank.solidarnost" />
+        <package android:name="com.isimplelab.ibank.toyota" />
+        <package android:name="com.isimplelab.ionic.gorbank.prod" />
+        <package android:name="com.isimplelab.ionic.kazan.fl" />
+        <package android:name="com.isimplelab.ionic.round.prod" />
+        <package android:name="com.isimplelab.ionic.slavia.prod" />
+        <package android:name="com.isimplelab.ionic.standart" />
+        <package android:name="com.isimplelab.isimpleceo.uglemet" />
+        <package android:name="com.isimplelab.isimplemobile.payjet" />
+        <package android:name="com.ltech.unistream" />
+        <package android:name="com.metkombank.mobile" />
+        <package android:name="com.mifors.izhcombank" />
+        <package android:name="com.mmonline.mobile" />
+        <package android:name="com.mob.android" />
+        <package android:name="com.openbank" />
+        <package android:name="com.openwaygroup.ic.panda.poidem" />
+        <package android:name="com.priobank.prio" />
+        <package android:name="com.smp.android" />
+        <package android:name="com.snb.online" />
+        <package android:name="com.tatsotsbank.dbomobile" />
+        <package android:name="com.timerbank.retail" />
+        <package android:name="com.tochka.bank" />
+        <package android:name="com.yandex.bank" />
+        <package android:name="cz.bsc.rc" />
+        <package android:name="logo.com.mbanking" />
+        <package android:name="ru.akbars.mobile" />
+        <package android:name="ru.albank.online.aebit" />
+        <package android:name="ru.alfabank.mobile.android" />
+        <package android:name="ru.artsofte.russiafl" />
+        <package android:name="ru.avangard.sbp_client" />
+        <package android:name="ru.bank_hlynov.xbank" />
+        <package android:name="ru.bankuralsib.mb.android" />
+        <package android:name="ru.bcs.bcsbank" />
+        <package android:name="ru.briginvest.sense" />
+        <package android:name="ru.bspb" />
+        <package android:name="ru.centrinvest.mobilebanking2018" />
+        <package android:name="ru.chelyabinvestbank.investpay" />
+        <package android:name="ru.elplat.elplat2" />
+        <package android:name="ru.emb.android" />
+        <package android:name="ru.faktura.avtograd.person" />
+        <package android:name="ru.finambank.app" />
+        <package android:name="ru.ftc.faktura.absolutbank" />
+        <package android:name="ru.ftc.faktura.agropromkredit" />
+        <package android:name="ru.ftc.faktura.agroros" />
+        <package android:name="ru.ftc.faktura.akcept" />
+        <package android:name="ru.ftc.faktura.akibank" />
+        <package android:name="ru.ftc.faktura.alefbank" />
+        <package android:name="ru.ftc.faktura.alexbank" />
+        <package android:name="ru.ftc.faktura.baikalinvestbank" />
+        <package android:name="ru.ftc.faktura.banksaratov" />
+        <package android:name="ru.ftc.faktura.bgfbank" />
+        <package android:name="ru.ftc.faktura.derzhava" />
+        <package android:name="ru.ftc.faktura.dolinsk" />
+        <package android:name="ru.ftc.faktura.etbank" />
+        <package android:name="ru.ftc.faktura.expobank" />
+        <package android:name="ru.ftc.faktura.finbank" />
+        <package android:name="ru.ftc.faktura.forshtadt" />
+        <package android:name="ru.ftc.faktura.gaztransbank" />
+        <package android:name="ru.ftc.faktura.intesabank" />
+        <package android:name="ru.ftc.faktura.iturup" />
+        <package android:name="ru.ftc.faktura.jtbank" />
+        <package android:name="ru.ftc.faktura.kbb" />
+        <package android:name="ru.ftc.faktura.kbhmb" />
+        <package android:name="ru.ftc.faktura.kremlevskiy" />
+        <package android:name="ru.ftc.faktura.lanta" />
+        <package android:name="ru.ftc.faktura.maritimebank" />
+        <package android:name="ru.ftc.faktura.mfkbank" />
+        <package android:name="ru.ftc.faktura.moscombank" />
+        <package android:name="ru.ftc.faktura.multibank" />
+        <package android:name="ru.ftc.faktura.nipbank" />
+        <package android:name="ru.ftc.faktura.nokss" />
+        <package android:name="ru.ftc.faktura.novobank" />
+        <package android:name="ru.ftc.faktura.ns" />
+        <package android:name="ru.ftc.faktura.nsbank" />
+        <package android:name="ru.ftc.faktura.nskbl" />
+        <package android:name="ru.ftc.faktura.orbank" />
+        <package android:name="ru.ftc.faktura.primsoc" />
+        <package android:name="ru.ftc.faktura.pskb" />
+        <package android:name="ru.ftc.faktura.razvitiestolica" />
+        <package android:name="ru.ftc.faktura.resokreditbank" />
+        <package android:name="ru.ftc.faktura.rostfinance" />
+        <package android:name="ru.ftc.faktura.sdm" />
+        <package android:name="ru.ftc.faktura.siab" />
+        <package android:name="ru.ftc.faktura.solidbank" />
+        <package android:name="ru.ftc.faktura.tavrich" />
+        <package android:name="ru.ftc.faktura.tkbbank" />
+        <package android:name="ru.ftc.faktura.united" />
+        <package android:name="ru.ftc.faktura.venetsbank" />
+        <package android:name="ru.ftc.faktura.vesta" />
+        <package android:name="ru.ftc.faktura.vlbb" />
+        <package android:name="ru.ftc.faktura.zemskybank" />
+        <package android:name="ru.gazprombank.android.mobilebank.app" />
+        <package android:name="ru.gebank.ib" />
+        <package android:name="ru.homecredit.mycredit" />
+        <package android:name="ru.ibam.retailmobile" />
+        <package android:name="ru.ilb.bbmobile" />
+        <package android:name="ru.ipb.ubsmobile" />
+        <package android:name="ru.isfront.android.kt" />
+        <package android:name="ru.krk.ubsmobile" />
+        <package android:name="ru.letobank.Prometheus" />
+        <package android:name="ru.mcbankrus.MCBankRus" />
+        <package android:name="ru.mkb.mobile" />
+        <package android:name="ru.mts.money" />
+        <package android:name="ru.mw" />
+        <package android:name="ru.nbd.android" />
+        <package android:name="ru.otpbank.mobile" />
+        <package android:name="ru.raiffeisennews" />
+        <package android:name="ru.rosbank.android" />
+        <package android:name="ru.rosdorbank.physical" />
+        <package android:name="ru.rshb.dbo" />
+        <package android:name="ru.rubank.ubsmobile" />
+        <package android:name="ru.rusnarbank.correqts.retail" />
+        <package android:name="ru.sbi.android" />
+        <package android:name="ru.simpls.brs2.mobbank" />
+        <package android:name="ru.skbbank.ib" />
+        <package android:name="ru.sngb.dbo.client.android" />
+        <package android:name="ru.sovcomcard.halva.v1" />
+        <package android:name="ru.unicredit.android" />
+        <package android:name="ru.uralprombank.mobilebanknew.googleplay" />
+        <package android:name="ru.vtb24.mobilebanking.android" />
+        <package android:name="ru.vtkbank.android" />
+        <package android:name="ru.yoo.money" />
+        <package android:name="ru.zenit.android" />
+
+        <intent>
+            <action android:name="ru.vk.store.provider.analytics.AnalyticsProvider" />
+        </intent>
+
+        <package android:name="ru.vk.store" />
+        <package android:name="ru.vk.store.qa" /> <!-- Internet browser activities. -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+
+            <category android:name="android.intent.category.BROWSABLE" />
+
+            <data android:scheme="https" />
+        </intent>
+        <intent>
+            <action android:name="ru.vk.store.provider.feature.FeatureAvailabilityProvider" />
+        </intent>
+        <intent>
+            <action android:name="ru.vk.store.RequestIgnoreBatteryOptimizations" />
+        </intent>
+        <intent>
+            <action android:name="com.android.vending.billing.InAppBillingService.BIND" />
+        </intent>
+    </queries>
+
+    <uses-feature
+        android:name="android.hardware.faketouch"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.screen.portrait"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <permission
+        android:name="com.goodwy.dialer.debug.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:protectionLevel="signature" /> <!-- for android -->
+    <!-- <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS"/> -->
+    <!-- <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS"/> -->
+    <!-- <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" /> -->
+    <!-- <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" /> -->
+    <!-- for Samsung -->
+    <uses-permission android:name="com.sec.android.provider.badge.permission.READ" />
+    <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE" /> <!-- for htc -->
+    <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.htc.launcher.permission.UPDATE_SHORTCUT" /> <!-- for sony -->
+    <uses-permission android:name="com.sonyericsson.home.permission.BROADCAST_BADGE" />
+    <uses-permission android:name="com.sonymobile.home.permission.PROVIDER_INSERT_BADGE" /> <!-- for apex -->
+    <uses-permission android:name="com.anddoes.launcher.permission.UPDATE_COUNT" /> <!-- for solid -->
+    <uses-permission android:name="com.majeur.launcher.permission.UPDATE_BADGE" /> <!-- for huawei -->
+    <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.huawei.android.launcher.permission.WRITE_SETTINGS" /> <!-- for ZUK -->
+    <uses-permission android:name="android.permission.READ_APP_BADGE" /> <!-- for OPPO -->
+    <uses-permission android:name="com.oppo.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="com.oppo.launcher.permission.WRITE_SETTINGS" /> <!-- for EvMe -->
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_READ" />
+    <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE" />
+
+    <application
+        android:name="com.goodwy.dialer.App"
+        android:allowBackup="true"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+        android:debuggable="true"
+        android:extractNativeLibs="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_launcher_name"
+        android:localeConfig="@xml/locale_config"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:testOnly="true"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.goodwy.dialer.activities.SplashActivity"
+            android:exported="false"
+            android:screenOrientation="nosensor"
+            android:theme="@style/SplashTheme" />
+
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Grey_black"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_grey_black"
+            android:roundIcon="@mipmap/ic_launcher_grey_black"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Blue_grey"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_blue_grey"
+            android:roundIcon="@mipmap/ic_launcher_blue_grey"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Brown"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_brown"
+            android:roundIcon="@mipmap/ic_launcher_brown"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Deep_orange"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_deep_orange"
+            android:roundIcon="@mipmap/ic_launcher_deep_orange"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Orange"
+            android:enabled="true"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher"
+            android:roundIcon="@mipmap/ic_launcher"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Amber"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_amber"
+            android:roundIcon="@mipmap/ic_launcher_amber"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Yellow"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_yellow"
+            android:roundIcon="@mipmap/ic_launcher_yellow"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Lime"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_lime"
+            android:roundIcon="@mipmap/ic_launcher_lime"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Light_green"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_light_green"
+            android:roundIcon="@mipmap/ic_launcher_light_green"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Green"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_green"
+            android:roundIcon="@mipmap/ic_launcher_green"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Teal"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_teal"
+            android:roundIcon="@mipmap/ic_launcher_teal"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Cyan"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_cyan"
+            android:roundIcon="@mipmap/ic_launcher_cyan"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Light_blue"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_light_blue"
+            android:roundIcon="@mipmap/ic_launcher_light_blue"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Blue"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_blue"
+            android:roundIcon="@mipmap/ic_launcher_blue"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Indigo"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_indigo"
+            android:roundIcon="@mipmap/ic_launcher_indigo"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Deep_purple"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_deep_purple"
+            android:roundIcon="@mipmap/ic_launcher_deep_purple"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Purple"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_purple"
+            android:roundIcon="@mipmap/ic_launcher_purple"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Pink"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_pink"
+            android:roundIcon="@mipmap/ic_launcher_pink"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+        <activity-alias
+            android:name="com.goodwy.dialer.activities.SplashActivity.Red"
+            android:enabled="false"
+            android:exported="true"
+            android:icon="@mipmap/ic_launcher_red"
+            android:roundIcon="@mipmap/ic_launcher_red"
+            android:targetActivity="com.goodwy.dialer.activities.SplashActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity-alias>
+
+        <activity
+            android:name="com.goodwy.dialer.activities.MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="nosensor" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <data android:mimeType="vnd.android.cursor.dir/calls" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.goodwy.commons.activities.PurchaseActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:label=""
+            android:parentActivityName="com.goodwy.dialer.activities.MainActivity"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name="com.goodwy.commons.activities.AboutActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:label="@string/about"
+            android:parentActivityName="com.goodwy.dialer.activities.MainActivity"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name="com.goodwy.commons.activities.CustomizationActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:label="@string/customize_colors"
+            android:parentActivityName="com.goodwy.dialer.activities.SettingsActivity" />
+        <activity
+            android:name="com.goodwy.commons.activities.ManageBlockedNumbersActivity"
+            android:configChanges="orientation"
+            android:enableOnBackInvokedCallback="true"
+            android:exported="false"
+            android:label="@string/blocked_numbers"
+            android:parentActivityName="com.goodwy.dialer.activities.SettingsActivity"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name="com.goodwy.dialer.activities.ManageSpeedDialActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:label="@string/speed_dial"
+            android:parentActivityName="com.goodwy.dialer.activities.SettingsActivity"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name="com.goodwy.dialer.activities.ConferenceActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:label="@string/conference"
+            android:parentActivityName="com.goodwy.dialer.activities.CallActivity"
+            android:screenOrientation="nosensor" />
+        <activity
+            android:name="com.goodwy.dialer.activities.SettingsActivity"
+            android:configChanges="orientation"
+            android:exported="true"
+            android:label="@string/settings"
+            android:parentActivityName="com.goodwy.dialer.activities.MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.goodwy.dialer.activities.SettingsDialpadActivity"
+            android:configChanges="orientation"
+            android:exported="true"
+            android:label="@string/dialpad_preferences"
+            android:parentActivityName="com.goodwy.dialer.activities.SettingsActivity"
+            android:screenOrientation="nosensor" >
+            <intent-filter>
+                <action android:name="android.intent.action.APPLICATION_PREFERENCES" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- launchMode="singleInstance" - incoming call is not displayed correctly on the locked screen -->
+        <activity
+            android:name="com.goodwy.dialer.activities.CallActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:label="@string/ongoing_call"
+            android:screenOrientation="nosensor"
+            android:showOnLockScreen="true" />
+        <activity
+            android:name="com.goodwy.dialer.activities.CallHistoryActivity"
+            android:exported="false"
+            android:label="@string/recents"
+            android:parentActivityName="com.goodwy.dialer.activities.MainActivity"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name="com.goodwy.dialer.activities.DialpadActivity"
+            android:configChanges="orientation"
+            android:exported="true"
+            android:parentActivityName="com.goodwy.dialer.activities.MainActivity"
+            android:screenOrientation="nosensor"
+            android:windowSoftInputMode="stateHidden" >
+
+            <!-- android:label="@string/dialpad" -->
+
+            <intent-filter>
+                <action android:name="android.intent.action.DIAL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="tel" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.DIAL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.DIAL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tel" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.goodwy.dialer.activities.DialerActivity"
+            android:exported="true"
+            android:label="@string/dialer"
+            android:theme="@style/Theme.Transparent" >
+            <intent-filter>
+                <action android:name="android.intent.action.CALL" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="tel" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="com.goodwy.dialer.services.CallService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_INCALL_SERVICE" >
+            <meta-data
+                android:name="android.telecom.IN_CALL_SERVICE_UI"
+                android:value="true" />
+
+            <intent-filter>
+                <action android:name="android.telecom.InCallService" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.goodwy.dialer.services.SimpleCallScreeningService"
+            android:exported="true"
+            android:permission="android.permission.BIND_SCREENING_SERVICE" >
+            <intent-filter>
+                <action android:name="android.telecom.CallScreeningService" />
+            </intent-filter>
+        </service>
+        <service android:name="com.goodwy.dialer.services.TimerService" />
+
+        <receiver android:name="com.goodwy.dialer.receivers.HideTimerReceiver" />
+        <receiver
+            android:name="com.goodwy.dialer.receivers.CallActionReceiver"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.goodwy.dialer.action.ACCEPT_CALL" />
+                <action android:name="com.goodwy.dialer.action.DECLINE_CALL" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.goodwy.commons.activities.ContributorsActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:label="@string/contributors"
+            android:parentActivityName="com.goodwy.commons.activities.AboutActivity" />
+        <activity
+            android:name="com.goodwy.commons.activities.FAQActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:label="@string/frequently_asked_questions"
+            android:parentActivityName="com.goodwy.commons.activities.AboutActivity" />
+        <activity
+            android:name="com.goodwy.commons.activities.LicenseActivity"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:label="@string/third_party_licences"
+            android:parentActivityName="com.goodwy.commons.activities.AboutActivity" />
+
+        <receiver
+            android:name="com.goodwy.commons.receivers.SharedThemeReceiver"
+            android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.goodwy.commons.SHARED_THEME_ACTIVATED" />
+                <action android:name="com.goodwy.commons.SHARED_THEME_UPDATED" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="ru.rustore.sdk.billingclient.presentation.RuStoreBillingClientActivity"
+            android:configChanges="screenSize|keyboardHidden|keyboard"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.RuStoreBillingClient"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="com.sdkit.paylib.paylibnative.ui.activity.PaylibNativeActivity"
+            android:configChanges="screenSize|keyboardHidden|keyboard"
+            android:launchMode="singleTask"
+            android:theme="@style/paylib_native_light_theme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name="ru.rustore.sdk.core.presentation.RuStoreCoreDialogWrapperActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RuStoreSdk.Transparent" >
+            <intent-filter>
+                <action android:name="ru.rustore.sdk.core.presentation.RuStoreCoreDialogWrapperActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="com.goodwy.dialer.debug.androidx-startup"
+            android:exported="false" >
+            <meta-data
+                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+                android:value="androidx.startup" />
+        </provider>
+
+        <service
+            android:name="androidx.room.MultiInstanceInvalidationService"
+            android:directBootAware="true"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.play.billingclient.version"
+            android:value="6.0.1" />
+
+        <activity
+            android:name="com.android.billingclient.api.ProxyBillingActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <service
+            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+            android:exported="false" >
+            <meta-data
+                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+                android:value="cct" />
+        </service>
+        <service
+            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" >
+        </service>
+
+        <receiver
+            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+            android:exported="false" />
+        <receiver
+            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+            android:directBootAware="false"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.DUMP" >
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

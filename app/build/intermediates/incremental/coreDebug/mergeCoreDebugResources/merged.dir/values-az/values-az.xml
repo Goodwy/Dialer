@@ -1,0 +1,1652 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
+    <plurals name="by_days">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <plurals name="by_hours">
+        <item quantity="one">%d saat</item>
+        <item quantity="other">%d saat</item>
+    </plurals>
+    <plurals name="by_minutes">
+        <item quantity="one">%d dəqiqə</item>
+        <item quantity="other">%d dəqiqə</item>
+    </plurals>
+    <plurals name="by_months">
+        <item quantity="one">%d month</item>
+        <item quantity="other">%d months</item>
+    </plurals>
+    <plurals name="by_seconds">
+        <item quantity="one">%d saniyə</item>
+        <item quantity="other">%d saniyə</item>
+    </plurals>
+    <plurals name="by_weeks">
+        <item quantity="one">%d week</item>
+        <item quantity="other">%d weeks</item>
+    </plurals>
+    <plurals name="by_years">
+        <item quantity="one">%d year</item>
+        <item quantity="other">%d years</item>
+    </plurals>
+    <plurals name="column_counts">
+        <item quantity="one">%d column</item>
+        <item quantity="other">%d columns</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d gün</item>
+        <item quantity="other">%d gün</item>
+    </plurals>
+    <plurals name="days_before">
+        <item quantity="one">%d gün əvvəl</item>
+        <item quantity="other">%d gün əvvəl</item>
+    </plurals>
+    <plurals name="delete_contacts">
+        <item quantity="one">%d contact</item>
+        <item quantity="other">%d contacts</item>
+    </plurals>
+    <plurals name="delete_items">
+        <item quantity="one">%d fayl</item>
+        <item quantity="other">%d fayl</item>
+    </plurals>
+    <plurals name="delete_warning">
+        <item quantity="one">WARNING: You are deleting %d folder</item>
+        <item quantity="other">XƏBƏRDARLIQ: %d sayda qovluğu silirsiniz</item>
+    </plurals>
+    <plurals name="deleting_items">
+        <item quantity="one">%d silinir</item>
+        <item quantity="other">%d silinir</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d saat</item>
+        <item quantity="other">%d saat</item>
+    </plurals>
+    <plurals name="hours_before">
+        <item quantity="one">%d saat əvvəl</item>
+        <item quantity="other">%d saat əvvəl</item>
+    </plurals>
+    <plurals name="in_days">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <plurals name="in_hours">
+        <item quantity="one">%d saat</item>
+        <item quantity="other">%d saat</item>
+    </plurals>
+    <plurals name="in_minutes">
+        <item quantity="one">%d dəqiqə</item>
+        <item quantity="other">%d dəqiqə</item>
+    </plurals>
+    <plurals name="in_months">
+        <item quantity="one">%d month</item>
+        <item quantity="other">%d months</item>
+    </plurals>
+    <plurals name="in_seconds">
+        <item quantity="one">%d saniyə</item>
+        <item quantity="other">%d saniyə</item>
+    </plurals>
+    <plurals name="in_weeks">
+        <item quantity="one">%d week</item>
+        <item quantity="other">%d weeks</item>
+    </plurals>
+    <plurals name="in_years">
+        <item quantity="one">%d year</item>
+        <item quantity="other">%d years</item>
+    </plurals>
+    <plurals name="items">
+        <item quantity="one">%d fayl</item>
+        <item quantity="other">%d fayl</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d dəqiqə</item>
+        <item quantity="other">%d dəqiqə</item>
+    </plurals>
+    <plurals name="minutes_before">
+        <item quantity="one">%d dəqiqə əvvəl</item>
+        <item quantity="other">%d dəqiqə əvvəl</item>
+    </plurals>
+    <plurals name="months">
+        <item quantity="one">%d ay</item>
+        <item quantity="other">%d ay</item>
+    </plurals>
+    <plurals name="months_before">
+        <item quantity="one">%d month before</item>
+        <item quantity="other">%d months before</item>
+    </plurals>
+    <plurals name="moving_items_into_bin">
+        <item quantity="one">Moving %d item into the Recycle Bin</item>
+        <item quantity="other">Moving %d items into the Recycle Bin</item>
+    </plurals>
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="one">%d yeni bildiriş</item>
+    <item quantity="other">%d yeni bildiriş</item>
+  </plurals>
+    <plurals name="row_counts">
+        <item quantity="one">%d row</item>
+        <item quantity="other">%d rows</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">%d saniyə</item>
+        <item quantity="other">%d saniyə</item>
+    </plurals>
+    <plurals name="seconds_before">
+        <item quantity="one">%d saniyə əvvəl</item>
+        <item quantity="other">%d saniyə əvvəl</item>
+    </plurals>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d taymer işləyir</item>
+        <item quantity="other">%d taymer işləyir</item>
+    </plurals>
+    <plurals name="trial_expires_days">
+        <item quantity="one">Your trial expires in %d day.</item>
+        <item quantity="other">Your trial expires in %d days.</item>
+    </plurals>
+    <plurals name="weeks">
+        <item quantity="one">%d həftə</item>
+        <item quantity="other">%d həftə</item>
+    </plurals>
+    <plurals name="weeks_before">
+        <item quantity="one">%d week before</item>
+        <item quantity="other">%d weeks before</item>
+    </plurals>
+    <plurals name="years">
+        <item quantity="one">%d il</item>
+        <item quantity="other">%d il</item>
+    </plurals>
+    <plurals name="years_before">
+        <item quantity="one">%d year before</item>
+        <item quantity="other">%d years before</item>
+    </plurals>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"Əsas səhifəyə keçin"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"Yuxarı keçin"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"Digər seçimlər"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"Hazırdır"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"Hamısına baxın"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"Tətbiq seçin"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"DEAKTİV"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"AKTİV"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"silin"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"daxil olun"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Funksiya+"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"space"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"Menyu+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"Axtarış..."</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"Sorğunu silin"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"Axtarış sorğusu"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"Axtarın"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"Sorğunu göndərin"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"Səsli axtarış"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Paylaşın"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"<ns1:g id="APPLICATION_NAME">%s</ns1:g> ilə paylaşın"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Yığcamlaşdırın"</string>
+    <string name="about">Haqqında</string>
+    <string name="about_footer">Made with ❤️ in Slovakia</string>
+    <string name="about_summary">
+        <![CDATA[
+            <i>
+            Vaxtınızı qiymətləndiririk və tətbiqimizdən reklamsız istifadə etməyinizi istəyirik. Əgər o sizə zövq və faydalılıq gətirdisə, onun inkişafına ianə etməyi düşünün.<br><br>
+            Zəhmətimizi qiymətləndirin və təəssüratlarınızı bölüşün, bu, bizə yeni ideyaları həyata keçirməyə kömək edəcək və sizə daha gözəl xüsusiyyətlər təqdim edəcək.
+            </i>
+        ]]></string>
+    <string name="accent_color">Vurğu rəng</string>
+    <string name="accent_color_black_and_white">Accent color of Black &amp; White theme</string>
+    <string name="accent_color_white">Accent color of white theme</string>
+    <string name="accept">Accept</string>
+    <string name="accept_call">Accept call</string>
+    <string name="access_storage_prompt">Please grant our app access to all your files, it might not work well without it.</string>
+    <string name="action_on_message_click">Mesajın kliklədiyi əməliyyat</string>
+    <string name="action_support_project">Layihə dəstəyi</string>
+    <string name="add_a_blocked_number">Add a blocked number</string>
+    <string name="add_address">Ünvan əlavə edin</string>
+    <string name="add_blocked_number_helper_text">Enter a number or a pattern (e.g. *12345*, +1*8888) to block all calls and messages from numbers matching the pattern.</string>
+    <string name="add_contact">Add contact</string>
+    <string name="add_email">E-poçt əlavə edin</string>
+    <string name="add_event">Tədbir əlavə edin</string>
+    <string name="add_favorites">Sevimlilər əlavə et</string>
+    <string name="add_fingerprint">Barmaq izi əlavə et</string>
+    <string name="add_group">Qrupa əlavə edin</string>
+    <string name="add_im">Ani mesajlaşma xidməti əlavə edin</string>
+    <string name="add_new_sound">Yeni səs əlavə et</string>
+    <string name="add_notes">Qeyd əlavə edin</string>
+    <string name="add_number">Nömrə əlavə edin</string>
+    <string name="add_number_to_contact">Add number to contact</string>
+    <string name="add_password">Add password</string>
+    <string name="add_related_person">Əlaqədar əlavə edin</string>
+    <string name="add_to_existing_contact">Add to an existing contact</string>
+    <string name="add_to_favorites">Sevimlilərə əlavə et</string>
+    <string name="add_website">Veb-sayt əlavə edin</string>
+    <string name="additional_info">Əlavə məlumat</string>
+    <string name="alarm">Zəng</string>
+    <string name="alarm_goes_off_in">Zəng dayanana qədər qalan vaxt:\n%s</string>
+    <string name="alarm_warning">Xahiş olunur zəngə istinad etməzdən əvvəl işləyib işləmədiyini yoxlayın. Güc qoruma parametrləri onun işləməsində problem yarada bilər.</string>
+    <string name="album">Albom</string>
+    <string name="allow_access_more_media">Allow access to more media</string>
+    <string name="allow_alarm_scheduled_messages">You must allow the app accessing internal alarms, else it cannot send scheduled messages.</string>
+    <string name="allow_alarm_sleep_timer">You must allow the app accessing internal alarms, else it cannot turn off the application after sleep timer.</string>
+    <string name="allow_displaying_over_other_apps">Please allow displaying over other apps for reliable behaviour</string>
+    <string name="allow_full_screen_notifications_incoming_calls">You must allow the app displaying full screen notifications, else you may miss some incoming calls.</string>
+    <string name="allow_full_screen_notifications_reminders">You must allow the app displaying full screen notifications, else you may miss some reminders.</string>
+    <string name="allow_location_permission">You must allow the app accessing your location, else it won\'t know it.</string>
+    <string name="allow_notifications_files">You must allow the app displaying notifications, else it cannot show the progress bar.</string>
+    <string name="allow_notifications_incoming_calls">You must allow the app displaying notifications, else it cannot show incoming calls.</string>
+    <string name="allow_notifications_incoming_messages">You must allow the app displaying notifications, else it cannot show incoming messages.</string>
+    <string name="allow_notifications_music_player">You must allow the app displaying notifications, else it cannot play songs.</string>
+    <string name="allow_notifications_reminders">You must allow the app displaying notifications, else it cannot show reminders.</string>
+    <string name="allow_notifications_voice_recorder">You must allow the app displaying notifications, else it cannot record audio.</string>
+    <string name="altitude">Altitude</string>
+    <string name="always">Həmişə</string>
+    <string name="always_use_this_sim">Always use this SIM for this number</string>
+    <string name="an_error_occurred">Xəta baş verdi: %s</string>
+    <string name="android_lame_title">AndroidLame (mp3 encoder)</string>
+    <string name="anniversary">İl dönümü</string>
+    <string name="answer_slider">Slayder</string>
+    <string name="answer_slider_outline">Kontur kaydırıcısı</string>
+    <string name="answer_slider_vertical">Şaquli Sürgü</string>
+    <string name="answer_style">Cavab Düyməsi Üslubu</string>
+    <string name="apng_title">APNG Android (animated WebP support)</string>
+    <string name="app_corrupt">App Corrupt</string>
+    <string name="app_icon_color">Tətbiq ikonu rəngi</string>
+    <string name="app_icon_color_warning">WARNING: Some launchers do not handle app icon customization properly. In case the icon will disappear, try launching the app via Google Play or some widget, if available.
+        Once launched, just set back the default orange icon #F57C00. You might have to reinstall the app in the worst case.</string>
+    <string name="app_launcher_name">Dialer</string>
+    <string name="app_launcher_short">App Launcher</string>
+    <string name="app_name">Simple Dialer</string>
+    <string name="app_name_g">Right Dialer</string>
+    <string name="app_on_sd_card">Görünür tətbiqi SD karta yükləmisiniz, bu widgetlərin işləməsinin qarşısını alır. Siz widgetləri əlçatan widgetlər siyahısında belə görə bilməyəcəksiniz.
+        Bu sistem məhdudiyyətidir, əgər vidjetlərin işləməsini istəyirsinizsə, tətbiqi daxili yaddaşa köçürməlisiniz.</string>
+    <string name="app_version">Tətbiq versiyası: %s</string>
+    <string name="append">\'_1\' ilə əlavə et</string>
+    <string name="append_filenames">Append filenames</string>
+    <string name="apply_to_all">Hamsına şamil et</string>
+    <string name="apply_to_all_apps">Rəngləri bütün Simple Apps tətbiqlərinə şamil et</string>
+    <string name="april">Aprel</string>
+    <string name="april_short">Apr</string>
+    <string name="are_you_sure_delete">Faylı silmək istədiyinizə əminsiniz?</string>
+    <string name="are_you_sure_recycle_bin">Bu faylı zibil qutusuna atmaq istədiyinizə əminsiniz?</string>
+    <string name="artist">Müğənni</string>
+    <string name="ascending">Artan</string>
+    <string name="asterisk">Asterisk</string>
+    <string name="at_start">Başlanğıcda</string>
+    <string name="audio">Audio</string>
+    <string name="audio_record_view_title">Audio Record View (audio visualization)</string>
+    <string name="audio_route_bluetooth">Bluetooth</string>
+    <string name="audio_route_earpiece_g">Cihazın qulaqcığı</string>
+    <string name="audio_route_speaker">Speaker</string>
+    <string name="audio_route_wired_headset">Wired Headset</string>
+    <string name="audio_route_wired_or_earpiece">Wired or Earpiece</string>
+    <string name="august">Avqust</string>
+    <string name="august_short">Aug</string>
+    <string name="authenticate">Authenticate</string>
+    <string name="authentication_blocked">Uyğunlaşdırma bloklanıb, biraz sonra yoxlayın</string>
+    <string name="authentication_failed">Uyğunlaşdırma uğursuzdur</string>
+    <string name="auto_light_dark_theme">Auto light / dark</string>
+    <string name="auto_theme">Auto</string>
+    <string name="autofittextview_title">AutoFitTextView (resizing text)</string>
+    <string name="back">Back</string>
+    <string name="background_color">Arxaplan rəngi</string>
+    <string name="backups">Backups</string>
+    <string name="before_asking_question">Xahiş olunur sual verməmişdən qabaq aşağıdakı bölməni oxuyun</string>
+    <string name="before_asking_question_read_faq">Before you ask a question, please check the app settings and read the Frequently Asked Questions first. Maybe the solution is there.</string>
+    <string name="before_rate_read_faq">Before you rate us, please check the app settings and read the Frequently Asked Questions first. If you have any problems, maybe the solution is there.</string>
+    <string name="billing_change_to_google_play">Change to Google Play</string>
+    <string name="billing_change_to_ru_store">Change to RuStore</string>
+    <string name="billing_general_error">Error</string>
+    <string name="billing_product_confirmed">Product confirmed/substantiated</string>
+    <string name="billing_product_deleted">Purchase canceled</string>
+    <string name="billing_purchase_confirm_in_progress">Confirming the purchase…</string>
+    <string name="billing_purchase_delete_in_progress">Deleting the purchase…</string>
+    <string name="billing_subscriptions">Subscriptions</string>
+    <string msgid="2102429900219199821" name="biometric_or_screen_lock_prompt_message">"Davam etmək üçün biometrik məlumatlar və ya ekran kilidinizdən istifadə edin"</string>
+    <string msgid="1160635338192065472" name="biometric_prompt_message">"Davam etmək üçün biometrik məlumatlarınızdan istifadə edin"</string>
+    <string name="biometrics">Biometrics</string>
+    <string name="birthday">Ad günü</string>
+    <string name="black">Qara</string>
+    <string name="black_locked">Qara (Bağlı)</string>
+    <string name="black_white">Ağ və Qara</string>
+    <string name="block_confirmation">Are you sure you want to block \"%s\"?</string>
+    <string name="block_contact">Block contact</string>
+    <string name="block_contact_fail">Contact could not be blocked</string>
+    <string name="block_contact_success">Contact blocked</string>
+    <string name="block_hidden_calls">Block calls from hidden numbers</string>
+    <string name="block_hidden_messages">Block messages from hidden numbers</string>
+    <string name="block_not_stored_calls">Block calls from not stored contacts</string>
+    <string name="block_not_stored_messages">Block messages from not stored contacts</string>
+    <string name="block_number">Block number</string>
+    <string name="block_numbers">Block numbers</string>
+    <string name="blocked_numbers">Blocked numbers</string>
+    <string name="blurry_contact_photo">Bulanıq kontakt şəkli</string>
+    <string name="blurry_wallpaper">Bulanıq divar kağızı</string>
+    <string name="bottom">Dibdə</string>
+    <string name="bottom_navigation_bar">Bottom navigation bar</string>
+    <string name="bottom_navigation_bar_color">Bottom navigation bar color</string>
+    <string name="bottom_navigation_bar_summary">The tab bar will move to the bottom</string>
+    <string name="bottomsheet_action_collapse">Aşağıdakı vərəqi yığcamlaşdırın</string>
+    <string name="bottomsheet_action_expand">Aşağıdakı vərəqi genişləndirin</string>
+    <string name="bottomsheet_action_expand_halfway">Tam genişləndirin</string>
+    <string name="bottomsheet_drag_handle_clicked">Dəstəyə iki dəfə toxunun</string>
+    <string name="bottomsheet_drag_handle_content_description">Dəstək</string>
+    <string name="button_primary">Əsas düymə</string>
+    <string name="button_secondary">İkinci dərəcəli düymə</string>
+    <string name="buttons">Düymələr</string>
+    <string name="calculator_short">Kalkulyator</string>
+    <string name="calendar_short">Təqvim</string>
+    <string name="call">Call</string>
+    <string name="call_add">Add call</string>
+    <string name="call_anonymously">Anonim zəng edin (#31# prefiksi ilə)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Xəbərdarlıq</h4>
+             Nömrə #31# prefiksi ilə çağırılacaq <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             #31# prefiksindən istifadə edərkən operatorunuzun nömrə gizlətmə xidmətini dəstəklədiyinə əmin olun. <br>
+             Xidmət provayderiniz bu xidmət üçün əlavə haqq tələb edə bilər.
+        ]]>
+    </string>
+    <string name="call_back_g">Geri zəng et</string>
+    <string name="call_back_person_g">%s nömrəsinə geri zəng edin</string>
+    <string name="call_ended">Call Ended</string>
+    <string name="call_ending">Call Ending</string>
+    <string name="call_from_sim_1">Call from SIM 1</string>
+    <string name="call_from_sim_2">Call from SIM 2</string>
+    <string name="call_history_tab">Call History</string>
+    <string name="call_merge">Merge calls</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"Cavab verin"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Video"</string>
+    <string name="call_notification_channel_g">Zəng bildirişləri</string>
+    <string name="call_notification_channel_high_priority_g">Zəng bildirişləri yüksək prioritet</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"İmtina edin"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Dəstəyi asın"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Gələn zəng"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Davam edən zəng"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"Gələn zəng göstərilir"</string>
+    <string name="call_number">Call number</string>
+    <string name="call_on_hold">On Hold</string>
+    <string name="call_person">%s şəxsinə zng et</string>
+    <string name="call_screen_background">Zəng ekranı fonu</string>
+    <string name="call_split">Split call</string>
+    <string name="call_start_end_vibration">Zənginiz başlayanda və bitəndə titrəyin</string>
+    <string name="call_swap">Swap calls</string>
+    <string name="calling_blocked_number">The number you are calling is blocked</string>
+    <string name="calls">Calls</string>
+    <string name="camera">Kamera</string>
+    <string name="camera_short">Kamera</string>
+    <string name="cancel">Ləğv Et</string>
+    <string name="cannot_be_undone">This action cannot be undone.</string>
+    <string name="cannot_hide_files">Starting from Android 11 you cannot hide files and folders like that anymore</string>
+    <string name="cannot_rename_folder">Cannot rename this folder</string>
+    <string name="change_color">Rəngi dəyiş</string>
+    <string name="change_cover_image">Change cover image</string>
+    <string name="change_date_and_time_format">Change date and time format</string>
+    <string name="change_filter">Filtri dəyiş</string>
+    <string name="change_order">Change order</string>
+    <string name="change_view_type">Change view type</string>
+    <string name="changing_color_description">Rəngi dəyişmək onu Özəl mövzuya çevirəcək</string>
+    <string name="character_counter_content_description">%1$d/%2$d simvol daxil edilib</string>
+    <string name="character_counter_overflowed_content_description">Simvol limiti %1$d/%2$d dəyərini keçdi</string>
+    <string name="choose_audio_route">Choose audio route</string>
+    <string name="choose_contact">Choose contact</string>
+    <string name="choose_file">Choose file</string>
+    <string name="choose_photo">Şəkil seç</string>
+    <string name="choose_video">Choose video</string>
+    <string name="clean_theme_g">Clean</string>
+    <string name="clear_cache">Clear cache</string>
+    <string name="clear_call_history">Clear call history</string>
+    <string name="clear_history_confirmation">Are you sure you want to remove everything from the Call History\?</string>
+    <string name="clear_text_end_icon_content_description">Mətni silin</string>
+    <string name="click_select_destination">Hədəf seçmək üçün bura bas</string>
+    <string name="clock_short">Saat</string>
+    <string name="close">Close</string>
+    <string msgid="406453423630273620" name="close_drawer">"Naviqasiya menyusunu bağlayın"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"Səhifəni bağlayın"</string>
+    <string name="collection">Kolleksiya</string>
+    <string name="collection_summary">Proqramın kilidini açmaq üçün kolleksiya yaradın</string>
+    <string name="color">rəng</string>
+    <string name="color_customization">Color customization</string>
+    <string name="color_sim_card_icons">Rəngli SİM kart nişanları</string>
+    <string name="color_summary">Əsas rəng, vurğu, fon, mətn və naviqasiya panelinin əl ilə tənzimlənməsi</string>
+    <string name="color_title">Rənglər</string>
+    <string name="colored_contacts">Əlaqə rəngli nişanlar</string>
+    <string name="column_count">Column count</string>
+    <string name="company">Şirkət</string>
+    <string name="concept_theme_g">Concept</string>
+    <string name="conference">Conference</string>
+    <string name="conference_manage">Manage conference call</string>
+    <string name="confirm_calling_person">Confirm calling %s</string>
+    <string name="confirm_create_doc_for_new_folder_text">Please press \'&lt;b>Save&lt;/b>\' at the bottom of the next screen to create the new folder.</string>
+    <string msgid="5912733858573823945" name="confirm_device_credential_password">"Parol istifadə edin"</string>
+    <string name="confirm_folder_access_title">Confirm folder access</string>
+    <string name="confirm_selection">Seçimi təsdiqlə</string>
+    <string name="confirm_storage_access_android_text">Please allow the app accessing the selected storage on the next screen by pressing \'Use this folder\' at the bottom.</string>
+    <string name="confirm_storage_access_android_text_specific">Please allow accessing \'&lt;b>%s&lt;/b>\' on the next screen by pressing \'&lt;b>Use this folder&lt;/b>\' at the bottom.</string>
+    <string name="confirm_storage_access_text">Xahiş olunur icazəni təsdiqləmək üçün gələcək ekranda SD kartın root qovluğunu seçin.</string>
+    <string name="confirm_storage_access_text_sd">Əgər SD kart görünmürsə, bunu yoxlayın</string>
+    <string name="confirm_storage_access_title">Xarici yaddaş icazəsini təsdiqlə</string>
+    <string name="confirm_usb_storage_access_text">Xahiş edirik icazə vermək üçün sonrakı ekranda çıxan USB cihazın root qovluğunu seçin</string>
+    <string name="contact_color_list">Əlaqə rəng siyahısı</string>
+    <string name="contact_details">Contact details</string>
+    <string name="contact_photo">Əlaqə şəkli</string>
+    <string name="contacts_short">Kontaktlar</string>
+    <string name="contacts_tab">Contacts</string>
+    <string name="contributors">Contributors</string>
+    <string name="contributors_label">
+        <![CDATA[
+            This list contains everyone that noticeably helped any app within the Simple Mobile Tools suite, not only this one. Translations are handled by volunteers,
+            let us know if you want to help too. The guide to translating is at <a href="https://github.com/SimpleMobileTools/General-Discussion#how-can-i-suggest-an-edit-to-a-file">this website</a>, or just contact us at <a href="mailto:hello@simplemobiletools.com">hello@simplemobiletools.com</a> if you have any questions.
+            Thanks to all contributors and other supporters!
+        ]]>
+    </string>
+    <string name="contributors_label_g">
+        <![CDATA[
+            This list contains everyone that noticeably helped any app within the Goodwy suite, not only this one. Translations are handled by volunteers,
+            let us know if you want to help too. The guide to translating is at <a href="https://github.com/Goodwy/Discussion">this website</a>, or just contact us at <a href="mailto:goodwy.dev@gmail.com">goodwy.dev@gmail.com</a> if you have any questions.
+            Thanks to all contributors and other supporters!
+        ]]>
+    </string>
+    <string name="copy">Kopyala</string>
+    <string name="copy_code">Kodu kopyalayın</string>
+    <string name="copy_failed">Faylları kopyalamaq olmur</string>
+    <string name="copy_move">Kopyala / Yerini dəyiş</string>
+    <string name="copy_move_failed">Xəta baş verdi</string>
+    <string name="copy_number_to_clipboard">Copy number to clipboard</string>
+    <string name="copy_to">Bura kopyala</string>
+    <string name="copy_to_clipboard">Copy to clipboard</string>
+    <string name="copying">Kopyalanır…</string>
+    <string name="copying_success">Fayl uğurla kopyalandı</string>
+    <string name="copying_success_one">File copied successfully</string>
+    <string name="copying_success_partial">Bəzi faylları kopyalamaq olmur</string>
+    <string name="copyright">v %1$s\nMüəllif Hüquqları © Simple Mobile Tools %2$d</string>
+    <string name="copyright_g">v %1$s\nMüəllif Hüquqları © Goodwy %2$d</string>
+    <string name="could_not_access_contacts">Could not access your contacts</string>
+    <string name="could_not_access_the_call_history">Could not access the call history</string>
+    <string name="could_not_create_file">%s faylını yaratmaq olmur</string>
+    <string name="could_not_create_folder">%s qovluğunu yaratmaq olmur</string>
+    <string name="create_new">Yeni yarat</string>
+    <string name="create_new_contact">Create new contact</string>
+    <string name="create_new_folder">Yeni qovluq yarat</string>
+    <string name="create_shortcut">Create shortcut</string>
+    <string name="create_shortcut_pro">Create shortcut (Pro)</string>
+    <string name="cropper_title">Android Image Cropper (image crop and rotate)</string>
+    <string name="custom">Özəl</string>
+    <string name="customization_theme_summary">Mövzular və interfeys rəngləri seçin</string>
+    <string name="customize_colors">Rəngləri dəyiş</string>
+    <string name="customize_colors_locked">Rəngləri dəyiş (Locked)</string>
+    <string name="customize_notifications">Customize notifications</string>
+    <string name="customize_widget_colors">Widget rənglərini dəyiş</string>
+    <string name="dark_red">Qaraqırmızı</string>
+    <string name="dark_theme">Qaranlıq</string>
+    <string name="date_added">Date added</string>
+    <string name="date_created">Date created</string>
+    <string name="date_taken">Götürülmə tarixi</string>
+    <string name="date_time_pattern_info">You can use the following patterns to name your file automatically:\n\n%Y - year\n%M - month\n%D - day\n%h - hour\n%m - minute\n%s - second</string>
+    <string name="days_raw">günlər</string>
+    <string name="december">Dekabr</string>
+    <string name="december_short">Dec</string>
+    <string name="decline">Decline</string>
+    <string name="decline_call">Decline call</string>
+    <string name="default_color">Default</string>
+    <string msgid="8038256446254964252" name="default_error_message">"Yanlış daxiletmə"</string>
+    <string msgid="4776854077120974966" name="default_error_msg">"Naməlum xəta"</string>
+    <string name="default_folder_to_open_g">Proqram başlanğıcında açılacaq qovluq</string>
+    <string name="default_phone_app_prompt">Please make this app the default Phone app</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"Popap Pəncərəsi"</string>
+    <string name="default_tab">Varsayılan nişan</string>
+    <string name="default_tab_to_open">Tab to open at app start</string>
+    <string name="delete">Sil</string>
+    <string name="deleting_folder">\'%s\' qovluğu silinir</string>
+    <string name="deletion_confirmation">%s faylı silmək istdəyinizə əminsiniz?</string>
+    <string name="deletion_confirmation_short">Delete %s?</string>
+    <string name="deprecated_app">DEPRECATED: This version of the app is no longer maintained, get the Pro version at https://play.google.com/store/apps/details?id=com.simplemobiletools.xxx.pro</string>
+    <string name="deprecated_app_g">DEPRECATED: This version of the app is no longer maintained, get the Pro version at https://play.google.com/store/apps/details?id=com.goodwy.xxx.pro</string>
+    <string name="descending">Azalan</string>
+    <string name="destination">Hədəf</string>
+    <string name="details">Detallar</string>
+    <string name="developer_description">A group of simple, open source Android apps with customizable widgets, without ads and unnecessary permissions.</string>
+    <string name="development">Development</string>
+    <string name="device_os">Cihaz ƏS: %s</string>
+    <string name="dial_number">Dial number</string>
+    <string name="dialer">Dialer</string>
+    <string name="dialer_short">Dialer</string>
+    <string name="dialing">Dialing…</string>
+    <string name="dialpad">Dialpad</string>
+    <string name="dialpad_beeps">Enable beeps on dialpad button clicks</string>
+    <string name="dialpad_preferences">Yığım paneli üstünlükləri</string>
+    <string name="dialpad_vibrations">Enable vibrations on dialpad button clicks</string>
+    <string name="direct_children_count">Alt qovluq sayı</string>
+    <string name="disable_proximity_sensor">Disable proximity sensor during calls</string>
+    <string name="disable_swipe_to_answer">Replace swiping at responding to incoming calls with clicking</string>
+    <string name="discard">Yoxsay</string>
+    <string name="disclaimer">Disclaimer</string>
+    <string name="dismiss">Burax</string>
+    <string name="do_not_ask_again">Bu oturumda birdə soruşma</string>
+    <string name="do_not_show_again">Do not show again</string>
+    <string name="donate">İanə et</string>
+    <string name="donate_new">Hello,&lt;br>&lt;br>hope you are enjoying the app. It contains no ads and we aren\'t collecting your data either, please support its development by purchasing &lt;a href=https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou>Simple Thank You&lt;/a>. You will also have all app features including color customization unlocked.&lt;br>&lt;br>Thank you!</string>
+    <string name="donate_please">
+        <![CDATA[
+            Salam,<br><br>
+            arzu edirəm tətbiqdən zövq alırsan. Reklam ehtiva etmir, please support its development by purchasing the <a href="https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou">Simple Thank You</a> app, it will also prevent this dialog from showing up again.<br><br>
+            Thank you!
+        ]]>
+    </string>
+    <string name="donate_short">Support us by purchasing &lt;a href=https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou>Simple Thank You&lt;/a> please, it will also unlock all app features including color customization.</string>
+    <string name="donate_text_g">
+        <![CDATA[
+            For those who do not use Google Play, it is possible to unlock all functions of the application. <br>
+            If you like our apps which are offline, non-intrusive and have no ads, please consider supporting us in some way. We would be very grateful.<br><br>
+            Thank you!
+        ]]>
+    </string>
+    <string name="download">Download</string>
+    <string name="draw_short">Çək</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"Aşağı açılan menyu"</string>
+    <string name="duration">Uzunluq</string>
+    <string name="during_day_at">During the day at %02d:%02d</string>
+    <string name="during_day_at_hh_mm">During the day at hh:mm</string>
+    <string name="edit">Edit</string>
+    <string name="edit_with">Edit with</string>
+    <string name="eight">Eight</string>
+    <string name="email">Email</string>
+    <string name="email_label">Geri dönüş və tövsiyələrinizi göndərin</string>
+    <string name="empty_and_disable_recycle_bin">Zibil qutusunu boşalt və qapat</string>
+    <string name="empty_name">Zəhmət olmasa adı daxil edin</string>
+    <string name="empty_password">Please enter the password</string>
+    <string name="empty_password_new">Please enter a password</string>
+    <string name="empty_recycle_bin">Zibil qutusunu boşalt</string>
+    <string name="empty_recycle_bin_confirmation">Zibil qutusunu boşaltmaq istədiyinizə əminsiniz? Fayllar tamamilə itiriləcək.</string>
+    <string name="enable_automatic_backups">Enable automatic backups</string>
+    <string name="enable_pull_to_refresh">Yuxarıdan çək-təzələ\'ni aç</string>
+    <string name="end_call">End call</string>
+    <string name="enter_password">Enter password</string>
+    <string name="enter_pin">PIN\'i daxil edin</string>
+    <string name="error">Error: %s</string>
+    <string name="error_icon_content_description">Xəta</string>
+    <string name="espresso_title">Espresso (testing helper)</string>
+    <string name="event_bus_title">Event Bus (communication within the app)</string>
+    <string name="every_day">Every day</string>
+    <string name="exclude">Exclude</string>
+    <string name="exclude_folder">Exclude folder</string>
+    <string name="excluded">(xaric edilmiş)</string>
+    <string name="excluded_folders">Excluded folders</string>
+    <string name="exif">EXIF</string>
+    <string name="exif_removed">EXIF values removed successfully</string>
+    <string name="exoplayer_title">ExoPlayer (video player)</string>
+    <string name="export_blocked_numbers">Export blocked numbers</string>
+    <string name="export_call_history">Export call history</string>
+    <string name="export_settings">Export settings</string>
+    <string name="exporting">Çıxarılır…</string>
+    <string name="exporting_failed">Çıxarış uğursuzdur</string>
+    <string name="exporting_some_entries_failed">Bəzi girişləri çıxarmaq olmur</string>
+    <string name="exporting_successful">Çıxarış uğurludur</string>
+    <string name="exposed_dropdown_menu_content_description">Açılan menyunu göstərin</string>
+    <string name="exposure_time">Poza vaxtı</string>
+    <string name="extension">Fayl çıxışı</string>
+    <string name="extension_cannot_be_empty">Uzantı boş ola bilməz</string>
+    <string name="extra_large">Çox böyük</string>
+    <string name="f_number">Diyafram</string>
+    <string msgid="4562557128765735254" name="face_or_screen_lock_prompt_message">"Davam etmək üçün üz və ya ekran kilidinizdən istifadə edin"</string>
+    <string msgid="2282389249605674226" name="face_prompt_message">"Davam etmək üçün üzünüzdən istifadə edin"</string>
+    <string name="faq_100_text_commons_g">A private contact is created within an application. This contact will not be visible to other applications.
+        If you uninstall the app, all private contacts will be deleted along with the app, so back up your contacts before uninstalling the app.</string>
+    <string name="faq_100_title_commons_g">What is a private contact?</string>
+    <string name="faq_101_text_commons_g">When you create a contact, you must select the source of the contact: %s</string>
+    <string name="faq_101_title_commons_g">How to create a private contact?</string>
+    <string name="faq_10_text_commons">Try clearing your Google Play app cache and restarting your device. It is some Google Play glitch, not really related to the app itself.</string>
+    <string name="faq_10_title_commons">I have purchased the app, but I cannot download it on another device.</string>
+    <string name="faq_1_text">Such issues can have many device and system specific reasons, hard to say in general. You should look around in your device settings and make sure that the app is allowed to pop up when in background and allow displaying over other apps.</string>
+    <string name="faq_1_text_commons">It is most likely because you moved the app on an SD card. There is an Android system limitation which hides the given app widgets
+        in that case. The only solution is to move the app back onto the Internal Storage via your device settings.</string>
+    <string name="faq_1_text_dialer_g">Əməliyyat sistemi proqramların kilid ekranına daxil olmasını əngəlləyir. Siz tətbiqin kilid ekranına daxil olmasına icazə verməlisiniz. Məsələn, MIUI-də siz Parametrlər => Bildirişlər => Kilid ekranında bildirişlərə girişə icazə verməlisiniz.</string>
+    <string name="faq_1_title">I hear incoming calls, but the screen doesn\'t turn on. What can I do?</string>
+    <string name="faq_1_title_commons">How come I don\'t see this apps widget on the list of widgets?</string>
+    <string name="faq_1_title_dialer_g">Daxil olan zəngə cavab vermək üçün niyə cihazın kilidini açmalıyam?</string>
+    <string name="faq_2_text_commons">
+        <![CDATA[
+            Yes, of course. You can spread the word about the apps or give good feedback and ratings. You can also help by translating the apps in a new language, or just update some existing translations.
+            The guide to translating is at <a href="https://github.com/SimpleMobileTools/General-Discussion#how-can-i-suggest-an-edit-to-a-file">this website</a>, or just contact us at <a href="mailto:hello@simplemobiletools.com">hello@simplemobiletools.com</a> if you have any questions.
+        ]]>
+    </string>
+    <string name="faq_2_text_commons_g">
+        <![CDATA[
+            Yes, of course. You can spread the word about the apps or give good feedback and ratings. You can also help by translating the apps in a new language, or just update some existing translations.
+        You can find the guide at <a href="https://github.com/Goodwy/Discussion">this website</a>, or just shoot me a message at <a href="mailto:goodwy.dev@gmail.com">goodwy.dev@gmail.com</a> if you need help.
+        ]]>
+    </string>
+    <string name="faq_2_text_dialer_g">Buferin məzmununu yapışdırmaq üçün zəng düyməsini uzun müddət basın. Əgər nömrə artıq daxil edilibsə, zəng düyməsini uzun basmaq onu mübadilə buferinə kopyalayır.</string>
+    <string name="faq_2_title_commons">I want to support you, but I cannot donate money. Is there anything else I can do?</string>
+    <string name="faq_2_title_dialer_g">Nömrəni yığan ekranda necə kopyalaya və ya yapışdıra bilərəm?</string>
+    <string name="faq_3_text_commons">Sadly, you cannot. Files are deleted instantly after the confirmation dialog, there is no trashbin available.</string>
+    <string name="faq_3_title_commons">I deleted some files by mistake, how can I recover them?</string>
+    <string name="faq_4_text_commons">Yep, as you drag a widget on your home screen a widget config screen appears. You will see colored squares at the bottom left corner, just press them to pick a new color. You can use the slider for adjusting the alpha too.</string>
+    <string name="faq_4_title_commons">I don\'t like the widget colors, can I change them?</string>
+    <string name="faq_5_text_commons">If they were really deleted, you cannot. However, there is a Recycle Bin enabled by default, it will cause the files just be moved in the Bin instead of deleting them.</string>
+    <string name="faq_5_title_commons">Can I somehow restore deleted files?</string>
+    <string name="faq_6_text_commons">It is caused by your launcher not supporting icon customization properly. Try launching the app via Google Play or some widget, if available.
+        Once launched, just set back the default orange icon #F57C00. You might have to reinstall the app in the worst case.</string>
+    <string name="faq_6_title_commons">The app launcher icon disappeared. What can I do?</string>
+    <string name="faq_7_text_commons">Payments are fully handled by Google, their system glitches from time to time. Just clear your Google Play app cache and restart your device, then retry downloading it.</string>
+    <string name="faq_7_title_commons">The money has been deducted from my bank account, but I cannot download the app. What can I do?</string>
+    <string name="faq_8_text_commons">As your app version is no longer updated, the bugs you have maybe spotted will never be fixed. There will also be no new functions added. You can purchase the Pro version on Google Play for a small sum of money.
+        It is a one time payment, which means that once you purchase it, you will never have to pay again. Not even after getting a new device. If you won\'t like the Pro version, you can just uninstall it within a few hours and you will automatically get your money back.
+        If you want a refund anytime later, just contact us at hello@simplemobiletools.com and you will get it.</string>
+    <string name="faq_8_text_commons_g">As your app version is no longer updated, the bugs you have maybe spotted will never be fixed. There will also be no new functions added. You can purchase the Pro version on Google Play for a small sum of money.
+        It is a one time payment, which means that once you purchase it, you will never have to pay again. Not even after getting a new device. If you won\'t like the Pro version, you can just uninstall it within a few hours and you will automatically get your money back.
+        If you want a refund anytime later, just contact us at goodwy.dev@gmail.com and you will get it.</string>
+    <string name="faq_8_title_commons">Why should I upgrade to the Pro version?</string>
+    <string name="faq_9_text_commons">There are multiple ways of doing that. The first one is starting the selection mode by long pressing one item, then short clicking on others to select them. The second way is similar to selecting items on PCs with a mouse,
+        just start the selection mode by long pressing one item, then with your finger still down drag it across other items for selecting. The third way of selecting multiple items is long pressing one item, then long pressing another one and everything in between gets selected. If you
+        want to select all items, just long press one item, then click at the selected item counter at the top left corner. That will select or unselect all everything.</string>
+    <string name="faq_9_title_commons">How can I select multiple items at once?</string>
+    <string name="favorites">Sevimlilər</string>
+    <string name="favorites_tab">Favorites</string>
+    <string name="feature_locked">Locked</string>
+    <string name="features_locked">This feature is locked, please purchase &lt;a href=https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou>Simple Thank You&lt;/a> for unlocking the full app.&lt;br>&lt;br>It is a one time payment only and if you won\'t be satisfied, we can refund you.</string>
+    <string name="february">Fevral</string>
+    <string name="february_short">Feb</string>
+    <string name="file">Fayl</string>
+    <string name="file_already_exists">\"%s\" faylı artıq mövcuddur</string>
+    <string name="file_already_exists_overwrite">\"%s\" faylı artıq mövcuddur. Üzərinə yazılsın?</string>
+    <string name="file_manager_short">Fayl Meneceri</string>
+    <string name="file_operations">Fayl əməliyyatları</string>
+    <string name="file_saved">Fayl uğurla saxlandı</string>
+    <string name="filename">Fayl adı</string>
+    <string name="filename_cannot_be_empty">Fayl adı boş ola bilməz</string>
+    <string name="filename_invalid_characters">Faylın adında etibarsız simvollar var</string>
+    <string name="filename_invalid_characters_placeholder">Fayl adı \'%s\' etibarsız simvollar ehtiva edir</string>
+    <string name="filename_without_json">Filename (without .json)</string>
+    <string name="filename_without_txt">Filename (without .txt)</string>
+    <string name="filename_without_zip">Filename (without .zip)</string>
+    <string name="files">Files</string>
+    <string name="files_count">Bütün faylların sayı</string>
+    <string name="files_restored_successfully">Fayllar uğurla geri qaytarıldı</string>
+    <string name="files_summary">File manager</string>
+    <string name="files_tab">Files</string>
+    <string name="filter">Filtr</string>
+    <string name="filter_pro">Filtr (Pro)</string>
+    <string name="filters_title">Android Photo Filters (image filters)</string>
+    <string name="fingerprint">Barmaq izi</string>
+    <string msgid="5462024216548165325" name="fingerprint_dialog_icon_description">"Barmaq izi ikonası"</string>
+    <string msgid="1072308044213194243" name="fingerprint_dialog_touch_sensor">"Barmaq izi sensoruna klikləyin"</string>
+    <string msgid="8216738333501875566" name="fingerprint_error_hw_not_available">"Barmaq izi avadanlığı əlçatan deyil."</string>
+    <string msgid="6306988885793029438" name="fingerprint_error_hw_not_present">"Bu cihazda barmaq izi sensoru yoxdur"</string>
+    <string msgid="7291787166416782245" name="fingerprint_error_lockout">"Həddən çox cəhd oldu. Sonra sınayın."</string>
+    <string msgid="7520712796891883488" name="fingerprint_error_no_fingerprints">"Barmaq izi qeydə alınmayıb."</string>
+    <string msgid="7627716295344353987" name="fingerprint_error_user_canceled">"Barmaq izi əməliyyatı istifadəçi tərəfindən ləğv edildi."</string>
+    <string msgid="3873359464293253009" name="fingerprint_not_recognized">"Tanınmır"</string>
+    <string msgid="8382576858490514495" name="fingerprint_or_screen_lock_prompt_message">"Davam etmək üçün barmaq izi və ya ekran kilidinizdən istifadə edin"</string>
+    <string msgid="7449360011861769080" name="fingerprint_prompt_message">"Davam etmək üçün barmaq izinizi istifadə edin"</string>
+    <string name="fingerprint_setup_successfully">Qoruma təyini uğurludur. Əgər təzələmə problemi yaşasanız, tətbiqi yenidən yükləyin.</string>
+    <string name="first_name">Ad</string>
+    <string name="five">Five</string>
+    <string name="flash_for_alerts">Xəbərdarlıqlar üçün flaş</string>
+    <string name="flashlight_short">Fənər</string>
+    <string name="focal_length">Fokus məsafəsi</string>
+    <string name="folder">Qovluq</string>
+    <string name="folder_already_exists">\"%s\" qovluğu artıq mövcuddur</string>
+    <string name="follow_us">İzlə</string>
+    <string name="font_size">Yazı ölçüsü</string>
+    <string name="force_portrait_mode">Portret moduna zorla</string>
+    <string name="foreground_color">Önplan rəngi</string>
+    <string name="four">Four</string>
+    <string name="frequently_asked_questions">Tez-tez Soruşulan Suallar</string>
+    <string name="friday">Cümə</string>
+    <string name="friday_letter">C</string>
+    <string name="friday_short">Cü</string>
+    <string name="full_name">Full name</string>
+    <string name="gallery_short">Qalereya</string>
+    <string name="general">Ümumi</string>
+    <string name="general_settings">General</string>
+    <string msgid="3791785319221634505" name="generic_error_no_device_credential">"PIN, model və ya parol ayarlanmayıb."</string>
+    <string msgid="1807436368654974044" name="generic_error_no_keyguard">"Bu cihaz PIN, model və ya parolu dəstəkləmir."</string>
+    <string msgid="7309881387583143581" name="generic_error_user_canceled">"İstifadəçi doğrulamanı ləğv edib."</string>
+    <string name="genre">Genre</string>
+    <string name="gesture_views_title">Gesture Views (zoomable images)</string>
+    <string name="get">Yüklə</string>
+    <string name="get_simple_phone">Get Simple Phone</string>
+    <string name="gif_drawable_title">Gif Drawable (loading GIFs)</string>
+    <string name="glide_title">Glide (şəkil açma və keşləmə)</string>
+    <string name="go_to_settings">Parametrlərə get</string>
+    <string name="gps_coordinates">GPS coordinates</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="gray_theme">Boz</string>
+    <string name="grid">Grid</string>
+    <string name="grid_pro">Grid (Pro)</string>
+    <string name="group_subsequent_calls">Group subsequent calls with the same number at the call log</string>
+    <string name="groups_tab">Groups</string>
+    <string name="gson_title">Gson (JSON parser)</string>
+    <string name="hashtag">Hashtag</string>
+    <string name="hello">Hello :)</string>
+    <string name="help_us">Help us</string>
+    <string name="hide">Gizlət</string>
+    <string name="hide_blocked_numbers">Gizlət bloklandı</string>
+    <string name="hide_dialpad">Hide dialpad</string>
+    <string name="hide_dialpad_letters_g">Nömrə hərflərini gizlədin</string>
+    <string name="hide_dialpad_numbers">Hide dialpad numbers</string>
+    <string name="hide_folder">Qovluğu gizlət</string>
+    <string name="hide_line_numbers">Hide line numbers</string>
+    <string name="hide_the_recycle_bin">Hide the Recycle Bin</string>
+    <string name="hide_year">Hide year</string>
+    <string name="hold_call">Hold call</string>
+    <string name="home">Ev</string>
+    <string name="home_fax">Ev Faksı</string>
+    <string name="home_folder_g">Ev qovluğu</string>
+    <string name="hours_letter">h</string>
+    <string name="hours_raw">saatlar</string>
+    <string name="icon_content_description">Dialoq ikonası</string>
+    <string name="import_blocked_numbers">Import blocked numbers</string>
+    <string name="import_call_history">Import call history</string>
+    <string name="import_settings">Import settings</string>
+    <string name="importing">Daxil edilir…</string>
+    <string name="importing_failed">Daxiletmə uğursuzdur</string>
+    <string name="importing_some_entries_failed">Bəzi girişləri daxil etmək olmur</string>
+    <string name="importing_successful">Daxiletmə uğurludur</string>
+    <string name="improved_color_customization">Improved color customization</string>
+    <string name="in_april">Apreldə</string>
+    <string name="in_august">Avqustda</string>
+    <string name="in_december">Dekabrda</string>
+    <string name="in_february">Fevralda</string>
+    <string name="in_january">Yanvarda</string>
+    <string name="in_july">İyulda</string>
+    <string name="in_june">İyunda</string>
+    <string name="in_march">Martda</string>
+    <string name="in_may">Mayda</string>
+    <string name="in_november">Noyabrda</string>
+    <string name="in_october">Oktyabrda</string>
+    <string msgid="6827826412747255547" name="in_progress">"Davam edir"</string>
+    <string name="in_september">Sentyabrda</string>
+    <string name="incoming_call">Daxil olan zəng</string>
+    <string name="increase_column_count">Increase column count</string>
+    <string msgid="7933458017204019916" name="indeterminate">"Qismən yoxlanıb"</string>
+    <string name="indicator_fast_scroll_title">Indicator Fast Scroll (letters on scrollbar)</string>
+    <string name="insert_pattern">Model daxil edin</string>
+    <string name="insert_text_here">Insert text here</string>
+    <string name="internal">Daxili</string>
+    <string name="internal_storage">Internal Storage</string>
+    <string name="invalid_destination">Seçilmiş hədəfə yazmaq olmur</string>
+    <string name="invalid_file_format">Keçərsiz fayl formatı</string>
+    <string name="invalid_name">Ad etibarsız simvollar ehtiva edir</string>
+    <string name="invalid_password">Incorrect password</string>
+    <string name="invert_color">Rəngləri Ters Çevir</string>
+    <string name="invite_friends">Dostları dəvət et</string>
+    <string name="invite_via">Dəvət et</string>
+    <string name="is_calling">Is Calling…</string>
+    <string name="iso_speed">ISO sürəti</string>
+    <string name="it_is_free">It is free till: %s. If you download it till then, you will be able to use it for free forever.</string>
+    <string name="item_view_role_description">Tab</string>
+    <string name="items_selected">Fayl seçildi</string>
+    <string name="january">Yanvar</string>
+    <string name="january_short">Jan</string>
+    <string name="joda_title">Joda-Time (Java date replacement)</string>
+    <string name="july">İyul</string>
+    <string name="july_short">July</string>
+    <string name="june">İyun</string>
+    <string name="june_short">June</string>
+    <string name="keep_both">Keep both</string>
+    <string name="keep_last_modified">Keep old last-modified value at file operations</string>
+    <string name="keyboard_short">Keyboard</string>
+    <string name="kids_mode">Kids mode</string>
+    <string name="kids_mode_summary">Simplified interface, choose coloring</string>
+    <string name="kotlin_title">Kotlin (proqramlaşdırma dili)</string>
+    <string name="label">Etiket</string>
+    <string name="landscape_column_count">Landscape column count</string>
+    <string name="language">Language</string>
+    <string name="large">Böyük</string>
+    <string name="last_modified">Son dəyişdirilən</string>
+    <string name="last_used_g">Son istifadə olunub</string>
+    <string name="last_used_tab">Last used one</string>
+    <string name="later">Later</string>
+    <string name="launcher_short">Launcher</string>
+    <string name="leak_canary_title">Leak Canary (memory leak detector)</string>
+    <string name="learn_more">Daha ətraflı</string>
+    <string name="library">Kitabxana</string>
+    <string name="lifebuoy_summary">Əgər nədənsə bizim tətbiqimizi ödəyə bilmirsinizsə, lakin həqiqətən bütün funksiyalardan istifadə etmək istəyirsinizsə, bizə e-poçt göndərin</string>
+    <string name="lifebuoy_title">Biz sizə dəstək olacağıq</string>
+    <string name="light_theme">İşıqlı</string>
+    <string name="limited_supply">Məhdud tədarük</string>
+    <string name="lines_count">Xətlər sayılır</string>
+    <string name="list">List</string>
+    <string name="list_view">List view</string>
+    <string name="loading">Loading…</string>
+    <string name="lock_folder">Lock folder</string>
+    <string name="lock_folder_notice">This protection works in this app only, it is not supposed to replace a real systemwide folder encryption.</string>
+    <string name="lock_folder_pro">Lock folder (Pro)</string>
+    <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Aşağıdakı vərəqi yığcamlaşdırın"</string>
+    <string msgid="1555567894577437024" name="m3c_bottom_sheet_dismiss_description">"Aşağıdakı vərəqi rədd edin"</string>
+    <string msgid="8403354765404029791" name="m3c_bottom_sheet_drag_handle_description">"Dəstəyi çəkin"</string>
+    <string msgid="6670819569745899763" name="m3c_bottom_sheet_expand_description">"Aşağıdakı vərəqi genişləndirin"</string>
+    <string msgid="3010635850035863127" name="m3c_bottom_sheet_pane_title">"Aşağıdakı vərəq"</string>
+    <string msgid="8166741421776570875" name="m3c_date_input_headline">"Daxil edilmiş tarix"</string>
+    <string msgid="229313757840775812" name="m3c_date_input_headline_description">"Daxil edilmiş tarix: %1$s"</string>
+    <string msgid="6116910750161463197" name="m3c_date_input_invalid_for_pattern">"Tarix gözlənilən modelə uyğun gəlmir: %1$s"</string>
+    <string msgid="2521768508935305279" name="m3c_date_input_invalid_not_allowed">"Tarixə icazə verilmir: %1$s"</string>
+    <string msgid="7052898923934555305" name="m3c_date_input_invalid_year_range">"Tarix gözlənilən il aralığından kənardır: %1$s - %2$s"</string>
+    <string msgid="2895559812010326913" name="m3c_date_input_label">"Tarix"</string>
+    <string msgid="1237013946323089826" name="m3c_date_input_no_input_description">"Yoxdur"</string>
+    <string msgid="7306227249789210568" name="m3c_date_input_title">"Tarix seçin"</string>
+    <string msgid="7605002211875882969" name="m3c_date_picker_headline">"Seçilmiş tarix"</string>
+    <string msgid="3664277305226978227" name="m3c_date_picker_headline_description">"Cari seçim: %1$s"</string>
+    <string msgid="8436650776581492840" name="m3c_date_picker_navigate_to_year_description">"Bu ilə keçin: %1$s"</string>
+    <string msgid="5811000998184572395" name="m3c_date_picker_no_selection_description">"Yoxdur"</string>
+    <string msgid="7813882352367152251" name="m3c_date_picker_scroll_to_earlier_years">"Əvvəlki illəri göstərmək üçün sürüşdürün"</string>
+    <string msgid="5727367015496556177" name="m3c_date_picker_scroll_to_later_years">"Sonrakı illəri göstərmək üçün sürüşdürün"</string>
+    <string msgid="1804346892470238807" name="m3c_date_picker_switch_to_calendar_mode">"Təqvim daxiletmə rejiminə keçin"</string>
+    <string msgid="395627960681594326" name="m3c_date_picker_switch_to_day_selection">"İl seçmək üçün sürüşdürün. Gün seçiminə qayıtmaq üçün toxunun"</string>
+    <string msgid="2219746470065162704" name="m3c_date_picker_switch_to_input_mode">"Mətn daxiletmə rejiminə keçin"</string>
+    <string msgid="7142101321095356500" name="m3c_date_picker_switch_to_next_month">"Növbəti aya dəyişin"</string>
+    <string msgid="228438865139394590" name="m3c_date_picker_switch_to_previous_month">"Əvvəlki aya dəyişin"</string>
+    <string msgid="791651718641787594" name="m3c_date_picker_switch_to_year_selection">"İl seçiminə keçin"</string>
+    <string msgid="7430790972741451689" name="m3c_date_picker_title">"Tarix seçin"</string>
+    <string msgid="3199387177749801575" name="m3c_date_picker_today_description">"Bu gün"</string>
+    <string msgid="2068382232816991922" name="m3c_date_picker_year_picker_pane_title">"İl seçicisi görünür"</string>
+    <string msgid="3190049423327661366" name="m3c_date_range_input_invalid_range_input">"Yanlış tarix aralığı daxiletməsi"</string>
+    <string msgid="3148384720560189467" name="m3c_date_range_input_title">"Tarixlər daxil edin"</string>
+    <string msgid="2138321128465719402" name="m3c_date_range_picker_day_in_range">"Bu aralıqda"</string>
+    <string msgid="4947636797751277713" name="m3c_date_range_picker_end_headline">"Bitmə tarixi"</string>
+    <string msgid="602077859540990149" name="m3c_date_range_picker_scroll_to_next_month">"Növbəti ayı göstərmək üçün sürüşdürün"</string>
+    <string msgid="4592174524846109496" name="m3c_date_range_picker_scroll_to_previous_month">"Əvvəlki ayı göstərmək üçün sürüşdürün"</string>
+    <string msgid="4665981448952749820" name="m3c_date_range_picker_start_headline">"Başlama tarixi"</string>
+    <string msgid="3134165431120340385" name="m3c_date_range_picker_title">"Tarixlər seçin"</string>
+    <string msgid="7617233117134790350" name="m3c_dialog">"Dialoq"</string>
+    <string msgid="3177828188723359358" name="m3c_dropdown_menu_collapsed">"Yığcamlaşdırılıb"</string>
+    <string msgid="2360841780724299882" name="m3c_dropdown_menu_expanded">"Genişləndirilb"</string>
+    <string msgid="6152806324422087846" name="m3c_search_bar_search">"Axtarış"</string>
+    <string msgid="6152755701819882931" name="m3c_snackbar_dismiss">"Rədd edin"</string>
+    <string msgid="7655536806087401899" name="m3c_suggestions_available">"Təkliflər aşağıdadır"</string>
+    <string msgid="2786685010796619560" name="m3c_time_picker_am">"AM"</string>
+    <string msgid="2349193472625211372" name="m3c_time_picker_hour">"Saat"</string>
+    <string msgid="9179527532316922345" name="m3c_time_picker_hour_24h_suffix">"%1$d saat"</string>
+    <string msgid="8876759303332837035" name="m3c_time_picker_hour_selection">"Saat seçin"</string>
+    <string msgid="3458167507790628988" name="m3c_time_picker_hour_suffix">"Saat: %1$d"</string>
+    <string msgid="6973808109666874069" name="m3c_time_picker_hour_text_field">"saatlıq"</string>
+    <string msgid="4313071914266462005" name="m3c_time_picker_minute">"Dəqiqə"</string>
+    <string msgid="4699133535056739733" name="m3c_time_picker_minute_selection">"Dəqiqə seçin"</string>
+    <string msgid="5064177921781937179" name="m3c_time_picker_minute_suffix">"%1$d dəqiqə"</string>
+    <string msgid="7661234488295443182" name="m3c_time_picker_minute_text_field">"dəqiqəlik"</string>
+    <string msgid="5865171949528594571" name="m3c_time_picker_period_toggle_description">"AM və ya PM seçin"</string>
+    <string msgid="6616362054113087709" name="m3c_time_picker_pm">"PM"</string>
+    <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Alət izahını göstərin"</string>
+    <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Alət izahı"</string>
+    <string name="m3u_parser_title">M3U Parser (m3u playlist file handling)</string>
+    <string name="main_number">Əsas</string>
+    <string name="main_screen">Main screen</string>
+    <string name="make_sure_latest">Also make sure that you are using the latest app version.</string>
+    <string name="make_sure_upgrade">Also note that this app version is no longer being developed, get the Pro one for many improvements.</string>
+    <string name="manage_automatic_backups">Manage automatic backups</string>
+    <string name="manage_blocked_numbers">Manage blocked numbers</string>
+    <string name="manage_excluded_folders">Manage excluded folders</string>
+    <string name="manage_shown_tabs">Göstərilən nişanları idarə et</string>
+    <string name="manage_speed_dial">Manage speed dial</string>
+    <string name="march">Mart</string>
+    <string name="march_short">Mar</string>
+    <string name="material_clock_toggle_content_description">Gündüz və ya axşam seçin</string>
+    <string name="material_design_3">Material Design 3</string>
+    <string name="material_design_3_summary">Changes the appearance of some elements of the application</string>
+    <string name="material_hour_24h_suffix">%1$s saat</string>
+    <string name="material_hour_selection">Saatı seçin</string>
+    <string name="material_hour_suffix">Saat %1$s</string>
+    <string name="material_minute_selection">Dəqiqə seçin</string>
+    <string name="material_minute_suffix">%1$s dəqiqə</string>
+    <string name="material_timepicker_am">AM</string>
+    <string name="material_timepicker_clock_mode_description">Zamanı daxil etmək üçün saat rejiminə keçin</string>
+    <string name="material_timepicker_hour">Saat</string>
+    <string name="material_timepicker_minute">Dəqiqə</string>
+    <string name="material_timepicker_pm">GƏ</string>
+    <string name="material_timepicker_select_time">Vaxt seçin</string>
+    <string name="material_timepicker_text_input_mode_description">Zamanı daxil etmək üçün mətnlə daxiletmə rejiminə keçin</string>
+    <string name="maximum_share_reached">Bu qədər faylı bir dəfəyə paylaşa bilməzsiniz</string>
+    <string name="may">May</string>
+    <string name="may_short">May</string>
+    <string name="maybe">Maybe</string>
+    <string name="medium">Orta</string>
+    <string name="merge">Birləşdir</string>
+    <string name="message">Mesaj</string>
+    <string name="message_call_later">Mən sizə sonra zəng edə bilərəmmi?</string>
+    <string name="message_cant_talk_right_now">Bağışlayın, mən indi danışa bilmirəm.</string>
+    <string name="message_on_my_way">Mən yoldayam.</string>
+    <string name="middle_name">Orta Ad</string>
+    <string name="migrating">Migrating</string>
+    <string name="minutes_letter">m</string>
+    <string name="minutes_raw">dəqiqələr</string>
+    <string name="missed_call">Buraxılmış zəng</string>
+    <string name="missed_call_g">Buraxılmış zəng</string>
+    <string name="missed_call_notifications_g">Buraxılmış zəng bildirişləri</string>
+    <string name="missed_calls_g">Buraxılmış zənglər</string>
+    <string name="mobile">Mobil</string>
+    <string name="monday">Bazar Ertəsi</string>
+    <string name="monday_letter">B.E</string>
+    <string name="monday_short">Bzr.E</string>
+    <string name="more_apps">Daha çox tətbiq</string>
+    <string name="more_apps_from_us">More apps from us</string>
+    <string name="more_info">More info</string>
+    <string name="more_options">More options</string>
+    <string name="move">Yerini dəyiş</string>
+    <string name="move_items_into_recycle_bin">Faylları silməkdənsə Zibil qutusuna at</string>
+    <string name="move_to">Yerini bura dəyiş</string>
+    <string name="move_to_bottom">Move to the bottom</string>
+    <string name="move_to_recycle_bin_confirmation">%s\'i zibil qutusuna atmaq istədiyinizə əminsiniz?</string>
+    <string name="move_to_top">Move to the top</string>
+    <string name="moving">Yerini dəyişir…</string>
+    <string name="moving_recycle_bin_items_disabled">Moving Recycle bin items is disabled, please use Restore</string>
+    <string name="moving_success">Faylın yeri uğurla dəyişdirildi</string>
+    <string name="moving_success_one">File moved successfully</string>
+    <string name="moving_success_partial">Bəzi faylların yeri dəyişdirilmir</string>
+    <string name="mtrl_badge_numberless_content_description">Yeni bildiriş</string>
+    <string name="mtrl_chip_close_icon_content_description">%1$s silin</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">Minimum %1$d yeni bildiriş</string>
+    <string name="mtrl_picker_a11y_next_month">Növbəti aya dəyişin</string>
+    <string name="mtrl_picker_a11y_prev_month">Əvvəlki aya dəyişin</string>
+    <string name="mtrl_picker_announce_current_selection">Cari seçim: %1$s</string>
+    <string name="mtrl_picker_cancel">Ləğv edin</string>
+    <string name="mtrl_picker_confirm">OK</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">Tarix seçin</string>
+    <string name="mtrl_picker_date_header_unselected">Seçilmiş tarix</string>
+    <string name="mtrl_picker_day_of_week_column_header">Gün sütunu: %1$s</string>
+    <string name="mtrl_picker_invalid_format">Yanlış format.</string>
+    <string name="mtrl_picker_invalid_format_example">Nümunə: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">%1$s istifadə edin</string>
+    <string name="mtrl_picker_invalid_range">Yanlış diapazon.</string>
+    <string name="mtrl_picker_navigate_to_year_description">%1$s ilinə keçin</string>
+    <string name="mtrl_picker_out_of_range">Əhatə dairəsindən kənar: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">Başlama tarixi – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – Bitmə tarixi</string>
+    <string name="mtrl_picker_range_header_selected">%1$s: %2$s</string>
+    <string name="mtrl_picker_range_header_title">Aralıq seçin</string>
+    <string name="mtrl_picker_range_header_unselected">Başlama tarixi - Bitmə tarixi</string>
+    <string name="mtrl_picker_save">Saxlayın</string>
+    <string name="mtrl_picker_text_input_date_hint">Tarix</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">Bitmə tarixi</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">Başlama tarixi</string>
+    <string name="mtrl_picker_text_input_day_abbr">gün</string>
+    <string name="mtrl_picker_text_input_month_abbr">ay</string>
+    <string name="mtrl_picker_text_input_year_abbr">il</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">Təqvim daxiletmə rejiminə keçin</string>
+    <string name="mtrl_picker_toggle_to_day_selection">Gün seçiminə keçmək üçün toxunun</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">Mətn daxiletmə rejiminə keçin</string>
+    <string name="mtrl_picker_toggle_to_year_selection">İl seçiminə keçmək üçün toxunun</string>
+    <string name="mtrl_timepicker_cancel">Ləğv edin</string>
+    <string name="mtrl_timepicker_confirm">OK</string>
+    <string name="music_player_short">Musiqi Çalar</string>
+    <string name="must_make_default_caller_id_app">Can\'t block unknown numbers without caller ID permission.</string>
+    <string name="must_make_default_dialer">You have to make this app the default dialer app to make use of blocked numbers.</string>
+    <string name="mute">Səssiz</string>
+    <string name="name">Ad</string>
+    <string name="name_taken">Eyni adda fayl və ya qovluq artıq mövcuddur</string>
+    <string msgid="542007171693138492" name="navigation_menu">"Naviqasiya menyusu"</string>
+    <string name="never">Heç vaxt</string>
+    <string name="new_app">
+        <![CDATA[
+            Hey,<br><br>
+            just letting you know that some new apps have been released recently:<br><br>
+            <a href="%1$s">%2$s</a><br><br>
+            <a href="%3$s">%4$s</a><br><br>
+            <a href="%5$s">%6$s</a><br><br>
+            You can download them by pressing their titles or icons.<br><br>
+            Thanks
+        ]]>
+    </string>
+    <string name="next">Sonrakı</string>
+    <string name="nickname">Ləqəb</string>
+    <string name="nine">Nine</string>
+    <string name="no">Xeyr</string>
+    <string name="no_access_to_contacts">The app could not access your contacts</string>
+    <string name="no_app_found">Etibarlı tətbiq tapılmadı</string>
+    <string name="no_audio_permissions">Səs icazəsi tələb olunur</string>
+    <string name="no_browser_found">No browser found</string>
+    <string name="no_camera_permissions">Kamera icazəsi tələb olunur</string>
+    <string name="no_connection">Əlaqə yoxdur</string>
+    <string name="no_contacts_found">No contacts found</string>
+    <string name="no_contacts_permission">Kontakt icazəsi tələb olunur</string>
+    <string name="no_email_client_found">No email client found</string>
+    <string name="no_entries_for_exporting">Çıxarış üçün heçbir giriş tapılmadı</string>
+    <string name="no_entries_for_importing">No entries for importing have been found</string>
+    <string name="no_files_selected">Fayl seçilməyib</string>
+    <string name="no_fingerprints_registered">Qeydiyyata alınmış heçbir barmaq izi yoxdur, xahiş olunur cihazınızın Parametrlərindən əlavə edəsiniz</string>
+    <string name="no_items_found">Heçnə tapılmadı.</string>
+    <string name="no_new_entries_for_importing">No new entries for importing have been found</string>
+    <string name="no_new_items">No new items have been found</string>
+    <string name="no_permission">No permission</string>
+    <string name="no_phone_call_permission">App does not have the permission to initiate phone calls, please grant it in the device settings</string>
+    <string name="no_phone_number_found">Heçbir telefon nömrəsi tapılmadı</string>
+    <string name="no_previous_calls">No previous calls have been found</string>
+    <string name="no_purchase_found">No purchase found.</string>
+    <string name="no_reminder">Xatırladıcı yoxdur</string>
+    <string name="no_sound">Səs yoxdur</string>
+    <string name="no_space">The destination does not have enough space available.\nRequired %1$s, available %2$s</string>
+    <string name="no_storage_permissions">Yaddaş icazəsi tələb olunur</string>
+    <string name="none">Heçnə</string>
+    <string name="not_blocking_anyone">You are not blocking anyone.</string>
+    <string msgid="6610465462668679431" name="not_selected">"Seçilməyib"</string>
+    <string name="notes">Qeydlər</string>
+    <string name="notes_short">Qeydlər</string>
+    <string name="nothing">Nothing</string>
+    <string name="notice">Bu tətbiq həyatımı asanlaşdırmaq üçün aşağıdakı üçüncü partiya tətbiq kitabxanalarından istifadə edir. Təşəkkürlər.</string>
+    <string name="notification">Notification</string>
+    <string name="notification_sound">Notification sound</string>
+    <string name="notifications">Notifications</string>
+    <string name="notifications_disabled">Notifications of this application are disabled. Please go in your device settings for enabling them.</string>
+    <string name="november">Noyabr</string>
+    <string name="november_short">Nov</string>
+    <string name="number">Nömrə</string>
+    <string name="number_picker_title">Number Picker (customizable number picker)</string>
+    <string name="october">Oktyabr</string>
+    <string name="october_short">Oct</string>
+    <string msgid="875452955155264703" name="off">"Deaktiv"</string>
+    <string name="ok">Oldu</string>
+    <string msgid="8655164131929253426" name="on">"Aktiv"</string>
+    <string name="one">One</string>
+    <string name="ongoing_call">Ongoing Call</string>
+    <string name="open">Açıq</string>
+    <string name="open_biometric_dialog">Open biometric ID verification dialog</string>
+    <string name="open_dialpad_by_default">Open the dialpad by default when the app opens</string>
+    <string name="open_in_maps">Xəritədə açın</string>
+    <string name="open_search_when_open_contacts">Kontaktlar sekmesini açarkən axtarışı açın</string>
+    <string name="open_speed_dial_manage">Sürətli yığım idarəsi açılsın?</string>
+    <string name="open_the_recycle_bin">Open the Recycle Bin</string>
+    <string name="open_with">Bununla aç</string>
+    <string name="other">Other</string>
+    <string name="other_help">Other help</string>
+    <string name="otto_title">Otto (event bus)</string>
+    <string name="out_of_memory_error">Yaddaş doludur xətası</string>
+    <string name="outgoing_call">Çıxan zəng</string>
+    <string name="overflow_icon">Daşmaq ikonu</string>
+    <string name="overwrite">Üzərinə yaz</string>
+    <string name="pager">Zəng cihazı</string>
+    <string name="panorama_view_title">VR Panorama View (displaying panoramas)</string>
+    <string name="participants_title">Participants</string>
+    <string name="password">Password</string>
+    <string name="password_protect_file_deletion">Password protect file deletion and moving</string>
+    <string name="password_protect_hidden_items">Şifrə gizlənmiş tətbiqin görünürlüyünü qoruyur</string>
+    <string name="password_protect_whole_app">Şifrə bütün tətbiqi qoruyur</string>
+    <string name="password_toggle_content_description">Parolu göstərin</string>
+    <string name="paste_g">Daxil et</string>
+    <string name="path">Yol</string>
+    <string name="pattern">Model</string>
+    <string name="pattern_renaming">Pattern</string>
+    <string name="pattern_title">PatternLockView (pattern protection)</string>
+    <string name="pdf_view_pager_title">PDFViewPager (PDF viewer)</string>
+    <string name="pdf_viewer_title">Android PdfViewer (PDF viewer)</string>
+    <string name="per_month">%s/ay</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="phone_storage">Telefon yaddaşı</string>
+    <string name="phone_storage_hidden">Telefon yaddaşı (digər tətbiqlərə görünmür)</string>
+    <string name="photoview_title">PhotoView (zoomable GIFs)</string>
+    <string name="picasso_title">Picasso (image loading and caching)</string>
+    <string name="pin">PIN</string>
+    <string name="pin_item">Pin item</string>
+    <string name="pin_must_be_4_digits_long">PIN must be at least 4 digits long</string>
+    <string name="place_finger">Xahiş olunur barmağınızı barmaq izi sensoru üzərinə yerləşdirin</string>
+    <string name="playbook">PlayBook</string>
+    <string name="playbooks">PlayBooks</string>
+    <string name="playbooks_summary">Audiobook player</string>
+    <string name="player_g">Oyunçu</string>
+    <string name="playpause">Oynat / Dayan</string>
+    <string name="please_enter_pin">Xahiş olunur PIN\'i daxil edin</string>
+    <string name="please_select_destination">Xahiş olunur hədəf seçin</string>
+    <string name="plus_summary">Sizin köməyinizlə biz daha çox funksiya tətbiq edə və tətbiqi daha da yaxşılaşdıra bilərik</string>
+    <string name="plus_title">Bizi dəstəkləyin</string>
+    <string name="portrait_column_count">Portrait column count</string>
+    <string name="pref_category_appearance">Görünüş</string>
+    <string name="pref_pay_summary">Get the paid app to support future developments and extra features</string>
+    <string name="pref_theme_summary">Əvvəlcədən quraşdırılmış bir mövzu seçin</string>
+    <string name="prepend_filenames">Prepend filenames</string>
+    <string name="prevent_phone_from_sleeping">Tətbiq aktiv halda olduqda telefonun yuxuya getməsinin qarşısını al</string>
+    <string name="previous">Əvvəlki</string>
+    <string name="primary_color">Birinci rəng</string>
+    <string name="primary_sim_card">Əsas SİM kart</string>
+    <string name="print">Print</string>
+    <string name="print_pro">Print (Pro)</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="pro_app_refund">Don\'t forget that if you uninstall any paid app within 2 hours, you will automatically be refunded. If you want a refund anytime later, just contact us at hello@simplemobiletools.com and you will get it. That makes it easy to try it out :)</string>
+    <string name="pro_app_refund_g">Don\'t forget that if you uninstall any paid app within 2 hours, you will automatically be refunded. If you want a refund anytime later, just contact us at goodwy.dev@gmail.com and you will get it. That makes it easy to try it out :)</string>
+    <string name="proceed_with_deletion">Silmə prosesini təsdiqləyirsiniz?</string>
+    <string name="properties">Xüsusiyyətlər</string>
+    <string name="protection_setup_successfully">Şifrə təyini uğurludur. Əgər şifrəni unutsanız, tətbiqi yenidən yükləyin.</string>
+    <string name="purchase">Ödəniş Et</string>
+    <string name="purchase_simple_thank_you">Sadə Təşəkkür\'ü Alın</string>
+    <string name="purchase_simple_thank_you_g">Sadə Təşəkkür\'ü Alın</string>
+    <string name="purchase_thank_you">
+        <![CDATA[
+            Lütfən bağış edin <a href="https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou">Bu funksiyanı açdığınız və təkmilləşdirməni dəstəklədiyiniz üçün Sadə Təşəkkür</a>. Çox Sağolun!
+        ]]>
+    </string>
+    <string name="quality">Quality</string>
+    <string name="random">Random</string>
+    <string msgid="5941395253238309765" name="range_end">"Sıranın sonu"</string>
+    <string msgid="7097486360902471446" name="range_start">"Sıranın başlanğıcı"</string>
+    <string name="rate">Rate</string>
+    <string name="rate_our_app">Rate our app please :)</string>
+    <string name="rate_us">Dəyərləndir</string>
+    <string name="rate_us_prompt">Hello,\n\nit looks like you are using this app for quite a while already, and we really appreciate it.\n\nIf we can ask you a favor, please rate us on Google Play. That would really help us a lot.\n\nNo matter how you decide, you will not see this message again.\n\nThanks!</string>
+    <string name="read_faq">Read FAQ</string>
+    <string name="read_it">Read it</string>
+    <string name="recent_files_tab">Recent files</string>
+    <string name="recents">Son zamanlar</string>
+    <string name="recommendation_dialog_contacts_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our app to view and edit contacts.<br><br>
+            Thanks
+        ]]></string>
+    <string name="recommendation_dialog_dialer_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our call app.<br><br>
+            Thanks
+        ]]></string>
+    <string name="recommendation_dialog_gallery_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our photo viewing and editing app.<br><br>
+            Thanks
+        ]]></string>
+    <string name="recommendation_dialog_messages_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our messaging app.<br><br>
+            Thanks
+        ]]></string>
+    <string name="record_audio">Record audio</string>
+    <string name="record_video">Record video</string>
+    <string name="recorder_g">Səsyazan</string>
+    <string name="recycle_bin">Zibil Qutusu</string>
+    <string name="recycle_bin_cleaning_interval">Zibil qutusu təmizlik intervalı</string>
+    <string name="recycle_bin_emptied">Zibil qutusu uğurla boşaldıldı</string>
+    <string name="recycle_bin_empty">Zibil qutusu boşdur</string>
+    <string name="redo">Təkrar et</string>
+    <string name="reduce_column_count">Reduce column count</string>
+    <string name="relation_acquaintance_g">Acquaintance</string>
+    <string name="relation_agent_g">Agent</string>
+    <string name="relation_assistant_g">Assistant</string>
+    <string name="relation_aunt_g">Aunt</string>
+    <string name="relation_brother_g">Brother</string>
+    <string name="relation_brother_in_law_g">Brother-in-law</string>
+    <string name="relation_child_g">Child</string>
+    <string name="relation_co_resident_g">Co-resident</string>
+    <string name="relation_co_worker_g">Co-worker</string>
+    <string name="relation_colleague_g">Colleague</string>
+    <string name="relation_contact_g">Contact</string>
+    <string name="relation_crush_g">Crush</string>
+    <string name="relation_date_g">Date</string>
+    <string name="relation_daughter_g">Daughter</string>
+    <string name="relation_daughter_in_law_g">Daughter-in-law</string>
+    <string name="relation_domestic_partner_g">Domestic Partner</string>
+    <string name="relation_emergency_g">Emergency Contact</string>
+    <string name="relation_father_g">Father</string>
+    <string name="relation_father_in_law_g">Father-in-law</string>
+    <string name="relation_friend_g">Friend</string>
+    <string name="relation_g">Əlaqə</string>
+    <string name="relation_grandchild_g">Grandchild</string>
+    <string name="relation_granddaughter_g">Granddaughter</string>
+    <string name="relation_grandfather_g">Grandfather</string>
+    <string name="relation_grandmother_g">Grandmother</string>
+    <string name="relation_grandparent_g">Grandparent</string>
+    <string name="relation_grandson_g">Grandson</string>
+    <string name="relation_hint_g">Əlaqədar şəxs</string>
+    <string name="relation_husband_g">Husband</string>
+    <string name="relation_kin_alt_g">Relative</string>
+    <string name="relation_kin_g">Kin</string>
+    <string name="relation_manager_g">Manager</string>
+    <string name="relation_me_g">Me</string>
+    <string name="relation_met_g">Met</string>
+    <string name="relation_mother_g">Mother</string>
+    <string name="relation_mother_in_law_g">Mother-in-law</string>
+    <string name="relation_muse_g">Muse</string>
+    <string name="relation_neighbor_g">Neighbor</string>
+    <string name="relation_nephew_g">Nephew</string>
+    <string name="relation_niece_g">Niece</string>
+    <string name="relation_parent_g">Parent</string>
+    <string name="relation_partner_g">Partner</string>
+    <string name="relation_referred_by_g">Referred by</string>
+    <string name="relation_relative_g">Relative</string>
+    <string name="relation_sibling_g">Sibling</string>
+    <string name="relation_sister_g">Sister</string>
+    <string name="relation_sister_in_law_g">Sister-in-law</string>
+    <string name="relation_son_g">Son</string>
+    <string name="relation_son_in_law_g">Son-in-law</string>
+    <string name="relation_spouse_g">Spouse</string>
+    <string name="relation_subordinate_g">Subordinate</string>
+    <string name="relation_superior_g">Boss</string>
+    <string name="relation_sweetheart_g">Sweetheart</string>
+    <string name="relation_uncle_g">Uncle</string>
+    <string name="relation_wife_g">Wife</string>
+    <string name="relations_g">Əlaqədar şəxslər</string>
+    <string name="relative_date">Nisbi tarix</string>
+    <string name="remind_me">Yadıma sal</string>
+    <string name="reminder_triggers_in">Xatırladıcının işləməsinə qalan vaxt:\n%s</string>
+    <string name="reminder_warning">Xahiş olunur xatırladıcılara istinad etməzdən əvvəl işləyib işləmədiyini yoxlayın. Güc qoruma parametrləri onların işləməsində problem yarada bilər.</string>
+    <string name="remove">Sil</string>
+    <string name="remove_all">Remove all</string>
+    <string name="remove_all_description">Remove all folders from the list of excluded\? This will not delete the folders.</string>
+    <string name="remove_confirmation">Are you sure you want to remove the selected items from the Call History\?</string>
+    <string name="remove_exif">Remove EXIF</string>
+    <string name="remove_exif_confirmation">Are you sure you want to remove EXIF values like GPS coordinates, camera model etc?</string>
+    <string name="remove_from_favorites">Sevimlilərdən sil</string>
+    <string name="rename">Yenidən adlandır</string>
+    <string name="rename_date_time_pattern">%Y - year\n%M - month\n%D - day\n%h - hour\n%m - minute\n%s - second\n%i - number increasing from 1</string>
+    <string name="rename_file">Faylı yenidən adlandır</string>
+    <string name="rename_file_error">Faylı adlandırmaq olmur</string>
+    <string name="rename_folder">Qovluğu yenidən adlandır</string>
+    <string name="rename_folder_empty">Qovluq adı boş ola bilməz</string>
+    <string name="rename_folder_error">Qovluğu adlandırmaq olmur</string>
+    <string name="rename_folder_exists">Bu adda qovluq artıq mövcuddur</string>
+    <string name="rename_folder_ok">Qovluq uğurla adlandırıldı</string>
+    <string name="rename_folder_root">Yaddaşın root qovluğunu adlandırmaq olmur</string>
+    <string name="rename_in_sd_card_system_restriction">The system does not allow renaming in this folder</string>
+    <string name="rename_internal_system_restriction">Cannot rename folders directly on internal storage, only subfolders</string>
+    <string name="renaming_folder">Qovluq adlandırma</string>
+    <string name="repeat_pattern">Modeli təkrarlayın</string>
+    <string name="repeat_pin">PIN\'i təkrarlayın</string>
+    <string name="reprint_title">Reprint (fingerprint protection)</string>
+    <string name="request_access">Request access</string>
+    <string name="request_the_required_permissions">Lazım olan icazələri istə</string>
+    <string name="resize">Resize</string>
+    <string name="resolution">Görüntü imkanı</string>
+    <string name="restart_required">Application restart required</string>
+    <string name="restore_all_files">Bütün faylları geri qaytar</string>
+    <string name="restore_defaults">Standarta qaytar</string>
+    <string name="restore_purchase">Restore purchase</string>
+    <string name="restore_selected_files">Bu faylları geri qaytar</string>
+    <string name="restore_this_file">Bu faylı geri qaytar</string>
+    <string name="restored_previous_purchase_please_restart">Restored previous purchase. Please restart the app to make use of all features.</string>
+    <string name="restoring_purchase">Restoring purchase…</string>
+    <string name="resume_call">Resume call</string>
+    <string name="right_contacts">Right Contacts</string>
+    <string name="right_dialer">Right Dialer</string>
+    <string name="right_files">Right Files</string>
+    <string name="right_gallery">Right Gallery</string>
+    <string name="right_sms_messenger">Right Messages</string>
+    <string name="right_voice_recorder">Right Voice Memos</string>
+    <string name="robolectric_title">Robolectric (testing framework)</string>
+    <string name="root">Root</string>
+    <string name="round_play_icon">Dəyirmi oyun/fasilə işarəsi</string>
+    <string name="round_play_icon_summary">Çal/duraklat işarəsi əsas rəngdə rənglənir</string>
+    <string name="row_count">Row count</string>
+    <string name="rtl_viewpager_title">RtlViewPager (right to left swiping)</string>
+    <string name="sanselan_title">Apache Sanselan (reading image metadata)</string>
+    <string name="saturday">Şənbə</string>
+    <string name="saturday_letter">Ş</string>
+    <string name="saturday_short">Şnb</string>
+    <string name="save">Saxla</string>
+    <string name="save_as">Saxla</string>
+    <string name="save_before_closing">Yadda saxlamadığınız dəyişikliklər var. Çıxmazdan əvvəl saxlanılsın?</string>
+    <string name="save_recordings_in_summary">Android 10+ -dan başlayaraq tətbiqin fayllarınıza girişi yoxdur</string>
+    <string name="saving">Saxlanılır…</string>
+    <string name="saving_label">Saxlama</string>
+    <string name="scanning">Scanning…</string>
+    <string msgid="5659570757430909869" name="screen_lock_prompt_message">"Davam etmək üçün ekran kilidinizi daxil edin"</string>
+    <string name="screen_slide_animation">Ekran slayd animasiyası</string>
+    <string name="screen_slide_animation_depth">Dərinlik</string>
+    <string name="screen_slide_animation_zoomout">Kiçikləşdirin</string>
+    <string name="scrolling">Sürüşdürmə</string>
+    <string name="sd_card">SD Kart</string>
+    <string name="sd_card_usb_same">SD kart və USB cihaz yolu eyni ola bilməz</string>
+    <string name="search">Axtar</string>
+    <string name="search_albums">Search albums</string>
+    <string name="search_apps">Search apps</string>
+    <string name="search_artists">Search artists</string>
+    <string name="search_calls">Search calls</string>
+    <string name="search_contacts">Search contacts</string>
+    <string name="search_conversations">Search conversations</string>
+    <string name="search_events">Search events</string>
+    <string name="search_favorites">Search favorites</string>
+    <string name="search_files">Search files</string>
+    <string name="search_files_and_folders">Search files and folders</string>
+    <string name="search_folders">Search folders</string>
+    <string name="search_groups">Search groups</string>
+    <string name="search_history">Search history</string>
+    <string name="search_in_placeholder">Search in %s</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"Axtarın"</string>
+    <string name="search_playlists">Search playlists</string>
+    <string name="search_recordings">Search recordings</string>
+    <string name="search_text">Search text</string>
+    <string name="search_tracks">Search tracks</string>
+    <string name="seconds_letter">s</string>
+    <string name="seconds_raw">saniyələr</string>
+    <string name="security">Qoruma</string>
+    <string name="select_a_different_color">Select a different color</string>
+    <string name="select_all">Hamsını seç</string>
+    <string name="select_destination">Hədəf seç</string>
+    <string name="select_file">Fayl seç</string>
+    <string name="select_folder">Qovluq seç</string>
+    <string name="select_photo">Select photo</string>
+    <string name="select_sim">Select a SIM for this call</string>
+    <string name="select_storage">Yaddaş seç</string>
+    <string name="select_text">Select text</string>
+    <string msgid="6043586758067023" name="selected">"Seçilib"</string>
+    <string name="send_email">Send email</string>
+    <string name="send_sms">Send SMS</string>
+    <string name="september">Sentyabr</string>
+    <string name="september_short">Sept</string>
+    <string name="set_as">Təyin et</string>
+    <string name="set_as_default">Set as default</string>
+    <string name="settings">Parametrlər</string>
+    <string name="settings_exported_successfully">Settings exported successfully</string>
+    <string name="settings_icon">Parametrlər ikonu</string>
+    <string name="settings_imported_successfully">Settings imported successfully</string>
+    <string name="seven">Seven</string>
+    <string name="share">Paylaş</string>
+    <string name="share_colors_success">Rənglər uğurla yeniləndi. \'Paylanmış\' adlı yeni tema əlavə edildi, xahiş olunur gələcəkdə bütün tətbiqlərin yeniləmələri üçün bundan istifadə edin.</string>
+    <string name="share_text">Ey! gəl sən də %2$s\'də %1$s\'ə nəzər yetir!</string>
+    <string name="share_via">Paylaş</string>
+    <string name="shared">Paylanmış</string>
+    <string name="shared_theme_note">Note that even though you are using the Pro app version, you still need Simple Thank You for technical reasons. It takes care of the color synchronization.</string>
+    <string name="shortcut">Shortcut</string>
+    <string name="show_blocked_numbers">Şou bloklanıb</string>
+    <string name="show_button_blocked_numbers">Bloklanmış zəngləri gizlətməmək üçün düyməni göstərin</string>
+    <string name="show_call_confirmation_dialog">Zəngə başlamazdan əvvəl zəng təsdiq pəncərəsi göstər</string>
+    <string name="show_call_details">Show call details</string>
+    <string name="show_caller_description_g">Əlavə zəng edən məlumatı göstərin</string>
+    <string name="show_contact_thumbnails_g">Kontakt miniatürlərini göstərin</string>
+    <string name="show_dialpad">Show dialpad</string>
+    <string name="show_dividers">Bölücüləri göstərin</string>
+    <string name="show_hidden_items">Gizli faylları göstər</string>
+    <string name="show_incoming_calls_full_screen">Always display incoming calls on full screen</string>
+    <string name="show_info_bubble">Sürüşdürmə çubuğu ilə hərəkət zamanı məlumat ekranını göstər</string>
+    <string name="show_line_numbers">Show line numbers</string>
+    <string name="show_phone_numbers_g">Telefon nömrələrini əsas ekranda göstər</string>
+    <string name="show_search">Show a search bar</string>
+    <string name="show_the_recycle_bin">Show the Recycle Bin</string>
+    <string name="sideloaded_app">
+        <![CDATA[
+            It looks like your app version is corrupt. Please download the original version <a href="%s">here</a>.
+        ]]>
+    </string>
+    <string name="simple_app_launcher">Simple App Launcher</string>
+    <string name="simple_calculator">Simple Calculator</string>
+    <string name="simple_calendar">Simple Calendar</string>
+    <string name="simple_camera">Simple Camera</string>
+    <string name="simple_clock">Simple Clock</string>
+    <string name="simple_contacts">Simple Contacts</string>
+    <string name="simple_dialer">Simple Dialer</string>
+    <string name="simple_draw">Simple Draw</string>
+    <string name="simple_file_manager">Simple File Manager</string>
+    <string name="simple_flashlight">Simple Flashlight</string>
+    <string name="simple_gallery">Simple Gallery</string>
+    <string name="simple_keyboard">Simple Keyboard</string>
+    <string name="simple_launcher">Simple Launcher</string>
+    <string name="simple_music_player">Simple Music Player</string>
+    <string name="simple_notes">Simple Notes</string>
+    <string name="simple_renaming">Simple renaming</string>
+    <string name="simple_sms_messenger">Simple SMS Messenger</string>
+    <string name="simple_thank_you">Simple Thank You</string>
+    <string name="simple_voice_recorder">Simple Voice Recorder</string>
+    <string name="six">Six</string>
+    <string name="size">Ölçü</string>
+    <string name="skip">Keç</string>
+    <string name="skip_delete_confirmation">Silmə təsdiq dialoqunu göstərmə</string>
+    <string name="skip_the_recycle_bin">Skip the Recycle Bin, delete files directly</string>
+    <string name="sleep_timer">Sleep timer</string>
+    <string name="small">Kiçik</string>
+    <string name="sms_messenger_short">SMS Messenger</string>
+    <string name="sms_mms_title">SMS MMS (SMS and MMS handling)</string>
+    <string name="snooze">Yuxu</string>
+    <string name="snooze_time">Yuxu intervalı</string>
+    <string name="social">Social</string>
+    <string name="solarized">Közərmiş</string>
+    <string name="song_title">Musiqi başlığı</string>
+    <string name="sort_by">Sırala</string>
+    <string name="sort_numeric_parts">Sort numeric parts by actual value</string>
+    <string name="sort_randomly">Sort randomly</string>
+    <string name="source">Kök</string>
+    <string name="source_and_destination_same">Kök və hədəf eyni ola bilməz</string>
+    <string name="source_file_doesnt_exist">Kök faylı %s yoxdur</string>
+    <string name="special_thanks_to">Special thanks to</string>
+    <string name="speech_bubble">Nitq üslubu</string>
+    <string name="speed_dial">Speed dial</string>
+    <string name="speed_dial_label">Click on a number to assign a contact to it. You can then quickly call the given contact by long pressing the given number at the dialer.</string>
+    <string name="start_free_trial">Start free trial</string>
+    <string name="start_name_with_surname">Ada soyaddan başla</string>
+    <string name="start_week_on">Start week on</string>
+    <string name="startup">Başlanğıc</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="stetho_title">Stetho (debugging databases)</string>
+    <string name="stop_showing_excluded">Stop showing excluded</string>
+    <string name="stop_showing_hidden">Gizlənmiş mediyanı göstərmə</string>
+    <string name="storage">Storage</string>
+    <string name="string_to_add">String to add</string>
+    <string name="subsampling_title">Subsampling Scale Image View (yaxınlaşdırılan şəkillər)</string>
+    <string name="sunday">Bazar</string>
+    <string name="sunday_first">Həftəyə Bazar Ertəsindən başla</string>
+    <string name="sunday_letter">B</string>
+    <string name="sunday_short">Bzr</string>
+    <string name="support">Support</string>
+    <string name="support_project_summary">Get one of our paid apps to support future development and unlock extra features</string>
+    <string name="surname">Soyad</string>
+    <string msgid="2561197295334830845" name="switch_role">"Dəyişdirin"</string>
+    <string name="system_default">System default</string>
+    <string name="system_folder_copy_restriction">The system does not allow copying into this folder, please pick another one</string>
+    <string name="system_folder_restriction">The system does not allow the operation in this folder, please pick another one</string>
+    <string name="system_service_disabled">System service for selecting files and folders is unavailable</string>
+    <string name="system_sounds">Sistem səsləri</string>
+    <string msgid="1672349317127674378" name="tab">"Tab"</string>
+    <string name="tab_navigation">Tab naviqasiyası</string>
+    <string name="tabs">Nişanlar</string>
+    <string name="take_photo">Şəkil çək</string>
+    <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> faiz."</string>
+    <string name="temporarily_show_excluded">Temporarily show excluded</string>
+    <string name="temporarily_show_hidden">Gizlənmişi müvəqqəti göstər</string>
+    <string name="text">Mətn</string>
+    <string name="text_color">Yazı rəngi</string>
+    <string name="text_cursor_color">Mətn kursorunun rəngi</string>
+    <string name="thank_you">Thank you</string>
+    <string name="thank_you_short">Təşəkkürlər</string>
+    <string name="theme">Mövzu</string>
+    <string name="themes">Mövzular</string>
+    <string name="themes_summary">Diqqətlə seçilmiş proqram mövzuları, avtomatik mövzu dəyişdiricisi və Android 12+ üçün sistem mövzusu dəstəyi</string>
+    <string name="third_party_licences">Üçüncü partiya lisenziyaları</string>
+    <string name="three">Three</string>
+    <string name="thumbnails">Thumbnails</string>
+    <string name="thursday">Cümə Axşamı</string>
+    <string name="thursday_letter">C.A</string>
+    <string name="thursday_short">Cü.A</string>
+    <string name="time_remaining">Time remaining:\n%s</string>
+    <string name="timer">Taymer</string>
+    <string name="timers_notification_msg">Taymerlər işləyir</string>
+    <string name="tip_excellent">Əla dəstək</string>
+    <string name="tip_incredible">İnanılmaz dəstək</string>
+    <string name="tip_jar">Dəstək</string>
+    <string name="tip_kind">yaxşı dəstək</string>
+    <string name="title">Başlıq</string>
+    <string name="today">Bugün</string>
+    <string name="toggle_filename">Toggle filename visibility</string>
+    <string name="tomorrow">Sabah</string>
+    <string name="too_many_incorrect_attempts">Too many incorrect unlock attempts.\nTry again in %d seconds.</string>
+    <string msgid="3765533235322692011" name="tooltip_description">"alət izahı"</string>
+    <string msgid="3124740595719787496" name="tooltip_label">"alət izahını göstərin"</string>
+    <string name="top">Yuxarı</string>
+    <string name="top_app_bar_colored">Rəngli üst proqram çubuğu</string>
+    <string name="translation">Translation</string>
+    <string name="translation_arabic">Arabic</string>
+    <string name="translation_azerbaijani">Azerbaijani</string>
+    <string name="translation_basque">Basque</string>
+    <string name="translation_bengali">Bengali</string>
+    <string name="translation_breton">Breton</string>
+    <string name="translation_bulgarian">Bulgarian</string>
+    <string name="translation_catalan">Catalan</string>
+    <string name="translation_chinese_cn">Chinese (Simplified)</string>
+    <string name="translation_chinese_hk">Chinese (Hong Kong)</string>
+    <string name="translation_chinese_tw">Chinese (Traditional)</string>
+    <string name="translation_croatian">Croatian</string>
+    <string name="translation_czech">Czech</string>
+    <string name="translation_danish">Danish</string>
+    <string name="translation_dutch">Dutch</string>
+    <string name="translation_english">English</string>
+    <string name="translation_finnish">Finnish</string>
+    <string name="translation_french">French</string>
+    <string name="translation_galician">Galician</string>
+    <string name="translation_german">German</string>
+    <string name="translation_greek">Greek</string>
+    <string name="translation_hebrew">Hebrew</string>
+    <string name="translation_hindi">Hindi</string>
+    <string name="translation_hungarian">Hungarian</string>
+    <string name="translation_indonesian">Indonesian</string>
+    <string name="translation_italian">Italian</string>
+    <string name="translation_japanese">Japanese</string>
+    <string name="translation_korean">Korean</string>
+    <string name="translation_lithuanian">Lithuanian</string>
+    <string name="translation_nepali">Nepali</string>
+    <string name="translation_norwegian">Norwegian</string>
+    <string name="translation_persian">Persian</string>
+    <string name="translation_polish">Polish</string>
+    <string name="translation_portuguese">Portuguese</string>
+    <string name="translation_romanian">Romanian</string>
+    <string name="translation_russian">Russian</string>
+    <string name="translation_serbian">Serbian</string>
+    <string name="translation_slovak">Slovak</string>
+    <string name="translation_slovenian">Slovenian</string>
+    <string name="translation_spanish">Spanish</string>
+    <string name="translation_swedish">Swedish</string>
+    <string name="translation_tamil">Tamil</string>
+    <string name="translation_turkish">Turkish</string>
+    <string name="translation_ukrainian">Ukrainian</string>
+    <string name="translation_vietnamese">Vietnamese</string>
+    <string name="translation_welsh">Welsh</string>
+    <string name="transparent">Transparent</string>
+    <string name="transparent_bar">Transparent bars</string>
+    <string name="transparent_call_screen_g">Şəffaf Zəng Ekranı</string>
+    <string name="transparent_color">Transparent color</string>
+    <string name="transparent_navigation_bar">Transparent bottom navigation bar</string>
+    <string name="trial_end_description">Please upgrade to the Pro version to enjoy the app to the fullest.\n\nYou just have to pay for it once in a lifetime and if you won\'t be satisfied, you can uninstall it and get a refund.\n\nSee you there :)</string>
+    <string name="trial_expired">Trial expired</string>
+    <string name="trial_expires_soon">Your trial expires soon.</string>
+    <string name="trial_start_description">Thank you for using our app. You can use this unlocked version for &lt;font color=\'#FFFFFF\'>%d days&lt;/font>. Once the trial ends, please consider upgrading to the Pro version. It has a huge amount of new features, modern design, no ads and many other improvements.
+        \n\nYou just have to pay for it once in a lifetime and if you won\'t be satisfied, you can uninstall it and get a refund.\n\nHope you\'ll like it :)</string>
+    <string name="tuesday">Çərşənbə Axşamı</string>
+    <string name="tuesday_letter">Ç.A</string>
+    <string name="tuesday_short">Çrş.A</string>
+    <string name="turn_microphone_off">Turn microphone off</string>
+    <string name="turn_microphone_on">Turn microphone on</string>
+    <string name="turn_speaker_off">Turn speaker off</string>
+    <string name="turn_speaker_on">Turn speaker on</string>
+    <string name="two">Two</string>
+    <string name="type_2_characters">Axtarışa başlamaq üçün ən az 2 simvol yazın.</string>
+    <string name="unblock">Unblock</string>
+    <string name="unblock_confirmation">Are you sure you want to unblock \"%s\"?</string>
+    <string name="unblock_contact">Unblock contact</string>
+    <string name="unblock_contact_fail">Contact could not be unblocked</string>
+    <string name="unblock_contact_success">Contact unblocked</string>
+    <string name="unblock_number">Nömrəni blokdan çıxarın</string>
+    <string name="unblock_numbers">Nömrələri blokdan çıxarın</string>
+    <string name="undo">Geri al</string>
+    <string name="undo_changes">Dəyişiklikləri geri al</string>
+    <string name="undo_changes_confirmation">Dəyişiklikləri geri almaq istədiyinizə əminsiniz?</string>
+    <string name="uneven_grid">Uneven Grid</string>
+    <string name="unhide">Gizlətmə</string>
+    <string name="unhide_folder">Qovluğu gizlətmə</string>
+    <string name="unknown">Bilinməyən</string>
+    <string name="unknown_caller">Unknown Caller</string>
+    <string name="unknown_error_occurred">Bilinməyən xəta baş verdi</string>
+    <string name="unlock">Unlock</string>
+    <string name="unlock_folder">Unlock folder</string>
+    <string name="unlock_for_one_final_day">Unlock the app for one final day</string>
+    <string name="unpin_item">Unpin item</string>
+    <string name="unset_default_sim">Unset default SIM</string>
+    <string name="update_thank_you">Xahiş olunur Sadə Təşəkkür tətbiqini ən son versiyaya yeniləyin</string>
+    <string name="update_thank_you_g">Xahiş olunur Sadə Təşəkkür tətbiqini ən son versiyaya yeniləyin</string>
+    <string name="updating">Yenilənir…</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="upgrade_calendar">You have to migrate locally stored events manually via exporting in an .ics file, then importing. You can find both export/import buttons at the main screen menu.</string>
+    <string name="upgrade_to_pro">Upgrade to Pro</string>
+    <string name="upgrade_to_pro_long">Your app version will not be updated anymore. Please upgrade to the Pro version to receive new fixes and other improvements.</string>
+    <string name="upgrade_to_pro_long_click">Your app version will not be updated anymore. Please upgrade to the Pro version to receive new fixes and other improvements by clicking here.</string>
+    <string name="upgraded_from_free">Hello,\n\nseems like you just upgraded from the free version. Once you are happy with this one and maybe migrated your data over, you can uninstall the old free one to avoid launching it accidentally as you will not need it anymore.\n\nThanks!</string>
+    <string name="upgraded_from_free_calendar">Hello,\n\nseems like you just upgraded from the free version. If you want to migrate your locally stored events over, you have to do it manually by exporting them into an .ics file in the free app version and importing here through the top menu. \n\nOnce you are satisfied with your setup in the Pro version, you can uninstall the old free one as you won\'t need it anymore.\n\nThanks!</string>
+    <string name="upgraded_from_free_contacts">Hello,\n\nseems like you just upgraded from the free version. If you had any contacts stored under \"%s\", you have to migrate them manually by exporting in a .vcf file from the free app version and importing here through the top menu.\n\nOnce you are satisfied with your setup in the Pro version, you can uninstall the old free one as you won\'t need it anymore.\n\nThanks!</string>
+    <string name="upgraded_from_free_gallery">Hello,\n\nseems like you just upgraded from the free version. Once you are happy with this one and maybe migrated your settings and favorites over, you can uninstall the old free one to avoid launching it accidentally as you will not need it anymore.\n\nThanks!</string>
+    <string name="upgraded_from_free_notes">Hello,\n\nseems like you just upgraded from the free version. If you want to migrate your notes over, you have to do it manually by exporting them into a file in the free app version and importing here through the top menu. \n\nOnce you are satisfied with your setup in the Pro version, you can uninstall the old free one as you won\'t need it anymore.\n\nThanks!</string>
+    <string name="upgraded_to_pro">Hey,\n\nseems like you already have the Pro app version too. You will not need this one anymore, you can uninstall it.</string>
+    <string name="upgraded_to_pro_gallery">Hello,\n\nseems like you already have the Pro app version too. Once you are happy with it and maybe migrated your settings and favorites over, you can uninstall this one to avoid launching it accidentally as you will not need it anymore.\n\nThanks!</string>
+    <string name="usb">USB</string>
+    <string name="usb_detected">You seem to have an USB device attached to your device. To make sure its files appear properly, you need to grant additional permissions.</string>
+    <string name="use_24_hour_time_format">24 saat formatından istifadə et</string>
+    <string msgid="6524145989441579428" name="use_biometric_label">"Biometrik məlumatlardan istifadə edin"</string>
+    <string msgid="5385448280139639016" name="use_biometric_or_screen_lock_label">"Biometrik məlumatlardan və ya ekran kilidindən istifadə edin"</string>
+    <string name="use_custom_sorting">Use custom sorting</string>
+    <string name="use_default">Use default</string>
+    <string name="use_english_language">İngilis dilində işlət</string>
+    <string msgid="6533512708069459542" name="use_face_label">"Üzdən istifadə edin"</string>
+    <string msgid="2116180187159450292" name="use_face_or_screen_lock_label">"Üz və ya ekran kilidindən istifadə edin"</string>
+    <string msgid="6961788485681412417" name="use_fingerprint_label">"Barmaq izindən istifadə edin"</string>
+    <string msgid="7577690399303139443" name="use_fingerprint_or_screen_lock_label">"Barmaq izi və ya ekran kilidindən istifadə edin"</string>
+    <string name="use_for_this_folder">Yalnız bu qovluq üçün işlət</string>
+    <string name="use_icon_tabs">Nişanlar nişanlarından istifadə edin</string>
+    <string name="use_icon_tabs_summary">Nişanlardakı mətn əvəzinə nişanlar</string>
+    <string name="use_same_snooze">Həmişə eyni yuxu intervalından istifadə et</string>
+    <string msgid="5459869335976243512" name="use_screen_lock_label">"Ekran kilidi istifadə edin"</string>
+    <string name="value">Value</string>
+    <string name="value_cannot_be_empty">Value cannot be empty</string>
+    <string name="value_copied_to_clipboard">Miqdar panelə kopyalandı</string>
+    <string name="value_copied_to_clipboard_show">Miqdar panelə kopyalandı:\n%s</string>
+    <string name="version_placeholder">Version %s</string>
+    <string name="vibrate_on_button_press">Düyməyə toxunduqda titrə</string>
+    <string name="video_call">Video zəng</string>
+    <string name="view_contact_details">View contact details</string>
+    <string name="visibility">Görünürlük</string>
+    <string name="voice_recorder_short">Voice Recorder</string>
+    <string name="voicerecorder">VoiceMemos</string>
+    <string name="voicerecorder_summary">Voice recorder</string>
+    <string name="wallpapers">Wallpapers</string>
+    <string name="website">Website</string>
+    <string name="website_label">Kök koda keçiş üçün</string>
+    <string name="wednesday">Çərşənbə</string>
+    <string name="wednesday_letter">Ç</string>
+    <string name="wednesday_short">Çrş</string>
+    <string name="week_number_short">wk.</string>
+    <string name="welcome_to_app_name">Welcome to %s!</string>
+    <string name="whats_new">Yeni nə var</string>
+    <string name="whats_new_disclaimer">* burada yalnız böyük təzələmələr sıralanıb, həmişə əlavə yeniliklər də olur</string>
+    <string name="white">White</string>
+    <string name="why_upgrade">Get the Pro version now!</string>
+    <string name="why_upgrade_advanced_photo_editor">Advanced photo editor</string>
+    <string name="why_upgrade_advanced_photo_video_editor">Advanced photo &amp; video editor</string>
+    <string name="why_upgrade_attendees_emails">Attendees and email reminders</string>
+    <string name="why_upgrade_background_color_customization">Background color customization</string>
+    <string name="why_upgrade_basic_version">Basic</string>
+    <string name="why_upgrade_batch_renaming">Advanced batch file renaming</string>
+    <string name="why_upgrade_checklists">Checklists</string>
+    <string name="why_upgrade_contact_filtering">Contact filtering</string>
+    <string name="why_upgrade_contact_private_contacts">Privately stored contacts</string>
+    <string name="why_upgrade_customizable_contact_ringtones">Customizable contact ringtones</string>
+    <string name="why_upgrade_date_and_time_format">Date and time format customization</string>
+    <string name="why_upgrade_different_note_per_widget">Different note and colors per widget</string>
+    <string name="why_upgrade_duplicate_contact_merging">Improved duplicate contact merging</string>
+    <string name="why_upgrade_easy_event_importing">Easy event importing</string>
+    <string name="why_upgrade_file_compression">File compression support</string>
+    <string name="why_upgrade_file_importing">File importing support</string>
+    <string name="why_upgrade_folder_locking">Individual folder locking</string>
+    <string name="why_upgrade_font_size_customization">Font size customization</string>
+    <string name="why_upgrade_footer">100% Money Back Guarantee</string>
+    <string name="why_upgrade_footer_one_time_payment">One time payment</string>
+    <string name="why_upgrade_heic_support">HEIC/HEIF file support</string>
+    <string name="why_upgrade_improved_design">Improved design</string>
+    <string name="why_upgrade_many_other_improvements">Many other improvements</string>
+    <string name="why_upgrade_new_widgets">New widgets</string>
+    <string name="why_upgrade_no_ads">No ads</string>
+    <string name="why_upgrade_no_internet_access">No internet access</string>
+    <string name="why_upgrade_note_locking">Note locking</string>
+    <string name="why_upgrade_printing_support">Printing support</string>
+    <string name="why_upgrade_private_contact_sharing">Optional private contact sharing within our apps</string>
+    <string name="why_upgrade_pro_version">Pro</string>
+    <string name="why_upgrade_recents_tab">Tab with recent files</string>
+    <string name="why_upgrade_shortcuts">Home screen shortcuts</string>
+    <string name="why_upgrade_time_zone_support">Time zone support</string>
+    <string name="why_upgrade_zooming">Zooming</string>
+    <string name="widget_locked_pro">The widget is locked.\nPlease upgrade to the Pro version to unlock it.</string>
+    <string name="widgets">Widgetlər</string>
+    <string name="work">İş</string>
+    <string name="work_fax">İş Faksı</string>
+    <string name="wrong_folder_selected">Wrong folder selected, please select path \'%s\'</string>
+    <string name="wrong_pattern">Yanlış model</string>
+    <string name="wrong_pin">PIN yanlışdır</string>
+    <string name="wrong_root_selected">Seçilən qovluq yanlışdır, xahiş olunur SD kartın root qovluğunu seçin</string>
+    <string name="wrong_root_selected_usb">Yanlış qovluq seçilib, xahiş olunur USB cihazın root qovluğunu seçin</string>
+    <string name="yes">Bəli</string>
+    <string name="yesterday">Dünən</string>
+    <string name="your_sounds">Sizin səsləriniz</string>
+    <string name="zero">Zero</string>
+    <string name="zip4j_title">Zip4j (ZIP compression and decompression)</string>
+</resources>

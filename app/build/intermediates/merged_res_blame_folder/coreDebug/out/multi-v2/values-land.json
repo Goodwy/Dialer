@@ -1,0 +1,72 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.goodwy.dialer.app-mergeCoreDebugResources-75:/values-land/values-land.xml",
+            "map": [
+                {
+                    "source": "/Users/codigo/.gradle/caches/transforms-3/23786303768e686522845d94af2a7d51/transformed/material-1.9.0/res/values-land/values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,26,35,40",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,130,204,277,347,419,489,554,621,691,763,832,901,983,1073,1149,1217,1284,1362,1427,1494,1666,2235,2504",
+                        "endLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,25,34,39,42",
+                        "endColumns": "74,73,72,69,71,69,64,66,69,71,68,68,81,89,75,67,66,77,64,66,10,10,10,10",
+                        "endOffsets": "125,199,272,342,414,484,549,616,686,758,827,896,978,1068,1144,1212,1279,1357,1422,1489,1661,2230,2499,2727"
+                    },
+                    "to": {
+                        "startLines": "7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,28,29,30,34,43,48",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "374,449,523,596,666,738,808,873,940,1010,1082,1151,1220,1302,1392,1468,1536,1603,1839,1904,1971,2143,2712,2981",
+                        "endLines": "7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,28,29,33,42,47,50",
+                        "endColumns": "74,73,72,69,71,69,64,66,69,71,68,68,81,89,75,67,66,77,64,66,10,10,10,10",
+                        "endOffsets": "444,518,591,661,733,803,868,935,1005,1077,1146,1215,1297,1387,1463,1531,1598,1676,1899,1966,2138,2707,2976,3204"
+                    }
+                },
+                {
+                    "source": "/Users/codigo/.gradle/caches/transforms-3/3a1ea3ee3f21a91732a0bf1c5fc2bffe/transformed/jetified-Goodwy-Commons-4316a7028d/res/values-land/values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,114,161,214",
+                        "endColumns": "58,46,52,57",
+                        "endOffsets": "109,156,209,267"
+                    },
+                    "to": {
+                        "startLines": "5,25,26,27",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "264,1681,1728,1781",
+                        "endColumns": "58,46,52,57",
+                        "endOffsets": "318,1723,1776,1834"
+                    }
+                },
+                {
+                    "source": "/Users/codigo/.gradle/caches/transforms-3/20376706afbf25d5daea10c95729d63f/transformed/appcompat-1.6.1/res/values-land/values-land.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,125,196",
+                        "endColumns": "69,70,67",
+                        "endOffsets": "120,191,259"
+                    }
+                },
+                {
+                    "source": "/Users/codigo/Tuna/Dialer/app/src/main/res/values-land/dimens.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "80",
+                        "endColumns": "50",
+                        "endOffsets": "126"
+                    },
+                    "to": {
+                        "startLines": "6",
+                        "startColumns": "4",
+                        "startOffsets": "323",
+                        "endColumns": "50",
+                        "endOffsets": "369"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,1734 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
+    <plurals name="by_days">
+        <item quantity="one">%d dan</item>
+        <item quantity="few">%d dana</item>
+        <item quantity="other">%d dana</item>
+    </plurals>
+    <plurals name="by_hours">
+        <item quantity="one">%d sat</item>
+        <item quantity="few">%d sata</item>
+        <item quantity="other">%d sati</item>
+    </plurals>
+    <plurals name="by_minutes">
+        <item quantity="one">%d minuta</item>
+        <item quantity="few">%d minute</item>
+        <item quantity="other">%d minuta</item>
+    </plurals>
+    <plurals name="by_months">
+        <item quantity="one">%d mjesec</item>
+        <item quantity="few">%d mjeseca</item>
+        <item quantity="other">%d mjeseci</item>
+    </plurals>
+    <plurals name="by_seconds">
+        <item quantity="one">%d sekundu</item>
+        <item quantity="few">%d sekunde</item>
+        <item quantity="other">%d sekundi</item>
+    </plurals>
+    <plurals name="by_weeks">
+        <item quantity="one">%d tjedan</item>
+        <item quantity="few">%d tjedna</item>
+        <item quantity="other">%d tjedna</item>
+    </plurals>
+    <plurals name="by_years">
+        <item quantity="one">%d godina</item>
+        <item quantity="few">%d godine</item>
+        <item quantity="other">%d godina</item>
+    </plurals>
+    <plurals name="column_counts">
+        <item quantity="one">%d stupac</item>
+        <item quantity="few">%d stupca</item>
+        <item quantity="other">%d stupaca</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d dan</item>
+        <item quantity="few">%d dana</item>
+        <item quantity="other">%d dana</item>
+    </plurals>
+    <plurals name="days_before">
+        <item quantity="one">%d dan prije</item>
+        <item quantity="few">%d dana prije</item>
+        <item quantity="other">%d dana prije</item>
+    </plurals>
+    <plurals name="delete_contacts">
+        <item quantity="one">%d kontakt</item>
+        <item quantity="few">%d kontakta</item>
+        <item quantity="other">%d kontakta</item>
+    </plurals>
+    <plurals name="delete_items">
+        <item quantity="one">%d stavka</item>
+        <item quantity="few">%d stavke</item>
+        <item quantity="other">%d stavki</item>
+    </plurals>
+    <plurals name="delete_warning">
+        <item quantity="one">UPOZORENJE: Brišeš %d mapu</item>
+        <item quantity="few">UPOZORENJE: Brišeš %d mape</item>
+        <item quantity="other">UPOZORENJE: Brišeš %d mapa</item>
+    </plurals>
+    <plurals name="deleting_items">
+        <item quantity="one">Brisanje %d stavke</item>
+        <item quantity="few">Brisanje %d stavki</item>
+        <item quantity="other">Brisanje %d stavki</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d sat</item>
+        <item quantity="few">%d sata</item>
+        <item quantity="other">%d sati</item>
+    </plurals>
+    <plurals name="hours_before">
+        <item quantity="one">%d sat prije</item>
+        <item quantity="few">%d sata prije</item>
+        <item quantity="other">%d sati prije</item>
+    </plurals>
+    <plurals name="in_days">
+        <item quantity="one">%d dan</item>
+        <item quantity="few">%d dana</item>
+        <item quantity="other">%d dana</item>
+    </plurals>
+    <plurals name="in_hours">
+        <item quantity="one">%d sat</item>
+        <item quantity="few">%d sata</item>
+        <item quantity="other">%d sati</item>
+    </plurals>
+    <plurals name="in_minutes">
+        <item quantity="one">%d minute</item>
+        <item quantity="few">%d minute</item>
+        <item quantity="other">%d minuta</item>
+    </plurals>
+    <plurals name="in_months">
+        <item quantity="one">%d mjesec</item>
+        <item quantity="few">%d mjeseca</item>
+        <item quantity="other">%d mjeseci</item>
+    </plurals>
+    <plurals name="in_seconds">
+        <item quantity="one">%d sekunde</item>
+        <item quantity="few">%d sekunde</item>
+        <item quantity="other">%d sekundi</item>
+    </plurals>
+    <plurals name="in_weeks">
+        <item quantity="one">%d tjedan</item>
+        <item quantity="few">%d tjedna</item>
+        <item quantity="other">%d tjedana</item>
+    </plurals>
+    <plurals name="in_years">
+        <item quantity="one">%d godina</item>
+        <item quantity="few">%d godine</item>
+        <item quantity="other">%d godina</item>
+    </plurals>
+    <plurals name="items">
+        <item quantity="one">%d stavka</item>
+        <item quantity="few">%d stavke</item>
+        <item quantity="other">%d stavki</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d minuta</item>
+        <item quantity="few">%d minute</item>
+        <item quantity="other">%d minuta</item>
+    </plurals>
+    <plurals name="minutes_before">
+        <item quantity="one">%d minuta prije</item>
+        <item quantity="few">%d minute prije</item>
+        <item quantity="other">%d minuta prije</item>
+    </plurals>
+    <plurals name="months">
+        <item quantity="one">%d mjesec</item>
+        <item quantity="few">%d mjeseca</item>
+        <item quantity="other">%d mjeseci</item>
+    </plurals>
+    <plurals name="months_before">
+        <item quantity="one">%d mjesec prije</item>
+        <item quantity="few">%d mjeseca prije</item>
+        <item quantity="other">%d mjeseci prije</item>
+    </plurals>
+    <plurals name="moving_items_into_bin">
+        <item quantity="one">%d stavka se premješta u koš za smeće</item>
+        <item quantity="few">%d stavke se premještaju u koš za smeće</item>
+        <item quantity="other">%d stavki se premještaju u koš za smeće</item>
+    </plurals>
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="one">%d nova obavijest</item>
+    <item quantity="few">%d nove obavijesti</item>
+    <item quantity="other">%d novih obavijesti</item>
+  </plurals>
+    <plurals name="row_counts">
+        <item quantity="one">%d row</item>
+        <item quantity="other">%d rows</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">%d sekunda</item>
+        <item quantity="few">%d sekunde</item>
+        <item quantity="other">%d sekundi</item>
+    </plurals>
+    <plurals name="seconds_before">
+        <item quantity="one">%d sekunda prije</item>
+        <item quantity="few">%d sekunde prije</item>
+        <item quantity="other">%d sekundi prije</item>
+    </plurals>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d brojač je pokrenut</item>
+        <item quantity="few">%d brojača su pokrenuta</item>
+        <item quantity="other">%d brojača je pokrenuto</item>
+    </plurals>
+    <plurals name="trial_expires_days">
+        <item quantity="one">Tvoje probno razdoblje isteče za %d dan.</item>
+        <item quantity="few">Tvoje probno razdoblje isteče za %d dana.</item>
+        <item quantity="other">Tvoje probno razdoblje isteče za %d dana.</item>
+    </plurals>
+    <plurals name="weeks">
+        <item quantity="one">%d tjedan</item>
+        <item quantity="few">%d tjedna</item>
+        <item quantity="other">%d tjedana</item>
+    </plurals>
+    <plurals name="weeks_before">
+        <item quantity="one">%d tjedan prije</item>
+        <item quantity="few">%d tjedna prije</item>
+        <item quantity="other">%d tjedana prije</item>
+    </plurals>
+    <plurals name="years">
+        <item quantity="one">%d godina</item>
+        <item quantity="few">%d godine</item>
+        <item quantity="other">%d godina</item>
+    </plurals>
+    <plurals name="years_before">
+        <item quantity="one">%d godina prije</item>
+        <item quantity="few">%d godine prije</item>
+        <item quantity="other">%d godina prije</item>
+    </plurals>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"Idi na početnu"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"Natrag"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"Više opcija"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"Gotovo"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"Prikaži sve"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"Odabir aplikacije"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"ISKLJUČENO"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"UKLJUČENO"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"delete"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"svemir"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"Menu+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"Pretražite…"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"Izbriši upit"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"Upit za pretraživanje"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"Pretraži"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"Pošalji upit"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"Glasovno pretraživanje"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Dijeli s"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Dijeli putem aplikacije <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Sažmi"</string>
+    <string name="about">Informacije</string>
+    <string name="about_footer">Izrađeno sa ❤️ u Slovačkoj</string>
+    <string name="about_summary">
+        <![CDATA[
+            <i>
+            Cijenimo vaše vrijeme i želimo da uživate u našoj aplikaciji bez oglasa. Ako vam je donio zadovoljstvo i korisnost, razmislite o doniranju za njegov razvoj. <br><br>
+            Cijenite naš naporan rad i podijelite svoje dojmove, pomoći će nam da realiziramo nove ideje i ponudimo vam još nevjerojatnije značajke.
+            </i>
+        ]]></string>
+    <string name="accent_color">Boja isticanja</string>
+    <string name="accent_color_black_and_white">Boja isticanja crnobijele teme</string>
+    <string name="accent_color_white">Boja isticanja bijele teme</string>
+    <string name="accept">Prihvati</string>
+    <string name="accept_call">Prihvati poziv</string>
+    <string name="access_storage_prompt">Dozvoli našoj aplikaciji pristup svim tvojim datotekama. Bez toga aplikacija možda neće dobro funkcionirati.</string>
+    <string name="action_on_message_click">Akcija na klik na poruku</string>
+    <string name="action_support_project">Podrška za projekt</string>
+    <string name="add_a_blocked_number">Dodaj blokirani broj</string>
+    <string name="add_address">Dodaj adresu</string>
+    <string name="add_blocked_number_helper_text">Upiši broj ili uzorak (npr. *12345*, +1*8888) za blokiranje svih poziva i poruka od brojeva koji odgovaraju uzorku.</string>
+    <string name="add_contact">Dodaj kontakt</string>
+    <string name="add_email">Dodaj e-poštu</string>
+    <string name="add_event">Dodaj događaj</string>
+    <string name="add_favorites">Dodaj favorite</string>
+    <string name="add_fingerprint">Dodaj otisak prsta</string>
+    <string name="add_group">Dodajte grupu</string>
+    <string name="add_im">Dodaj IM</string>
+    <string name="add_new_sound">Dodaj novi zvuk</string>
+    <string name="add_notes">Dodajte bilješke</string>
+    <string name="add_number">Dodaj broj</string>
+    <string name="add_number_to_contact">Dodaj broj kontaktu</string>
+    <string name="add_password">Dodaj lozinku</string>
+    <string name="add_related_person">Dodaj povezanu osobu</string>
+    <string name="add_to_existing_contact">Dodaj postojećem kontaktu</string>
+    <string name="add_to_favorites">Dodaj u favorite</string>
+    <string name="add_website">Dodaj web stranicu</string>
+    <string name="additional_info">Dodatne informacije</string>
+    <string name="alarm">Alarm</string>
+    <string name="alarm_goes_off_in">Preostalo vrijeme do pokretanja alarma:\n%s</string>
+    <string name="alarm_warning">Provjeri ispravno funkcioniranje alarma. Mogao bi neispravno raditi zbog ograničenja sustava vezanih uz štednju baterije.</string>
+    <string name="album">Album</string>
+    <string name="allow_access_more_media">Allow access to more media</string>
+    <string name="allow_alarm_scheduled_messages">You must allow the app accessing internal alarms, else it cannot send scheduled messages.</string>
+    <string name="allow_alarm_sleep_timer">You must allow the app accessing internal alarms, else it cannot turn off the application after sleep timer.</string>
+    <string name="allow_displaying_over_other_apps">Za pouzdano ponašanje dozvoli prikazivanje ispred drugih aplikacija</string>
+    <string name="allow_full_screen_notifications_incoming_calls">You must allow the app displaying full screen notifications, else you may miss some incoming calls.</string>
+    <string name="allow_full_screen_notifications_reminders">You must allow the app displaying full screen notifications, else you may miss some reminders.</string>
+    <string name="allow_location_permission">You must allow the app accessing your location, else it won\'t know it.</string>
+    <string name="allow_notifications_files">Aplikaciji moraš dozvoliti prikazivanje obavijesti, inače ne može prikazivati traku napretka.</string>
+    <string name="allow_notifications_incoming_calls">Aplikaciji moraš dozvoliti prikazivanje obavijesti, inače ne može prikazivati dolazne pozive.</string>
+    <string name="allow_notifications_incoming_messages">Aplikaciji moraš dozvoliti prikazivanje obavijesti, inače ne može prikazivati dolazne poruke.</string>
+    <string name="allow_notifications_music_player">Aplikaciji moraš dozvoliti prikazivanje obavijesti, inače ne može reproducirati pjesme.</string>
+    <string name="allow_notifications_reminders">Aplikaciji moraš dozvoliti prikazivanje obavijesti, inače ne može prikazivati podsjetnike.</string>
+    <string name="allow_notifications_voice_recorder">Aplikaciji moraš dozvoliti prikazivanje obavijesti, inače ne može snimati zvuk.</string>
+    <string name="altitude">Nadmorska visina</string>
+    <string name="always">Uvijek</string>
+    <string name="always_use_this_sim">Uvijek koristi ovu SIM karticu za ovaj broj</string>
+    <string name="an_error_occurred">Dogodila se greška: %s</string>
+    <string name="android_lame_title">AndroidLame (mp3 koder)</string>
+    <string name="anniversary">Obljetnica</string>
+    <string name="answer_slider">Klizač</string>
+    <string name="answer_slider_outline">Klizač obrisa</string>
+    <string name="answer_slider_vertical">Okomiti klizač</string>
+    <string name="answer_style">Stil gumba za odgovor</string>
+    <string name="apng_title">APNG Android (podrška za animirani WebP)</string>
+    <string name="app_corrupt">Aplikacija oštećena</string>
+    <string name="app_icon_color">Boja ikone aplikacije</string>
+    <string name="app_icon_color_warning">UPOZORENJE: neki pokretači ne rukuju ispravno s prilagodbama ikona aplikacija. Ako ikona nestane, pokušajte pokrenuti aplikaciju iz trgovine Google Play ili widgeta, ako je dostupna.
+         Nakon pokretanja, zadanu ikonu postavite na narančastu #F57C00. Možda će biti potrebno ponovno instalirati aplikaciju ako to ne radi.</string>
+    <string name="app_launcher_name">Birač</string>
+    <string name="app_launcher_short">Pokretač aplikacija</string>
+    <string name="app_name">Jednostavan birač</string>
+    <string name="app_name_g">Right Dialer</string>
+    <string name="app_on_sd_card">Čini se da je aplikacija instalirana na SD karticu, što čini widgete aplikacije nedostupnim. Nećete ih čak ni vidjeti na popisu dostupnih widgeta.
+        To je ograničenje sustava, pa ako želite upotrebljavati widgete, morate vratiti aplikaciju na unutarnju pohranu..</string>
+    <string name="app_version">Verzija aplikacije: %s</string>
+    <string name="append">Dodaj s \'_1\'</string>
+    <string name="append_filenames">Dodavanje naziva datoteka</string>
+    <string name="apply_to_all">Primjeni na sve sukobe</string>
+    <string name="apply_to_all_apps">Primjeni boje na sve Jednostavne Aplikacije</string>
+    <string name="april">Travanj</string>
+    <string name="april_short">Tra</string>
+    <string name="are_you_sure_delete">Jeste li sigurni da želite izbrisati ovu stavku?</string>
+    <string name="are_you_sure_recycle_bin">Jeste li sigurni da želite premjestiti ovu stavku u koš za smeće?</string>
+    <string name="artist">Umjetnik</string>
+    <string name="ascending">Uzlazno</string>
+    <string name="asterisk">Zvjezdica</string>
+    <string name="at_start">Na početku</string>
+    <string name="audio">Audio</string>
+    <string name="audio_record_view_title">Audio Record View (vizualizacija zvuka)</string>
+    <string name="audio_route_bluetooth">Bluetooth</string>
+    <string name="audio_route_earpiece_g">Slušalica uređaja</string>
+    <string name="audio_route_speaker">Zvučnik</string>
+    <string name="audio_route_wired_headset">Analogna slušalica s mikrofonom</string>
+    <string name="audio_route_wired_or_earpiece">Analogno ili slušalica</string>
+    <string name="august">Kolovoz</string>
+    <string name="august_short">Kol</string>
+    <string name="authenticate">Autentifikacija</string>
+    <string name="authentication_blocked">Blokirana autentifikacija, molimo pokušajte za par trenutaka</string>
+    <string name="authentication_failed">Neuspješna autentifikacija</string>
+    <string name="auto_light_dark_theme">Automatski svijetla / tamna</string>
+    <string name="auto_theme">Automatski</string>
+    <string name="autofittextview_title">AutoFitTextView (mijenjanje veličine teksta)</string>
+    <string name="back">Nazad</string>
+    <string name="background_color">Boja pozadine</string>
+    <string name="backups">Sigurnosne kopije</string>
+    <string name="before_asking_question">Prije postavljanja pitanja, najprije pročitaj</string>
+    <string name="before_asking_question_read_faq">Prije nego što postaviš pitanje, provjeri postavke aplikacije i najprije pročitaj stranicu „Često postavljena pitanja”. Rješenje možda već postoji.</string>
+    <string name="before_rate_read_faq">Prije nego što nas ocijeniš, provjeri postavke aplikacije i najprije pročitaj stranicu „Često postavljena pitanja”. Ako imaš bilo koji problem, rješenje možda već postoji.</string>
+    <string name="billing_change_to_google_play">Change to Google Play</string>
+    <string name="billing_change_to_ru_store">Change to RuStore</string>
+    <string name="billing_general_error">Error</string>
+    <string name="billing_product_confirmed">Product confirmed/substantiated</string>
+    <string name="billing_product_deleted">Purchase canceled</string>
+    <string name="billing_purchase_confirm_in_progress">Confirming the purchase…</string>
+    <string name="billing_purchase_delete_in_progress">Deleting the purchase…</string>
+    <string name="billing_subscriptions">Subscriptions</string>
+    <string msgid="2102429900219199821" name="biometric_or_screen_lock_prompt_message">"Za nastavak se identificirajte biometrijski ili vjerodajnicom zaključavanja zaslona"</string>
+    <string msgid="1160635338192065472" name="biometric_prompt_message">"Za nastavak upotrijebite svoju biometrijsku autentifikaciju"</string>
+    <string name="biometrics">Biometrija</string>
+    <string name="birthday">Rođendan</string>
+    <string name="black">Crno</string>
+    <string name="black_locked">Crno (zaključano)</string>
+    <string name="black_white">Crnobijela</string>
+    <string name="block_confirmation">Stvarno želiš blokirati „%s”\?</string>
+    <string name="block_contact">Block contact</string>
+    <string name="block_contact_fail">Contact could not be blocked</string>
+    <string name="block_contact_success">Contact blocked</string>
+    <string name="block_hidden_calls">Block calls from hidden numbers</string>
+    <string name="block_hidden_messages">Block messages from hidden numbers</string>
+    <string name="block_not_stored_calls">Blokiraj pozive nepohranjenih kontakata</string>
+    <string name="block_not_stored_messages">Blokiraj poruke nepohranjenih kontakata</string>
+    <string name="block_number">Blokiraj broj</string>
+    <string name="block_numbers">Blokiraj brojeve</string>
+    <string name="blocked_numbers">Blokirani brojevi</string>
+    <string name="blurry_contact_photo">Mutna fotografija kontakta</string>
+    <string name="blurry_wallpaper">Mutna pozadina</string>
+    <string name="bottom">Ispod</string>
+    <string name="bottom_navigation_bar">Bottom navigation bar</string>
+    <string name="bottom_navigation_bar_color">Boja donje navigacijske trake</string>
+    <string name="bottom_navigation_bar_summary">The tab bar will move to the bottom</string>
+    <string name="bottomsheet_action_collapse">Sažmite donju tablicu</string>
+    <string name="bottomsheet_action_expand">Proširite donju tablicu</string>
+    <string name="bottomsheet_action_expand_halfway">Proširi donju polovicu</string>
+    <string name="bottomsheet_drag_handle_clicked">Dvaput dodirnut marker za povlačenje</string>
+    <string name="bottomsheet_drag_handle_content_description">Marker za povlačenje</string>
+    <string name="button_primary">Primarni gumb</string>
+    <string name="button_secondary">Sekundarni gumb</string>
+    <string name="buttons">Gumbi</string>
+    <string name="calculator_short">Kalkulator</string>
+    <string name="calendar_short">Kalendar</string>
+    <string name="call">Poziv</string>
+    <string name="call_add">Dodaj poziv</string>
+    <string name="call_anonymously">Nazovite anonimno (s prefiksom #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Upozorenje</h4>
+             Broj će se pozivati s prefiksom #31# <br><br>
+                 <h6"><i> #31#%s</i></h6>
+             Provjerite podržava li vaš operater uslugu skrivanja broja kada koristite prefiks #31#. <br>
+             Vaš davatelj usluga može naplatiti dodatnu naknadu za ovu uslugu.
+        ]]>
+    </string>
+    <string name="call_back_g">Poziv</string>
+    <string name="call_back_person_g">Povratni poziv %s</string>
+    <string name="call_ended">Poziv je završio</string>
+    <string name="call_ending">Poziv se završava</string>
+    <string name="call_from_sim_1">Poziv sa SIM 1</string>
+    <string name="call_from_sim_2">Poziv sa SIM 2</string>
+    <string name="call_history_tab">Povijest poziva</string>
+    <string name="call_merge">Spoji pozive</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"Odgovori"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Videozapis"</string>
+    <string name="call_notification_channel_g">Obavijesti o pozivima</string>
+    <string name="call_notification_channel_high_priority_g">Obavijesti o pozivima visokog prioriteta</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"Odbij"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Prekini"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Dolazni poziv"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Poziv u tijeku"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"Filtriranje dolaznog poziva"</string>
+    <string name="call_number">Nazovi broj</string>
+    <string name="call_on_hold">Na čekanju</string>
+    <string name="call_person">Nazovi %s</string>
+    <string name="call_screen_background">Pozadina zaslona poziva</string>
+    <string name="call_split">Odvoji pozive</string>
+    <string name="call_start_end_vibration">Vibrirajte kada je poziv započeo i završio</string>
+    <string name="call_swap">Zamijeni pozive</string>
+    <string name="calling_blocked_number">Broj koji zoveš je blokiran</string>
+    <string name="calls">Pozivi</string>
+    <string name="camera">Kamera</string>
+    <string name="camera_short">Kamera</string>
+    <string name="cancel">Poništi</string>
+    <string name="cannot_be_undone">Ovo je nepovratna radnja.</string>
+    <string name="cannot_hide_files">Počevši od Androida 11, više ne možete sakriti datoteke i mape na taj način</string>
+    <string name="cannot_rename_folder">Nije moguće preimenovati ovu mapu</string>
+    <string name="change_color">Promijeni boju</string>
+    <string name="change_cover_image">Promjeni naslovnu sliku</string>
+    <string name="change_date_and_time_format">Promijeni formate datuma i vremena</string>
+    <string name="change_filter">Promijeni filtar</string>
+    <string name="change_order">Promijeni redoslijed</string>
+    <string name="change_view_type">Promijeni vrstu prikaza</string>
+    <string name="changing_color_description">Promijenom boje, prelazi se na Prilagođenu temu</string>
+    <string name="character_counter_content_description">Uneseno znakova: %1$d od %2$d</string>
+    <string name="character_counter_overflowed_content_description">Premašeno je ograničenje broja znakova: %1$d od %2$d</string>
+    <string name="choose_audio_route">Odaberi audio izlaz</string>
+    <string name="choose_contact">Odaberi kontakt</string>
+    <string name="choose_file">Odaberi datoteku</string>
+    <string name="choose_photo">Odaberi fotografiju</string>
+    <string name="choose_video">Odaberi video</string>
+    <string name="clean_theme_g">Clean</string>
+    <string name="clear_cache">Izbriši predmemoriju</string>
+    <string name="clear_call_history">Izbriši povijest poziva</string>
+    <string name="clear_history_confirmation">Stvarno želiš ukloniti sve iz povijesti poziva\?</string>
+    <string name="clear_text_end_icon_content_description">Brisanje teksta</string>
+    <string name="click_select_destination">Pritisni ovdje za biranje odredišta</string>
+    <string name="clock_short">Sat</string>
+    <string name="close">Close</string>
+    <string msgid="406453423630273620" name="close_drawer">"Zatvaranje izbornika za navigaciju"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"Zatvaranje lista"</string>
+    <string name="collection">Zbirka</string>
+    <string name="collection_summary">Stvaranje zbirke za otključavanje aplikacije</string>
+    <string name="color">boja</string>
+    <string name="color_customization">Prilagođavanje boja</string>
+    <string name="color_sim_card_icons">Ikone SIM kartice u boji</string>
+    <string name="color_summary">Ručno podešavanje primarne boje, naglaska, pozadine, teksta i navigacijske trake</string>
+    <string name="color_title">Boje</string>
+    <string name="colored_contacts">Ikone u boji kontakata</string>
+    <string name="column_count">Broj stupaca</string>
+    <string name="company">Tvrtka</string>
+    <string name="concept_theme_g">Concept</string>
+    <string name="conference">Konferencija</string>
+    <string name="conference_manage">Upravljaj konferencijskim pozivima</string>
+    <string name="confirm_calling_person">Potvrdi nazivanje %s</string>
+    <string name="confirm_create_doc_for_new_folder_text">Molimo pritisnite \'<b>Spremi</b>\' na dnu sljedećeg zaslona za izradu nove mape.</string>
+    <string msgid="5912733858573823945" name="confirm_device_credential_password">"Koristite zaporku"</string>
+    <string name="confirm_folder_access_title">Potvrdi pristup mapi</string>
+    <string name="confirm_selection">Potvrdi odabir</string>
+    <string name="confirm_storage_access_android_text">Dopustite aplikaciji pristup odabranoj pohrani na sljedećem zaslonu pritiskom na \'Koristi ovu mapu\' na dnu.</string>
+    <string name="confirm_storage_access_android_text_specific">Dopustite pristup \'<b>%s</b>\' na sljedećem ekranu pritiskom na \'<b>Koristi ovu mapu</b>\' na dnu.</string>
+    <string name="confirm_storage_access_text">Odaberite root mapu SD kartice na sljedećem prozoru da biste omogućili upisivanje</string>
+    <string name="confirm_storage_access_text_sd">Ukoliko ne vidite SD karticu, probajte ovo</string>
+    <string name="confirm_storage_access_title">Potvrdi pristup vanjskoj memoriji</string>
+    <string name="confirm_usb_storage_access_text">Molimo odaberite root mapu USB uređaja na sljedećem zaslonu, kako biste odobrili pristup</string>
+    <string name="contact_color_list">Popis boja kontakta</string>
+    <string name="contact_details">Detalji kontakta</string>
+    <string name="contact_photo">Fotografija kontakta</string>
+    <string name="contacts_short">Kontakti</string>
+    <string name="contacts_tab">Kontakti</string>
+    <string name="contributors">Doprinositelji</string>
+    <string name="contributors_label">This list contains everyone that noticeably helped any app within the Simple Mobile Tools suite, not only this one. Translations are handled by volunteers, let us know if you want to help too. The guide to translating is at &lt;a href=https://github.com/SimpleMobileTools/General-Discussion#how-can-i-suggest-an-edit-to-a-file>this website&lt;/a>, or just contact us at &lt;a href=mailto:hello@simplemobiletools.com>hello@simplemobiletools.com&lt;/a> if you have any questions. Thanks to all contributors and other supporters!</string>
+    <string name="contributors_label_g">
+        <![CDATA[
+            This list contains everyone that noticeably helped any app within the Goodwy suite, not only this one. Translations are handled by volunteers,
+            let us know if you want to help too. The guide to translating is at <a href="https://github.com/Goodwy/Discussion">this website</a>, or just contact us at <a href="mailto:goodwy.dev@gmail.com">goodwy.dev@gmail.com</a> if you have any questions.
+            Thanks to all contributors and other supporters!
+        ]]>
+    </string>
+    <string name="copy">Kopiraj</string>
+    <string name="copy_code">Kopiraj kod</string>
+    <string name="copy_failed">Nije bilo moguće kopirati datoteke</string>
+    <string name="copy_move">Kopiraj/Premjesti</string>
+    <string name="copy_move_failed">Dogodila se greška</string>
+    <string name="copy_number_to_clipboard">Kopiraj broj u međuspremnik</string>
+    <string name="copy_to">Kopiraj u</string>
+    <string name="copy_to_clipboard">Kopiraj u međuspremnik</string>
+    <string name="copying">Kopiranje…</string>
+    <string name="copying_success">Datoteke su uspješno kopirane</string>
+    <string name="copying_success_one">Datoteka je uspješno kopirana</string>
+    <string name="copying_success_partial">Neke datoteke nije bilo moguće kopirati</string>
+    <string name="copyright">v %1$s\nCopyright © Simple Mobile Tools %2$d</string>
+    <string name="copyright_g">v %1$s\nCopyright © Goodwy %2$d</string>
+    <string name="could_not_access_contacts">Nije moguće pristupiti tvojim kontaktima</string>
+    <string name="could_not_access_the_call_history">Nije moguće pristupiti povijesti poziva</string>
+    <string name="could_not_create_file">Nije moguće stvoriti datoteku %s</string>
+    <string name="could_not_create_folder">Nije moguće stvoriti mapu %s</string>
+    <string name="create_new">Stvori novo</string>
+    <string name="create_new_contact">Stvori novi kontakt</string>
+    <string name="create_new_folder">Stvori novu mapu</string>
+    <string name="create_shortcut">Stvori prečac</string>
+    <string name="create_shortcut_pro">Stvori prečac (Pro)</string>
+    <string name="cropper_title">Android Image Cropper (rezanje i okretanje slika)</string>
+    <string name="custom">Prilagođena</string>
+    <string name="customization_theme_summary">Odabir tema i boja sučelja</string>
+    <string name="customize_colors">Prilagodi boje</string>
+    <string name="customize_colors_locked">Prilagodi boje (zaključano)</string>
+    <string name="customize_notifications">Prilagodi obavijesti</string>
+    <string name="customize_widget_colors">Prilagodi boje widgeta</string>
+    <string name="dark_red">Tamna crvena</string>
+    <string name="dark_theme">Tamna</string>
+    <string name="date_added">Date added</string>
+    <string name="date_created">Datum stvaranja</string>
+    <string name="date_taken">Datum snimanja</string>
+    <string name="date_time_pattern_info">Za automatsko imenovanje datoteke možeš koristiti sljedeće elemente:
+\n
+\n%Y – godina
+\n%M – mjesec
+\n%D – dan
+\n%h – sat
+\n%m – minuta
+\n%s – sekunda</string>
+    <string name="days_raw">dani</string>
+    <string name="december">Prosinac</string>
+    <string name="december_short">Pro</string>
+    <string name="decline">Odbij</string>
+    <string name="decline_call">Odbij poziv</string>
+    <string name="default_color">Default</string>
+    <string msgid="8038256446254964252" name="default_error_message">"Nevažeći unos"</string>
+    <string msgid="4776854077120974966" name="default_error_msg">"Nepoznata pogreška"</string>
+    <string name="default_folder_to_open_g">Mapa za otvaranje pri pokretanju aplikacije</string>
+    <string name="default_phone_app_prompt">Postavi ovu aplikaciju kao standardnu aplikaciju za telefon</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"Skočni prozor"</string>
+    <string name="default_tab">Zadana kartica</string>
+    <string name="default_tab_to_open">Kartica koja se otvara nakon pokretanja programa</string>
+    <string name="delete">Izbriši</string>
+    <string name="deleting_folder">Brisanje mape \'%s\'</string>
+    <string name="deletion_confirmation">Jeste li sigurni da želite izbrisati %s?</string>
+    <string name="deletion_confirmation_short">Izbrisati %s\?</string>
+    <string name="deprecated_app">ZASTARJELO: Ova verzija aplikacije se više ne održava. Nabavi Pro verziju na https://play.google.com/store/apps/details\?id=com.simplemobiletools.xxx.pro</string>
+    <string name="deprecated_app_g">DEPRECATED: This version of the app is no longer maintained, get the Pro version at https://play.google.com/store/apps/details?id=com.goodwy.xxx.pro</string>
+    <string name="descending">Silazno</string>
+    <string name="destination">Odredište</string>
+    <string name="details">Detalji</string>
+    <string name="developer_description">Skup jednostavnih Android aplikacija otvorenog koda s prilagodljivim widgetima, bez oglasa i nepotrebnih dozvola.</string>
+    <string name="development">Razvoj</string>
+    <string name="device_os">OS uređaja: %s</string>
+    <string name="dial_number">Nazovi broj</string>
+    <string name="dialer">Birač</string>
+    <string name="dialer_short">Birač</string>
+    <string name="dialing">Biranje…</string>
+    <string name="dialpad">Brojčanik</string>
+    <string name="dialpad_beeps">Aktiviraj zvučne signale prilikom pritiskanja gumbova brojčanika</string>
+    <string name="dialpad_preferences">Preference tipkovnice</string>
+    <string name="dialpad_vibrations">Aktiviraj vibriranje prilikom pritiskanja gumbova brojčanika</string>
+    <string name="direct_children_count">Zbroj podstavki</string>
+    <string name="disable_proximity_sensor">Isključi senzor blizine tijekom poziva</string>
+    <string name="disable_swipe_to_answer">Prihvati pozive dodirom umjesto povlačenjem</string>
+    <string name="discard">Odbaci</string>
+    <string name="disclaimer">Odricanje odgovornosti</string>
+    <string name="dismiss">Odbaci</string>
+    <string name="do_not_ask_again">Ne pitaj me više u ovoj sesiji</string>
+    <string name="do_not_show_again">Nemoj više prikazivati</string>
+    <string name="donate">Doniraj</string>
+    <string name="donate_new">Hello,&lt;br>&lt;br>hope you are enjoying the app. It contains no ads and we aren\'t collecting your data either, please support its development by purchasing &lt;a href=https://play.google.com/store/apps/details\?id=com.simplemobiletools.thankyou>Simple Thank You&lt;/a>. You will also have all app features including color customization unlocked.&lt;br>&lt;br>Thank you!</string>
+    <string name="donate_please">
+        <![CDATA[
+            Pozdrav,<br><br>
+            nadam se da uživate u aplikaciji. Ne sadrži reklame, stoga nas podržite njen razvoj kupovinom <a href="https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou">Simple Thank You</a> aplikacije, što će spriječiti da se ovaj prozor ponovno pojavljuje.<br><br>
+            Hvala Vam!
+        ]]>
+    </string>
+    <string name="donate_short">Support us by purchasing &lt;a href=https://play.google.com/store/apps/details\?id=com.simplemobiletools.thankyou>Simple Thank You&lt;/a> please, it will also unlock all app features including color customization.</string>
+    <string name="donate_text_g">
+        <![CDATA[
+            For those who do not use Google Play, it is possible to unlock all functions of the application. <br>
+            If you like our apps which are offline, non-intrusive and have no ads, please consider supporting us in some way. We would be very grateful.<br><br>
+            Thank you!
+        ]]>
+    </string>
+    <string name="download">Preuzimanje</string>
+    <string name="draw_short">Crtanje</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"Padajući izbornik"</string>
+    <string name="duration">Trajanje</string>
+    <string name="during_day_at">Tijekom dana u %02d:%02d</string>
+    <string name="during_day_at_hh_mm">Tijekom dana u hh:mm</string>
+    <string name="edit">Uredi</string>
+    <string name="edit_with">Uredi pomoću</string>
+    <string name="eight">Osam</string>
+    <string name="email">E-mail</string>
+    <string name="email_label">Pošalji nam povratne informacije ili prijedloge na</string>
+    <string name="empty_and_disable_recycle_bin">Isprazni i onemogući koš za smeće</string>
+    <string name="empty_name">Upiši ime</string>
+    <string name="empty_password">Molimo unesite lozinku</string>
+    <string name="empty_password_new">Molimo unesite lozinku</string>
+    <string name="empty_recycle_bin">Isprazni koš za smeće</string>
+    <string name="empty_recycle_bin_confirmation">Jeste li sigurni da želite isprazniti koš za smeće? Datoteke će biti trajno izgubljene.</string>
+    <string name="enable_automatic_backups">Aktiviraj automatsko spremanje sigurnosnih kopija</string>
+    <string name="enable_pull_to_refresh">Aktiviraj aktualiziranje povlačenjem odozgo</string>
+    <string name="end_call">Završi poziv</string>
+    <string name="enter_password">Unesite lozinku</string>
+    <string name="enter_pin">Unesite PIN</string>
+    <string name="error">Error: %s</string>
+    <string name="error_icon_content_description">Pogreška</string>
+    <string name="espresso_title">Espresso (pomoćnik za testiranje)</string>
+    <string name="event_bus_title">Event Bus (komunikacija unutar aplikacije)</string>
+    <string name="every_day">Svaki dan</string>
+    <string name="exclude">Isključi</string>
+    <string name="exclude_folder">Isključi mapu</string>
+    <string name="excluded">(isključene)</string>
+    <string name="excluded_folders">Isključene mape</string>
+    <string name="exif">EXIF</string>
+    <string name="exif_removed">EXIF vrijednosti uspješno uklonjene</string>
+    <string name="exoplayer_title">ExoPlayer (video player)</string>
+    <string name="export_blocked_numbers">Izvoz blokiranih brojeva</string>
+    <string name="export_call_history">Export call history</string>
+    <string name="export_settings">Izvezi postavke</string>
+    <string name="exporting">Izvoz…</string>
+    <string name="exporting_failed">Izvoz nije uspio</string>
+    <string name="exporting_some_entries_failed">Izvoz nekih unosa nije uspio</string>
+    <string name="exporting_successful">Izvoz je uspio</string>
+    <string name="exposed_dropdown_menu_content_description">Prikaži padajući izbornik</string>
+    <string name="exposure_time">Vrijeme izloženosti</string>
+    <string name="extension">Ekstenzija</string>
+    <string name="extension_cannot_be_empty">Ekstenzija ne smije biti prazna</string>
+    <string name="extra_large">Jako velika</string>
+    <string name="f_number">F-broj</string>
+    <string msgid="4562557128765735254" name="face_or_screen_lock_prompt_message">"Za nastavak se identificirajte licem ili vjerodajnicom zaključavanja zaslona"</string>
+    <string msgid="2282389249605674226" name="face_prompt_message">"Za nastavak se identificirajte licem"</string>
+    <string name="faq_100_text_commons_g">A private contact is created within an application. This contact will not be visible to other applications.
+        If you uninstall the app, all private contacts will be deleted along with the app, so back up your contacts before uninstalling the app.</string>
+    <string name="faq_100_title_commons_g">What is a private contact?</string>
+    <string name="faq_101_text_commons_g">When you create a contact, you must select the source of the contact: %s</string>
+    <string name="faq_101_title_commons_g">How to create a private contact?</string>
+    <string name="faq_10_text_commons">Try clearing your Google Play app cache and restarting your device. It is some Google Play glitch, not really related to the app itself.</string>
+    <string name="faq_10_title_commons">I have purchased the app, but I cannot download it on another device.</string>
+    <string name="faq_1_text">Takvi problemi mogu imati mnogo razloga specifičnih za uređaj i sustav, koje je teško reći općenito. Trebali biste pogledati uokolo u postavkama svog uređaja i provjeriti je li aplikaciji dopušteno iskakanje u pozadini i dopuštenje prikazivanja preko drugih aplikacija.</string>
+    <string name="faq_1_text_commons">Najvjerojatnije zato jer ste premjestili aplikaciju na SD karticu. Postoji ograničenje Android sustava koje skriva dane widgete aplikacije u tom slučaju.
+        Jedino je rješenje vratiti aplikaciju na internu pohranu putem postavki uređaja.</string>
+    <string name="faq_1_text_dialer_g">Operativni sustav blokira aplikacijama pristup zaključanom zaslonu. Aplikaciji morate dopustiti pristup zaključanom zaslonu. Na primjer, u MIUI-ju trebate dopustiti pristup Postavke => Obavijesti => Obavijesti na zaključanom zaslonu.</string>
+    <string name="faq_1_title">Čujem dolazne pozive, ali se ekran ne uključuje. Što mogu učiniti\?</string>
+    <string name="faq_1_title_commons">Zašto ne vidim widgete ove aplikacije u popisu widgeta\?</string>
+    <string name="faq_1_title_dialer_g">Zašto moram otključati svoj uređaj da bih odgovorio na dolazni poziv?</string>
+    <string name="faq_2_text_commons">Yes, of course. You can spread the word about the apps or give good feedback and ratings. You can also help by translating the apps in a new language, or just update some existing translations. The guide to translating is at &lt;a href=https://github.com/SimpleMobileTools/General-Discussion#how-can-i-suggest-an-edit-to-a-file>this website&lt;/a>, or just contact us at &lt;a href=mailto:hello@simplemobiletools.com>hello@simplemobiletools.com&lt;/a> if you have any questions.</string>
+    <string name="faq_2_text_commons_g">
+        <![CDATA[
+        Da naravno. Možete proširiti riječ o aplikacijama ili dati dobru povratnu informaciju i ocjene. Možete također pomoći prevođenjem aplikacija na novi jezik ili ažurirati neke postojeće prijevode.
+        Vodič možete pronaći na adresi https://github.com/Goodwy/Discussion , ili mi pošaljite poruku na goodwy.dev@gmail.com ako Vam treba pomoć.
+        ]]>
+    </string>
+    <string name="faq_2_text_dialer_g">Dugo pritisnite gumb za pozivanje da zalijepite sadržaj međuspremnika. Ako je broj već unesen, dugi pritisak na tipku za pozivanje kopira ga u međuspremnik.</string>
+    <string name="faq_2_title_commons">Želim Vam pomoći, ali ne mogu donirati novac. Ima li još nešto što mogu učiniti?</string>
+    <string name="faq_2_title_dialer_g">Kako mogu kopirati ili zalijepiti broj na zaslon brojčanika?</string>
+    <string name="faq_3_text_commons">Nažalost, ne možete. Datoteke se brišu odmah nakon dijaloškog okvira za potvrdu, nema dostupnog koša za smeće.</string>
+    <string name="faq_3_title_commons">Slučajno sam izbrisao/la neke datoteke. Kako ih mogu obnoviti\?</string>
+    <string name="faq_4_text_commons">Da, kada povlačite widget na početnom zaslonu, pojavit će se zaslon za konfiguraciju widgeta. U donjem lijevom kutu vidjet ćete obojene kvadrate, samo ih pritisnite da biste odabrali novu boju. Možete koristiti i klizač za podešavanje alphe.</string>
+    <string name="faq_4_title_commons">Ne sviđa mi se boja widgeta, mogu li ih promijeniti?</string>
+    <string name="faq_5_text_commons">Ako su stvarno izbrisane, ne možete. Međutim, postoji koš za smeće koji je standardno aktiviran. Na taj se način datoteke samo premještaju u koš umjesto da se izbrišu.</string>
+    <string name="faq_5_title_commons">Mogu li nekako vratiti izbrisane datoteke?</string>
+    <string name="faq_6_text_commons">Uzrok je to što pokretač ne podržava ispravnu prilagodbu ikone. Pokušajte pokrenuti aplikaciju putem Google Playa ili nekog widgeta, ako je dostupan.
+        Nakon pokretanja, zadanu ikonu postavite na narančastu #F57C00. Možda će biti potrebno ponovno instalirati aplikaciju ako to ne radi.</string>
+    <string name="faq_6_title_commons">Ikona pokretača aplikacija je nestala. Što mogu učiniti?</string>
+    <string name="faq_7_text_commons">Payments are fully handled by Google, their system glitches from time to time. Just clear your Google Play app cache and restart your device, then retry downloading it.</string>
+    <string name="faq_7_title_commons">The money has been deducted from my bank account, but I cannot download the app. What can I do\?</string>
+    <string name="faq_8_text_commons">As your app version is no longer updated, the bugs you have maybe spotted will never be fixed. There will also be no new functions added. You can purchase the Pro version on Google Play for a small sum of money. It is a one time payment, which means that once you purchase it, you will never have to pay again. Not even after getting a new device. If you won\'t like the Pro version, you can just uninstall it within a few hours and you will automatically get your money back. If you want a refund anytime later, just contact us at hello@simplemobiletools.com and you will get it.</string>
+    <string name="faq_8_text_commons_g">As your app version is no longer updated, the bugs you have maybe spotted will never be fixed. There will also be no new functions added. You can purchase the Pro version on Google Play for a small sum of money.
+        It is a one time payment, which means that once you purchase it, you will never have to pay again. Not even after getting a new device. If you won\'t like the Pro version, you can just uninstall it within a few hours and you will automatically get your money back.
+        If you want a refund anytime later, just contact us at goodwy.dev@gmail.com and you will get it.</string>
+    <string name="faq_8_title_commons">Why should I upgrade to the Pro version\?</string>
+    <string name="faq_9_text_commons">There are multiple ways of doing that. The first one is starting the selection mode by long pressing one item, then short clicking on others to select them. The second way is similar to selecting items on PCs with a mouse, just start the selection mode by long pressing one item, then with your finger still down drag it across other items for selecting. The third way of selecting multiple items is long pressing one item, then long pressing another one and everything in between gets selected. If you want to select all items, just long press one item, then click at the selected item counter at the top left corner. That will select or unselect all everything.</string>
+    <string name="faq_9_title_commons">How can I select multiple items at once\?</string>
+    <string name="favorites">Favoriti</string>
+    <string name="favorites_tab">Favoriti</string>
+    <string name="feature_locked">Zaključano</string>
+    <string name="features_locked">This feature is locked, please purchase &lt;a href=https://play.google.com/store/apps/details\?id=com.simplemobiletools.thankyou>Simple Thank You&lt;/a> for unlocking the full app.&lt;br>&lt;br>It is a one time payment only and if you won\'t be satisfied, we can refund you.</string>
+    <string name="february">Veljača</string>
+    <string name="february_short">Velj</string>
+    <string name="file">Datoteka</string>
+    <string name="file_already_exists">Datoteka \"%s\" već postoji</string>
+    <string name="file_already_exists_overwrite">Datoteka \"%s\" već postoji. Presnimiti?</string>
+    <string name="file_manager_short">Upravljač datoteka</string>
+    <string name="file_operations">Radnje datoteka</string>
+    <string name="file_saved">Datoteka uspješno spremljena</string>
+    <string name="filename">Naziv datoteke</string>
+    <string name="filename_cannot_be_empty">Ime datoteke ne smije biti prazno</string>
+    <string name="filename_invalid_characters">Ime datoteke sadrži neispravne znakove</string>
+    <string name="filename_invalid_characters_placeholder">Ime datoteke \'%s\' sadrži neispravne znakove</string>
+    <string name="filename_without_json">Naziv datoteke (bez .json)</string>
+    <string name="filename_without_txt">Naziv datoteke (bez .txt)</string>
+    <string name="filename_without_zip">Naziv datoteke (bez .zip)</string>
+    <string name="files">Files</string>
+    <string name="files_count">Ukupni zbroj stavki</string>
+    <string name="files_restored_successfully">Datoteke su uspješno vraćene</string>
+    <string name="files_summary">File manager</string>
+    <string name="files_tab">Files</string>
+    <string name="filter">Filtar</string>
+    <string name="filter_pro">Filtar (Pro)</string>
+    <string name="filters_title">Android Photo Filters (filteri za slike)</string>
+    <string name="fingerprint">Otisak prsta</string>
+    <string msgid="1087209702421076105" name="fingerprint_acquired_imager_dirty">"Senzor otiska prsta nije čist. Očistite ga i pokušajte ponovo."</string>
+    <string msgid="4596546021310923214" name="fingerprint_acquired_insufficient">"Obrada otiska prsta nije uspjela. Pokušajte ponovo."</string>
+    <string msgid="735082772341716043" name="fingerprint_acquired_partial">"Otkriven je djelomični otisak prsta. Pokušajte ponovo."</string>
+    <string msgid="6470642383109155969" name="fingerprint_acquired_too_fast">"Prebrzo pomicanje prsta. Pokušajte ponovo."</string>
+    <string msgid="59250885689661653" name="fingerprint_acquired_too_slow">"Presporo pomicanje prsta. Pokušajte ponovo."</string>
+    <string msgid="5462024216548165325" name="fingerprint_dialog_icon_description">"Ikona otiska prsta"</string>
+    <string msgid="1072308044213194243" name="fingerprint_dialog_touch_sensor">"Dodirnite senzor otiska prsta"</string>
+    <string msgid="4402024612660774395" name="fingerprint_error_canceled">"Radnja otiska prsta otkazana je."</string>
+    <string msgid="8216738333501875566" name="fingerprint_error_hw_not_available">"Hardver za otisak prsta nije dostupan."</string>
+    <string msgid="6306988885793029438" name="fingerprint_error_hw_not_present">"Ovaj uređaj nema senzor otiska prsta"</string>
+    <string msgid="7291787166416782245" name="fingerprint_error_lockout">"Previše pokušaja. Pokušajte ponovno kasnije."</string>
+    <string msgid="7520712796891883488" name="fingerprint_error_no_fingerprints">"Nije registriran nijedan otisak prsta."</string>
+    <string msgid="1055819001126053318" name="fingerprint_error_no_space">"Otisak prsta nije pohranjen. Uklonite postojeći otisak prsta."</string>
+    <string msgid="3927186043737732875" name="fingerprint_error_timeout">"Isteklo je vrijeme čekanja za otisak prsta. Pokušajte ponovo."</string>
+    <string msgid="6107816084103552441" name="fingerprint_error_unable_to_process">"Pokušajte ponovo."</string>
+    <string msgid="7627716295344353987" name="fingerprint_error_user_canceled">"Radnju s otiskom prsta otkazao je korisnik."</string>
+    <string msgid="3873359464293253009" name="fingerprint_not_recognized">"Nije prepoznat"</string>
+    <string msgid="8382576858490514495" name="fingerprint_or_screen_lock_prompt_message">"Za nastavak se identificirajte otiskom prsta ili vjerodajnicom zaključavanja zaslona"</string>
+    <string msgid="7449360011861769080" name="fingerprint_prompt_message">"Za nastavak upotrijebite otisak prsta"</string>
+    <string name="fingerprint_setup_successfully">Uspješno postavljanje zaštite. Molimo reinstalirajte aplikaciju u slučaju problema s resetiranjem.</string>
+    <string msgid="4516019619850763049" name="fingerprints">"Otisci prstiju:"</string>
+    <string name="first_name">Ime</string>
+    <string name="five">Pet</string>
+    <string name="flash_for_alerts">Bljesak za upozorenja</string>
+    <string name="flashlight_short">Svjetiljka</string>
+    <string name="focal_length">Žarišna duljina</string>
+    <string name="folder">Mapa</string>
+    <string name="folder_already_exists">Mapa \"%s\" već postoji</string>
+    <string name="follow_us">Prati nas</string>
+    <string name="font_size">Veličina fonta</string>
+    <string name="force_portrait_mode">Prikaz stavke u portretnom formatu</string>
+    <string name="foreground_color">Boja pozadine</string>
+    <string name="four">Četiri</string>
+    <string name="frequently_asked_questions">Često postavljenja pitanja</string>
+    <string name="friday">Petak</string>
+    <string name="friday_letter">P</string>
+    <string name="friday_short">Pet</string>
+    <string name="full_name">Puno ime i prezime</string>
+    <string name="gallery_short">Galerija</string>
+    <string name="general">Općenito</string>
+    <string name="general_settings">Opće</string>
+    <string msgid="3791785319221634505" name="generic_error_no_device_credential">"Nisu postavljeni PIN, uzorak ni zaporka."</string>
+    <string msgid="1807436368654974044" name="generic_error_no_keyguard">"Ovaj uređaj ne podržava PIN, uzorak ili zaporku."</string>
+    <string msgid="7309881387583143581" name="generic_error_user_canceled">"Korisnik je otkazao autentifikaciju."</string>
+    <string name="genre">Genre</string>
+    <string name="gesture_views_title">Gesture Views (zumiranje slika)</string>
+    <string name="get">Dohvati</string>
+    <string name="get_simple_phone">Nabavi „Jednostavni telefon”</string>
+    <string name="gif_drawable_title">Gif Drawable (učitavanje GIF-ova)</string>
+    <string name="glide_title">Glide (učitavanje i predmemoriranje slika)</string>
+    <string name="go_to_settings">Idi u Postavke</string>
+    <string name="gps_coordinates">GPS koordinate</string>
+    <string name="grant_permission">Odobri dozvolu</string>
+    <string name="gray_theme">Siv</string>
+    <string name="grid">Prikaz ikona</string>
+    <string name="grid_pro">Prikaz ikona (Pro)</string>
+    <string name="group_subsequent_calls">Grupiraj naknadne pozive s istim brojem u zapisniku poziva</string>
+    <string name="groups_tab">Grupe</string>
+    <string name="gson_title">Gson (JSON analizator)</string>
+    <string name="hashtag">Taraba</string>
+    <string name="hello">Zdravo :)</string>
+    <string name="help_us">Pomogni nam</string>
+    <string name="hide">Sakrij</string>
+    <string name="hide_blocked_numbers">Sakrij blokirano</string>
+    <string name="hide_dialpad">Sakrij brojčanik</string>
+    <string name="hide_dialpad_letters_g">Sakrij slova telefonske tipkovnice</string>
+    <string name="hide_dialpad_numbers">Sakrij brojeve tipkovnice telefona</string>
+    <string name="hide_folder">Sakrij mapu</string>
+    <string name="hide_line_numbers">Hide line numbers</string>
+    <string name="hide_the_recycle_bin">Sakrij koš za smeće</string>
+    <string name="hide_year">Sakrij godinu</string>
+    <string name="hold_call">Zadrži poziv</string>
+    <string name="home">Kućni</string>
+    <string name="home_fax">Kućni faks</string>
+    <string name="home_folder_g">Polazna mapa</string>
+    <string name="hours_letter">h</string>
+    <string name="hours_raw">sati</string>
+    <string name="icon_content_description">Ikona dijaloga</string>
+    <string name="import_blocked_numbers">Uvoz blokiranih brojeva</string>
+    <string name="import_call_history">Import call history</string>
+    <string name="import_settings">Uvezi postavke</string>
+    <string name="importing">Uvoz…</string>
+    <string name="importing_failed">Uvoz nije uspio</string>
+    <string name="importing_some_entries_failed">Uvoz nekih unosa nije uspio</string>
+    <string name="importing_successful">Uvoz je uspio</string>
+    <string name="improved_color_customization">Poboljšano prilagođavanje boja</string>
+    <string name="in_april">u travnju</string>
+    <string name="in_august">u kolovozu</string>
+    <string name="in_december">u prosincu</string>
+    <string name="in_february">u veljači</string>
+    <string name="in_january">u siječnju</string>
+    <string name="in_july">u srpnju</string>
+    <string name="in_june">u lipnju</string>
+    <string name="in_march">u ožujku</string>
+    <string name="in_may">u svibnju</string>
+    <string name="in_november">u studenom</string>
+    <string name="in_october">u listopadu</string>
+    <string msgid="6827826412747255547" name="in_progress">"U tijeku"</string>
+    <string name="in_september">u rujnu</string>
+    <string name="incoming_call">Dolazni poziv</string>
+    <string name="increase_column_count">Povećaj broj stupaca</string>
+    <string msgid="7933458017204019916" name="indeterminate">"Djelomično potvrđeno"</string>
+    <string name="indicator_fast_scroll_title">Indicator Fast Scroll (slova u kliznoj traci)</string>
+    <string name="insert_pattern">Unesite uzorak</string>
+    <string name="insert_text_here">Ovdje umetni tekst</string>
+    <string name="internal">Unutranji prostor za pohranu</string>
+    <string name="internal_storage">Internal Storage</string>
+    <string name="invalid_destination">Nije moguće zapisivanje na odabranom odredištu</string>
+    <string name="invalid_file_format">Nevažeći format datoteke</string>
+    <string name="invalid_name">Naziv sadrži ne važeće znakove</string>
+    <string name="invalid_password">Netočna lozinka</string>
+    <string name="invert_color">Invertiraj boju</string>
+    <string name="invite_friends">Pozovi prijatelje</string>
+    <string name="invite_via">Pozovi putem</string>
+    <string name="is_calling">Zove…</string>
+    <string name="iso_speed">ISO brzina</string>
+    <string name="it_is_free">Besplatno je do: %s. Ako je preuzmete do tada, moći ćete je koristiti zauvijek.</string>
+    <string name="item_view_role_description">Kartica</string>
+    <string name="items_selected">Odabrane stavke</string>
+    <string name="january">Siječanj</string>
+    <string name="january_short">Sij</string>
+    <string name="joda_title">Joda-Time (zamjena datuma pomoću Java)</string>
+    <string name="july">Srpanj</string>
+    <string name="july_short">Srp</string>
+    <string name="june">Lipanj</string>
+    <string name="june_short">Lip</string>
+    <string name="keep_both">Zadrži oboje</string>
+    <string name="keep_last_modified">Zadrži staru vrijednost zadnje promjene pri operacijama nad datotekama</string>
+    <string name="keyboard_short">Tipkovnica</string>
+    <string name="kids_mode">Kids mode</string>
+    <string name="kids_mode_summary">Simplified interface, choose coloring</string>
+    <string name="kotlin_title">Kotlin (programski jezik)</string>
+    <string name="label">Etiketa</string>
+    <string name="landscape_column_count">Broj vodoravnih stupaca</string>
+    <string name="language">Jezik</string>
+    <string name="large">Velika</string>
+    <string name="last_modified">Datum zadnje izmjenjene</string>
+    <string name="last_used_g">Zadnji put korišteno</string>
+    <string name="last_used_tab">Zadnje korištena</string>
+    <string name="later">Kasnije</string>
+    <string name="launcher_short">Pokretač</string>
+    <string name="leak_canary_title">Leak Canary (detektor propuštanja memorije)</string>
+    <string name="learn_more">Uči više</string>
+    <string name="library">Knjižnica</string>
+    <string name="lifebuoy_summary">Ako si iz nekog razloga ne možete priuštiti našu aplikaciju, ali stvarno želite koristiti sve značajke, samo nam pošaljite e-poštu</string>
+    <string name="lifebuoy_title">Podržat ćemo vas</string>
+    <string name="light_theme">Svijetla</string>
+    <string name="limited_supply">Ograničena opskrba</string>
+    <string name="lines_count">Broj redaka</string>
+    <string name="list">Prikaz popisa</string>
+    <string name="list_view">Prikaz popisa</string>
+    <string name="loading">Učitavanje …</string>
+    <string name="lock_folder">Zaključaj mapu</string>
+    <string name="lock_folder_notice">Ova zaštita radi samo u ovoj aplikaciji. Nije namijenjena za stvarno mijenjanje šifriranja mapa cijelog sustava.</string>
+    <string name="lock_folder_pro">Zaključaj mapu (Pro)</string>
+    <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Sažimanje donje tablice"</string>
+    <string msgid="1555567894577437024" name="m3c_bottom_sheet_dismiss_description">"Odbacivanje donje tablice"</string>
+    <string msgid="8403354765404029791" name="m3c_bottom_sheet_drag_handle_description">"Marker za povlačenje"</string>
+    <string msgid="6670819569745899763" name="m3c_bottom_sheet_expand_description">"Proširivanje donje tablice"</string>
+    <string msgid="3010635850035863127" name="m3c_bottom_sheet_pane_title">"Donja tablica"</string>
+    <string msgid="8166741421776570875" name="m3c_date_input_headline">"Datum unosa"</string>
+    <string msgid="229313757840775812" name="m3c_date_input_headline_description">"Datum unosa: %1$s"</string>
+    <string msgid="6116910750161463197" name="m3c_date_input_invalid_for_pattern">"Datum se ne podudara s očekivanim uzorkom: %1$s"</string>
+    <string msgid="2521768508935305279" name="m3c_date_input_invalid_not_allowed">"Datum nije dopušten: %1$s"</string>
+    <string msgid="7052898923934555305" name="m3c_date_input_invalid_year_range">"Datum je izvan očekivanog raspona godine %1$s – %2$s"</string>
+    <string msgid="2895559812010326913" name="m3c_date_input_label">"Datum"</string>
+    <string msgid="1237013946323089826" name="m3c_date_input_no_input_description">"Ništa"</string>
+    <string msgid="7306227249789210568" name="m3c_date_input_title">"Odaberite datum"</string>
+    <string msgid="7605002211875882969" name="m3c_date_picker_headline">"Odabrani datum"</string>
+    <string msgid="3664277305226978227" name="m3c_date_picker_headline_description">"Trenutačni odabir: %1$s"</string>
+    <string msgid="8436650776581492840" name="m3c_date_picker_navigate_to_year_description">"Prelazak u godinu %1$s"</string>
+    <string msgid="5811000998184572395" name="m3c_date_picker_no_selection_description">"Ništa"</string>
+    <string msgid="7813882352367152251" name="m3c_date_picker_scroll_to_earlier_years">"Pomaknite se za prikaz ranijih godina"</string>
+    <string msgid="5727367015496556177" name="m3c_date_picker_scroll_to_later_years">"Pomaknite se za prikaz kasnijih godina"</string>
+    <string msgid="1804346892470238807" name="m3c_date_picker_switch_to_calendar_mode">"Prijelaz na način unosa u Kalendaru"</string>
+    <string msgid="395627960681594326" name="m3c_date_picker_switch_to_day_selection">"Pomaknite se za odabir godine ili dodirnite za povratak na odabir dana"</string>
+    <string msgid="2219746470065162704" name="m3c_date_picker_switch_to_input_mode">"Prijelaz na način unosa teksta"</string>
+    <string msgid="7142101321095356500" name="m3c_date_picker_switch_to_next_month">"Pomicanje na sljedeći mjesec"</string>
+    <string msgid="228438865139394590" name="m3c_date_picker_switch_to_previous_month">"Pomicanje na prethodni mjesec"</string>
+    <string msgid="791651718641787594" name="m3c_date_picker_switch_to_year_selection">"Prijelaz na odabir godine"</string>
+    <string msgid="7430790972741451689" name="m3c_date_picker_title">"Odaberite datum"</string>
+    <string msgid="3199387177749801575" name="m3c_date_picker_today_description">"Danas"</string>
+    <string msgid="2068382232816991922" name="m3c_date_picker_year_picker_pane_title">"Vidljiv je alat za odabir godine"</string>
+    <string msgid="3190049423327661366" name="m3c_date_range_input_invalid_range_input">"Unos datumskog raspona nije važeći"</string>
+    <string msgid="3148384720560189467" name="m3c_date_range_input_title">"Unos datuma"</string>
+    <string msgid="2138321128465719402" name="m3c_date_range_picker_day_in_range">"U dometu"</string>
+    <string msgid="4947636797751277713" name="m3c_date_range_picker_end_headline">"Datum završetka"</string>
+    <string msgid="602077859540990149" name="m3c_date_range_picker_scroll_to_next_month">"Pomaknite se za prikaz sljedećeg mjeseca"</string>
+    <string msgid="4592174524846109496" name="m3c_date_range_picker_scroll_to_previous_month">"Pomaknite se za prikaz prethodnog mjeseca"</string>
+    <string msgid="4665981448952749820" name="m3c_date_range_picker_start_headline">"Datum početka"</string>
+    <string msgid="3134165431120340385" name="m3c_date_range_picker_title">"Odabir datuma"</string>
+    <string msgid="7617233117134790350" name="m3c_dialog">"Dijaloški okvir"</string>
+    <string msgid="3177828188723359358" name="m3c_dropdown_menu_collapsed">"Sažeto"</string>
+    <string msgid="2360841780724299882" name="m3c_dropdown_menu_expanded">"Prošireno"</string>
+    <string msgid="6152806324422087846" name="m3c_search_bar_search">"Pretraživanje"</string>
+    <string msgid="6152755701819882931" name="m3c_snackbar_dismiss">"Odbaci"</string>
+    <string msgid="7655536806087401899" name="m3c_suggestions_available">"Prijedlozi su u nastavku"</string>
+    <string msgid="2786685010796619560" name="m3c_time_picker_am">"Prijepodne"</string>
+    <string msgid="2349193472625211372" name="m3c_time_picker_hour">"Sat"</string>
+    <string msgid="9179527532316922345" name="m3c_time_picker_hour_24h_suffix">"%1$d h"</string>
+    <string msgid="8876759303332837035" name="m3c_time_picker_hour_selection">"Odabir sata"</string>
+    <string msgid="3458167507790628988" name="m3c_time_picker_hour_suffix">"%1$d h"</string>
+    <string msgid="6973808109666874069" name="m3c_time_picker_hour_text_field">"za sat"</string>
+    <string msgid="4313071914266462005" name="m3c_time_picker_minute">"Minuta"</string>
+    <string msgid="4699133535056739733" name="m3c_time_picker_minute_selection">"Odaberite minute"</string>
+    <string msgid="5064177921781937179" name="m3c_time_picker_minute_suffix">"%1$d min"</string>
+    <string msgid="7661234488295443182" name="m3c_time_picker_minute_text_field">"za minute"</string>
+    <string msgid="5865171949528594571" name="m3c_time_picker_period_toggle_description">"Odaberite prijepodne ili poslijepodne"</string>
+    <string msgid="6616362054113087709" name="m3c_time_picker_pm">"Poslijepodne"</string>
+    <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Prikaži opis"</string>
+    <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Opis"</string>
+    <string name="m3u_parser_title">M3U Parser (rukovanje datotekama m3u playlista)</string>
+    <string name="main_number">Glavni</string>
+    <string name="main_screen">Glavni ekran</string>
+    <string name="make_sure_latest">Također osiguraj da koristiš najnoviju verziju aplikacije.</string>
+    <string name="make_sure_upgrade">Također imaj na umu da se ova verzija aplikacije više ne razvija. Nabavi Pro verziju za mnoga poboljšanja.</string>
+    <string name="manage_automatic_backups">Upravljaj automatskim spremanjem sigurnosnih kopija</string>
+    <string name="manage_blocked_numbers">Upravljanje blokiranim brojevima</string>
+    <string name="manage_excluded_folders">Upravljaj isključenim mapama</string>
+    <string name="manage_shown_tabs">Upravljaj prikazanim karticama</string>
+    <string name="manage_speed_dial">Upravljaj brzim biranjem</string>
+    <string name="march">Ožujak</string>
+    <string name="march_short">Ožu</string>
+    <string name="material_clock_toggle_content_description">Odaberite prijepodne ili poslijepodne</string>
+    <string name="material_design_3">Material Design 3</string>
+    <string name="material_design_3_summary">Changes the appearance of some elements of the application</string>
+    <string name="material_hour_24h_suffix">%1$s h</string>
+    <string name="material_hour_selection">Odaberite sat</string>
+    <string name="material_hour_suffix">%1$s h</string>
+    <string name="material_minute_selection">Odaberite minute</string>
+    <string name="material_minute_suffix">%1$s min</string>
+    <string name="material_timepicker_am">AM</string>
+    <string name="material_timepicker_clock_mode_description">Prijeđite na način rada sata da biste unijeli vrijeme.</string>
+    <string name="material_timepicker_hour">Sat</string>
+    <string name="material_timepicker_minute">Minuta</string>
+    <string name="material_timepicker_pm">PM</string>
+    <string name="material_timepicker_select_time">Odabir vremena</string>
+    <string name="material_timepicker_text_input_mode_description">Prijeđite na način unosa teksta da biste unijeli vrijeme.</string>
+    <string name="maximum_share_reached">Nije moguće dijeliti ovoliko stavki odjednom</string>
+    <string name="may">Svibanj</string>
+    <string name="may_short">Svi</string>
+    <string name="maybe">Možda</string>
+    <string name="medium">Srednja</string>
+    <string name="merge">Spoji</string>
+    <string name="message">Poruka</string>
+    <string name="message_call_later">Mogu li vas nazvati kasnije?</string>
+    <string name="message_cant_talk_right_now">Žao mi je, ne mogu sada pričati.</string>
+    <string name="message_on_my_way">Dolazim.</string>
+    <string name="middle_name">Srednje ime</string>
+    <string name="migrating">Migriranje</string>
+    <string name="minutes_letter">min</string>
+    <string name="minutes_raw">minute</string>
+    <string name="missed_call">Propušteni poziv</string>
+    <string name="missed_call_g">Propušteni poziv</string>
+    <string name="missed_call_notifications_g">Obavijesti o propuštenim pozivima</string>
+    <string name="missed_calls_g">Propušteni pozivi</string>
+    <string name="mobile">Mobitel</string>
+    <string name="monday">Ponedjeljak</string>
+    <string name="monday_letter">P</string>
+    <string name="monday_short">Pon</string>
+    <string name="more_apps">Daljnje aplikacije</string>
+    <string name="more_apps_from_us">Daljnje aplikacje od nas</string>
+    <string name="more_info">Više informacija</string>
+    <string name="more_options">More options</string>
+    <string name="move">Premjesti</string>
+    <string name="move_items_into_recycle_bin">Premjesti stavke u koš za smeće umjesto brisanja</string>
+    <string name="move_to">Premjesti u</string>
+    <string name="move_to_bottom">Pomakni skroz dolje</string>
+    <string name="move_to_recycle_bin_confirmation">Jeste li sigurni da se želite premjestiti %s u koš za smeće?</string>
+    <string name="move_to_top">Pomakni skroz gore</string>
+    <string name="moving">Premještanje…</string>
+    <string name="moving_recycle_bin_items_disabled">Premještanje stavki koša za smeće je onemogućeno, koristite Obnavljanje</string>
+    <string name="moving_success">Datoteke su uspješno premještene</string>
+    <string name="moving_success_one">Datoteka je uspješno premještena</string>
+    <string name="moving_success_partial">Neke datoteke nije bilo moguće premjestiti</string>
+    <string name="mtrl_badge_numberless_content_description">Nova obavijest</string>
+    <string name="mtrl_chip_close_icon_content_description">Ukloni %1$s</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">Više od %1$d novih obavijesti</string>
+    <string name="mtrl_picker_a11y_next_month">Prijelaz na sljedeći mjesec</string>
+    <string name="mtrl_picker_a11y_prev_month">Pomicanje na prethodni mjesec</string>
+    <string name="mtrl_picker_announce_current_selection">Trenutačan odabir: %1$s</string>
+    <string name="mtrl_picker_cancel">Odustani</string>
+    <string name="mtrl_picker_confirm">U redu</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">Odaberite datum</string>
+    <string name="mtrl_picker_date_header_unselected">Odabrani datum</string>
+    <string name="mtrl_picker_day_of_week_column_header">Stupac s danima: %1$s</string>
+    <string name="mtrl_picker_invalid_format">Nevažeći format.</string>
+    <string name="mtrl_picker_invalid_format_example">Primjer: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">Koristi format: %1$s</string>
+    <string name="mtrl_picker_invalid_range">Raspon nije važeći.</string>
+    <string name="mtrl_picker_navigate_to_year_description">Prijelaz na godinu %1$s</string>
+    <string name="mtrl_picker_out_of_range">Izvan raspona: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">Datum početka – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – datum završetka</string>
+    <string name="mtrl_picker_range_header_selected">%1$s – %2$s</string>
+    <string name="mtrl_picker_range_header_title">Odaberite raspon</string>
+    <string name="mtrl_picker_range_header_unselected">Datum početka – datum završetka</string>
+    <string name="mtrl_picker_save">Spremi</string>
+    <string name="mtrl_picker_text_input_date_hint">Datum</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">Datum završetka</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">Datum početka</string>
+    <string name="mtrl_picker_text_input_day_abbr">d</string>
+    <string name="mtrl_picker_text_input_month_abbr">m</string>
+    <string name="mtrl_picker_text_input_year_abbr">g</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">Prijelaz na način unosa u Kalendaru</string>
+    <string name="mtrl_picker_toggle_to_day_selection">Dodirnite za prijelaz na odabir dana</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">Prijelaz na način unosa teksta</string>
+    <string name="mtrl_picker_toggle_to_year_selection">Dodirnite za prijelaz na odabir godine</string>
+    <string name="mtrl_timepicker_cancel">Odustani</string>
+    <string name="mtrl_timepicker_confirm">U redu</string>
+    <string name="music_player_short">Player glazbe</string>
+    <string name="must_make_default_caller_id_app">Blokiranje nepoznatih brojeva nije moguće bez dozvole ID-a pozivatelja.</string>
+    <string name="must_make_default_dialer">Za korištenje blokiranih brojeva, ovu aplikaciju moraš postaviti kao zadanu za biranje brojeva.</string>
+    <string name="mute">Ćutljiv</string>
+    <string name="name">Naziv</string>
+    <string name="name_taken">Datoteka ili mapa s tim nazivom već postoje</string>
+    <string msgid="542007171693138492" name="navigation_menu">"Navigacijski izbornik"</string>
+    <string name="never">Nikada</string>
+    <string name="new_app">Hej,&lt;br>&lt;br> nedavno su objavljene nove aplikacije:&lt;br>&lt;br> &lt;a href=%1$s>%2$s&lt;/a>&lt;br>&lt;br> &lt;a href=%3$s>%4$s&lt;/a>&lt;br>&lt;br> &lt;a href=%5$s>%6$s&lt;/a>&lt;br>&lt;br> Možeš ih preuzeti pritiskom na njihove naslove ili ikone.&lt;br>&lt;br> Hvala</string>
+    <string name="next">Sljedeća</string>
+    <string name="nickname">Přezdívka</string>
+    <string name="nine">Devet</string>
+    <string name="no">Ne</string>
+    <string name="no_access_to_contacts">Aplikacija nije mogla pristupiti tvojim kontaktima</string>
+    <string name="no_app_found">Nema odgovarajuće aplikacije</string>
+    <string name="no_audio_permissions">Potrebno je dopuštenje za zvuk</string>
+    <string name="no_browser_found">Preglednik nije pronađen</string>
+    <string name="no_camera_permissions">Potrebno je dopuštenje za kameru</string>
+    <string name="no_connection">Nema veze</string>
+    <string name="no_contacts_found">Nisu pronađeni kontakti</string>
+    <string name="no_contacts_permission">Potrebno je dopuštenje za kontakte</string>
+    <string name="no_email_client_found">Nije pronađen klijent e-pošte</string>
+    <string name="no_entries_for_exporting">Nije pronađen nijedan unos za izvoz</string>
+    <string name="no_entries_for_importing">Nije pronađen nijedan unos za uvoz</string>
+    <string name="no_files_selected">Nema odabranih datoteka</string>
+    <string name="no_fingerprints_registered">Nemate registiranih otisaka prstiju, molimo dodajte ih u postavkama Vašeg uređaja</string>
+    <string name="no_items_found">Nijedna stavka nije pronađena.</string>
+    <string name="no_new_entries_for_importing">Nije pronađen nijedan nov unos za uvoz</string>
+    <string name="no_new_items">Nisu pronađene nove stavke</string>
+    <string name="no_permission">Bez dozvole</string>
+    <string name="no_phone_call_permission">Aplikacija nema dopuštenje za pokretanje telefonskih poziva. Dopusti pokretanje poziva u postavkama uređaja</string>
+    <string name="no_phone_number_found">Nije pronađen nijedan telefonski broj</string>
+    <string name="no_previous_calls">Nije pronađen nijedan prethodni poziv</string>
+    <string name="no_purchase_found">No purchase found.</string>
+    <string name="no_reminder">Nema podsjetnika</string>
+    <string name="no_sound">Nema zvuka</string>
+    <string name="no_space">Odredište nema dovoljno slobodnog prostora.
+\nPotreban %1$s, dostupan %2$s</string>
+    <string name="no_storage_permissions">Potrebno je dopuštenje za prostor za pohranu</string>
+    <string name="none">Nijedan</string>
+    <string name="not_blocking_anyone">Ne blokirate nikoga.</string>
+    <string msgid="6610465462668679431" name="not_selected">"Nije odabrano"</string>
+    <string name="notes">Bilješke</string>
+    <string name="notes_short">Bilješke</string>
+    <string name="nothing">Ništa</string>
+    <string name="notice">Ova aplikacija koristi biblioteke trećih strana kako bi olakšala moj život. Hvala Vam.</string>
+    <string name="notification">Obavijest</string>
+    <string name="notification_sound">Zvuk obavijesti</string>
+    <string name="notifications">Obavijesti</string>
+    <string name="notifications_disabled">Obavijesti ove aplikacije su deaktivirane. Aktiviraj ih u postavkama uređaja.</string>
+    <string name="november">Studeni</string>
+    <string name="november_short">Stu</string>
+    <string name="number">Broj</string>
+    <string name="number_picker_title">Number Picker (prilagodljiv birač brojeva)</string>
+    <string name="october">Listopad</string>
+    <string name="october_short">Lis</string>
+    <string msgid="875452955155264703" name="off">"Isključeno"</string>
+    <string name="ok">U redu</string>
+    <string msgid="8655164131929253426" name="on">"Uključeno"</string>
+    <string name="one">Jedan</string>
+    <string name="ongoing_call">Poziv u tijeku</string>
+    <string name="open">Otvori</string>
+    <string name="open_biometric_dialog">Otvori dijaloga za provjeru biometrijskog ID-a</string>
+    <string name="open_dialpad_by_default">Otvori brojčanik prema zadanim postavkama kada se aplikacija otvori</string>
+    <string name="open_in_maps">Otvori u Kartama</string>
+    <string name="open_search_when_open_contacts">Otvaranje pretraživanja prilikom otvaranja kartice Kontakti</string>
+    <string name="open_speed_dial_manage">Otvorite upravljanje brzim biranjem?</string>
+    <string name="open_the_recycle_bin">Otvori koš za smeće</string>
+    <string name="open_with">Otvori s</string>
+    <string name="other">Ostalo</string>
+    <string name="other_help">Ostala pomoć</string>
+    <string name="otto_title">Otto (kanal događaja)</string>
+    <string name="out_of_memory_error">Greška, nema slobodnog prostora</string>
+    <string name="outgoing_call">Odlazni poziv</string>
+    <string name="overflow_icon">Ikona prelijevanja</string>
+    <string name="overwrite">Prepiši</string>
+    <string name="pager">Pager</string>
+    <string name="panorama_view_title">VR Panorama View (panoramski prikaz)</string>
+    <string name="participants_title">Participants</string>
+    <string name="password">Lozinka</string>
+    <string name="password_protect_file_deletion">Zaštiti brisanje i premještanje datoteka lozinkom</string>
+    <string name="password_protect_hidden_items">Vidljivost skrivenih, lozinkom zaštićenih stavki</string>
+    <string name="password_protect_whole_app">Zaštiti cijelu aplikaciju lozinkom</string>
+    <string name="password_toggle_content_description">Prikaži zaporku</string>
+    <string name="paste_g">Umetnuti</string>
+    <string name="path">Putanja</string>
+    <string name="pattern">Uzorak</string>
+    <string name="pattern_renaming">Uzorak</string>
+    <string name="pattern_title">PatternLockView (zaštita uzorcima)</string>
+    <string name="pdf_view_pager_title">PDFViewPager (čitač PDF-ova)</string>
+    <string name="pdf_viewer_title">Android PdfViewer (čitač PDF-ova)</string>
+    <string name="per_month">%s/mjesec</string>
+    <string name="permission_required">Zahtijeva dozvolu</string>
+    <string name="phone_storage">Spremište na mobitelu</string>
+    <string name="phone_storage_hidden">Spremište na mobitelu (nije vidljivo za druge aplikacije)</string>
+    <string name="photoview_title">PhotoView (zumiranje GIF-ova)</string>
+    <string name="picasso_title">Picasso (učitavanje i predmemoriranje slika)</string>
+    <string name="pin">PIN</string>
+    <string name="pin_item">Prikvači stavku</string>
+    <string name="pin_must_be_4_digits_long">PIN must be at least 4 digits long</string>
+    <string name="place_finger">Molimo postavite prst na senzor otiska prsta</string>
+    <string name="playbook">PlayBook</string>
+    <string name="playbooks">PlayBooks</string>
+    <string name="playbooks_summary">Audiobook player</string>
+    <string name="player_g">Igrač</string>
+    <string name="playpause">Reproduciraj / Pauziraj</string>
+    <string name="please_enter_pin">Molimo unesite PIN</string>
+    <string name="please_select_destination">Odaberi odredište</string>
+    <string name="plus_summary">Uz vašu pomoć možemo implementirati više značajki i učiniti aplikaciju još boljom</string>
+    <string name="plus_title">Podržite nas</string>
+    <string name="portrait_column_count">Broj stupaca portreta</string>
+    <string name="pref_category_appearance">Izgled</string>
+    <string name="pref_pay_summary">Get the paid app to support future developments and extra features</string>
+    <string name="pref_theme_summary">Odabir unaprijed instalirane teme</string>
+    <string name="prepend_filenames">Dodavanje na početak imena datoteke</string>
+    <string name="prevent_phone_from_sleeping">Spriječite da uređaj prijeđe u stanje mirovanja dok je aplikacija u prvom planu</string>
+    <string name="previous">Prethodna</string>
+    <string name="primary_color">Primarna boja</string>
+    <string name="primary_sim_card">Primarna SIM kartica</string>
+    <string name="print">Ispiši</string>
+    <string name="print_pro">Ispiši (Pro)</string>
+    <string name="privacy_policy">Politika privatnosti</string>
+    <string name="pro_app_refund">Ako deinstaliraš bilo koju plaćenu aplikaciju u roku od 2 sata automatski ćeš dobiti povrat novca. Ako kasnije želiš povrat novca, jednostavno nas kontaktiraj na hello@simplemobiletools.com. To olakšava isprobavanje :)</string>
+    <string name="pro_app_refund_g">Don\'t forget that if you uninstall any paid app within 2 hours, you will automatically be refunded. If you want a refund anytime later, just contact us at goodwy.dev@gmail.com and you will get it. That makes it easy to try it out :)</string>
+    <string name="proceed_with_deletion">Jeste li sigurni da želite nastaviti s brisanjem?</string>
+    <string name="properties">Svojstva</string>
+    <string name="protection_setup_successfully">Uspješno postavljanje lozinke. Molimo reinstalirajte aplikaciju u slučaju da je zaboravite.</string>
+    <string name="purchase">Kupi</string>
+    <string name="purchase_simple_thank_you">Kupi aplikaciju „Jednostavno hvala”</string>
+    <string name="purchase_simple_thank_you_g">Kupite Jednostavno Hvala</string>
+    <string name="purchase_thank_you">
+        <![CDATA[
+            Molimo kupite <a href="https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou">Simple Thank You</a> za otključavanje ove funkcije i podršku razvoju. Hvala!
+        ]]>
+    </string>
+    <string name="quality">Kvaliteta</string>
+    <string name="random">Slučajno</string>
+    <string msgid="5941395253238309765" name="range_end">"Kraj raspona"</string>
+    <string msgid="7097486360902471446" name="range_start">"Početak raspona"</string>
+    <string name="rate">Ocjena</string>
+    <string name="rate_our_app">Ocijeni našu aplikaciju :)</string>
+    <string name="rate_us">Ocijeni nas</string>
+    <string name="rate_us_prompt">Zdravo,
+\n
+\nČini se da već duže vrijeme koristiš ovu aplikaciju i mi to jako cijenimo.
+\n
+\nMolimo te da nas ocijeniš nas na Google Playu. To bi nam stvarno puno pomoglo.
+\n
+\nKako god odlučiš, ovu poruku više nećeš vidjeti.
+\n
+\nHvala!</string>
+    <string name="read_faq">Pročitaj ČPP</string>
+    <string name="read_it">Pročitajte</string>
+    <string name="recent_files_tab">Recent files</string>
+    <string name="recents">Nedavni</string>
+    <string name="recommendation_dialog_contacts_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our app to view and edit contacts.<br><br>
+            Thanks
+        ]]></string>
+    <string name="recommendation_dialog_dialer_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our call app.<br><br>
+            Thanks
+        ]]></string>
+    <string name="recommendation_dialog_gallery_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our photo viewing and editing app.<br><br>
+            Thanks
+        ]]></string>
+    <string name="recommendation_dialog_messages_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our messaging app.<br><br>
+            Thanks
+        ]]></string>
+    <string name="record_audio">Snimi zvuk</string>
+    <string name="record_video">Snimi video</string>
+    <string name="recorder_g">Snimalo</string>
+    <string name="recycle_bin">Koš za smeće</string>
+    <string name="recycle_bin_cleaning_interval">Interval čišćenja koša za smeće</string>
+    <string name="recycle_bin_emptied">Koš za smeće je uspješno ispražnjen</string>
+    <string name="recycle_bin_empty">Koš za smeće je prazan</string>
+    <string name="redo">Ponovi</string>
+    <string name="reduce_column_count">Smanji broj stupaca</string>
+    <string name="relation_acquaintance_g">Acquaintance</string>
+    <string name="relation_agent_g">Agent</string>
+    <string name="relation_assistant_g">Assistant</string>
+    <string name="relation_aunt_g">Aunt</string>
+    <string name="relation_brother_g">Brother</string>
+    <string name="relation_brother_in_law_g">Brother-in-law</string>
+    <string name="relation_child_g">Child</string>
+    <string name="relation_co_resident_g">Co-resident</string>
+    <string name="relation_co_worker_g">Co-worker</string>
+    <string name="relation_colleague_g">Colleague</string>
+    <string name="relation_contact_g">Contact</string>
+    <string name="relation_crush_g">Crush</string>
+    <string name="relation_date_g">Date</string>
+    <string name="relation_daughter_g">Daughter</string>
+    <string name="relation_daughter_in_law_g">Daughter-in-law</string>
+    <string name="relation_domestic_partner_g">Domestic Partner</string>
+    <string name="relation_emergency_g">Emergency Contact</string>
+    <string name="relation_father_g">Father</string>
+    <string name="relation_father_in_law_g">Father-in-law</string>
+    <string name="relation_friend_g">Friend</string>
+    <string name="relation_g">Odnos</string>
+    <string name="relation_grandchild_g">Grandchild</string>
+    <string name="relation_granddaughter_g">Granddaughter</string>
+    <string name="relation_grandfather_g">Grandfather</string>
+    <string name="relation_grandmother_g">Grandmother</string>
+    <string name="relation_grandparent_g">Grandparent</string>
+    <string name="relation_grandson_g">Grandson</string>
+    <string name="relation_hint_g">Povezana osoba</string>
+    <string name="relation_husband_g">Husband</string>
+    <string name="relation_kin_alt_g">Relative</string>
+    <string name="relation_kin_g">Kin</string>
+    <string name="relation_manager_g">Manager</string>
+    <string name="relation_me_g">Me</string>
+    <string name="relation_met_g">Met</string>
+    <string name="relation_mother_g">Mother</string>
+    <string name="relation_mother_in_law_g">Mother-in-law</string>
+    <string name="relation_muse_g">Muse</string>
+    <string name="relation_neighbor_g">Neighbor</string>
+    <string name="relation_nephew_g">Nephew</string>
+    <string name="relation_niece_g">Niece</string>
+    <string name="relation_parent_g">Parent</string>
+    <string name="relation_partner_g">Partner</string>
+    <string name="relation_referred_by_g">Referred by</string>
+    <string name="relation_relative_g">Relative</string>
+    <string name="relation_sibling_g">Sibling</string>
+    <string name="relation_sister_g">Sister</string>
+    <string name="relation_sister_in_law_g">Sister-in-law</string>
+    <string name="relation_son_g">Son</string>
+    <string name="relation_son_in_law_g">Son-in-law</string>
+    <string name="relation_spouse_g">Spouse</string>
+    <string name="relation_subordinate_g">Subordinate</string>
+    <string name="relation_superior_g">Boss</string>
+    <string name="relation_sweetheart_g">Sweetheart</string>
+    <string name="relation_uncle_g">Uncle</string>
+    <string name="relation_wife_g">Wife</string>
+    <string name="relations_g">Povezane osobe</string>
+    <string name="relative_date">Relativni datum</string>
+    <string name="remind_me">Podsjeti me</string>
+    <string name="reminder_triggers_in">Preostalo vrijeme do pokretanja podsjetnika:\n%s</string>
+    <string name="reminder_warning">Pazite da podsjetnici ispravno rade prije nego što se oslonite na njih. Moglo bi se dogoditi pogreška zbog ograničenja sustava vezanih uz štednju baterije.</string>
+    <string name="remove">Ukloni</string>
+    <string name="remove_all">Ukloni sve</string>
+    <string name="remove_all_description">Želiš li ukloniti sve mape s popisa isključenih\? Ovo neće izbrisati mape.</string>
+    <string name="remove_confirmation">Stvarno želiš ukloniti odabrane stavke iz povijesti poziva\?</string>
+    <string name="remove_exif">Ukloni EXIF</string>
+    <string name="remove_exif_confirmation">Jeste li sigurni da želite ukloniti EXIF vrijednosti kao što su GPS koordinate, model kamere itd.\?</string>
+    <string name="remove_from_favorites">Ukloni iz favorita</string>
+    <string name="rename">Preimenuj</string>
+    <string name="rename_date_time_pattern">%Y – godina
+\n%M – mjesec
+\n%D – dan
+\n%h – sat
+\n%m – minuta
+\n%s – sekunda
+\n%i – broj se povećava od 1</string>
+    <string name="rename_file">Preimenuj datoteku</string>
+    <string name="rename_file_error">Nije moguće preimenovati datoteku</string>
+    <string name="rename_folder">Preimenuj mapu</string>
+    <string name="rename_folder_empty">Ime mape ne smije biti prazno</string>
+    <string name="rename_folder_error">Nije moguće preimenovati mapu</string>
+    <string name="rename_folder_exists">Mapa s tim imenom već postoji</string>
+    <string name="rename_folder_ok">Mapa uspješno preimenovana</string>
+    <string name="rename_folder_root">Nije moguće preimenovati root mapu prostora za pohranu</string>
+    <string name="rename_in_sd_card_system_restriction">Sustav ne dopušta preimenovanje u ovoj mapi</string>
+    <string name="rename_internal_system_restriction">Nije moguće preimenovati mape izravno u internoj pohrani, samo podmape</string>
+    <string name="renaming_folder">Preimenovanje mape</string>
+    <string name="repeat_pattern">Ponovite uzorak</string>
+    <string name="repeat_pin">Ponovite PIN</string>
+    <string name="reprint_title">Reprint (zaštita otiskom prsta)</string>
+    <string name="request_access">Zatraži pristup</string>
+    <string name="request_the_required_permissions">Zatraži potrebna dopuštenja</string>
+    <string name="resize">Promjeni veličinu</string>
+    <string name="resolution">Rezolucija</string>
+    <string name="restart_required">Application restart required</string>
+    <string name="restore_all_files">Vrati sve datoteke</string>
+    <string name="restore_defaults">Vrati zadano</string>
+    <string name="restore_purchase">Restore purchase</string>
+    <string name="restore_selected_files">Vrati odabrane datoteke</string>
+    <string name="restore_this_file">Vrati ovu datoteku</string>
+    <string name="restored_previous_purchase_please_restart">Restored previous purchase. Please restart the app to make use of all features.</string>
+    <string name="restoring_purchase">Restoring purchase…</string>
+    <string name="resume_call">Nastavi poziv</string>
+    <string name="right_contacts">Right Contacts</string>
+    <string name="right_dialer">Right Dialer</string>
+    <string name="right_files">Right Files</string>
+    <string name="right_gallery">Right Gallery</string>
+    <string name="right_sms_messenger">Right Messages</string>
+    <string name="right_voice_recorder">Right Voice Memos</string>
+    <string name="robolectric_title">Robolectric (framework za testiranje)</string>
+    <string name="root">Root</string>
+    <string name="round_play_icon">Ikona Zaokruži reprodukciju/pauziranje</string>
+    <string name="round_play_icon_summary">Ikona reprodukcije/pauze obojena je primarnom bojom</string>
+    <string name="row_count">Row count</string>
+    <string name="rtl_viewpager_title">RtlViewPager (povlačenje zdesna ulijevo)</string>
+    <string name="sanselan_title">Apache Sanselan (čitanje metapodataka slike)</string>
+    <string name="saturday">Subota</string>
+    <string name="saturday_letter">S</string>
+    <string name="saturday_short">Sub</string>
+    <string name="save">Spremi</string>
+    <string name="save_as">Spremi kao</string>
+    <string name="save_before_closing">Imate ne spremljene promjene. Želite li spremiti prije izlaska?</string>
+    <string name="save_recordings_in_summary">Počevši od Androida 10 , aplikacija nema pristup vašim datotekama</string>
+    <string name="saving">Spremanje…</string>
+    <string name="saving_label">Spremanje</string>
+    <string name="scanning">Scanning…</string>
+    <string msgid="5659570757430909869" name="screen_lock_prompt_message">"Za nastavak upotrijebite zaključavanje zaslona"</string>
+    <string name="screen_slide_animation">Animacija slajdova zaslona</string>
+    <string name="screen_slide_animation_depth">Dubina</string>
+    <string name="screen_slide_animation_zoomout">Smanji</string>
+    <string name="scrolling">Pomicanje</string>
+    <string name="sd_card">SD kartica</string>
+    <string name="sd_card_usb_same">Putanje SD kartice i USB uređaja ne mogu biti isti</string>
+    <string name="search">Traži</string>
+    <string name="search_albums">Pretraži albume</string>
+    <string name="search_apps">Pretraži aplikacije</string>
+    <string name="search_artists">Pretraži izvođače</string>
+    <string name="search_calls">Pretraži pozive</string>
+    <string name="search_contacts">Pretraži kontakte</string>
+    <string name="search_conversations">Pretraži razgovore</string>
+    <string name="search_events">Pretraži događaje</string>
+    <string name="search_favorites">Pretraži favorite</string>
+    <string name="search_files">Pretraži datoteke</string>
+    <string name="search_files_and_folders">Pretraži datoteke i mape</string>
+    <string name="search_folders">Pretraži mape</string>
+    <string name="search_groups">Pretraži grupe</string>
+    <string name="search_history">Pretraži povijest</string>
+    <string name="search_in_placeholder">Traži u %s</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"Pretraži"</string>
+    <string name="search_playlists">Pretraži playliste</string>
+    <string name="search_recordings">Pretraži snimanja</string>
+    <string name="search_text">Pretraži tekst</string>
+    <string name="search_tracks">Pretraži pjesme</string>
+    <string name="seconds_letter">s</string>
+    <string name="seconds_raw">sekunde</string>
+    <string name="security">Sigurnost</string>
+    <string name="select_a_different_color">Odaberi jednu drugu boju</string>
+    <string name="select_all">Odaberi sve</string>
+    <string name="select_destination">Odabir odredišta</string>
+    <string name="select_file">Odaberi datoteku</string>
+    <string name="select_folder">Odaberi mapu</string>
+    <string name="select_photo">Odaberi sliku</string>
+    <string name="select_sim">Odaberi SIM karticu za ovaj poziv</string>
+    <string name="select_storage">Odaberite prostor za pohranu</string>
+    <string name="select_text">Odaberi tekst</string>
+    <string msgid="6043586758067023" name="selected">"Odabrano"</string>
+    <string name="send_email">Pošalji e-mail</string>
+    <string name="send_sms">Pošalji SMS</string>
+    <string name="september">Rujan</string>
+    <string name="september_short">Ruj</string>
+    <string name="set_as">Postavi kao</string>
+    <string name="set_as_default">Postavi na zadano</string>
+    <string name="settings">Postavke</string>
+    <string name="settings_exported_successfully">Postavke su uspješno izvezene</string>
+    <string name="settings_icon">Ikona Postavke</string>
+    <string name="settings_imported_successfully">Postavke su uspješno uvezene</string>
+    <string name="seven">Sedam</string>
+    <string name="share">Dijeli</string>
+    <string name="share_colors_success">Uspješno ažurirane boje. Nova tema pod nazivom \'Shared\' je dodana, molimo koristite ju za ažuriranje svih boja u aplikaciji u budućnosti.</string>
+    <string name="share_text">Hej, posjeti nas na %1$s u %2$s</string>
+    <string name="share_via">Dijeli putem</string>
+    <string name="shared">Dijeljena</string>
+    <string name="shared_theme_note">Imajte na umu da iako koristite Pro verziju aplikacije, još uvijek trebate Jednostavno hvala iz tehničkih razloga. Brine se za sinkronizaciju boja.</string>
+    <string name="shortcut">Prečac</string>
+    <string name="show_blocked_numbers">Pokaži blokirano</string>
+    <string name="show_button_blocked_numbers">Pokaži gumb da ne biste sakrili blokirane pozive</string>
+    <string name="show_call_confirmation_dialog">Pokažite dijaloški okvir za potvrdu poziva prije pokretanja poziva</string>
+    <string name="show_call_details">Prikaži detalje poziva</string>
+    <string name="show_caller_description_g">Prikaži dodatne podatke o pozivatelju</string>
+    <string name="show_contact_thumbnails_g">Pokaži minijature kontakata</string>
+    <string name="show_dialpad">Pokaži brojčanik</string>
+    <string name="show_dividers">Pokaži razdjelnike</string>
+    <string name="show_hidden_items">Prikaži skrivene stavke</string>
+    <string name="show_incoming_calls_full_screen">Uvijek prikaži dolazne pozive u cjeloekranskom prikazu</string>
+    <string name="show_info_bubble">Prikaži informativni balončić prilikom prelistavanja stavki povlačenjem klizne trake</string>
+    <string name="show_line_numbers">Show line numbers</string>
+    <string name="show_phone_numbers_g">Prikaži telefonske brojeve</string>
+    <string name="show_search">Show a search bar</string>
+    <string name="show_the_recycle_bin">Prikaži koš za smeće</string>
+    <string name="sideloaded_app">Čini se da je verzija aplikacije oštećena. Preuzmi izvornu verziju &lt;a href=%s>ovdje&lt;/a>.</string>
+    <string name="simple_app_launcher">Jednostavni pokretač aplikacija</string>
+    <string name="simple_calculator">Jednostavni kalkulator</string>
+    <string name="simple_calendar">Jednostavni kalendar</string>
+    <string name="simple_camera">Jednostavna kamera</string>
+    <string name="simple_clock">Jednostavni sat</string>
+    <string name="simple_contacts">Jednostavni kontakti</string>
+    <string name="simple_dialer">Jednostavni birač</string>
+    <string name="simple_draw">Jednostavno crtanje</string>
+    <string name="simple_file_manager">Jednostavni upravljač datoteka</string>
+    <string name="simple_flashlight">Jednostavna svjetiljka</string>
+    <string name="simple_gallery">Jednostavna galerija</string>
+    <string name="simple_keyboard">Jednostavna tipkovnica</string>
+    <string name="simple_launcher">Jednostavni pokretač</string>
+    <string name="simple_music_player">Jednostavni player glazbe</string>
+    <string name="simple_notes">Jednostavne bilješke</string>
+    <string name="simple_renaming">Jednostavno preimenovanje</string>
+    <string name="simple_sms_messenger">Jednostavni SMS messenger</string>
+    <string name="simple_thank_you">Jednostavno hvala</string>
+    <string name="simple_voice_recorder">Jednostavni diktafon</string>
+    <string name="six">Šest</string>
+    <string name="size">Veličina</string>
+    <string name="skip">Preskoči</string>
+    <string name="skip_delete_confirmation">Uvijek preskoči dijaloški okvir za potvrdu brisanja</string>
+    <string name="skip_the_recycle_bin">Preskoči koš za smeće, izbriši datoteke odmah</string>
+    <string name="sleep_timer">Mjerač vremena za isključivanje</string>
+    <string name="small">Mala</string>
+    <string name="sms_messenger_short">SMS messenger</string>
+    <string name="sms_mms_title">SMS MMS (rukovanje SMS i MMS porukama)</string>
+    <string name="snooze">Odgodi</string>
+    <string name="snooze_time">Vrijeme odgode</string>
+    <string name="social">Društvene mreže</string>
+    <string name="solarized">Solarizirana</string>
+    <string name="song_title">Naziv pjesme</string>
+    <string name="sort_by">Sortiraj po</string>
+    <string name="sort_numeric_parts">Sortiraj numeričke dijelove prema stvarnoj vrijednosti</string>
+    <string name="sort_randomly">Sortiraj slučajnim redoslijedom</string>
+    <string name="source">Izvor</string>
+    <string name="source_and_destination_same">Izvor i odredište ne mogu biti isti</string>
+    <string name="source_file_doesnt_exist">Izvorna datoteka %s ne postoji</string>
+    <string name="special_thanks_to">Special thanks to</string>
+    <string name="speech_bubble">Govorni oblačić</string>
+    <string name="speed_dial">Brzo biranje</string>
+    <string name="speed_dial_label">Pritisni jedan broj za dodjeljivanje kontakta. Zatim možeš brzo nazvati zadani kontakt dugim pritiskom na zadani broj na biraču.</string>
+    <string name="start_free_trial">Pokreni besplatan probni rok</string>
+    <string name="start_name_with_surname">Započnite imena s prezimenima</string>
+    <string name="start_week_on">Start week on</string>
+    <string name="startup">Pokretanje</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="stetho_title">Stetho (uklanjanje grešaka u bazama podataka)</string>
+    <string name="stop_showing_excluded">Prekini prikazivanje isključenih</string>
+    <string name="stop_showing_hidden">Zaustavi prikazivanje skrivenih stavki</string>
+    <string name="storage">Skladištenje</string>
+    <string name="string_to_add">Znakovni niz za dodavanje</string>
+    <string name="subsampling_title">Subsampling Scale Image View (zumiranje prikaza slika)</string>
+    <string name="sunday">Nedjelja</string>
+    <string name="sunday_first">Početak tjedna u nedjelju</string>
+    <string name="sunday_letter">N</string>
+    <string name="sunday_short">Ned</string>
+    <string name="support">Podrška</string>
+    <string name="support_project_summary">Get one of our paid apps to support future development and unlock extra features</string>
+    <string name="surname">Prezime</string>
+    <string msgid="2561197295334830845" name="switch_role">"Prekidač"</string>
+    <string name="system_default">Standard sustava</string>
+    <string name="system_folder_copy_restriction">Sustav ne dopušta kopiranje u ovu mapu, odaberite drugu</string>
+    <string name="system_folder_restriction">Sustav ne dopušta rad u ovoj mapi, odaberite drugu</string>
+    <string name="system_service_disabled">Usluga sustava za odabir datoteka i mapa nije dostupna</string>
+    <string name="system_sounds">Zvukovi sustava</string>
+    <string msgid="1672349317127674378" name="tab">"Kartica"</string>
+    <string name="tab_navigation">Navigacija tabulatorom</string>
+    <string name="tabs">Kartice</string>
+    <string name="take_photo">Snimi fotografiju</string>
+    <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g> posto."</string>
+    <string name="temporarily_show_excluded">Privremeno prikaži isključene</string>
+    <string name="temporarily_show_hidden">Privremeno prikaži skriveno</string>
+    <string name="text">Tekst</string>
+    <string name="text_color">Boja teksta</string>
+    <string name="text_cursor_color">Boja pokazivača teksta</string>
+    <string name="thank_you">Hvala</string>
+    <string name="thank_you_short">Hvala</string>
+    <string name="theme">Tema</string>
+    <string name="themes">Teme</string>
+    <string name="themes_summary">Pažljivo odabrane teme aplikacija, automatski izmjenjivač tema i podrška za temu sustava za Android 12+</string>
+    <string name="third_party_licences">Licence trećih strana</string>
+    <string name="three">Tri</string>
+    <string name="thumbnails">Sličice</string>
+    <string name="thursday">Četvrtak</string>
+    <string name="thursday_letter">Č</string>
+    <string name="thursday_short">Čet</string>
+    <string name="time_remaining">Preostalo vrijeme:
+\n%s</string>
+    <string name="timer">Brojač</string>
+    <string name="timers_notification_msg">Brojači su pokrenuti</string>
+    <string name="tip_excellent">Izvrsna podrška</string>
+    <string name="tip_incredible">Sjajna podrška</string>
+    <string name="tip_jar">Podrška</string>
+    <string name="tip_kind">Dobra podrška</string>
+    <string name="title">Naslov</string>
+    <string name="today">Danas</string>
+    <string name="toggle_filename">Uključi prikaz naziva datoteka</string>
+    <string name="tomorrow">Sutra</string>
+    <string name="too_many_incorrect_attempts">Too many incorrect unlock attempts.\nTry again in %d seconds.</string>
+    <string msgid="3765533235322692011" name="tooltip_description">"opis"</string>
+    <string msgid="3124740595719787496" name="tooltip_label">"prikaži opis"</string>
+    <string name="top">Iznad</string>
+    <string name="top_app_bar_colored">Gornja traka aplikacije u boji</string>
+    <string name="translation">Prijevod</string>
+    <string name="translation_arabic">Arapski</string>
+    <string name="translation_azerbaijani">Azerbajdžanski</string>
+    <string name="translation_basque">Baskijski</string>
+    <string name="translation_bengali">Bengalski</string>
+    <string name="translation_breton">Bretonski</string>
+    <string name="translation_bulgarian">Bugarski</string>
+    <string name="translation_catalan">Katalonski</string>
+    <string name="translation_chinese_cn">Kineski (pojednostavljeni)</string>
+    <string name="translation_chinese_hk">Kineski (Hong Kong)</string>
+    <string name="translation_chinese_tw">Kineski (tradicionalni)</string>
+    <string name="translation_croatian">Hrvatski</string>
+    <string name="translation_czech">Češki</string>
+    <string name="translation_danish">Danski</string>
+    <string name="translation_dutch">Nizozemski</string>
+    <string name="translation_english">Engleski</string>
+    <string name="translation_finnish">Finski</string>
+    <string name="translation_french">Francuski</string>
+    <string name="translation_galician">Galicijski</string>
+    <string name="translation_german">Njemački</string>
+    <string name="translation_greek">Grčki</string>
+    <string name="translation_hebrew">Hebrejski</string>
+    <string name="translation_hindi">Hindski</string>
+    <string name="translation_hungarian">Mađarski</string>
+    <string name="translation_indonesian">Indonezijski</string>
+    <string name="translation_italian">Talijanski</string>
+    <string name="translation_japanese">Japanski</string>
+    <string name="translation_korean">Korejski</string>
+    <string name="translation_lithuanian">Litavski</string>
+    <string name="translation_nepali">Nepalski</string>
+    <string name="translation_norwegian">Norveški</string>
+    <string name="translation_persian">Perzijski</string>
+    <string name="translation_polish">Poljski</string>
+    <string name="translation_portuguese">Portugalski</string>
+    <string name="translation_romanian">Rumunjski</string>
+    <string name="translation_russian">Ruski</string>
+    <string name="translation_serbian">Srpski</string>
+    <string name="translation_slovak">Slovački</string>
+    <string name="translation_slovenian">Slovenski</string>
+    <string name="translation_spanish">Španjolski</string>
+    <string name="translation_swedish">Švedski</string>
+    <string name="translation_tamil">Tamilski</string>
+    <string name="translation_turkish">Turski</string>
+    <string name="translation_ukrainian">Ukrajinski</string>
+    <string name="translation_vietnamese">Vijetnamski</string>
+    <string name="translation_welsh">Velški</string>
+    <string name="transparent">Prozirno</string>
+    <string name="transparent_bar">Transparent bars</string>
+    <string name="transparent_call_screen_g">Prozirni zaslon poziva</string>
+    <string name="transparent_color">Prozirna boja</string>
+    <string name="transparent_navigation_bar">Transparent bottom navigation bar</string>
+    <string name="trial_end_description">Nadogradi na Pro verziju za potpuni užitak.
+\n
+\nPlati samo jednom. Ako ti Pro verzija ne odgovara, deinstaliraj je i dobij povrat novca.
+\n
+\nVidimo se tamo :)</string>
+    <string name="trial_expired">Probni rok je istekao</string>
+    <string name="trial_expires_soon">Tvoj probni rok uskoro isteče.</string>
+    <string name="trial_start_description">Thank you for using our app. You can use this unlocked version for &lt;font color=\'#FFFFFF\'>%d days&lt;/font>. Once the trial ends, please consider upgrading to the Pro version. It has a huge amount of new features, modern design, no ads and many other improvements.
+        \n\nYou just have to pay for it once in a lifetime and if you won\'t be satisfied, you can uninstall it and get a refund.\n\nHope you\'ll like it :)</string>
+    <string name="tuesday">Utorak</string>
+    <string name="tuesday_letter">U</string>
+    <string name="tuesday_short">Uto</string>
+    <string name="turn_microphone_off">Isključi mikrofon</string>
+    <string name="turn_microphone_on">Uključi mikrofon</string>
+    <string name="turn_speaker_off">Isključi zvučnik</string>
+    <string name="turn_speaker_on">Uključi zvučnik</string>
+    <string name="two">Dva</string>
+    <string name="type_2_characters">Upiši barem dva znaka za pokretanje pretrage.</string>
+    <string name="unblock">Unblock</string>
+    <string name="unblock_confirmation">Jeste li sigurni da želite deblokirati \"%s\"?</string>
+    <string name="unblock_contact">Unblock contact</string>
+    <string name="unblock_contact_fail">Contact could not be unblocked</string>
+    <string name="unblock_contact_success">Contact unblocked</string>
+    <string name="unblock_number">Deblokiranje broja</string>
+    <string name="unblock_numbers">Deblokiranje brojeva</string>
+    <string name="undo">Poništi</string>
+    <string name="undo_changes">Poništi promjene</string>
+    <string name="undo_changes_confirmation">Jeste li sigurni da želite poništiti Vaše promjene?</string>
+    <string name="uneven_grid">Neravnomjerni prikaz ikona</string>
+    <string name="unhide">Otkrij</string>
+    <string name="unhide_folder">Otkrij mapu</string>
+    <string name="unknown">Nepoznato</string>
+    <string name="unknown_caller">Nepoznat pozivatelj</string>
+    <string name="unknown_error_occurred">Nepoznata greška se dogodila</string>
+    <string name="unlock">Unlock</string>
+    <string name="unlock_folder">Otključaj mapu</string>
+    <string name="unlock_for_one_final_day">Otključaj aplikaciju za još jedan zadnji dan</string>
+    <string name="unpin_item">Otkvači stavku</string>
+    <string name="unset_default_sim">Poništi postavu zadane SIM kartice</string>
+    <string name="update_thank_you">Ažurirajte „Jednostavno hvala” na najnoviju verziju</string>
+    <string name="update_thank_you_g">Molim ažurirajte Jednostavno hvala na najnoviju verziju</string>
+    <string name="updating">Aktualiziranje …</string>
+    <string name="upgrade">Nadogradi</string>
+    <string name="upgrade_calendar">Lokalno pohranjene događaje morate migrirati ručno putem izvoza u .ics datoteku, a zatim uvoza. Možete pronaći oba gumba za izvoz/uvoz na izborniku glavnog zaslona.</string>
+    <string name="upgrade_to_pro">Nadogradi na Pro verziju</string>
+    <string name="upgrade_to_pro_long">Tvoja verzija aplikacije se više neće ažurirati. Nadogradi na Pro verziju za primanje novih ispravki i druga poboljšanja.</string>
+    <string name="upgrade_to_pro_long_click">Tvoja verzija aplikacije se više neće ažurirati. Pritisni ovdje za nadogradnju na Pro verziju za primanje novih ispravki i druga poboljšanja.</string>
+    <string name="upgraded_from_free">Zdravo,
+\n
+\nčini se da si upravo nadogradio/la besplatnu verziju aplikacije. Ako ti nadograđena verzija odgovara i ako preuzmeš tvoje podatke, staru besplatnu aplikaciju možeš deinstalirati kako bi se izbjeglo slučajno pokretanje stare verzije jer ti više neće trebati. Time će se spriječiti prikazivanje ovog dijaloga.
+\n
+\nHvala!</string>
+    <string name="upgraded_from_free_calendar">Zdravo,
+\n
+\nčini se da si upravo nadogradio/la besplatnu verziju aplikacije. Ako želiš preuzeti tvoje lokalno spremljene događaje, to moraš učiniti ručno izvozom u .ics datoteku u besplatnoj verziji aplikacije i uvozom ovdje putem gornjeg izbornika.
+\n
+\nAko ti postava Pro verzije odgovara, staru besplatnu verziju možeš deinstalirati kako bi se izbjeglo slučajno pokretanje stare besplatne verzije jer ti više neće trebati. Time će se spriječiti prikazivanje ovog dijaloga.
+\n
+\nHvala!</string>
+    <string name="upgraded_from_free_contacts">Zdravo,
+\n
+\nčini se da si upravo nadogradio/la besplatnu verziju aplikacije. Tvoje spremljene kontakte u „%s” moraš preuzeti ručno izvozom u .vcf datoteku u besplatnoj verziji aplikacije i uvozom ovdje putem gornjeg izbornika.
+\n
+\nAko ti postava Pro verzije odgovara, staru besplatnu verziju možeš deinstalirati jer ti više neće trebati. Time će se spriječiti prikazivanje ovog dijaloga.
+\n
+\nHvala!</string>
+    <string name="upgraded_from_free_gallery">Zdravo,
+\n
+\nčini se da si upravo nadogradio/la besplatnu verziju aplikacije. Ako ti nadograđena verzija odgovara i ako preuzmeš svoje postavke i favorite, staru besplatnu aplikaciju možeš deinstalirati kako bi se izbjeglo slučajno pokretanje stare verzije jer ti više neće trebati. Time će se spriječiti prikazivanje ovog dijaloga.
+\n
+\nHvala!</string>
+    <string name="upgraded_from_free_notes">Zdravo,
+\n
+\nčini se da si upravo nadogradio/la besplatnu verziju aplikacije. Ako želiš preuzeti tvoje lokalno spremljene bilješke, to moraš učiniti ručno izvozom u datoteku u besplatnoj verziji aplikacije i uvozom ovdje putem gornjeg izbornika.
+\n
+\nAko ti postava Pro verzije odgovara, staru besplatnu verziju možeš deinstalirati jer ti više neće trebati. Time će se spriječiti prikazivanje ovog dijaloga.
+\n
+\nHvala!</string>
+    <string name="upgraded_to_pro">Zdravo,
+\n
+\nčini se da već imaš i Pro verziju aplikacije. Ako ti Pro verzija odgovara i ako preuzmeš tvoje podatke, ovu aplikaciju možeš deinstalirati kako bi se izbjeglo slučajno pokretanje te verzije jer ti više neće trebati.
+\n
+\nHvala!</string>
+    <string name="upgraded_to_pro_gallery">Zdravo,
+\n
+\nčini se da već imaš i Pro verziju aplikacije. Ako ti Pro verzija odgovara i ako preuzmeš svoje postavke i favorite, staru besplatnu aplikaciju možeš deinstalirati kako bi se izbjeglo slučajno pokretanje stare verzije jer ti više neće trebati.
+\n
+\nHvala!</string>
+    <string name="usb">USB</string>
+    <string name="usb_detected">Čini se da na uređaj imate priključen USB uređaj. Da biste provjerili prikazuju li se datoteke ispravno, morate dodijeliti dodatna dopuštenja.</string>
+    <string name="use_24_hour_time_format">Koristite 24-satni format</string>
+    <string msgid="6524145989441579428" name="use_biometric_label">"Upotreba biometrijske autentifikacije"</string>
+    <string msgid="5385448280139639016" name="use_biometric_or_screen_lock_label">"Upotreba biometrijske autentifikacije ili zaključavanja zaslona"</string>
+    <string name="use_custom_sorting">Koristi prilagođeno sortiranje</string>
+    <string name="use_default">Koristi zadano</string>
+    <string name="use_english_language">Koristi engleski jezik</string>
+    <string msgid="6533512708069459542" name="use_face_label">"Upotreba autentifikacije licem"</string>
+    <string msgid="2116180187159450292" name="use_face_or_screen_lock_label">"Upotreba autentifikacije licem ili zaključavanja zaslona"</string>
+    <string msgid="6961788485681412417" name="use_fingerprint_label">"Upotreba otiska prsta"</string>
+    <string msgid="7577690399303139443" name="use_fingerprint_or_screen_lock_label">"Upotreba otiska prsta ili zaključavanja zaslona"</string>
+    <string name="use_for_this_folder">Koristi samo za ovu mapu</string>
+    <string name="use_icon_tabs">Korištenje ikona kartica</string>
+    <string name="use_icon_tabs_summary">Ikone umjesto teksta na karticama</string>
+    <string name="use_same_snooze">Uvijek koristi isto vrijeme odgode</string>
+    <string msgid="5459869335976243512" name="use_screen_lock_label">"Upotreba zaključavanja zaslona"</string>
+    <string name="value">Vrijednost</string>
+    <string name="value_cannot_be_empty">Vrijednost ne može biti prazna</string>
+    <string name="value_copied_to_clipboard">Vrijednost je kopirana u međuspremnik</string>
+    <string name="value_copied_to_clipboard_show">Vrijednost je kopirana u međuspremnik:
+\n%s</string>
+    <string name="version_placeholder">Verzija %s</string>
+    <string name="vibrate_on_button_press">Vibriraj prilikom pritiskanja gumba</string>
+    <string name="video_call">Video poziv</string>
+    <string name="view_contact_details">Prikaži detalje kontakta</string>
+    <string name="visibility">Vidljivost</string>
+    <string name="voice_recorder_short">Diktafon</string>
+    <string name="voicerecorder">VoiceMemos</string>
+    <string name="voicerecorder_summary">Voice recorder</string>
+    <string name="wallpapers">Slike pozadine</string>
+    <string name="website">Web stranica</string>
+    <string name="website_label">Za izvorni kod posjeti</string>
+    <string name="wednesday">Srijeda</string>
+    <string name="wednesday_letter">S</string>
+    <string name="wednesday_short">Sri</string>
+    <string name="week_number_short">tj.</string>
+    <string name="welcome_to_app_name">Pozdrav u %s!</string>
+    <string name="whats_new">Što je novo</string>
+    <string name="whats_new_disclaimer">* samo velika ažuriranja su ovdje izlistana, ali i mala ažuriranja su također prisutna</string>
+    <string name="white">Bijela</string>
+    <string name="why_upgrade">Nabavi Pro verziju sada!</string>
+    <string name="why_upgrade_advanced_photo_editor">Napredni uređivač fotografija</string>
+    <string name="why_upgrade_advanced_photo_video_editor">Napredni uređivač fotografija i videa</string>
+    <string name="why_upgrade_attendees_emails">Učesnici i podsjetnici putem e-maila</string>
+    <string name="why_upgrade_background_color_customization">Prilagođavanje boje pozadine</string>
+    <string name="why_upgrade_basic_version">Osnovna</string>
+    <string name="why_upgrade_batch_renaming">Napredno grupno preimenovanje datoteka</string>
+    <string name="why_upgrade_checklists">Popisi zadataka</string>
+    <string name="why_upgrade_contact_filtering">Filtriranje kontakata</string>
+    <string name="why_upgrade_contact_private_contacts">Privatno spremljeni kontakti</string>
+    <string name="why_upgrade_customizable_contact_ringtones">Prilagodljive melodije zvona za kontakte</string>
+    <string name="why_upgrade_date_and_time_format">Prilagođavanje formata datuma i vremena</string>
+    <string name="why_upgrade_different_note_per_widget">Različite bilješke i boje po widgetu</string>
+    <string name="why_upgrade_duplicate_contact_merging">Poboljšano spajanje duplih kontakata</string>
+    <string name="why_upgrade_easy_event_importing">Jednostavan uvoz događaja</string>
+    <string name="why_upgrade_file_compression">Podrška za komprimiranje datoteka</string>
+    <string name="why_upgrade_file_importing">Podrška za uvoz datoteka</string>
+    <string name="why_upgrade_folder_locking">Zaključavanje pojedinačnih mapa</string>
+    <string name="why_upgrade_font_size_customization">Prilagođavanje veličine fonta</string>
+    <string name="why_upgrade_footer">Jamstvo za 100 % povrata novca</string>
+    <string name="why_upgrade_footer_one_time_payment">Jednokratno plaćanje</string>
+    <string name="why_upgrade_heic_support">Podrška za HEIC/HEIF datoteke</string>
+    <string name="why_upgrade_improved_design">Poboljšan dizajn</string>
+    <string name="why_upgrade_many_other_improvements">Many other improvements</string>
+    <string name="why_upgrade_new_widgets">Novi widgeti</string>
+    <string name="why_upgrade_no_ads">Bez oglasa</string>
+    <string name="why_upgrade_no_internet_access">Bez pristupa intrnetu</string>
+    <string name="why_upgrade_note_locking">Zaključavanje bilješki</string>
+    <string name="why_upgrade_printing_support">Podrška za ispis</string>
+    <string name="why_upgrade_private_contact_sharing">Opcionalno dijeljenje privatnih kontakata unutar naših aplikacija</string>
+    <string name="why_upgrade_pro_version">Pro</string>
+    <string name="why_upgrade_recents_tab">Kartica s nedavno korištenim datotekama</string>
+    <string name="why_upgrade_shortcuts">Prečaci za početni ekran</string>
+    <string name="why_upgrade_time_zone_support">Podrška za vremenske zone</string>
+    <string name="why_upgrade_zooming">Zumiranje</string>
+    <string name="widget_locked_pro">Widget je zaključan.
+\nZa otključavanje widgeta nadogradi na Pro verziju.</string>
+    <string name="widgets">Widgeti</string>
+    <string name="work">Posao</string>
+    <string name="work_fax">Poslovni faks</string>
+    <string name="wrong_folder_selected">Odabrana pogrešna mapa, odaberite stazu \'%s\'</string>
+    <string name="wrong_pattern">Krivi uzorak</string>
+    <string name="wrong_pin">Pogrešan PIN</string>
+    <string name="wrong_root_selected">Odabrana je pogrešana mapa, molimo odaberite root mapu Vaše SD kartice</string>
+    <string name="wrong_root_selected_usb">Odabrana je pogrešna mapa. Odaberite glavnu mapu USB uređaja</string>
+    <string name="yes">Da</string>
+    <string name="yesterday">Jučer</string>
+    <string name="your_sounds">Tvoji zvukovi</string>
+    <string name="zero">Nula</string>
+    <string name="zip4j_title">Zip4j (ZIP kompresija i dekompresija)</string>
+</resources>

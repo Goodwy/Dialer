@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.goodwy.dialer.app-mergeCoreDebugResources-75:/values-ta-rIN/values-ta-rIN.xml",
+            "map": [
+                {
+                    "source": "/Users/codigo/.gradle/caches/transforms-3/117fae87604d1f337bec5fe14e7de585/transformed/jetified-core-2cb206415d/res/values-ta-rIN/values-ta-rIN.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,204,348,491,637,791,913,1030,1156,1306,1438,1557,1657",
+                        "endColumns": "148,143,142,145,153,121,116,125,149,131,118,99,81",
+                        "endOffsets": "199,343,486,632,786,908,1025,1151,1301,1433,1552,1652,1734"
+                    }
+                }
+            ]
+        }
+    ]
+}

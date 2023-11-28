@@ -50,7 +50,7 @@ class CallNotificationManager(private val context: Context) {
             }
 
             val openAppIntent = CallActivity.getStartIntent(context)
-            //requestCode - NON_FULL_SCREEN = 0, FULL_SCREEN = 1, BUBBLE = 2
+            // requestCode - NON_FULL_SCREEN = 0, FULL_SCREEN = 1, BUBBLE = 2
             val openAppPendingIntent = PendingIntent.getActivity(context, 1, openAppIntent, PendingIntent.FLAG_MUTABLE)
 
             val acceptCallIntent = Intent(context, CallActionReceiver::class.java)

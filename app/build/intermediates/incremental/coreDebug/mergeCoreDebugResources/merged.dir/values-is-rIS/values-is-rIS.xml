@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string msgid="1087209702421076105" name="fingerprint_acquired_imager_dirty">"Fingrafaraskynjarinn er óhreinn. Hreinsaðu hann og reyndu aftur."</string>
+    <string msgid="4596546021310923214" name="fingerprint_acquired_insufficient">"Ekki var hægt að vinna úr fingrafarinu. Reyndu aftur."</string>
+    <string msgid="735082772341716043" name="fingerprint_acquired_partial">"Hluti fingrafars greindist. Reyndu aftur."</string>
+    <string msgid="6470642383109155969" name="fingerprint_acquired_too_fast">"Fingurinn hreyfðist of hratt. Reyndu aftur."</string>
+    <string msgid="59250885689661653" name="fingerprint_acquired_too_slow">"Fingurinn hreyfðist of hægt. Reyndu aftur."</string>
+    <string msgid="4402024612660774395" name="fingerprint_error_canceled">"Hætt við fingrafarsaðgerð."</string>
+    <string msgid="7955921658939936596" name="fingerprint_error_hw_not_available">"Fingrafarsvélbúnaður ekki til staðar."</string>
+    <string msgid="5536934748136933450" name="fingerprint_error_lockout">"Of margar tilraunir. Reyndu aftur síðar."</string>
+    <string msgid="1055819001126053318" name="fingerprint_error_no_space">"Ekki er hægt að vista fingrafarið. Fjarlægðu eitthvert af fingraförunum sem fyrir eru."</string>
+    <string msgid="3927186043737732875" name="fingerprint_error_timeout">"Tímamörk runnu út fyrir fingrafar. Reyndu aftur."</string>
+    <string msgid="6107816084103552441" name="fingerprint_error_unable_to_process">"Reyndu aftur."</string>
+    <string msgid="2690661881608146617" name="fingerprint_not_recognized">"Þekktist ekki"</string>
+    <string msgid="4516019619850763049" name="fingerprints">"Fingraför:"</string>
+</resources>

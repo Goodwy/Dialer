@@ -1,0 +1,1701 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2" xmlns:ns2="http://schemas.android.com/tools">
+    <plurals name="by_days">
+        <item quantity="one">%d dia</item>
+        <item quantity="many">%d dias</item>
+        <item quantity="other">%d dias</item>
+    </plurals>
+    <plurals name="by_hours">
+        <item quantity="one">%d hora</item>
+        <item quantity="many">%d horas</item>
+        <item quantity="other">%d horas</item>
+    </plurals>
+    <plurals name="by_minutes">
+        <item quantity="one">%d minuto</item>
+        <item quantity="many">%d minutos</item>
+        <item quantity="other">%d minutos</item>
+    </plurals>
+    <plurals name="by_months">
+        <item quantity="one">%d mês</item>
+        <item quantity="many">%d meses</item>
+        <item quantity="other">%d meses</item>
+    </plurals>
+    <plurals name="by_seconds">
+        <item quantity="one">%d segundo</item>
+        <item quantity="many">%d segundos</item>
+        <item quantity="other">%d segundos</item>
+    </plurals>
+    <plurals name="by_weeks">
+        <item quantity="one">%d semana</item>
+        <item quantity="many">%d semanas</item>
+        <item quantity="other">%d semanas</item>
+    </plurals>
+    <plurals name="by_years">
+        <item quantity="one">%d ano</item>
+        <item quantity="many">%d anos</item>
+        <item quantity="other">%d anos</item>
+    </plurals>
+    <plurals name="column_counts">
+        <item quantity="one">%d coluna</item>
+        <item quantity="many">%d colunas</item>
+        <item quantity="other">%d colunas</item>
+    </plurals>
+    <plurals name="days">
+        <item quantity="one">%d dia</item>
+        <item quantity="many">%d dias</item>
+        <item quantity="other">%d dias</item>
+    </plurals>
+    <plurals name="days_before">
+        <item quantity="one">%d dia atrás</item>
+        <item quantity="many">%d dias atrás</item>
+        <item quantity="other">%d dias atrás</item>
+    </plurals>
+    <plurals name="delete_contacts">
+        <item quantity="one">%d contato</item>
+        <item quantity="many">%d contatos</item>
+        <item quantity="other">%d contatos</item>
+    </plurals>
+    <plurals name="delete_items">
+        <item quantity="one">%d item</item>
+        <item quantity="many">%d itens</item>
+        <item quantity="other">%d itens</item>
+    </plurals>
+    <plurals name="delete_warning">
+        <item quantity="one">AVISO: Você está excluindo %d pasta</item>
+        <item quantity="many">AVISO: Você está excluindo %d pastas</item>
+        <item quantity="other">AVISO: Você está excluindo %d pastas</item>
+    </plurals>
+    <plurals name="deleting_items">
+        <item quantity="one">Excluindo %d item</item>
+        <item quantity="many">Excluindo %d itens</item>
+        <item quantity="other">Excluindo %d itens</item>
+    </plurals>
+    <plurals name="hours">
+        <item quantity="one">%d hora</item>
+        <item quantity="many">%d horas</item>
+        <item quantity="other">%d horas</item>
+    </plurals>
+    <plurals name="hours_before">
+        <item quantity="one">%d hora atrás</item>
+        <item quantity="many">%d horas atrás</item>
+        <item quantity="other">%d horas atrás</item>
+    </plurals>
+    <plurals name="in_days">
+        <item quantity="one">%d dia</item>
+        <item quantity="many">%d dias</item>
+        <item quantity="other">%d dias</item>
+    </plurals>
+    <plurals name="in_hours">
+        <item quantity="one">%d hora</item>
+        <item quantity="many">%d horas</item>
+        <item quantity="other">%d horas</item>
+    </plurals>
+    <plurals name="in_minutes">
+        <item quantity="one">%d minuto</item>
+        <item quantity="many">%d minutos</item>
+        <item quantity="other">%d minutos</item>
+    </plurals>
+    <plurals name="in_months">
+        <item quantity="one">%d mês</item>
+        <item quantity="many">%d meses</item>
+        <item quantity="other">%d meses</item>
+    </plurals>
+    <plurals name="in_seconds">
+        <item quantity="one">%d segundo</item>
+        <item quantity="many">%d segundos</item>
+        <item quantity="other">%d segundos</item>
+    </plurals>
+    <plurals name="in_weeks">
+        <item quantity="one">%d semana</item>
+        <item quantity="many">%d semanas</item>
+        <item quantity="other">%d semanas</item>
+    </plurals>
+    <plurals name="in_years">
+        <item quantity="one">%d ano</item>
+        <item quantity="many">%d anos</item>
+        <item quantity="other">%d anos</item>
+    </plurals>
+    <plurals name="items">
+        <item quantity="one">%d item</item>
+        <item quantity="many">%d itens</item>
+        <item quantity="other">%d itens</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d minuto</item>
+        <item quantity="many">%d minutos</item>
+        <item quantity="other">%d minutos</item>
+    </plurals>
+    <plurals name="minutes_before">
+        <item quantity="one">%d minuto atrás</item>
+        <item quantity="many">%d minutos atrás</item>
+        <item quantity="other">%d minutos atrás</item>
+    </plurals>
+    <plurals name="months">
+        <item quantity="one">%d mês</item>
+        <item quantity="many">%d meses</item>
+        <item quantity="other">%d meses</item>
+    </plurals>
+    <plurals name="months_before">
+        <item quantity="one">%d mês atrás</item>
+        <item quantity="many">%d meses atrás</item>
+        <item quantity="other">%d meses atrás</item>
+    </plurals>
+    <plurals name="moving_items_into_bin">
+        <item quantity="one">Movendo %d item para a Lixeira</item>
+        <item quantity="many">Movendo %d itens para a Lixeira</item>
+        <item quantity="other">Movendo %d itens para a Lixeira</item>
+    </plurals>
+    <plurals name="mtrl_badge_content_description">
+    <item quantity="one">%d nova notificação</item>
+    <item quantity="other">%d novas notificações</item>
+  </plurals>
+    <plurals name="row_counts">
+        <item quantity="one">%d row</item>
+        <item quantity="other">%d rows</item>
+    </plurals>
+    <plurals name="seconds">
+        <item quantity="one">%d segundo</item>
+        <item quantity="many">%d segundos</item>
+        <item quantity="other">%d segundos</item>
+    </plurals>
+    <plurals name="seconds_before">
+        <item quantity="one">%d segundo atrás</item>
+        <item quantity="many">%d segundos atrás</item>
+        <item quantity="other">%d segundos atrás</item>
+    </plurals>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d temporizador em execução</item>
+        <item quantity="many">%d temporizadores em execução</item>
+        <item quantity="other">%d temporizadores em execução</item>
+    </plurals>
+    <plurals name="trial_expires_days">
+        <item quantity="one">Seu teste acaba em %d dia.</item>
+        <item quantity="many">Seu teste acaba em %d dias.</item>
+        <item quantity="other">Seu teste acaba em %d dias.</item>
+    </plurals>
+    <plurals name="weeks">
+        <item quantity="one">%d semana</item>
+        <item quantity="many">%d semanas</item>
+        <item quantity="other">%d semanas</item>
+    </plurals>
+    <plurals name="weeks_before">
+        <item quantity="one">%d semana atrás</item>
+        <item quantity="many">%d semanas atrás</item>
+        <item quantity="other">%d semanas atrás</item>
+    </plurals>
+    <plurals name="years">
+        <item quantity="one">%d ano</item>
+        <item quantity="many">%d anos</item>
+        <item quantity="other">%d anos</item>
+    </plurals>
+    <plurals name="years_before">
+        <item quantity="one">%d ano atrás</item>
+        <item quantity="many">%d anos atrás</item>
+        <item quantity="other">%d anos atrás</item>
+    </plurals>
+    <string msgid="5976598919945601918" name="abc_action_bar_home_description">"Navegar para a página inicial"</string>
+    <string msgid="8388173803310557296" name="abc_action_bar_up_description">"Navegar para cima"</string>
+    <string msgid="3937310113216875497" name="abc_action_menu_overflow_description">"Mais opções"</string>
+    <string msgid="4692188335987374352" name="abc_action_mode_done">"Concluído"</string>
+    <string msgid="1189761859438369441" name="abc_activity_chooser_view_see_all">"Ver tudo"</string>
+    <string msgid="2165779757652331008" name="abc_activitychooserview_choose_application">"Selecionar um app"</string>
+    <string msgid="4215997306490295099" name="abc_capital_off">"DESATIVADO"</string>
+    <string msgid="884982626291842264" name="abc_capital_on">"ATIVADO"</string>
+    <string msgid="8833365367933412986" name="abc_menu_alt_shortcut_label">"Alt+"</string>
+    <string msgid="2223301931652355242" name="abc_menu_ctrl_shortcut_label">"Ctrl+"</string>
+    <string msgid="838001238306846836" name="abc_menu_delete_shortcut_label">"delete"</string>
+    <string msgid="7986526966204849475" name="abc_menu_enter_shortcut_label">"enter"</string>
+    <string msgid="375214403600139847" name="abc_menu_function_shortcut_label">"Function+"</string>
+    <string msgid="4192209724446364286" name="abc_menu_meta_shortcut_label">"Meta+"</string>
+    <string msgid="4741552369836443843" name="abc_menu_shift_shortcut_label">"Shift+"</string>
+    <string msgid="5473865519181928982" name="abc_menu_space_shortcut_label">"espaço"</string>
+    <string msgid="6180552449598693998" name="abc_menu_sym_shortcut_label">"Sym+"</string>
+    <string msgid="5520303668377388990" name="abc_prepend_shortcut_label">"Menu+"</string>
+    <string msgid="7208076849092622260" name="abc_search_hint">"Pesquisar…"</string>
+    <string msgid="3741173234950517107" name="abc_searchview_description_clear">"Limpar consulta"</string>
+    <string msgid="693312494995508443" name="abc_searchview_description_query">"Consulta de pesquisa"</string>
+    <string msgid="3417662926640357176" name="abc_searchview_description_search">"Pesquisar"</string>
+    <string msgid="1486535517437947103" name="abc_searchview_description_submit">"Enviar consulta"</string>
+    <string msgid="2293578557972875415" name="abc_searchview_description_voice">"Pesquisa por voz"</string>
+    <string msgid="8875138169939072951" name="abc_shareactionprovider_share_with">"Compartilhar com"</string>
+    <string msgid="9055268688411532828" name="abc_shareactionprovider_share_with_application">"Compartilhar com <ns1:g id="APPLICATION_NAME">%s</ns1:g>"</string>
+    <string msgid="1656852541809559762" name="abc_toolbar_collapse_description">"Recolher"</string>
+    <string name="about">Sobre</string>
+    <string name="about_footer">Feito com ❤️ na Eslováquia</string>
+    <string name="about_summary">
+        <![CDATA[
+            <i>
+            We value your time and want you to enjoy our app without ads. If it has brought you pleasure and usefulness, consider donating to its development.<br><br>
+            Appreciate our hard work and share your impressions, it will help us to realize new ideas and offer you even more amazing features.
+            </i>
+        ]]></string>
+    <string name="accent_color">Cor do sotaque</string>
+    <string name="accent_color_black_and_white">Cor de destaque do tema Preto &amp; Branco</string>
+    <string name="accent_color_white">Cor de destaque do tema branco</string>
+    <string name="accept">Aceitar</string>
+    <string name="accept_call">Aceitar chamada</string>
+    <string name="access_storage_prompt">Conceda ao nosso aplicativo acesso a todos os seus arquivos, ele pode não funcionar bem sem ele.</string>
+    <string name="action_on_message_click">Acção na mensagem click</string>
+    <string name="action_support_project">Apoio ao projecto</string>
+    <string name="add_a_blocked_number">Adicionar um número a bloquear</string>
+    <string name="add_address">Adicionar endereço</string>
+    <string name="add_blocked_number_helper_text">Digite um número ou um padrão (ex. *12345*, +1*8888) para bloquear todas as chamadas de números correspondentes.</string>
+    <string name="add_contact">Add contact</string>
+    <string name="add_email">Adicionar e-mail</string>
+    <string name="add_event">Adicionar evento</string>
+    <string name="add_favorites">Adicionar favoritos</string>
+    <string name="add_fingerprint">Adicionar digital</string>
+    <string name="add_group">Adicionar um grupo</string>
+    <string name="add_im">Adicionar IM</string>
+    <string name="add_new_sound">Adicionar um novo som</string>
+    <string name="add_notes">Adicionar notas</string>
+    <string name="add_number">Adicionar número</string>
+    <string name="add_number_to_contact">Adicionar número ao contato</string>
+    <string name="add_password">Add password</string>
+    <string name="add_related_person">Adicionar pessoa relacionada</string>
+    <string name="add_to_existing_contact">Adicionar um contato existente</string>
+    <string name="add_to_favorites">Adicionar aos favoritos</string>
+    <string name="add_website">Adicionar website</string>
+    <string name="additional_info">Informações adicionais</string>
+    <string name="alarm">Alarme</string>
+    <string name="alarm_goes_off_in">Tempo restante até o alarme disparar:\n%s</string>
+    <string name="alarm_warning">Por favor, verifique se o alarme funciona corretamente antes de confiar nele. Ele pode não funcionar direito devido a restrições de sistema relacionadas à economia de bateria.</string>
+    <string name="album">Álbum</string>
+    <string name="allow_access_more_media">Allow access to more media</string>
+    <string name="allow_alarm_scheduled_messages">You must allow the app accessing internal alarms, else it cannot send scheduled messages.</string>
+    <string name="allow_alarm_sleep_timer">You must allow the app accessing internal alarms, else it cannot turn off the application after sleep timer.</string>
+    <string name="allow_displaying_over_other_apps">Por favor, permita a sobreposição sobre outros aplicativos para um comportamento mais estável</string>
+    <string name="allow_full_screen_notifications_incoming_calls">You must allow the app displaying full screen notifications, else you may miss some incoming calls.</string>
+    <string name="allow_full_screen_notifications_reminders">You must allow the app displaying full screen notifications, else you may miss some reminders.</string>
+    <string name="allow_location_permission">You must allow the app accessing your location, else it won\'t know it.</string>
+    <string name="allow_notifications_files">You must allow the app displaying notifications, else it cannot show the progress bar.</string>
+    <string name="allow_notifications_incoming_calls">You must allow the app displaying notifications, else it cannot show incoming calls.</string>
+    <string name="allow_notifications_incoming_messages">You must allow the app displaying notifications, else it cannot show incoming messages.</string>
+    <string name="allow_notifications_music_player">You must allow the app displaying notifications, else it cannot play songs.</string>
+    <string name="allow_notifications_reminders">You must allow the app displaying notifications, else it cannot show reminders.</string>
+    <string name="allow_notifications_voice_recorder">You must allow the app displaying notifications, else it cannot record audio.</string>
+    <string name="altitude">Altitude</string>
+    <string name="always">Sempre</string>
+    <string name="always_use_this_sim">Sempre usar este SIM para este número</string>
+    <string name="an_error_occurred">Ocorreu um erro: %s</string>
+    <string name="android_lame_title">AndroidLame (codificador de mp3)</string>
+    <string name="anniversary">Data Especial</string>
+    <string name="answer_slider">Botão deslizante</string>
+    <string name="answer_slider_outline">Controle deslizante com contorno</string>
+    <string name="answer_slider_vertical">Controle deslizante vertical</string>
+    <string name="answer_style">Estilo do botão de resposta</string>
+    <string name="apng_title">APNG Android (suporte para WebP animado)</string>
+    <string name="app_corrupt">App Corrompido</string>
+    <string name="app_icon_color">Cor do ícone do aplicativo</string>
+    <string name="app_icon_color_warning">AVISO: Alguns lançadores não são capazes de lidar corretamente com a customização de ícones. Nestes casos, se o icone desaparecer tente abrir o aplicativo pelo Google Play, ou através de um widget, se disponível.
+        Ao entrar, simplesmente reverta a cor do ícone para o valor padrão (laranja #F57C00). No pior dos casos pode ser preciso reinstalar o aplicativo.</string>
+    <string name="app_launcher_name">Discador</string>
+    <string name="app_launcher_short">Lançador de Aplicativos</string>
+    <string name="app_name">Discador Simples</string>
+    <string name="app_name_g">Right Dialer</string>
+    <string name="app_on_sd_card">Parece que você instalou o aplicativo em um cartão SD, o que torna os widgets indisponíveis. Você não os verá na lista de widgets.
+        Isto é uma limitação do sistema operacional, caso você queira ter acesso aos widgets será preciso mover o aplicativo para o armazenamento interno.</string>
+    <string name="app_version">Versão do app: %s</string>
+    <string name="append">Adicionar sufixo \'_1\'</string>
+    <string name="append_filenames">Adicionar ao fim dos nomes</string>
+    <string name="apply_to_all">Aplicar a todos os conflitos</string>
+    <string name="apply_to_all_apps">Aplicar cores a todos os aplicativos Simple</string>
+    <string name="april">Abril</string>
+    <string name="april_short">Apr</string>
+    <string name="are_you_sure_delete">Deseja realmente excluir este item?</string>
+    <string name="are_you_sure_recycle_bin">Deseja realmente mover este item para a Lixeira?</string>
+    <string name="artist">Artista</string>
+    <string name="ascending">Crescente</string>
+    <string name="asterisk">Asterisco</string>
+    <string name="at_start">No início</string>
+    <string name="audio">Audio</string>
+    <string name="audio_record_view_title">Audio Record View (visualização de áudio)</string>
+    <string name="audio_route_bluetooth">Bluetooth</string>
+    <string name="audio_route_earpiece_g">O fone de ouvido do dispositivo</string>
+    <string name="audio_route_speaker">Alto falante</string>
+    <string name="audio_route_wired_headset">Headset com fio</string>
+    <string name="audio_route_wired_or_earpiece">Wired or Earpiece</string>
+    <string name="august">Agosto</string>
+    <string name="august_short">Aug</string>
+    <string name="authenticate">Autenticar</string>
+    <string name="authentication_blocked">Autenticação bloqueada, favor tentar novamente em instantes</string>
+    <string name="authentication_failed">Autenticação falhou</string>
+    <string name="auto_light_dark_theme">Auto claro / escuro</string>
+    <string name="auto_theme">Auto</string>
+    <string name="autofittextview_title">AutoFitTextView (redimensionamento de texto)</string>
+    <string name="back">Voltar</string>
+    <string name="background_color">Cor de fundo</string>
+    <string name="backups">Backups</string>
+    <string name="before_asking_question">Antes de fazer uma pergunta, leia primeiro as</string>
+    <string name="before_asking_question_read_faq">Antes de fazer uma pergunta, por favor verifique as configurações do aplicativo e leia a lista de Perguntas Frequentes.</string>
+    <string name="before_rate_read_faq">Antes de nos avaliar, por favor verifique as configurações do aplicativo e leia a lista de Perguntas Frequentes. Se você tiver algum problema, talvez a solução esteja lá.</string>
+    <string name="billing_change_to_google_play">Change to Google Play</string>
+    <string name="billing_change_to_ru_store">Change to RuStore</string>
+    <string name="billing_general_error">Error</string>
+    <string name="billing_product_confirmed">Product confirmed/substantiated</string>
+    <string name="billing_product_deleted">Purchase canceled</string>
+    <string name="billing_purchase_confirm_in_progress">Confirming the purchase…</string>
+    <string name="billing_purchase_delete_in_progress">Deleting the purchase…</string>
+    <string name="billing_subscriptions">Subscriptions</string>
+    <string msgid="2102429900219199821" name="biometric_or_screen_lock_prompt_message">"Use a biometria ou o bloqueio de tela para continuar"</string>
+    <string msgid="1160635338192065472" name="biometric_prompt_message">"Use a biometria para continuar"</string>
+    <string name="biometrics">Biometria</string>
+    <string name="birthday">Data de Nascimento</string>
+    <string name="black">Preto</string>
+    <string name="black_locked">Preto (bloqueado)</string>
+    <string name="black_white">Preto &amp; branco</string>
+    <string name="block_confirmation">Tem certeza que deseja bloquear \"%s\"?</string>
+    <string name="block_contact">Block contact</string>
+    <string name="block_contact_fail">Contact could not be blocked</string>
+    <string name="block_contact_success">Contact blocked</string>
+    <string name="block_hidden_calls">Block calls from hidden numbers</string>
+    <string name="block_hidden_messages">Block messages from hidden numbers</string>
+    <string name="block_not_stored_calls">Bloquear chamadas de contatos não salvos</string>
+    <string name="block_not_stored_messages">Bloquear mensagens de contatos não salvos</string>
+    <string name="block_number">Bloquear número</string>
+    <string name="block_numbers">Bloquear números</string>
+    <string name="blocked_numbers">Números bloqueados</string>
+    <string name="blurry_contact_photo">Foto de contato desfocada</string>
+    <string name="blurry_wallpaper">Papel de parede embaçado</string>
+    <string name="bottom">Abaixo</string>
+    <string name="bottom_navigation_bar">Bottom navigation bar</string>
+    <string name="bottom_navigation_bar_color">Cor da barra de navegação inferior</string>
+    <string name="bottom_navigation_bar_summary">The tab bar will move to the bottom</string>
+    <string name="bottomsheet_action_collapse">Fechar a página inferior</string>
+    <string name="bottomsheet_action_expand">Abrir a página inferior</string>
+    <string name="bottomsheet_action_expand_halfway">Expandir até a metade</string>
+    <string name="bottomsheet_drag_handle_clicked">Alça de arrastar tocada duas vezes</string>
+    <string name="bottomsheet_drag_handle_content_description">Alça de arrastar</string>
+    <string name="button_primary">Botão primário</string>
+    <string name="button_secondary">Botão secundário</string>
+    <string name="buttons">Botões</string>
+    <string name="calculator_short">Calculadora</string>
+    <string name="calendar_short">Calendário</string>
+    <string name="call">Ligar</string>
+    <string name="call_add">Adicionar chamada</string>
+    <string name="call_anonymously">Ligar anonimamente (com o prefixo #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Advertência</h4>
+            O número será chamado com o prefixo #31# <br><br>
+                <h6"><i>  #31#%s</i></h6>
+            Certifique-se de que sua operadora ofereça suporte ao serviço de ocultação de números ao usar o prefixo #31#. <br>
+            Seu provedor de serviços pode cobrar uma taxa adicional por esse serviço.
+        ]]>
+    </string>
+    <string name="call_back_g">Chamar</string>
+    <string name="call_back_person_g">Retorno de chamada %s</string>
+    <string name="call_ended">Chamada encerrada</string>
+    <string name="call_ending">Encerrando chamada</string>
+    <string name="call_from_sim_1">Chamada no SIM 1</string>
+    <string name="call_from_sim_2">Chamada no SIM 2</string>
+    <string name="call_history_tab">Histórico de chamadas</string>
+    <string name="call_merge">Juntar chamadas</string>
+    <string msgid="881409763997275156" name="call_notification_answer_action">"Atender"</string>
+    <string msgid="8793775615905189152" name="call_notification_answer_video_action">"Vídeo"</string>
+    <string name="call_notification_channel_g">Notificações de chamadas</string>
+    <string name="call_notification_channel_high_priority_g">Notificações de chamada de alta prioridade</string>
+    <string msgid="3229508546291798546" name="call_notification_decline_action">"Recusar"</string>
+    <string msgid="2659457946726154263" name="call_notification_hang_up_action">"Desligar"</string>
+    <string msgid="6107532579223922871" name="call_notification_incoming_text">"Chamada recebida"</string>
+    <string msgid="8623827134497363134" name="call_notification_ongoing_text">"Chamada em andamento"</string>
+    <string msgid="59049573811482460" name="call_notification_screening_text">"Filtrando uma ligação recebida"</string>
+    <string name="call_number">Numero de telefone</string>
+    <string name="call_on_hold">Em Espera</string>
+    <string name="call_person">Ligar para %s</string>
+    <string name="call_screen_background">Antecedentes da tela de chamada</string>
+    <string name="call_split">Separar chamadas</string>
+    <string name="call_start_end_vibration">Vibra quando a chamada é iniciada e encerrada</string>
+    <string name="call_swap">Trocar chamadas</string>
+    <string name="calling_blocked_number">O número que você está ligando está bloqueado</string>
+    <string name="calls">Chamadas</string>
+    <string name="camera">Câmera</string>
+    <string name="camera_short">Câmara</string>
+    <string name="cancel">Cancelar</string>
+    <string name="cannot_be_undone">Esta ação não pode ser revertida.</string>
+    <string name="cannot_hide_files">A partir do Android 11, você não pode mais ocultar arquivos e pastas assim</string>
+    <string name="cannot_rename_folder">Não foi possível renomear esta pasta</string>
+    <string name="change_color">Mudar cor</string>
+    <string name="change_cover_image">Trocar imagem de capa</string>
+    <string name="change_date_and_time_format">Alterar formato de data e hora</string>
+    <string name="change_filter">Alterar filtro</string>
+    <string name="change_order">Alterar ordem</string>
+    <string name="change_view_type">Alterar modo de visualização</string>
+    <string name="changing_color_description">Alterar uma cor fará com que mude para o tema Personalizado</string>
+    <string name="character_counter_content_description">Caracteres inseridos: %1$d de %2$d</string>
+    <string name="character_counter_overflowed_content_description">Limite de %2$d caracteres excedido em %1$d</string>
+    <string name="choose_audio_route">Escolha a rota de áudio</string>
+    <string name="choose_contact">Escolher contato</string>
+    <string name="choose_file">Escolher arquivo</string>
+    <string name="choose_photo">Escolher foto</string>
+    <string name="choose_video">Escolher vídeo</string>
+    <string name="clean_theme_g">Clean</string>
+    <string name="clear_cache">Limpar cache</string>
+    <string name="clear_call_history">Limpar histórico de chamadas</string>
+    <string name="clear_history_confirmation">Tem certeza que quer remover tudo do Histórico de Chamadas\?</string>
+    <string name="clear_text_end_icon_content_description">Limpar texto</string>
+    <string name="click_select_destination">Clique aqui para escolher o destino</string>
+    <string name="clock_short">Relógio</string>
+    <string name="close">Close</string>
+    <string msgid="406453423630273620" name="close_drawer">"Fechar menu de navegação"</string>
+    <string msgid="7573152094250666567" name="close_sheet">"Fechar planilha"</string>
+    <string name="collection">Colecção</string>
+    <string name="collection_summary">Crie uma coleção para desbloquear o aplicativo</string>
+    <string name="color">cor</string>
+    <string name="color_customization">Personalização de cores</string>
+    <string name="color_sim_card_icons">Ícones de cartões SIM coloridos</string>
+    <string name="color_summary">Ajuste manual da cor primária, acento, plano de fundo, texto e barra de navegação</string>
+    <string name="color_title">Cores</string>
+    <string name="colored_contacts">Contatos ícones coloridos</string>
+    <string name="column_count">Número de colunas</string>
+    <string name="company">Empresa</string>
+    <string name="concept_theme_g">Concept</string>
+    <string name="conference">Conferência</string>
+    <string name="conference_manage">Gerenciar chamada em conferência</string>
+    <string name="confirm_calling_person">Confirmar chamada %s</string>
+    <string name="confirm_create_doc_for_new_folder_text">Por favor, pressione \'&lt;b>Save&lt;/b>\' no canto inferior da próxima nela para criar uma nova pasta.</string>
+    <string msgid="5912733858573823945" name="confirm_device_credential_password">"Usar senha"</string>
+    <string name="confirm_folder_access_title">Confirmar acesso à pasta</string>
+    <string name="confirm_selection">Confirmar seleção</string>
+    <string name="confirm_storage_access_android_text">Por favor, permita que o aplicativo acesse o armazenamento utilizando o botão \"Use esta pasta\" no canto inferior da próxima tela.</string>
+    <string name="confirm_storage_access_android_text_specific">Por favor, permita o acesso de \'&lt;b>%s&lt;/b>\' na próxima tela ao pressionar \'&lt;b>Use this folder&lt;/b>\' no canto inferior da tela.</string>
+    <string name="confirm_storage_access_text">Por favor escolha a pasta raiz do cartão SD no próximo passo para conceder acesso de escrita</string>
+    <string name="confirm_storage_access_text_sd">Se você não encontrar o cartão SD, tente isto</string>
+    <string name="confirm_storage_access_title">Confirmar acesso ao armazenamento externo</string>
+    <string name="confirm_usb_storage_access_text">Por favor, escolha a pasta raiz do dispositivo USB na próxima tela, para conceder acesso</string>
+    <string name="contact_color_list">Lista de cores do contato</string>
+    <string name="contact_details">Contact details</string>
+    <string name="contact_photo">Foto do contato</string>
+    <string name="contacts_short">Contatos</string>
+    <string name="contacts_tab">Contatos</string>
+    <string name="contributors">Contribuidores</string>
+    <string name="contributors_label">Esta lista contém todas as pessoas que ajudaram notavelmente qualquer aplicativo dentro da suíte Simple Mobile Tools, não apenas este. As traduções são feitas por voluntários, avise-nos se você também quiser ajudar. O guia de tradução está &lt;a href=https://github.com/SimpleMobileTools/General-Discussion#how-can-i-suggest-an-edit-to-a-file>neste site&lt;/a> ou simplesmente contate-nos em &lt;a href=mailto:hello@simplemobiletools.com>hello@simplemobiletools.com&lt;/a> se tiver alguma dúvida. Obrigado a todos os colaboradores e outros apoiadores!</string>
+    <string name="contributors_label_g">
+        <![CDATA[
+            This list contains everyone that noticeably helped any app within the Goodwy suite, not only this one. Translations are handled by volunteers,
+            let us know if you want to help too. The guide to translating is at <a href="https://github.com/Goodwy/Discussion">this website</a>, or just contact us at <a href="mailto:goodwy.dev@gmail.com">goodwy.dev@gmail.com</a> if you have any questions.
+            Thanks to all contributors and other supporters!
+        ]]>
+    </string>
+    <string name="copy">Copiar</string>
+    <string name="copy_code">Código da corda</string>
+    <string name="copy_failed">Não foi possível copiar os arquivos</string>
+    <string name="copy_move">Copiar / Mover</string>
+    <string name="copy_move_failed">Ocorreu um erro ao copiar</string>
+    <string name="copy_number_to_clipboard">Copiar número para área de transferência</string>
+    <string name="copy_to">Copiar para</string>
+    <string name="copy_to_clipboard">Copiar para área de transferência</string>
+    <string name="copying">Copiando…</string>
+    <string name="copying_success">Arquivos copiados com sucesso</string>
+    <string name="copying_success_one">Arquivo copiado com sucesso</string>
+    <string name="copying_success_partial">Alguns arquivos não foram copiados</string>
+    <string name="copyright">v %1$s\nCopyright © Simple Mobile Tools %2$d</string>
+    <string name="copyright_g">v %1$s\nCopyright © Goodwy %2$d</string>
+    <string name="could_not_access_contacts">Não foi possível acessar seus contatos</string>
+    <string name="could_not_access_the_call_history">Não foi possível acessar o histórico de chamadas</string>
+    <string name="could_not_create_file">Não foi possível criar o arquivo %s</string>
+    <string name="could_not_create_folder">Não foi possível criar pasta %s</string>
+    <string name="create_new">Criar</string>
+    <string name="create_new_contact">Criar novo contato</string>
+    <string name="create_new_folder">Criar nova pasta</string>
+    <string name="create_shortcut">Criar atalho</string>
+    <string name="create_shortcut_pro">Criar atalho (Pro)</string>
+    <string name="cropper_title">Android Image Cropper (recorte e rotação de imagens)</string>
+    <string name="custom">Personalizado</string>
+    <string name="customization_theme_summary">Selecione temas e cores de interface</string>
+    <string name="customize_colors">Personalizar cores</string>
+    <string name="customize_colors_locked">Personalizar cores (Locked)</string>
+    <string name="customize_notifications">Personalizar notificações</string>
+    <string name="customize_widget_colors">Personalizar cores de widget</string>
+    <string name="dark_red">Vermelho Escuro</string>
+    <string name="dark_theme">Escuro</string>
+    <string name="date_added">Date added</string>
+    <string name="date_created">Data de criação</string>
+    <string name="date_taken">Data de criação</string>
+    <string name="date_time_pattern_info">You can use the following patterns to name your file automatically:\n\n%Y - year\n%M - month\n%D - day\n%h - hour\n%m - minute\n%s - second</string>
+    <string name="days_raw">dias</string>
+    <string name="december">Dezembro</string>
+    <string name="december_short">Dec</string>
+    <string name="decline">Rejeitar</string>
+    <string name="decline_call">Rejeitar chamada</string>
+    <string name="default_color">Padrão</string>
+    <string msgid="8038256446254964252" name="default_error_message">"Entrada inválida"</string>
+    <string msgid="4776854077120974966" name="default_error_msg">"Erro desconhecido"</string>
+    <string name="default_folder_to_open_g">Pasta exibida na inicialização do aplicativo</string>
+    <string name="default_phone_app_prompt">Por favor, torne este aplicativo o aplicativo de telefone padrão</string>
+    <string msgid="6312721426453364202" name="default_popup_window_title">"Janela pop-up"</string>
+    <string name="default_tab">Guia padrão</string>
+    <string name="default_tab_to_open">Aba exibida na inicialização do aplicativo</string>
+    <string name="delete">Excluir</string>
+    <string name="deleting_folder">Excluindo pasta \'%s\'</string>
+    <string name="deletion_confirmation">Deseja realmente excluir %s?</string>
+    <string name="deletion_confirmation_short">Delete %s?</string>
+    <string name="deprecated_app">OBSOLETO: Esta versão do app não recebe mais atualizações. Por favor obtenha a versão Pro em https://play.google.com/store/apps/details?id=com.simplemobiletools.xxx.pro</string>
+    <string name="deprecated_app_g">OBSOLETO: Esta versão do app não recebe mais atualizações. Por favor obtenha a versão Pro em https://play.google.com/store/apps/details?id=com.goodwy.xxx.pro</string>
+    <string name="descending">Decrescente</string>
+    <string name="destination">Destino</string>
+    <string name="details">Detalhes</string>
+    <string name="developer_description">Um grupo de aplicativos simples, open source, para Android com widgets personalizados, sem anúncios nem permissões desnecessárias.</string>
+    <string name="development">Desenvolvimento</string>
+    <string name="device_os">Sistema operacional: %s</string>
+    <string name="dial_number">Discar número</string>
+    <string name="dialer">Discador</string>
+    <string name="dialer_short">Discador</string>
+    <string name="dialing">Discando…</string>
+    <string name="dialpad">Discador</string>
+    <string name="dialpad_beeps">Ativar sons do teclado</string>
+    <string name="dialpad_preferences">Preferências do teclado de discagem</string>
+    <string name="dialpad_vibrations">Ativar vibrações do teclado</string>
+    <string name="direct_children_count">Itens nesta pasta</string>
+    <string name="disable_proximity_sensor">Desativar sensor de proximidade durante as chamadas</string>
+    <string name="disable_swipe_to_answer">Clicar em vez de deslizar para responder chamadas</string>
+    <string name="discard">Descartar</string>
+    <string name="disclaimer">Isenção</string>
+    <string name="dismiss">Dispensar</string>
+    <string name="do_not_ask_again">Não perguntar novamente por enquanto</string>
+    <string name="do_not_show_again">Não mostrar novamente</string>
+    <string name="donate">Doar</string>
+    <string name="donate_new">Hello,&lt;br>&lt;br>hope you are enjoying the app. It contains no ads and we aren\'t collecting your data either, please support its development by purchasing &lt;a href=https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou>Simple Thank You&lt;/a>. You will also have all app features including color customization unlocked.&lt;br>&lt;br>Thank you!</string>
+    <string name="donate_please">
+        <![CDATA[
+            Olá,<br><br>
+            Esperamos que esteja gostando do app. Ele não contém anúncios, então apoie o desenvolvimento adquirindo o <a href="https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou">Simple Thank You</a>, ele também impede este diálogo de aparecer novamente.<br><br>
+            Obrigado!
+        ]]>
+    </string>
+    <string name="donate_short">Support us by purchasing &lt;a href=https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou>Simple Thank You&lt;/a> please, it will also unlock all app features including color customization.</string>
+    <string name="donate_text_g">
+        <![CDATA[
+            For those who do not use Google Play, it is possible to unlock all functions of the application. <br>
+            If you like our apps which are offline, non-intrusive and have no ads, please consider supporting us in some way. We would be very grateful.<br><br>
+            Thank you!
+        ]]>
+    </string>
+    <string name="download">Baixar</string>
+    <string name="draw_short">Desenho</string>
+    <string msgid="1890207353314751437" name="dropdown_menu">"Menu suspenso"</string>
+    <string name="duration">Duração</string>
+    <string name="during_day_at">Durante o dia às %02d:%02d</string>
+    <string name="during_day_at_hh_mm">Durante o dia às hh:mm</string>
+    <string name="edit">Editar</string>
+    <string name="edit_with">Editar com</string>
+    <string name="eight">Oito</string>
+    <string name="email">E-mail</string>
+    <string name="email_label">Envie os seus comentários ou sugestões para</string>
+    <string name="empty_and_disable_recycle_bin">Esvaziar e desativar a Lixeira</string>
+    <string name="empty_name">Digite um nome</string>
+    <string name="empty_password">Please enter the password</string>
+    <string name="empty_password_new">Please enter a password</string>
+    <string name="empty_recycle_bin">Esvaziar Lixeira</string>
+    <string name="empty_recycle_bin_confirmation">Deseja realmente esvaziar a Lixeira? Os arquivos serão excluidos permanentemente.</string>
+    <string name="enable_automatic_backups">Enable automatic backups</string>
+    <string name="enable_pull_to_refresh">Habilitar puxar do topo da tela para atualizar o conteúdo</string>
+    <string name="end_call">Encerrar chamada</string>
+    <string name="enter_password">Enter password</string>
+    <string name="enter_pin">Digite o PIN</string>
+    <string name="error">Error: %s</string>
+    <string name="error_icon_content_description">Erro</string>
+    <string name="espresso_title">Espresso (helper de teste)</string>
+    <string name="event_bus_title">Event Bus (comunicação dentro do aplicativo)</string>
+    <string name="every_day">Todos os dias</string>
+    <string name="exclude">Ignorar</string>
+    <string name="exclude_folder">Excluir pasta</string>
+    <string name="excluded">(excluído)</string>
+    <string name="excluded_folders">Pastas ignoradas</string>
+    <string name="exif">EXIF</string>
+    <string name="exif_removed">Valores EXIF foram removidos com sucesso</string>
+    <string name="exoplayer_title">ExoPlayer (reprodutor de vídeos)</string>
+    <string name="export_blocked_numbers">Exportar números bloqueados</string>
+    <string name="export_call_history">Export call history</string>
+    <string name="export_settings">Exportar configurações</string>
+    <string name="exporting">Exportando…</string>
+    <string name="exporting_failed">Falha na exportação</string>
+    <string name="exporting_some_entries_failed">Houve falha em alguns itens da exportação</string>
+    <string name="exporting_successful">Exportado com sucesso</string>
+    <string name="exposed_dropdown_menu_content_description">Mostrar menu suspenso</string>
+    <string name="exposure_time">Tempo de exposição</string>
+    <string name="extension">Extensão</string>
+    <string name="extension_cannot_be_empty">A extensão não pode ficar em branco</string>
+    <string name="extra_large">Muito grande</string>
+    <string name="f_number">Abertura</string>
+    <string msgid="4562557128765735254" name="face_or_screen_lock_prompt_message">"Use seu rosto ou o bloqueio de tela para continuar"</string>
+    <string msgid="2282389249605674226" name="face_prompt_message">"Use seu rosto para continuar"</string>
+    <string name="faq_100_text_commons_g">A private contact is created within an application. This contact will not be visible to other applications.
+        If you uninstall the app, all private contacts will be deleted along with the app, so back up your contacts before uninstalling the app.</string>
+    <string name="faq_100_title_commons_g">What is a private contact?</string>
+    <string name="faq_101_text_commons_g">When you create a contact, you must select the source of the contact: %s</string>
+    <string name="faq_101_title_commons_g">How to create a private contact?</string>
+    <string name="faq_10_text_commons">Experimente limpar o cache do aplicativo Google Play e reiniciar seu dispositivo. Trata-se de uma falha do Google Play e não está relacionada ao aplicativo em si.</string>
+    <string name="faq_10_title_commons">Comprei o aplicativo, mas não consigo realizar seu download em outro dispositivo.</string>
+    <string name="faq_1_text">Esses problemas podem ter muitos motivos específicos do dispositivo e do sistema, difíceis de dizer em geral. Você deve olhar em volta nas configurações do seu dispositivo e certificar-se de que o aplicativo pode aparecer quando estiver em segundo plano e permitir a exibição sobre outros aplicativos.</string>
+    <string name="faq_1_text_commons">O mais provável é que você tenha movido o aplicativo para um cartão SD. Existe uma limitação do sistema Android que oculta os widgets de aplicativos fornecidos neste caso.
+        A única solução é mover o aplicativo de volta para o Armazenamento Interno por meio das configurações do seu dispositivo.</string>
+    <string name="faq_1_text_dialer_g">O sistema operacional impede que os aplicativos acessem a tela de bloqueio. Você precisa permitir que o aplicativo acesse a tela de bloqueio. Por exemplo, na MIUI, é necessário permitir o acesso a Configurações => Notificações => Notificações na tela de bloqueio.</string>
+    <string name="faq_1_title">Ouço chamadas recebidas, mas a tela não liga. O que eu posso fazer?</string>
+    <string name="faq_1_title_commons">Por que não vejo o widget deste aplicativo na lista de widgets?</string>
+    <string name="faq_1_title_dialer_g">Por que preciso desbloquear meu dispositivo para atender a uma chamada recebida?</string>
+    <string name="faq_2_text_commons">Sim, é claro. Você pode divulgar os aplicativos ou dar um bom feedback e avaliações. Você também pode ajudar traduzindo os aplicativos em um novo idioma, ou simplesmente atualizar algumas traduções existentes. O guia de tradução está &lt;a href=https://github.com/SimpleMobileTools/General-Discussion#how-can-i-suggest-an-edit-to-a-file>neste site&lt;/a> ou apenas contate-nos em &lt;a href=mailto:hello@simplemobiletools.com>hello@simplemobiletools.com&lt;/a> se tiver alguma dúvida.</string>
+    <string name="faq_2_text_commons_g">
+        <![CDATA[
+            Yes, of course. You can spread the word about the apps or give good feedback and ratings. You can also help by translating the apps in a new language, or just update some existing translations.
+        You can find the guide at https://github.com/Goodwy/Discussion , or just shoot me a message at goodwy.dev@gmail.com if you need help.
+        ]]>
+    </string>
+    <string name="faq_2_text_dialer_g">Um toque longo no botão de chamada cola o conteúdo da área de transferência. Se o número já tiver sido inserido, um toque longo no botão de chamada o copiará para a área de transferência.</string>
+    <string name="faq_2_title_commons">Eu gostaria de apoiá-los, mas não posso doar dinheiro. Há algo mais que eu possa fazer?</string>
+    <string name="faq_2_title_dialer_g">Como copiar ou colar um número na tela de discagem?</string>
+    <string name="faq_3_text_commons">Infelizmente, você não pode. Os arquivos são apagados instantaneamente após a caixa de diálogo de confirmação, não há lixeira disponível.</string>
+    <string name="faq_3_title_commons">Eu exclui alguns arquivos por engano, como posso recuperá-los?</string>
+    <string name="faq_4_text_commons">Sim, enquanto você arrasta um widget em sua tela inicial, uma tela de configuração do widget aparece. Você verá quadrados coloridos no canto inferior esquerdo, basta pressioná-los para escolher uma nova cor. Você também pode usar o controle deslizante para ajustar a transparência (alfa).</string>
+    <string name="faq_4_title_commons">Eu não gosto das cores do widget, posso mudá-las?</string>
+    <string name="faq_5_text_commons">Por padrão os arquivos são movidos para a Lixeira. No entanto, se a Lixeira tiver sido desativada os arquivos serão removidos permanentemente.</string>
+    <string name="faq_5_title_commons">Posso restaurar de alguma forma os arquivos apagados?</string>
+    <string name="faq_6_text_commons">Isso deve ter ocorrido porque o seu lançador de aplicativos não suporta corretamente a customização de ícones. Tente abrir o app pela loja do Google Play ou por um widget, se possível.
+    Uma vez aberto o app, configure a cor do ícone de volta para o valor padrão (laranja #F57C00). No pior dos casos pode ser preciso reinstalar o app.</string>
+    <string name="faq_6_title_commons">O ícone do app desapareceu. O que posso fazer?</string>
+    <string name="faq_7_text_commons">Os pagamentos são totalmente gerenciados pelo Google, o sistema deles falha de vez em quanto. Apenas limpe o cache do aplicativo Google Play, reinicie o dispositivo e tente baixá-lo novamente.</string>
+    <string name="faq_7_title_commons">O dinheiro foi deduzido da minha conta bancária, mas não consigo fazer o download do aplicativo. O que eu posso fazer?</string>
+    <string name="faq_8_text_commons">Como a versão do seu aplicativo não é mais atualizada, os erros que você talvez tenha encontrado nunca serão corrigidos. Também não haverá novas funções adicionadas. Você pode comprar a versão Pro no Google Play por uma pequena quantia em dinheiro.
+        É um pagamento único, o que significa que, uma vez que você o compre, nunca precisará pagar novamente. Nem mesmo depois de adquirir um novo dispositivo. Se você não gostar da versão Pro, basta desinstalá-la em algumas horas e você receberá seu dinheiro automaticamente.
+        Se você quiser um reembolso a qualquer momento depois, basta entrar em contato conosco pelo e-mail hello@simplemobiletools.com e você o receberá.</string>
+    <string name="faq_8_text_commons_g">Como a versão do seu aplicativo não é mais atualizada, os erros que você talvez tenha encontrado nunca serão corrigidos. Também não haverá novas funções adicionadas. Você pode comprar a versão Pro no Google Play por uma pequena quantia em dinheiro.
+        É um pagamento único, o que significa que, uma vez que você o compre, nunca precisará pagar novamente. Nem mesmo depois de adquirir um novo dispositivo. Se você não gostar da versão Pro, basta desinstalá-la em algumas horas e você receberá seu dinheiro automaticamente.
+        Se você quiser um reembolso a qualquer momento depois, basta entrar em contato conosco pelo e-mail goodwy.dev@gmail.com e você o receberá.</string>
+    <string name="faq_8_title_commons">Por que eu deveria atualizar para a versão Pro?</string>
+    <string name="faq_9_text_commons">Existem muitas formas de fazer isso. A primeira delas é acessar o modo de seleção, mantendo um item pressionado e clicando nos demais para selecioná-los. A segunda maneira é similar à seleção de itens com um mouse em um computador: basta acessar o modo de seleção, mantendo um item pressionado e arrastar seu dedo para selecionar os demais itens. A terceira forma de seleção múltipla é manter um item pressionado e, em seguida, pressionar outro para que todos os itens entre eles sejam selecionados. Caso deseje selecionar todos os itens, basta manter um deles pressionado e clicar na contagem de itens selecionados no canto superior esquerdo da tela. Essa ação selecionará ou removerá a seleção de todos os itens.</string>
+    <string name="faq_9_title_commons">Como posso selecionar múltiplos itens de uma só vez?</string>
+    <string name="favorites">Favoritos</string>
+    <string name="favorites_tab">Favoritos</string>
+    <string name="feature_locked">Trancado</string>
+    <string name="features_locked">This feature is locked, please purchase &lt;a href=https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou>Simple Thank You&lt;/a> for unlocking the full app.&lt;br>&lt;br>It is a one time payment only and if you won\'t be satisfied, we can refund you.</string>
+    <string name="february">Fevereiro</string>
+    <string name="february_short">Feb</string>
+    <string name="file">Arquivo</string>
+    <string name="file_already_exists">Já existe um arquivo com o nome \"%s\"</string>
+    <string name="file_already_exists_overwrite">Já existe um arquivo com o nome \"%s\". Sobrescrever?</string>
+    <string name="file_manager_short">Gerenciador de Arquivos</string>
+    <string name="file_operations">Operações de arquivos</string>
+    <string name="file_saved">Arquivo salvo com sucesso</string>
+    <string name="filename">Nome do arquivo</string>
+    <string name="filename_cannot_be_empty">O nome do arquivo não pode ficar em branco</string>
+    <string name="filename_invalid_characters">O nome do arquivo contém caracteres inválidos</string>
+    <string name="filename_invalid_characters_placeholder">O nome do arquivo \'%s\' contém caracteres inválidos</string>
+    <string name="filename_without_json">Nome do arquivo (sem .json)</string>
+    <string name="filename_without_txt">Nome do arquivo (sem .txt)</string>
+    <string name="filename_without_zip">Nome do arquivo (sem .zip)</string>
+    <string name="files">Files</string>
+    <string name="files_count">Total de arquivos</string>
+    <string name="files_restored_successfully">Os arquivos foram restaurados com sucesso</string>
+    <string name="files_summary">File manager</string>
+    <string name="files_tab">Arquivos</string>
+    <string name="filter">Filtrar</string>
+    <string name="filter_pro">Filtrar (Pro)</string>
+    <string name="filters_title">Android Photo Filters (filtros de imagem)</string>
+    <string name="fingerprint">Digital</string>
+    <string msgid="1087209702421076105" name="fingerprint_acquired_imager_dirty">"O sensor de impressão digital está sujo. Limpe-o e tente novamente."</string>
+    <string msgid="4596546021310923214" name="fingerprint_acquired_insufficient">"Não foi possível processar a impressão digital. Tente novamente."</string>
+    <string msgid="735082772341716043" name="fingerprint_acquired_partial">"Impressão digital parcial detectada. Tente novamente."</string>
+    <string msgid="6470642383109155969" name="fingerprint_acquired_too_fast">"O dedo foi retirado rápido demais. Tente novamente."</string>
+    <string msgid="59250885689661653" name="fingerprint_acquired_too_slow">"O movimento do dedo está muito lento. Tente novamente."</string>
+    <string msgid="5462024216548165325" name="fingerprint_dialog_icon_description">"Ícone de impressão digital"</string>
+    <string msgid="1072308044213194243" name="fingerprint_dialog_touch_sensor">"Toque no sensor de digital"</string>
+    <string msgid="4402024612660774395" name="fingerprint_error_canceled">"Operação de impressão digital cancelada."</string>
+    <string msgid="8216738333501875566" name="fingerprint_error_hw_not_available">"Hardware de impressão digital não disponível."</string>
+    <string msgid="6306988885793029438" name="fingerprint_error_hw_not_present">"Este dispositivo não tem um sensor de impressão digital"</string>
+    <string msgid="7291787166416782245" name="fingerprint_error_lockout">"Muitas tentativas. Tente novamente mais tarde."</string>
+    <string msgid="7520712796891883488" name="fingerprint_error_no_fingerprints">"Nenhuma impressão digital registrada."</string>
+    <string msgid="1055819001126053318" name="fingerprint_error_no_space">"Não foi possível armazenar a impressão digital. Remova uma impressão digital já existente."</string>
+    <string msgid="3927186043737732875" name="fingerprint_error_timeout">"Tempo máximo para captura da impressão digital atingido. Tente novamente."</string>
+    <string msgid="6107816084103552441" name="fingerprint_error_unable_to_process">"Tente novamente."</string>
+    <string msgid="7627716295344353987" name="fingerprint_error_user_canceled">"Operação de impressão digital cancelada pelo usuário."</string>
+    <string msgid="3873359464293253009" name="fingerprint_not_recognized">"Não reconhecido"</string>
+    <string msgid="8382576858490514495" name="fingerprint_or_screen_lock_prompt_message">"Use sua impressão digital ou o bloqueio de tela para continuar"</string>
+    <string msgid="7449360011861769080" name="fingerprint_prompt_message">"Use sua impressão digital para continuar"</string>
+    <string name="fingerprint_setup_successfully">Proteção criada com sucesso. Reinstale o app caso tenha problemas ao redefini-la.</string>
+    <string msgid="4516019619850763049" name="fingerprints">"Impressões digitais"</string>
+    <string name="first_name">Primeiro nome</string>
+    <string name="five">Cinco</string>
+    <string name="flash_for_alerts">Flash para alertas</string>
+    <string name="flashlight_short">Lanterna</string>
+    <string name="focal_length">Distância focal</string>
+    <string name="folder">Pasta</string>
+    <string name="folder_already_exists">A pasta \"%s\" já existe</string>
+    <string name="follow_us">Siga-nos</string>
+    <string name="font_size">Tamanho do texto</string>
+    <string name="force_portrait_mode">Forçar modo retrato</string>
+    <string name="foreground_color">Cor do primeiro plano</string>
+    <string name="four">Quatro</string>
+    <string name="frequently_asked_questions">Perguntas Frequentes</string>
+    <string name="friday">Sexta-feira</string>
+    <string name="friday_letter">S</string>
+    <string name="friday_short">Sex</string>
+    <string name="full_name">Nome completo</string>
+    <string name="gallery_short">Galeria</string>
+    <string name="general">Geral</string>
+    <string name="general_settings">General</string>
+    <string msgid="3791785319221634505" name="generic_error_no_device_credential">"Nenhum PIN, padrão ou senha configurado."</string>
+    <string msgid="1807436368654974044" name="generic_error_no_keyguard">"Este dispositivo não é compatível com PIN, padrão ou senha."</string>
+    <string msgid="7309881387583143581" name="generic_error_user_canceled">"Autenticação cancelada pelo usuário."</string>
+    <string name="genre">Genre</string>
+    <string name="gesture_views_title">Gesture Views (zoom para imagens)</string>
+    <string name="get">Obter</string>
+    <string name="get_simple_phone">Ordem Telefones Simples</string>
+    <string name="gif_drawable_title">Gif Drawable (carregamento de GIFs)</string>
+    <string name="glide_title">Glide (carregamento e cache de imagens)</string>
+    <string name="go_to_settings">Ir para Configurações</string>
+    <string name="gps_coordinates">Coordenadas GPS</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="gray_theme">Cinza</string>
+    <string name="grid">Grade</string>
+    <string name="grid_pro">Grade (Pro)</string>
+    <string name="group_subsequent_calls">Agrupar as chamadas consecutivas com o mesmo número no histórico de chamadas</string>
+    <string name="groups_tab">Grupos</string>
+    <string name="gson_title">Gson (analisador JSON)</string>
+    <string name="hashtag">Hashtag</string>
+    <string name="hello">Olá :)</string>
+    <string name="help_us">Nos ajude</string>
+    <string name="hide">Ocultar</string>
+    <string name="hide_blocked_numbers">Ocultar bloqueado</string>
+    <string name="hide_dialpad">Ocultar discador</string>
+    <string name="hide_dialpad_letters_g">Ocultar letras de dialpad</string>
+    <string name="hide_dialpad_numbers">Ocultar números do teclado</string>
+    <string name="hide_folder">Ocultar pasta</string>
+    <string name="hide_line_numbers">Hide line numbers</string>
+    <string name="hide_the_recycle_bin">Ocultar a Lixeira</string>
+    <string name="hide_year">Ocultar ano</string>
+    <string name="hold_call">Chamada em espera</string>
+    <string name="home">Residencial</string>
+    <string name="home_fax">Fax Residencial</string>
+    <string name="home_folder_g">Pasta inicial</string>
+    <string name="hours_letter">h</string>
+    <string name="hours_raw">horas</string>
+    <string name="icon_content_description">Ícone de caixa de diálogo</string>
+    <string name="import_blocked_numbers">Importar números bloqueados</string>
+    <string name="import_call_history">Import call history</string>
+    <string name="import_settings">Importar configurações</string>
+    <string name="importing">Importando…</string>
+    <string name="importing_failed">Falha na importação</string>
+    <string name="importing_some_entries_failed">Houve falha em alguns itens da importação</string>
+    <string name="importing_successful">Importado com sucesso</string>
+    <string name="improved_color_customization">Personalização de cores aprimorada</string>
+    <string name="in_april">em Abril</string>
+    <string name="in_august">em Agosto</string>
+    <string name="in_december">em Dezembro</string>
+    <string name="in_february">em Fevereiro</string>
+    <string name="in_january">em Janeiro</string>
+    <string name="in_july">em Julho</string>
+    <string name="in_june">em Junho</string>
+    <string name="in_march">em Março</string>
+    <string name="in_may">em Maio</string>
+    <string name="in_november">em Novembro</string>
+    <string name="in_october">em Outubro</string>
+    <string msgid="6827826412747255547" name="in_progress">"Em andamento"</string>
+    <string name="in_september">em Setembro</string>
+    <string name="incoming_call">Chamada recebida</string>
+    <string name="increase_column_count">Aumentar número de colunas</string>
+    <string msgid="7933458017204019916" name="indeterminate">"Parcialmente selecionada"</string>
+    <string name="indicator_fast_scroll_title">Indicator Fast Scroll (letras na barra de rolagem)</string>
+    <string name="insert_pattern">Inserir padrão</string>
+    <string name="insert_text_here">Insira o texto aqui</string>
+    <string name="internal">Interno</string>
+    <string name="internal_storage">Internal Storage</string>
+    <string name="invalid_destination">Não foi possível escrever no destino selecionado</string>
+    <string name="invalid_file_format">Formato de arquivo inválido</string>
+    <string name="invalid_name">O nome contém caracteres inválidos</string>
+    <string name="invalid_password">Incorrect password</string>
+    <string name="invert_color">Inverter a cor</string>
+    <string name="invite_friends">Convidar amigos</string>
+    <string name="invite_via">Convidar via</string>
+    <string name="is_calling">Está chamando…</string>
+    <string name="iso_speed">Velocidade ISO</string>
+    <string name="it_is_free">Grátis até: %s. Se você baixar antes disso, poderá utilizar gratuitamente para sempre.</string>
+    <string name="item_view_role_description">Guia</string>
+    <string name="items_selected">Itens selecionados</string>
+    <string name="january">Janeiro</string>
+    <string name="january_short">Jan</string>
+    <string name="joda_title">Joda-Time (sustituto para Java date)</string>
+    <string name="july">Julho</string>
+    <string name="july_short">July</string>
+    <string name="june">Junho</string>
+    <string name="june_short">June</string>
+    <string name="keep_both">Manter ambas as versões</string>
+    <string name="keep_last_modified">Não atualizar o valor Data de modificação nas operações com arquivo</string>
+    <string name="keyboard_short">Teclado</string>
+    <string name="kids_mode">Kids mode</string>
+    <string name="kids_mode_summary">Simplified interface, choose coloring</string>
+    <string name="kotlin_title">Kotlin (linguagem de programação)</string>
+    <string name="label">Legenda</string>
+    <string name="landscape_column_count">Colunas em paisagem</string>
+    <string name="language">Idioma</string>
+    <string name="large">Grande</string>
+    <string name="last_modified">Data de modificação</string>
+    <string name="last_used_g">Último uso</string>
+    <string name="last_used_tab">Última usada</string>
+    <string name="later">Mais tarde</string>
+    <string name="launcher_short">Launcher</string>
+    <string name="leak_canary_title">Leak Canary (detector de vazamento de memória)</string>
+    <string name="learn_more">Saiba Mais</string>
+    <string name="library">Biblioteca</string>
+    <string name="lifebuoy_summary">Se, por algum motivo, você não puder pagar pelo nosso aplicativo, mas realmente quiser usar todos os recursos, basta nos enviar um e-mail</string>
+    <string name="lifebuoy_title">Vamos apoiá-lo</string>
+    <string name="light_theme">Claro</string>
+    <string name="limited_supply">Fornecimento limitado</string>
+    <string name="lines_count">Contagem de linhas</string>
+    <string name="list">Lista</string>
+    <string name="list_view">Visualização em Lista</string>
+    <string name="loading">Carregando…</string>
+    <string name="lock_folder">Bloquear pasta</string>
+    <string name="lock_folder_notice">Esta proteção funciona apenas neste aplicativo, não foi criada para substituir uma criptografia de pasta real a nível de sistema.</string>
+    <string name="lock_folder_pro">Bloquear pasta (Pro)</string>
+    <string msgid="2988463736136100848" name="m3c_bottom_sheet_collapse_description">"Fechar página inferior"</string>
+    <string msgid="1555567894577437024" name="m3c_bottom_sheet_dismiss_description">"Dispensar página inferior"</string>
+    <string msgid="8403354765404029791" name="m3c_bottom_sheet_drag_handle_description">"Alça de arrastar"</string>
+    <string msgid="6670819569745899763" name="m3c_bottom_sheet_expand_description">"Abrir página inferior"</string>
+    <string msgid="3010635850035863127" name="m3c_bottom_sheet_pane_title">"Página inferior"</string>
+    <string msgid="8166741421776570875" name="m3c_date_input_headline">"Data informada"</string>
+    <string msgid="229313757840775812" name="m3c_date_input_headline_description">"Data informada: %1$s"</string>
+    <string msgid="6116910750161463197" name="m3c_date_input_invalid_for_pattern">"A data não está no padrão esperado: %1$s"</string>
+    <string msgid="2521768508935305279" name="m3c_date_input_invalid_not_allowed">"Data não permitida: %1$s"</string>
+    <string msgid="7052898923934555305" name="m3c_date_input_invalid_year_range">"A data está fora do intervalo de anos esperado: %1$s a %2$s"</string>
+    <string msgid="2895559812010326913" name="m3c_date_input_label">"Data"</string>
+    <string msgid="1237013946323089826" name="m3c_date_input_no_input_description">"Nenhum"</string>
+    <string msgid="7306227249789210568" name="m3c_date_input_title">"Selecionar data"</string>
+    <string msgid="7605002211875882969" name="m3c_date_picker_headline">"Data selecionada"</string>
+    <string msgid="3664277305226978227" name="m3c_date_picker_headline_description">"Seleção atual: %1$s"</string>
+    <string msgid="8436650776581492840" name="m3c_date_picker_navigate_to_year_description">"Navegar para o ano de %1$s"</string>
+    <string msgid="5811000998184572395" name="m3c_date_picker_no_selection_description">"Nenhum"</string>
+    <string msgid="7813882352367152251" name="m3c_date_picker_scroll_to_earlier_years">"Role a tela para mostrar anos anteriores"</string>
+    <string msgid="5727367015496556177" name="m3c_date_picker_scroll_to_later_years">"Role a tela para mostrar anos seguintes"</string>
+    <string msgid="1804346892470238807" name="m3c_date_picker_switch_to_calendar_mode">"Usar o modo de entrada na agenda"</string>
+    <string msgid="395627960681594326" name="m3c_date_picker_switch_to_day_selection">"Deslize para selecionar um ano ou toque para voltar à seleção de dia"</string>
+    <string msgid="2219746470065162704" name="m3c_date_picker_switch_to_input_mode">"Usar o modo de entrada de texto"</string>
+    <string msgid="7142101321095356500" name="m3c_date_picker_switch_to_next_month">"Mudar para o próximo mês"</string>
+    <string msgid="228438865139394590" name="m3c_date_picker_switch_to_previous_month">"Mudar para o mês anterior"</string>
+    <string msgid="791651718641787594" name="m3c_date_picker_switch_to_year_selection">"Usar a seleção de ano"</string>
+    <string msgid="7430790972741451689" name="m3c_date_picker_title">"Selecionar data"</string>
+    <string msgid="3199387177749801575" name="m3c_date_picker_today_description">"Hoje"</string>
+    <string msgid="2068382232816991922" name="m3c_date_picker_year_picker_pane_title">"Seletor de ano visível"</string>
+    <string msgid="3190049423327661366" name="m3c_date_range_input_invalid_range_input">"Período inválido"</string>
+    <string msgid="3148384720560189467" name="m3c_date_range_input_title">"Informar datas"</string>
+    <string msgid="2138321128465719402" name="m3c_date_range_picker_day_in_range">"Dentro do período"</string>
+    <string msgid="4947636797751277713" name="m3c_date_range_picker_end_headline">"Data de término"</string>
+    <string msgid="602077859540990149" name="m3c_date_range_picker_scroll_to_next_month">"Role a tela para mostrar o mês seguinte"</string>
+    <string msgid="4592174524846109496" name="m3c_date_range_picker_scroll_to_previous_month">"Role a tela para mostrar o mês anterior"</string>
+    <string msgid="4665981448952749820" name="m3c_date_range_picker_start_headline">"Data de início"</string>
+    <string msgid="3134165431120340385" name="m3c_date_range_picker_title">"Selecionar datas"</string>
+    <string msgid="7617233117134790350" name="m3c_dialog">"Caixa de diálogo"</string>
+    <string msgid="3177828188723359358" name="m3c_dropdown_menu_collapsed">"Fechado"</string>
+    <string msgid="2360841780724299882" name="m3c_dropdown_menu_expanded">"Aberto"</string>
+    <string msgid="6152806324422087846" name="m3c_search_bar_search">"Pesquisar"</string>
+    <string msgid="6152755701819882931" name="m3c_snackbar_dismiss">"Dispensar"</string>
+    <string msgid="7655536806087401899" name="m3c_suggestions_available">"Sugestões abaixo"</string>
+    <string msgid="2786685010796619560" name="m3c_time_picker_am">"AM"</string>
+    <string msgid="2349193472625211372" name="m3c_time_picker_hour">"Hora"</string>
+    <string msgid="9179527532316922345" name="m3c_time_picker_hour_24h_suffix">"%1$d horas"</string>
+    <string msgid="8876759303332837035" name="m3c_time_picker_hour_selection">"Selecione a hora"</string>
+    <string msgid="3458167507790628988" name="m3c_time_picker_hour_suffix">"%1$dh"</string>
+    <string msgid="6973808109666874069" name="m3c_time_picker_hour_text_field">"por hora"</string>
+    <string msgid="4313071914266462005" name="m3c_time_picker_minute">"Minuto"</string>
+    <string msgid="4699133535056739733" name="m3c_time_picker_minute_selection">"Selecione os minutos"</string>
+    <string msgid="5064177921781937179" name="m3c_time_picker_minute_suffix">"%1$d minutos"</string>
+    <string msgid="7661234488295443182" name="m3c_time_picker_minute_text_field">"por minutos"</string>
+    <string msgid="5865171949528594571" name="m3c_time_picker_period_toggle_description">"Selecione AM ou PM"</string>
+    <string msgid="6616362054113087709" name="m3c_time_picker_pm">"PM"</string>
+    <string msgid="1805687647081129904" name="m3c_tooltip_long_press_label">"Mostrar dica"</string>
+    <string msgid="5460405025248574620" name="m3c_tooltip_pane_description">"Dica"</string>
+    <string name="m3u_parser_title">M3U Parser (Gerenciador de Arquivo de Playlist m3u)</string>
+    <string name="main_number">Principal</string>
+    <string name="main_screen">Tela principal</string>
+    <string name="make_sure_latest">Verifique também se você está usando a versão mais recente do aplicativo.</string>
+    <string name="make_sure_upgrade">Por favor, note que esta versão não está mais sendo desenvolvida. Obtenha a versão Pro para desfrutar das atualizações.</string>
+    <string name="manage_automatic_backups">Manage automatic backups</string>
+    <string name="manage_blocked_numbers">Gerenciar números bloqueados</string>
+    <string name="manage_excluded_folders">Gerenciar pastas ignoradas</string>
+    <string name="manage_shown_tabs">Gerenciar abas visíveis</string>
+    <string name="manage_speed_dial">Gerenciar ligações rápidas</string>
+    <string name="march">Março</string>
+    <string name="march_short">Mar</string>
+    <string name="material_clock_toggle_content_description">Selecionar AM ou PM</string>
+    <string name="material_design_3">Material Design 3</string>
+    <string name="material_design_3_summary">Changes the appearance of some elements of the application</string>
+    <string name="material_hour_24h_suffix">%1$s horas</string>
+    <string name="material_hour_selection">Selecionar horário</string>
+    <string name="material_hour_suffix">%1$s em ponto</string>
+    <string name="material_minute_selection">Selecione os minutos</string>
+    <string name="material_minute_suffix">%1$s minutos</string>
+    <string name="material_timepicker_am">AM</string>
+    <string name="material_timepicker_clock_mode_description">Alterne para o modo de relógio para informar o horário.</string>
+    <string name="material_timepicker_hour">Hora</string>
+    <string name="material_timepicker_minute">Minuto</string>
+    <string name="material_timepicker_pm">PM</string>
+    <string name="material_timepicker_select_time">Selecionar horário</string>
+    <string name="material_timepicker_text_input_mode_description">Alterne para o modo de entrada de texto para informar o horário.</string>
+    <string name="maximum_share_reached">Não é possível compartilhar todos esses arquivos de uma só vez</string>
+    <string name="may">Maio</string>
+    <string name="may_short">May</string>
+    <string name="maybe">Talvez</string>
+    <string name="medium">Médio</string>
+    <string name="merge">Mesclar</string>
+    <string name="message">Mensagem</string>
+    <string name="message_call_later">Posso ligar para você mais tarde?</string>
+    <string name="message_cant_talk_right_now">Desculpe, não posso falar neste momento.</string>
+    <string name="message_on_my_way">Estou a caminho.</string>
+    <string name="middle_name">Nome do meio</string>
+    <string name="migrating">Migrando</string>
+    <string name="minutes_letter">m</string>
+    <string name="minutes_raw">minutos</string>
+    <string name="missed_call">Chamada perdida</string>
+    <string name="missed_call_g">Chamada perdida</string>
+    <string name="missed_call_notifications_g">Notificações de chamadas perdidas</string>
+    <string name="missed_calls_g">Chamadas perdidas</string>
+    <string name="mobile">Celular</string>
+    <string name="monday">Segunda-feira</string>
+    <string name="monday_letter">S</string>
+    <string name="monday_short">Seg</string>
+    <string name="more_apps">Mais aplicativos</string>
+    <string name="more_apps_from_us">More aplicativos nossos</string>
+    <string name="more_info">Mais informação</string>
+    <string name="more_options">More options</string>
+    <string name="move">Mover</string>
+    <string name="move_items_into_recycle_bin">Mover itens para a Lixeira em vez de excluir</string>
+    <string name="move_to">Mover para</string>
+    <string name="move_to_bottom">Mover para baixo</string>
+    <string name="move_to_recycle_bin_confirmation">Deseja realmente mover %s para a Lixeira?</string>
+    <string name="move_to_top">Mover para cima</string>
+    <string name="moving">Movendo…</string>
+    <string name="moving_recycle_bin_items_disabled">Não é permitido mover itens da Lixeira. Por favor, use a função Restaurar</string>
+    <string name="moving_success">Arquivos movidos com sucesso</string>
+    <string name="moving_success_one">Arquivo movido com sucesso</string>
+    <string name="moving_success_partial">Alguns arquivos não foram movidos</string>
+    <string name="mtrl_badge_numberless_content_description">Nova notificação</string>
+    <string name="mtrl_chip_close_icon_content_description">Remover %1$s</string>
+    <string name="mtrl_exceed_max_badge_number_content_description" ns2:ignore="PluralsCandidate">Mais de %1$d novas notificações</string>
+    <string name="mtrl_picker_a11y_next_month">Alterar para o próximo mês</string>
+    <string name="mtrl_picker_a11y_prev_month">Alterar para o mês anterior</string>
+    <string name="mtrl_picker_announce_current_selection">Seleção atual: %1$s</string>
+    <string name="mtrl_picker_cancel">Cancelar</string>
+    <string name="mtrl_picker_confirm">OK</string>
+    <string name="mtrl_picker_date_header_selected">%1$s</string>
+    <string name="mtrl_picker_date_header_title">Selecionar data</string>
+    <string name="mtrl_picker_date_header_unselected">Data selecionada</string>
+    <string name="mtrl_picker_day_of_week_column_header">Coluna de dias: %1$s</string>
+    <string name="mtrl_picker_invalid_format">Formato inválido.</string>
+    <string name="mtrl_picker_invalid_format_example">Exemplo: %1$s</string>
+    <string name="mtrl_picker_invalid_format_use">Usar %1$s</string>
+    <string name="mtrl_picker_invalid_range">Intervalo inválido.</string>
+    <string name="mtrl_picker_navigate_to_year_description">Ir para o ano %1$s</string>
+    <string name="mtrl_picker_out_of_range">Fora do intervalo: %1$s</string>
+    <string name="mtrl_picker_range_header_only_end_selected">Data de início – %1$s</string>
+    <string name="mtrl_picker_range_header_only_start_selected">%1$s – Data de término</string>
+    <string name="mtrl_picker_range_header_selected">%1$s – %2$s</string>
+    <string name="mtrl_picker_range_header_title">Selecionar intervalo</string>
+    <string name="mtrl_picker_range_header_unselected">Data de início – Data de término</string>
+    <string name="mtrl_picker_save">Salvar</string>
+    <string name="mtrl_picker_text_input_date_hint">Data</string>
+    <string name="mtrl_picker_text_input_date_range_end_hint">Data de término</string>
+    <string name="mtrl_picker_text_input_date_range_start_hint">Data de início</string>
+    <string name="mtrl_picker_text_input_day_abbr">d</string>
+    <string name="mtrl_picker_text_input_month_abbr">m</string>
+    <string name="mtrl_picker_text_input_year_abbr">a</string>
+    <string name="mtrl_picker_toggle_to_calendar_input_mode">Alternar para o modo de entrada da agenda</string>
+    <string name="mtrl_picker_toggle_to_day_selection">Toque para alternar para a seleção de um dia</string>
+    <string name="mtrl_picker_toggle_to_text_input_mode">Alternar para o modo de entrada de texto</string>
+    <string name="mtrl_picker_toggle_to_year_selection">Toque para alternar para a seleção de um ano</string>
+    <string name="mtrl_timepicker_cancel">Cancelar</string>
+    <string name="mtrl_timepicker_confirm">OK</string>
+    <string name="music_player_short">Reprodutor de Músicas</string>
+    <string name="must_make_default_caller_id_app">Não é possível bloquear números desconhecidos sem a permissão de ID de chamadas.</string>
+    <string name="must_make_default_dialer">Você precisa tornar este aplicativo padrão para poder bloquear números.</string>
+    <string name="mute">Mudo</string>
+    <string name="name">Nome</string>
+    <string name="name_taken">Já existe um arquivo ou pasta com este nome</string>
+    <string msgid="542007171693138492" name="navigation_menu">"Menu de navegação"</string>
+    <string name="never">Nunca</string>
+    <string name="new_app">
+        <![CDATA[
+            Olá,<br><br>
+            Gostariamos de avisar que lançamos um novo app recentemente:<br><br>
+            <a href="%1$s">%2$s</a><br><br>
+            <a href="%3$s">%4$s</a><br><br>
+            <a href="%5$s">%6$s</a><br><br>
+            Você pode baixá-lo pressionando o título.<br><br>
+            Obrigado
+        ]]>
+    </string>
+    <string name="next">Próximo</string>
+    <string name="nickname">Apelido</string>
+    <string name="nine">Nove</string>
+    <string name="no">Não</string>
+    <string name="no_access_to_contacts">O aplicativo não pode acessar seus contatos</string>
+    <string name="no_app_found">Nenhum aplicativo encontrado</string>
+    <string name="no_audio_permissions">A permissão de Áudio é necessária</string>
+    <string name="no_browser_found">Nenhum navegador encontrado</string>
+    <string name="no_camera_permissions">A permissão de Câmera é necessária</string>
+    <string name="no_connection">Sem conexão</string>
+    <string name="no_contacts_found">Nenhum contato encontrado</string>
+    <string name="no_contacts_permission">A permissão de Contatos é necessária</string>
+    <string name="no_email_client_found">Nenhum app de e-mail encontrado</string>
+    <string name="no_entries_for_exporting">Não foram encontramos itens para exportar</string>
+    <string name="no_entries_for_importing">Não foram encontrados itens para importar</string>
+    <string name="no_files_selected">Nenhum arquivo selecionado</string>
+    <string name="no_fingerprints_registered">Você não tem digitais cadastradas. Favor adiconar alguma nas Configurações do seu dispositivo</string>
+    <string name="no_items_found">Nenhum item encontrado.</string>
+    <string name="no_new_entries_for_importing">Nenhuma entrada nova foi encontrada</string>
+    <string name="no_new_items">Nenhum novo ítem foi encontrado</string>
+    <string name="no_permission">Sem permissão</string>
+    <string name="no_phone_call_permission">O aplicativo não tem permissão para iniciar chamadas telefônicas, por favor, conceda-a nas configurações do dispositivo</string>
+    <string name="no_phone_number_found">Nenhum número de telefone foi encontrado</string>
+    <string name="no_previous_calls">Nenhuma chamada anterior foi encontrada</string>
+    <string name="no_purchase_found">No purchase found.</string>
+    <string name="no_reminder">Sem lembrete</string>
+    <string name="no_sound">Sem som</string>
+    <string name="no_space">O destino não tem espaço suficiente disponível.\nRequerido %1$s, disponível %2$s</string>
+    <string name="no_storage_permissions">A permissão de Armazenamento é necessária</string>
+    <string name="none">Nenhum</string>
+    <string name="not_blocking_anyone">Não há números bloqueados.</string>
+    <string msgid="6610465462668679431" name="not_selected">"Não selecionado"</string>
+    <string name="notes">Notas</string>
+    <string name="notes_short">Notas</string>
+    <string name="nothing">Nada</string>
+    <string name="notice">Este aplicativo usa as seguintes bibliotecas de terceiros para facilitar a minha vida. Obrigado.</string>
+    <string name="notification">Notificação</string>
+    <string name="notification_sound">Notification sound</string>
+    <string name="notifications">Notificações</string>
+    <string name="notifications_disabled">As notificações deste aplicativo foram desativadas pelo sistema. Por favor, reative-as através nas configurações do seu aparelho.</string>
+    <string name="november">Novembro</string>
+    <string name="november_short">Nov</string>
+    <string name="number">Número</string>
+    <string name="number_picker_title">Number Picker (selecionador personalizável de número)</string>
+    <string name="october">Outubro</string>
+    <string name="october_short">Oct</string>
+    <string msgid="875452955155264703" name="off">"Desativado"</string>
+    <string name="ok">OK</string>
+    <string msgid="8655164131929253426" name="on">"Ativado"</string>
+    <string name="one">Um</string>
+    <string name="ongoing_call">Chamada em andamento</string>
+    <string name="open">Abrir</string>
+    <string name="open_biometric_dialog">Abrir diálogo de verificação de ID biométrico</string>
+    <string name="open_dialpad_by_default">Mostrar o discador ao abrir o aplicativo</string>
+    <string name="open_in_maps">Aberto em Mapas</string>
+    <string name="open_search_when_open_contacts">Abra uma busca ao abrir a guia de contatos</string>
+    <string name="open_speed_dial_manage">Abrir o gerenciamento da discagem rápida?</string>
+    <string name="open_the_recycle_bin">Abrir a Lixeira</string>
+    <string name="open_with">Abrir com</string>
+    <string name="other">Outros</string>
+    <string name="other_help">Other help</string>
+    <string name="otto_title">Otto (canal de eventos)</string>
+    <string name="out_of_memory_error">Memória insuficiente</string>
+    <string name="outgoing_call">Chamada de saída</string>
+    <string name="overflow_icon">Ícone de estouro</string>
+    <string name="overwrite">Sobrescrever</string>
+    <string name="pager">Pager</string>
+    <string name="panorama_view_title">VR Panorama View (visualizador de panoramas)</string>
+    <string name="participants_title">Participants</string>
+    <string name="password">Password</string>
+    <string name="password_protect_file_deletion">Proteger com senha as operações de excluir e mover arquivos</string>
+    <string name="password_protect_hidden_items">Proteger com senha a visualização de itens ocultos</string>
+    <string name="password_protect_whole_app">Proteger com senha todo o app</string>
+    <string name="password_toggle_content_description">Exibir senha</string>
+    <string name="paste_g">Inserir</string>
+    <string name="path">Caminho</string>
+    <string name="pattern">Padrão</string>
+    <string name="pattern_renaming">Padrão</string>
+    <string name="pattern_title">PatternLockView (travamento via padrões)</string>
+    <string name="pdf_view_pager_title">Visualizador PDF Android</string>
+    <string name="pdf_viewer_title">Android PdfViewer (PDF Viewer)</string>
+    <string name="per_month">%s/mês</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="phone_storage">Armazenamento do telefone</string>
+    <string name="phone_storage_hidden">Armazenamento do telefone (não visível por outros aplicativos)</string>
+    <string name="photoview_title">PhotoView (animação de GIFs)</string>
+    <string name="picasso_title">Picasso (carregamento e cache de imagens)</string>
+    <string name="pin">PIN</string>
+    <string name="pin_item">Fixar item</string>
+    <string name="pin_must_be_4_digits_long">PIN must be at least 4 digits long</string>
+    <string name="place_finger">Posicione seu dedo sobre o leitor de digitais</string>
+    <string name="playbook">PlayBook</string>
+    <string name="playbooks">PlayBooks</string>
+    <string name="playbooks_summary">Audiobook player</string>
+    <string name="player_g">Jogador</string>
+    <string name="playpause">Reproduzir / Pausar</string>
+    <string name="please_enter_pin">Favor digitar o PIN</string>
+    <string name="please_select_destination">Por favor selecione um destino</string>
+    <string name="plus_summary">Com sua ajuda, podemos implementar mais recursos e tornar o aplicativo ainda melhor</string>
+    <string name="plus_title">Apoie-nos</string>
+    <string name="portrait_column_count">Colunas em retrato</string>
+    <string name="pref_category_appearance">Aparência</string>
+    <string name="pref_pay_summary">Get the paid app to support future developments and extra features</string>
+    <string name="pref_theme_summary">Selecione um tema pré-instalado</string>
+    <string name="prepend_filenames">Adicionar ao início dos nomes</string>
+    <string name="prevent_phone_from_sleeping">Impedir que o telefone entre em suspensão enquanto o aplicativo estiver em primeiro plano</string>
+    <string name="previous">Anterior</string>
+    <string name="primary_color">Cor primária</string>
+    <string name="primary_sim_card">Cartão SIM principal</string>
+    <string name="print">Imprimir</string>
+    <string name="print_pro">Imprimir (Pro)</string>
+    <string name="privacy_policy">Política de Privacidade</string>
+    <string name="pro_app_refund">Não se esqueça de que se você desinstalar um aplicativo pago em menos de duas horas você receberá reembolsado(a) automaticamente. Se você precisar de um reembolso após isso, entre em contato conosco através hello@simplemobiletools.com. Isso torna tudo mais fácil se você quiser testar :)</string>
+    <string name="pro_app_refund_g">Não se esqueça de que se você desinstalar um aplicativo pago em menos de duas horas você receberá reembolsado(a) automaticamente. Se você precisar de um reembolso após isso, entre em contato conosco através goodwy.dev@gmail.com. Isso torna tudo mais fácil se você quiser testar :)</string>
+    <string name="proceed_with_deletion">Deseja realmente excluir?</string>
+    <string name="properties">Propriedades</string>
+    <string name="protection_setup_successfully">Senha criada com sucesso. Reinstale o app caso você a esqueça.</string>
+    <string name="purchase">Comprar</string>
+    <string name="purchase_simple_thank_you">Compre o Simple Thank You</string>
+    <string name="purchase_simple_thank_you_g">Comprar Goodwy Thank You</string>
+    <string name="purchase_thank_you">
+        <![CDATA[
+            Por favor compre o <a href="https://play.google.com/store/apps/details?id=com.simplemobiletools.thankyou">Agradecimento Simple</a> para desbloquear esta função e apoiar o desenvolvimento. Obrigado!
+        ]]>
+    </string>
+    <string name="quality">Qualidade</string>
+    <string name="random">Aleatório</string>
+    <string msgid="5941395253238309765" name="range_end">"Fim do intervalo"</string>
+    <string msgid="7097486360902471446" name="range_start">"Início do intervalo"</string>
+    <string name="rate">Avaliar</string>
+    <string name="rate_our_app">Avalie nosso aplicativo :)</string>
+    <string name="rate_us">Nos avalie na Play Store</string>
+    <string name="rate_us_prompt">Olá,\n\nParece que você já está utilizando este app a algum tempo, e nós agradecemos a você por isso.\n\nPor favor, considere nos avaliar na Google Play. Isso iria nos ajudar bastante.\n\nDe uma forma ou de outra, você não verá esta mensagem novamente.\n\nObrigado!</string>
+    <string name="read_faq">Leia as Perguntas Frequentes</string>
+    <string name="read_it">Ler</string>
+    <string name="recent_files_tab">Arquivos recentes</string>
+    <string name="recents">Recentes</string>
+    <string name="recommendation_dialog_contacts_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our app to view and edit contacts.<br><br>
+            Thanks
+        ]]></string>
+    <string name="recommendation_dialog_dialer_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our call app.<br><br>
+            Thanks
+        ]]></string>
+    <string name="recommendation_dialog_gallery_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our photo viewing and editing app.<br><br>
+            Thanks
+        ]]></string>
+    <string name="recommendation_dialog_messages_g">
+        <![CDATA[
+            Hey,<br><br>
+            if you like this app, we recommend that you install our messaging app.<br><br>
+            Thanks
+        ]]></string>
+    <string name="record_audio">Gravar áudio</string>
+    <string name="record_video">Gravar vídeo</string>
+    <string name="recorder_g">Gravador</string>
+    <string name="recycle_bin">Lixeira</string>
+    <string name="recycle_bin_cleaning_interval">Intervalo de limpeza da Lixeira</string>
+    <string name="recycle_bin_emptied">A Lixeira foi esvaziada com sucesso</string>
+    <string name="recycle_bin_empty">A Lixeira está vazia</string>
+    <string name="redo">Refazer</string>
+    <string name="reduce_column_count">Reduzir número de colunas</string>
+    <string name="relation_acquaintance_g">Acquaintance</string>
+    <string name="relation_agent_g">Agent</string>
+    <string name="relation_assistant_g">Assistant</string>
+    <string name="relation_aunt_g">Aunt</string>
+    <string name="relation_brother_g">Brother</string>
+    <string name="relation_brother_in_law_g">Brother-in-law</string>
+    <string name="relation_child_g">Child</string>
+    <string name="relation_co_resident_g">Co-resident</string>
+    <string name="relation_co_worker_g">Co-worker</string>
+    <string name="relation_colleague_g">Colleague</string>
+    <string name="relation_contact_g">Contact</string>
+    <string name="relation_crush_g">Crush</string>
+    <string name="relation_date_g">Date</string>
+    <string name="relation_daughter_g">Daughter</string>
+    <string name="relation_daughter_in_law_g">Daughter-in-law</string>
+    <string name="relation_domestic_partner_g">Domestic Partner</string>
+    <string name="relation_emergency_g">Emergency Contact</string>
+    <string name="relation_father_g">Father</string>
+    <string name="relation_father_in_law_g">Father-in-law</string>
+    <string name="relation_friend_g">Friend</string>
+    <string name="relation_g">Relação</string>
+    <string name="relation_grandchild_g">Grandchild</string>
+    <string name="relation_granddaughter_g">Granddaughter</string>
+    <string name="relation_grandfather_g">Grandfather</string>
+    <string name="relation_grandmother_g">Grandmother</string>
+    <string name="relation_grandparent_g">Grandparent</string>
+    <string name="relation_grandson_g">Grandson</string>
+    <string name="relation_hint_g">Pessoa relacionada</string>
+    <string name="relation_husband_g">Husband</string>
+    <string name="relation_kin_alt_g">Relative</string>
+    <string name="relation_kin_g">Kin</string>
+    <string name="relation_manager_g">Manager</string>
+    <string name="relation_me_g">Me</string>
+    <string name="relation_met_g">Met</string>
+    <string name="relation_mother_g">Mother</string>
+    <string name="relation_mother_in_law_g">Mother-in-law</string>
+    <string name="relation_muse_g">Muse</string>
+    <string name="relation_neighbor_g">Neighbor</string>
+    <string name="relation_nephew_g">Nephew</string>
+    <string name="relation_niece_g">Niece</string>
+    <string name="relation_parent_g">Parent</string>
+    <string name="relation_partner_g">Partner</string>
+    <string name="relation_referred_by_g">Referred by</string>
+    <string name="relation_relative_g">Relative</string>
+    <string name="relation_sibling_g">Sibling</string>
+    <string name="relation_sister_g">Sister</string>
+    <string name="relation_sister_in_law_g">Sister-in-law</string>
+    <string name="relation_son_g">Son</string>
+    <string name="relation_son_in_law_g">Son-in-law</string>
+    <string name="relation_spouse_g">Spouse</string>
+    <string name="relation_subordinate_g">Subordinate</string>
+    <string name="relation_superior_g">Boss</string>
+    <string name="relation_sweetheart_g">Sweetheart</string>
+    <string name="relation_uncle_g">Uncle</string>
+    <string name="relation_wife_g">Wife</string>
+    <string name="relations_g">Pessoas relacionadas</string>
+    <string name="relative_date">Data relativa</string>
+    <string name="remind_me">Lembre</string>
+    <string name="reminder_triggers_in">Tempo restante até o lembrete:\n%s</string>
+    <string name="reminder_warning">Certifique-se de que os lembretes funcionam corretamente antes de confiar neles. Eles podem se funcionar direito devido a restrições de sistema relacionadas à economia de bateria.</string>
+    <string name="remove">Remover</string>
+    <string name="remove_all">Remover todas</string>
+    <string name="remove_all_description">Remover todas as pastas da lista de pastas ignoradas\? Esta ação não exclui as pastas.</string>
+    <string name="remove_confirmation">Tem certeza que quer remover os itens selecionados do Histórico de Chamadas\?</string>
+    <string name="remove_exif">Remover EXIF</string>
+    <string name="remove_exif_confirmation">Você tem certeza de que desejava remover os valores EXIF, como coordenadas de GPS, modelo de câmera, etc.?</string>
+    <string name="remove_from_favorites">Remover dos favoritos</string>
+    <string name="rename">Renomear</string>
+    <string name="rename_date_time_pattern">%Y - ano\n%M - mês\n%D - dia\n%h - hora\n%m - minuto\n%s - segundo\n%i – aumento numérico de 1</string>
+    <string name="rename_file">Renomear arquivo</string>
+    <string name="rename_file_error">Não foi possível renomear o arquivo</string>
+    <string name="rename_folder">Renomear pasta</string>
+    <string name="rename_folder_empty">O nome da pasta não pode estar vazio</string>
+    <string name="rename_folder_error">Não foi possível renomear a pasta</string>
+    <string name="rename_folder_exists">Já existe uma pasta com este nome</string>
+    <string name="rename_folder_ok">A pasta foi renomeada com sucesso</string>
+    <string name="rename_folder_root">Não é possível renomear a pasta raiz de um armazenamento</string>
+    <string name="rename_in_sd_card_system_restriction">O sistema não permite que você renomeie esta pasta</string>
+    <string name="rename_internal_system_restriction">Não é possível renomear pastas diretamente no armazenamento interno, somente subpastas</string>
+    <string name="renaming_folder">Renomeando a pasta</string>
+    <string name="repeat_pattern">Repetir padrão</string>
+    <string name="repeat_pin">Repetir PIN</string>
+    <string name="reprint_title">Reprint (travamento via impressões digitais)</string>
+    <string name="request_access">Solicitar acesso</string>
+    <string name="request_the_required_permissions">Pedir as permissões necessárias</string>
+    <string name="resize">Redimensionar</string>
+    <string name="resolution">Resolução</string>
+    <string name="restart_required">Application restart required</string>
+    <string name="restore_all_files">Restaurar todos os arquivos</string>
+    <string name="restore_defaults">Restaurar predefinições</string>
+    <string name="restore_purchase">Restore purchase</string>
+    <string name="restore_selected_files">Restaurar os arquivos selecionados</string>
+    <string name="restore_this_file">Restaurar este arquivo</string>
+    <string name="restored_previous_purchase_please_restart">Restored previous purchase. Please restart the app to make use of all features.</string>
+    <string name="restoring_purchase">Restoring purchase…</string>
+    <string name="resume_call">Resumir chamada</string>
+    <string name="right_contacts">Right Contacts</string>
+    <string name="right_dialer">Right Dialer</string>
+    <string name="right_files">Right Files</string>
+    <string name="right_gallery">Right Gallery</string>
+    <string name="right_sms_messenger">Right Messages</string>
+    <string name="right_voice_recorder">Right Voice Memos</string>
+    <string name="robolectric_title">Robolectric (framework de teste)</string>
+    <string name="root">Raiz</string>
+    <string name="round_play_icon">Ícone de reprodução/pausa redonda</string>
+    <string name="round_play_icon_summary">O ícone de reprodução/pausa é colorido na cor principal</string>
+    <string name="row_count">Row count</string>
+    <string name="rtl_viewpager_title">RtlViewPager (deslizar à direita/esquerda)</string>
+    <string name="sanselan_title">Apache Sanselan (leitura de metadados de imagem)</string>
+    <string name="saturday">Sábado</string>
+    <string name="saturday_letter">S</string>
+    <string name="saturday_short">Sáb</string>
+    <string name="save">Salvar</string>
+    <string name="save_as">Salvar como</string>
+    <string name="save_before_closing">Existem alterações não salvas. Salvar antes de sair?</string>
+    <string name="save_recordings_in_summary">A partir do Android 10, o app não tem acesso aos seus arquivos</string>
+    <string name="saving">Salvando…</string>
+    <string name="saving_label">Salvando</string>
+    <string name="scanning">Scanning…</string>
+    <string msgid="5659570757430909869" name="screen_lock_prompt_message">"Insira seu bloqueio de tela para continuar"</string>
+    <string name="screen_slide_animation">Animação de slides em ecrã</string>
+    <string name="screen_slide_animation_depth">Profundidade</string>
+    <string name="screen_slide_animation_zoomout">Ampliar</string>
+    <string name="scrolling">Rolagem</string>
+    <string name="sd_card">Cartão SD</string>
+    <string name="sd_card_usb_same">As pastas do cartão SD e do dispositivo USB não podem ser a mesma</string>
+    <string name="search">Pesquisar</string>
+    <string name="search_albums">Pesquisar álbuns</string>
+    <string name="search_apps">Pesquisar apps</string>
+    <string name="search_artists">Pesquisar artistas</string>
+    <string name="search_calls">Pesquisar chamadas</string>
+    <string name="search_contacts">Pesquisar contatos</string>
+    <string name="search_conversations">Pesquisar conversas</string>
+    <string name="search_events">Pesquisar eventos</string>
+    <string name="search_favorites">Pesquisar favoritos</string>
+    <string name="search_files">Pesquisar arquivos</string>
+    <string name="search_files_and_folders">Pesquisar arquivos e pastas</string>
+    <string name="search_folders">Pesquisar pastas</string>
+    <string name="search_groups">Pesquisar grupos</string>
+    <string name="search_history">Pesquisar histórico</string>
+    <string name="search_in_placeholder">Pesquisar em %s</string>
+    <string msgid="6264217191555673260" name="search_menu_title">"Pesquisar"</string>
+    <string name="search_playlists">Pesquisar playlists</string>
+    <string name="search_recordings">Pesquisar gravações</string>
+    <string name="search_text">Pesquisar texto</string>
+    <string name="search_tracks">Pesquisar faixas</string>
+    <string name="seconds_letter">s</string>
+    <string name="seconds_raw">segundos</string>
+    <string name="security">Segurança</string>
+    <string name="select_a_different_color">Selecione uma cor diferente</string>
+    <string name="select_all">Selecionar tudo</string>
+    <string name="select_destination">Selecione o destino</string>
+    <string name="select_file">Selecionar arquivo</string>
+    <string name="select_folder">Selecionar pasta</string>
+    <string name="select_photo">Selecionar foto</string>
+    <string name="select_sim">Selecione um SIM para esta chamada</string>
+    <string name="select_storage">Selecionar armazenamento</string>
+    <string name="select_text">Selecionar texto</string>
+    <string msgid="6043586758067023" name="selected">"Selecionado"</string>
+    <string name="send_email">Enviar e-mail</string>
+    <string name="send_sms">Enviar SMS</string>
+    <string name="september">Setembro</string>
+    <string name="september_short">Set</string>
+    <string name="set_as">Definir como</string>
+    <string name="set_as_default">Definir como padrão</string>
+    <string name="settings">Configurações</string>
+    <string name="settings_exported_successfully">Configurações exportadas com sucesso</string>
+    <string name="settings_icon">Ícone Configurações</string>
+    <string name="settings_imported_successfully">Configurações importadas com sucesso</string>
+    <string name="seven">Sete</string>
+    <string name="share">Compartilhar</string>
+    <string name="share_colors_success">Cores atualizadas com sucesso. Um novo tema chamado \'Compartilhado\' foi adicionado, use-o para atualizar as cores de todos os apps no futuro.</string>
+    <string name="share_text">Opa, dê uma olhada no %1$s em %2$s</string>
+    <string name="share_via">Compartilhar via</string>
+    <string name="shared">Compartilhado</string>
+    <string name="shared_theme_note">Embora você esteja usando a versão Pro do aplicativo, o Simple Thank You ainda é necessário para fins técnicos. Ele realiza a sincronização de cores.</string>
+    <string name="shortcut">Atalho</string>
+    <string name="show_blocked_numbers">Mostrar bloqueado</string>
+    <string name="show_button_blocked_numbers">Mostrar o botão para não ocultar chamadas bloqueadas</string>
+    <string name="show_call_confirmation_dialog">Mostrar diálogo para confirmar a chamada antes de ligar</string>
+    <string name="show_call_details">Mostrar detalhes da chamada</string>
+    <string name="show_caller_description_g">Mostrar informações adicionais sobre o chamador</string>
+    <string name="show_contact_thumbnails_g">Mostrar miniaturas de contato</string>
+    <string name="show_dialpad">Mostrar discador</string>
+    <string name="show_dividers">Mostrar divisores</string>
+    <string name="show_hidden_items">Exibir itens ocultos</string>
+    <string name="show_incoming_calls_full_screen">Sempre exibir as chamadas recebidas em tela cheia</string>
+    <string name="show_info_bubble">Exibir bolha de informação ao rolar usando a barra de rolagem</string>
+    <string name="show_line_numbers">Show line numbers</string>
+    <string name="show_phone_numbers_g">Mostrar números de telefone</string>
+    <string name="show_search">Show a search bar</string>
+    <string name="show_the_recycle_bin">Exibir a Lixeira</string>
+    <string name="sideloaded_app">
+        <![CDATA[
+            Parece que a sua versão do app está corrompida. Por favor, baixe a versão original <a href="%s">aqui</a>.
+        ]]>
+    </string>
+    <string name="simple_app_launcher">Lançador de Aplicativos Simples</string>
+    <string name="simple_calculator">Calculadora Simples</string>
+    <string name="simple_calendar">Calendário Simples</string>
+    <string name="simple_camera">Câmera Simples</string>
+    <string name="simple_clock">Relógio Simples</string>
+    <string name="simple_contacts">Contatos Simples</string>
+    <string name="simple_dialer">Discador Simples</string>
+    <string name="simple_draw">Desenhos Simples</string>
+    <string name="simple_file_manager">Gerenciador Simples</string>
+    <string name="simple_flashlight">Lanterna Simples</string>
+    <string name="simple_gallery">Galeria Simples</string>
+    <string name="simple_keyboard">Teclado Simples</string>
+    <string name="simple_launcher">Launcher Simples</string>
+    <string name="simple_music_player">Player de Música Simples</string>
+    <string name="simple_notes">Notas Simples</string>
+    <string name="simple_renaming">Renomeação simples</string>
+    <string name="simple_sms_messenger">Mensagens SMS Simples</string>
+    <string name="simple_thank_you">Obrigado Simples</string>
+    <string name="simple_voice_recorder">Gravador de Voz Simples</string>
+    <string name="six">Seis</string>
+    <string name="size">Tamanho</string>
+    <string name="skip">Ignorar</string>
+    <string name="skip_delete_confirmation">Sempre pular confirmação de exclusão</string>
+    <string name="skip_the_recycle_bin">Skip the Recycle Bin, delete files directly</string>
+    <string name="sleep_timer">Temporizador de sono</string>
+    <string name="small">Pequeno</string>
+    <string name="sms_messenger_short">Mensagens SMS</string>
+    <string name="sms_mms_title">SMS MMS (uso de SMS e MMS)</string>
+    <string name="snooze">Soneca</string>
+    <string name="snooze_time">Tempo de soneca</string>
+    <string name="social">Social</string>
+    <string name="solarized">Ensolarado</string>
+    <string name="song_title">Título da música</string>
+    <string name="sort_by">Ordenar por</string>
+    <string name="sort_numeric_parts">Ordenar numeros pelo seu valor real</string>
+    <string name="sort_randomly">Ordenar aleatoriamente</string>
+    <string name="source">Origem</string>
+    <string name="source_and_destination_same">A origem e o destino não podem ser iguais</string>
+    <string name="source_file_doesnt_exist">Arquivo de origem %s não existe</string>
+    <string name="special_thanks_to">Special thanks to</string>
+    <string name="speech_bubble">Bolha de fala</string>
+    <string name="speed_dial">Ligação rápida</string>
+    <string name="speed_dial_label">Clique em um número para atribuir um contato a ele. Você pode então ligar rapidamente para o contato com um toque longo neste número no discador.</string>
+    <string name="start_free_trial">Iniciar teste grátis</string>
+    <string name="start_name_with_surname">Ordenar por sobrenome</string>
+    <string name="start_week_on">Start week on</string>
+    <string name="startup">Inicialização</string>
+    <string msgid="6277540029070332960" name="status_bar_notification_info_overflow">"999+"</string>
+    <string name="stetho_title">Stetho (depuração a bases de dados)</string>
+    <string name="stop_showing_excluded">Parar de exibir excluído</string>
+    <string name="stop_showing_hidden">Parar de exibir mídia oculta</string>
+    <string name="storage">Armazenamento</string>
+    <string name="string_to_add">Texto a adicionar</string>
+    <string name="subsampling_title">Subsampling Scale Image View (ampliação de imagens)</string>
+    <string name="sunday">Domingo</string>
+    <string name="sunday_first">Iniciar a semana no Domingo</string>
+    <string name="sunday_letter">D</string>
+    <string name="sunday_short">Dom</string>
+    <string name="support">Suporte</string>
+    <string name="support_project_summary">Get one of our paid apps to support future development and unlock extra features</string>
+    <string name="surname">Sobrenome</string>
+    <string msgid="2561197295334830845" name="switch_role">"Chave"</string>
+    <string name="system_default">Padrão do sistema</string>
+    <string name="system_folder_copy_restriction">O sistema não permite copiar para esta pasta, por favor, escolha outra</string>
+    <string name="system_folder_restriction">O sistema não permite a operação nesta pasta, por favor escolha outra</string>
+    <string name="system_service_disabled">O serviço do sistema para selecionar arquivos e pastas não está disponível</string>
+    <string name="system_sounds">Sons do sistema</string>
+    <string msgid="1672349317127674378" name="tab">"Guia"</string>
+    <string name="tab_navigation">Navegação por abas</string>
+    <string name="tabs">Tabs</string>
+    <string name="take_photo">Tirar foto</string>
+    <string msgid="5946805113151406391" name="template_percent">"<ns1:g id="PERCENTAGE">%1$d</ns1:g>%%"</string>
+    <string name="temporarily_show_excluded">Exibir excluído temporariamente</string>
+    <string name="temporarily_show_hidden">Exibir ocultos temporariamente</string>
+    <string name="text">Texto</string>
+    <string name="text_color">Cor do texto</string>
+    <string name="text_cursor_color">Cor do cursor de texto</string>
+    <string name="thank_you">Obrigado</string>
+    <string name="thank_you_short">Obrigado</string>
+    <string name="theme">Tema</string>
+    <string name="themes">Temas</string>
+    <string name="themes_summary">Temas de aplicativos cuidadosamente selecionados, trocador automático de temas e suporte a temas do sistema para Android 12+</string>
+    <string name="third_party_licences">Licenças de terceiros</string>
+    <string name="three">Três</string>
+    <string name="thumbnails">Miniaturas</string>
+    <string name="thursday">Quinta-feira</string>
+    <string name="thursday_letter">Q</string>
+    <string name="thursday_short">Qui</string>
+    <string name="time_remaining">Tempo restante:
+\n%s</string>
+    <string name="timer">Temporizador</string>
+    <string name="timers_notification_msg">Temporizadores em execução</string>
+    <string name="tip_excellent">Excelente suporte</string>
+    <string name="tip_incredible">Suporte perfeito</string>
+    <string name="tip_jar">Suporte</string>
+    <string name="tip_kind">Bom suporte</string>
+    <string name="title">Título</string>
+    <string name="today">Hoje</string>
+    <string name="toggle_filename">Exibir/ocultar nome do arquivo</string>
+    <string name="tomorrow">Amanhã</string>
+    <string name="too_many_incorrect_attempts">Too many incorrect unlock attempts.\nTry again in %d seconds.</string>
+    <string msgid="3765533235322692011" name="tooltip_description">"dica"</string>
+    <string msgid="3124740595719787496" name="tooltip_label">"mostrar dica"</string>
+    <string name="top">Acima de</string>
+    <string name="top_app_bar_colored">Barra superior de aplicativos colorida</string>
+    <string name="translation">Tradução</string>
+    <string name="translation_arabic">Arabic</string>
+    <string name="translation_azerbaijani">Azerbaijani</string>
+    <string name="translation_basque">Basque</string>
+    <string name="translation_bengali">Bengali</string>
+    <string name="translation_breton">Breton</string>
+    <string name="translation_bulgarian">Bulgarian</string>
+    <string name="translation_catalan">Catalan</string>
+    <string name="translation_chinese_cn">Chinese (Simplified)</string>
+    <string name="translation_chinese_hk">Chinese (Hong Kong)</string>
+    <string name="translation_chinese_tw">Chinese (Traditional)</string>
+    <string name="translation_croatian">Croatian</string>
+    <string name="translation_czech">Czech</string>
+    <string name="translation_danish">Danish</string>
+    <string name="translation_dutch">Dutch</string>
+    <string name="translation_english">English</string>
+    <string name="translation_finnish">Finnish</string>
+    <string name="translation_french">French</string>
+    <string name="translation_galician">Galician</string>
+    <string name="translation_german">German</string>
+    <string name="translation_greek">Greek</string>
+    <string name="translation_hebrew">Hebrew</string>
+    <string name="translation_hindi">Hindi</string>
+    <string name="translation_hungarian">Hungarian</string>
+    <string name="translation_indonesian">Indonesian</string>
+    <string name="translation_italian">Italian</string>
+    <string name="translation_japanese">Japanese</string>
+    <string name="translation_korean">Korean</string>
+    <string name="translation_lithuanian">Lithuanian</string>
+    <string name="translation_nepali">Nepali</string>
+    <string name="translation_norwegian">Norwegian</string>
+    <string name="translation_persian">Persian</string>
+    <string name="translation_polish">Polish</string>
+    <string name="translation_portuguese">Portuguese</string>
+    <string name="translation_romanian">Romanian</string>
+    <string name="translation_russian">Russian</string>
+    <string name="translation_serbian">Serbian</string>
+    <string name="translation_slovak">Slovak</string>
+    <string name="translation_slovenian">Slovenian</string>
+    <string name="translation_spanish">Spanish</string>
+    <string name="translation_swedish">Swedish</string>
+    <string name="translation_tamil">Tamil</string>
+    <string name="translation_turkish">Turkish</string>
+    <string name="translation_ukrainian">Ukrainian</string>
+    <string name="translation_vietnamese">Vietnamese</string>
+    <string name="translation_welsh">Welsh</string>
+    <string name="transparent">Transparente</string>
+    <string name="transparent_bar">Transparent bars</string>
+    <string name="transparent_call_screen_g">Tela de chamada transparente</string>
+    <string name="transparent_color">Cor transparente</string>
+    <string name="transparent_navigation_bar">Transparent bottom navigation bar</string>
+    <string name="trial_end_description">Please upgrade to the Pro version to enjoy the app to the fullest.\n\nYou just have to pay for it once in a lifetime and if you won\'t be satisfied, you can uninstall it and get a refund.\n\nSee you there :)</string>
+    <string name="trial_expired">Teste expirado</string>
+    <string name="trial_expires_soon">Seu teste acaba em breve.</string>
+    <string name="trial_start_description">Thank you for using our app. You can use this unlocked version for &lt;font color=\'#FFFFFF\'>%d days&lt;/font>. Once the trial ends, please consider upgrading to the Pro version. It has a huge amount of new features, modern design, no ads and many other improvements.
+        \n\nYou just have to pay for it once in a lifetime and if you won\'t be satisfied, you can uninstall it and get a refund.\n\nHope you\'ll like it :)</string>
+    <string name="tuesday">Terça-feira</string>
+    <string name="tuesday_letter">T</string>
+    <string name="tuesday_short">Ter</string>
+    <string name="turn_microphone_off">Desligar o microfone</string>
+    <string name="turn_microphone_on">Ligar o microfone</string>
+    <string name="turn_speaker_off">Desligar o alto-falante</string>
+    <string name="turn_speaker_on">Ligar o alto-falante</string>
+    <string name="two">Dois</string>
+    <string name="type_2_characters">Digite pelo menos 2 letras para iniciar a pesquisa.</string>
+    <string name="unblock">Unblock</string>
+    <string name="unblock_confirmation">Tem certeza que quer desbloquear \"%s\"?</string>
+    <string name="unblock_contact">Unblock contact</string>
+    <string name="unblock_contact_fail">Contact could not be unblocked</string>
+    <string name="unblock_contact_success">Contact unblocked</string>
+    <string name="unblock_number">Desbloquear número</string>
+    <string name="unblock_numbers">Desbloquear números</string>
+    <string name="undo">Desfazer</string>
+    <string name="undo_changes">Desfazer alterações</string>
+    <string name="undo_changes_confirmation">Tem certeza que deseja desfazer as alterações?</string>
+    <string name="uneven_grid">Grade irregular</string>
+    <string name="unhide">Exibir</string>
+    <string name="unhide_folder">Reexibir pasta</string>
+    <string name="unknown">Desconhecido</string>
+    <string name="unknown_caller">Número desconocido</string>
+    <string name="unknown_error_occurred">Ocorreu um erro desconhecido</string>
+    <string name="unlock">Unlock</string>
+    <string name="unlock_folder">Desbloquear pasta</string>
+    <string name="unlock_for_one_final_day">Unlock the app for one final day</string>
+    <string name="unpin_item">Desfixar item</string>
+    <string name="unset_default_sim">Desmarcar SIM como padrão</string>
+    <string name="update_thank_you">Por favor, atualize o Simple Thank You para a versão mais recente</string>
+    <string name="update_thank_you_g">Por favor atualize a aplicação Goodwy Thank You para a versão mais recente</string>
+    <string name="updating">Atualizando…</string>
+    <string name="upgrade">Atualizar</string>
+    <string name="upgrade_calendar">Você precisará migrar de forma manual os eventos armazenados localmente. Você pode fazer isso exportando-os para um arquivo .ics, e depois importando este arquivo. Você pode encontrar os botões de importar/exportar no menu da tela inicial.</string>
+    <string name="upgrade_to_pro">Atualizar para versão Pro</string>
+    <string name="upgrade_to_pro_long">A versão do seu aplicativo não será mais atualizada. Atualize para a versão Pro para receber novas correções e outras melhorias.</string>
+    <string name="upgrade_to_pro_long_click">A versão do seu aplicativo não será mais atualizada. Atualize para a versão Pro para receber novas correções e outras melhorias clicando aqui.</string>
+    <string name="upgraded_from_free">Olá,
+\n
+\nparece que você acabou de atualizar a partir da versão gratuita. Assim que você estiver feliz com esta versão e já tenha migrado seus dados, você pode desinstalar a antiga versão gratuita para evitar abri-la acidentalmente, pois você não precisará mais dela.
+\n
+\nObrigado!</string>
+    <string name="upgraded_from_free_calendar">Olá
+\n
+\nparece que você acabou de atualizar a partir da versão gratuita. Se você quiser migrar seus eventos armazenados localmente, você tem que fazê-lo manualmente, exportando-os para um arquivo .ics na versão gratuita do aplicativo e importando aqui através do menu superior.
+\n
+\nUma vez que você esteja satisfeito com sua configuração na versão Pro, você pode desinstalar o antigo gratuito, pois você não precisará mais dele.
+\n
+\nObrigado!</string>
+    <string name="upgraded_from_free_contacts">Hello,\n\nseems like you just upgraded from the free version. If you had any contacts stored under \"%s\", you have to migrate them manually by exporting in a .vcf file from the free app version and importing here through the top menu.\n\nOnce you are satisfied with your setup in the Pro version, you can uninstall the old free one as you won\'t need it anymore.\n\nThanks!</string>
+    <string name="upgraded_from_free_gallery">Hello,\n\nseems like you just upgraded from the free version. Once you are happy with this one and maybe migrated your settings and favorites over, you can uninstall the old free one to avoid launching it accidentally as you will not need it anymore.\n\nThanks!</string>
+    <string name="upgraded_from_free_notes">Hello,\n\nseems like you just upgraded from the free version. If you want to migrate your notes over, you have to do it manually by exporting them into a file in the free app version and importing here through the top menu. \n\nOnce you are satisfied with your setup in the Pro version, you can uninstall the old free one as you won\'t need it anymore.\n\nThanks!</string>
+    <string name="upgraded_to_pro">Olá
+\n
+\nparece que você já tem a versão Pro também. Uma vez que você esteja feliz com e já tenha migrado seus dados, você pode desinstalar esta versão para evitar lançá-la acidentalmente, pois você não precisará mais dela.
+\n
+\nObrigado!</string>
+    <string name="upgraded_to_pro_gallery">Hello,\n\nseems like you already have the Pro app version too. Once you are happy with it and maybe migrated your settings and favorites over, you can uninstall this one to avoid launching it accidentally as you will not need it anymore.\n\nThanks!</string>
+    <string name="usb">USB</string>
+    <string name="usb_detected">Parece que você possui um dispositivo USB conectado. Para que os arquivos deste dispositivo sejam exibidos corretamente, pode ser preciso permissões adicionais.</string>
+    <string name="use_24_hour_time_format">Usar horário do formato 24-horas</string>
+    <string msgid="6524145989441579428" name="use_biometric_label">"Usar biometria"</string>
+    <string msgid="5385448280139639016" name="use_biometric_or_screen_lock_label">"Usar biometria ou bloqueio de tela"</string>
+    <string name="use_custom_sorting">Usar ordenação personalizada</string>
+    <string name="use_default">Usar padrão</string>
+    <string name="use_english_language">Usar o idioma inglês</string>
+    <string msgid="6533512708069459542" name="use_face_label">"Usar rosto"</string>
+    <string msgid="2116180187159450292" name="use_face_or_screen_lock_label">"Usar reconhecimento facial ou bloqueio de tela"</string>
+    <string msgid="6961788485681412417" name="use_fingerprint_label">"Usar impressão digital"</string>
+    <string msgid="7577690399303139443" name="use_fingerprint_or_screen_lock_label">"Usar impressão digital ou bloqueio de tela"</string>
+    <string name="use_for_this_folder">Apenas para esta pasta</string>
+    <string name="use_icon_tabs">Use ícones de guia</string>
+    <string name="use_icon_tabs_summary">Ícones em vez de texto em guias</string>
+    <string name="use_same_snooze">Sempre usar o mesmo tempo de soneca</string>
+    <string msgid="5459869335976243512" name="use_screen_lock_label">"Usar bloqueio de tela"</string>
+    <string name="value">Valor</string>
+    <string name="value_cannot_be_empty">O valor não pode ficar vazio</string>
+    <string name="value_copied_to_clipboard">Valor copiado para a área de transferência</string>
+    <string name="value_copied_to_clipboard_show">Valor copiado para a área de transferência:\n%s</string>
+    <string name="version_placeholder">Versão %s</string>
+    <string name="vibrate_on_button_press">Vibrar ao pressionar um botão</string>
+    <string name="video_call">Vídeo call</string>
+    <string name="view_contact_details">Ver detalhes de contato</string>
+    <string name="visibility">Visibilidade</string>
+    <string name="voice_recorder_short">Gravador de Voz</string>
+    <string name="voicerecorder">VoiceMemos</string>
+    <string name="voicerecorder_summary">Voice recorder</string>
+    <string name="wallpapers">Papeis de parede</string>
+    <string name="website">Website</string>
+    <string name="website_label">Para os código-fonte visite</string>
+    <string name="wednesday">Quarta-feira</string>
+    <string name="wednesday_letter">Q</string>
+    <string name="wednesday_short">Qua</string>
+    <string name="week_number_short">wk.</string>
+    <string name="welcome_to_app_name">Bem-vindo ao app %s!</string>
+    <string name="whats_new">Novidades</string>
+    <string name="whats_new_disclaimer">* apenas as alterações significativas são listadas aqui, mas também há sempre algumas melhorias pequenas não mencionadas</string>
+    <string name="white">Branco</string>
+    <string name="why_upgrade">Atualize para a versão pro agora!</string>
+    <string name="why_upgrade_advanced_photo_editor">Editor de fotos avançado</string>
+    <string name="why_upgrade_advanced_photo_video_editor">Editor avançado de foto e vídeo</string>
+    <string name="why_upgrade_attendees_emails">Participantes e lembretes por e-mail</string>
+    <string name="why_upgrade_background_color_customization">Personalização da cor de fundo</string>
+    <string name="why_upgrade_basic_version">Básico</string>
+    <string name="why_upgrade_batch_renaming">Renomear arquivos em lote avançado</string>
+    <string name="why_upgrade_checklists">Listas</string>
+    <string name="why_upgrade_contact_filtering">Filtragem de contatos</string>
+    <string name="why_upgrade_contact_private_contacts">Contatos armazenados em local privado</string>
+    <string name="why_upgrade_customizable_contact_ringtones">Toques personalizados para os contatos</string>
+    <string name="why_upgrade_date_and_time_format">Personalização do formato de data e hora</string>
+    <string name="why_upgrade_different_note_per_widget">Notas e cores diferentes por widgets</string>
+    <string name="why_upgrade_duplicate_contact_merging">Junção de contatos duplicados melhorada</string>
+    <string name="why_upgrade_easy_event_importing">Importação de eventos simples</string>
+    <string name="why_upgrade_file_compression">Suporte para compressão de arquivos</string>
+    <string name="why_upgrade_file_importing">Suporte de importação de arquivos</string>
+    <string name="why_upgrade_folder_locking">Bloqueio de pastas individuais</string>
+    <string name="why_upgrade_font_size_customization">Personalização do tamanho da letra</string>
+    <string name="why_upgrade_footer">Garantia 100% de Reembolso</string>
+    <string name="why_upgrade_footer_one_time_payment">Pagamento único</string>
+    <string name="why_upgrade_heic_support">Suporte para arquivos HEIC/HEIF</string>
+    <string name="why_upgrade_improved_design">Design aprimorado</string>
+    <string name="why_upgrade_many_other_improvements">Many other improvements</string>
+    <string name="why_upgrade_new_widgets">Novos widgets</string>
+    <string name="why_upgrade_no_ads">Sem anúncios</string>
+    <string name="why_upgrade_no_internet_access">Sem acesso à internet</string>
+    <string name="why_upgrade_note_locking">Bloqueio de notas</string>
+    <string name="why_upgrade_printing_support">Suporte de impressão</string>
+    <string name="why_upgrade_private_contact_sharing">Compartilhamento entre contatos opcional dentro de nossos apps</string>
+    <string name="why_upgrade_pro_version">Pro</string>
+    <string name="why_upgrade_recents_tab">Guia com arquivos recentes</string>
+    <string name="why_upgrade_shortcuts">Atalhos na tela principal</string>
+    <string name="why_upgrade_time_zone_support">Suporte de fuso-horário</string>
+    <string name="why_upgrade_zooming">Ampliando</string>
+    <string name="widget_locked_pro">O widget está bloqueado.\nAtualize para a versão Pro para desbloqueá-lo.</string>
+    <string name="widgets">Widgets</string>
+    <string name="work">Comercial</string>
+    <string name="work_fax">Fax Comercial</string>
+    <string name="wrong_folder_selected">A pasta esrrada foi selecionada, por favor, selecione \'%s\'</string>
+    <string name="wrong_pattern">Padrão errado</string>
+    <string name="wrong_pin">PIN incorreto</string>
+    <string name="wrong_root_selected">Pasta inválida, por favor selecione a raiz do cartão SD</string>
+    <string name="wrong_root_selected_usb">Pasta inválida, por favor selecione a raiz do seu dispositivo USB</string>
+    <string name="yes">Sim</string>
+    <string name="yesterday">Ontem</string>
+    <string name="your_sounds">Seus sons</string>
+    <string name="zero">Zero</string>
+    <string name="zip4j_title">Zip4j (ZIP compression and decompression)</string>
+</resources>
