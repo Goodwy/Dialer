@@ -47,8 +47,8 @@
 
     <!-- Answer style -->
     <string name="answer_style">Antwoordknopstijl</string>
-    <string name="buttons">Knoppen</string>
-    <string name="answer_slider">Slider</string>
-    <string name="answer_slider_outline">Schuiver voor overzicht</string>
+    <string name="buttons">Bedingstoestsen</string>
+    <string name="answer_slider">Schuiven</string>
+    <string name="answer_slider_outline">Schuiven voor overzicht</string>
     <string name="answer_slider_vertical">Verticale schuifregelaar</string>
 </resources>
