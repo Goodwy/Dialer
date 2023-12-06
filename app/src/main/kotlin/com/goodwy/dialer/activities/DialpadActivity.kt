@@ -277,7 +277,6 @@ class DialpadActivity : SimpleActivity() {
                 binding.dialpadRoundWrapper.apply {
                     dialpadIosHolder.beVisible()
                     dialpadIosHolder.setBackgroundColor(getProperBackgroundColor())
-                    //dialpadCallButtonIosHolder.background.applyColorFilter(config.accentColor)
                     arrayOf(
                         dialpad0IosHolder, dialpad1IosHolder, dialpad2IosHolder, dialpad3IosHolder, dialpad4IosHolder,
                         dialpad5IosHolder, dialpad6IosHolder, dialpad7IosHolder, dialpad8IosHolder, dialpad9IosHolder,
@@ -339,13 +338,13 @@ class DialpadActivity : SimpleActivity() {
     private fun initLettersConcept() {
         val areMultipleSIMsAvailable = areMultipleSIMsAvailable()
         val baseColor = baseConfig.backgroundColor
-        val buttonColor = when {
+        val buttonsColor = when {
             baseConfig.isUsingSystemTheme -> resources.getColor(R.color.you_status_bar_color, theme)
             baseColor == Color.WHITE -> resources.getColor(R.color.dark_grey, theme)
             baseColor == Color.BLACK -> resources.getColor(R.color.bottom_tabs_black_background, theme)
             else -> baseConfig.backgroundColor.lightenColor(4)
         }
-        val textColor = buttonColor.getContrastColor()
+        val textColor = buttonsColor.getContrastColor()
         binding.dialpadRectWrapper.apply {
             if (config.hideDialpadLetters) {
                 arrayOf(
@@ -399,7 +398,7 @@ class DialpadActivity : SimpleActivity() {
                 dialpadHashtagHolder
             ).forEach {
                 it.background = ResourcesCompat.getDrawable(resources, R.drawable.button_dialpad_background, theme)
-                it.background.applyColorFilter(buttonColor)
+                it.background.applyColorFilter(buttonsColor)
                 it.updateLayoutParams<ViewGroup.MarginLayoutParams> {
                     val margin = pixels(R.dimen.one_dp).toInt()
                     setMargins(margin, margin, margin, margin)
@@ -432,26 +431,26 @@ class DialpadActivity : SimpleActivity() {
             }
 
             val simOnePrimary = config.currentSIMCardIndex == 0
-            val drawableSecondary = if (simOnePrimary) R.drawable.ic_phone_two_vector else R.drawable.ic_phone_one_vector
-            val downIcon = if (areMultipleSIMsAvailable) resources.getColoredDrawableWithColor(this@DialpadActivity, drawableSecondary, textColor)
-                                    else resources.getColoredDrawableWithColor(this@DialpadActivity, R.drawable.ic_dialpad_vector, textColor)
-            dialpadDown.setImageDrawable(downIcon)
             val simTwoColor = if (areMultipleSIMsAvailable) {
                 if (simOnePrimary) config.simIconsColors[2] else config.simIconsColors[1]
             } else getProperPrimaryColor()
             dialpadDownHolder.background.applyColorFilter(simTwoColor)
+            val drawableSecondary = if (simOnePrimary) R.drawable.ic_phone_two_vector else R.drawable.ic_phone_one_vector
+            val dialpadIconColor = if (simTwoColor == Color.WHITE) simTwoColor.getContrastColor() else textColor
+            val downIcon = if (areMultipleSIMsAvailable) resources.getColoredDrawableWithColor(this@DialpadActivity, drawableSecondary, dialpadIconColor)
+            else resources.getColoredDrawableWithColor(this@DialpadActivity, R.drawable.ic_dialpad_vector, dialpadIconColor)
+            dialpadDown.setImageDrawable(downIcon)
             dialpadDownHolder.setOnClickListener {
                 maybePerformDialpadHapticFeedback(dialpadDownHolder)
                 if (areMultipleSIMsAvailable) {initCall(binding.dialpadInput.value, handleIndex = if (simOnePrimary) 1 else 0)} else dialpadHide()
             }
 
+            val simOneColor = if (simOnePrimary) config.simIconsColors[1] else config.simIconsColors[2]
             val drawablePrimary = if (simOnePrimary) R.drawable.ic_phone_one_vector else R.drawable.ic_phone_two_vector
             val callIconId = if (areMultipleSIMsAvailable) drawablePrimary else R.drawable.ic_phone_vector
-            val callIcon = resources.getColoredDrawableWithColor(this@DialpadActivity, callIconId, textColor)
+            val callIconColor = if (simOneColor == Color.WHITE) simOneColor.getContrastColor() else textColor
+            val callIcon = resources.getColoredDrawableWithColor(this@DialpadActivity, callIconId, callIconColor)
             dialpadCallIcon.setImageDrawable(callIcon)
-            val simOneColor = if (areMultipleSIMsAvailable) {
-                if (simOnePrimary) config.simIconsColors[1] else config.simIconsColors[2]
-            } else config.accentColor
             dialpadCallButtonHolder.background.applyColorFilter(simOneColor)
             dialpadCallButtonHolder.setOnClickListener {
                 maybePerformDialpadHapticFeedback(dialpadCallButtonHolder)
@@ -489,8 +488,7 @@ class DialpadActivity : SimpleActivity() {
         }
         binding.dialpadAddNumber.setOnClickListener { addNumberToContact() }
 
-        val simOneColor = if (areMultipleSIMsAvailable) config.simIconsColors[1] else config.accentColor
-        binding.dialpadRoundWrapperUp.background.applyColorFilter(simOneColor)
+        binding.dialpadRoundWrapperUp.background.applyColorFilter(config.simIconsColors[1])
         binding.dialpadRoundWrapperUp.setColorFilter(textColor)
     }
 
@@ -547,10 +545,10 @@ class DialpadActivity : SimpleActivity() {
                 }
             } else {
                 dialpadSimIosHolder.beGone()
-                val accentColor = config.accentColor
-                val callIcon = resources.getColoredDrawableWithColor(this@DialpadActivity, R.drawable.ic_phone_vector, accentColor.getContrastColor())
+                val color = config.simIconsColors[1]
+                val callIcon = resources.getColoredDrawableWithColor(this@DialpadActivity, R.drawable.ic_phone_vector, color.getContrastColor())
                 dialpadCallButtonIosIcon.setImageDrawable(callIcon)
-                dialpadCallButtonIosHolder.background.applyColorFilter(accentColor)
+                dialpadCallButtonIosHolder.background.applyColorFilter(color)
                 dialpadCallButtonIosHolder.setOnClickListener {
                     maybePerformDialpadHapticFeedback(dialpadCallButtonIosHolder)
                     initCall(binding.dialpadInput.value, 0)
@@ -590,7 +588,7 @@ class DialpadActivity : SimpleActivity() {
         }
         binding.dialpadAddNumber.setOnClickListener { addNumberToContact() }
 
-        val simOneColor = if (areMultipleSIMsAvailable) config.simIconsColors[1] else config.accentColor
+        val simOneColor = config.simIconsColors[1]
         binding.dialpadRoundWrapperUp.background.applyColorFilter(simOneColor)
         binding.dialpadRoundWrapperUp.setColorFilter(simOneColor.getContrastColor())
     }
@@ -653,9 +651,7 @@ class DialpadActivity : SimpleActivity() {
                 dialpadCallTwoButton.beGone()
             }
 
-            val simOneColor = if (areMultipleSIMsAvailable) {
-                    if (simOnePrimary) config.simIconsColors[1] else config.simIconsColors[2]
-                } else config.accentColor
+            val simOneColor = if (simOnePrimary) config.simIconsColors[1] else config.simIconsColors[2]
             val drawablePrimary = if (simOnePrimary) R.drawable.ic_phone_one_vector else R.drawable.ic_phone_two_vector
             val callIconId = if (areMultipleSIMsAvailable) drawablePrimary else R.drawable.ic_phone_vector
             val callIcon = resources.getColoredDrawableWithColor(this@DialpadActivity, callIconId, simOneColor.getContrastColor())
@@ -697,7 +693,7 @@ class DialpadActivity : SimpleActivity() {
         }
         binding.dialpadAddNumber.setOnClickListener { addNumberToContact() }
 
-        val simOneColor = if (areMultipleSIMsAvailable) config.simIconsColors[1] else config.accentColor
+        val simOneColor = config.simIconsColors[1]
         binding.dialpadRoundWrapperUp.background.applyColorFilter(simOneColor)
         binding.dialpadRoundWrapperUp.setColorFilter(simOneColor.getContrastColor())
     }

@@ -20,6 +20,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import androidx.core.view.updateLayoutParams
@@ -139,6 +140,7 @@ class MainActivity : SimpleActivity() {
         }
     }
 
+    @Suppress("DEPRECATION")
     override fun onResume() {
         super.onResume()
         if (storedShowTabs != config.showTabs || config.tabsChanged || storedShowPhoneNumbers != config.showPhoneNumbers) {
@@ -211,9 +213,9 @@ class MainActivity : SimpleActivity() {
         }
 
         checkShortcuts()
-        Handler().postDelayed({
-            getRecentsFragment()?.refreshItems()
-        }, 2000)
+//        Handler().postDelayed({
+//            getRecentsFragment()?.refreshItems()
+//        }, 2000)
         invalidateOptionsMenu()
 
         //Screen slide animation
@@ -250,6 +252,7 @@ class MainActivity : SimpleActivity() {
         config.lastUsedViewPagerPage = binding.viewPager.currentItem
     }
 
+    @Deprecated("Deprecated in Java")
     @SuppressLint("MissingSuperCall")
     override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
         super.onActivityResult(requestCode, resultCode, resultData)
@@ -273,6 +276,8 @@ class MainActivity : SimpleActivity() {
         refreshItems()
     }
 
+    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (binding.mainMenu.isSearchOpen) {
             binding.mainMenu.closeSearch()
@@ -370,6 +375,7 @@ class MainActivity : SimpleActivity() {
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun setupSearch(menu: Menu) {
         updateMenuItemColors(menu)
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
@@ -448,7 +454,7 @@ class MainActivity : SimpleActivity() {
     @SuppressLint("NewApi")
     private fun getLaunchDialpadShortcut(appIconColor: Int): ShortcutInfo {
         val newEvent = getString(R.string.dialpad)
-        val drawable = resources.getDrawable(R.drawable.shortcut_dialpad)
+        val drawable = AppCompatResources.getDrawable(this, R.drawable.shortcut_dialpad)
         (drawable as LayerDrawable).findDrawableByLayerId(R.id.shortcut_dialpad_background).applyColorFilter(appIconColor)
         val bmp = drawable.convertToBitmap()
 
@@ -512,15 +518,15 @@ class MainActivity : SimpleActivity() {
         val icons = mutableListOf<Int>()
 
         if (showTabs and TAB_FAVORITES != 0) {
-            icons.add(R.drawable.ic_star_vector)
+            icons.add(R.drawable.ic_star_vector_tilted)
         }
 
         if (showTabs and TAB_CALL_HISTORY != 0) {
-            icons.add(R.drawable.ic_clock_filled_vector)
+            icons.add(R.drawable.ic_clock_filled_tilted)
         }
 
         if (showTabs and TAB_CONTACTS != 0) {
-            icons.add(R.drawable.ic_person_rounded)
+            icons.add(R.drawable.ic_person_rounded_tilted)
         }
 
         return icons
@@ -545,6 +551,7 @@ class MainActivity : SimpleActivity() {
         return icons
     }
 
+    @Suppress("DEPRECATION")
     private fun initFragments() {
         binding.viewPager.offscreenPageLimit = 2
         binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -928,7 +935,7 @@ class MainActivity : SimpleActivity() {
         try {
             cachedContacts.clear()
             cachedContacts.addAll(contacts)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
         }
     }
 

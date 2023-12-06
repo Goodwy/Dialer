@@ -138,16 +138,12 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getInt(CALL_BUTTON_SECONDARY_SIZE, 100)
         set(callButtonSecondarySize) = prefs.edit().putInt(CALL_BUTTON_SECONDARY_SIZE, callButtonSecondarySize).apply()
 
-    var currentSIMCardIndex: Int
-        get() = prefs.getInt(CURRENT_SIM_CARD_INDEX, 0) //0 - sim1, 1 - sim2
-        set(currentSIMCardIndex) = prefs.edit().putInt(CURRENT_SIM_CARD_INDEX, currentSIMCardIndex).apply()
-
     var answerStyle: Int
         get() = prefs.getInt(ANSWER_STYLE, ANSWER_BUTTON)
         set(answerStyle) = prefs.edit().putInt(ANSWER_STYLE, answerStyle).apply()
 
     var showCallerDescription: Int
-        get() = prefs.getInt(SHOW_CALLER_DESCRIPTION, SHOW_CALLER_NOTHING)
+        get() = prefs.getInt(SHOW_CALLER_DESCRIPTION, SHOW_CALLER_COMPANY)
         set(answerStyle) = prefs.edit().putInt(SHOW_CALLER_DESCRIPTION, answerStyle).apply()
 
     var showWarningAnonymousCall: Boolean

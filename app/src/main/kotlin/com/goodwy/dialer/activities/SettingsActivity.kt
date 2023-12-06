@@ -23,13 +23,17 @@ import com.goodwy.dialer.dialogs.ExportCallHistoryDialog
 import com.goodwy.dialer.dialogs.ManageVisibleTabsDialog
 import com.goodwy.dialer.extensions.areMultipleSIMsAvailable
 import com.goodwy.dialer.extensions.config
+import com.goodwy.dialer.extensions.getAvailableSIMCardLabels
 import com.goodwy.dialer.helpers.RecentsHelper
 import com.goodwy.dialer.models.RecentCall
 import com.goodwy.dialer.helpers.*
+import com.mikhaellopez.rxanimation.RxAnimation
+import com.mikhaellopez.rxanimation.shake
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.util.*
+import kotlin.math.abs
 import kotlin.system.exitProcess
 
 class SettingsActivity : SimpleActivity() {
@@ -825,19 +829,30 @@ class SettingsActivity : SimpleActivity() {
             settingsColorSimCardIconsHolder.setOnClickListener {
                 settingsColorSimCardIcons.toggle()
                 config.colorSimIcons = settingsColorSimCardIcons.isChecked
-                settingsSimCardColorListHolder.beVisibleIf(config.colorSimIcons)
             }
         }
     }
 
-    @SuppressLint("SetTextI18n")
     private fun setupSimCardColorList() {
         binding.apply {
-            settingsSimCardColorListHolder.beVisibleIf(config.colorSimIcons && areMultipleSIMsAvailable())
-            settingsSimCardColorListIcon1.setColorFilter(config.simIconsColors[1])
-            settingsSimCardColorListIcon2.setColorFilter(config.simIconsColors[2])
-            if (isOrWasThankYouInstalled() || isPro() || isCollection()) {
-                settingsSimCardColorListIcon1.setOnClickListener {
+            initSimCardColor()
+
+            val pro = isOrWasThankYouInstalled() || isPro() || isCollection()
+            val simList = getAvailableSIMCardLabels()
+            if (simList.isNotEmpty()) {
+                if (simList.size == 1) {
+                    val sim1 = simList[0].label
+                    settingsSimCardColor1Label.text = if (pro) sim1 else sim1 + " (${getString(R.string.feature_locked)})"
+                } else {
+                    val sim1 = simList[0].label
+                    val sim2 = simList[1].label
+                    settingsSimCardColor1Label.text = if (pro) sim1 else sim1 + " (${getString(R.string.feature_locked)})"
+                    settingsSimCardColor2Label.text = if (pro) sim2 else sim2 + " (${getString(R.string.feature_locked)})"
+                }
+            }
+
+            if (pro) {
+                settingsSimCardColor1Holder.setOnClickListener {
                     ColorPickerDialog(
                         this@SettingsActivity,
                         config.simIconsColors[1],
@@ -848,12 +863,12 @@ class SettingsActivity : SimpleActivity() {
                         if (wasPositivePressed) {
                             if (hasColorChanged(config.simIconsColors[1], color)) {
                                 addSimCardColor(1, color)
-                                settingsSimCardColorListIcon1.setColorFilter(color)
+                                initSimCardColor()
                             }
                         }
                     }
                 }
-                settingsSimCardColorListIcon2.setOnClickListener {
+                settingsSimCardColor2Holder.setOnClickListener {
                     ColorPickerDialog(
                         this@SettingsActivity,
                         config.simIconsColors[2],
@@ -864,22 +879,35 @@ class SettingsActivity : SimpleActivity() {
                         if (wasPositivePressed) {
                             if (hasColorChanged(config.simIconsColors[2], color)) {
                                 addSimCardColor(2, color)
-                                settingsSimCardColorListIcon2.setColorFilter(color)
+                                initSimCardColor()
                             }
                         }
                     }
                 }
             } else {
-                settingsSimCardColorListLabel.text = "${getString(R.string.change_color)} (${getString(R.string.feature_locked)})"
                 arrayOf(
-                    settingsSimCardColorListIcon1,
-                    settingsSimCardColorListIcon2
+                    settingsSimCardColor1Holder,
+                    settingsSimCardColor2Holder
                 ).forEach {
                     it.setOnClickListener {
-                        launchPurchase()
+                        RxAnimation.from(binding.settingsPurchaseThankYouHolder)
+                            .shake()
+                            .subscribe()
                     }
                 }
             }
+        }
+    }
+
+    private fun initSimCardColor() {
+        binding.apply {
+            val areMultipleSIMsAvailable = areMultipleSIMsAvailable()
+            settingsSimCardColor2Holder.beVisibleIf(areMultipleSIMsAvailable)
+            if (areMultipleSIMsAvailable) settingsSimCardColor1Icon.setImageResource(R.drawable.ic_phone_one_vector)
+            settingsSimCardColor1Icon.background.setTint(config.simIconsColors[1])
+            settingsSimCardColor2Icon.background.setTint(config.simIconsColors[2])
+            settingsSimCardColor1Icon.setColorFilter(config.simIconsColors[1].getContrastColor())
+            settingsSimCardColor2Icon.setColorFilter(config.simIconsColors[2].getContrastColor())
         }
     }
 
@@ -892,7 +920,7 @@ class SettingsActivity : SimpleActivity() {
         baseConfig.simIconsColors = recentColors
     }
 
-    private fun hasColorChanged(old: Int, new: Int) = Math.abs(old - new) > 1
+    private fun hasColorChanged(old: Int, new: Int) = abs(old - new) > 1
 
     private fun setupDialpadStyle() {
         binding.settingsDialpadStyleHolder.setOnClickListener {
@@ -921,7 +949,8 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupAbout() {
-        binding.settingsAboutVersion.text = "Version: " + BuildConfig.VERSION_NAME
+        val version = "Version: " + BuildConfig.VERSION_NAME
+        binding.settingsAboutVersion.text = version
         binding.settingsAboutHolder.setOnClickListener {
             launchAbout()
         }
@@ -1024,7 +1053,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 483 //TODO changelog
+        val id = 487 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1041,7 +1070,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_483)) //TODO changelog
+            add(Release(id, R.string.release_487)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }

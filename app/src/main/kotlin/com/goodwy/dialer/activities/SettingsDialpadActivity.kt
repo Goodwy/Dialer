@@ -16,9 +16,9 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.core.view.setPadding
 import androidx.core.view.updateLayoutParams
-import androidx.core.view.updatePadding
 import com.behaviorule.arturdumchev.library.pixels
 import com.behaviorule.arturdumchev.library.setHeight
+import com.goodwy.commons.dialogs.ColorPickerDialog
 import com.goodwy.commons.dialogs.RadioGroupDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
@@ -32,6 +32,7 @@ import com.goodwy.dialer.models.SpeedDial
 import com.mikhaellopez.rxanimation.RxAnimation
 import com.mikhaellopez.rxanimation.shake
 import java.util.*
+import kotlin.math.abs
 
 
 class SettingsDialpadActivity : SimpleActivity() {
@@ -179,10 +180,10 @@ class SettingsDialpadActivity : SimpleActivity() {
         super.onResume()
         val properTextColor = getProperTextColor()
         val properBackgroundColor = getProperBackgroundColor()
-        val properPrimaryColor = getProperPrimaryColor()
 
         setupPurchaseThankYou()
         setupDialpadStyle()
+        setupSimCardColorList()
         setupPrimarySimCard()
         setupHideDialpadLetters()
         setupDialpadVibrations()
@@ -266,7 +267,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                     dialpadRoundWrapper.apply {
                         dialpadIosHolder.alpha = 0.4f
                         dialpadIosHolder.setBackgroundColor(getProperBackgroundColor())
-                        dialpadCallButtonIosHolder.background.applyColorFilter(config.accentColor)
+                        dialpadCallButtonIosHolder.background.applyColorFilter(config.simIconsColors[1])
                         arrayOf(
                             dialpad0IosHolder, dialpad1IosHolder, dialpad2IosHolder, dialpad3IosHolder, dialpad4IosHolder,
                             dialpad5IosHolder, dialpad6IosHolder, dialpad7IosHolder, dialpad8IosHolder, dialpad9IosHolder,
@@ -417,22 +418,22 @@ class SettingsDialpadActivity : SimpleActivity() {
             }
 
             val simOnePrimary = config.currentSIMCardIndex == 0
-            val drawableSecondary = if (simOnePrimary) R.drawable.ic_phone_two_vector else R.drawable.ic_phone_one_vector
-            val downIcon = if (areMultipleSIMsAvailable) resources.getColoredDrawableWithColor(this@SettingsDialpadActivity, drawableSecondary, textColor)
-                                    else resources.getColoredDrawableWithColor(this@SettingsDialpadActivity, R.drawable.ic_dialpad_vector, textColor)
-            dialpadDown.setImageDrawable(downIcon)
             val simTwoColor = if (areMultipleSIMsAvailable) {
                 if (simOnePrimary) config.simIconsColors[2] else config.simIconsColors[1]
             } else getProperPrimaryColor()
             dialpadDownHolder.background.applyColorFilter(simTwoColor)
+            val drawableSecondary = if (simOnePrimary) R.drawable.ic_phone_two_vector else R.drawable.ic_phone_one_vector
+            val dialpadIconColor = if (simTwoColor == Color.WHITE) simTwoColor.getContrastColor() else textColor
+            val downIcon = if (areMultipleSIMsAvailable) resources.getColoredDrawableWithColor(this@SettingsDialpadActivity, drawableSecondary, dialpadIconColor)
+            else resources.getColoredDrawableWithColor(this@SettingsDialpadActivity, R.drawable.ic_dialpad_vector, dialpadIconColor)
+            dialpadDown.setImageDrawable(downIcon)
 
+            val simOneColor = if (simOnePrimary) config.simIconsColors[1] else config.simIconsColors[2]
             val drawablePrimary = if (simOnePrimary) R.drawable.ic_phone_one_vector else R.drawable.ic_phone_two_vector
             val callIconId = if (areMultipleSIMsAvailable) drawablePrimary else R.drawable.ic_phone_vector
-            val callIcon = resources.getColoredDrawableWithColor(this@SettingsDialpadActivity, callIconId, textColor)
+            val callIconColor = if (simOneColor == Color.WHITE) simOneColor.getContrastColor() else textColor
+            val callIcon = resources.getColoredDrawableWithColor(this@SettingsDialpadActivity, callIconId, callIconColor)
             dialpadCallIcon.setImageDrawable(callIcon)
-            val simOneColor = if (areMultipleSIMsAvailable) {
-                if (simOnePrimary) config.simIconsColors[1] else config.simIconsColors[2]
-            } else config.accentColor
             dialpadCallButtonHolder.background.applyColorFilter(simOneColor)
 
             dialpadClearCharHolder.beVisible()
@@ -510,9 +511,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                 dialpadCallTwoButton.beGone()
             }
 
-            val simOneColor = if (areMultipleSIMsAvailable) {
-                if (simOnePrimary) config.simIconsColors[1] else config.simIconsColors[2]
-            } else config.accentColor
+            val simOneColor = if (simOnePrimary) config.simIconsColors[1] else config.simIconsColors[2]
             val drawablePrimary = if (simOnePrimary) R.drawable.ic_phone_one_vector else R.drawable.ic_phone_two_vector
             val callIconId = if (areMultipleSIMsAvailable) drawablePrimary else R.drawable.ic_phone_vector
             val callIcon = resources.getColoredDrawableWithColor(this@SettingsDialpadActivity, callIconId, simOneColor.getContrastColor())
@@ -566,10 +565,10 @@ class SettingsDialpadActivity : SimpleActivity() {
                 updateCallButton()
             } else {
                 dialpadSimIosHolder.beGone()
-                val accentColor = config.accentColor
-                val callIcon = resources.getColoredDrawableWithColor(this@SettingsDialpadActivity, R.drawable.ic_phone_vector, accentColor.getContrastColor())
+                val color = config.simIconsColors[1]
+                val callIcon = resources.getColoredDrawableWithColor(this@SettingsDialpadActivity, R.drawable.ic_phone_vector, color.getContrastColor())
                 dialpadCallButtonIosIcon.setImageDrawable(callIcon)
-                dialpadCallButtonIosHolder.background.applyColorFilter(accentColor)
+                dialpadCallButtonIosHolder.background.applyColorFilter(color)
             }
 
             dialpadClearCharIos.applyColorFilter(Color.GRAY)
@@ -592,7 +591,8 @@ class SettingsDialpadActivity : SimpleActivity() {
         binding.apply {
             val progress = config.dialpadSize
             dialpadSize.progress = progress
-            dialpadSizeValue.text = "$progress %"
+            val textProgress = "$progress %"
+            dialpadSizeValue.text = textProgress
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 dialpadSize.min = 50
@@ -614,16 +614,20 @@ class SettingsDialpadActivity : SimpleActivity() {
             dialpadSize.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
                 override fun onStartTrackingTouch(seekBar: SeekBar) {
                     hideDialpadHandler.removeCallbacks(updateHideDialpadTask)
-                    val view = if (config.dialpadStyle == DIALPAD_IOS) dialpadRoundWrapper.root
-                        else if (config.dialpadStyle == DIALPAD_CONCEPT) dialpadRectWrapper.root
-                        else dialpadClearWrapper.root
+                    val view = when (config.dialpadStyle) {
+                        DIALPAD_IOS -> dialpadRoundWrapper.root
+                        DIALPAD_CONCEPT -> dialpadRectWrapper.root
+                        else -> dialpadClearWrapper.root
+                    }
                     view.beVisible()
                 }
 
                 override fun onStopTrackingTouch(seekBar: SeekBar) {
-                    val view = if (config.dialpadStyle == DIALPAD_IOS) dialpadRoundWrapper.root
-                        else if (config.dialpadStyle == DIALPAD_CONCEPT) dialpadRectWrapper.root
-                        else dialpadClearWrapper.root
+                    val view = when (config.dialpadStyle) {
+                        DIALPAD_IOS -> dialpadRoundWrapper.root
+                        DIALPAD_CONCEPT -> dialpadRectWrapper.root
+                        else -> dialpadClearWrapper.root
+                    }
                     view.beGone()
                 }
 
@@ -660,7 +664,8 @@ class SettingsDialpadActivity : SimpleActivity() {
 
             val progress = config.callButtonPrimarySize
             buttonSize.progress = progress
-            buttonSizeValue.text = "$progress %"
+            val textProgress = "$progress %"
+            buttonSizeValue.text = textProgress
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 buttonSize.min = 50
@@ -701,7 +706,8 @@ class SettingsDialpadActivity : SimpleActivity() {
                 buttonSecondSize.beVisible()
                 val progressSecond = config.callButtonSecondarySize
                 buttonSecondSize.progress = progressSecond
-                buttonSecondSizeValue.text = "$progressSecond %"
+                val textProgressSecond = "$progressSecond %"
+                buttonSecondSizeValue.text = textProgressSecond
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     buttonSecondSize.min = 50
@@ -743,12 +749,15 @@ class SettingsDialpadActivity : SimpleActivity() {
     }
 
     private fun updateDialpadSize(percent: Int = config.dialpadSize) {
-        val view = if (config.dialpadStyle == DIALPAD_IOS) binding.dialpadRoundWrapper.dialpadIosWrapper
-            else if (config.dialpadStyle == DIALPAD_CONCEPT) binding.dialpadRectWrapper.dialpadGridWrapper
-            else binding.dialpadClearWrapper.dialpadGridWrapper
+        val view = when (config.dialpadStyle) {
+            DIALPAD_IOS -> binding.dialpadRoundWrapper.dialpadIosWrapper
+            DIALPAD_CONCEPT -> binding.dialpadRectWrapper.dialpadGridWrapper
+            else -> binding.dialpadClearWrapper.dialpadGridWrapper
+        }
         val dimens = if (config.dialpadStyle == DIALPAD_IOS) pixels(R.dimen.dialpad_ios_height) else pixels(R.dimen.dialpad_grid_height)
         view.setHeight((dimens * (percent / 100f)).toInt())
-        binding.dialpadSizeValue.text = "$percent %"
+        val textPercent = "$percent %"
+        binding.dialpadSizeValue.text = textPercent
     }
 
     private fun updateCallButtonSize(percent: Int, buttonOne: Boolean = true) {
@@ -756,8 +765,9 @@ class SettingsDialpadActivity : SimpleActivity() {
         val dimens = if (buttonOne) pixels(R.dimen.dialpad_phone_button_size) else pixels(R.dimen.dialpad_button_size_small)
         view.setHeightAndWidth((dimens * (percent / 100f)).toInt())
         view.setPadding((dimens * 0.1765 * (percent / 100f)).toInt())
-        if (buttonOne) binding.buttonSizeValue.text = "$percent %"
-        else  binding.buttonSecondSizeValue.text = "$percent %"
+        val textPercent = "$percent %"
+        if (buttonOne) binding.buttonSizeValue.text = textPercent
+        else  binding.buttonSecondSizeValue.text = textPercent
     }
 
     private fun updateCallButtonSize() {
@@ -777,18 +787,22 @@ class SettingsDialpadActivity : SimpleActivity() {
     }
 
     private fun showDialpad() {
-        val view = if (config.dialpadStyle == DIALPAD_IOS) binding.dialpadRoundWrapper.root
-            else if (config.dialpadStyle == DIALPAD_CONCEPT) binding.dialpadRectWrapper.root
-            else binding.dialpadClearWrapper.root
+        val view = when (config.dialpadStyle) {
+            DIALPAD_IOS -> binding.dialpadRoundWrapper.root
+            DIALPAD_CONCEPT -> binding.dialpadRectWrapper.root
+            else -> binding.dialpadClearWrapper.root
+        }
         view.beVisible()
         hideDialpadHandler.removeCallbacks(updateHideDialpadTask)
         hideDialpadHandler.postDelayed(updateHideDialpadTask, 2000)
     }
 
     private val updateHideDialpadTask = Runnable {
-        val view = if (config.dialpadStyle == DIALPAD_IOS) binding.dialpadRoundWrapper.root
-            else if (config.dialpadStyle == DIALPAD_CONCEPT) binding.dialpadRectWrapper.root
-            else binding.dialpadClearWrapper.root
+        val view = when (config.dialpadStyle) {
+            DIALPAD_IOS -> binding.dialpadRoundWrapper.root
+            DIALPAD_CONCEPT -> binding.dialpadRectWrapper.root
+            else -> binding.dialpadClearWrapper.root
+        }
         view.beGone()
     }
 
@@ -859,6 +873,99 @@ class SettingsDialpadActivity : SimpleActivity() {
             else -> R.string.clean_theme_g
         }
     )
+
+    private fun setupSimCardColorList() {
+        binding.apply {
+            initSimCardColor()
+
+            val pro = isOrWasThankYouInstalled() || isPro() || isCollection()
+            val simList = getAvailableSIMCardLabels()
+            if (simList.isNotEmpty()) {
+                if (simList.size == 1) {
+                    val sim1 = simList[0].label
+                    settingsSimCardColor1Label.text = if (pro) sim1 else sim1 + " (${getString(R.string.feature_locked)})"
+                } else {
+                    val sim1 = simList[0].label
+                    val sim2 = simList[1].label
+                    settingsSimCardColor1Label.text = if (pro) sim1 else sim1 + " (${getString(R.string.feature_locked)})"
+                    settingsSimCardColor2Label.text = if (pro) sim2 else sim2 + " (${getString(R.string.feature_locked)})"
+                }
+            }
+
+            if (pro) {
+                settingsSimCardColor1Holder.setOnClickListener {
+                    ColorPickerDialog(
+                        this@SettingsDialpadActivity,
+                        config.simIconsColors[1],
+                        addDefaultColorButton = true,
+                        colorDefault = resources.getColor(R.color.ic_dialer),
+                        title = resources.getString(R.string.color_sim_card_icons)
+                    ) { wasPositivePressed, color ->
+                        if (wasPositivePressed) {
+                            if (hasColorChanged(config.simIconsColors[1], color)) {
+                                addSimCardColor(1, color)
+                                initSimCardColor()
+                                initStyle()
+                                showDialpad()
+                            }
+                        }
+                    }
+                }
+                settingsSimCardColor2Holder.setOnClickListener {
+                    ColorPickerDialog(
+                        this@SettingsDialpadActivity,
+                        config.simIconsColors[2],
+                        addDefaultColorButton = true,
+                        colorDefault = resources.getColor(R.color.color_primary),
+                        title = resources.getString(R.string.color_sim_card_icons)
+                    ) { wasPositivePressed, color ->
+                        if (wasPositivePressed) {
+                            if (hasColorChanged(config.simIconsColors[2], color)) {
+                                addSimCardColor(2, color)
+                                initSimCardColor()
+                                initStyle()
+                                showDialpad()
+                            }
+                        }
+                    }
+                }
+            } else {
+                arrayOf(
+                    settingsSimCardColor1Holder,
+                    settingsSimCardColor2Holder
+                ).forEach {
+                    it.setOnClickListener {
+                        RxAnimation.from(binding.dialpadPurchaseThankYouHolder)
+                            .shake()
+                            .subscribe()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun initSimCardColor() {
+        binding.apply {
+            val areMultipleSIMsAvailable = areMultipleSIMsAvailable()
+            settingsSimCardColor2Holder.beVisibleIf(areMultipleSIMsAvailable)
+            if (areMultipleSIMsAvailable) settingsSimCardColor1Icon.setImageResource(R.drawable.ic_phone_one_vector)
+            settingsSimCardColor1Icon.background.setTint(config.simIconsColors[1])
+            settingsSimCardColor2Icon.background.setTint(config.simIconsColors[2])
+            settingsSimCardColor1Icon.setColorFilter(config.simIconsColors[1].getContrastColor())
+            settingsSimCardColor2Icon.setColorFilter(config.simIconsColors[2].getContrastColor())
+        }
+    }
+
+    private fun addSimCardColor(index: Int, color: Int) {
+        val recentColors = config.simIconsColors
+
+        recentColors.removeAt(index)
+        recentColors.add(index, color)
+
+        baseConfig.simIconsColors = recentColors
+    }
+
+    private fun hasColorChanged(old: Int, new: Int) = abs(old - new) > 1
 
     private fun setupPrimarySimCard() {
         val simList = getAvailableSIMCardLabels()

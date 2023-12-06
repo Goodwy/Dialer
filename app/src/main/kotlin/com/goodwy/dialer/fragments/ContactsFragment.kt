@@ -60,7 +60,10 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
 
     override fun setupColors(textColor: Int, primaryColor: Int, properPrimaryColor: Int) {
         binding.apply {
-            (fragmentList?.adapter as? MyRecyclerViewAdapter)?.updateTextColor(textColor)
+            (fragmentList?.adapter as? MyRecyclerViewAdapter)?.apply {
+                updateTextColor(textColor)
+                updatePrimaryColor()
+            }
             fragmentPlaceholder.setTextColor(textColor)
             fragmentPlaceholder2.setTextColor(properPrimaryColor)
 

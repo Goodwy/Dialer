@@ -26,7 +26,7 @@ class RecentsHelper(private val context: Context) {
                 return@ensureBackgroundThread
             }
 
-            ContactsHelper(context).getContacts { contacts ->
+            ContactsHelper(context).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
                 val privateContacts = MyContactsContentProvider.getContacts(context, privateCursor)
                 if (privateContacts.isNotEmpty()) {
                     contacts.addAll(privateContacts)
@@ -74,14 +74,15 @@ class RecentsHelper(private val context: Context) {
             context.contentResolver.query(contentUri, projection, null, null, sortOrder)
         }
 
-        val contactsWithMultipleNumbers = contacts.filter { it.phoneNumbers.size > 1 }
-        val numbersToContactIDMap = HashMap<String, Int>()
-        contactsWithMultipleNumbers.forEach { contact ->
-            contact.phoneNumbers.forEach { phoneNumber ->
-                numbersToContactIDMap[phoneNumber.value] = contact.contactId
-                numbersToContactIDMap[phoneNumber.normalizedNumber] = contact.contactId
-            }
-        }
+        //not work
+//        val contactsWithMultipleNumbers = contacts.filter { it.phoneNumbers.size > 1 }
+//        val numbersToContactIDMap = HashMap<String, Int>()
+//        contactsWithMultipleNumbers.forEach { contact ->
+//            contact.phoneNumbers.forEach { phoneNumber ->
+//                numbersToContactIDMap[phoneNumber.value] = contact.contactId
+//                numbersToContactIDMap[phoneNumber.normalizedNumber] = contact.contactId
+//            }
+//        }
 
         cursor?.use {
             if (!cursor.moveToFirst()) {
@@ -126,10 +127,12 @@ class RecentsHelper(private val context: Context) {
                     }
                 }
 
-                //Без этого в истории звонков не отражаются имя контакта для второго и последующих номеров контакта
+                var contact: Contact? = null
+                if (number != null) contact = contacts.firstOrNull { it.doesContainPhoneNumber(number) }
+
+                //Without this, the call history does not reflect the contact name for the contact's second and subsequent numbers
                 //TODO try again to find the contact name
                 if (name == number) {
-                    val contact = contacts.firstOrNull { it.doesContainPhoneNumber(number) }
                     if (contact != null) name = contact.name
                 }
 
@@ -142,7 +145,6 @@ class RecentsHelper(private val context: Context) {
                     if (contactPhotosMap.containsKey(number)) {
                         photoUri = contactPhotosMap[number]!!
                     } else {
-                        val contact = contacts.firstOrNull { it.doesContainPhoneNumber(number) }
                         if (contact != null) {
                             photoUri = contact.photoUri
                             contactPhotosMap[number] = contact.photoUri
@@ -176,21 +178,30 @@ class RecentsHelper(private val context: Context) {
 //                    }
 //                }
 
-                if (number != null) {
-                    val contact = contacts.firstOrNull { it.doesContainPhoneNumber(number) }
-                    if (contact != null) {
-                        val phoneNumbers = contact.phoneNumbers.firstOrNull { it.normalizedNumber == number }
-                        if (phoneNumbers != null) {
-                            specificNumber = contact.phoneNumbers.first { it.normalizedNumber == number }.value
-                            specificType = context.getPhoneNumberTypeText(phoneNumbers.type, phoneNumbers.label)
-                        }
+                var nickname = ""
+                var company = ""
+                var jobPosition = ""
+                if (contact != null) {
+                    val phoneNumbers = contact.phoneNumbers.firstOrNull { it.normalizedNumber == number }
+                    if (phoneNumbers != null) {
+                        specificNumber = contact.phoneNumbers.first { it.normalizedNumber == number }.value
+                        specificType = context.getPhoneNumberTypeText(phoneNumbers.type, phoneNumbers.label)
                     }
+
+                    nickname = contact.nickname
+                    company = contact.organization.company
+                    jobPosition = contact.organization.jobPosition
                 }
+
+                val contactID = contact?.id
 
                 val recentCall = RecentCall(
                     id = id,
                     phoneNumber = number.orEmpty(),
                     name = name,
+                    nickname = nickname,
+                    company = company,
+                    jobPosition = jobPosition,
                     photoUri = photoUri,
                     startTS = startTS,
                     duration = duration,
@@ -199,7 +210,8 @@ class RecentsHelper(private val context: Context) {
                     simID = simID,
                     specificNumber = specificNumber,
                     specificType = specificType,
-                    isUnknownNumber = isUnknownNumber
+                    isUnknownNumber = isUnknownNumber,
+                    contactID = contactID
                 )
 
                 // if we have multiple missed calls from the same number, show it just once

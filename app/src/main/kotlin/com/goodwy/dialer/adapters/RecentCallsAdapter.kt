@@ -26,7 +26,6 @@ import com.goodwy.dialer.activities.CallHistoryActivity
 import com.goodwy.dialer.activities.MainActivity
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.databinding.ItemRecentCallBinding
-import com.goodwy.dialer.dialogs.ShowGroupedCallsDialog
 import com.goodwy.dialer.extensions.*
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL
 import com.goodwy.dialer.helpers.RecentsHelper
@@ -243,7 +242,7 @@ class RecentCallsAdapter(
         }
 
         val callsToBlock = getSelectedItems()
-        val positions = getSelectedItemPositions()
+        //val positions = getSelectedItemPositions()
         recentCalls.removeAll(callsToBlock.toSet())
 
         ensureBackgroundThread {
@@ -346,7 +345,7 @@ class RecentCallsAdapter(
         }
     }
 
-    fun getSelectedItems() = recentCalls.filter { selectedKeys.contains(it.id) } as ArrayList<RecentCall>
+    private fun getSelectedItems() = recentCalls.filter { selectedKeys.contains(it.id) } as ArrayList<RecentCall>
 
     private fun getLastItem() = recentCalls.last()
 
@@ -460,7 +459,7 @@ class RecentCallsAdapter(
 
             itemRecentsInfo.apply {
                 beVisibleIf(showOverflowMenu)
-                applyColorFilter(properPrimaryColor)
+                applyColorFilter(accentColor)
                 setOnClickListener {
                     showCallHistory(call)
                 }
@@ -633,7 +632,7 @@ class RecentCallsAdapter(
         selectedKeys.remove(callId)
     }
 
-    private fun getCallList(call: RecentCall) = recentCalls.filter { it.phoneNumber == call.phoneNumber}.toMutableList() as ArrayList<RecentCall>
+//    private fun getCallList(call: RecentCall) = recentCalls.filter { it.phoneNumber == call.phoneNumber}.toMutableList() as ArrayList<RecentCall>
 
     private fun showCallHistory(call: RecentCall) {
 //        val callIdList : ArrayList<Int> = arrayListOf()
@@ -642,6 +641,7 @@ class RecentCallsAdapter(
         Intent(activity, CallHistoryActivity::class.java).apply {
             putExtra(CURRENT_PHONE_NUMBER, call.phoneNumber)
             putExtra(CURRENT_RECENT_CALL, call.id)
+            putExtra(CONTACT_ID, call.contactID)
             activity.launchActivityIntent(this)
         }
     }

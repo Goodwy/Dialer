@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.ContentUris
 import android.content.Intent
-import android.database.Cursor
 import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.LayerDrawable
@@ -15,7 +14,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.DrawableCompat
-import androidx.core.view.ViewCompat.performHapticFeedback
 import com.goodwy.commons.dialogs.CallConfirmationDialog
 import com.goodwy.commons.dialogs.ConfirmationDialog
 import com.goodwy.commons.dialogs.RadioGroupDialog
@@ -42,21 +40,20 @@ import kotlin.math.abs
 class CallHistoryActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityCallHistoryBinding::inflate)
 
-    var allContacts = ArrayList<Contact>()
     private var allRecentCall = listOf<RecentCall>()
-    private var allRecentCallNotGrouped = listOf<RecentCall>()
     private var contact: Contact? = null
     private var duplicateContacts = ArrayList<Contact>()
     private var contactSources = ArrayList<ContactSource>()
-    private var privateCursor: Cursor? = null
     private val white = 0xFFFFFFFF.toInt()
     private val gray = 0xFFEBEBEB.toInt()
     private val black = 0xFF000000.toInt()
     private var buttonBg = white
     private var recentsAdapter: CallHistoryAdapter? = null
+    private var currentRecentCall: RecentCall? = null
 
     private fun getCurrentPhoneNumber() = intent.getStringExtra(CURRENT_PHONE_NUMBER) ?: ""
     private fun getCurrentRecentId() = intent.getIntExtra(CURRENT_RECENT_CALL, CURRENT_RECENT_CALL_ID)
+    //private fun getCurrentContactId() = intent.getIntExtra(CONTACT_ID, 0)
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +63,6 @@ class CallHistoryActivity : SimpleActivity() {
         setContentView(binding.root)
 
         updateMaterialActivityViews(binding.callHistoryWrapper, binding.callHistoryHolder, useTransparentNavigation = true, useTopSearchMenu = false)
-
         initButton()
     }
 
@@ -126,7 +122,7 @@ class CallHistoryActivity : SimpleActivity() {
             callHistoryNumberType.beGone()
             callHistoryNumberType.setTextColor(getProperTextColor())
             callHistoryNumberContainer.setOnClickListener {
-                val call: RecentCall? = getCallList().firstOrNull()
+                val call = currentRecentCall
                 if (call != null) {
                     makeCall(call)
                 }
@@ -188,7 +184,7 @@ class CallHistoryActivity : SimpleActivity() {
 
         val properBackgroundColor = getProperBackgroundColor()
         val contrastColor = properBackgroundColor.getContrastColor()
-        val itemColor = if (baseConfig.topAppBarColored) getProperPrimaryColor() else contrastColor
+        val itemColor = if (baseConfig.topAppBarColorIcon) getProperPrimaryColor() else contrastColor
         binding.callHistoryToolbar.setNavigationIconTint(itemColor)
         binding.callHistoryToolbar.setNavigationOnClickListener {
             finish()
@@ -202,34 +198,27 @@ class CallHistoryActivity : SimpleActivity() {
     }
 
     fun refreshItems() {
-        RecentsHelper(this).getRecentCalls(false) { recents ->
-            allRecentCallNotGrouped = recents
+        ensureBackgroundThread {
+            initContact()
         }
+
         val privateCursor = this.getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
-        val showAllRecentInHistory = this.config.showAllRecentInHistory
-        RecentsHelper(this).getRecentCalls(true) { recents ->
-            ContactsHelper(this@CallHistoryActivity).getContacts { contacts ->
+        RecentsHelper(this).getRecentCalls(false) { recents ->
+            currentRecentCall = recents.firstOrNull { it.id == getCurrentRecentId() }
+            this.runOnUiThread {
+                updateButton()
+            }
+
+            ContactsHelper(this@CallHistoryActivity).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
                 val privateContacts = MyContactsContentProvider.getContacts(this, privateCursor)
 
-                val recentCall = recents.firstOrNull { it.id == getCurrentRecentId() }
-                allRecentCall = if (recentCall != null && !showAllRecentInHistory) {
-                    val callIds = recentCall.neighbourIDs.map { it }.toMutableList() as ArrayList<Int>
-                    callIds.add(recentCall.id)
-                    val recentGroup = allRecentCallNotGrouped.filter { callIds.contains(it.id) }.toMutableList() as ArrayList<RecentCall>
-
-                    recentGroup
-                        .setNamesIfEmpty(contacts, privateContacts)
-                        .hidePrivateContacts(privateContacts, SMT_PRIVATE in baseConfig.ignoredContactSources)
-                } else {
-                    allRecentCallNotGrouped
-                        .setNamesIfEmpty(contacts, privateContacts)
-                        .hidePrivateContacts(privateContacts, SMT_PRIVATE in baseConfig.ignoredContactSources)
-                }
-
-                gotContacts(contacts)
+                allRecentCall = recents.filter { it.phoneNumber == getCurrentPhoneNumber()}.toMutableList() as ArrayList<RecentCall>
+                val recentCall = allRecentCall
+                    .setNamesIfEmpty(contacts, privateContacts)
+                    .hidePrivateContacts(privateContacts, SMT_PRIVATE in baseConfig.ignoredContactSources)
 
                 this.runOnUiThread {
-                    if (recents.isEmpty()) {
+                    if (recents.isEmpty() || recentCall.isEmpty()) {
                         binding.apply {
                             callHistoryListContainer.beGone()
                             callHistoryPlaceholderContainer.beVisible()
@@ -241,64 +230,48 @@ class CallHistoryActivity : SimpleActivity() {
                             callHistoryPlaceholderContainer.beGone()
                             callHistoryToolbar.menu.findItem(R.id.delete).isVisible = true
                         }
-                        gotRecents(allRecentCall)
+                        gotRecents(recentCall)
                         updateBackgroundHistory()
-                        updateButton()
-                        ContactsHelper(this).getContactSources {
-                            contactSources = it
-                            ensureBackgroundThread {
-                                if (getContactList() != null) initContact(getContactList()!!.id)
-                            }
-                        }
                     }
                 }
             }
         }
     }
 
-    private fun gotContacts(newContacts: java.util.ArrayList<Contact>) {
-        allContacts = newContacts
-
-        val privateContacts = MyContactsContentProvider.getContacts(this, privateCursor)
-        if (privateContacts.isNotEmpty()) {
-            allContacts.addAll(privateContacts)
-            allContacts.sort()
-        }
-    }
-
     private fun gotRecents(recents: List<RecentCall>) {
-        if (recents.isEmpty()) {
-            binding.apply {
-                callHistoryListContainer.beGone()
-                callHistoryPlaceholderContainer.beVisible()
-                callHistoryToolbar.menu.findItem(R.id.delete).isVisible = false
+        val currAdapter = binding.callHistoryList.adapter
+        if (currAdapter == null) {
+            recentsAdapter = CallHistoryAdapter(this as SimpleActivity, recents.toMutableList(), binding.callHistoryList, null) {}
+
+            binding.callHistoryList.adapter = recentsAdapter
+
+            if (this.areSystemAnimationsEnabled) {
+                binding.callHistoryList.scheduleLayoutAnimation()
             }
+
+            setupCallHistoryListCount(recents.size)
         } else {
-            binding.apply {
-                callHistoryListContainer.beVisible()
-                callHistoryPlaceholderContainer.beGone()
-                callHistoryToolbar.menu.findItem(R.id.delete).isVisible = true
-            }
+            recentsAdapter?.updateItems(recents)
 
-            val currAdapter = binding.callHistoryList.adapter
-            val recent = recents.filter { it.phoneNumber == getCurrentPhoneNumber()}.toMutableList() as ArrayList<RecentCall>
-            if (currAdapter == null) {
-                recentsAdapter = CallHistoryAdapter(this as SimpleActivity, recent.toMutableList(), binding.callHistoryList, null) {}
-
-                binding.callHistoryList.adapter = recentsAdapter
-
-                if (this.areSystemAnimationsEnabled) {
-                    binding.callHistoryList.scheduleLayoutAnimation()
-                }
-            } else {
-                recentsAdapter?.updateItems(recent)
-            }
+            setupCallHistoryListCount(recents.size)
         }
     }
 
-    private fun initContact(id: Int) {
+    private fun setupCallHistoryListCount(count: Int) {
+        binding.callHistoryListCount.apply {
+            beVisibleIf(count > 6)
+            text = String.format(getString(com.goodwy.commons.R.string.total_g), count.toString())
+        }
+    }
+
+    private fun initContact() {
         var wasLookupKeyUsed = false
-        var contactId: Int = id
+        var contactId: Int
+        try {
+            contactId = intent.getIntExtra(CONTACT_ID, 0)
+        } catch (e: Exception) {
+            return
+        }
         if (contactId == 0 ) {
             val data = intent.data
             if (data != null) {
@@ -306,7 +279,6 @@ class CallHistoryActivity : SimpleActivity() {
                     val lookupKey = getLookupKeyFromUri(data)
                     if (lookupKey != null) {
                         contact = ContactsHelper(this).getContactWithLookupKey(lookupKey)
-                        //fullContact = contact
                         wasLookupKeyUsed = true
                     }
 
@@ -323,19 +295,21 @@ class CallHistoryActivity : SimpleActivity() {
 
         if (contactId != 0 && !wasLookupKeyUsed) {
             contact = ContactsHelper(this).getContactWithId(contactId, intent.getBooleanExtra(IS_PRIVATE, false))
-            //fullContact = contact
 
             if (contact == null) {
                // toast(R.string.unknown_error_occurred)
                // finish()
             } else {
                 getDuplicateContacts {
-                    runOnUiThread {
-                        setupFavorite()
-                        setupVideoCallActions()
-                        setupMessengersActions()
-                        setupEmails()
-                        setupEvents()
+                    ContactsHelper(this).getContactSources {
+                        contactSources = it
+                        runOnUiThread {
+                            setupFavorite()
+                            setupVideoCallActions()
+                            setupMessengersActions()
+                            setupEmails()
+                            setupEvents()
+                        }
                     }
                 }
             }
@@ -360,7 +334,7 @@ class CallHistoryActivity : SimpleActivity() {
         val favoriteMenu = binding.callHistoryToolbar.menu.findItem(R.id.favorite)
         favoriteMenu.isVisible = true
         val contrastColor = getProperBackgroundColor().getContrastColor()
-        val itemColor = if (baseConfig.topAppBarColored) getProperPrimaryColor() else contrastColor
+        val itemColor = if (baseConfig.topAppBarColorIcon) getProperPrimaryColor() else contrastColor
         val favoriteIcon = getStarDrawable(contact!!.starred == 1)
         favoriteIcon!!.setTint(itemColor)
         favoriteMenu.icon = favoriteIcon
@@ -411,7 +385,7 @@ class CallHistoryActivity : SimpleActivity() {
             }
 
             if (sources.size > 1) {
-                sources = sources.toList().sortedBy { (key, value) -> value.lowercase() }.toMap() as LinkedHashMap<Contact, String>
+                sources = sources.toList().sortedBy { (_, value) -> value.lowercase() }.toMap() as LinkedHashMap<Contact, String>
             }
 
             val videoActions = arrayListOf<SocialAction>()
@@ -507,13 +481,14 @@ class CallHistoryActivity : SimpleActivity() {
             }
 
             if (sources.size > 1) {
-                sources = sources.toList().sortedBy { (key, value) -> value.lowercase() }.toMap() as LinkedHashMap<Contact, String>
+                sources = sources.toList().sortedBy { (_, value) -> value.lowercase() }.toMap() as LinkedHashMap<Contact, String>
             }
             for ((key, value) in sources) {
                 val isLastItem = sources.keys.last()
                 ItemViewMessengersActionsBinding.inflate(layoutInflater, binding.contactMessengersActionsHolder, false).apply {
                     contactMessengerActionName.text = if (value == "") getString(R.string.phone_storage) else value
-                    contactMessengerActionAccount.text = " (ID:" + key.source + ")"
+                    val text = " (ID:" + key.source + ")"
+                    contactMessengerActionAccount.text = text
                     val properTextColor = getProperTextColor()
                     contactMessengerActionName.setTextColor(properTextColor)
                     contactMessengerActionAccount.setTextColor(properTextColor)
@@ -844,7 +819,6 @@ class CallHistoryActivity : SimpleActivity() {
             }
 
             events = events.sortedBy { it.type }.toMutableSet() as LinkedHashSet<Event>
-            allContacts.firstOrNull()!!.events = events.toMutableList() as ArrayList<Event>
             binding.contactEventsHolder.removeAllViews()
 
             if (events.isNotEmpty()) {
@@ -881,23 +855,20 @@ class CallHistoryActivity : SimpleActivity() {
     }
 
     private fun updateButton() {
-        val call: RecentCall? = getCallList().firstOrNull()
+        val call = currentRecentCall
         if (call != null) {
-
-            val contact = getContactList()
             if (contact != null) {
-
-                if (contact.phoneNumbers.firstOrNull { it.normalizedNumber == getCurrentPhoneNumber() } != null) {
+                val contactPhoneNumber = contact!!.phoneNumbers.firstOrNull { it.normalizedNumber == getCurrentPhoneNumber() }
+                if (contactPhoneNumber != null) {
                     binding.callHistoryNumberTypeContainer.beVisible()
                     binding.callHistoryNumberType.apply {
                         beVisible()
-                        //text = contact.phoneNumbers.filter { it.normalizedNumber == getCurrentPhoneNumber()}.toString()
-                        val phoneNumberType = contact.phoneNumbers.first { it.normalizedNumber == getCurrentPhoneNumber() }.type
-                        val phoneNumberLabel = contact.phoneNumbers.first { it.normalizedNumber == getCurrentPhoneNumber() }.label
+                        val phoneNumberType = contactPhoneNumber.type
+                        val phoneNumberLabel = contactPhoneNumber.label
                         text = getPhoneNumberTypeText(phoneNumberType, phoneNumberLabel)
                     }
                     binding.callHistoryFavoriteIcon.apply {
-                        beVisibleIf(contact.phoneNumbers.first { it.normalizedNumber == getCurrentPhoneNumber() }.isPrimary)
+                        beVisibleIf(contactPhoneNumber.isPrimary)
                         applyColorFilter(getProperTextColor())
                     }
                 }
@@ -905,7 +876,7 @@ class CallHistoryActivity : SimpleActivity() {
                 arrayOf(
                     binding.topDetails.callHistoryImage, binding.topDetails.callHistoryName
                 ).forEach {
-                    it.setOnClickListener { viewContactInfo(contact) }
+                    it.setOnClickListener { viewContactInfo(contact!!) }
                 }
                 binding.topDetails.callHistoryImage.setOnLongClickListener { toast(R.string.contact_details); true; }
             } else {
@@ -956,6 +927,28 @@ class CallHistoryActivity : SimpleActivity() {
                 setTextColor(getProperTextColor())
                 setOnLongClickListener {
                     copyToClipboard(nameToShow.toString())
+                    true
+                }
+            }
+
+            binding.topDetails.callHistoryCompany.apply {
+                val company = formatterUnicodeWrap(call.company)
+                beVisibleIf(company != "")
+                text = company
+                setTextColor(getProperTextColor())
+                setOnLongClickListener {
+                    copyToClipboard(company)
+                    true
+                }
+            }
+
+            binding.topDetails.callHistoryJobPosition.apply {
+                val jobPosition = formatterUnicodeWrap(call.jobPosition)
+                beVisibleIf(jobPosition != "")
+                text = jobPosition
+                setTextColor(getProperTextColor())
+                setOnLongClickListener {
+                    copyToClipboard(jobPosition)
                     true
                 }
             }
@@ -1048,12 +1041,6 @@ class CallHistoryActivity : SimpleActivity() {
         }
     }
 
-    private fun getSelectedItems() = allRecentCall.filter { getCurrentPhoneNumber().contains(it.phoneNumber) } as ArrayList<RecentCall>
-
-    private fun getCallList() = allRecentCall.filter { it.phoneNumber == getCurrentPhoneNumber()}.toMutableList() as ArrayList<RecentCall>
-
-    private fun getContactList() = allContacts.firstOrNull { it.doesContainPhoneNumber(getCurrentPhoneNumber()) }
-
     private fun makeCall(call: RecentCall) {
         if (config.showCallConfirmation) {
             CallConfirmationDialog(this as SimpleActivity, call.name) {
@@ -1114,7 +1101,7 @@ class CallHistoryActivity : SimpleActivity() {
             return
         }
 
-        val callsToRemove = getSelectedItems()
+        val callsToRemove = allRecentCall.filter { getCurrentPhoneNumber().contains(it.phoneNumber) } as ArrayList<RecentCall>
         //val positions = getSelectedItemPositions()
         val idsToRemove = ArrayList<Int>()
         callsToRemove.forEach {

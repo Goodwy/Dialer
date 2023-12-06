@@ -16,7 +16,6 @@ import android.os.*
 import android.provider.Settings
 import android.telecom.Call
 import android.telecom.CallAudioState
-import android.telecom.TelecomManager
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -68,6 +67,8 @@ class CallActivity : SimpleActivity() {
 
     private var audioRouteChooserDialog: DynamicBottomSheetChooserDialog? = null
 
+    @SuppressLint("MissingPermission")
+    @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         showTransparentTop = true
         super.onCreate(savedInstanceState)
@@ -142,6 +143,8 @@ class CallActivity : SimpleActivity() {
                 }
             }
         } else {
+            updateStatusbarColor(getProperBackgroundColor())
+
             val properTextColor = getProperTextColor()
             binding.apply {
                 arrayOf(
@@ -163,13 +166,14 @@ class CallActivity : SimpleActivity() {
 
         binding.apply {
             arrayOf(
-                callToggleMicrophone, callToggleSpeaker, callToggleHold, onHoldStatusHolder
+                callToggleMicrophone, callToggleSpeaker, callToggleHold, onHoldStatusHolder,
+                callRemind, callMessage,
+                callDialpadHolder, callAddContactHolder, callAddHolder, callSwapHolder, callMergeHolder
             ).forEach {
                 it.background.applyColorFilter(Color.GRAY)
                 it.background.alpha = 60
             }
             arrayOf(
-                callDialpadHolder, callAddContactHolder, callAddHolder, callSwapHolder, callMergeHolder,
                 dialpadInclude.dialpad0Holder, dialpadInclude.dialpad1Holder, dialpadInclude.dialpad2Holder, dialpadInclude.dialpad3Holder,
                 dialpadInclude.dialpad4Holder, dialpadInclude.dialpad5Holder, dialpadInclude.dialpad6Holder, dialpadInclude.dialpad7Holder,
                 dialpadInclude.dialpad8Holder, dialpadInclude.dialpad9Holder, dialpadInclude.dialpadAsteriskHolder, dialpadInclude.dialpadHashtagHolder
@@ -209,6 +213,7 @@ class CallActivity : SimpleActivity() {
 //        updateNavigationBarColor(getBottomNavigationBackgroundColor())
     }
 
+    @Suppress("DEPRECATION")
     @SuppressLint("MissingSuperCall")
     override fun onDestroy() {
         super.onDestroy()
@@ -242,6 +247,8 @@ class CallActivity : SimpleActivity() {
 //        }
 //    }
 
+    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (binding.dialpadWrapper.isVisible()) {
             hideDialpad()
@@ -438,9 +445,10 @@ class CallActivity : SimpleActivity() {
         } else {
             callDraggableBackground.background.alpha = 51 // 20%
         }
-        callDraggableBackgroundIcon.drawable.mutate().setTint(getColor(R.color.green_call))
         val colorBg = if (configBackgroundCallScreen == TRANSPARENT_BACKGROUND || configBackgroundCallScreen == BLUR_AVATAR || configBackgroundCallScreen == AVATAR || configBackgroundCallScreen == BLACK_BACKGROUND) Color.WHITE
             else getProperTextColor()
+        callDraggableBackgroundIcon.drawable.mutate().setTint(getColor(R.color.green_call))
+        callDraggableBackgroundIcon.background.mutate().setTint(colorBg)
         callDraggableBackground.background.mutate().setTint(colorBg)
 
         var lock = false
@@ -867,6 +875,7 @@ class CallActivity : SimpleActivity() {
         }
     }
 
+    @Suppress("DEPRECATION")
     private fun updateOtherPersonsInfo(avatar: Bitmap?) {
         if (callContact == null) {
             return
@@ -913,7 +922,7 @@ class CallActivity : SimpleActivity() {
                     popupMenu.setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             1 -> {
-                                sendSMS(callContact!!.number, " ")
+                                sendSMS(callContact!!.number)
                                 endCall()
                             }
 
@@ -951,7 +960,7 @@ class CallActivity : SimpleActivity() {
                 this@CallActivity.handleNotificationPermission { permission ->
                     if (permission) {
                         val wrapper: Context = ContextThemeWrapper(this@CallActivity, getPopupMenuTheme())
-                        val popupMenu = PopupMenu(wrapper, callRemind, Gravity.END)
+                        val popupMenu = PopupMenu(wrapper, callRemind, Gravity.START)
                         popupMenu.menu.add(1, 1, 1, String.format(resources.getQuantityString(R.plurals.minutes, 10, 10)))
                         popupMenu.menu.add(1, 2, 2, String.format(resources.getQuantityString(R.plurals.minutes, 30, 30)))
                         popupMenu.menu.add(1, 3, 3, String.format(resources.getQuantityString(R.plurals.minutes, 60, 60)))
@@ -1002,7 +1011,7 @@ class CallActivity : SimpleActivity() {
 
     private val Int.secondsToMillis get() = TimeUnit.SECONDS.toMillis(this.toLong())
 
-    private fun sendSMS(number: String, text: String) {
+    private fun sendSMS(number: String, text: String = " ") {
         Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.fromParts("smsto", number, null)
             putExtra("sms_body", text)
@@ -1026,7 +1035,8 @@ class CallActivity : SimpleActivity() {
                 accounts.forEachIndexed { index, account ->
                     if (account == CallManager.getPrimaryCall()?.details?.accountHandle) {
                         binding.apply {
-                            callSimId.text = "${index + 1}"
+                            val simId = "${index + 1}"
+                            callSimId.text = simId
                             callSimId.beVisible()
                             callSimImage.beVisible()
                         }
@@ -1037,7 +1047,7 @@ class CallActivity : SimpleActivity() {
                             else -> R.drawable.ic_phone_vector
                         }
 
-                        val rippleBg = resources.getDrawable(R.drawable.ic_call_accept, theme) as RippleDrawable
+                        val rippleBg = AppCompatResources.getDrawable(this, R.drawable.ic_call_accept) as RippleDrawable
                         val layerDrawable = rippleBg.findDrawableByLayerId(R.id.accept_call_background_holder) as LayerDrawable
                         layerDrawable.setDrawableByLayerId(R.id.accept_call_icon, AppCompatResources.getDrawable(this@CallActivity, acceptDrawableId))
                         binding.callAccept.setImageDrawable(rippleBg)
@@ -1116,6 +1126,7 @@ class CallActivity : SimpleActivity() {
         }
     }
 
+    @Suppress("DEPRECATION")
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun updateCallContactInfo(call: Call?) {
         getCallContact(applicationContext, call) { contact ->
@@ -1124,15 +1135,13 @@ class CallActivity : SimpleActivity() {
             }
             callContact = contact
 
-
             runOnUiThread {
                 val configBackgroundCallScreen = config.backgroundCallScreen
                 if (configBackgroundCallScreen == BLUR_AVATAR || configBackgroundCallScreen == AVATAR) {
                     val avatar = if (!call.isConference()) callContactAvatarHelper.getCallContactAvatar(contact, false) else null
                     if (avatar != null) {
-                        val avatarBlur = BlurFactory.fileToBlurBitmap(avatar, this, 0.6f, 25f)
                         val bg = when (configBackgroundCallScreen) {
-                            BLUR_AVATAR -> avatarBlur
+                            BLUR_AVATAR -> BlurFactory.fileToBlurBitmap(avatar, this, 0.6f, 5f)
                             AVATAR -> avatar
                             else -> null
                         }
@@ -1201,7 +1210,7 @@ class CallActivity : SimpleActivity() {
         }
     }
 
-    @SuppressLint("SetTextI18n")
+    @Suppress("DEPRECATION")
     private fun endCall(rejectWithMessage: Boolean = false, textMessage: String? = null) {
         CallManager.reject(rejectWithMessage, textMessage)
         maybePerformCallHapticFeedback(binding.callerNameLabel)
@@ -1221,7 +1230,8 @@ class CallActivity : SimpleActivity() {
         isCallEnded = true
         if (callDuration > 0) {
             runOnUiThread {
-                binding.callStatusLabel.text = "${callDuration.getFormattedDuration()} (${getString(R.string.call_ended)})"
+                val label = "${callDuration.getFormattedDuration()} (${getString(R.string.call_ended)})"
+                binding.callStatusLabel.text = label
                 Handler().postDelayed({
                     finishAndRemoveTask()
                     if (CallManager.getPhoneState() != NoCall) startActivity(Intent(this, CallActivity::class.java))
@@ -1260,6 +1270,7 @@ class CallActivity : SimpleActivity() {
         }
     }
 
+    @Suppress("DEPRECATION")
     @SuppressLint("NewApi")
     private fun addLockScreenFlags() {
         if (isOreoMr1Plus()) {

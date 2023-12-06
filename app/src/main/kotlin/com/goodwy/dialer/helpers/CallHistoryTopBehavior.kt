@@ -61,6 +61,31 @@ class CallHistoryTopBehavior(
                     interpolator = LinearInterpolator()
                 ),
                 BRuleScale(min = 0.8f, max = 1f)
+            ),
+            RuledView(
+                binding.topDetails.callHistoryCompanyHolder,
+                BRuleXOffset(
+                    min = 0f, max = pixels(R.dimen.name_right_margin),
+                    interpolator = ReverseInterpolator(LinearInterpolator())
+                ),
+                BRuleYOffset(
+                    min = -pixels(R.dimen.section_margin), max = pixels(R.dimen.zero),
+                    interpolator = LinearInterpolator()
+                ),
+                BRuleScale(min = 0.8f, max = 1f),
+                BRuleAppear(visibleUntil = GONE_VIEW_THRESHOLD),
+            ),
+            RuledView(
+                binding.topDetails.callHistoryCompany,
+                BRuleAlpha(min = 0f, max = 0.6f),
+            ),
+            RuledView(
+                binding.topDetails.callHistoryJobPosition,
+                BRuleYOffset(
+                    min = pixels(R.dimen.medium_margin), max = pixels(R.dimen.big_margin),
+                    interpolator = LinearInterpolator()
+                ),
+                BRuleAlpha(min = 0f, max = 0.6f),
             )
         )
     }
@@ -78,6 +103,6 @@ class CallHistoryTopBehavior(
 
 
     companion object {
-        const val GONE_VIEW_THRESHOLD = 0.8f
+        const val GONE_VIEW_THRESHOLD = 0.4f
     }
 }

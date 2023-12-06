@@ -396,7 +396,7 @@ class ContactsAdapter(
                 val numberText = phoneNumberToUse?.value ?: ""
                 text = if (textToHighlight.isEmpty()) numberText else numberText.highlightTextPart(textToHighlight, properPrimaryColor, false, true)
             }
-            itemContactInfo?.applyColorFilter(properPrimaryColor)
+            itemContactInfo?.applyColorFilter(accentColor)
             itemContactInfoHolder?.apply {
                 beVisibleIf(showIcon && selectedKeys.isEmpty())
                 setOnClickListener {

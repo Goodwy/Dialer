@@ -130,14 +130,15 @@ class CallHistoryAdapter(
                     (activity as? CallHistoryActivity)?.refreshItems()
                 } else {
                     removeSelectedItems(positions)
+                    (activity as? CallHistoryActivity)?.refreshItems()
                 }
             }
         }
     }
 
-    private fun findContactByCall(recentCall: RecentCall): Contact? {
-        return (activity as CallHistoryActivity).allContacts.find { it.name == recentCall.name && it.doesHavePhoneNumber(recentCall.phoneNumber) }
-    }
+//    private fun findContactByCall(recentCall: RecentCall): Contact? {
+//        return (activity as CallHistoryActivity).allContacts.find { it.name == recentCall.name && it.doesHavePhoneNumber(recentCall.phoneNumber) }
+//    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun updateItems(newItems: List<RecentCall>, highlightText: String = "") {

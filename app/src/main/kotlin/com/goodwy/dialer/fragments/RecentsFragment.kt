@@ -7,7 +7,6 @@ import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MyRecyclerView
-import com.goodwy.dialer.App
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.adapters.RecentCallsAdapter
@@ -17,7 +16,6 @@ import com.goodwy.dialer.helpers.MIN_RECENTS_THRESHOLD
 import com.goodwy.dialer.helpers.RecentsHelper
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import com.goodwy.dialer.models.RecentCall
-import java.util.Calendar
 
 class RecentsFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment<MyViewPagerFragment.RecentsInnerBinding>(context, attributeSet),
     RefreshItemsListener {
@@ -55,6 +53,7 @@ class RecentsFragment(context: Context, attributeSet: AttributeSet) : MyViewPage
         recentsAdapter?.apply {
             initDrawables(textColor)
             updateTextColor(textColor)
+            updatePrimaryColor()
         }
     }
 
@@ -165,7 +164,11 @@ class RecentsFragment(context: Context, attributeSet: AttributeSet) : MyViewPage
 
     override fun onSearchQueryChanged(text: String) {
         val recentCalls = allRecentCalls.filter {
-            it.name.contains(text, true) || it.doesContainPhoneNumber(text)
+            it.name.contains(text, true) ||
+                it.doesContainPhoneNumber(text) ||
+                it.nickname.contains(text, true) ||
+                it.company.contains(text, true) ||
+                it.jobPosition.contains(text, true)
         }.sortedByDescending {
             it.name.startsWith(text, true)
         }.toMutableList() as ArrayList<RecentCall>

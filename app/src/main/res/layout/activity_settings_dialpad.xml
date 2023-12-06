@@ -139,6 +139,62 @@
                     android:orientation="vertical">
 
                     <RelativeLayout
+                        android:id="@+id/settingsSimCardColor1Holder"
+                        style="@style/SettingsHolderStyle"
+                        android:padding="@dimen/smaller_margin">
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settingsSimCardColor1Label"
+                            style="@style/SettingsTextLabelStyle"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/settingsSimCardColor1Icon"
+                            android:text="@string/button_primary"/>
+
+                        <ImageView
+                            android:id="@+id/settingsSimCardColor1Icon"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/settings_margin"
+                            android:padding="@dimen/smaller_margin"
+                            android:background="@drawable/pulsing_background"
+                            android:foreground="@drawable/ripple_all_corners_56dp"
+                            android:contentDescription="@string/contact_color_list"
+                            android:src="@drawable/ic_phone_vector"
+                            tools:backgroundTint="@color/ic_dialer"
+                            tools:tint="@color/white"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/settingsSimCardColor2Holder"
+                        style="@style/SettingsHolderStyle"
+                        android:padding="@dimen/smaller_margin">
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settingsSimCardColor2Label"
+                            style="@style/SettingsTextLabelStyle"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/settingsSimCardColor2Icon"
+                            android:text="@string/button_secondary"/>
+
+                        <ImageView
+                            android:id="@+id/settingsSimCardColor2Icon"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/settings_margin"
+                            android:padding="@dimen/smaller_margin"
+                            android:background="@drawable/pulsing_background"
+                            android:foreground="@drawable/ripple_all_corners_56dp"
+                            android:contentDescription="@string/contact_color_list"
+                            android:src="@drawable/ic_phone_two_vector"
+                            tools:backgroundTint="@color/color_primary"
+                            tools:tint="@color/white"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:id="@+id/settingsPrimarySimCardHolder"
                         style="@style/SettingsHolderStyle"
                         android:paddingTop="@dimen/medium_margin">

@@ -49,7 +49,10 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
     override fun setupColors(textColor: Int, primaryColor: Int, properPrimaryColor: Int) {
         binding.apply {
             fragmentPlaceholder.setTextColor(textColor)
-            (fragmentList.adapter as? MyRecyclerViewAdapter)?.updateTextColor(textColor)
+            (fragmentList.adapter as? MyRecyclerViewAdapter)?.apply {
+                updateTextColor(textColor)
+                updatePrimaryColor()
+            }
 
             letterFastscroller.textColor = textColor.getColorStateList()
             letterFastscroller.pressedTextColor = properPrimaryColor
@@ -204,8 +207,20 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
     }
 
     override fun onSearchQueryChanged(text: String) {
+        val shouldNormalize = text.normalizeString() == text
         val contacts = allContacts.filter {
-            it.name.contains(text, true) || it.doesContainPhoneNumber(text, search = true)
+            getProperText(it.getNameToDisplay(), shouldNormalize).contains(text, true) ||
+                getProperText(it.nickname, shouldNormalize).contains(text, true) ||
+                it.phoneNumbers.any {
+                    text.normalizePhoneNumber().isNotEmpty() && it.normalizedNumber.contains(text.normalizePhoneNumber(), true)
+                } ||
+                it.emails.any { it.value.contains(text, true) } ||
+                it.addresses.any { getProperText(it.value, shouldNormalize).contains(text, true) } ||
+                it.IMs.any { it.value.contains(text, true) } ||
+                getProperText(it.notes, shouldNormalize).contains(text, true) ||
+                getProperText(it.organization.company, shouldNormalize).contains(text, true) ||
+                getProperText(it.organization.jobPosition, shouldNormalize).contains(text, true) ||
+                it.websites.any { it.contains(text, true) }
         }.sortedByDescending {
             it.name.startsWith(text, true)
         }.toMutableList() as ArrayList<Contact>

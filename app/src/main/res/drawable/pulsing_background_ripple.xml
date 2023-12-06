@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="@color/ripple_foreground">
+    <item android:id="@+id/accept_call_background_holder">
+        <shape
+            android:shape="oval">
+
+            <solid
+                android:color="@android:color/white"/>
+
+            <size
+                android:width="@dimen/incoming_call_button_size"
+                android:height="@dimen/incoming_call_button_size"/>
+        </shape>
+    </item>
+</ripple>
