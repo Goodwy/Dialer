@@ -83,11 +83,11 @@ class CallActivity : SimpleActivity() {
         needSelectSIM = intent.getBooleanExtra(NEED_SELECT_SIM, false)
         if (needSelectSIM) initOutgoingCall(CallManager.getPrimaryCall()!!.details.handle)
 
-        updateTextColors(binding.callHolder)
-        initButtons()
         audioManager.mode = AudioManager.MODE_IN_CALL
         CallManager.addListener(callCallback)
         updateCallContactInfo(CallManager.getPrimaryCall())
+        updateTextColors(binding.callHolder)
+        initButtons()
 
         if (config.backgroundCallScreen == TRANSPARENT_BACKGROUND) checkPermission()
 
@@ -730,7 +730,8 @@ class CallActivity : SimpleActivity() {
 
     private fun updateCallAudioState(route: AudioRoute?) {
         if (route != null) {
-            isMicrophoneOff = audioManager.isMicrophoneMute
+            //If enabled, one of the users has his microphone turned off at the start of a call
+            //isMicrophoneOff = audioManager.isMicrophoneMute
             updateMicrophoneButton()
 
             isSpeakerOn = route == AudioRoute.SPEAKER

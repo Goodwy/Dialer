@@ -174,40 +174,49 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/settings_colored_contacts_holder"
-                    style="@style/SettingsHolderSwitchStyle">
+                <LinearLayout
+                    android:id="@+id/settingsColoredContactsWrapper"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/button_background_11dp">
 
-                    <com.goodwy.commons.views.MySwitchCompat
-                        android:id="@+id/settings_colored_contacts"
-                        style="@style/SettingsSwitchStyle"
-                        android:text="@string/colored_contacts"
-                        app:switchPadding="@dimen/bigger_margin"/>
-                </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/settings_colored_contacts_holder"
+                        style="@style/SettingsHolderSwitchStyle">
 
-                <RelativeLayout
-                    android:id="@+id/settings_contact_color_list_holder"
-                    style="@style/SettingsHolderStyle"
-                    android:paddingEnd="@dimen/medium_margin">
+                        <com.goodwy.commons.views.MySwitchCompat
+                            android:id="@+id/settings_colored_contacts"
+                            style="@style/SettingsSwitchStyle"
+                            android:text="@string/colored_contacts"
+                            app:switchPadding="@dimen/bigger_margin" />
 
-                    <com.goodwy.commons.views.MyTextView
-                        android:id="@+id/settings_contact_color_list_label"
-                        style="@style/SettingsTextLabelStyle"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/settings_contact_color_list_icon"
-                        android:text="@string/contact_color_list"/>
+                    </RelativeLayout>
 
-                    <ImageView
-                        android:id="@+id/settings_contact_color_list_icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="@dimen/settings_margin"
-                        android:clickable="false"
-                        android:contentDescription="@string/contact_color_list"
-                        android:src="@drawable/ic_color_list_android"/>
-                </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/settingsContactColorListHolder"
+                        style="@style/SettingsHolderStyle"
+                        android:paddingEnd="@dimen/medium_margin">
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settings_contact_color_list_label"
+                            style="@style/SettingsTextLabelStyle"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/settings_contact_color_list_icon"
+                            android:text="@string/contact_color_list"/>
+
+                        <ImageView
+                            android:id="@+id/settings_contact_color_list_icon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/settings_margin"
+                            android:clickable="false"
+                            android:contentDescription="@string/contact_color_list"
+                            android:src="@drawable/ic_color_list_android"/>
+                    </RelativeLayout>
+                </LinearLayout>
 
                 <RelativeLayout
                     android:id="@+id/settings_color_sim_card_icons_holder"
@@ -409,46 +418,6 @@
                     android:text="@string/general"
                     android:textStyle="bold"
                     tools:textColor="@color/primary"/>
-
-                <RelativeLayout
-                    android:id="@+id/settings_export_calls_holder"
-                    style="@style/SettingsHolderStyle">
-
-                    <com.goodwy.commons.views.MyTextView
-                        android:id="@+id/settings_export_calls"
-                        style="@style/SettingsTextLabelStyle"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="68dp"
-                        android:text="@string/export_call_history"/>
-
-                    <ImageView
-                        android:id="@+id/settings_export_calls_chevron"
-                        style="@style/SettingsChevronStyle"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/smaller_margin"
-                        android:contentDescription="@string/export_call_history"/>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/settings_import_calls_holder"
-                    style="@style/SettingsHolderStyle">
-
-                    <com.goodwy.commons.views.MyTextView
-                        android:id="@+id/settings_import_calls"
-                        style="@style/SettingsTextLabelStyle"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="68dp"
-                        android:text="@string/import_call_history"/>
-
-                    <ImageView
-                        android:id="@+id/settings_import_calls_chevron"
-                        style="@style/SettingsChevronStyle"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/smaller_margin"
-                        android:contentDescription="@string/import_call_history"/>
-                </RelativeLayout>
 
                 <RelativeLayout
                     android:id="@+id/settingsManageBlockedNumbersHolder"
@@ -944,6 +913,62 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/settings_backups_holder"
+                style="@style/SettingsSectionHolder"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/settings_backups_label"
+                    style="@style/SettingsTextLabelStyle"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:layout_marginStart="@dimen/smaller_margin"
+                    android:layout_marginBottom="@dimen/small_margin"
+                    android:text="@string/backups"
+                    android:textStyle="bold"
+                    tools:textColor="@color/primary" />
+
+                <RelativeLayout
+                    android:id="@+id/settings_export_calls_holder"
+                    style="@style/SettingsHolderStyle">
+
+                    <com.goodwy.commons.views.MyTextView
+                        android:id="@+id/settings_export_calls"
+                        style="@style/SettingsTextLabelStyle"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="68dp"
+                        android:text="@string/export_call_history"/>
+
+                    <ImageView
+                        android:id="@+id/settings_export_calls_chevron"
+                        style="@style/SettingsChevronStyle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/smaller_margin"
+                        android:contentDescription="@string/export_call_history"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/settings_import_calls_holder"
+                    style="@style/SettingsHolderStyle">
+
+                    <com.goodwy.commons.views.MyTextView
+                        android:id="@+id/settings_import_calls"
+                        style="@style/SettingsTextLabelStyle"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="68dp"
+                        android:text="@string/import_call_history"/>
+
+                    <ImageView
+                        android:id="@+id/settings_import_calls_chevron"
+                        style="@style/SettingsChevronStyle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/smaller_margin"
+                        android:contentDescription="@string/import_call_history"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/settings_other_holder"
                 style="@style/SettingsSectionHolder"
                 android:orientation="vertical"
@@ -976,7 +1001,7 @@
                         android:paddingEnd="@dimen/smaller_margin"
                         android:paddingTop="@dimen/medium_margin"
                         android:paddingBottom="@dimen/medium_margin"
-                        android:background="@drawable/ripple_all_corners_12dp">
+                        android:background="@drawable/ripple_all_corners_11dp">
 
                         <com.goodwy.commons.views.MyTextView
                             android:id="@+id/settingsTipJar"
@@ -1012,7 +1037,7 @@
                         style="@style/SettingsTextValueStyle"
                         android:layout_toStartOf="@+id/settings_about_chevron"
                         android:layout_centerVertical="true"
-                        android:text="Version: 1.0.0"/>
+                        tools:text="Version: 1.0.0"/>
 
                     <ImageView
                         android:id="@+id/settings_about_chevron"

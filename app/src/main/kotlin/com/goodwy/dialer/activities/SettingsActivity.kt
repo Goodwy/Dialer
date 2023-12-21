@@ -8,10 +8,14 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.goodwy.commons.activities.ManageBlockedNumbersActivity
 import com.goodwy.commons.dialogs.*
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
+import com.goodwy.commons.helpers.rustore.RuStoreHelper
+import com.goodwy.commons.helpers.rustore.model.StartPurchasesEvent
 import com.goodwy.commons.models.FAQItem
 import com.goodwy.commons.models.RadioItem
 import com.goodwy.commons.models.Release
@@ -29,9 +33,11 @@ import com.goodwy.dialer.models.RecentCall
 import com.goodwy.dialer.helpers.*
 import com.mikhaellopez.rxanimation.RxAnimation
 import com.mikhaellopez.rxanimation.shake
+import kotlinx.coroutines.launch
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import ru.rustore.sdk.core.feature.model.FeatureAvailabilityResult
 import java.util.*
 import kotlin.math.abs
 import kotlin.system.exitProcess
@@ -41,14 +47,16 @@ class SettingsActivity : SimpleActivity() {
         private const val CALL_HISTORY_FILE_TYPE = "application/json"
     }
 
+    private val purchaseHelper = PurchaseHelper(this)
+    private val ruStoreHelper = RuStoreHelper(this)
     private val productIdX1 = BuildConfig.PRODUCT_ID_X1
     private val productIdX2 = BuildConfig.PRODUCT_ID_X2
     private val productIdX3 = BuildConfig.PRODUCT_ID_X3
     private val subscriptionIdX1 = BuildConfig.SUBSCRIPTION_ID_X1
     private val subscriptionIdX2 = BuildConfig.SUBSCRIPTION_ID_X2
     private val subscriptionIdX3 = BuildConfig.SUBSCRIPTION_ID_X3
+    private var ruStoreIsConnected = false
 
-    private val purchaseHelper = PurchaseHelper(this)
     private val binding by viewBinding(ActivitySettingsBinding::inflate)
     private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
         if (uri != null) {
@@ -118,6 +126,30 @@ class SettingsActivity : SimpleActivity() {
                     is Tipping.FailedToLoad -> {
                     }
                 }
+            }
+        }
+        if (isRuStoreInstalled()) {
+            //RuStore
+            ruStoreHelper.checkPurchasesAvailability()
+
+            lifecycleScope.launch {
+                ruStoreHelper.eventStart
+                    .flowWithLifecycle(lifecycle)
+                    .collect { event ->
+                        handleEventStart(event)
+                    }
+            }
+
+            lifecycleScope.launch {
+                ruStoreHelper.statePurchased
+                    .flowWithLifecycle(lifecycle)
+                    .collect { state ->
+                        //update of purchased
+                        if (!state.isLoading && ruStoreIsConnected) {
+                            baseConfig.isProRuStore = state.purchases.firstOrNull() != null
+                            updatePro()
+                        }
+                    }
             }
         }
     }
@@ -193,6 +225,7 @@ class SettingsActivity : SimpleActivity() {
                 settingsDialpadLabel,
                 settingsCallsLabel,
                 settingsListViewLabel,
+                settingsBackupsLabel,
                 settingsOtherLabel).forEach {
                 it.setTextColor(getProperPrimaryColor())
             }
@@ -204,6 +237,7 @@ class SettingsActivity : SimpleActivity() {
                 settingsDialpadHolder,
                 settingsCallsHolder,
                 settingsListViewHolder,
+                settingsBackupsHolder,
                 settingsOtherHolder
             ).forEach {
                 it.background.applyColorFilter(getBottomNavigationBackgroundColor())
@@ -278,7 +312,8 @@ class SettingsActivity : SimpleActivity() {
                 subscriptionIdX1 = subscriptionIdX1,
                 subscriptionIdX2 = subscriptionIdX2,
                 subscriptionIdX3 = subscriptionIdX3,
-                playStoreInstalled = isPlayStoreInstalled()
+                playStoreInstalled = isPlayStoreInstalled(),
+                ruStoreInstalled = isRuStoreInstalled()
             )
         }
     }
@@ -486,14 +521,22 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupUseColoredContacts() {
+        updateWrapperUseColoredContacts()
         binding.apply {
             settingsColoredContacts.isChecked = config.useColoredContacts
             settingsColoredContactsHolder.setOnClickListener {
                 settingsColoredContacts.toggle()
                 config.useColoredContacts = settingsColoredContacts.isChecked
                 settingsContactColorListHolder.beVisibleIf(config.useColoredContacts)
+                updateWrapperUseColoredContacts()
             }
         }
+    }
+
+    private fun updateWrapperUseColoredContacts() {
+        val getBottomNavigationBackgroundColor = getBottomNavigationBackgroundColor()
+        val wrapperColor = if (config.useColoredContacts) getBottomNavigationBackgroundColor.lightenColor(4) else getBottomNavigationBackgroundColor
+        binding.settingsColoredContactsWrapper.background.applyColorFilter(wrapperColor)
     }
 
     private fun setupContactsColorList() {
@@ -978,7 +1021,8 @@ class SettingsActivity : SimpleActivity() {
             licensingKey = BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
             productIdX1 = productIdX1, productIdX2 = productIdX2, productIdX3 = productIdX3,
             subscriptionIdX1 = subscriptionIdX1, subscriptionIdX2 = subscriptionIdX2, subscriptionIdX3 = subscriptionIdX3,
-            playStoreInstalled = isPlayStoreInstalled()
+            playStoreInstalled = isPlayStoreInstalled(),
+            ruStoreInstalled = isRuStoreInstalled()
         )
     }
 
@@ -988,7 +1032,8 @@ class SettingsActivity : SimpleActivity() {
             BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
             productIdX1, productIdX2, productIdX3,
             subscriptionIdX1, subscriptionIdX2, subscriptionIdX3,
-            playStoreInstalled = isPlayStoreInstalled()
+            playStoreInstalled = isPlayStoreInstalled(),
+            ruStoreInstalled = isRuStoreInstalled()
         )
     }
 
@@ -1053,7 +1098,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 487 //TODO changelog
+        val id = 490 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1070,8 +1115,37 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_487)) //TODO changelog
+            add(Release(id, R.string.release_490)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
+        }
+    }
+
+    private fun updateProducts() {
+        val productList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3, subscriptionIdX1, subscriptionIdX2, subscriptionIdX3)
+        ruStoreHelper.getProducts(productList)
+    }
+
+    private fun handleEventStart(event: StartPurchasesEvent) {
+        when (event) {
+            is StartPurchasesEvent.PurchasesAvailability -> {
+                when (event.availability) {
+                    is FeatureAvailabilityResult.Available -> {
+                        //Process purchases available
+                        updateProducts()
+                        ruStoreIsConnected = true
+                    }
+
+                    is FeatureAvailabilityResult.Unavailable -> {
+                        //toast(event.availability.cause.message ?: "Process purchases unavailable", Toast.LENGTH_LONG)
+                    }
+
+                    else -> {}
+                }
+            }
+
+            is StartPurchasesEvent.Error -> {
+                //toast(event.throwable.message ?: "Process unknown error", Toast.LENGTH_LONG)
+            }
         }
     }
 }

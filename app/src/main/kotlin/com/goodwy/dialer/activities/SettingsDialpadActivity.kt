@@ -16,12 +16,16 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.core.view.setPadding
 import androidx.core.view.updateLayoutParams
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import com.behaviorule.arturdumchev.library.pixels
 import com.behaviorule.arturdumchev.library.setHeight
 import com.goodwy.commons.dialogs.ColorPickerDialog
 import com.goodwy.commons.dialogs.RadioGroupDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
+import com.goodwy.commons.helpers.rustore.RuStoreHelper
+import com.goodwy.commons.helpers.rustore.model.StartPurchasesEvent
 import com.goodwy.commons.models.RadioItem
 import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
@@ -31,6 +35,8 @@ import com.goodwy.dialer.helpers.*
 import com.goodwy.dialer.models.SpeedDial
 import com.mikhaellopez.rxanimation.RxAnimation
 import com.mikhaellopez.rxanimation.shake
+import kotlinx.coroutines.launch
+import ru.rustore.sdk.core.feature.model.FeatureAvailabilityResult
 import java.util.*
 import kotlin.math.abs
 
@@ -38,6 +44,14 @@ import kotlin.math.abs
 class SettingsDialpadActivity : SimpleActivity() {
     private val binding by viewBinding(ActivitySettingsDialpadBinding::inflate)
     private val purchaseHelper = PurchaseHelper(this)
+    private val ruStoreHelper = RuStoreHelper(this)
+    private val productIdX1 = BuildConfig.PRODUCT_ID_X1
+    private val productIdX2 = BuildConfig.PRODUCT_ID_X2
+    private val productIdX3 = BuildConfig.PRODUCT_ID_X3
+    private val subscriptionIdX1 = BuildConfig.SUBSCRIPTION_ID_X1
+    private val subscriptionIdX2 = BuildConfig.SUBSCRIPTION_ID_X2
+    private val subscriptionIdX3 = BuildConfig.SUBSCRIPTION_ID_X3
+    private var ruStoreIsConnected = false
 
     private var speedDialValues = ArrayList<SpeedDial>()
     private val russianCharsMap = HashMap<Char, Int>()
@@ -46,12 +60,6 @@ class SettingsDialpadActivity : SimpleActivity() {
     private var toneGeneratorHelper: ToneGeneratorHelper? = null
     private val hideDialpadHandler = Handler(Looper.getMainLooper())
 
-    private val productIdX1 = BuildConfig.PRODUCT_ID_X1
-    private val productIdX2 = BuildConfig.PRODUCT_ID_X2
-    private val productIdX3 = BuildConfig.PRODUCT_ID_X3
-    private val subscriptionIdX1 = BuildConfig.SUBSCRIPTION_ID_X1
-    private val subscriptionIdX2 = BuildConfig.SUBSCRIPTION_ID_X2
-    private val subscriptionIdX3 = BuildConfig.SUBSCRIPTION_ID_X3
 
     @SuppressLint("MissingSuperCall", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -251,6 +259,30 @@ class SettingsDialpadActivity : SimpleActivity() {
                     is Tipping.FailedToLoad -> {
                     }
                 }
+            }
+        }
+        if (isRuStoreInstalled()) {
+            //RuStore
+            ruStoreHelper.checkPurchasesAvailability()
+
+            lifecycleScope.launch {
+                ruStoreHelper.eventStart
+                    .flowWithLifecycle(lifecycle)
+                    .collect { event ->
+                        handleEventStart(event)
+                    }
+            }
+
+            lifecycleScope.launch {
+                ruStoreHelper.statePurchased
+                    .flowWithLifecycle(lifecycle)
+                    .collect { state ->
+                        //update of purchased
+                        if (!state.isLoading && ruStoreIsConnected) {
+                            baseConfig.isProRuStore = state.purchases.firstOrNull() != null
+                            updatePro()
+                        }
+                    }
             }
         }
     }
@@ -1050,7 +1082,8 @@ class SettingsDialpadActivity : SimpleActivity() {
             BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
             productIdX1, productIdX2, productIdX3,
             subscriptionIdX1, subscriptionIdX2, subscriptionIdX3,
-            playStoreInstalled = isPlayStoreInstalled()
+            playStoreInstalled = isPlayStoreInstalled(),
+            ruStoreInstalled = isRuStoreInstalled()
         )
     }
 
@@ -1058,5 +1091,34 @@ class SettingsDialpadActivity : SimpleActivity() {
         RxAnimation.from(binding.dialpadPurchaseThankYouHolder)
             .shake()
             .subscribe()
+    }
+
+    private fun updateProducts() {
+        val productList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3, subscriptionIdX1, subscriptionIdX2, subscriptionIdX3)
+        ruStoreHelper.getProducts(productList)
+    }
+
+    private fun handleEventStart(event: StartPurchasesEvent) {
+        when (event) {
+            is StartPurchasesEvent.PurchasesAvailability -> {
+                when (event.availability) {
+                    is FeatureAvailabilityResult.Available -> {
+                        //Process purchases available
+                        updateProducts()
+                        ruStoreIsConnected = true
+                    }
+
+                    is FeatureAvailabilityResult.Unavailable -> {
+                        //toast(event.availability.cause.message ?: "Process purchases unavailable", Toast.LENGTH_LONG)
+                    }
+
+                    else -> {}
+                }
+            }
+
+            is StartPurchasesEvent.Error -> {
+                //toast(event.throwable.message ?: "Process unknown error", Toast.LENGTH_LONG)
+            }
+        }
     }
 }

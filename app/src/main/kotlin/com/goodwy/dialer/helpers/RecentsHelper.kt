@@ -15,7 +15,7 @@ import com.goodwy.dialer.models.RecentCall
 
 class RecentsHelper(private val context: Context) {
     private val COMPARABLE_PHONE_NUMBER_LENGTH = 9
-    private val QUERY_LIMIT = 200
+    private val QUERY_LIMIT = 500
     private val contentUri = Calls.CONTENT_URI
 
     fun getRecentCalls(groupSubsequentCalls: Boolean, maxSize: Int = QUERY_LIMIT, callback: (List<RecentCall>) -> Unit) {
@@ -128,11 +128,18 @@ class RecentsHelper(private val context: Context) {
                 }
 
                 var contact: Contact? = null
-                if (number != null) contact = contacts.firstOrNull { it.doesContainPhoneNumber(number) }
+                if (number != null) {
+                    contact = contacts.firstOrNull { it.doesContainPhoneNumber(number) }
+                    // If the number in the contacts is written without + or 8 instead of +7
+                    if (contact == null) contact = contacts.firstOrNull {
+                        it.doesContainPhoneNumber(number.replace("+", "")) ||
+                            it.doesContainPhoneNumber(number.replace("+7", "8"))
+                    }
+                }
 
                 //Without this, the call history does not reflect the contact name for the contact's second and subsequent numbers
                 //TODO try again to find the contact name
-                if (name == number) {
+                if (name == number && !isUnknownNumber) {
                     if (contact != null) name = contact.name
                 }
 
@@ -181,6 +188,7 @@ class RecentsHelper(private val context: Context) {
                 var nickname = ""
                 var company = ""
                 var jobPosition = ""
+                var contactID: Int? = null
                 if (contact != null) {
                     val phoneNumbers = contact.phoneNumbers.firstOrNull { it.normalizedNumber == number }
                     if (phoneNumbers != null) {
@@ -191,9 +199,8 @@ class RecentsHelper(private val context: Context) {
                     nickname = contact.nickname
                     company = contact.organization.company
                     jobPosition = contact.organization.jobPosition
+                    contactID = contact.id
                 }
-
-                val contactID = contact?.id
 
                 val recentCall = RecentCall(
                     id = id,

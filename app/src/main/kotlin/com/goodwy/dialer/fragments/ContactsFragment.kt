@@ -77,7 +77,7 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
 
     override fun refreshItems(callback: (() -> Unit)?) {
         val privateCursor = context?.getMyContactsCursor(false, true)
-        ContactsHelper(context).getContacts { contacts ->
+        ContactsHelper(context).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
             allContacts = contacts
 
             if (SMT_PRIVATE !in context.baseConfig.ignoredContactSources) {
@@ -136,6 +136,7 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
     }
 
     private fun setupLetterFastScroller(contacts: ArrayList<Contact>) {
+        binding.letterFastscroller.beVisibleIf(contacts.size > 10)
         binding.letterFastscroller.setupWithRecyclerView(binding.fragmentList, { position ->
             try {
                 val name = contacts[position].getNameToDisplay()

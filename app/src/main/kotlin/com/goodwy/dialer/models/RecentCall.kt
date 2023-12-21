@@ -12,9 +12,9 @@ data class RecentCall(
     var id: Int,
     var phoneNumber: String,
     var name: String,
-    var nickname: String,
-    var company: String,
-    var jobPosition: String,
+    var nickname: String = "",
+    var company: String = "",
+    var jobPosition: String = "",
     var photoUri: String,
     var startTS: Int,
     var duration: Int,
@@ -24,7 +24,7 @@ data class RecentCall(
     var specificNumber: String,
     var specificType: String,
     val isUnknownNumber: Boolean,
-    var contactID: Int?,
+    var contactID: Int? = null,
 ) {
     fun doesContainPhoneNumber(text: String): Boolean {
         val normalizedText = text.normalizePhoneNumber()

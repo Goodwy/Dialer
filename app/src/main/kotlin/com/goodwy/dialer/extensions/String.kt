@@ -17,6 +17,7 @@ fun getPhoneNumberFormat(context: Context, number: String): String {
         val phoneUtil = PhoneNumberUtil.getInstance()
         //val nameCode = number.getCountryIsoCode(context)
         val numberParse = phoneUtil.parse(number, countryCode) //context.sysLocale()!!.language //nameCode
+        //if (!phoneUtil.isValidNumber(numberParse)) return number
         phoneUtil.format(numberParse, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL)
     } catch (e: NumberParseException) {
         System.err.println("getPhoneNumberFormat() was thrown: $e")

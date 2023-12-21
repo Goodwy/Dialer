@@ -85,7 +85,7 @@
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/main_tabs_holder"
+            app:layout_constraintBottom_toTopOf="@+id/mainTabsHolder"
             app:layout_constraintTop_toBottomOf="@+id/main_top_tabs_container"/>
 
         <com.goodwy.commons.views.MyFloatingActionButton
@@ -100,12 +100,12 @@
             android:padding="@dimen/activity_margin"
             android:src="@drawable/ic_dialpad_vector"
             app:backgroundTint="@color/color_primary"
-            app:layout_constraintBottom_toTopOf="@+id/main_tabs_holder"
+            app:layout_constraintBottom_toTopOf="@+id/mainTabsHolder"
             app:layout_constraintEnd_toEndOf="parent"
             app:rippleColor="@color/pressed_item_foreground"/>
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/main_tabs_holder"
+            android:id="@+id/mainTabsHolder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

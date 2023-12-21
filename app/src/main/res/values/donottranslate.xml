@@ -3,22 +3,7 @@
     <string name="package_name">com.goodwy.dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
-    <string name="release_487">
-        Speeded up the app\n
-        The interface has been redesigned a bit\n
-        Added opening the menu by long pressing the info icon in recent calls\n
-        Added ability to make an anonymous call (with prefix #31#)\n
-        Added possibility to swap SIM cards in the dialer\n
-        Added button vibration on the call screen and when the call status changes (disabled in the settings)\n
-        Added the ability to resize the call button\n
-        Added the ability to make the top bar of the app colored\n
-        Added nickname and company search in recent\n
-        Changed dialpad styles\n
-        Changed logic of sim card colors and accent color operation\n
-        Fixed text and avatar color on conference call screen\n
-        Fixed an issue with starting a call from some third-party apps\n
-        Fixed avatar colors in call history\n
-        Fixed search\n
+    <string name="release_490">
         Fixed bugs, improved stability
     </string>
 </resources>

@@ -41,7 +41,7 @@
 
     <!-- FAQ -->
     <string name="faq_1_title_dialer_g">Why do I have to unlock my device to answer an incoming call?</string>
-    <string name="faq_1_text_dialer_g">Your operating system is blocking app access to the lock screen. You need to allow the app to access the lock screen. For example in MIUI you need to enable access in Settings => Notifications => Lock screen notifications.</string>
+    <string name="faq_1_text_dialer_g">Your operating system is blocking app access to the lock screen. You need to allow the app to access the lock screen. For example in MIUI you need to enable access in "Settings => Notifications => Lock screen notifications" and enable the "Open new windows while running in the background" permission.</string>
     <string name="faq_2_title_dialer_g">How do I copy or paste a number on the dialing screen?</string>
     <string name="faq_2_text_dialer_g">A long press on the call button will paste the clipboard contents. If you have already entered a number, long pressing the call button will copy the number to the clipboard.</string>
 

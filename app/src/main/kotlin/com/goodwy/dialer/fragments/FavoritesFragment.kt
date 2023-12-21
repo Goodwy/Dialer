@@ -108,7 +108,7 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
 
     private fun updateListAdapter() {
         val viewType = context.config.viewType
-        setViewType(viewType)
+        setViewType(viewType, allContacts.size)
 
         val currAdapter = binding.fragmentList.adapter as ContactsAdapter?
         if (currAdapter == null) {
@@ -230,14 +230,14 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
         setupLetterFastScroller(contacts)
     }
 
-    private fun setViewType(viewType: Int) {
+    private fun setViewType(viewType: Int, size: Int = 0) {
         val spanCount = context.config.contactsGridColumnCount
 
         val layoutManager = if (viewType == VIEW_TYPE_GRID) {
             binding.letterFastscroller.beGone()
             MyGridLayoutManager(context, spanCount)
         } else {
-            binding.letterFastscroller.beVisible()
+            binding.letterFastscroller.beVisibleIf(size > 10)
             MyLinearLayoutManager(context)
         }
         binding.fragmentList.layoutManager = layoutManager

@@ -75,7 +75,7 @@ class MainActivity : SimpleActivity() {
         appLaunched(BuildConfig.APPLICATION_ID)
         setupOptionsMenu()
         refreshMenuItems()
-        config.tabsChanged = false
+        storeStateVariables()
         val useBottomNavigationBar = config.bottomNavigationBar
         updateMaterialActivityViews(binding.mainCoordinator, binding.mainHolder, useTransparentNavigation = false, useTopSearchMenu = useBottomNavigationBar)
         launchedDialer = savedInstanceState?.getBoolean(OPEN_DIAL_PAD_AT_LAUNCH) ?: false
@@ -143,11 +143,14 @@ class MainActivity : SimpleActivity() {
     @Suppress("DEPRECATION")
     override fun onResume() {
         super.onResume()
-        if (storedShowTabs != config.showTabs || config.tabsChanged || storedShowPhoneNumbers != config.showPhoneNumbers) {
-            config.lastUsedViewPagerPage = 0
-//            finish()
-//            startActivity(intent)
+        if (storedShowTabs != config.showTabs || storedShowPhoneNumbers != config.showPhoneNumbers) {
             System.exit(0)
+            return
+        }
+        if (config.tabsChanged) {
+            config.lastUsedViewPagerPage = 0
+            finish()
+            startActivity(intent)
             return
         }
 
@@ -226,30 +229,26 @@ class MainActivity : SimpleActivity() {
         }
         binding.viewPager.setPageTransformer(true, animation)
 
-        getAllFragments().forEach {
-            it?.setBackgroundColor(getProperBackgroundColor())
-        }
         val properBackgroundColor = getProperBackgroundColor()
-        getFavoritesFragment()?.setBackgroundColor(properBackgroundColor)
-        getRecentsFragment()?.setBackgroundColor(properBackgroundColor)
-        getContactsFragment()?.setBackgroundColor(properBackgroundColor)
-    }
-
-    @SuppressLint("MissingSuperCall")
-    override fun onDestroy() {
-        super.onDestroy()
-        storedShowTabs = config.showTabs
-        config.tabsChanged = false
-        config.lastUsedViewPagerPage = binding.viewPager.currentItem
+        getAllFragments().forEach {
+            it?.setBackgroundColor(properBackgroundColor)
+        }
     }
 
     override fun onPause() {
         super.onPause()
-        storedShowTabs = config.showTabs
-        config.tabsChanged = false
-        storedStartNameWithSurname = config.startNameWithSurname
-        storedShowPhoneNumbers = config.showPhoneNumbers
+        storeStateVariables()
         config.lastUsedViewPagerPage = binding.viewPager.currentItem
+    }
+
+    private fun storeStateVariables() {
+        config.apply {
+            storedShowTabs = showTabs
+            storedStartNameWithSurname = startNameWithSurname
+            storedShowPhoneNumbers = showPhoneNumbers
+            storedFontSize = fontSize
+            tabsChanged = false
+        }
     }
 
     @Deprecated("Deprecated in Java")
@@ -518,7 +517,7 @@ class MainActivity : SimpleActivity() {
         val icons = mutableListOf<Int>()
 
         if (showTabs and TAB_FAVORITES != 0) {
-            icons.add(R.drawable.ic_star_vector_tilted)
+            icons.add(R.drawable.ic_star_vector_scaled)
         }
 
         if (showTabs and TAB_CALL_HISTORY != 0) {
@@ -526,7 +525,7 @@ class MainActivity : SimpleActivity() {
         }
 
         if (showTabs and TAB_CONTACTS != 0) {
-            icons.add(R.drawable.ic_person_rounded_tilted)
+            icons.add(R.drawable.ic_person_rounded_scaled)
         }
 
         return icons
@@ -872,7 +871,7 @@ class MainActivity : SimpleActivity() {
         val productIdX3 = BuildConfig.PRODUCT_ID_X3
         val subscriptionIdX1 = BuildConfig.SUBSCRIPTION_ID_X1
         val subscriptionIdX2 = BuildConfig.SUBSCRIPTION_ID_X2
-         val subscriptionIdX3 = BuildConfig.SUBSCRIPTION_ID_X3
+        val subscriptionIdX3 = BuildConfig.SUBSCRIPTION_ID_X3
 
         startAboutActivity(
             appNameId = R.string.app_name_g,
@@ -883,7 +882,8 @@ class MainActivity : SimpleActivity() {
             licensingKey = BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
             productIdX1 = productIdX1, productIdX2 = productIdX2, productIdX3 = productIdX3,
             subscriptionIdX1 = subscriptionIdX1, subscriptionIdX2 = subscriptionIdX2, subscriptionIdX3 = subscriptionIdX3,
-            playStoreInstalled = isPlayStoreInstalled()
+            playStoreInstalled = isPlayStoreInstalled(),
+            ruStoreInstalled = isRuStoreInstalled()
         )
     }
 

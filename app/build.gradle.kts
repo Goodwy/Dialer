@@ -124,33 +124,4 @@ dependencies {
     implementation(libs.eventbus)
     implementation(libs.bundles.lifecycle)
     ksp(libs.androidx.room.compiler)
-
-//    implementation files('libs/commons-debug.aar')
-//    implementation 'com.github.tibbi:IndicatorFastScroll:4524cd0b61'
-//    implementation 'me.grantland:autofittextview:0.2.1'
-//    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
-//
-//    implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.49'
-//    implementation 'com.googlecode.libphonenumber:geocoder:2.185'
-//    implementation 'me.leolin:ShortcutBadger:1.1.22@aar'
-//    implementation 'com.mikhaellopez:rxanimation:2.1.0'
-//    implementation 'com.anjlab.android.iab.v3:library:2.0.3'
-//    implementation 'com.github.Liverm0r:BehavioRule:1.0.1'
-//
-//    api 'com.google.android.material:material:1.9.0'
-//    api 'com.google.code.gson:gson:2.9.1'
-//    api 'com.github.duolingo:rtl-viewpager:940f12724f'
-//
-//    api 'com.github.bumptech.glide:glide:4.15.1'
-//    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
-//    implementation "androidx.core:core-ktx:1.8.0"
-//    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-//
-//    implementation 'androidx.room:room-runtime:2.5.2'
-//    kapt 'androidx.room:room-compiler:2.5.2'
-//    implementation 'joda-time:joda-time:2.11.0'
-//
-//    //timer
-//    implementation 'org.greenrobot:eventbus:3.3.1'
-//    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 }

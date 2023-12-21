@@ -112,9 +112,10 @@ class CallHistoryActivity : SimpleActivity() {
         setupMenu()
     }
 
-    private fun updateBackgroundColors(color: Int = getProperBackgroundColor()) {
+    private fun updateBackgroundColors() {
         val red = resources.getColor(R.color.red_missed)
         val properPrimaryColor = getProperPrimaryColor()
+        val properBackgroundColor = getProperBackgroundColor()
 
         val phoneNumber = if (getCurrentPhoneNumber().startsWith("+")) getPhoneNumberFormat(this@CallHistoryActivity, number = getCurrentPhoneNumber()) else getCurrentPhoneNumber()
 
@@ -140,7 +141,7 @@ class CallHistoryActivity : SimpleActivity() {
                 window.decorView.setBackgroundColor(colorToWhite)
                 window.statusBarColor = colorToWhite
                 //window.navigationBarColor = colorToWhite
-            } else window.decorView.setBackgroundColor(color)
+            } else window.decorView.setBackgroundColor(properBackgroundColor)
 
             binding.apply {
                 arrayOf(

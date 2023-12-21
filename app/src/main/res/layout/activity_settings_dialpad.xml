@@ -113,7 +113,7 @@
                         style="@style/SettingsHolderStyle"
                         android:paddingTop="@dimen/medium_margin"
                         android:paddingBottom="@dimen/medium_margin"
-                        android:background="@drawable/ripple_all_corners_12dp">
+                        android:background="@drawable/ripple_all_corners_11dp">
 
                         <com.goodwy.commons.views.MyTextView
                             android:id="@+id/settings_dialpad_style_label"
