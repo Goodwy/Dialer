@@ -209,11 +209,11 @@ class DialpadActivity : SimpleActivity() {
         setupOptionsMenu()
         refreshMenuItems()
         updateTextColors(binding.dialpadCoordinator)
-        setupToolbar(binding.dialpadToolbar, NavigationIcon.Arrow, navigationClick = false)
 
         val properTextColor = getProperTextColor()
         val properBackgroundColor = getProperBackgroundColor()
         val properPrimaryColor = getProperPrimaryColor()
+        setupToolbar(binding.dialpadToolbar, NavigationIcon.Arrow, statusBarColor = properBackgroundColor, navigationClick = false)
 
         arrayOf(binding.dialpadClearWrapper.dialpadAsterisk, binding.dialpadClearWrapper.dialpadHashtag,
             binding.dialpadRoundWrapper.dialpadAsteriskIos, binding.dialpadRoundWrapper.dialpadHashtagIos
@@ -483,8 +483,8 @@ class DialpadActivity : SimpleActivity() {
             setupCharClick(dialpad9Holder, '9')
             setupCharClick(dialpad0Holder, '0')
             //setupCharClick(dialpadPlusHolder, '+', longClickable = false)
-            setupCharClick(dialpadAsteriskHolder, '*', longClickable = false)
-            setupCharClick(dialpadHashtagHolder, '#', longClickable = false)
+            setupCharClick(dialpadAsteriskHolder, '*')
+            setupCharClick(dialpadHashtagHolder, '#')
         }
         binding.dialpadAddNumber.setOnClickListener { addNumberToContact() }
 
@@ -582,8 +582,8 @@ class DialpadActivity : SimpleActivity() {
             setupCharClick(dialpad9IosHolder, '9')
             setupCharClick(dialpad0IosHolder, '0')
             //setupCharClick(dialpadPlusIosHolder, '+', longClickable = false)
-            setupCharClick(dialpadAsteriskIosHolder, '*', longClickable = false)
-            setupCharClick(dialpadHashtagIosHolder, '#', longClickable = false)
+            setupCharClick(dialpadAsteriskIosHolder, '*')
+            setupCharClick(dialpadHashtagIosHolder, '#')
             dialpadIosHolder.setOnClickListener { } //Do not press between the buttons
         }
         binding.dialpadAddNumber.setOnClickListener { addNumberToContact() }
@@ -688,8 +688,8 @@ class DialpadActivity : SimpleActivity() {
             setupCharClick(dialpad9Holder, '9')
             setupCharClick(dialpad0Holder, '0')
             //setupCharClick(dialpadPlusHolder, '+', longClickable = false)
-            setupCharClick(dialpadAsteriskHolder, '*', longClickable = false)
-            setupCharClick(dialpadHashtagHolder, '#', longClickable = false)
+            setupCharClick(dialpadAsteriskHolder, '*')
+            setupCharClick(dialpadHashtagHolder, '#')
         }
         binding.dialpadAddNumber.setOnClickListener { addNumberToContact() }
 
@@ -1056,6 +1056,12 @@ class DialpadActivity : SimpleActivity() {
         if (char == '0') {
             clearChar(view)
             dialpadPressed('+', view)
+        } else if (char == '*') {
+            clearChar(view)
+            dialpadPressed(',', view)
+        } else if (char == '#') {
+            clearChar(view)
+            dialpadPressed(';', view)
         } else {
             val result = speedDial(char.digitToInt())
             if (result) {

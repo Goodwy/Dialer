@@ -32,6 +32,7 @@ class ChangeSortingDialog(val activity: BaseSimpleActivity, private val showCust
 
         setupSortRadio()
         setupOrderRadio()
+        setupSymbolsFirst()
     }
 
     private fun setupSortRadio() {
@@ -68,6 +69,10 @@ class ChangeSortingDialog(val activity: BaseSimpleActivity, private val showCust
         orderBtn.isChecked = true
     }
 
+    private fun setupSymbolsFirst() {
+        binding.sortingDialogSymbolsFirstCheckbox.isChecked = config.sortingSymbolsFirst
+    }
+
     private fun dialogConfirmed() {
         var sorting = when (binding.sortingDialogRadioSorting.checkedRadioButtonId) {
             R.id.sorting_dialog_radio_first_name -> SORT_BY_FIRST_NAME
@@ -92,6 +97,8 @@ class ChangeSortingDialog(val activity: BaseSimpleActivity, private val showCust
         } else {
             config.sorting = sorting
         }
+
+        config.sortingSymbolsFirst = binding.sortingDialogSymbolsFirstCheckbox.isChecked
 
         callback()
     }

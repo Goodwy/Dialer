@@ -23,7 +23,9 @@ import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
+import androidx.core.view.ScrollingView
 import androidx.core.view.updateLayoutParams
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.behaviorule.arturdumchev.library.pixels
 import com.google.android.material.snackbar.Snackbar
@@ -37,6 +39,7 @@ import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.FAQItem
 import com.goodwy.commons.models.RadioItem
 import com.goodwy.commons.models.contacts.Contact
+import com.goodwy.commons.views.MySearchMenu
 import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
 import com.goodwy.dialer.adapters.ViewPagerAdapter
@@ -64,6 +67,7 @@ class MainActivity : SimpleActivity() {
     private var searchQuery = ""
     private var storedStartNameWithSurname = false
     private var storedShowPhoneNumbers = false
+    private var currentOldScrollY = 0
     var cachedContacts = ArrayList<Contact>()
 
     @SuppressLint("MissingSuperCall")
@@ -134,9 +138,15 @@ class MainActivity : SimpleActivity() {
 
         binding.mainTopTabsContainer.beGoneIf(binding.mainTopTabsHolder.tabCount == 1 || useBottomNavigationBar)
 
-        val marginTop = if (useBottomNavigationBar) actionBarSize + pixels(R.dimen.top_toolbar_search_height).toInt() else actionBarSize
+        val marginTop =
+            if (useBottomNavigationBar) actionBarSize + pixels(R.dimen.top_toolbar_search_height).toInt() else actionBarSize
         binding.mainHolder.updateLayoutParams<ViewGroup.MarginLayoutParams> {
             setMargins(0, marginTop, 0, 0)
+        }
+        if (!useBottomNavigationBar) {
+            binding.mainMenu.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                height = actionBarSize
+            }
         }
     }
 
@@ -154,8 +164,6 @@ class MainActivity : SimpleActivity() {
             return
         }
 
-        updateMenuColors()
-        //refreshMenuItems()
         val properTextColor = getProperTextColor()
         val properPrimaryColor = getProperPrimaryColor()
         val dialpadIcon = resources.getColoredDrawableWithColor(this, R.drawable.ic_dialpad_vector, properPrimaryColor.getContrastColor())
@@ -163,7 +171,7 @@ class MainActivity : SimpleActivity() {
 
         updateTextColors(binding.mainHolder)
         setupTabColors()
-        setupToolbar(binding.mainToolbar, searchMenuItem = mSearchMenuItem)
+        binding.mainMenu.updateColors(getStartRequiredStatusBarColor(), scrollingView?.computeVerticalScrollOffset() ?: 0)
 
         val configStartNameWithSurname = config.startNameWithSurname
         if (storedStartNameWithSurname != configStartNameWithSurname) {
@@ -363,11 +371,6 @@ class MainActivity : SimpleActivity() {
         }
     }
 
-    private fun updateMenuColors() {
-        updateStatusbarColor(getProperBackgroundColor())
-        binding.mainMenu.updateColors()
-    }
-
     private fun checkContactPermissions() {
         handlePermission(PERMISSION_READ_CONTACTS) {
             initFragments()
@@ -559,7 +562,11 @@ class MainActivity : SimpleActivity() {
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
 
             override fun onPageSelected(position: Int) {
-                if (config.bottomNavigationBar) binding.mainTabsHolder.getTabAt(position)?.select() else binding.mainTopTabsHolder.getTabAt(position)?.select()
+                if (config.bottomNavigationBar) {
+                    binding.mainTabsHolder.getTabAt(position)?.select()
+                    scrollChange()
+                } else binding.mainTopTabsHolder.getTabAt(position)?.select()
+
                 getAllFragments().forEach {
                     it?.finishActMode()
                 }
@@ -615,11 +622,55 @@ class MainActivity : SimpleActivity() {
 
         binding.viewPager.onGlobalLayout {
             refreshMenuItems()
+            if (config.bottomNavigationBar) scrollChange()
         }
 
         if (config.openDialPadAtLaunch && !launchedDialer) {
             launchDialpad()
             launchedDialer = true
+        }
+    }
+
+    private fun scrollChange() {
+        val myRecyclerView = getCurrentFragment()?.myRecyclerView()
+        scrollingView = myRecyclerView
+        val scrollingViewOffset = scrollingView?.computeVerticalScrollOffset() ?: 0
+        currentOldScrollY = scrollingViewOffset
+        binding.mainMenu.updateColors(getStartRequiredStatusBarColor(), scrollingViewOffset)
+        setupSearchMenuScrollListenerNew(myRecyclerView, binding.mainMenu)
+    }
+
+    private fun setupSearchMenuScrollListenerNew(scrollingView: ScrollingView?, searchMenu: MySearchMenu) {
+        this.scrollingView = scrollingView
+        this.mySearchMenu = searchMenu
+        if (scrollingView is RecyclerView) {
+            scrollingView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+                val newScrollY = scrollingView.computeVerticalScrollOffset()
+                scrollingChanged(newScrollY)
+                currentScrollY = newScrollY
+                currentOldScrollY = currentScrollY
+            }
+        }
+    }
+
+    private fun scrollingChanged(newScrollY: Int) {
+        if (newScrollY > 0 && currentOldScrollY == 0) {
+            val colorFrom = window.statusBarColor
+            val colorTo = getColoredMaterialStatusBarColor()
+            animateMySearchMenuColors(colorFrom, colorTo)
+        } else if (newScrollY == 0 && currentOldScrollY > 0) {
+            val colorFrom = window.statusBarColor
+            val colorTo = getRequiredStatusBarColor()
+            animateMySearchMenuColors(colorFrom, colorTo)
+        }
+    }
+
+    private fun getStartRequiredStatusBarColor(): Int {
+        val scrollingViewOffset = scrollingView?.computeVerticalScrollOffset() ?: 0
+        return if (scrollingViewOffset == 0) {
+            getProperBackgroundColor()
+        } else {
+            getColoredMaterialStatusBarColor()
         }
     }
 
@@ -872,6 +923,9 @@ class MainActivity : SimpleActivity() {
         val subscriptionIdX1 = BuildConfig.SUBSCRIPTION_ID_X1
         val subscriptionIdX2 = BuildConfig.SUBSCRIPTION_ID_X2
         val subscriptionIdX3 = BuildConfig.SUBSCRIPTION_ID_X3
+        val subscriptionYearIdX1 = BuildConfig.SUBSCRIPTION_YEAR_ID_X1
+        val subscriptionYearIdX2 = BuildConfig.SUBSCRIPTION_YEAR_ID_X2
+        val subscriptionYearIdX3 = BuildConfig.SUBSCRIPTION_YEAR_ID_X3
 
         startAboutActivity(
             appNameId = R.string.app_name_g,
@@ -880,8 +934,12 @@ class MainActivity : SimpleActivity() {
             faqItems = faqItems,
             showFAQBeforeMail = true,
             licensingKey = BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
-            productIdX1 = productIdX1, productIdX2 = productIdX2, productIdX3 = productIdX3,
-            subscriptionIdX1 = subscriptionIdX1, subscriptionIdX2 = subscriptionIdX2, subscriptionIdX3 = subscriptionIdX3,
+            productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
+            productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
+            subscriptionIdList = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
+            subscriptionIdListRu = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
+            subscriptionYearIdList = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
+            subscriptionYearIdListRu = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
             playStoreInstalled = isPlayStoreInstalled(),
             ruStoreInstalled = isRuStoreInstalled()
         )

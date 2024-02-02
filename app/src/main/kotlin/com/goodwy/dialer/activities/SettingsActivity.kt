@@ -55,6 +55,9 @@ class SettingsActivity : SimpleActivity() {
     private val subscriptionIdX1 = BuildConfig.SUBSCRIPTION_ID_X1
     private val subscriptionIdX2 = BuildConfig.SUBSCRIPTION_ID_X2
     private val subscriptionIdX3 = BuildConfig.SUBSCRIPTION_ID_X3
+    private val subscriptionYearIdX1 = BuildConfig.SUBSCRIPTION_YEAR_ID_X1
+    private val subscriptionYearIdX2 = BuildConfig.SUBSCRIPTION_YEAR_ID_X2
+    private val subscriptionYearIdX3 = BuildConfig.SUBSCRIPTION_YEAR_ID_X3
     private var ruStoreIsConnected = false
 
     private val binding by viewBinding(ActivitySettingsBinding::inflate)
@@ -95,7 +98,7 @@ class SettingsActivity : SimpleActivity() {
             //PlayStore
             purchaseHelper.initBillingClient()
             val iapList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3)
-            val subList: ArrayList<String> = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3)
+            val subList: ArrayList<String> = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3, subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3)
             purchaseHelper.retrieveDonation(iapList, subList)
 
             purchaseHelper.isIapPurchased.observe(this) {
@@ -152,6 +155,8 @@ class SettingsActivity : SimpleActivity() {
                     }
             }
         }
+
+        checkWhatsNewDialog()
     }
 
     @SuppressLint("MissingSuperCall")
@@ -263,11 +268,11 @@ class SettingsActivity : SimpleActivity() {
     private fun updatePro(isPro: Boolean = isPro() || isOrWasThankYouInstalled() || isCollection()) {
         binding.apply {
             settingsPurchaseThankYouHolder.beGoneIf(isPro)
-            settingsCustomizeColorsLabel.text = if (isPro) {
-                getString(R.string.customize_colors)
-            } else {
-                getString(R.string.customize_colors_locked)
-            }
+//            settingsCustomizeColorsLabel.text = if (isPro) {
+//                getString(R.string.customize_colors)
+//            } else {
+//                getString(R.string.customize_colors_locked)
+//            }
             settingsTipJarHolder.beVisibleIf(isPro)
         }
     }
@@ -296,22 +301,22 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupCustomizeColors() {
-        binding.settingsCustomizeColorsLabel.text = if (isOrWasThankYouInstalled() || isPro() || isCollection()) {
-            getString(R.string.customize_colors)
-        } else {
-            getString(R.string.customize_colors_locked)
-        }
+//        binding.settingsCustomizeColorsLabel.text = if (isOrWasThankYouInstalled() || isPro() || isCollection()) {
+//            getString(R.string.customize_colors)
+//        } else {
+//            getString(R.string.customize_colors_locked)
+//        }
         binding.settingsCustomizeColorsHolder.setOnClickListener {
             startCustomizationActivity(
                 true,
                 isCollection = isOrWasThankYouInstalled() || isCollection(),
                 licensingKey = BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
-                productIdX1 = productIdX1,
-                productIdX2 = productIdX2,
-                productIdX3 = productIdX3,
-                subscriptionIdX1 = subscriptionIdX1,
-                subscriptionIdX2 = subscriptionIdX2,
-                subscriptionIdX3 = subscriptionIdX3,
+                productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
+                productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
+                subscriptionIdList = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
+                subscriptionIdListRu = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
+                subscriptionYearIdList = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
+                subscriptionYearIdListRu = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
                 playStoreInstalled = isPlayStoreInstalled(),
                 ruStoreInstalled = isRuStoreInstalled()
             )
@@ -342,27 +347,27 @@ class SettingsActivity : SimpleActivity() {
 
     // support for device-wise blocking came on Android 7, rely only on that
     @TargetApi(Build.VERSION_CODES.N)
-    private fun setupManageBlockedNumbers() {
-        binding.settingsManageBlockedNumbersHolder.beVisibleIf(isNougatPlus())
-        binding.settingsManageBlockedNumbersCount.text = getBlockedNumbers().size.toString()
+    private fun setupManageBlockedNumbers() = binding.apply {
+        settingsManageBlockedNumbersHolder.beVisibleIf(isNougatPlus())
+        settingsManageBlockedNumbersCount.text = getBlockedNumbers().size.toString()
 
         val getProperTextColor = getProperTextColor()
         val red = resources.getColor(R.color.red_missed)
         val colorUnknown = if (baseConfig.blockUnknownNumbers) red else getProperTextColor
         val alphaUnknown = if (baseConfig.blockUnknownNumbers) 1f else 0.6f
-        binding.settingsManageBlockedNumbersIconUnknown.apply {
+        settingsManageBlockedNumbersIconUnknown.apply {
             applyColorFilter(colorUnknown)
             alpha = alphaUnknown
         }
 
         val colorHidden = if (baseConfig.blockHiddenNumbers) red else getProperTextColor
         val alphaHidden = if (baseConfig.blockHiddenNumbers) 1f else 0.6f
-        binding.settingsManageBlockedNumbersIconHidden.apply {
+        settingsManageBlockedNumbersIconHidden.apply {
             applyColorFilter(colorHidden)
             alpha = alphaHidden
         }
 
-        binding.settingsManageBlockedNumbersHolder.setOnClickListener {
+        settingsManageBlockedNumbersHolder.setOnClickListener {
             Intent(this@SettingsActivity, ManageBlockedNumbersActivity::class.java).apply {
                 startActivity(this)
             }
@@ -383,9 +388,9 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun setupFontSize() {
-        binding.settingsFontSize.text = getFontSizeText()
-        binding.settingsFontSizeHolder.setOnClickListener {
+    private fun setupFontSize() = binding.apply {
+        settingsFontSize.text = getFontSizeText()
+        settingsFontSizeHolder.setOnClickListener {
             val items = arrayListOf(
                 RadioItem(FONT_SIZE_SMALL, getString(R.string.small)),
                 RadioItem(FONT_SIZE_MEDIUM, getString(R.string.medium)),
@@ -394,7 +399,7 @@ class SettingsActivity : SimpleActivity() {
 
             RadioGroupDialog(this@SettingsActivity, items, config.fontSize) {
                 config.fontSize = it as Int
-                binding.settingsFontSize.text = getFontSizeText()
+                settingsFontSize.text = getFontSizeText()
                 config.tabsChanged = true
             }
         }
@@ -490,13 +495,11 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun setupShowDividers() {
-        binding.apply {
-            settingsShowDividers.isChecked = config.useDividers
-            settingsShowDividersHolder.setOnClickListener {
-                settingsShowDividers.toggle()
-                config.useDividers = settingsShowDividers.isChecked
-            }
+    private fun setupShowDividers() = binding.apply {
+        settingsShowDividers.isChecked = config.useDividers
+        settingsShowDividersHolder.setOnClickListener {
+            settingsShowDividers.toggle()
+            config.useDividers = settingsShowDividers.isChecked
         }
     }
 
@@ -520,16 +523,14 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun setupUseColoredContacts() {
+    private fun setupUseColoredContacts() = binding.apply {
         updateWrapperUseColoredContacts()
-        binding.apply {
-            settingsColoredContacts.isChecked = config.useColoredContacts
-            settingsColoredContactsHolder.setOnClickListener {
-                settingsColoredContacts.toggle()
-                config.useColoredContacts = settingsColoredContacts.isChecked
-                settingsContactColorListHolder.beVisibleIf(config.useColoredContacts)
-                updateWrapperUseColoredContacts()
-            }
+        settingsColoredContacts.isChecked = config.useColoredContacts
+        settingsColoredContactsHolder.setOnClickListener {
+            settingsColoredContacts.toggle()
+            config.useColoredContacts = settingsColoredContacts.isChecked
+            settingsContactColorListHolder.beVisibleIf(config.useColoredContacts)
+            updateWrapperUseColoredContacts()
         }
     }
 
@@ -539,15 +540,13 @@ class SettingsActivity : SimpleActivity() {
         binding.settingsColoredContactsWrapper.background.applyColorFilter(wrapperColor)
     }
 
-    private fun setupContactsColorList() {
-        binding.apply {
-            settingsContactColorListHolder.beVisibleIf(config.useColoredContacts)
-            settingsContactColorListIcon.setImageResource(getContactsColorListIcon(config.contactColorList))
-            settingsContactColorListHolder.setOnClickListener {
-                ColorListDialog(this@SettingsActivity) {
-                    config.contactColorList = it as Int
-                    settingsContactColorListIcon.setImageResource(getContactsColorListIcon(it))
-                }
+    private fun setupContactsColorList() = binding.apply {
+        settingsContactColorListHolder.beVisibleIf(config.useColoredContacts)
+        settingsContactColorListIcon.setImageResource(getContactsColorListIcon(config.contactColorList))
+        settingsContactColorListHolder.setOnClickListener {
+            ColorListDialog(this@SettingsActivity) {
+                config.contactColorList = it as Int
+                settingsContactColorListIcon.setImageResource(getContactsColorListIcon(it))
             }
         }
     }
@@ -981,8 +980,8 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun setupTipJar() {
-        binding.settingsTipJarHolder.apply {
+    private fun setupTipJar() = binding.apply {
+        settingsTipJarHolder.apply {
             beVisibleIf(isOrWasThankYouInstalled() || isPro())
             background.applyColorFilter(getBottomNavigationBackgroundColor().lightenColor(4))
             setOnClickListener {
@@ -991,10 +990,9 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun setupAbout() {
-        val version = "Version: " + BuildConfig.VERSION_NAME
-        binding.settingsAboutVersion.text = version
-        binding.settingsAboutHolder.setOnClickListener {
+    private fun setupAbout() = binding.apply {
+        settingsAboutVersion.text = "Version: " + BuildConfig.VERSION_NAME
+        settingsAboutHolder.setOnClickListener {
             launchAbout()
         }
     }
@@ -1019,8 +1017,12 @@ class SettingsActivity : SimpleActivity() {
             faqItems = faqItems,
             showFAQBeforeMail = true,
             licensingKey = BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
-            productIdX1 = productIdX1, productIdX2 = productIdX2, productIdX3 = productIdX3,
-            subscriptionIdX1 = subscriptionIdX1, subscriptionIdX2 = subscriptionIdX2, subscriptionIdX3 = subscriptionIdX3,
+            productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
+            productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
+            subscriptionIdList = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
+            subscriptionIdListRu = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
+            subscriptionYearIdList = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
+            subscriptionYearIdListRu = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
             playStoreInstalled = isPlayStoreInstalled(),
             ruStoreInstalled = isRuStoreInstalled()
         )
@@ -1030,8 +1032,12 @@ class SettingsActivity : SimpleActivity() {
         startPurchaseActivity(
             R.string.app_name_g,
             BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
-            productIdX1, productIdX2, productIdX3,
-            subscriptionIdX1, subscriptionIdX2, subscriptionIdX3,
+            productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
+            productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
+            subscriptionIdList = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
+            subscriptionIdListRu = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
+            subscriptionYearIdList = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
+            subscriptionYearIdListRu = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
             playStoreInstalled = isPlayStoreInstalled(),
             ruStoreInstalled = isRuStoreInstalled()
         )
@@ -1098,7 +1104,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 490 //TODO changelog
+        val id = 500 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1115,13 +1121,21 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_490)) //TODO changelog
+            add(Release(id, R.string.release_500)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }
 
+    private fun checkWhatsNewDialog() {
+        arrayListOf<Release>().apply {
+            add(Release(492, R.string.release_492))
+            add(Release(500, R.string.release_500))
+            checkWhatsNew(this, BuildConfig.VERSION_CODE)
+        }
+    }
+
     private fun updateProducts() {
-        val productList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3, subscriptionIdX1, subscriptionIdX2, subscriptionIdX3)
+        val productList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3, subscriptionIdX1, subscriptionIdX2, subscriptionIdX3, subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3)
         ruStoreHelper.getProducts(productList)
     }
 

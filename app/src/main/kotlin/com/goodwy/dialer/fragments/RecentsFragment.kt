@@ -176,6 +176,8 @@ class RecentsFragment(context: Context, attributeSet: AttributeSet) : MyViewPage
         binding.recentsPlaceholder.beVisibleIf(recentCalls.isEmpty())
         recentsAdapter?.updateItems(recentCalls, text)
     }
+
+    override fun myRecyclerView() = binding.recentsList
 }
 
 // hide private contacts from recent calls

@@ -3,18 +3,17 @@ package com.goodwy.dialer.activities
 import android.os.Bundle
 import com.google.gson.Gson
 import com.goodwy.commons.dialogs.RadioGroupDialog
-import com.goodwy.commons.extensions.getMyContactsCursor
-import com.goodwy.commons.extensions.hideKeyboard
-import com.goodwy.commons.extensions.updateTextColors
-import com.goodwy.commons.extensions.viewBinding
+import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.ContactsHelper
 import com.goodwy.commons.helpers.MyContactsContentProvider
 import com.goodwy.commons.helpers.NavigationIcon
 import com.goodwy.commons.models.PhoneNumber
 import com.goodwy.commons.models.RadioItem
 import com.goodwy.commons.models.contacts.Contact
+import com.goodwy.dialer.R
 import com.goodwy.dialer.adapters.SpeedDialAdapter
 import com.goodwy.dialer.databinding.ActivityManageSpeedDialBinding
+import com.goodwy.dialer.dialogs.AddSpeedDialDialog
 import com.goodwy.dialer.dialogs.SelectContactDialog
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.interfaces.RemoveSpeedDialListener
@@ -74,34 +73,54 @@ class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
         SpeedDialAdapter(this, speedDialValues, this, binding.speedDialList) {
             val clickedContact = it as SpeedDial
             if (allContacts.isEmpty()) {
-                return@SpeedDialAdapter
+                showAddSpeedDialDialog(clickedContact)
             }
 
-            SelectContactDialog(this, allContacts) { selectedContact ->
-                if (selectedContact.phoneNumbers.size > 1) {
-                    val radioItems = selectedContact.phoneNumbers.mapIndexed { index, item ->
-                        RadioItem(index, item.normalizedNumber, item)
-                    }
-                    val userPhoneNumbersList = selectedContact.phoneNumbers.map { it.value }
-                    val checkedItemId = userPhoneNumbersList.indexOf(clickedContact.number)
-                    RadioGroupDialog(this, ArrayList(radioItems), checkedItemId = checkedItemId) { selectedValue ->
-                        val selectedNumber = selectedValue as PhoneNumber
-                        speedDialValues.first { it.id == clickedContact.id }.apply {
-                            displayName = selectedContact.getNameToDisplay()
-                            number = selectedNumber.normalizedNumber
-                        }
-                        updateAdapter()
-                    }
+            val items = arrayListOf(
+                RadioItem(0, getString(R.string.add_number)),
+                RadioItem(1, getString(R.string.choose_contact)))
+
+            RadioGroupDialog(this, items) {
+                if (it as Int == 0) {
+                    showAddSpeedDialDialog(clickedContact)
                 } else {
-                    speedDialValues.first { it.id == clickedContact.id }.apply {
-                        displayName = selectedContact.getNameToDisplay()
-                        number = selectedContact.phoneNumbers.first().normalizedNumber
+                    SelectContactDialog(this, allContacts) { selectedContact ->
+                        if (selectedContact.phoneNumbers.size > 1) {
+                            val radioItems = selectedContact.phoneNumbers.mapIndexed { index, item ->
+                                RadioItem(index, item.normalizedNumber, item)
+                            }
+                            val userPhoneNumbersList = selectedContact.phoneNumbers.map { it.value }
+                            val checkedItemId = userPhoneNumbersList.indexOf(clickedContact.number)
+                            RadioGroupDialog(this, ArrayList(radioItems), checkedItemId = checkedItemId) { selectedValue ->
+                                val selectedNumber = selectedValue as PhoneNumber
+                                speedDialValues.first { it.id == clickedContact.id }.apply {
+                                    displayName = selectedContact.getNameToDisplay()
+                                    number = selectedNumber.normalizedNumber
+                                }
+                                updateAdapter()
+                            }
+                        } else {
+                            speedDialValues.first { it.id == clickedContact.id }.apply {
+                                displayName = selectedContact.getNameToDisplay()
+                                number = selectedContact.phoneNumbers.first().normalizedNumber
+                            }
+                            updateAdapter()
+                        }
                     }
-                    updateAdapter()
                 }
             }
         }.apply {
             binding.speedDialList.adapter = this
+        }
+    }
+
+    private fun showAddSpeedDialDialog(clickedContact: SpeedDial) {
+        AddSpeedDialDialog(this, clickedContact) { newNumber ->
+            speedDialValues.first { it.id == clickedContact.id }.apply {
+                displayName = newNumber
+                number = newNumber
+            }
+            updateAdapter()
         }
     }
 

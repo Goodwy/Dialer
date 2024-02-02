@@ -11,31 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/main_app_bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/mainToolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/menu"
-            app:title="@string/app_launcher_name"
-            app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle"/>
-    </com.google.android.material.appbar.AppBarLayout>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main_holder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="96dp"
         android:fillViewport="true"
         android:scrollbars="none">
 
         <RelativeLayout
-            android:id="@+id/main_top_tabs_container"
+            android:id="@+id/mainTopTabsContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
@@ -86,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/mainTabsHolder"
-            app:layout_constraintTop_toBottomOf="@+id/main_top_tabs_container"/>
+            app:layout_constraintTop_toBottomOf="@+id/mainTopTabsContainer"/>
 
         <com.goodwy.commons.views.MyFloatingActionButton
             android:id="@+id/main_dialpad_button"

@@ -143,19 +143,17 @@ class CallHistoryActivity : SimpleActivity() {
                 //window.navigationBarColor = colorToWhite
             } else window.decorView.setBackgroundColor(properBackgroundColor)
 
-            binding.apply {
-                arrayOf(
-                    oneButton, twoButton, threeButton, fourButton,
-                    callHistoryPlaceholderContainer, callHistoryList,
-                    callHistoryNumberContainer,
-                    contactMessengersActionsHolder,
-                    contactEmailsHolder,
-                    contactEventsHolder,
-                    defaultSimButtonContainer,
-                    blockButton
-                ).forEach {
-                    it.background.setTint(buttonBg)
-                }
+            arrayOf(
+                oneButton, twoButton, threeButton, fourButton,
+                callHistoryPlaceholderContainer, callHistoryList,
+                callHistoryNumberContainer,
+                contactMessengersActionsHolder,
+                contactEmailsHolder,
+                contactEventsHolder,
+                defaultSimButtonContainer,
+                blockButton
+            ).forEach {
+                it.background.setTint(buttonBg)
             }
 
             if (isNumberBlocked(getCurrentPhoneNumber(), getBlockedNumbers())) {

@@ -28,12 +28,13 @@ class CallHistoryTopBehavior(
     override fun canUpdateHeight(progress: Float): Boolean = progress >= GONE_VIEW_THRESHOLD
 
     override fun View.setUpViews(): List<RuledView> {
-        val height = height
+        val heightView = calcAppbarHeight(this)
+        val height = if (heightView < 5) pixels(R.dimen.toolbar_height) else heightView.toFloat()
         return listOf(
             RuledView(
                 binding.topDetails.root,
                 BRuleYOffset(
-                    min = -(height/4).toFloat(),
+                    min = -(height/4),
                     max = pixels(R.dimen.zero),
                     interpolator = LinearInterpolator()
                 )

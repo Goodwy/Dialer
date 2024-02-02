@@ -51,6 +51,9 @@ class SettingsDialpadActivity : SimpleActivity() {
     private val subscriptionIdX1 = BuildConfig.SUBSCRIPTION_ID_X1
     private val subscriptionIdX2 = BuildConfig.SUBSCRIPTION_ID_X2
     private val subscriptionIdX3 = BuildConfig.SUBSCRIPTION_ID_X3
+    private val subscriptionYearIdX1 = BuildConfig.SUBSCRIPTION_YEAR_ID_X1
+    private val subscriptionYearIdX2 = BuildConfig.SUBSCRIPTION_YEAR_ID_X2
+    private val subscriptionYearIdX3 = BuildConfig.SUBSCRIPTION_YEAR_ID_X3
     private var ruStoreIsConnected = false
 
     private var speedDialValues = ArrayList<SpeedDial>()
@@ -228,7 +231,7 @@ class SettingsDialpadActivity : SimpleActivity() {
             //PlayStore
             purchaseHelper.initBillingClient()
             val iapList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3)
-            val subList: ArrayList<String> = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3)
+            val subList: ArrayList<String> = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3, subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3)
             purchaseHelper.retrieveDonation(iapList, subList)
 
             purchaseHelper.isIapPurchased.observe(this) {
@@ -1080,8 +1083,12 @@ class SettingsDialpadActivity : SimpleActivity() {
         startPurchaseActivity(
             R.string.app_name_g,
             BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
-            productIdX1, productIdX2, productIdX3,
-            subscriptionIdX1, subscriptionIdX2, subscriptionIdX3,
+            productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
+            productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
+            subscriptionIdList = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
+            subscriptionIdListRu = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
+            subscriptionYearIdList = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
+            subscriptionYearIdListRu = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
             playStoreInstalled = isPlayStoreInstalled(),
             ruStoreInstalled = isRuStoreInstalled()
         )

@@ -242,4 +242,6 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
         }
         binding.fragmentList.layoutManager = layoutManager
     }
+
+    override fun myRecyclerView() = binding.fragmentList
 }

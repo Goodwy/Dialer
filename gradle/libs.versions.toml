@@ -12,8 +12,8 @@ gradlePlugins-agp = "8.1.1"
 indicatorFastScroll = "4524cd0b61"
 autofitTextView = "0.2.1"
 #Goodwy
-right-commons = "80b5a784ee"
-rustore = "2.2.0"
+right-commons = "a5fe0960e7"
+rustore = "3.1.0"
 badger = "1.1.22"
 libphonenumber = "8.13.26"
 geocoder = "2.185"
@@ -31,15 +31,16 @@ app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
 #versioning
 app-version-appId = "com.goodwy.dialer"
-app-version-versionCode = "491"
-app-version-versionName = "4.9.1"
+app-version-versionCode = "500"
+app-version-versionName = "5.0.0"
 [libraries]
 #Simple Mobile Tools
 #simple-tools-commons = { module = "com.github.SimpleMobileTools:Simple-Commons", version.ref = "simple-commons" }
 #Kotlin
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 #Other
-indicator-fast-scroll = { module = "com.github.tibbi:IndicatorFastScroll", version.ref = "indicatorFastScroll" }
+#indicator-fast-scroll = { module = "com.github.tibbi:IndicatorFastScroll", version.ref = "indicatorFastScroll" }
+indicator-fast-scroll = { module = "com.github.goodwy:IndicatorFastScroll", version.ref = "indicatorFastScroll" }
 autofit-text-view = { module = "me.grantland:autofittextview", version.ref = "autofitTextView" }
 #Goodwy
 goodwy-commons = { module = "com.github.Goodwy:Goodwy-Commons", version.ref = "right-commons" }

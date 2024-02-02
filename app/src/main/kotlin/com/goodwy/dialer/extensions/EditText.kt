@@ -21,7 +21,9 @@ private fun getCharKeyCode(char: Char) = when (char) {
     '8' -> KeyEvent.KEYCODE_8
     '9' -> KeyEvent.KEYCODE_9
     '*' -> KeyEvent.KEYCODE_STAR
+    ',' -> KeyEvent.KEYCODE_NUMPAD_COMMA
     '+' -> KeyEvent.KEYCODE_PLUS
+    ';' -> KeyEvent.KEYCODE_SEMICOLON
     else -> KeyEvent.KEYCODE_POUND
 }
 

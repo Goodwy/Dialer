@@ -195,4 +195,5 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         }
     }
 
+    override fun myRecyclerView() = binding.fragmentList
 }

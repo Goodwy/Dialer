@@ -3,12 +3,10 @@ package com.goodwy.dialer.dialogs
 import android.app.Activity
 import android.view.ViewGroup
 import android.widget.RadioGroup
-import android.widget.RelativeLayout
 import androidx.appcompat.app.AlertDialog
 import com.goodwy.commons.extensions.beGone
 import com.goodwy.commons.extensions.getAlertDialogBuilder
 import com.goodwy.commons.extensions.setupDialogStuff
-import com.goodwy.dialer.R
 import com.goodwy.dialer.extensions.getPackageDrawable
 import com.goodwy.dialer.databinding.DialogChooseSocialBinding
 import com.goodwy.dialer.databinding.ItemChooseSocialBinding
