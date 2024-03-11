@@ -1,8 +1,8 @@
 package com.goodwy.dialer.fragments
 
 import android.content.Context
+import android.content.res.Configuration
 import android.util.AttributeSet
-import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import com.goodwy.commons.adapters.MyRecyclerViewAdapter
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
@@ -16,7 +16,9 @@ import com.goodwy.dialer.databinding.FragmentLettersLayoutBinding
 import com.goodwy.dialer.extensions.launchCreateNewContactIntent
 import com.goodwy.dialer.extensions.startContactDetailsIntentRecommendation
 import com.goodwy.dialer.interfaces.RefreshItemsListener
+import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import java.util.Locale
+
 
 class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment<MyViewPagerFragment.LettersInnerBinding>(context, attributeSet),
     RefreshItemsListener {
@@ -63,6 +65,7 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
             (fragmentList?.adapter as? MyRecyclerViewAdapter)?.apply {
                 updateTextColor(textColor)
                 updatePrimaryColor()
+                updateBackgroundColor(context.getProperBackgroundColor())
             }
             fragmentPlaceholder.setTextColor(textColor)
             fragmentPlaceholder2.setTextColor(properPrimaryColor)
@@ -111,6 +114,20 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
                 fragmentList.beVisible()
             }
 
+            try {
+                //Decrease the font size based on the number of letters in the letter scroller
+                val all = contacts.map { it.getNameToDisplay().substring(0, 1) }
+                val unique: Set<String> = HashSet(all)
+                val sizeUnique = unique.size
+                if (isHighScreenSize()) {
+                    if (sizeUnique > 37) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTiny
+                    else if (sizeUnique > 26) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleSmall
+                } else {
+                    if (sizeUnique > 30) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTiny
+                    else if (sizeUnique > 25) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleSmall
+                }
+            } catch (_: Exception) { }
+
             if (binding.fragmentList.adapter == null) {
                 ContactsAdapter(
                     activity = activity as SimpleActivity,
@@ -132,6 +149,14 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
             } else {
                 (binding.fragmentList.adapter as ContactsAdapter).updateItems(contacts)
             }
+        }
+    }
+
+    private fun isHighScreenSize(): Boolean {
+        return when (resources.configuration.screenLayout
+            and Configuration.SCREENLAYOUT_LONG_MASK) {
+            Configuration.SCREENLAYOUT_LONG_NO -> false
+            else -> true
         }
     }
 

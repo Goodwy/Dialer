@@ -67,7 +67,7 @@ class FilterContactSourcesDialog(val activity: SimpleActivity, private val callb
                     .setPositiveButton(R.string.ok) { dialogInterface, i -> confirmContactSources() }
                     .setNegativeButton(R.string.cancel, null)
                     .apply {
-                        activity.setupDialogStuff(binding.root, this) { alertDialog ->
+                        activity.setupDialogStuff(binding.root, this, R.string.filter) { alertDialog ->
                             dialog = alertDialog
                         }
                     }

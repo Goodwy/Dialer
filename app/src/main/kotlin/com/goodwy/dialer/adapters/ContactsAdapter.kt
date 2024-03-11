@@ -3,6 +3,7 @@ package com.goodwy.dialer.adapters
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ShortcutInfo
+import android.content.res.Resources
 import android.graphics.drawable.Icon
 import android.net.Uri
 import android.text.TextUtils
@@ -10,7 +11,9 @@ import android.util.TypedValue
 import android.view.*
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -19,6 +22,8 @@ import com.bumptech.glide.Glide
 import com.goodwy.commons.adapters.MyRecyclerViewAdapter
 import com.goodwy.commons.databinding.ItemContactWithNumberGridBinding
 import com.goodwy.commons.databinding.ItemContactWithNumberInfoBinding
+import com.goodwy.commons.dialogs.CallConfirmationDialog
+import com.goodwy.commons.dialogs.ConfirmationAdvancedDialog
 import com.goodwy.commons.dialogs.ConfirmationDialog
 import com.goodwy.commons.dialogs.FeatureLockedDialog
 import com.goodwy.commons.extensions.*
@@ -30,8 +35,17 @@ import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MyRecyclerView
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.SimpleActivity
+import com.goodwy.dialer.databinding.ItemContactWithNumberGridSwipeBinding
+import com.goodwy.dialer.databinding.ItemContactWithNumberInfoSwipeBinding
 import com.goodwy.dialer.extensions.*
+import com.goodwy.dialer.helpers.SWIPE_ACTION_BLOCK
+import com.goodwy.dialer.helpers.SWIPE_ACTION_DELETE
+import com.goodwy.dialer.helpers.SWIPE_ACTION_MESSAGE
 import com.goodwy.dialer.interfaces.RefreshItemsListener
+import com.goodwy.dialer.models.RecentCall
+import me.thanel.swipeactionview.SwipeActionView
+import me.thanel.swipeactionview.SwipeDirection
+import me.thanel.swipeactionview.SwipeGestureListener
 import java.util.*
 
 class ContactsAdapter(
@@ -134,16 +148,9 @@ class ContactsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = Binding.getByItemViewType(viewType).inflate(layoutInflater, parent, false)
+        val binding = Binding.getByItemViewType(viewType, activity.config.useSwipeToAction).inflate(layoutInflater, parent, false)
         return createViewHolder(binding.root)
     }
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-//        val layout = when (viewType) {
-//            VIEW_TYPE_GRID -> R.layout.item_contact_with_number_grid
-//            else -> R.layout.item_contact_with_number_info
-//        }
-//        return createViewHolder(layout, parent)
-//    }
 
     override fun getItemViewType(position: Int): Int {
         return viewType
@@ -153,7 +160,7 @@ class ContactsAdapter(
         val contact = contacts[position]
         holder.bindView(contact, true, allowLongClick) { itemView, layoutPosition ->
             val viewType = getItemViewType(position)
-            setupView(Binding.getByItemViewType(viewType).bind(itemView), contact, holder)
+            setupView(Binding.getByItemViewType(viewType, activity.config.useSwipeToAction).bind(itemView), contact, holder)
         }
         bindViewHolder(holder)
     }
@@ -174,19 +181,15 @@ class ContactsAdapter(
         }
     }
 
-    private fun tryBlockingUnblocking() {
+    private fun tryBlockingUnblocking(swipe: Boolean = false) {
         val contact = getSelectedItems().firstOrNull() ?: return
-
-        if (activity.isOrWasThankYouInstalled()) {
-            activity.isContactBlocked(contact) { blocked ->
-                if (blocked) {
-                    tryUnblocking(contact)
-                } else {
-                    tryBlocking(contact)
-                }
+        activity.isContactBlocked(contact) { blocked ->
+            if (swipe) selectedKeys.clear()
+            if (blocked) {
+                tryUnblocking(contact)
+            } else {
+                tryBlocking(contact)
             }
-        } else {
-            FeatureLockedDialog(activity) { }
         }
     }
 
@@ -249,7 +252,7 @@ class ContactsAdapter(
         finishActMode()
     }
 
-    private fun sendSMS() {
+    private fun sendSMS(isSwipe: Boolean = false) {
         val numbers = ArrayList<String>()
         getSelectedItems().map { simpleContact ->
             val contactNumbers = simpleContact.phoneNumbers
@@ -263,6 +266,7 @@ class ContactsAdapter(
 
         val recipient = TextUtils.join(";", numbers)
         activity.launchSendSMSIntentRecommendation(recipient)
+        if (isSwipe) selectedKeys.clear()
     }
 
     private fun viewContactDetails() {
@@ -282,10 +286,12 @@ class ContactsAdapter(
         val baseString = R.string.deletion_confirmation
         val question = String.format(resources.getString(baseString), items)
 
-        ConfirmationDialog(activity, question) {
-            activity.handlePermission(PERMISSION_WRITE_CONTACTS) {
-                deleteContacts()
-            }
+        ConfirmationAdvancedDialog(activity, question, cancelOnTouchOutside = false) {
+            if (it) {
+                activity.handlePermission(PERMISSION_WRITE_CONTACTS) {
+                    deleteContacts()
+                }
+            } else selectedKeys.clear()
         }
     }
 
@@ -360,7 +366,7 @@ class ContactsAdapter(
     override fun onViewRecycled(holder: ViewHolder) {
         super.onViewRecycled(holder)
         if (!activity.isDestroyed && !activity.isFinishing) {
-            Binding.getByItemViewType(holder.itemViewType).bind(holder.itemView).apply {
+            Binding.getByItemViewType(holder.itemViewType, activity.config.useSwipeToAction).bind(holder.itemView).apply {
                 Glide.with(activity).clear(itemContactImage)
             }
         }
@@ -433,6 +439,50 @@ class ContactsAdapter(
                 setBackgroundColor(textColor)
                 beInvisibleIf(getLastItem() == contact || !activity.config.useDividers)
             }
+
+            //swipe
+            if (activity.config.useSwipeToAction && itemContactSwipe != null) {
+                itemContactFrameSelect?.setupViewBackground(activity)
+                itemContactFrame.setBackgroundColor(backgroundColor)
+
+                val isRTL = activity.isRTLLayout
+                val swipeLeftAction = if (isRTL) activity.config.swipeRightAction else activity.config.swipeLeftAction
+                swipeLeftIcon!!.setImageResource(swipeActionImageResource(swipeLeftAction))
+                swipeLeftIcon!!.setColorFilter(properPrimaryColor.getContrastColor())
+                swipeLeftIconHolder!!.setBackgroundColor(swipeActionColor(swipeLeftAction))
+
+                val swipeRightAction = if (isRTL) activity.config.swipeLeftAction else activity.config.swipeRightAction
+                swipeRightIcon!!.setImageResource(swipeActionImageResource(swipeRightAction))
+                swipeRightIcon!!.setColorFilter(properPrimaryColor.getContrastColor())
+                swipeRightIconHolder!!.setBackgroundColor(swipeActionColor(swipeRightAction))
+
+                itemContactSwipe!!.setRippleColor(SwipeDirection.Left, swipeActionColor(swipeLeftAction))
+                itemContactSwipe!!.setRippleColor(SwipeDirection.Right, swipeActionColor(swipeRightAction))
+
+                val contactsGridColumnCount = activity.config.contactsGridColumnCount
+                if (viewType == VIEW_TYPE_GRID && contactsGridColumnCount > 1) {
+                    val width =
+                        (Resources.getSystem().displayMetrics.widthPixels / contactsGridColumnCount / 2.5).toInt()
+                    swipeLeftIconHolder!!.setWidth(width)
+                    swipeRightIconHolder!!.setWidth(width)
+                }
+
+                itemContactSwipe!!.swipeGestureListener = object : SwipeGestureListener {
+                    override fun onSwipedLeft(swipeActionView: SwipeActionView): Boolean {
+                        val swipeLeftOrRightAction = if (activity.isRTLLayout) activity.config.swipeRightAction else activity.config.swipeLeftAction
+                        swipeAction(swipeLeftOrRightAction, contact)
+                        if (activity.config.swipeVibration) itemContactSwipe!!.performHapticFeedback()
+                        return true
+                    }
+
+                    override fun onSwipedRight(swipeActionView: SwipeActionView): Boolean {
+                        val swipeRightOrLeftAction = if (activity.isRTLLayout) activity.config.swipeLeftAction else activity.config.swipeRightAction
+                        swipeAction(swipeRightOrLeftAction, contact)
+                        if (activity.config.swipeVibration) itemContactSwipe!!.performHapticFeedback()
+                        return true
+                    }
+                }
+            }
         }
     }
 
@@ -482,10 +532,10 @@ class ContactsAdapter(
 
     private sealed interface Binding {
         companion object {
-            fun getByItemViewType(viewType: Int): Binding {
+            fun getByItemViewType(viewType: Int, useSwipeToAction: Boolean): Binding {
                 return when (viewType) {
-                    VIEW_TYPE_GRID -> ItemContactGrid
-                    else -> ItemContact
+                    VIEW_TYPE_GRID -> if (useSwipeToAction) ItemContactGridSwipe else ItemContactGrid
+                    else -> if (useSwipeToAction) ItemContactSwipe else ItemContact
                 }
             }
         }
@@ -513,6 +563,26 @@ class ContactsAdapter(
                 return ItemContactBindingAdapter(ItemContactWithNumberInfoBinding.bind(view))
             }
         }
+
+        data object ItemContactGridSwipe : Binding {
+            override fun inflate(layoutInflater: LayoutInflater, viewGroup: ViewGroup, attachToRoot: Boolean): ItemViewBinding {
+                return ItemContactGridSwipeBindingAdapter(ItemContactWithNumberGridSwipeBinding.inflate(layoutInflater, viewGroup, attachToRoot))
+            }
+
+            override fun bind(view: View): ItemViewBinding {
+                return ItemContactGridSwipeBindingAdapter(ItemContactWithNumberGridSwipeBinding.bind(view))
+            }
+        }
+
+        data object ItemContactSwipe : Binding {
+            override fun inflate(layoutInflater: LayoutInflater, viewGroup: ViewGroup, attachToRoot: Boolean): ItemViewBinding {
+                return ItemContactSwipeBindingAdapter(ItemContactWithNumberInfoSwipeBinding.inflate(layoutInflater, viewGroup, attachToRoot))
+            }
+
+            override fun bind(view: View): ItemViewBinding {
+                return ItemContactSwipeBindingAdapter(ItemContactWithNumberInfoSwipeBinding.bind(view))
+            }
+        }
     }
 
     private interface ItemViewBinding : ViewBinding {
@@ -524,6 +594,12 @@ class ContactsAdapter(
         val itemContactInfo: ImageView?
         val itemContactInfoHolder: FrameLayout?
         val divider: ImageView?
+        val itemContactSwipe: SwipeActionView?
+        val itemContactFrameSelect: ConstraintLayout?
+        val swipeLeftIconHolder: RelativeLayout?
+        val swipeRightIconHolder: RelativeLayout?
+        val swipeLeftIcon: ImageView?
+        val swipeRightIcon: ImageView?
     }
 
     private class ItemContactGridBindingAdapter(val binding: ItemContactWithNumberGridBinding) : ItemViewBinding {
@@ -535,6 +611,12 @@ class ContactsAdapter(
         override val itemContactInfo = null
         override val itemContactInfoHolder = null
         override val divider = null
+        override val itemContactSwipe = null
+        override val itemContactFrameSelect = null
+        override val swipeLeftIconHolder = null
+        override val swipeRightIconHolder = null
+        override val swipeLeftIcon = null
+        override val swipeRightIcon = null
 
         override fun getRoot(): View = binding.root
     }
@@ -548,10 +630,117 @@ class ContactsAdapter(
         override val itemContactInfo = binding.itemContactInfo
         override val itemContactInfoHolder = binding.itemContactInfoHolder
         override val divider = binding.divider
+        override val itemContactSwipe = null
+        override val itemContactFrameSelect = null
+        override val swipeLeftIconHolder = null
+        override val swipeRightIconHolder = null
+        override val swipeLeftIcon = null
+        override val swipeRightIcon = null
+
+        override fun getRoot(): View = binding.root
+    }
+
+    private class ItemContactGridSwipeBindingAdapter(val binding: ItemContactWithNumberGridSwipeBinding) : ItemViewBinding {
+        override val itemContactName = binding.itemContactName
+        override val itemContactNumber = binding.itemContactNumber
+        override val itemContactImage = binding.itemContactImage
+        override val itemContactFrame = binding.itemContactFrame
+        override val dragHandleIcon = binding.dragHandleIcon
+        override val itemContactInfo = null
+        override val itemContactInfoHolder = null
+        override val divider = null
+        override val itemContactSwipe = binding.itemContactSwipe
+        override val itemContactFrameSelect = binding.itemContactFrameSelect
+        override val swipeLeftIconHolder = binding.swipeLeftIconHolder
+        override val swipeRightIconHolder = binding.swipeRightIconHolder
+        override val swipeLeftIcon = binding.swipeLeftIcon
+        override val swipeRightIcon = binding.swipeRightIcon
+
+        override fun getRoot(): View = binding.root
+    }
+
+    private class ItemContactSwipeBindingAdapter(val binding: ItemContactWithNumberInfoSwipeBinding) : ItemViewBinding {
+        override val itemContactName = binding.itemContactName
+        override val itemContactNumber = binding.itemContactNumber
+        override val itemContactImage = binding.itemContactImage
+        override val itemContactFrame = binding.itemContactFrame
+        override val dragHandleIcon = binding.dragHandleIcon
+        override val itemContactInfo = binding.itemContactInfo
+        override val itemContactInfoHolder = binding.itemContactInfoHolder
+        override val divider = binding.divider
+        override val itemContactSwipe = binding.itemContactSwipe
+        override val itemContactFrameSelect = binding.itemContactFrameSelect
+        override val swipeLeftIconHolder = binding.swipeLeftIconHolder
+        override val swipeRightIconHolder = binding.swipeRightIconHolder
+        override val swipeLeftIcon = binding.swipeLeftIcon
+        override val swipeRightIcon = binding.swipeRightIcon
 
         override fun getRoot(): View = binding.root
     }
     private fun viewContactInfo(contact: Contact) {
         activity.startContactDetailsIntentRecommendation(contact)
+    }
+
+    private fun swipeActionImageResource(swipeAction: Int): Int {
+        return when (swipeAction) {
+            SWIPE_ACTION_DELETE -> com.goodwy.commons.R.drawable.ic_delete_outline
+            SWIPE_ACTION_MESSAGE -> R.drawable.ic_messages
+            SWIPE_ACTION_BLOCK -> R.drawable.ic_block_vector
+            else -> R.drawable.ic_phone_vector
+        }
+    }
+
+    private fun swipeActionColor(swipeAction: Int): Int {
+        val oneSim = activity.config.currentSIMCardIndex == 0
+        val simColor = if (oneSim) activity.config.simIconsColors[1] else activity.config.simIconsColors[2]
+        return when (swipeAction) {
+            SWIPE_ACTION_DELETE -> resources.getColor(R.color.red_call, activity.theme)
+            SWIPE_ACTION_MESSAGE -> resources.getColor(R.color.ic_messages, activity.theme)
+            SWIPE_ACTION_BLOCK -> resources.getColor(R.color.swipe_purple, activity.theme)
+            else -> simColor
+        }
+    }
+
+    private fun swipeAction(swipeAction: Int, contact: Contact) {
+        when (swipeAction) {
+            SWIPE_ACTION_DELETE -> swipedDelete(contact)
+            SWIPE_ACTION_MESSAGE -> swipedSMS(contact)
+            SWIPE_ACTION_BLOCK -> swipedBlock(contact)
+            else -> swipedCall(contact)
+        }
+    }
+
+    private fun swipedDelete(contact: Contact) {
+        selectedKeys.add(contact.rawId)
+        if (activity.config.skipDeleteConfirmation) {
+            activity.handlePermission(PERMISSION_WRITE_CONTACTS) {
+                deleteContacts()
+            }
+        } else askConfirmDelete()
+    }
+
+    private fun swipedSMS(contact: Contact) {
+        selectedKeys.add(contact.rawId)
+        sendSMS(true)
+    }
+
+    private fun swipedBlock(contact: Contact) {
+        if (!isNougatPlus()) return
+        selectedKeys.add(contact.rawId)
+        tryBlockingUnblocking(true)
+    }
+
+    private fun swipedCall(contact: Contact) {
+        if (activity.config.showCallConfirmation) {
+            CallConfirmationDialog(activity as SimpleActivity, contact.getNameToDisplay()) {
+                activity.apply {
+                    initiateCall(contact) { launchCallIntent(it) }
+                }
+            }
+        } else {
+            activity.apply {
+                initiateCall(contact) { launchCallIntent(it) }
+            }
+        }
     }
 }

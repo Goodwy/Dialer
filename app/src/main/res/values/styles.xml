@@ -12,6 +12,16 @@
         <item name="android:alpha">0.8</item>
     </style>
 
+    <style name="DialpadLetterStyleSmall">
+        <item name="android:textSize">@dimen/small_text_size</item>
+        <item name="android:alpha">0.8</item>
+    </style>
+
+    <style name="DialpadLetterStyleTiny">
+        <item name="android:textSize">@dimen/tiny_text_size</item>
+        <item name="android:alpha">0.8</item>
+    </style>
+
     <style name="roundedImageView">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>

@@ -51,7 +51,7 @@
     <string name='end_call'>कॉल समाप्त करें</string>
     <string name="hold_call">कॉल होल्ड करें</string>
     <string name='resume_call'>कॉल फिर से शुरू करें</string>
-    <string name='call_on_होल्ड'>होल्ड पर</string>
+    <string name='call_on_hold'>होल्ड पर</string>
     <string name='call_swap'>कॉल स्वैप करें</string>
     <string name='call_merge'>कॉल मर्ज करें</string>
     <string name='call_split'>स्प्लिट कॉल</string>

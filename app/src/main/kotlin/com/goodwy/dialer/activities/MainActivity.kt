@@ -29,14 +29,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.behaviorule.arturdumchev.library.pixels
 import com.google.android.material.snackbar.Snackbar
-import com.goodwy.commons.dialogs.ChangeViewTypeDialog
 import com.goodwy.commons.dialogs.ConfirmationDialog
 import com.goodwy.commons.dialogs.PermissionRequiredDialog
 import com.goodwy.commons.dialogs.RadioGroupDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.extensions.notificationManager
 import com.goodwy.commons.helpers.*
-import com.goodwy.commons.models.FAQItem
 import com.goodwy.commons.models.RadioItem
 import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MySearchMenu
@@ -46,9 +44,7 @@ import com.goodwy.dialer.adapters.ViewPagerAdapter
 import com.goodwy.dialer.databinding.ActivityMainBinding
 import com.goodwy.dialer.dialogs.ChangeSortingDialog
 import com.goodwy.dialer.dialogs.FilterContactSourcesDialog
-import com.goodwy.dialer.extensions.config
-import com.goodwy.dialer.extensions.launchCreateNewContactIntent
-import com.goodwy.dialer.extensions.updateUnreadCountBadge
+import com.goodwy.dialer.extensions.*
 import com.goodwy.dialer.fragments.ContactsFragment
 import com.goodwy.dialer.fragments.FavoritesFragment
 import com.goodwy.dialer.fragments.MyViewPagerFragment
@@ -137,17 +133,6 @@ class MainActivity : SimpleActivity() {
         Contact.sorting = config.sorting
 
         binding.mainTopTabsContainer.beGoneIf(binding.mainTopTabsHolder.tabCount == 1 || useBottomNavigationBar)
-
-        val marginTop =
-            if (useBottomNavigationBar) actionBarSize + pixels(R.dimen.top_toolbar_search_height).toInt() else actionBarSize
-        binding.mainHolder.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-            setMargins(0, marginTop, 0, 0)
-        }
-        if (!useBottomNavigationBar) {
-            binding.mainMenu.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                height = actionBarSize
-            }
-        }
     }
 
     @Suppress("DEPRECATION")
@@ -180,7 +165,7 @@ class MainActivity : SimpleActivity() {
             storedStartNameWithSurname = config.startNameWithSurname
         }
 
-        if (!isSearchOpen && !binding.mainMenu.isSearchOpen) {
+        if (/*!isSearchOpen && */!binding.mainMenu.isSearchOpen) {
             refreshItems(true)
         }
 
@@ -236,6 +221,7 @@ class MainActivity : SimpleActivity() {
             else -> null
         }
         binding.viewPager.setPageTransformer(true, animation)
+        binding.viewPager.setPagingEnabled(!config.useSwipeToAction)
 
         val properBackgroundColor = getProperBackgroundColor()
         getAllFragments().forEach {
@@ -355,7 +341,7 @@ class MainActivity : SimpleActivity() {
         }
 
         val currentColumnCount = config.contactsGridColumnCount
-        RadioGroupDialog(this, ArrayList(items), currentColumnCount) {
+        RadioGroupDialog(this, ArrayList(items), currentColumnCount, R.string.column_count) {
             val newColumnCount = it as Int
             if (currentColumnCount != newColumnCount) {
                 config.contactsGridColumnCount = newColumnCount
@@ -365,10 +351,13 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun changeViewType() {
-        ChangeViewTypeDialog(this) {
-            refreshMenuItems()
-            getFavoritesFragment()?.refreshItems()
-        }
+//        ChangeViewTypeDialog(this) {
+//            refreshMenuItems()
+//            getFavoritesFragment()?.refreshItems()
+//        }
+        config.viewType = if (config.viewType == VIEW_TYPE_LIST) VIEW_TYPE_GRID else VIEW_TYPE_LIST
+        refreshMenuItems()
+        getFavoritesFragment()?.refreshItems()
     }
 
     private fun checkContactPermissions() {
@@ -524,7 +513,7 @@ class MainActivity : SimpleActivity() {
         }
 
         if (showTabs and TAB_CALL_HISTORY != 0) {
-            icons.add(R.drawable.ic_clock_filled_tilted)
+            icons.add(R.drawable.ic_clock_filled_scaled)
         }
 
         if (showTabs and TAB_CONTACTS != 0) {
@@ -904,47 +893,6 @@ class MainActivity : SimpleActivity() {
         startActivity(Intent(applicationContext, SettingsActivity::class.java))
     }
 
-    private fun launchAbout() {
-        val licenses = LICENSE_GLIDE or LICENSE_INDICATOR_FAST_SCROLL
-
-        val faqItems = arrayListOf(
-            FAQItem(R.string.faq_1_title, R.string.faq_1_text),
-            FAQItem(R.string.faq_1_title_dialer_g, R.string.faq_1_text_dialer_g),
-            FAQItem(R.string.faq_2_title_dialer_g, R.string.faq_2_text_dialer_g),
-            FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons_g),
-            //FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons),
-            FAQItem(R.string.faq_7_title_commons, R.string.faq_7_text_commons),
-            FAQItem(R.string.faq_9_title_commons, R.string.faq_9_text_commons)
-        )
-
-        val productIdX1 = BuildConfig.PRODUCT_ID_X1
-        val productIdX2 = BuildConfig.PRODUCT_ID_X2
-        val productIdX3 = BuildConfig.PRODUCT_ID_X3
-        val subscriptionIdX1 = BuildConfig.SUBSCRIPTION_ID_X1
-        val subscriptionIdX2 = BuildConfig.SUBSCRIPTION_ID_X2
-        val subscriptionIdX3 = BuildConfig.SUBSCRIPTION_ID_X3
-        val subscriptionYearIdX1 = BuildConfig.SUBSCRIPTION_YEAR_ID_X1
-        val subscriptionYearIdX2 = BuildConfig.SUBSCRIPTION_YEAR_ID_X2
-        val subscriptionYearIdX3 = BuildConfig.SUBSCRIPTION_YEAR_ID_X3
-
-        startAboutActivity(
-            appNameId = R.string.app_name_g,
-            licenseMask = licenses,
-            versionName = BuildConfig.VERSION_NAME,
-            faqItems = faqItems,
-            showFAQBeforeMail = true,
-            licensingKey = BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
-            productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
-            productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
-            subscriptionIdList = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
-            subscriptionIdListRu = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
-            subscriptionYearIdList = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
-            subscriptionYearIdListRu = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
-            playStoreInstalled = isPlayStoreInstalled(),
-            ruStoreInstalled = isRuStoreInstalled()
-        )
-    }
-
     private fun showSortingDialog(showCustomSorting: Boolean) {
         ChangeSortingDialog(this, showCustomSorting) {
             getFavoritesFragment()?.refreshItems {
@@ -1005,15 +953,4 @@ class MainActivity : SimpleActivity() {
             mSearchMenuItem?.collapseActionView()
         }
     }
-
-    /*private fun actionBarSize(): Float {
-        val styledAttributes = theme.obtainStyledAttributes(IntArray(1) { android.R.attr.actionBarSize })
-        val actionBarSize = styledAttributes.getDimension(0, 0F)
-        styledAttributes.recycle()
-        return actionBarSize
-    }*/
-
-    private val actionBarSize
-        get() = theme.obtainStyledAttributes(intArrayOf(android.R.attr.actionBarSize))
-            .let { attrs -> attrs.getDimension(0, 0F).toInt().also { attrs.recycle() } }
 }

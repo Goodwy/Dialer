@@ -6,11 +6,13 @@ import android.media.AudioManager.STREAM_DTMF
 import android.media.ToneGenerator
 import android.os.Handler
 import android.os.Looper
+import com.goodwy.dialer.extensions.config
 
 class ToneGeneratorHelper(context: Context, private val minToneLengthMs: Long) {
     private val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
     private val toneGenerator: ToneGenerator? = try {
-        ToneGenerator(DIAL_TONE_STREAM_TYPE, TONE_RELATIVE_VOLUME)
+        val volume = context.config.toneVolume
+        ToneGenerator(DIAL_TONE_STREAM_TYPE, volume)
     } catch (ignored: Exception) {
         null
     }

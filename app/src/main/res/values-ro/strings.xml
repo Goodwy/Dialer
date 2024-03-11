@@ -53,7 +53,7 @@
     <string name="call_add">Adăugați apel</string>
     <string name="conference_manage">Gestionați apelul de conferință</string>
     <string name="conference">Conferință</string>
-    <string name="audio_route_speaker">Speaker</string>
+    <string name="audio_route_speaker">Difuzor</string>
     <string name="audio_route_bluetooth">Bluetooth</string>
     <string name="audio_route_wired_headset">Wired Headset</string>
     <string name="audio_route_wired_or_earpiece">Wired or Earpiece</string>

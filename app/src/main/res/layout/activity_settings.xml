@@ -123,7 +123,6 @@
                         style="@style/SettingsChevronStyle"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/smaller_margin"
                         android:contentDescription="@string/customization_theme_summary"/>
                 </RelativeLayout>
 
@@ -167,6 +166,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/settings_margin"
                         android:clickable="false"
                         android:contentDescription="@string/settings_icon"
@@ -211,6 +211,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
                             android:layout_marginEnd="@dimen/settings_margin"
                             android:clickable="false"
                             android:contentDescription="@string/contact_color_list"
@@ -247,6 +248,7 @@
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/settings_margin"
                         android:padding="@dimen/smaller_margin"
                         android:background="@drawable/pulsing_background"
@@ -275,6 +277,7 @@
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/settings_margin"
                         android:padding="@dimen/smaller_margin"
                         android:background="@drawable/pulsing_background"
@@ -283,6 +286,185 @@
                         android:src="@drawable/ic_phone_two_vector"
                         tools:backgroundTint="@color/color_primary"
                         tools:tint="@color/white"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/settingsGeneralHolder"
+                style="@style/SettingsSectionHolder"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/settingsGeneralLabel"
+                    style="@style/SettingsTextLabelStyle"
+                    android:layout_marginTop="@dimen/normal_margin"
+                    android:layout_marginStart="@dimen/smaller_margin"
+                    android:layout_marginBottom="@dimen/small_margin"
+                    android:text="@string/general"
+                    android:textStyle="bold"
+                    tools:textColor="@color/primary"/>
+
+                <RelativeLayout
+                    android:id="@+id/settingsManageBlockedNumbersHolder"
+                    style="@style/SettingsHolderStyle">
+
+                    <com.goodwy.commons.views.MyTextView
+                        android:id="@+id/settingsManageBlockedNumbers"
+                        style="@style/SettingsTextLabelStyle"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@+id/settingsManageBlockedNumbersIconUnknown"
+                        android:layout_marginEnd="12dp"
+                        android:text="@string/manage_blocked_numbers"/>
+
+                    <ImageView
+                        android:id="@+id/settingsManageBlockedNumbersIconUnknown"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/settingsManageBlockedNumbersIconHidden"
+                        android:layout_marginBottom="@dimen/tiny_margin"
+                        android:layout_marginEnd="@dimen/smaller_margin"
+                        android:src="@drawable/ic_no_accounts"
+                        android:contentDescription="@string/block_not_stored_calls"/>
+
+                    <ImageView
+                        android:id="@+id/settingsManageBlockedNumbersIconHidden"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/settingsManageBlockedNumbersCount"
+                        android:layout_marginEnd="@dimen/medium_margin"
+                        android:src="@drawable/ic_question"
+                        android:contentDescription="@string/block_hidden_calls"/>
+
+                    <com.goodwy.commons.views.MyTextView
+                        android:id="@+id/settingsManageBlockedNumbersCount"
+                        style="@style/SettingsTextValueStyle"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/settingsManageBlockedNumbersChevron"
+                        android:layout_marginEnd="@dimen/tiny_margin"
+                        tools:text="8"/>
+
+                    <ImageView
+                        android:id="@+id/settingsManageBlockedNumbersChevron"
+                        style="@style/SettingsChevronStyle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/manage_blocked_numbers"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/settings_manage_speed_dial_holder"
+                    style="@style/SettingsHolderStyle">
+
+                    <com.goodwy.commons.views.MyTextView
+                        android:id="@+id/settings_manage_speed_dial"
+                        style="@style/SettingsTextLabelStyle"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="68dp"
+                        android:text="@string/manage_speed_dial"/>
+
+                    <ImageView
+                        android:id="@+id/settings_manage_speed_dial_chevron"
+                        style="@style/SettingsChevronStyle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/manage_speed_dial"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/settings_hide_dialpad_letters_holder"
+                    style="@style/SettingsHolderSwitchStyle"
+                    android:visibility="gone">
+
+                    <com.goodwy.commons.views.MySwitchCompat
+                        android:id="@+id/settings_hide_dialpad_letters"
+                        style="@style/SettingsSwitchStyle"
+                        android:text="@string/hide_dialpad_letters_g"
+                        app:switchPadding="@dimen/bigger_margin"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/settings_hide_dialpad_numbers_holder"
+                    style="@style/SettingsHolderSwitchStyle"
+                    android:visibility="gone">
+
+                    <com.goodwy.commons.views.MySwitchCompat
+                        android:id="@+id/settings_hide_dialpad_numbers"
+                        style="@style/SettingsSwitchStyle"
+                        android:text="@string/hide_dialpad_numbers"
+                        app:switchPadding="@dimen/bigger_margin"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/settings_font_size_holder"
+                    style="@style/SettingsHolderStyle">
+
+                    <com.goodwy.commons.views.MyTextView
+                        android:id="@+id/settings_font_size_label"
+                        style="@style/SettingsTextLabelStyle"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/settings_font_size"
+                        android:text="@string/font_size"/>
+
+                    <com.goodwy.commons.views.MyTextView
+                        android:id="@+id/settings_font_size"
+                        style="@style/SettingsTextValueStyle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/settings_margin"
+                        tools:text="@string/medium"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/settings_change_date_time_format_holder"
+                    style="@style/SettingsHolderStyle">
+
+                    <com.goodwy.commons.views.MyTextView
+                        android:id="@+id/settings_change_date_time_format"
+                        style="@style/SettingsTextLabelStyle"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="68dp"
+                        android:text="@string/change_date_and_time_format"/>
+
+                    <ImageView
+                        android:id="@+id/settings_change_date_time_format_chevron"
+                        style="@style/SettingsChevronStyle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:contentDescription="@string/change_date_and_time_format"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/settings_use_english_holder"
+                    style="@style/SettingsHolderSwitchStyle">
+
+                    <com.goodwy.commons.views.MySwitchCompat
+                        android:id="@+id/settings_use_english"
+                        style="@style/SettingsSwitchStyle"
+                        android:text="@string/use_english_language"
+                        app:switchPadding="@dimen/bigger_margin"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/settings_language_holder"
+                    style="@style/SettingsHolderStyle">
+
+                    <com.goodwy.commons.views.MyTextView
+                        android:id="@+id/settings_language_label"
+                        style="@style/SettingsTextLabelStyle"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/settings_language"
+                        android:text="@string/language"/>
+
+                    <com.goodwy.commons.views.MyTextView
+                        android:id="@+id/settings_language"
+                        style="@style/SettingsTextValueStyle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/settings_margin"
+                        tools:text="English"/>
                 </RelativeLayout>
             </LinearLayout>
 
@@ -337,7 +519,6 @@
                         style="@style/SettingsChevronStyle"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/smaller_margin"
                         android:contentDescription="@string/manage_shown_tabs"/>
                 </RelativeLayout>
 
@@ -405,184 +586,111 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/settingsGeneralHolder"
+                android:id="@+id/settingsSwipeGesturesHolder"
                 style="@style/SettingsSectionHolder"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/settingsGeneralLabel"
+                    android:id="@+id/settingsSwipeGesturesLabel"
                     style="@style/SettingsTextLabelStyle"
                     android:layout_marginTop="@dimen/normal_margin"
                     android:layout_marginStart="@dimen/smaller_margin"
                     android:layout_marginBottom="@dimen/small_margin"
-                    android:text="@string/general"
+                    android:text="@string/swipe_gestures"
                     android:textStyle="bold"
-                    tools:textColor="@color/primary"/>
+                    tools:textColor="@color/primary" />
 
                 <RelativeLayout
-                    android:id="@+id/settingsManageBlockedNumbersHolder"
-                    style="@style/SettingsHolderStyle">
+                    android:id="@+id/settingsUseSwipeToActionHolder"
+                    style="@style/SettingsHolderSwitchStyle">
 
                     <com.goodwy.commons.views.MyTextView
-                        android:id="@+id/settingsManageBlockedNumbers"
-                        style="@style/SettingsTextLabelStyle"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_toStartOf="@+id/settingsManageBlockedNumbersIconUnknown"
-                        android:layout_marginEnd="12dp"
-                        android:text="@string/manage_blocked_numbers"/>
-
-                    <ImageView
-                        android:id="@+id/settingsManageBlockedNumbersIconUnknown"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/settingsManageBlockedNumbersIconHidden"
-                        android:layout_marginBottom="@dimen/tiny_margin"
-                        android:layout_marginEnd="@dimen/smaller_margin"
-                        android:src="@drawable/ic_no_accounts"
-                        android:contentDescription="@string/block_not_stored_calls"/>
-
-                    <ImageView
-                        android:id="@+id/settingsManageBlockedNumbersIconHidden"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/settingsManageBlockedNumbersCount"
-                        android:layout_marginEnd="@dimen/medium_margin"
-                        android:src="@drawable/ic_question"
-                        android:contentDescription="@string/block_hidden_calls"/>
-
-                    <com.goodwy.commons.views.MyTextView
-                        android:id="@+id/settingsManageBlockedNumbersCount"
-                        style="@style/SettingsTextValueStyle"
-                        android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/settingsManageBlockedNumbersChevron"
-                        android:layout_marginEnd="@dimen/tiny_margin"
-                        tools:text="8"/>
-
-                    <ImageView
-                        android:id="@+id/settingsManageBlockedNumbersChevron"
-                        style="@style/SettingsChevronStyle"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/smaller_margin"
-                        android:contentDescription="@string/manage_blocked_numbers"/>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/settings_manage_speed_dial_holder"
-                    style="@style/SettingsHolderStyle">
-
-                    <com.goodwy.commons.views.MyTextView
-                        android:id="@+id/settings_manage_speed_dial"
-                        style="@style/SettingsTextLabelStyle"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="68dp"
-                        android:text="@string/manage_speed_dial"/>
-
-                    <ImageView
-                        android:id="@+id/settings_manage_speed_dial_chevron"
-                        style="@style/SettingsChevronStyle"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/smaller_margin"
-                        android:contentDescription="@string/manage_speed_dial"/>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/settings_hide_dialpad_letters_holder"
-                    style="@style/SettingsHolderSwitchStyle"
-                    android:visibility="gone">
-
-                    <com.goodwy.commons.views.MySwitchCompat
-                        android:id="@+id/settings_hide_dialpad_letters"
-                        style="@style/SettingsSwitchStyle"
-                        android:text="@string/hide_dialpad_letters_g"
-                        app:switchPadding="@dimen/bigger_margin"/>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/settings_hide_dialpad_numbers_holder"
-                    style="@style/SettingsHolderSwitchStyle"
-                    android:visibility="gone">
-
-                    <com.goodwy.commons.views.MySwitchCompat
-                        android:id="@+id/settings_hide_dialpad_numbers"
-                        style="@style/SettingsSwitchStyle"
-                        android:text="@string/hide_dialpad_numbers"
-                        app:switchPadding="@dimen/bigger_margin"/>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/settings_font_size_holder"
-                    style="@style/SettingsHolderStyle">
-
-                    <com.goodwy.commons.views.MyTextView
-                        android:id="@+id/settings_font_size_label"
+                        android:id="@+id/settingsUseSwipeToActionLabel"
                         style="@style/SettingsTextLabelStyle"
                         android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/settings_font_size"
-                        android:text="@string/font_size"/>
+                        android:layout_centerVertical="false"
+                        android:layout_toStartOf="@+id/settingsUseSwipeToAction"
+                        android:text="@string/use_swipe_gestures" />
 
                     <com.goodwy.commons.views.MyTextView
-                        android:id="@+id/settings_font_size"
-                        style="@style/SettingsTextValueStyle"
+                        android:id="@+id/settingsUseSwipeToActionSummary"
+                        style="@style/SettingsTextSummaryStyle"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/settingsUseSwipeToActionLabel"
+                        android:layout_toStartOf="@+id/settingsUseSwipeToAction"
+                        android:clickable="false"
+                        android:text="@string/use_swipe_gestures_summary"/>
+
+                    <com.goodwy.commons.views.MySwitchCompat
+                        android:id="@+id/settingsUseSwipeToAction"
+                        style="@style/SettingsSwitchStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="@dimen/settings_margin"
-                        tools:text="@string/medium"/>
+                        android:layout_centerVertical="true"
+                        app:switchPadding="@dimen/bigger_margin" />
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/settings_change_date_time_format_holder"
-                    style="@style/SettingsHolderStyle">
-
-                    <com.goodwy.commons.views.MyTextView
-                        android:id="@+id/settings_change_date_time_format"
-                        style="@style/SettingsTextLabelStyle"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="68dp"
-                        android:text="@string/change_date_and_time_format"/>
-
-                    <ImageView
-                        android:id="@+id/settings_change_date_time_format_chevron"
-                        style="@style/SettingsChevronStyle"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/smaller_margin"
-                        android:contentDescription="@string/change_date_and_time_format"/>
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/settings_use_english_holder"
+                    android:id="@+id/settingsSwipeVibrationHolder"
                     style="@style/SettingsHolderSwitchStyle">
 
                     <com.goodwy.commons.views.MySwitchCompat
-                        android:id="@+id/settings_use_english"
+                        android:id="@+id/settingsSwipeVibration"
                         style="@style/SettingsSwitchStyle"
-                        android:text="@string/use_english_language"
-                        app:switchPadding="@dimen/bigger_margin"/>
+                        android:text="@string/vibrate_g"
+                        app:switchPadding="@dimen/bigger_margin" />
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/settings_language_holder"
-                    style="@style/SettingsHolderStyle">
+                    android:id="@+id/settingsSwipeRightActionHolder"
+                    style="@style/SettingsHolderSwitchStyle">
 
                     <com.goodwy.commons.views.MyTextView
-                        android:id="@+id/settings_language_label"
+                        android:id="@+id/settingsSwipeRightActionLabel"
                         style="@style/SettingsTextLabelStyle"
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
-                        android:layout_toStartOf="@+id/settings_language"
-                        android:text="@string/language"/>
+                        android:layout_toStartOf="@+id/settingsSwipeRightAction"
+                        android:text="@string/swipe_right_action" />
 
                     <com.goodwy.commons.views.MyTextView
-                        android:id="@+id/settings_language"
+                        android:id="@+id/settingsSwipeRightAction"
                         style="@style/SettingsTextValueStyle"
                         android:layout_alignParentEnd="true"
                         android:layout_marginEnd="@dimen/settings_margin"
-                        tools:text="English"/>
+                        tools:text="@string/send_sms" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/settingsSwipeLeftActionHolder"
+                    style="@style/SettingsHolderSwitchStyle">
+
+                    <com.goodwy.commons.views.MyTextView
+                        android:id="@+id/settingsSwipeLeftActionLabel"
+                        style="@style/SettingsTextLabelStyle"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/settingsSwipeLeftAction"
+                        android:text="@string/swipe_left_action" />
+
+                    <com.goodwy.commons.views.MyTextView
+                        android:id="@+id/settingsSwipeLeftAction"
+                        style="@style/SettingsTextValueStyle"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="@dimen/settings_margin"
+                        tools:text="@string/delete" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/settingsSkipDeleteConfirmationHolder"
+                    style="@style/SettingsHolderSwitchStyle">
+
+                    <com.goodwy.commons.views.MySwitchCompat
+                        android:id="@+id/settingsSkipDeleteConfirmation"
+                        style="@style/SettingsSwitchStyle"
+                        android:text="@string/skip_delete_confirmation"
+                        app:switchPadding="@dimen/bigger_margin" />
                 </RelativeLayout>
             </LinearLayout>
 
@@ -617,7 +725,6 @@
                         style="@style/SettingsChevronStyle"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/smaller_margin"
                         android:contentDescription="@string/dialpad_preferences"/>
                 </RelativeLayout>
             </LinearLayout>
@@ -747,30 +854,44 @@
                     android:id="@+id/settingsMissedCallNotificationsHolder"
                     style="@style/SettingsHolderSwitchStyle">
 
+                    <com.goodwy.commons.views.MyTextView
+                        android:id="@+id/settingsMissedCallNotificationsLabel"
+                        style="@style/SettingsTextLabelStyle"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/settingsMissedCallNotificationsBeta"
+                        android:text="@string/missed_call_notifications_g" />
+
+                    <TextView
+                        android:id="@+id/settingsMissedCallNotificationsBeta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/small_margin"
+                        android:layout_marginRight="@dimen/small_margin"
+                        android:layout_centerVertical="true"
+                        android:layout_toStartOf="@+id/settingsMissedCallNotifications"
+                        android:background="@drawable/button_rounded_5dp"
+                        android:backgroundTint="@color/red_call"
+                        android:clickable="false"
+                        android:paddingTop="@dimen/tiny_margin"
+                        android:paddingBottom="@dimen/tiny_margin"
+                        android:paddingStart="5dp"
+                        android:paddingEnd="5dp"
+                        android:text="@string/beta"
+                        android:textSize="12sp"
+                        android:textColor="@color/white"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:includeFontPadding="false"/>
+
                     <com.goodwy.commons.views.MySwitchCompat
                         android:id="@+id/settingsMissedCallNotifications"
                         style="@style/SettingsSwitchStyle"
-                        android:text="@string/missed_call_notifications_g"
-                        app:switchPadding="@dimen/bigger_margin"/>
-
-                    <TextView
-                        android:id="@+id/settingsMissedCallNotificationsSummary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/settingsMissedCallNotifications"
-                        android:layout_marginStart="6dp"
-                        android:alpha="0.8"
-                        android:background="@drawable/button_background_rounded"
-                        android:backgroundTint="@color/red_call"
-                        android:clickable="false"
-                        android:paddingTop="1dp"
-                        android:paddingBottom="1dp"
-                        android:paddingStart="@dimen/medium_margin"
-                        android:paddingEnd="@dimen/medium_margin"
-                        android:text="@string/beta"
-                        android:textSize="10sp"
-                        android:textColor="@color/white"
-                        android:textAllCaps="true"/>
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        app:switchPadding="@dimen/bigger_margin" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -943,7 +1064,6 @@
                         style="@style/SettingsChevronStyle"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/smaller_margin"
                         android:contentDescription="@string/export_call_history"/>
                 </RelativeLayout>
 
@@ -963,7 +1083,6 @@
                         style="@style/SettingsChevronStyle"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/smaller_margin"
                         android:contentDescription="@string/import_call_history"/>
                 </RelativeLayout>
             </LinearLayout>
@@ -1014,7 +1133,6 @@
                             style="@style/SettingsChevronStyle"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginEnd="@dimen/smaller_margin"
                             android:contentDescription="@string/tip_jar"/>
                     </RelativeLayout>
                 </RelativeLayout>
@@ -1044,7 +1162,6 @@
                         style="@style/SettingsChevronStyle"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginEnd="@dimen/smaller_margin"
                         android:contentDescription="@string/about"/>
                 </RelativeLayout>
             </LinearLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--TODO Edit-->
     <string name="app_name">Enkel oppringer</string>
     <string name="app_launcher_name">Oppringer</string>
     <string name="default_phone_app_prompt">Gjør denne appen til standard telefonapp</string>
@@ -44,21 +45,21 @@
     <string name="show_dialpad">Vis tastaturet</string>
     <string name="hide_dialpad">Skjul tastaturet</string>
     <string name="end_call">Avslutt samtale</string>
-    <string name="hold_call">Hold call</string>
-    <string name="resume_call">Resume call</string>
-    <string name="call_on_hold">On Hold</string>
-    <string name="call_swap">Swap calls</string>
-    <string name="call_merge">Merge calls</string>
-    <string name="call_split">Split call</string>
-    <string name="call_add">Add call</string>
-    <string name="conference_manage">Manage conference call</string>
-    <string name="conference">Conference</string>
-    <string name="audio_route_speaker">Speaker</string>
+    <string name="hold_call">Hold anropet</string>
+    <string name="resume_call">Gjenoppta samtalen</string>
+    <string name="call_on_hold">På vent</string>
+    <string name="call_swap">Bytte samtaler</string>
+    <string name="call_merge">Slå sammen anrop</string>
+    <string name="call_split">Delt samtale</string>
+    <string name="call_add">Legg til samtale</string>
+    <string name="conference_manage">Administrere konferansesamtaler</string>
+    <string name="conference">Konferanse</string>
+    <string name="audio_route_speaker">Høyttaler</string>
     <string name="audio_route_bluetooth">Bluetooth</string>
-    <string name="audio_route_wired_headset">Wired Headset</string>
-    <string name="audio_route_wired_or_earpiece">Wired or Earpiece</string>
-    <string name="choose_audio_route">Choose audio route</string>
-    <string name="calling_blocked_number">The number you are calling is blocked</string>
+    <string name="audio_route_wired_headset">Kablet hodesett</string>
+    <string name="audio_route_wired_or_earpiece">Kablet eller øresnegl</string>
+    <string name="choose_audio_route">Velg lydrute</string>
+    <string name="calling_blocked_number">Nummeret du ringer er blokkert</string>
     <!-- Speed dial -->
     <string name="speed_dial">Hurtigvalg</string>
     <string name="manage_speed_dial">Administrer hurtigvalg</string>
@@ -68,17 +69,12 @@
     <string name="open_dialpad_by_default">Åpne talltastaturet som standard når appen åpnes</string>
     <string name="disable_proximity_sensor">Deaktiver nærhetssensor under samtaler</string>
     <string name="disable_swipe_to_answer">Erstatt sveiping ved å svare på innkommende anrop med å klikke</string>
-    <string name="show_incoming_calls_full_screen">Always display incoming calls on full screen</string>
+    <string name="show_incoming_calls_full_screen">Vis alltid innkommende oppringninger i fullskjerm</string>
     <string name="hide_dialpad_numbers">Hide dialpad numbers</string>
-    <string name="export_call_history">Export call history</string>
-    <string name="import_call_history">Import call history</string>
+    <string name="export_call_history">Eksporter samtalehistorikk</string>
+    <string name="import_call_history">Importer samtalehistorikk</string>
 
     <!-- FAQ -->
-    <string name="faq_1_title">I hear incoming calls, but the screen doesn\'t turn on. What can I do?</string>
-    <string name="faq_1_text">Such issues can have many device and system specific reasons, hard to say in general. You should look around in your device settings and make sure that the app is allowed to pop up when in background and allow displaying over other apps.</string>
-
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
-    -->
+    <string name="faq_1_title">Jeg hører innkommende anrop, men skjermen slås ikke på. Hva kan jeg gjøre?</string>
+    <string name="faq_1_text">Slike problemer kan ha mange enhets- og systemspesifikke årsaker, så det er vanskelig å si noe generelt. Du bør se deg om i enhetsinnstillingene og sørge for at appen er tillatt å dukke opp i bakgrunnen og at den kan vises over andre apper.</string>
 </resources>

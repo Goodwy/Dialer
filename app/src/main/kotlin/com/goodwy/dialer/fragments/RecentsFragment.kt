@@ -54,6 +54,7 @@ class RecentsFragment(context: Context, attributeSet: AttributeSet) : MyViewPage
             initDrawables(textColor)
             updateTextColor(textColor)
             updatePrimaryColor()
+            updateBackgroundColor(context.getProperBackgroundColor())
         }
     }
 

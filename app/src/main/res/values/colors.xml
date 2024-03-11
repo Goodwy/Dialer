@@ -5,4 +5,5 @@
     <color name="default_accent_color">@color/color_primary</color>
     <color name="green_call">#FF67CE67</color>
     <color name="red_call">#FFEB5545</color>
+    <color name="swipe_purple">#FF5E5CE6</color>
 </resources>

@@ -9,10 +9,10 @@ ksp = "1.9.0-1.0.12"
 #Gradle
 gradlePlugins-agp = "8.1.1"
 #Other
-indicatorFastScroll = "4524cd0b61"
+indicatorFastScroll = "1a72604856"
 autofitTextView = "0.2.1"
 #Goodwy
-right-commons = "a5fe0960e7"
+right-commons = "5403bcb734"
 rustore = "3.1.0"
 badger = "1.1.22"
 libphonenumber = "8.13.26"
@@ -23,6 +23,7 @@ behavioRule = "1.0.1"
 rxAnimation = "2.1.1"
 rxJava3 = "3.1.5"
 room = "2.6.0-beta01"
+swipeToActionLayout = "035dfba3fb"
 #build
 app-build-compileSDKVersion = "34"
 app-build-targetSDK = "34"
@@ -31,8 +32,8 @@ app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
 #versioning
 app-version-appId = "com.goodwy.dialer"
-app-version-versionCode = "500"
-app-version-versionName = "5.0.0"
+app-version-versionCode = "510"
+app-version-versionName = "5.1.0"
 [libraries]
 #Simple Mobile Tools
 #simple-tools-commons = { module = "com.github.SimpleMobileTools:Simple-Commons", version.ref = "simple-commons" }
@@ -56,6 +57,7 @@ androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref =
 behavio-rule = { module = "com.github.Liverm0r:BehavioRule", version.ref = "behavioRule" }
 rx-animation = { module = "com.mikhaellopez:rxanimation", version.ref = "rxAnimation" }
 rx-java = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxJava3" }
+swipe-action = { module = "com.github.Goodwy:SwipeActionView", version.ref = "swipeToActionLayout" }
 [bundles]
 lifecycle = [
     "androidx-lifecycle-runtime",

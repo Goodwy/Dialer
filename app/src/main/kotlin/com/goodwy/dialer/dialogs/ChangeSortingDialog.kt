@@ -40,6 +40,7 @@ class ChangeSortingDialog(val activity: BaseSimpleActivity, private val showCust
             sortingDialogRadioSorting.setOnCheckedChangeListener { group, checkedId ->
                 val isCustomSorting = checkedId == sortingDialogRadioCustom.id
                 sortingDialogRadioOrder.beGoneIf(isCustomSorting)
+                sortingDialogSymbolsFirstCheckbox.beGoneIf(isCustomSorting)
                 divider.beGoneIf(isCustomSorting)
             }
 

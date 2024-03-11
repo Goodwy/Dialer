@@ -158,6 +158,10 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(CALL_START_END_VIBRATION, true)
         set(callStartEndVibration) = prefs.edit().putBoolean(CALL_START_END_VIBRATION, callStartEndVibration).apply()
 
+    var toneVolume: Int
+        get() = prefs.getInt(TONE_VOLUME, 80)
+        set(toneVolume) = prefs.edit().putInt(TONE_VOLUME, toneVolume).apply()
+
     //Timer
     var timerSeconds: Int
         get() = prefs.getInt(TIMER_SECONDS, 300)
@@ -194,5 +198,18 @@ class Config(context: Context) : BaseConfig(context) {
     var timerMaxReminderSecs: Int
         get() = prefs.getInt(TIMER_MAX_REMINDER_SECS, DEFAULT_MAX_TIMER_REMINDER_SECS)
         set(timerMaxReminderSecs) = prefs.edit().putInt(TIMER_MAX_REMINDER_SECS, timerMaxReminderSecs).apply()
+
+    //Swipe
+    var swipeRightAction: Int
+        get() = prefs.getInt(SWIPE_RIGHT_ACTION, SWIPE_ACTION_MESSAGE)
+        set(swipeRightAction) = prefs.edit().putInt(SWIPE_RIGHT_ACTION, swipeRightAction).apply()
+
+    var swipeLeftAction: Int
+        get() = prefs.getInt(SWIPE_LEFT_ACTION, SWIPE_ACTION_DELETE)
+        set(swipeLeftAction) = prefs.edit().putInt(SWIPE_LEFT_ACTION, swipeLeftAction).apply()
+
+    var swipeVibration: Boolean
+        get() = prefs.getBoolean(SWIPE_VIBRATION, true)
+        set(swipeVibration) = prefs.edit().putBoolean(SWIPE_VIBRATION, swipeVibration).apply()
 }
 

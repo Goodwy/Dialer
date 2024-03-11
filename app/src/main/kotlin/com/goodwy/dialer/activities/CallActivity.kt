@@ -318,7 +318,14 @@ class CallActivity : SimpleActivity() {
 
         callToggleSpeaker.setOnLongClickListener {
             maybePerformDialpadHapticFeedback(it)
-            if (CallManager.getCallAudioRoute() == AudioRoute.BLUETOOTH) openBluetoothSettings()
+//            if (CallManager.getCallAudioRoute() == AudioRoute.BLUETOOTH) {
+//                openBluetoothSettings()
+            val supportAudioRoutes = CallManager.getSupportedAudioRoutes()
+            if (supportAudioRoutes.size > 2) {
+                val isSpeakerOn = !isSpeakerOn
+                val newRoute = if (isSpeakerOn) CallAudioState.ROUTE_SPEAKER else CallAudioState.ROUTE_WIRED_OR_EARPIECE
+                CallManager.setAudioRoute(newRoute)
+            }
             else toast(callToggleSpeaker.contentDescription.toString())
             true
         }

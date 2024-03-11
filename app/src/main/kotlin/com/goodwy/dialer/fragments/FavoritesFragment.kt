@@ -52,6 +52,7 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
             (fragmentList.adapter as? MyRecyclerViewAdapter)?.apply {
                 updateTextColor(textColor)
                 updatePrimaryColor()
+                updateBackgroundColor(context.getProperBackgroundColor())
             }
 
             letterFastscroller.textColor = textColor.getColorStateList()
@@ -237,7 +238,10 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
             binding.letterFastscroller.beGone()
             MyGridLayoutManager(context, spanCount)
         } else {
-            binding.letterFastscroller.beVisibleIf(size > 10)
+            binding.letterFastscroller.beGone()
+//            binding.letterFastscroller.beVisibleIf(size > 10)
+//            if (size > 50) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTiny
+//            else if (size > 30) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleSmall
             MyLinearLayoutManager(context)
         }
         binding.fragmentList.layoutManager = layoutManager

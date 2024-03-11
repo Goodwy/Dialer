@@ -58,6 +58,7 @@ class DialpadActivity : SimpleActivity() {
     private val pressedKeys = mutableSetOf<Char>()
     private var hasBeenScrolled = false
     private var storedDialpadStyle = 0
+    private var storedToneVolume = 0
 
     @SuppressLint("MissingSuperCall", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -192,6 +193,7 @@ class DialpadActivity : SimpleActivity() {
             gotContacts(allContacts)
         }
         storedDialpadStyle = config.dialpadStyle
+        storedToneVolume = config.toneVolume
     }
 
     @SuppressLint("MissingSuperCall")
@@ -202,6 +204,11 @@ class DialpadActivity : SimpleActivity() {
             startActivity(intent)
             return
         }
+
+        if (storedToneVolume != config.toneVolume) {
+            toneGeneratorHelper = ToneGeneratorHelper(this, DIALPAD_TONE_LENGTH_MS)
+        }
+
         speedDialValues = config.getSpeedDialValues()
         initStyle()
         updateDialpadSize()
@@ -257,11 +264,13 @@ class DialpadActivity : SimpleActivity() {
     override fun onDestroy() {
         super.onDestroy()
         storedDialpadStyle = config.dialpadStyle
+        storedToneVolume = config.toneVolume
     }
 
     override fun onPause() {
         super.onPause()
         storedDialpadStyle = config.dialpadStyle
+        storedToneVolume = config.toneVolume
     }
 
     override fun onRestart() {
@@ -458,7 +467,8 @@ class DialpadActivity : SimpleActivity() {
             }
             dialpadCallButtonHolder.setOnLongClickListener {
                 if (binding.dialpadInput.value.isEmpty()) {
-                    binding.dialpadInput.setText(getTextFromClipboard()); true
+                    binding.dialpadInput.setText(getTextFromClipboard())
+                    binding.dialpadInput.requestFocusFromTouch(); true
                 } else {
                     copyNumber(); true
                 }
@@ -557,7 +567,8 @@ class DialpadActivity : SimpleActivity() {
 
             dialpadCallButtonIosHolder.setOnLongClickListener {
                 if (binding.dialpadInput.value.isEmpty()) {
-                    binding.dialpadInput.setText(getTextFromClipboard()); true
+                    binding.dialpadInput.setText(getTextFromClipboard())
+                    binding.dialpadInput.requestFocusFromTouch(); true
                 } else {
                     copyNumber(); true
                 }
@@ -663,7 +674,8 @@ class DialpadActivity : SimpleActivity() {
             }
             dialpadCallButton.setOnLongClickListener {
                 if (binding.dialpadInput.value.isEmpty()) {
-                    binding.dialpadInput.setText(getTextFromClipboard()); true
+                    binding.dialpadInput.setText(getTextFromClipboard())
+                    binding.dialpadInput.requestFocusFromTouch(); true
                 } else {
                     copyNumber(); true
                 }
@@ -737,7 +749,10 @@ class DialpadActivity : SimpleActivity() {
     private fun setupOptionsMenu() {
         binding.dialpadToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.paste_number -> binding.dialpadInput.setText(getTextFromClipboard())
+                R.id.paste_number -> {
+                    binding.dialpadInput.setText(getTextFromClipboard())
+                    binding.dialpadInput.requestFocusFromTouch()
+                }
                 R.id.copy_number -> copyNumber()
                 R.id.cab_call_anonymously -> initCallAnonymous()
                 R.id.settings_dialpad -> startActivity(Intent(applicationContext, SettingsDialpadActivity::class.java))

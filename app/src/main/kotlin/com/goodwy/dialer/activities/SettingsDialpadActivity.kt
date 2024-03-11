@@ -199,6 +199,7 @@ class SettingsDialpadActivity : SimpleActivity() {
         setupHideDialpadLetters()
         setupDialpadVibrations()
         setupDialpadBeeps()
+        setupToneVolume()
         setupButtonSize()
 
         binding.apply {
@@ -216,8 +217,10 @@ class SettingsDialpadActivity : SimpleActivity() {
 
             arrayOf(dialpadClearWrapper.dialpadAsterisk, dialpadClearWrapper.dialpadHashtag,
                 dialpadRoundWrapper.dialpadAsteriskIos, dialpadRoundWrapper.dialpadHashtagIos,
-                dialpadSizeMinus, dialpadSizePlus, buttonSizeMinus,
-                buttonSizePlus, buttonSecondSizeMinus, buttonSecondSizePlus
+                toneVolumeMinus, toneVolumePlus,
+                dialpadSizeMinus, dialpadSizePlus,
+                buttonSizeMinus, buttonSizePlus,
+                buttonSecondSizeMinus, buttonSecondSizePlus
             ).forEach {
                 it.applyColorFilter(properTextColor)
             }
@@ -677,7 +680,7 @@ class SettingsDialpadActivity : SimpleActivity() {
     private fun setupButtonSize() {
         binding.apply {
             buttonSizeWrapper.beVisibleIf(config.dialpadStyle == DIALPAD_GRID || config.dialpadStyle == DIALPAD_ORIGINAL)
-            if (isPro() || isOrWasThankYouInstalled() || isCollection()) {
+            if (checkPro()) {
                 arrayOf(
                     buttonSizeHolder, buttonSize, buttonSecondSizeHolder, buttonSecondSize
                 ).forEach {
@@ -694,7 +697,15 @@ class SettingsDialpadActivity : SimpleActivity() {
                 val lockText = addLockedLabelIfNeeded(R.string.button_primary)
                 buttonSizeLabel.text = lockText
                 buttonSizeEmpty.beVisible()
-                buttonSizeEmpty.setOnClickListener { shakePurchase() }
+                buttonSizeEmpty.setOnClickListener {
+                    shakePurchase()
+
+                    RxAnimation.from(buttonSizeWrapper)
+                        .shake(shakeTranslation = 2f)
+                        .subscribe()
+
+                    showSnackbar(binding.root)
+                }
             }
 
             val progress = config.callButtonPrimarySize
@@ -853,7 +864,7 @@ class SettingsDialpadActivity : SimpleActivity() {
     }
 
     private fun setupDialpadStyle() {
-        val pro = isOrWasThankYouInstalled() || isPro() || isCollection()
+        val pro = checkPro()
         val iOS = addLockedLabelIfNeeded(R.string.ios_g, pro)
         binding.settingsDialpadStyle.text = getDialpadStyleText()
         binding.settingsDialpadStyleHolder.setOnClickListener {
@@ -864,7 +875,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                 RadioItem(DIALPAD_CONCEPT, getString(R.string.concept_theme_g))
             )
 
-            RadioGroupDialog(this@SettingsDialpadActivity, items, config.dialpadStyle) {
+            RadioGroupDialog(this@SettingsDialpadActivity, items, config.dialpadStyle, R.string.theme) {
                 if (it as Int == DIALPAD_IOS) {
                     if (pro) {
                         binding.dialpadClearWrapper.root.beGone()
@@ -876,6 +887,12 @@ class SettingsDialpadActivity : SimpleActivity() {
                         showDialpad()
                     } else {
                         shakePurchase()
+
+                        RxAnimation.from(binding.styleHolder)
+                            .shake(shakeTranslation = 2f)
+                            .subscribe()
+
+                        showSnackbar(binding.root)
                     }
                 } else if (it == DIALPAD_CONCEPT) {
                     binding.dialpadRoundWrapper.root.beGone()
@@ -913,7 +930,7 @@ class SettingsDialpadActivity : SimpleActivity() {
         binding.apply {
             initSimCardColor()
 
-            val pro = isOrWasThankYouInstalled() || isPro() || isCollection()
+            val pro = checkPro()
             val simList = getAvailableSIMCardLabels()
             if (simList.isNotEmpty()) {
                 if (simList.size == 1) {
@@ -969,10 +986,14 @@ class SettingsDialpadActivity : SimpleActivity() {
                     settingsSimCardColor1Holder,
                     settingsSimCardColor2Holder
                 ).forEach {
-                    it.setOnClickListener {
-                        RxAnimation.from(binding.dialpadPurchaseThankYouHolder)
-                            .shake()
+                    it.setOnClickListener { view ->
+                        shakePurchase()
+
+                        RxAnimation.from(view)
+                            .shake(shakeTranslation = 2f)
                             .subscribe()
+
+                        showSnackbar(binding.root)
                     }
                 }
             }
@@ -981,6 +1002,13 @@ class SettingsDialpadActivity : SimpleActivity() {
 
     private fun initSimCardColor() {
         binding.apply {
+            val pro = checkPro()
+            arrayOf(
+                settingsSimCardColor1Holder,
+                settingsSimCardColor2Holder
+            ).forEach {
+                it.alpha = if (pro) 1f else 0.4f
+            }
             val areMultipleSIMsAvailable = areMultipleSIMsAvailable()
             settingsSimCardColor2Holder.beVisibleIf(areMultipleSIMsAvailable)
             if (areMultipleSIMsAvailable) settingsSimCardColor1Icon.setImageResource(R.drawable.ic_phone_one_vector)
@@ -1013,7 +1041,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                     RadioItem(1, simList[1].label)
                 )
 
-                RadioGroupDialog(this@SettingsDialpadActivity, items, config.currentSIMCardIndex) {
+                RadioGroupDialog(this@SettingsDialpadActivity, items, config.currentSIMCardIndex, R.string.primary_sim_card) {
                     config.currentSIMCardIndex = it as Int
                     binding.settingsPrimarySimCard.text = if (config.currentSIMCardIndex == 0) simList[0].label else simList[1].label
                     initStyle()
@@ -1046,12 +1074,58 @@ class SettingsDialpadActivity : SimpleActivity() {
     }
 
     private fun setupDialpadBeeps() {
+        updateWrapperToneVolume()
         binding.apply {
             settingsDialpadBeeps.isChecked = config.dialpadBeeps
             settingsDialpadBeepsHolder.setOnClickListener {
                 settingsDialpadBeeps.toggle()
                 config.dialpadBeeps = settingsDialpadBeeps.isChecked
+                toneVolumeWrapper.beVisibleIf(config.dialpadBeeps)
+                updateWrapperToneVolume()
             }
+        }
+    }
+
+    private fun updateWrapperToneVolume() {
+        val getBottomNavigationBackgroundColor = getBottomNavigationBackgroundColor()
+        val wrapperColor = if (config.dialpadBeeps) getBottomNavigationBackgroundColor.lightenColor(4) else getBottomNavigationBackgroundColor
+        binding.settingsDialpadBeepsWrapper.background.applyColorFilter(wrapperColor)
+    }
+
+    private fun setupToneVolume() {
+        binding.apply {
+            toneVolumeWrapper.beVisibleIf(config.dialpadBeeps)
+
+            val progress = config.toneVolume
+            toneVolumeSeekBar.progress = progress
+            val textProgress = "$progress %"
+            toneVolumeValue.text = textProgress
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                toneVolumeSeekBar.min = 1
+            }
+
+            toneVolumeMinus.setOnClickListener {
+                toneVolumeSeekBar.progress = toneVolumeSeekBar.progress - 1
+            }
+            toneVolumeValue.setOnClickListener {
+                toneVolumeSeekBar.progress = 80
+            }
+            toneVolumePlus.setOnClickListener {
+                toneVolumeSeekBar.progress = toneVolumeSeekBar.progress + 1
+            }
+
+            toneVolumeSeekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+                override fun onStartTrackingTouch(seekBar: SeekBar) {}
+
+                override fun onStopTrackingTouch(seekBar: SeekBar) {}
+
+                override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                    val textPercent = "$progress %"
+                    binding.toneVolumeValue.text = textPercent
+                    config.toneVolume = progress
+                }
+            })
         }
     }
 
@@ -1073,25 +1147,17 @@ class SettingsDialpadActivity : SimpleActivity() {
         }
     }
 
-    private fun updatePro(isPro: Boolean = isPro() || isOrWasThankYouInstalled() || isCollection()) {
+    private fun updatePro(isPro: Boolean = checkPro()) {
         binding.apply {
             dialpadPurchaseThankYouHolder.beGoneIf(isPro)
-        }
-    }
 
-    private fun launchPurchase() {
-        startPurchaseActivity(
-            R.string.app_name_g,
-            BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
-            productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
-            productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
-            subscriptionIdList = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
-            subscriptionIdListRu = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
-            subscriptionYearIdList = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
-            subscriptionYearIdListRu = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
-            playStoreInstalled = isPlayStoreInstalled(),
-            ruStoreInstalled = isRuStoreInstalled()
-        )
+            arrayOf(
+                settingsSimCardColor1Holder,
+                settingsSimCardColor2Holder
+            ).forEach {
+                it.alpha = if (isPro) 1f else 0.4f
+            }
+        }
     }
 
     private fun shakePurchase() {
@@ -1128,4 +1194,6 @@ class SettingsDialpadActivity : SimpleActivity() {
             }
         }
     }
+
+    private fun checkPro(collection: Boolean = true) = isOrWasThankYouInstalled() || isPro() || isCollection()
 }

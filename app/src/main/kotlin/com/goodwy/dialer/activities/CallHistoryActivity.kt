@@ -184,6 +184,7 @@ class CallHistoryActivity : SimpleActivity() {
         val properBackgroundColor = getProperBackgroundColor()
         val contrastColor = properBackgroundColor.getContrastColor()
         val itemColor = if (baseConfig.topAppBarColorIcon) getProperPrimaryColor() else contrastColor
+        binding.callHistoryToolbar.overflowIcon = resources.getColoredDrawableWithColor(com.goodwy.commons.R.drawable.ic_three_dots_vector, itemColor)
         binding.callHistoryToolbar.setNavigationIconTint(itemColor)
         binding.callHistoryToolbar.setNavigationOnClickListener {
             finish()
@@ -303,7 +304,7 @@ class CallHistoryActivity : SimpleActivity() {
                     ContactsHelper(this).getContactSources {
                         contactSources = it
                         runOnUiThread {
-                            setupFavorite()
+                            setupMenuForContact()
                             setupVideoCallActions()
                             setupMessengersActions()
                             setupEmails()
@@ -315,6 +316,9 @@ class CallHistoryActivity : SimpleActivity() {
         } else {
             if (contact == null) {
               //  finish()
+                runOnUiThread {
+                    setupMenuForNoContact()
+                }
             } else {
                 getDuplicateContacts {
                     runOnUiThread {
@@ -329,11 +333,32 @@ class CallHistoryActivity : SimpleActivity() {
         }
     }
 
-    private fun setupFavorite() {
-        val favoriteMenu = binding.callHistoryToolbar.menu.findItem(R.id.favorite)
-        favoriteMenu.isVisible = true
+    private fun setupMenuForNoContact() {
         val contrastColor = getProperBackgroundColor().getContrastColor()
         val itemColor = if (baseConfig.topAppBarColorIcon) getProperPrimaryColor() else contrastColor
+
+        val editMenu = binding.callHistoryToolbar.menu.findItem(R.id.edit)
+        editMenu.isVisible = true
+        val editIcon = resources.getColoredDrawableWithColor(com.goodwy.commons.R.drawable.ic_add_person_vector, itemColor)
+        editMenu.icon = editIcon
+        editMenu.setTitle(R.string.add_contact)
+        editMenu.setOnMenuItemClickListener {
+            Intent().apply {
+                action = Intent.ACTION_INSERT_OR_EDIT
+                type = "vnd.android.cursor.item/contact"
+                putExtra(KEY_PHONE, getCurrentPhoneNumber())
+                launchActivityIntent(this)
+            }
+            true
+        }
+    }
+
+    private fun setupMenuForContact() {
+        val contrastColor = getProperBackgroundColor().getContrastColor()
+        val itemColor = if (baseConfig.topAppBarColorIcon) getProperPrimaryColor() else contrastColor
+
+        val favoriteMenu = binding.callHistoryToolbar.menu.findItem(R.id.favorite)
+        favoriteMenu.isVisible = true
         val favoriteIcon = getStarDrawable(contact!!.starred == 1)
         favoriteIcon!!.setTint(itemColor)
         favoriteMenu.icon = favoriteIcon
@@ -351,6 +376,20 @@ class CallHistoryActivity : SimpleActivity() {
             val favoriteIconNew = getStarDrawable(contact!!.starred == 1)
             favoriteIconNew!!.setTint(itemColor)
             favoriteMenu.icon = favoriteIconNew
+            true
+        }
+
+        val editMenu = binding.callHistoryToolbar.menu.findItem(R.id.edit)
+        editMenu.isVisible = true
+        editMenu.setOnMenuItemClickListener {
+            contact?.let { startContactEdit(it) }
+            true
+        }
+
+        val openWithMenu = binding.callHistoryToolbar.menu.findItem(R.id.open_with)
+        openWithMenu.isVisible = true
+        openWithMenu.setOnMenuItemClickListener {
+            openWith()
             true
         }
     }
@@ -757,7 +796,7 @@ class CallHistoryActivity : SimpleActivity() {
                             items.add(RadioItem(index, email.value))
                         }
 
-                        RadioGroupDialog(this@CallHistoryActivity, items) {
+                        RadioGroupDialog(this@CallHistoryActivity, items, R.string.email) {
                             sendEmailIntent(emails[it as Int].value)
                         }
                     }
@@ -1144,6 +1183,13 @@ class CallHistoryActivity : SimpleActivity() {
         setOnLongClickListener {
             copyToClipboard(value)
             true
+        }
+    }
+
+    private fun openWith() {
+        if (contact != null) {
+            val uri = getContactPublicUri(contact!!)
+            launchViewContactIntent(uri)
         }
     }
 }

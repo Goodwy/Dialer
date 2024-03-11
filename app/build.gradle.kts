@@ -123,6 +123,7 @@ dependencies {
     implementation(libs.behavio.rule)
     implementation(libs.rx.animation)
     implementation(libs.rx.java)
+    implementation(libs.swipe.action)
     //timer
     implementation(libs.eventbus)
     implementation(libs.bundles.lifecycle)

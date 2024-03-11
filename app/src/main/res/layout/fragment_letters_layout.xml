@@ -48,12 +48,10 @@
         <com.reddit.indicatorfastscroll.FastScrollerView
             android:id="@+id/letter_fastscroller"
             android:layout_width="26dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:paddingStart="@dimen/normal_margin"
-            android:paddingTop="@dimen/big_margin"
-            android:paddingBottom="@dimen/big_margin"
             android:textAppearance="@style/DialpadLetterStyle" />
 
         <com.reddit.indicatorfastscroll.FastScrollerThumbView

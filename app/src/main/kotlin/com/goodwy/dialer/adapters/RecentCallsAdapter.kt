@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.goodwy.commons.adapters.MyRecyclerViewAdapter
+import com.goodwy.commons.dialogs.CallConfirmationDialog
 import com.goodwy.commons.dialogs.ConfirmationAdvancedDialog
 import com.goodwy.commons.dialogs.ConfirmationDialog
 import com.goodwy.commons.extensions.*
@@ -26,11 +27,14 @@ import com.goodwy.dialer.activities.CallHistoryActivity
 import com.goodwy.dialer.activities.MainActivity
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.databinding.ItemRecentCallBinding
+import com.goodwy.dialer.databinding.ItemRecentCallSwipeBinding
 import com.goodwy.dialer.extensions.*
-import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL
-import com.goodwy.dialer.helpers.RecentsHelper
+import com.goodwy.dialer.helpers.*
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import com.goodwy.dialer.models.RecentCall
+import me.thanel.swipeactionview.SwipeActionView
+import me.thanel.swipeactionview.SwipeDirection
+import me.thanel.swipeactionview.SwipeGestureListener
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.minutes
 
@@ -131,7 +135,10 @@ class RecentCallsAdapter(
     override fun onActionModeDestroyed() {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return createViewHolder(ItemRecentCallBinding.inflate(layoutInflater, parent, false).root)
+        val view =
+            if (activity.config.useSwipeToAction) ItemRecentCallSwipeBinding.inflate(layoutInflater, parent, false).root
+            else ItemRecentCallBinding.inflate(layoutInflater, parent, false).root
+        return createViewHolder(view)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -142,8 +149,8 @@ class RecentCallsAdapter(
             allowSingleClick = refreshItemsListener != null && !recentCall.isUnknownNumber,
             allowLongClick = refreshItemsListener != null && !recentCall.isUnknownNumber
         ) { itemView, _ ->
-            val binding = ItemRecentCallBinding.bind(itemView)
-            setupView(binding, recentCall)
+            if (activity.config.useSwipeToAction) setupViewSwipe(ItemRecentCallSwipeBinding.bind(itemView), recentCall)
+            else setupView(ItemRecentCallBinding.bind(itemView), recentCall)
         }
         bindViewHolder(holder)
     }
@@ -153,8 +160,14 @@ class RecentCallsAdapter(
     override fun onViewRecycled(holder: ViewHolder) {
         super.onViewRecycled(holder)
         if (!activity.isDestroyed && !activity.isFinishing) {
-            ItemRecentCallBinding.bind(holder.itemView).apply {
-                Glide.with(activity).clear(itemRecentsImage)
+            if (activity.config.useSwipeToAction) {
+                ItemRecentCallSwipeBinding.bind(holder.itemView).apply {
+                    Glide.with(activity).clear(itemRecentsImage)
+                }
+            } else {
+                ItemRecentCallBinding.bind(holder.itemView).apply {
+                    Glide.with(activity).clear(itemRecentsImage)
+                }
             }
         }
     }
@@ -182,25 +195,20 @@ class RecentCallsAdapter(
         finishActMode()
     }
 
-//    private fun tryBlocking() {
-//        /*if (activity.isOrWasThankYouInstalled()) {
-//            askConfirmBlock()
-//        } else {
-//            FeatureLockedDialog(activity) { }
-//        }*/
-//        askConfirmBlock()
-//    }
-
     private fun askConfirmBlock() {
         if (activity.isDefaultDialer()) {
             val numbers = TextUtils.join(", ", getSelectedItems().distinctBy { it.phoneNumber }.map { it.phoneNumber })
             val baseString = R.string.block_confirmation
             val question = String.format(resources.getString(baseString), numbers)
 
-            ConfirmationDialog(activity, question) {
-                blockNumbers()
+            ConfirmationAdvancedDialog(activity, question, cancelOnTouchOutside = false) {
+                if (it) blockNumbers()
+                else selectedKeys.clear()
             }
-        } else activity.toast(R.string.default_phone_app_prompt, Toast.LENGTH_LONG)
+        } else {
+            selectedKeys.clear()
+            activity.toast(R.string.default_phone_app_prompt, Toast.LENGTH_LONG)
+        }
     }
 
     private fun blockNumbers() {
@@ -210,7 +218,7 @@ class RecentCallsAdapter(
 
         val callsToBlock = getSelectedItems()
         val positions = getSelectedItemPositions()
-        recentCalls.removeAll(callsToBlock.toSet())
+        if (!activity.config.showBlockedNumbers) recentCalls.removeAll(callsToBlock.toSet())
 
         ensureBackgroundThread {
             callsToBlock.map { it.phoneNumber }.forEach { number ->
@@ -220,6 +228,7 @@ class RecentCallsAdapter(
             activity.runOnUiThread {
                 if (!activity.config.showBlockedNumbers) removeSelectedItems(positions)
                 finishActMode()
+                selectedKeys.clear()
             }
         }
     }
@@ -230,10 +239,14 @@ class RecentCallsAdapter(
             val baseString = R.string.unblock_confirmation
             val question = String.format(resources.getString(baseString), numbers)
 
-            ConfirmationDialog(activity, question) {
-                unblockNumbers()
+            ConfirmationAdvancedDialog(activity, question, cancelOnTouchOutside = false) {
+                if (it) unblockNumbers()
+                else selectedKeys.clear()
             }
-        } else activity.toast(R.string.default_phone_app_prompt, Toast.LENGTH_LONG)
+        } else {
+            selectedKeys.clear()
+            activity.toast(R.string.default_phone_app_prompt, Toast.LENGTH_LONG)
+        }
     }
 
     private fun unblockNumbers() {
@@ -243,7 +256,7 @@ class RecentCallsAdapter(
 
         val callsToBlock = getSelectedItems()
         //val positions = getSelectedItemPositions()
-        recentCalls.removeAll(callsToBlock.toSet())
+        //recentCalls.removeAll(callsToBlock.toSet())
 
         ensureBackgroundThread {
             callsToBlock.map { it.phoneNumber }.forEach { number ->
@@ -253,6 +266,7 @@ class RecentCallsAdapter(
             activity.runOnUiThread {
                 //removeSelectedItems(positions)
                 finishActMode()
+                selectedKeys.clear()
             }
         }
     }
@@ -288,10 +302,12 @@ class RecentCallsAdapter(
     }
 
     private fun askConfirmRemove() {
-        ConfirmationDialog(activity, activity.getString(R.string.remove_confirmation)) {
-            activity.handlePermission(PERMISSION_WRITE_CALL_LOG) {
-                removeRecents()
-            }
+        ConfirmationAdvancedDialog(activity, activity.getString(R.string.remove_confirmation), cancelOnTouchOutside = false) {
+            if (it) {
+                activity.handlePermission(PERMISSION_WRITE_CALL_LOG) {
+                    removeRecents()
+                }
+            } else selectedKeys.clear()
         }
     }
 
@@ -386,7 +402,150 @@ class RecentCallsAdapter(
                     val country = if (call.phoneNumber.startsWith("+")) getCountryByNumber(activity, call.phoneNumber) else ""
                     country
                 } else {
-                    val phoneNumber = if (call.phoneNumber.startsWith("+")) getPhoneNumberFormat(activity, number = call.phoneNumber) else call.phoneNumber
+                    val phoneNumber =
+                        if (call.phoneNumber.startsWith("+")) getPhoneNumberFormat(activity, number = call.phoneNumber) else call.phoneNumber
+                    if (call.specificType.isNotEmpty() && call.specificNumber.isNotEmpty()) call.specificType else phoneNumber
+                    //setTextColor(if (call.type == Calls.MISSED_TYPE) redColor else textColor)
+                }
+                text = formatterUnicodeWrap(recentsNumber)
+            }
+
+            itemRecentsDateTime.apply {
+                val relativeDate = DateUtils.getRelativeDateTimeString(
+                    context,
+                    call.startTS * 1000L,
+                    1.minutes.inWholeMilliseconds,
+                    2.days.inWholeMilliseconds,
+                    0,
+                )
+                val date = call.startTS.formatDateOrTime(context, hideTimeAtOtherDays = hideTimeAtOtherDays, false)
+                text = if (activity.config.useRelativeDate) relativeDate else date
+                //setTextColor(if (call.type == Calls.MISSED_TYPE) redColor else textColor)
+                setTextColor(textColor)
+                setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
+            }
+
+            itemRecentsDuration.apply {
+                text = call.duration.getFormattedDuration()
+                setTextColor(textColor)
+                beVisibleIf(call.type != Calls.MISSED_TYPE && call.type != Calls.REJECTED_TYPE && call.duration > 0)
+                setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
+//                if (!showOverflowMenu) {
+//                    itemRecentsDuration.setPadding(0, 0, durationPadding, 0)
+//                }
+            }
+
+            itemRecentsSimImage.beVisibleIf(areMultipleSIMsAvailable && call.simID != -1)
+            itemRecentsSimId.beVisibleIf(areMultipleSIMsAvailable && call.simID != -1)
+            if (areMultipleSIMsAvailable && call.simID != -1) {
+                val simColor = if (!activity.config.colorSimIcons) textColor
+                else {
+                    when (call.simID) {
+                        1 -> activity.config.simIconsColors[1]
+                        2 -> activity.config.simIconsColors[2]
+                        3 -> activity.config.simIconsColors[3]
+                        4 -> activity.config.simIconsColors[4]
+                        else -> activity.config.simIconsColors[0]
+                    }
+                }
+                itemRecentsSimImage.applyColorFilter(simColor)
+                itemRecentsSimImage.alpha = if (!activity.config.colorSimIcons) 0.6f else 1f
+                itemRecentsSimId.setTextColor(simColor.getContrastColor())
+                itemRecentsSimId.text = call.simID.toString()
+            }
+
+            val showContactThumbnails = activity.config.showContactThumbnails
+            itemRecentsImage.beVisibleIf(showContactThumbnails)
+            itemRecentsImageIcon.beVisibleIf(showContactThumbnails)
+            if (showContactThumbnails) {
+                if (call.phoneNumber == call.name) {
+                    SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name, letter = false)
+                    itemRecentsImageIcon.beVisibleIf(call.photoUri == "")
+                } else {
+                    SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name)
+                    itemRecentsImageIcon.beGone()
+                }
+            }
+
+            val drawable = when (call.type) {
+                Calls.OUTGOING_TYPE -> outgoingCallIcon
+                Calls.MISSED_TYPE -> incomingMissedCallIcon
+                else -> incomingCallIcon
+            }
+            itemRecentsType.setImageDrawable(drawable)
+
+            itemRecentsInfo.apply {
+                beVisibleIf(showOverflowMenu)
+                applyColorFilter(accentColor)
+                setOnClickListener {
+                    showCallHistory(call)
+                }
+                setOnLongClickListener {
+                    showPopupMenu(overflowMenuAnchor, call)
+                    true
+                }
+            }
+            //In order not to miss the icon item_recents_info
+            itemRecentsInfoHolder.apply {
+                setOnClickListener {
+                    showCallHistory(call)
+                }
+                setOnLongClickListener {
+                    showPopupMenu(overflowMenuAnchor, call)
+                    true
+                }
+            }
+        }
+
+//            overflowMenuIcon.beVisibleIf(showOverflowMenu)
+//            overflowMenuIcon.drawable.apply {
+//                mutate()
+//                setTint(activity.getProperTextColor())
+//            }
+//            overflowMenuIcon.setOnClickListener {
+//                showPopupMenu(overflowMenuAnchor, call)
+//            }
+    }
+
+    private fun setupViewSwipe(binding: ItemRecentCallSwipeBinding, call: RecentCall) {
+        binding.apply {
+            itemRecentsFrameSelect.setupViewBackground(activity)
+            itemRecentsFrame.setBackgroundColor(backgroundColor)
+
+            val currentFontSize = fontSize
+            itemRecentsHolder.isSelected = selectedKeys.contains(call.id)
+
+            divider.setBackgroundColor(textColor)
+            if (getLastItem() == call || !activity.config.useDividers) divider.visibility = View.INVISIBLE else divider.visibility = View.VISIBLE
+
+            //val name = findContactByCall(call)?.getNameToDisplay() ?: call.name
+            var nameToShow = SpannableString(call.name)
+
+            if (nameToShow.startsWith("+")) nameToShow = SpannableString(getPhoneNumberFormat(activity, number = nameToShow.toString()))
+            if (call.neighbourIDs.isNotEmpty()) {
+                nameToShow = SpannableString("$nameToShow (${call.neighbourIDs.size + 1})")
+            }
+
+            if (textToHighlight.isNotEmpty() && nameToShow.contains(textToHighlight, true)) {
+                nameToShow = SpannableString(nameToShow.toString().highlightTextPart(textToHighlight, properPrimaryColor))
+            }
+
+            itemRecentsName.apply {
+                val name = nameToShow.toString()
+                text = formatterUnicodeWrap(name)
+                setTextColor(if (call.type == Calls.MISSED_TYPE) redColor else textColor) //(textColor)
+                setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize)
+            }
+
+            itemRecentsNumber.apply {
+                setTextColor(textColor)
+                setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
+                val recentsNumber = if (call.phoneNumber == call.name) {
+                    val country = if (call.phoneNumber.startsWith("+")) getCountryByNumber(activity, call.phoneNumber) else ""
+                    country
+                } else {
+                    val phoneNumber =
+                        if (call.phoneNumber.startsWith("+")) getPhoneNumberFormat(activity, number = call.phoneNumber) else call.phoneNumber
                     if (call.specificType.isNotEmpty() && call.specificNumber.isNotEmpty()) call.specificType else phoneNumber
                     //setTextColor(if (call.type == Calls.MISSED_TYPE) redColor else textColor)
                 }
@@ -479,14 +638,36 @@ class RecentCallsAdapter(
                 }
             }
 
-//            overflowMenuIcon.beVisibleIf(showOverflowMenu)
-//            overflowMenuIcon.drawable.apply {
-//                mutate()
-//                setTint(activity.getProperTextColor())
-//            }
-//            overflowMenuIcon.setOnClickListener {
-//                showPopupMenu(overflowMenuAnchor, call)
-//            }
+            //swipe
+            val isRTL = activity.isRTLLayout
+            val swipeLeftAction = if (isRTL) activity.config.swipeRightAction else activity.config.swipeLeftAction
+            swipeLeftIcon.setImageResource(swipeActionImageResource(swipeLeftAction))
+            swipeLeftIcon.setColorFilter(properPrimaryColor.getContrastColor())
+            swipeLeftIconHolder.setBackgroundColor(swipeActionColor(swipeLeftAction))
+
+            val swipeRightAction = if (isRTL) activity.config.swipeLeftAction else activity.config.swipeRightAction
+            swipeRightIcon.setImageResource(swipeActionImageResource(swipeRightAction))
+            swipeRightIcon.setColorFilter(properPrimaryColor.getContrastColor())
+            swipeRightIconHolder.setBackgroundColor(swipeActionColor(swipeRightAction))
+
+            itemRecentsHolder.setRippleColor(SwipeDirection.Left, swipeActionColor(swipeLeftAction))
+            itemRecentsHolder.setRippleColor(SwipeDirection.Right, swipeActionColor(swipeRightAction))
+
+            itemRecentsHolder.swipeGestureListener = object : SwipeGestureListener {
+                override fun onSwipedLeft(swipeActionView: SwipeActionView): Boolean {
+                    val swipeLeftOrRightAction = if (activity.isRTLLayout) activity.config.swipeRightAction else activity.config.swipeLeftAction
+                    swipeAction(swipeLeftOrRightAction, call)
+                    if (activity.config.swipeVibration) itemRecentsHolder.performHapticFeedback()
+                    return true
+                }
+
+                override fun onSwipedRight(swipeActionView: SwipeActionView): Boolean {
+                    val swipeRightOrLeftAction = if (activity.isRTLLayout) activity.config.swipeLeftAction else activity.config.swipeRightAction
+                    swipeAction(swipeRightOrLeftAction, call)
+                    if (activity.config.swipeVibration) itemRecentsHolder.performHapticFeedback()
+                    return true
+                }
+            }
         }
     }
 
@@ -646,43 +827,62 @@ class RecentCallsAdapter(
         }
     }
 
-//    private fun confirmRemove(call: RecentCall) {
-//        ConfirmationDialog(activity, activity.getString(R.string.remove_confirmation)) {
-//            activity.handlePermission(PERMISSION_WRITE_CALL_LOG) {
-//                removeRecent(call)
-//            }
-//        }
-//    }
-//
-//    private fun removeRecent(call: RecentCall) {
-//       /*if (selectedKeys.isEmpty()) {
-//            return
-//        }*/
-//
-//        val callsToRemove = ArrayList<RecentCall>()
-//        callsToRemove.add(call)
-//        val positions = ArrayList<Int>(0)
-//        val idsToRemove = ArrayList<Int>()
-//        idsToRemove.add(call.id)
-//        /*callsToRemove.forEach {
-//            idsToRemove.add(it.id)
-//            it.neighbourIDs.mapTo(idsToRemove, { it })
-//        }*/
-//
-//        RecentsHelper(activity).removeRecentCalls(idsToRemove) {
-//            recentCalls.removeAll(callsToRemove)
-//            (activity as CallHistoryActivity).refreshItems()
-//            /*activity.runOnUiThread {
-//                removeSelectedItems(idsToRemove)
-//                refreshItemsListener?.refreshItems()
-//                (activity as CallHistoryActivity).refreshItems()
-//                finishActMode()
-//            }*/
-//        }
-//    }
+    private fun swipeActionImageResource(swipeAction: Int): Int {
+        return when (swipeAction) {
+            SWIPE_ACTION_DELETE -> com.goodwy.commons.R.drawable.ic_delete_outline
+            SWIPE_ACTION_MESSAGE -> R.drawable.ic_messages
+            SWIPE_ACTION_BLOCK -> R.drawable.ic_block_vector
+            else -> R.drawable.ic_phone_vector
+        }
+    }
 
+    private fun swipeActionColor(swipeAction: Int): Int {
+        val oneSim = activity.config.currentSIMCardIndex == 0
+        val simColor = if (oneSim) activity.config.simIconsColors[1] else activity.config.simIconsColors[2]
+        return when (swipeAction) {
+            SWIPE_ACTION_DELETE -> resources.getColor(R.color.red_call, activity.theme)
+            SWIPE_ACTION_MESSAGE -> resources.getColor(R.color.ic_messages, activity.theme)
+            SWIPE_ACTION_BLOCK -> resources.getColor(R.color.swipe_purple, activity.theme)
+            else -> simColor
+        }
+    }
 
-    /*private fun viewContactInfo(contact: SimpleContact) {
-        activity.startContactDetailsIntent(contact)
-    }*/
+    private fun swipeAction(swipeAction: Int, call: RecentCall) {
+        when (swipeAction) {
+            SWIPE_ACTION_DELETE -> swipedDelete(call)
+            SWIPE_ACTION_MESSAGE -> swipedSMS(call)
+            SWIPE_ACTION_BLOCK -> swipedBlock(call)
+            else -> swipedCall(call)
+        }
+    }
+
+    private fun swipedDelete(call: RecentCall) {
+        selectedKeys.add(call.id)
+        if (activity.config.skipDeleteConfirmation) {
+            activity.handlePermission(PERMISSION_WRITE_CALL_LOG) {
+                removeRecents()
+            }
+        } else askConfirmRemove()
+    }
+
+    private fun swipedSMS(call: RecentCall) {
+        activity.launchSendSMSIntentRecommendation(call.phoneNumber)
+    }
+
+    private fun swipedBlock(call: RecentCall) {
+        if (!isNougatPlus() || call.isUnknownNumber) return
+        selectedKeys.add(call.id)
+        if (!activity.isNumberBlocked(call.phoneNumber)) askConfirmBlock() else askConfirmUnblock()
+    }
+
+    private fun swipedCall(call: RecentCall) {
+        if (activity.config.showCallConfirmation) {
+            CallConfirmationDialog(activity as SimpleActivity, call.name) {
+                activity.launchCallIntent(call.phoneNumber)
+            }
+        } else {
+            activity.launchCallIntent(call.phoneNumber)
+        }
+        //(activity as SimpleActivity).startCallIntent(call.phoneNumber)
+    }
 }

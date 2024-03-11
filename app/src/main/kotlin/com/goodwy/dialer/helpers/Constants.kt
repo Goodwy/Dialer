@@ -37,6 +37,7 @@ const val SHOW_WARNING_ANONYMOUS_CALL = "show_warning_anonymous_call"
 const val CALL_VIBRATION = "call_vibration"
 const val CALL_START_END_VIBRATION = "call_start_end_vibration"
 const val NEED_SELECT_SIM = "need_select_sim"
+const val TONE_VOLUME = "tone_volume"
 
 const val ALL_TABS_MASK = TAB_CONTACTS or TAB_FAVORITES or TAB_CALL_HISTORY
 
@@ -99,3 +100,12 @@ const val ANSWER_SLIDER_VERTICAL = 3
 const val SHOW_CALLER_NOTHING = 0
 const val SHOW_CALLER_COMPANY = 1
 const val SHOW_CALLER_NICKNAME = 2
+
+// swiped left action
+const val SWIPE_RIGHT_ACTION = "swipe_right_action"
+const val SWIPE_LEFT_ACTION = "swipe_left_action"
+const val SWIPE_ACTION_DELETE = 2
+const val SWIPE_ACTION_BLOCK = 4 //!! isNougatPlus()
+const val SWIPE_ACTION_CALL = 5
+const val SWIPE_ACTION_MESSAGE = 6
+const val SWIPE_VIBRATION = "swipe_vibration"

@@ -12,3 +12,9 @@ fun View.setHeightAndWidth(size: Int) {
     lp.width = size
     layoutParams = lp
 }
+
+fun View.setWidth(size: Int) {
+    val lp = layoutParams
+    lp.width = size
+    layoutParams = lp
+}
