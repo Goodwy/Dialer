@@ -28,8 +28,8 @@
     <string name="decline">Ablehnen</string>
     <string name="decline_call">Anruf ablehnen</string>
     <string name="unknown_caller">Unbekannter Anruf</string>
-    <string name="is_calling">Ruft an …</string>
-    <string name="dialing">Wird gewählt …</string>
+    <string name="is_calling">Ruft an …</string>
+    <string name="dialing">Wird gewählt …</string>
     <string name="call_ended">Anruf beendet</string>
     <string name="call_ending">Anruf beenden</string>
     <string name="ongoing_call">Aktueller Anruf</string>
