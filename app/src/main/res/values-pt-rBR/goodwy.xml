@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name_g">Right Dialer</string>
-    <string name="transparent_call_screen_g">Tela de chamada transparente</string>
-    <string name="call_back_g">Chamar</string>
-    <string name="call_back_person_g">Retorno de chamada %s</string>
+    <string name="transparent_call_screen_g">Tela de Chamada Transparente</string>
+    <string name="call_back_g">Retornar Chamada</string>
+    <string name="call_back_person_g">Retornar Chamada de %s</string>
     <string name="missed_call_g">Chamada perdida</string>
     <string name="missed_calls_g">Chamadas perdidas</string>
     <string name="missed_call_notifications_g">Notificações de chamadas perdidas</string>
     <string name="call_notification_channel_high_priority_g">Notificações de chamada de alta prioridade</string>
     <string name="call_notification_channel_g">Notificações de chamadas</string>
-    <string name="dialpad_preferences">Preferências do teclado de discagem</string>
-    <string name="call_start_end_vibration">Vibra quando a chamada é iniciada e encerrada</string>
+    <string name="call_start_end_vibration">Vibrar quando a chamada inicia ou é encerrada</string>
 
-    <string name="show_contact_thumbnails_g">Mostrar miniaturas de contato</string>
-    <string name="hide_dialpad_letters_g">Ocultar letras de dialpad</string>
-    <string name="show_caller_description_g">Mostrar informações adicionais sobre o chamador</string>
+    <string name="dialpad_preferences">Preferências do teclado de discagem</string>
+    <string name="show_contact_thumbnails_g">Exibir miniaturas de contato</string>
+    <string name="hide_dialpad_letters_g">Ocultar letras do teclado de discagem</string>
+    <string name="show_caller_description_g">Exibir informações adicionais sobre o chamador</string>
     <string name="nickname">Apelido</string>
     <string name="company">Empresa</string>
-    <string name="call_anonymously">Ligar anonimamente (com o prefixo #31#)</string>
+    <string name="call_anonymously">Chamar anonimamente (com o prefixo #31#)</string>
     <string name="call_anonymously_warning">
         <![CDATA[
-            <h4>Advertência</h4>
+            <h4>Aviso</h4>
             O número será chamado com o prefixo #31# <br><br>
                 <h6"><i>  #31#%s</i></h6>
-            Certifique-se de que sua operadora ofereça suporte ao serviço de ocultação de números ao usar o prefixo #31#. <br>
-            Seu provedor de serviços pode cobrar uma taxa adicional por esse serviço.
+            Certifique-se de que sua operadora suporta o serviço de ocultação de números ao usar o prefixo #31#. <br>
+            Seu provedor de serviços pode cobrar uma taxa adicional por este serviço.
         ]]>
     </string>
 
@@ -36,18 +36,17 @@
     <string name="timers_notification_msg">Temporizadores em execução</string>
     <plurals name="timer_notification_msg">
         <item quantity="one">%d temporizador em execução</item>
-        <item quantity="many">%d temporizadores em execução</item>
         <item quantity="other">%d temporizadores em execução</item>
     </plurals>
 
     <!-- FAQ -->
     <string name="faq_1_title_dialer_g">Por que preciso desbloquear meu dispositivo para atender a uma chamada recebida?</string>
-    <string name="faq_1_text_dialer_g">O sistema operacional impede que os aplicativos acessem a tela de bloqueio. Você precisa permitir que o aplicativo acesse a tela de bloqueio. Por exemplo, na MIUI, é necessário permitir o acesso a Configurações => Notificações => Notificações na tela de bloqueio.</string>
+    <string name="faq_1_text_dialer_g">Seu sistema operacional está bloqueando o acesso do aplicativo à tela de bloqueio. Você precisa permitir que o aplicativo acesse a tela de bloqueio. Por exemplo, na MIUI, é preciso permitir o acesso em "Configurações => Notificações => Notificações na tela de bloqueio" e ativar a permissão "Abrir novas janelas enquanto executa em segundo plano".</string>
     <string name="faq_2_title_dialer_g">Como copiar ou colar um número na tela de discagem?</string>
     <string name="faq_2_text_dialer_g">Um toque longo no botão de chamada cola o conteúdo da área de transferência. Se o número já tiver sido inserido, um toque longo no botão de chamada o copiará para a área de transferência.</string>
 
     <!-- Answer style -->
-    <string name="answer_style">Estilo do botão de resposta</string>
+    <string name="answer_style">Estilo da resposta</string>
     <string name="buttons">Botões</string>
     <string name="answer_slider">Botão deslizante</string>
     <string name="answer_slider_outline">Controle deslizante com contorno</string>

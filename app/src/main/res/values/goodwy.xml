@@ -9,7 +9,7 @@
     <string name="missed_call_notifications_g">Missed call notifications</string>
     <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
     <string name="call_notification_channel_g">Call notifications</string>
-    <string name="call_start_end_vibration">Vibrate when your call is start and end</string>
+    <string name="call_start_end_vibration">Vibrate when your call starts and ends</string>
 
     <string name="dialpad_preferences">Dialpad preferences</string>
     <string name="show_contact_thumbnails_g">Show contact thumbnails</string>
@@ -23,13 +23,13 @@
             <h4>Warning</h4>
             The number will be called with the prefix #31# <br><br>
                 <h6"><i>  #31#%s</i></h6>
-            Make sure that your operator supports the number hiding service when using the #31# prefix. <br>
+            Make sure your operator supports the number hiding service when using the #31# prefix. <br>
             Your service provider may charge an additional fee for this service.
         ]]>
     </string>
 
     <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="open_speed_dial_manage">Open the speed dial manager?</string>
 
     <!-- Timer -->
     <string name="timer">Timer</string>
@@ -41,7 +41,7 @@
 
     <!-- FAQ -->
     <string name="faq_1_title_dialer_g">Why do I have to unlock my device to answer an incoming call?</string>
-    <string name="faq_1_text_dialer_g">Your operating system is blocking app access to the lock screen. You need to allow the app to access the lock screen. For example in MIUI you need to enable access in "Settings => Notifications => Lock screen notifications" and enable the "Open new windows while running in the background" permission.</string>
+    <string name="faq_1_text_dialer_g">Your operating system is blocking app access to the lock screen. You need to allow the app to access the lock screen. For example, in MIUI you need to enable access in "Settings => Notifications => Lock screen notifications" and enable the "Open new windows while running in the background" permission.</string>
     <string name="faq_2_title_dialer_g">How do I copy or paste a number on the dialing screen?</string>
     <string name="faq_2_text_dialer_g">A long press on the call button will paste the clipboard contents. If you have already entered a number, long pressing the call button will copy the number to the clipboard.</string>
 
