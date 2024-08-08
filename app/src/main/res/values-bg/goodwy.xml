@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Прозрачен екран за обаждания</string>
     <string name="call_back_g">Обаждам се</string>
     <string name="call_back_person_g">Обадете се обратно на %s</string>
@@ -51,4 +50,12 @@
     <string name="answer_slider">Плъзгач</string>
     <string name="answer_slider_outline">Плъзгач за контур</string>
     <string name="answer_slider_vertical">Вертикален плъзгач</string>
+    <string name="show_recent_calls">Показване на скорошни обаждания</string>
+    <string name="open_dialpad_when_call_from_another_app">Когато се опитате да се обадите от друго приложение, отворете клавиатурата за набиране</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Това може да ви предпази от злонамерен софтуер, който провежда обаждания без ваше знание.</string>
+    <string name="number_of_recent_calls_displays">Показан брой скорошни обаждания</string>
+    <string name="group_calls">Групиране на обаждания</string>
+    <string name="group_all_calls">Групирайте всички повиквания, ще се покаже само последното обаждане</string>
+    <string name="call_button_style">Стил на звънец</string>
+    <string name="answer_end_other_call">Отговорете и прекратете текущото повикване</string>
 </resources>

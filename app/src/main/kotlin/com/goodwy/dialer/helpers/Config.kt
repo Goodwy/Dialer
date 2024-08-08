@@ -11,6 +11,7 @@ import com.google.gson.reflect.TypeToken
 import com.goodwy.commons.helpers.BaseConfig
 import com.goodwy.dialer.extensions.getPhoneAccountHandleModel
 import com.goodwy.dialer.extensions.putPhoneAccountHandle
+import com.goodwy.dialer.models.RecentCall
 import com.goodwy.dialer.models.SpeedDial
 
 class Config(context: Context) : BaseConfig(context) {
@@ -161,6 +162,39 @@ class Config(context: Context) : BaseConfig(context) {
     var toneVolume: Int
         get() = prefs.getInt(TONE_VOLUME, 80)
         set(toneVolume) = prefs.edit().putInt(TONE_VOLUME, toneVolume).apply()
+
+    var groupAllCalls: Boolean
+        get() = prefs.getBoolean(GROUP_ALL_CALLS, false)
+        set(groupAllCalls) = prefs.edit().putBoolean(GROUP_ALL_CALLS, groupAllCalls).apply()
+
+    var showRecentCallsOnDialpad: Boolean
+        get() = prefs.getBoolean(SHOW_RECENT_CALLS_ON_DIALPAD, false)
+        set(groupCallsByDate) = prefs.edit().putBoolean(SHOW_RECENT_CALLS_ON_DIALPAD, groupCallsByDate).apply()
+
+    var blockCallFromAnotherApp: Boolean
+        get() = prefs.getBoolean(BLOCK_CALL_FROM_ANOTHER_APP, false)
+        set(blockCallFromAnotherApp) = prefs.edit().putBoolean(BLOCK_CALL_FROM_ANOTHER_APP, blockCallFromAnotherApp).apply()
+
+    var needUpdateRecents: Boolean
+        get() = prefs.getBoolean(NEED_UPDATE_RECENTS, false)
+        set(needUpdateRecents) = prefs.edit().putBoolean(NEED_UPDATE_RECENTS, needUpdateRecents).apply()
+
+    var recentCallsCache: String
+        get() = prefs.getString(RECENT_CALL, "")!!
+        set(albumCovers) = prefs.edit().putString(RECENT_CALL, albumCovers).apply()
+
+    fun parseRecentCallsCache(): ArrayList<RecentCall> {
+        val listType = object : TypeToken<List<RecentCall>>() {}.type
+        return Gson().fromJson<ArrayList<RecentCall>>(recentCallsCache, listType) ?: ArrayList(1)
+    }
+
+    var queryLimitRecent: Int
+        get() = prefs.getInt(QUERY_LIMIT_RECENT, QUERY_LIMIT_SMALL_VALUE)
+        set(queryLimitRecent) = prefs.edit().putInt(QUERY_LIMIT_RECENT, queryLimitRecent).apply()
+
+    var callButtonStyle: Int
+        get() = prefs.getInt(CALL_BUTTON_STYLE, IOS16)
+        set(callButtonStyle) = prefs.edit().putInt(CALL_BUTTON_STYLE, callButtonStyle).apply()
 
     //Timer
     var timerSeconds: Int

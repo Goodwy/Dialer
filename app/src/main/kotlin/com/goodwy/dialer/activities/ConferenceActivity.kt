@@ -28,6 +28,7 @@ class ConferenceActivity : SimpleActivity() {
         setupToolbar(binding.conferenceToolbar, NavigationIcon.Arrow)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         when (CallManager.getPhoneState()) {
             NoCall -> {

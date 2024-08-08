@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Schermata di chiamata trasparente</string>
     <string name="call_back_g">Richiamare</string>
     <string name="call_back_person_g">Richiamare %s</string>
@@ -52,4 +51,12 @@
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Slider contorno</string>
     <string name="answer_slider_vertical">Slider verticale</string>
+    <string name="show_recent_calls">Mostra le chiamate recenti</string>
+    <string name="open_dialpad_when_call_from_another_app">Quando provi a effettuare una chiamata da un\'altra app, apri la tastiera</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Questo può proteggerti dal malware che effettua chiamate a tua insaputa.</string>
+    <string name="number_of_recent_calls_displays">Numero visualizzato di chiamate recenti</string>
+    <string name="group_calls">Raggruppamento delle chiamate</string>
+    <string name="group_all_calls">Raggruppa tutte le chiamate, verrà mostrata solo l\'ultima chiamata</string>
+    <string name="call_button_style">Stile pulsante campanello</string>
+    <string name="answer_end_other_call">Rispondi e termina la chiamata in corso</string>
 </resources>

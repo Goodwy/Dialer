@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Празрысты экран выкліку</string>
     <string name="call_back_g">Ператэлефанаваць</string>
     <string name="call_back_person_g">Ператэлефануйце %s</string>
@@ -53,4 +52,12 @@
     <string name="answer_slider">Слайдэр</string>
     <string name="answer_slider_outline">Слайдэр з контурам</string>
     <string name="answer_slider_vertical">Вертыкальны слайдэр</string>
+    <string name="show_recent_calls">Паказваць нядаўнія званкі</string>
+    <string name="open_dialpad_when_call_from_another_app">Пры спробе здзейсніць званок з іншага прыкладання адкрываць панэль набору нумара</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Гэта можа абараніць вас ад шкоднасных праграм, якія здзяйсняюць званкі без вашага ведама.</string>
+    <string name="number_of_recent_calls_displays">Якая адлюстроўваецца колькасць нядаўніх званкоў</string>
+    <string name="group_calls">Групоўка званкоў</string>
+    <string name="group_all_calls">Групаваць усе званкі, будзе паказаны толькі апошні званок</string>
+    <string name="call_button_style">Стыль кнопак званка</string>
+    <string name="answer_end_other_call">Адказаць і завяршыць бягучы выклік</string>
 </resources>

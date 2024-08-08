@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">מסך שיחה שקוף</string>
     <string name="call_back_g">טלפן</string>
     <string name="call_back_person_g">התקשר בחזרה %s</string>
@@ -52,4 +51,12 @@
     <string name="answer_slider">מחוון</string>
     <string name="answer_slider_outline">מחוון מתאר</string>
     <string name="answer_slider_vertical">מחוון אנכי</string>
+    <string name="show_recent_calls">הצגת שיחות אחרונות</string>
+    <string name="open_dialpad_when_call_from_another_app">כאשר אתה מנסה לבצע שיחה מאפליקציה אחרת, פתח את לוח החיוג</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">זה יכול להגן עליך מפני תוכנות זדוניות שמבצעות שיחות ללא ידיעתך.</string>
+    <string name="number_of_recent_calls_displays">מספר מוצג של שיחות אחרונות</string>
+    <string name="group_calls">קיבוץ שיחות</string>
+    <string name="group_all_calls">קבץ את כל השיחות, רק השיחה האחרונה תוצג</string>
+    <string name="call_button_style">סגנון לחצן פעמון</string>
+    <string name="answer_end_other_call">מענה לשיחה הנוכחית וסיום שלה</string>
 </resources>

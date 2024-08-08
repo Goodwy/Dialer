@@ -50,6 +50,10 @@ import com.goodwy.dialer.fragments.FavoritesFragment
 import com.goodwy.dialer.fragments.MyViewPagerFragment
 import com.goodwy.dialer.fragments.RecentsFragment
 import com.goodwy.dialer.helpers.*
+import com.goodwy.dialer.models.Events
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import me.grantland.widget.AutofitHelper
 
 class MainActivity : SimpleActivity() {
@@ -63,6 +67,7 @@ class MainActivity : SimpleActivity() {
     private var searchQuery = ""
     private var storedStartNameWithSurname = false
     private var storedShowPhoneNumbers = false
+    private var storedBackgroundColor = 0
     private var currentOldScrollY = 0
     var cachedContacts = ArrayList<Contact>()
 
@@ -78,6 +83,8 @@ class MainActivity : SimpleActivity() {
         storeStateVariables()
         val useBottomNavigationBar = config.bottomNavigationBar
         updateMaterialActivityViews(binding.mainCoordinator, binding.mainHolder, useTransparentNavigation = false, useTopSearchMenu = useBottomNavigationBar)
+
+        EventBus.getDefault().register(this)
         launchedDialer = savedInstanceState?.getBoolean(OPEN_DIAL_PAD_AT_LAUNCH) ?: false
         val properBackgroundColor = getProperBackgroundColor()
 
@@ -142,7 +149,7 @@ class MainActivity : SimpleActivity() {
             System.exit(0)
             return
         }
-        if (config.tabsChanged) {
+        if (config.tabsChanged || storedBackgroundColor != getProperBackgroundColor()) {
             config.lastUsedViewPagerPage = 0
             finish()
             startActivity(intent)
@@ -242,6 +249,7 @@ class MainActivity : SimpleActivity() {
             storedShowPhoneNumbers = showPhoneNumbers
             storedFontSize = fontSize
             tabsChanged = false
+            storedBackgroundColor = getProperBackgroundColor()
         }
     }
 
@@ -279,6 +287,11 @@ class MainActivity : SimpleActivity() {
         } else {
             super.onBackPressed()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 
     private fun refreshMenuItems() {
@@ -351,10 +364,6 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun changeViewType() {
-//        ChangeViewTypeDialog(this) {
-//            refreshMenuItems()
-//            getFavoritesFragment()?.refreshItems()
-//        }
         config.viewType = if (config.viewType == VIEW_TYPE_LIST) VIEW_TYPE_GRID else VIEW_TYPE_LIST
         refreshMenuItems()
         getFavoritesFragment()?.refreshItems()
@@ -375,7 +384,6 @@ class MainActivity : SimpleActivity() {
             setSearchableInfo(searchManager.getSearchableInfo(componentName))
             isSubmitButtonEnabled = false
             queryHint = getString(R.string.search)
-            //setBackgroundColor(getProperTextColor())
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String) = false
 
@@ -411,7 +419,7 @@ class MainActivity : SimpleActivity() {
     private fun showBlockedNumbers() {
         config.showBlockedNumbers = !config.showBlockedNumbers
         binding.mainMenu.getToolbar().menu.findItem(R.id.show_blocked_numbers).title = if (config.showBlockedNumbers) getString(R.string.hide_blocked_numbers) else getString(R.string.show_blocked_numbers)
-
+        config.needUpdateRecents = true
         runOnUiThread {
             getRecentsFragment()?.refreshItems()
         }
@@ -560,11 +568,11 @@ class MainActivity : SimpleActivity() {
                     it?.finishActMode()
                 }
                 refreshMenuItems()
-                if (getCurrentFragment() == getRecentsFragment()) {
-                    ensureBackgroundThread {
-                        clearMissedCalls()
-                    }
-                }
+//                if (getCurrentFragment() == getRecentsFragment()) {
+//                    ensureBackgroundThread {
+//                        clearMissedCalls()
+//                    }
+//                }
             }
         })
 
@@ -577,9 +585,6 @@ class MainActivity : SimpleActivity() {
                     // open the Recents tab if we got here by clicking a missed call notification
                     if (intent.action == Intent.ACTION_VIEW && config.showTabs and TAB_CALL_HISTORY > 0) {
                         wantedTab = binding.mainTabsHolder.tabCount - 2
-                        ensureBackgroundThread {
-                            clearMissedCalls()
-                        }
                     }
 
                     binding.mainTabsHolder.getTabAt(wantedTab)?.select()
@@ -594,9 +599,6 @@ class MainActivity : SimpleActivity() {
                     // open the Recents tab if we got here by clicking a missed call notification
                     if (intent.action == Intent.ACTION_VIEW && config.showTabs and TAB_CALL_HISTORY > 0) {
                         wantedTab = binding.mainTopTabsHolder.tabCount - 2
-                        ensureBackgroundThread {
-                            clearMissedCalls()
-                        }
                     }
 
                     binding.mainTopTabsHolder.getTabAt(wantedTab)?.select()
@@ -696,12 +698,18 @@ class MainActivity : SimpleActivity() {
                 it.icon?.applyColorFilter(properTextColor)
                 it.icon?.alpha = 220 // max 255
                 getFavoritesFragment()?.refreshItems() //to save sorting
+                closeSearch()
             },
             tabSelectedAction = {
-                closeSearch()
                 binding.viewPager.currentItem = it.position
                 it.icon?.applyColorFilter(properPrimaryColor)
                 it.icon?.alpha = 220 // max 255
+
+                val lastPosition = binding.mainTopTabsHolder.tabCount - 1
+                if (it.position == lastPosition && config.showTabs and TAB_CALL_HISTORY > 0) {
+                    clearMissedCalls()
+                }
+
                 if (config.openSearch) {
                     if (getCurrentFragment() is ContactsFragment) {
                         mSearchMenuItem!!.expandActionView()
@@ -740,9 +748,20 @@ class MainActivity : SimpleActivity() {
                 updateBottomTabItemColors(it.customView, false, getDeselectedTabDrawableIds()[it.position])
             },
             tabSelectedAction = {
-                binding.mainMenu.closeSearch()
+//                binding.mainMenu.closeSearch()
+
+                //On tab switch, the search string is not deleted
+                //It should not start on the first startup
+                if (binding.mainMenu.isSearchOpen) getCurrentFragment()?.onSearchQueryChanged(binding.mainMenu.getCurrentQuery())
+
                 binding.viewPager.currentItem = it.position
                 updateBottomTabItemColors(it.customView, true, getSelectedTabDrawableIds()[it.position])
+
+                val lastPosition = binding.mainTabsHolder.tabCount - 1
+                if (it.position == lastPosition && config.showTabs and TAB_CALL_HISTORY > 0) {
+                    clearMissedCalls()
+                }
+
                 if (config.openSearch) {
                     if (getCurrentFragment() is ContactsFragment) {
                         binding.mainMenu.requestFocusAndShowKeyboard()
@@ -872,22 +891,8 @@ class MainActivity : SimpleActivity() {
         }
     }
 
-    @SuppressLint("MissingPermission")
-    private fun clearMissedCalls() {
-        try {
-            // notification cancellation triggers MissedCallNotifier.clearMissedCalls() which, in turn,
-            // should update the database and reset the cached missed call count in MissedCallNotifier.java
-            // https://android.googlesource.com/platform/packages/services/Telecomm/+/master/src/com/android/server/telecom/ui/MissedCallNotifierImpl.java#170
-            telecomManager.cancelMissedCallsNotification()
-
-            notificationManager.cancel(420)
-            config.numberMissedCalls = 0
-            updateUnreadCountBadge(0)
-        } catch (ignored: Exception) {
-        }
-    }
-
     private fun launchSettings() {
+        binding.mainMenu.closeSearch()
         closeSearch()
         hideKeyboard()
         startActivity(Intent(applicationContext, SettingsActivity::class.java))
@@ -918,18 +923,28 @@ class MainActivity : SimpleActivity() {
     private fun showFilterDialog() {
         FilterContactSourcesDialog(this) {
             getFavoritesFragment()?.refreshItems {
+                if (isSearchOpen) {
+                    getCurrentFragment()?.onSearchQueryChanged(searchQuery)
+                }
                 if (binding.mainMenu.isSearchOpen) {
                     getCurrentFragment()?.onSearchQueryChanged(binding.mainMenu.getCurrentQuery())
                 }
             }
 
             getContactsFragment()?.refreshItems {
+                if (isSearchOpen) {
+                    getCurrentFragment()?.onSearchQueryChanged(searchQuery)
+                }
                 if (binding.mainMenu.isSearchOpen) {
                     getCurrentFragment()?.onSearchQueryChanged(binding.mainMenu.getCurrentQuery())
                 }
             }
 
+            config.needUpdateRecents = true
             getRecentsFragment()?.refreshItems {
+                if (isSearchOpen) {
+                    getCurrentFragment()?.onSearchQueryChanged(searchQuery)
+                }
                 if (binding.mainMenu.isSearchOpen) {
                     getCurrentFragment()?.onSearchQueryChanged(binding.mainMenu.getCurrentQuery())
                 }
@@ -943,6 +958,11 @@ class MainActivity : SimpleActivity() {
             cachedContacts.addAll(contacts)
         } catch (_: Exception) {
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun refreshCallLog(event: Events.RefreshCallLog) {
+        getRecentsFragment()?.refreshItems()
     }
 
     private fun closeSearch() {

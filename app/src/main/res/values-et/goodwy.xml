@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Läbipaistev kõneekraan</string>
     <string name="call_back_g">Kutsuma</string>
     <string name="call_back_person_g">Helistage tagasi %s</string>
@@ -51,4 +50,12 @@
     <string name="answer_slider">Liugur</string>
     <string name="answer_slider_outline">Liigendi liugur</string>
     <string name="answer_slider_vertical">Vertikaalne liugur</string>
+    <string name="show_recent_calls">Näita hiljutisi kõnesid</string>
+    <string name="open_dialpad_when_call_from_another_app">Kui proovite helistada mõnest muust rakendusest, avage valimisklahvistik</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">See võib kaitsta teid pahavara eest, mis helistab teie teadmata.</string>
+    <string name="number_of_recent_calls_displays">Kuvatud hiljutiste kõnede arv</string>
+    <string name="group_calls">Kõnede rühmitamine</string>
+    <string name="group_all_calls">Rühmitage kõik kõned, kuvatakse ainult viimane kõne</string>
+    <string name="call_button_style">Kellanupu stiil</string>
+    <string name="answer_end_other_call">Praegusele kõnele vastamine ja selle lõpetamine</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Skaidrus skambučių ekranas</string>
     <string name="call_back_g">Šaukti</string>
     <string name="call_back_person_g">Atgalinis skambutis %s</string>
@@ -53,4 +52,12 @@
     <string name="answer_slider">Slankiklis</string>
     <string name="answer_slider_outline">Kontūro slankiklis</string>
     <string name="answer_slider_vertical">Vertikalus slankiklis</string>
+    <string name="show_recent_calls">Rodyti naujausius skambučius</string>
+    <string name="open_dialpad_when_call_from_another_app">Kai bandote skambinti iš kitos programėlės, atidarykite numerio rinkiklį</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Tai gali apsaugoti jus nuo kenkėjiškų programų, skambinančių be jūsų žinios.</string>
+    <string name="number_of_recent_calls_displays">Rodomas paskutinių skambučių skaičius</string>
+    <string name="group_calls">Skambučių grupavimas</string>
+    <string name="group_all_calls">Sugrupuokite visus skambučius, bus rodomas tik paskutinis skambutis</string>
+    <string name="call_button_style">Varpo mygtuko stilius</string>
+    <string name="answer_end_other_call">Atsiliepkite ir užbaikite dabartinį skambutį</string>
 </resources>

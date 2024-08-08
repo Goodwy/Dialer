@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="transparent_call_screen_g">Transparent Call Screen</string>
+    <string name="call_back_g">Call back</string>
+    <string name="call_back_person_g">Call back %s</string>
+    <string name="missed_call_g">Missed call</string>
+    <string name="missed_calls_g">Missed calls</string>
+    <string name="missed_call_notifications_g">Missed call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
+    <string name="call_notification_channel_g">Call notifications</string>
+    <string name="call_start_end_vibration">Vibrate when your call is start and end</string>
+
+    <string name="dialpad_preferences">Dialpad preferences</string>
+    <string name="show_contact_thumbnails_g">Show contact thumbnails</string>
+    <string name="hide_dialpad_letters_g">Hide dialpad letters</string>
+    <string name="show_caller_description_g">Show additional caller information</string>
+    <string name="nickname">Nickname</string>
+    <string name="company">Company</string>
+    <string name="call_anonymously">Call anonymously (with prefix #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Warning</h4>
+            The number will be called with the prefix #31# <br><br>
+                <h6"><i>  #31#%s</i></h6>
+            Make sure that your operator supports the number hiding service when using the #31# prefix. <br>
+            Your service provider may charge an additional fee for this service.
+        ]]>
+    </string>
+
+    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
+    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+
+    <!-- Timer -->
+    <string name="timer">Timer</string>
+    <string name="timers_notification_msg">Timers are running</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">%d timer is running</item>
+        <item quantity="other">%d timers are running</item>
+    </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Why do I have to unlock my device to answer an incoming call?</string>
+    <string name="faq_1_text_dialer_g">Your operating system is blocking app access to the lock screen. You need to allow the app to access the lock screen. For example in MIUI you need to enable access in "Settings => Notifications => Lock screen notifications" and enable the "Open new windows while running in the background" permission.</string>
+    <string name="faq_2_title_dialer_g">How do I copy or paste a number on the dialing screen?</string>
+    <string name="faq_2_text_dialer_g">A long press on the call button will paste the clipboard contents. If you have already entered a number, long pressing the call button will copy the number to the clipboard.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Answer style</string>
+    <string name="buttons">Buttons</string>
+    <string name="answer_slider">Slider</string>
+    <string name="answer_slider_outline">Outline slider</string>
+    <string name="answer_slider_vertical">Vertical slider</string>
+    <string name="show_recent_calls">Показывать недавние звонки</string>
+</resources>

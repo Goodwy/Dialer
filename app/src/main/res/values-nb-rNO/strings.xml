@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--TODO Edit-->
-    <string name="app_name">Enkel oppringer</string>
     <string name="app_launcher_name">Oppringer</string>
     <string name="default_phone_app_prompt">Gjør denne appen til standard telefonapp</string>
     <string name="allow_displaying_over_other_apps">Please allow displaying over other apps for reliable behaviour</string>
-    <!-- Contacts -->
     <string name="could_not_access_contacts">Kunne ikke få tilgang til kontaktene dine</string>
-    <!-- Recents -->
     <string name="no_previous_calls">Ingen tidligere anrop er funnet</string>
     <string name="could_not_access_the_call_history">Fikk ikke tilgang til anropsloggen</string>
     <string name="request_access">Be om tilgang</string>
@@ -15,14 +11,12 @@
     <string name="clear_history_confirmation">Er du sikker på at du vil fjerne alt fra anropsloggen\?</string>
     <string name="clear_call_history">Tøm anropsloggen</string>
     <string name="show_call_details">Vis samtaledetaljer</string>
-    <!-- Dialpad -->
     <string name="dialpad">Tastatur</string>
     <string name="asterisk">Asterisk</string>
     <string name="hashtag">Emneknagg</string>
     <string name="call_number">Ring nummer</string>
     <string name="dialpad_beeps">Enable beeps on dialpad button clicks</string>
     <string name="dialpad_vibrations">Enable vibrations on dialpad button clicks</string>
-    <!-- Dialer -->
     <string name="dialer">Oppringer</string>
     <string name="accept">Godta</string>
     <string name="accept_call">Godta samtalen</string>
@@ -60,11 +54,9 @@
     <string name="audio_route_wired_or_earpiece">Kablet eller øresnegl</string>
     <string name="choose_audio_route">Velg lydrute</string>
     <string name="calling_blocked_number">Nummeret du ringer er blokkert</string>
-    <!-- Speed dial -->
     <string name="speed_dial">Hurtigvalg</string>
     <string name="manage_speed_dial">Administrer hurtigvalg</string>
     <string name="speed_dial_label">Klikk på et nummer for å tilordne en kontakt til det. Du kan deretter raskt ringe den oppgitte kontakten ved å trykke lenge på det gitte nummeret på oppringeren.</string>
-    <!-- Settings -->
     <string name="group_subsequent_calls">Grupper påfølgende anrop med samme nummer i anropsloggen</string>
     <string name="open_dialpad_by_default">Åpne talltastaturet som standard når appen åpnes</string>
     <string name="disable_proximity_sensor">Deaktiver nærhetssensor under samtaler</string>
@@ -73,8 +65,6 @@
     <string name="hide_dialpad_numbers">Hide dialpad numbers</string>
     <string name="export_call_history">Eksporter samtalehistorikk</string>
     <string name="import_call_history">Importer samtalehistorikk</string>
-
-    <!-- FAQ -->
     <string name="faq_1_title">Jeg hører innkommende anrop, men skjermen slås ikke på. Hva kan jeg gjøre?</string>
     <string name="faq_1_text">Slike problemer kan ha mange enhets- og systemspesifikke årsaker, så det er vanskelig å si noe generelt. Du bør se deg om i enhetsinnstillingene og sørge for at appen er tillatt å dukke opp i bakgrunnen og at den kan vises over andre apper.</string>
 </resources>

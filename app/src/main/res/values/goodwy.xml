@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Transparent Call Screen</string>
     <string name="call_back_g">Call back</string>
     <string name="call_back_person_g">Call back %s</string>
@@ -10,7 +9,15 @@
     <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
     <string name="call_notification_channel_g">Call notifications</string>
     <string name="call_start_end_vibration">Vibrate when your call starts and ends</string>
+    <string name="show_recent_calls">Show recent calls</string>
+    <string name="open_dialpad_when_call_from_another_app">Open the dialpad when you try to make a call from another app</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">This can protect you from malware making calls without your knowledge</string>
+    <string name="number_of_recent_calls_displays">Number of Recent Calls displays</string>
+    <string name="group_calls">Group calls</string>
+    <string name="group_all_calls">Group all calls, only the last call will be shown</string>
+    <string name="call_button_style">Call button style</string>
 
+    <string name="answer_end_other_call">Answer &amp; end other call</string>
     <string name="dialpad_preferences">Dialpad preferences</string>
     <string name="show_contact_thumbnails_g">Show contact thumbnails</string>
     <string name="hide_dialpad_letters_g">Hide dialpad letters</string>

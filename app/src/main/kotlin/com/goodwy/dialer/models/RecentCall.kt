@@ -2,6 +2,7 @@ package com.goodwy.dialer.models
 
 import android.telephony.PhoneNumberUtils
 import com.goodwy.commons.extensions.normalizePhoneNumber
+import com.goodwy.commons.extensions.toDayCode
 
 /**
  * Used at displaying recent calls.
@@ -16,21 +17,27 @@ data class RecentCall(
     var company: String = "",
     var jobPosition: String = "",
     var photoUri: String,
-    var startTS: Int,
+    val startTS: Long,
     var duration: Int,
     var type: Int,
-    val neighbourIDs: MutableList<Int>,
     val simID: Int,
     var specificNumber: String,
     var specificType: String,
     val isUnknownNumber: Boolean,
+    val groupedCalls: MutableList<RecentCall>? = null,
     var contactID: Int? = null,
-) {
+) : CallLogItem() {
     fun doesContainPhoneNumber(text: String): Boolean {
-        val normalizedText = text.normalizePhoneNumber()
-        return PhoneNumberUtils.compare(phoneNumber.normalizePhoneNumber(), normalizedText) ||
+        return if (text.toIntOrNull() != null) {
+            val normalizedText = text.normalizePhoneNumber()
+            PhoneNumberUtils.compare(phoneNumber.normalizePhoneNumber(), normalizedText) ||
                 phoneNumber.contains(text) ||
                 phoneNumber.normalizePhoneNumber().contains(normalizedText) ||
                 phoneNumber.contains(normalizedText)
+        } else {
+            false
+        }
     }
+
+    fun getDayCode() = startTS.toDayCode()
 }

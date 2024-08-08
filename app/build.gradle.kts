@@ -32,7 +32,8 @@ android {
         targetSdk = project.libs.versions.app.build.targetSDK.get().toInt()
         versionName = project.libs.versions.app.version.versionName.get()
         versionCode = project.libs.versions.app.version.versionCode.get().toInt()
-        buildConfigField("String", "GOOGLE_PLAY_LICENSING_KEY", "\"${properties["GOOGLE_PLAY_LICENSE_KEY"]}\"")
+        setProperty("archivesBaseName", "dialer-$versionCode")
+        buildConfigField("String", "RIGHT_APP_KEY", "\"${properties["RIGHT_APP_KEY"]}\"")
         buildConfigField("String", "PRODUCT_ID_X1", "\"${properties["PRODUCT_ID_X1"]}\"")
         buildConfigField("String", "PRODUCT_ID_X2", "\"${properties["PRODUCT_ID_X2"]}\"")
         buildConfigField("String", "PRODUCT_ID_X3", "\"${properties["PRODUCT_ID_X3"]}\"")
@@ -82,7 +83,7 @@ android {
     flavorDimensions.add("variants")
     productFlavors {
         register("core")
-        register("fdroid")
+        register("foss")
         register("prepaid")
     }
 
@@ -91,9 +92,13 @@ android {
     }
 
     compileOptions {
-        val currentJavaVersionFromLibs = JavaVersion.valueOf(libs.versions.app.build.javaVersion.get().toString())
+        val currentJavaVersionFromLibs = JavaVersion.valueOf(libs.versions.app.build.javaVersion.get())
         sourceCompatibility = currentJavaVersionFromLibs
         targetCompatibility = currentJavaVersionFromLibs
+    }
+
+    dependenciesInfo {
+        includeInApk = false
     }
 
     tasks.withType<KotlinCompile> {
@@ -109,10 +114,10 @@ android {
 }
 
 dependencies {
-    //implementation(libs.simple.tools.commons)
     implementation(libs.indicator.fast.scroll)
     implementation(libs.autofit.text.view)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.eventbus)
 
     //Goodwy
     implementation(libs.goodwy.commons)
@@ -125,7 +130,6 @@ dependencies {
     implementation(libs.rx.java)
     implementation(libs.swipe.action)
     //timer
-    implementation(libs.eventbus)
     implementation(libs.bundles.lifecycle)
     ksp(libs.androidx.room.compiler)
 }

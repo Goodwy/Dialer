@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">شفاف کال اسکرین</string>
     <string name="call_back_g">واپس کال کریں۔</string>
     <string name="call_back_person_g">%s کو واپس کال کریں۔</string>
@@ -51,4 +50,12 @@
     <string name="answer_slider">سلائیڈر</string>
     <string name="answer_slider_outline">آؤٹ لائن سلائیڈر</string>
     <string name="answer_slider_vertical">عمودی سلائیڈر</string>
+    <string name="show_recent_calls">حالیہ کالیں دکھائیں۔</string>
+    <string name="open_dialpad_when_call_from_another_app">جب آپ کسی دوسری ایپلیکیشن سے کال کرنے کی کوشش کریں تو ڈائل پیڈ کھولیں۔</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">یہ آپ کو آپ کے علم کے بغیر کال کرنے والے میلویئر سے بچا سکتا ہے۔</string>
+    <string name="number_of_recent_calls_displays">حالیہ کالوں کی تعداد دکھائی گئی۔</string>
+    <string name="group_calls">کال گروپنگ</string>
+    <string name="group_all_calls">تمام کالوں کو گروپ کریں، صرف آخری کال دکھائی جائے گی۔</string>
+    <string name="call_button_style">کال بٹن کا انداز</string>
+    <string name="answer_end_other_call">موجودہ کال کا جواب دیں اور ختم کریں۔</string>
 </resources>

@@ -7,13 +7,18 @@
     <dimen name="incoming_call_button_size">72dp</dimen>
     <dimen name="incoming_call_draggable_background_size">82dp</dimen>
     <dimen name="call_notification_button_size">35dp</dimen>
-    <dimen name="incoming_call_avatar_size">100dp</dimen>
+    <dimen name="caller_avatar_max_size">100dp</dimen>
+    <dimen name="end_call_button_margin">34dp</dimen>
+    <dimen name="dialpad_bottom_padding">114dp</dimen>
+    <dimen name="call_control_max_height">240dp</dimen>
+    <dimen name="call_control_button_size">72dp</dimen>
+    <dimen name="recyclerview_fab_padding">100dp</dimen>
 
-    <dimen name="caller_name_text_size">26sp</dimen><!--34sp-->
-    <dimen name="call_status_text_size">18sp</dimen><!--20sp-->
+    <dimen name="caller_name_text_size">26sp</dimen>
+    <dimen name="call_status_text_size">18sp</dimen>
 
     <!-- keep these 2 values in dp to avoid scaling -->
-    <dimen name="dialpad_text_size">36sp</dimen><!--28sp-->
+    <dimen name="dialpad_text_size">36sp</dimen>
 
     <!--Goodwy-->
     <dimen name="contact_photo_size">88dp</dimen>
@@ -37,7 +42,7 @@
     <!--call button-->
     <dimen name="vertical_bias_avatar">0.10</dimen>
     <dimen name="vertical_bias_button">0.5</dimen>
-    <dimen name="vertical_bias_call_end">0.88</dimen>
+    <dimen name="vertical_bias_call_end">0.90</dimen>
     <dimen name="margin_button_horizontal">230dp</dimen>
 
     <!--dialpad button-->
@@ -48,4 +53,5 @@
 
     <!--dialpad style-->
     <dimen name="call_slider_margin">68dp</dimen>
+    <dimen name="call_button_row_margin">52dp</dimen>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Transparant oproepscherm</string>
     <string name="call_back_g">Terugbellen</string>
     <string name="call_back_person_g">Terugbellen %s</string>
@@ -51,4 +50,12 @@
     <string name="answer_slider">Schuiven</string>
     <string name="answer_slider_outline">Schuiven voor overzicht</string>
     <string name="answer_slider_vertical">Verticale schuifregelaar</string>
+    <string name="show_recent_calls">Recente oproepen weergeven</string>
+    <string name="open_dialpad_when_call_from_another_app">Wanneer u probeert te bellen vanuit een andere app, opent u het toetsenblok</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Dit kan u beschermen tegen malware die zonder uw medeweten belt.</string>
+    <string name="number_of_recent_calls_displays">Weergegeven aantal recente oproepen</string>
+    <string name="group_calls">Oproep groeperen</string>
+    <string name="group_all_calls">Groepeer alle oproepen, alleen de laatste oproep wordt weergegeven</string>
+    <string name="call_button_style">De Stijl van de belknop</string>
+    <string name="answer_end_other_call">Beantwoord en beëindig het huidige gesprek</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Prozirni zaslon poziva</string>
     <string name="call_back_g">Poziv</string>
     <string name="call_back_person_g">Povratni poziv %s</string>
@@ -52,4 +51,12 @@
     <string name="answer_slider">Klizač</string>
     <string name="answer_slider_outline">Klizač obrisa</string>
     <string name="answer_slider_vertical">Okomiti klizač</string>
+    <string name="show_recent_calls">Prikaz nedavnih poziva</string>
+    <string name="open_dialpad_when_call_from_another_app">Kada pokušate uputiti poziv iz druge aplikacije, otvorite tipkovnicu za biranje brojeva</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">To vas može zaštititi od zlonamjernog softvera koji upućuje pozive bez vašeg znanja.</string>
+    <string name="number_of_recent_calls_displays">Prikazani broj nedavnih poziva</string>
+    <string name="group_calls">Grupiranje poziva</string>
+    <string name="group_all_calls">Grupirajte sve pozive, prikazat će se samo zadnji poziv</string>
+    <string name="call_button_style">Stil gumba zvona</string>
+    <string name="answer_end_other_call">Odgovaranje i završetak trenutnog poziva</string>
 </resources>

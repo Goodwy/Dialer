@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name='transparent_call_screen_g'>पारदर्शी कॉल स्क्रीन</string>
     <string name='call_back_g'>वापस कॉल करें</string>
     <string name='call_back_person_g'>%s पर वापस कॉल करें</string>

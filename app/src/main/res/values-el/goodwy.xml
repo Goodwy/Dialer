@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Διαφανής οθόνη κλήσεων</string>
     <string name="call_back_g">Τηλεφωνώ</string>
     <string name="call_back_person_g">Καλέστε στο %s</string>
@@ -51,4 +50,12 @@
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Slider με περίγραμμα</string>
     <string name="answer_slider_vertical">Κάθετο ρυθμιστικό</string>
+    <string name="show_recent_calls">Εμφάνιση πρόσφατων κλήσεων</string>
+    <string name="open_dialpad_when_call_from_another_app">Όταν προσπαθείτε να πραγματοποιήσετε μια κλήση από άλλη εφαρμογή, ανοίξτε το πληκτρολόγιο κλήσης</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Αυτό μπορεί να σας προστατεύσει από κακόβουλο λογισμικό που πραγματοποιεί κλήσεις χωρίς να το γνωρίζετε.</string>
+    <string name="number_of_recent_calls_displays">Εμφανιζόμενος αριθμός πρόσφατων κλήσεων</string>
+    <string name="group_calls">Ομαδοποίηση κλήσεων</string>
+    <string name="group_all_calls">Ομαδοποιήστε όλες τις κλήσεις, θα εμφανιστεί μόνο η τελευταία κλήση</string>
+    <string name="call_button_style">Στυλ κουμπιού καμπάνας</string>
+    <string name="answer_end_other_call">Απαντήστε και τερματίστε την τρέχουσα κλήση</string>
 </resources>

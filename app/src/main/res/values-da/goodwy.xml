@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Gennemsigtig opkaldsskærm</string>
     <string name="call_back_g">Kalde</string>
     <string name="call_back_person_g">Ring tilbage %s</string>
@@ -51,4 +50,12 @@
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Konturskyder</string>
     <string name="answer_slider_vertical">Lodret skyder</string>
+    <string name="show_recent_calls">Vis seneste opkald</string>
+    <string name="open_dialpad_when_call_from_another_app">Når du forsøger at foretage et opkald fra en anden app, skal du åbne det numeriske tastatur</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Dette kan beskytte dig mod malware, der foretager opkald uden din viden.</string>
+    <string name="number_of_recent_calls_displays">Vist antal nylige opkald</string>
+    <string name="group_calls">Gruppering af opkald</string>
+    <string name="group_all_calls">Gruppér alle opkald, kun det sidste opkald vises</string>
+    <string name="call_button_style">Klokkeknap stil</string>
+    <string name="answer_end_other_call">Besvar og afslut det aktuelle opkald</string>
 </resources>

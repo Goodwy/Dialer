@@ -10,9 +10,13 @@ import android.provider.Settings
 import android.telecom.TelecomManager
 import android.widget.Toast
 import com.goodwy.commons.extensions.*
+import com.goodwy.commons.helpers.IS_RIGHT_APP
 import com.goodwy.commons.helpers.REQUEST_CODE_SET_DEFAULT_DIALER
+import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
+import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.getHandleToUse
+import com.goodwy.dialer.helpers.SHOW_RECENT_CALLS_ON_DIALPAD
 
 class DialerActivity : SimpleActivity() {
     private var callNumber: Uri? = null
@@ -32,7 +36,15 @@ class DialerActivity : SimpleActivity() {
             if (!isDefaultDialer()) {
                 launchSetDefaultDialerIntent()
             } else {
-                initOutgoingCall()
+                val key = intent.getStringExtra(IS_RIGHT_APP) ?: ""
+                if (config.blockCallFromAnotherApp && key != BuildConfig.RIGHT_APP_KEY) {
+                    val number = Uri.decode(intent.dataString).substringAfter("tel:")
+                    Intent(Intent.ACTION_DIAL).apply {
+                        data = Uri.fromParts("tel", number, null)
+                        putExtra(SHOW_RECENT_CALLS_ON_DIALPAD, true)
+                        launchActivityIntent(this)
+                    }
+                } else initOutgoingCall()
             }
         } else {
             toast(R.string.unknown_error_occurred)
@@ -66,6 +78,7 @@ class DialerActivity : SimpleActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {
         super.onActivityResult(requestCode, resultCode, resultData)
         if (requestCode == REQUEST_CODE_SET_DEFAULT_DIALER) {

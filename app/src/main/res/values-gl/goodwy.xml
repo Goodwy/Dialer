@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Pantalla de chamada transparente</string>
     <string name="call_back_g">Volve chamar</string>
     <string name="call_back_person_g">Volve chamar ao %s</string>
@@ -51,4 +50,12 @@
     <string name="answer_slider">Control deslizante</string>
     <string name="answer_slider_outline">Control deslizante de esquema</string>
     <string name="answer_slider_vertical">Deslizador vertical</string>
+    <string name="show_recent_calls">Mostrar chamadas recentes</string>
+    <string name="open_dialpad_when_call_from_another_app">Cando intente facer unha chamada desde outra aplicación, abra o teclado de marcación</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Isto pode protexelo de que o software malicioso faga chamadas sen o teu coñecemento.</string>
+    <string name="number_of_recent_calls_displays">Mostra o número de chamadas recentes</string>
+    <string name="group_calls">Agrupación de chamadas</string>
+    <string name="group_all_calls">Agrupa todas as chamadas, só se mostrará a última chamada</string>
+    <string name="call_button_style">Estilo do botón de chamada</string>
+    <string name="answer_end_other_call">Responde e finaliza a chamada actual</string>
 </resources>

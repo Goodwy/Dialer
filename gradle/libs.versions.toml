@@ -1,28 +1,27 @@
 [versions]
 #jetbrains
-kotlin = "1.9.0"
+kotlin = "1.9.23"
 kotlinxSerializationJson = "1.5.1"
 #KSP
-ksp = "1.9.0-1.0.12"
-#Simple tools
-#simple-commons = "eceb48949e"
+ksp = "1.9.23-1.0.19"
+#Eventbus
+eventbus = "3.3.1"
 #Gradle
-gradlePlugins-agp = "8.1.1"
+gradlePlugins-agp = "8.3.2"
 #Other
 indicatorFastScroll = "1a72604856"
 autofitTextView = "0.2.1"
 #Goodwy
-right-commons = "5403bcb734"
-rustore = "3.1.0"
+right-commons = "80edbf5b77"
+rustore = "5.1.1"
 badger = "1.1.22"
 libphonenumber = "8.13.26"
 geocoder = "2.185"
-eventbus = "3.3.1"
-androidx-lifecycle = "2.6.1"
+androidx-lifecycle = "2.7.0"
 behavioRule = "1.0.1"
 rxAnimation = "2.1.1"
 rxJava3 = "3.1.5"
-room = "2.6.0-beta01"
+room = "2.6.1"
 swipeToActionLayout = "035dfba3fb"
 #build
 app-build-compileSDKVersion = "34"
@@ -32,15 +31,14 @@ app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
 #versioning
 app-version-appId = "com.goodwy.dialer"
-app-version-versionCode = "510"
-app-version-versionName = "5.1.0"
+app-version-versionCode = "521"
+app-version-versionName = "5.2.1"
 [libraries]
-#Simple Mobile Tools
-#simple-tools-commons = { module = "com.github.SimpleMobileTools:Simple-Commons", version.ref = "simple-commons" }
+#EventBus
+eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 #Kotlin
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 #Other
-#indicator-fast-scroll = { module = "com.github.tibbi:IndicatorFastScroll", version.ref = "indicatorFastScroll" }
 indicator-fast-scroll = { module = "com.github.goodwy:IndicatorFastScroll", version.ref = "indicatorFastScroll" }
 autofit-text-view = { module = "me.grantland:autofittextview", version.ref = "autofitTextView" }
 #Goodwy
@@ -49,7 +47,6 @@ shortcut-badger = { module = "me.leolin:ShortcutBadger", version.ref = "badger" 
 googlecode-libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "libphonenumber" }
 googlecode-geocoder = { module = "com.googlecode.libphonenumber:geocoder", version.ref = "geocoder" }
 rustore-client = { module = "ru.rustore.sdk:billingclient", version.ref = "rustore" }
-eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "androidx-lifecycle" }

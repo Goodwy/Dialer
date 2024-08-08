@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">صفحه تماس شفاف</string>
     <string name="call_back_g">تماس بگیرید</string>
     <string name="call_back_person_g">با شماره %s تماس بگیرید</string>
@@ -51,4 +50,12 @@
     <string name="answer_slider">لغزنده</string>
     <string name="answer_slider_outline">لغزنده طرح کلی</string>
     <string name="answer_slider_vertical">لغزنده عمودی</string>
+    <string name="show_recent_calls">نمایش تماس های اخیر</string>
+    <string name="open_dialpad_when_call_from_another_app">وقتی می خواهید از برنامه دیگری تماس برقرار کنید، صفحه شماره گیری را باز کنید</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">این می تواند از شما در برابر بدافزارهایی که بدون اطلاع شما تماس می گیرند محافظت کند.</string>
+    <string name="number_of_recent_calls_displays">نمایش داده شده تعداد تماس های اخیر</string>
+    <string name="group_calls">گروه بندی تماس</string>
+    <string name="group_all_calls">همه تماس ها را گروه بندی کنید، فقط آخرین تماس نشان داده می شود</string>
+    <string name="call_button_style">سبک دکمه زنگ</string>
+    <string name="answer_end_other_call">پاسخ دادن و پایان دادن به تماس فعلی</string>
 </resources>

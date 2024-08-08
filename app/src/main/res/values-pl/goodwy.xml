@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Przezroczysty ekran połączenia</string>
     <string name="call_back_g">Oddzwoń</string>
     <string name="call_back_person_g">Oddzwoń %s</string>
@@ -53,4 +52,12 @@
     <string name="answer_slider">Suwak</string>
     <string name="answer_slider_outline">Suwak konspektu</string>
     <string name="answer_slider_vertical">Pionowy suwak</string>
+    <string name="show_recent_calls">Pokaż ostatnie połączenia</string>
+    <string name="open_dialpad_when_call_from_another_app">Podczas próby nawiązania połączenia z innej aplikacji otwórz konsolę wybierania numerów</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Może to uchronić Cię przed złośliwym oprogramowaniem wykonującym połączenia bez Twojej wiedzy.</string>
+    <string name="number_of_recent_calls_displays">Wyświetlana liczba ostatnich połączeń</string>
+    <string name="group_calls">Grupowanie połączeń</string>
+    <string name="group_all_calls">Grupuj wszystkie połączenia, zostanie wyświetlone tylko ostatnie połączenie</string>
+    <string name="call_button_style">Styl przycisku dzwonka</string>
+    <string name="answer_end_other_call">Odbieranie i kończenie bieżącego połączenia</string>
 </resources>

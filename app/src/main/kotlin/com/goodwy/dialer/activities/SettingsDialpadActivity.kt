@@ -204,10 +204,13 @@ class SettingsDialpadActivity : SimpleActivity() {
 
         binding.apply {
 
-            arrayOf(styleHolder, dialpadSettingsWrapper,
-                dialpadSizeWrapper, buttonSizeWrapper
+            arrayOf(
+                styleHolder,
+                dialpadSettingsCardHolder,
+                dialpadSizeCardHolder,
+                buttonSizeCardHolder
             ).forEach {
-                it.background.applyColorFilter(getBottomNavigationBackgroundColor())
+                it.setCardBackgroundColor(getBottomNavigationBackgroundColor())
             }
 
             speedDialValues = config.getSpeedDialValues()

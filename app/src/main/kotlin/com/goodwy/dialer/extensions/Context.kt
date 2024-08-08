@@ -12,7 +12,6 @@ import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.media.AudioAttributes
 import android.media.AudioManager
-import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import android.os.PowerManager
@@ -22,6 +21,7 @@ import com.goodwy.commons.helpers.*
 import com.goodwy.dialer.R
 import com.goodwy.dialer.models.SIMAccount
 import com.goodwy.commons.helpers.isOreoPlus
+import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.activities.CallActivity
 import com.goodwy.dialer.activities.SplashActivity
 import com.goodwy.dialer.databases.AppDatabase
@@ -67,6 +67,22 @@ fun Context.areMultipleSIMsAvailable(): Boolean {
         telecomManager.callCapablePhoneAccounts.size > 1
     } catch (ignored: Exception) {
         false
+    }
+}
+
+fun Context.clearMissedCalls() {
+    ensureBackgroundThread {
+        try {
+            // notification cancellation triggers MissedCallNotifier.clearMissedCalls() which, in turn,
+            // should update the database and reset the cached missed call count in MissedCallNotifier.java
+            // https://android.googlesource.com/platform/packages/services/Telecomm/+/master/src/com/android/server/telecom/ui/MissedCallNotifierImpl.java#170
+            telecomManager.cancelMissedCallsNotification()
+
+            notificationManager.cancel(420)
+            config.numberMissedCalls = 0
+            updateUnreadCountBadge(0)
+        } catch (ignored: Exception) {
+        }
     }
 }
 
@@ -144,7 +160,7 @@ if (isNougatPlus()) {
             setContentTitle(config.numberMissedCalls.toString() + " " + getString(R.string.missed_calls_g).lowercase())
         }
         color = getProperPrimaryColor()
-        setSmallIcon(R.drawable.ic_missed_call_vector)
+        setSmallIcon(R.drawable.ic_call_missed_vector)
         setContentIntent(pendingIntent)
         priority = NotificationCompat.PRIORITY_MAX
         setDefaults(Notification.DEFAULT_LIGHTS)
@@ -312,8 +328,11 @@ fun Context.getHideTimerPendingIntent(timerId: Int): PendingIntent {
 }
 
 fun Context.startCallPendingIntentUpdateCurrent(recipient: String): PendingIntent {
-    return PendingIntent.getActivity(this, 0,
-        Intent(Intent.ACTION_CALL, Uri.fromParts("tel", recipient, null)), PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+    return PendingIntent.getActivity(
+        this,
+        0,
+        Intent(Intent.ACTION_CALL, Uri.fromParts("tel", recipient, null)).putExtra(IS_RIGHT_APP, BuildConfig.RIGHT_APP_KEY),
+        PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
 fun Context.sendSMSPendingIntentUpdateCurrent(recipient: String): PendingIntent {

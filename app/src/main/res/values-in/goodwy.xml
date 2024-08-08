@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Layar Panggilan Transparan</string>
     <string name="call_back_g">Panggil kembali</string>
     <string name="call_back_person_g">Hubungi kembali %s</string>
@@ -50,4 +49,12 @@
     <string name="answer_slider">Penggeser</string>
     <string name="answer_slider_outline">Penggeser garis luar</string>
     <string name="answer_slider_vertical">Penggeser Vertikal</string>
+    <string name="show_recent_calls">Tampilkan panggilan terakhir</string>
+    <string name="open_dialpad_when_call_from_another_app">Saat Anda mencoba melakukan panggilan dari aplikasi lain, buka papan tombol</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Ini dapat melindungi Anda dari malware yang melakukan panggilan tanpa sepengetahuan Anda.</string>
+    <string name="number_of_recent_calls_displays">Menampilkan jumlah panggilan terakhir</string>
+    <string name="group_calls">Pengelompokan panggilan</string>
+    <string name="group_all_calls">Kelompokkan semua panggilan, hanya panggilan terakhir yang akan ditampilkan</string>
+    <string name="call_button_style">Gaya tombol panggil</string>
+    <string name="answer_end_other_call">Jawab dan akhiri panggilan saat ini</string>
 </resources>

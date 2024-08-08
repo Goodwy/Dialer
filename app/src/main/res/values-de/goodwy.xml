@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Transparenter Anrufbildschirm</string>
     <string name="call_back_g">Rufen</string>
     <string name="call_back_person_g">Rückruf %s</string>
@@ -51,4 +50,12 @@
     <string name="answer_slider">Schieberegler</string>
     <string name="answer_slider_outline">Schieberegler mit Umrandung</string>
     <string name="answer_slider_vertical">Vertikaler Schieberegler</string>
+    <string name="show_recent_calls">Letzte Anrufe anzeigen</string>
+    <string name="open_dialpad_when_call_from_another_app">Wenn Sie versuchen, einen Anruf über eine andere App zu tätigen, öffnen Sie die Wähltastatur</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Dies kann Sie vor Malware schützen, die ohne Ihr Wissen Anrufe tätigt.</string>
+    <string name="number_of_recent_calls_displays">Angezeigte Anzahl der letzten Anrufe</string>
+    <string name="group_calls">Gruppierung von Anrufen</string>
+    <string name="group_all_calls">Gruppieren Sie alle Anrufe, es wird nur der letzte Anruf angezeigt</string>
+    <string name="call_button_style">Klingelknopf-Stil</string>
+    <string name="answer_end_other_call">Annehmen und Beenden des aktuellen Anrufs</string>
 </resources>

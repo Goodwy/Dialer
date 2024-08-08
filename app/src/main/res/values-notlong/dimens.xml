@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="incoming_call_avatar_size">88dp</dimen>
     <!--call button-->
     <dimen name="vertical_bias_avatar">0.05</dimen>
     <dimen name="vertical_bias_button">0.48</dimen>

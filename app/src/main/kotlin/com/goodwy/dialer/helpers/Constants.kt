@@ -38,6 +38,13 @@ const val CALL_VIBRATION = "call_vibration"
 const val CALL_START_END_VIBRATION = "call_start_end_vibration"
 const val NEED_SELECT_SIM = "need_select_sim"
 const val TONE_VOLUME = "tone_volume"
+const val GROUP_ALL_CALLS = "group_all_calls"
+const val SHOW_RECENT_CALLS_ON_DIALPAD = "show_recent_calls_on_dialpad"
+const val BLOCK_CALL_FROM_ANOTHER_APP = "block_call_from_another_app"
+const val NEED_UPDATE_RECENTS = "need_update_recents"
+const val RECENT_CALL = "recent_call"
+const val QUERY_LIMIT_RECENT = "query_limit_recent"
+const val CALL_BUTTON_STYLE = "call_button_style"
 
 const val ALL_TABS_MASK = TAB_CONTACTS or TAB_FAVORITES or TAB_CALL_HISTORY
 
@@ -49,8 +56,6 @@ const val DECLINE_CALL = PATH + "decline_call"
 const val MICROPHONE_CALL = PATH + "microphone_call"
 
 const val DIALPAD_TONE_LENGTH_MS = 150L // The length of DTMF tones in milliseconds
-
-const val MIN_RECENTS_THRESHOLD = 30
 
 const val WHATSAPP = "whatsapp"
 const val SIGNAL = "signal"
@@ -101,11 +106,30 @@ const val SHOW_CALLER_NOTHING = 0
 const val SHOW_CALLER_COMPANY = 1
 const val SHOW_CALLER_NICKNAME = 2
 
-// swiped left action
+// Swiped left action
 const val SWIPE_RIGHT_ACTION = "swipe_right_action"
 const val SWIPE_LEFT_ACTION = "swipe_left_action"
 const val SWIPE_ACTION_DELETE = 2
 const val SWIPE_ACTION_BLOCK = 4 //!! isNougatPlus()
 const val SWIPE_ACTION_CALL = 5
 const val SWIPE_ACTION_MESSAGE = 6
+const val SWIPE_ACTION_EDIT = 7
+const val SWIPE_ACTION_SHARE = 8
+const val SWIPE_ACTION_OPEN = 9
 const val SWIPE_VIBRATION = "swipe_vibration"
+
+// Query limit recent
+const val QUERY_LIMIT_SMALL_VALUE = 500
+const val QUERY_LIMIT_MEDIUM_VALUE = 1000
+const val QUERY_LIMIT_NORMAL_VALUE = 2000
+const val QUERY_LIMIT_BIG_VALUE = 5000
+const val QUERY_LIMIT_MAX_VALUE = 2147483647
+
+// Group calls
+const val GROUP_CALLS_NO = 0
+const val GROUP_CALLS_SUBSEQUENT = 1
+const val GROUP_CALLS_ALL = 2
+
+// Call button style
+const val IOS16 = 0
+const val IOS17 = 1

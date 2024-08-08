@@ -28,10 +28,10 @@ import com.google.android.material.snackbar.Snackbar
 fun SimpleActivity.startCallIntent(recipient: String) {
     if (isDefaultDialer()) {
         getHandleToUse(null, recipient) { handle ->
-            launchCallIntent(recipient, handle)
+            launchCallIntent(recipient, handle, BuildConfig.RIGHT_APP_KEY)
         }
     } else {
-        launchCallIntent(recipient, null)
+        launchCallIntent(recipient, null, BuildConfig.RIGHT_APP_KEY)
     }
 }
 
@@ -47,7 +47,7 @@ fun BaseSimpleActivity.callContactWithSim(recipient: String, useMainSIM: Boolean
     handlePermission(PERMISSION_READ_PHONE_STATE) {
         val wantedSimIndex = if (useMainSIM) 0 else 1
         val handle = getAvailableSIMCardLabels().sortedBy { it.id }.getOrNull(wantedSimIndex)?.handle
-        launchCallIntent(recipient, handle)
+        launchCallIntent(recipient, handle, BuildConfig.RIGHT_APP_KEY)
     }
 }
 
@@ -111,7 +111,7 @@ fun SimpleActivity.getHandleToUse(intent: Intent?, phoneNumber: String, callback
             val defaultHandle = telecomManager.getDefaultOutgoingPhoneAccount(PhoneAccount.SCHEME_TEL)
             when {
                 intent?.hasExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE) == true -> callback(intent.getParcelableExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE)!!)
-                config.getCustomSIM(phoneNumber) != null -> callback(config.getCustomSIM(phoneNumber))
+                config.getCustomSIM(phoneNumber) != null && areMultipleSIMsAvailable() -> callback(config.getCustomSIM(phoneNumber))
                 defaultHandle != null -> callback(defaultHandle)
                 else -> {
                     SelectSIMDialog(this, phoneNumber, onDismiss = {
@@ -148,7 +148,6 @@ fun SimpleActivity.launchPurchase() {
 
     startPurchaseActivity(
         R.string.app_name_g,
-        BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
         productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
         productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
         subscriptionIdList = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
@@ -189,7 +188,6 @@ fun SimpleActivity.launchAbout() {
         versionName = BuildConfig.VERSION_NAME,
         faqItems = faqItems,
         showFAQBeforeMail = true,
-        licensingKey = BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
         productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
         productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
         subscriptionIdList = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
@@ -204,7 +202,7 @@ fun SimpleActivity.launchAbout() {
 fun SimpleActivity.showSnackbar(view: View) {
     view.performHapticFeedback()
 
-    val snackbar = Snackbar.make(view, com.goodwy.commons.R.string.support_project_to_unlock, Snackbar.LENGTH_SHORT)
+    val snackbar = Snackbar.make(view, R.string.support_project_to_unlock, Snackbar.LENGTH_SHORT)
         .setAction(com.goodwy.commons.R.string.support) {
             launchPurchase()
         }

@@ -1,6 +1,8 @@
 package com.goodwy.dialer.models
 
-class Events {
+sealed class Events {
+    data object RefreshCallLog : Events()
+	
     class StateChanged(val isEnabled: Boolean)
 
     class CameraUnavailable

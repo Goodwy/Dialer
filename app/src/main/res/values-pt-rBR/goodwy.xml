@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Tela de Chamada Transparente</string>
     <string name="call_back_g">Retornar Chamada</string>
     <string name="call_back_person_g">Retornar Chamada de %s</string>
@@ -9,9 +8,9 @@
     <string name="missed_call_notifications_g">Notificações de chamadas perdidas</string>
     <string name="call_notification_channel_high_priority_g">Notificações de chamada de alta prioridade</string>
     <string name="call_notification_channel_g">Notificações de chamadas</string>
+    <string name="dialpad_preferences">Preferências do teclado de discagem</string>
     <string name="call_start_end_vibration">Vibrar quando a chamada inicia ou é encerrada</string>
 
-    <string name="dialpad_preferences">Preferências do teclado de discagem</string>
     <string name="show_contact_thumbnails_g">Exibir miniaturas de contato</string>
     <string name="hide_dialpad_letters_g">Ocultar letras do teclado de discagem</string>
     <string name="show_caller_description_g">Exibir informações adicionais sobre o chamador</string>
@@ -51,4 +50,12 @@
     <string name="answer_slider">Botão deslizante</string>
     <string name="answer_slider_outline">Controle deslizante com contorno</string>
     <string name="answer_slider_vertical">Controle deslizante vertical</string>
+    <string name="show_recent_calls">Mostrar chamadas recentes</string>
+    <string name="open_dialpad_when_call_from_another_app">Ao tentar fazer uma chamada de outro aplicativo, abra o painel de discagem</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Isso pode protegê-lo contra malware que faz chamadas sem o seu conhecimento.</string>
+    <string name="number_of_recent_calls_displays">Número exibido de chamadas recentes</string>
+    <string name="group_calls">Agrupamento de chamadas</string>
+    <string name="group_all_calls">Agrupar todas as chamadas, apenas a última chamada será mostrada</string>
+    <string name="call_button_style">Estilo de botão de anel</string>
+    <string name="answer_end_other_call">Atender e encerrar a chamada atual</string>
 </resources>

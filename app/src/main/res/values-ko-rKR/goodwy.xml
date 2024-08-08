@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">투명 통화 화면</string>
     <string name="call_back_g">전화 다시 걸기</string>
     <string name="call_back_person_g">%s에게 다시 전화</string>

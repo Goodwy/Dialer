@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Прозирни екран позива</string>
     <string name="call_back_g">Узврати позив</string>
     <string name="call_back_person_g">Узврати позив за %s</string>
@@ -52,4 +51,12 @@
     <string name="answer_slider">Клизач</string>
     <string name="answer_slider_outline">Оквирни клизач</string>
     <string name="answer_slider_vertical">Вертикални клизач</string>
+    <string name="show_recent_calls">Прикажи недавне позиве</string>
+    <string name="open_dialpad_when_call_from_another_app">Када покушате да упутите позив из друге апликације, отворите тастатуру за бирање бројева</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Ово може да вас заштити од позивања малвера без вашег знања.</string>
+    <string name="number_of_recent_calls_displays">Приказан број недавних позива</string>
+    <string name="group_calls">Груписање позива</string>
+    <string name="group_all_calls">Групишите све позиве, биће приказан само последњи позив</string>
+    <string name="call_button_style">Стил дугмета за позив</string>
+    <string name="answer_end_other_call">Одговорите и завршите тренутни позив</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Travidebla Voka Ekrano</string>
     <string name="call_back_g">Voki reen</string>
     <string name="call_back_person_g">Revoku %s</string>
@@ -51,4 +50,12 @@
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Konturna glitilo</string>
     <string name="answer_slider_vertical">Vertikala Glitilo</string>
+    <string name="show_recent_calls">Montru lastatempajn vokojn</string>
+    <string name="open_dialpad_when_call_from_another_app">Kiam vi provas voki de alia aplikaĵo, malfermu la diskpadronon</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Ĉi tio povas protekti vin kontraŭ malware faranta vokojn sen via scio.</string>
+    <string name="number_of_recent_calls_displays">Montrita nombro de lastatempaj vokoj</string>
+    <string name="group_calls">Voka grupigo</string>
+    <string name="group_all_calls">Grupigu ĉiujn vokojn, nur la lasta voko estos montrata</string>
+    <string name="call_button_style">Voka butono stilo</string>
+    <string name="answer_end_other_call">Respondu kaj ĉesigu la nunan vokon</string>
 </resources>

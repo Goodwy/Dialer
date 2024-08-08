@@ -14,6 +14,7 @@ import com.goodwy.commons.extensions.checkUseEnglish
 import com.goodwy.commons.extensions.showErrorToast
 import com.goodwy.commons.helpers.rustore.RuStoreModule
 import com.goodwy.dialer.extensions.*
+import com.goodwy.dialer.models.CallLogItem
 import com.goodwy.dialer.models.TimerEvent
 import com.goodwy.dialer.models.TimerState
 import com.goodwy.dialer.services.TimerStopService
@@ -21,11 +22,11 @@ import com.goodwy.dialer.services.startTimerService
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import java.util.Calendar
 
 class App : Application(), LifecycleObserver {
 
     private var countDownTimers = mutableMapOf<Int, CountDownTimer>()
+    var allRecentCalls = listOf<CallLogItem>()
 
     override fun onCreate() {
         super.onCreate()
@@ -139,12 +140,4 @@ class App : Application(), LifecycleObserver {
             }
         }
     }
-
-//    companion object {
-//        val secondStart = Calendar.getInstance().timeInMillis //To analyze the speed
-//
-////        to use in activity
-////        val secondEnd = Calendar.getInstance().timeInMillis
-////        toast((secondEnd- App.secondStart).toString())
-//    }
 }

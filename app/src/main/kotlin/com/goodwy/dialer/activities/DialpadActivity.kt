@@ -31,23 +31,27 @@ import com.goodwy.commons.dialogs.ConfirmationDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.contacts.Contact
+import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
 import com.goodwy.dialer.adapters.ContactsAdapter
+import com.goodwy.dialer.adapters.RecentCallsAdapter
 import com.goodwy.dialer.databinding.ActivityDialpadBinding
 import com.goodwy.dialer.extensions.*
 import com.goodwy.dialer.helpers.*
+import com.goodwy.dialer.models.RecentCall
 import com.goodwy.dialer.models.SpeedDial
+import com.google.gson.Gson
 import com.mikhaellopez.rxanimation.RxAnimation
 import com.mikhaellopez.rxanimation.shake
 import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import me.grantland.widget.AutofitHelper
-import java.util.*
+import java.util.Locale
 import kotlin.math.roundToInt
 
 class DialpadActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityDialpadBinding::inflate)
 
-    private var allContacts = ArrayList<Contact>()
+    var allContacts = ArrayList<Contact>()
     private var speedDialValues = ArrayList<SpeedDial>()
     private val russianCharsMap = HashMap<Char, Int>()
     private var hasRussianLocale = false
@@ -59,6 +63,10 @@ class DialpadActivity : SimpleActivity() {
     private var hasBeenScrolled = false
     private var storedDialpadStyle = 0
     private var storedToneVolume = 0
+    private var allRecentCalls = listOf<RecentCall>()
+    private var recentsAdapter: RecentCallsAdapter? = null
+    private var recentsHelper = RecentsHelper(this)
+    private var isTalkBackOn = false
 
     @SuppressLint("MissingSuperCall", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,7 +76,6 @@ class DialpadActivity : SimpleActivity() {
 
         binding.apply {
             updateMaterialActivityViews(dialpadCoordinator, dialpadHolder, useTransparentNavigation = true, useTopSearchMenu = false)
-//            setupMaterialScrollListener(dialpadList, dialpadToolbar)
         }
         updateNavigationBarColor(getProperBackgroundColor())
 
@@ -208,6 +215,7 @@ class DialpadActivity : SimpleActivity() {
         if (storedToneVolume != config.toneVolume) {
             toneGeneratorHelper = ToneGeneratorHelper(this, DIALPAD_TONE_LENGTH_MS)
         }
+        isTalkBackOn = isTalkBackOn()
 
         speedDialValues = config.getSpeedDialValues()
         initStyle()
@@ -239,6 +247,15 @@ class DialpadActivity : SimpleActivity() {
                 }
             }
         })
+        binding.dialpadRecentsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (!hasBeenScrolled) {
+                    hasBeenScrolled = true
+                    slideDown(dialpadView())
+                }
+            }
+        })
 
         binding.dialpadRoundWrapperUp.setOnClickListener { dialpadHide() }
         val view = dialpadView()
@@ -258,6 +275,9 @@ class DialpadActivity : SimpleActivity() {
         binding.letterFastscrollerThumb.thumbColor = properPrimaryColor.getColorStateList()
 
         invalidateOptionsMenu()
+
+        if (config.showRecentCallsOnDialpad) refreshItems {}
+        binding.dialpadRecentsList.beVisibleIf(binding.dialpadInput.value.isEmpty() && config.showRecentCallsOnDialpad)
     }
 
     @SuppressLint("MissingSuperCall")
@@ -443,15 +463,25 @@ class DialpadActivity : SimpleActivity() {
             val simTwoColor = if (areMultipleSIMsAvailable) {
                 if (simOnePrimary) config.simIconsColors[2] else config.simIconsColors[1]
             } else getProperPrimaryColor()
-            dialpadDownHolder.background.applyColorFilter(simTwoColor)
             val drawableSecondary = if (simOnePrimary) R.drawable.ic_phone_two_vector else R.drawable.ic_phone_one_vector
             val dialpadIconColor = if (simTwoColor == Color.WHITE) simTwoColor.getContrastColor() else textColor
             val downIcon = if (areMultipleSIMsAvailable) resources.getColoredDrawableWithColor(this@DialpadActivity, drawableSecondary, dialpadIconColor)
             else resources.getColoredDrawableWithColor(this@DialpadActivity, R.drawable.ic_dialpad_vector, dialpadIconColor)
             dialpadDown.setImageDrawable(downIcon)
-            dialpadDownHolder.setOnClickListener {
-                maybePerformDialpadHapticFeedback(dialpadDownHolder)
-                if (areMultipleSIMsAvailable) {initCall(binding.dialpadInput.value, handleIndex = if (simOnePrimary) 1 else 0)} else dialpadHide()
+            dialpadDownHolder.apply {
+                background.applyColorFilter(simTwoColor)
+                setOnClickListener {
+                    maybePerformDialpadHapticFeedback(dialpadDownHolder)
+                    if (areMultipleSIMsAvailable) {initCall(binding.dialpadInput.value, handleIndex = if (simOnePrimary) 1 else 0)} else dialpadHide()
+                }
+                contentDescription = getString(
+                    if (areMultipleSIMsAvailable) {
+                        if (simOnePrimary) R.string.call_from_sim_2 else R.string.call_from_sim_1
+                    } else {
+                        val view = dialpadView()
+                        if (view.visibility == View.VISIBLE) R.string.hide_dialpad else R.string.show_dialpad
+                    }
+                )
             }
 
             val simOneColor = if (simOnePrimary) config.simIconsColors[1] else config.simIconsColors[2]
@@ -460,18 +490,24 @@ class DialpadActivity : SimpleActivity() {
             val callIconColor = if (simOneColor == Color.WHITE) simOneColor.getContrastColor() else textColor
             val callIcon = resources.getColoredDrawableWithColor(this@DialpadActivity, callIconId, callIconColor)
             dialpadCallIcon.setImageDrawable(callIcon)
-            dialpadCallButtonHolder.background.applyColorFilter(simOneColor)
-            dialpadCallButtonHolder.setOnClickListener {
-                maybePerformDialpadHapticFeedback(dialpadCallButtonHolder)
-                initCall(binding.dialpadInput.value, handleIndex = if (simOnePrimary || !areMultipleSIMsAvailable) 0 else 1)
-            }
-            dialpadCallButtonHolder.setOnLongClickListener {
-                if (binding.dialpadInput.value.isEmpty()) {
-                    binding.dialpadInput.setText(getTextFromClipboard())
-                    binding.dialpadInput.requestFocusFromTouch(); true
-                } else {
-                    copyNumber(); true
+            dialpadCallButtonHolder.apply { background.applyColorFilter(simOneColor)
+                setOnClickListener {
+                    maybePerformDialpadHapticFeedback(this)
+                    initCall(binding.dialpadInput.value, handleIndex = if (simOnePrimary || !areMultipleSIMsAvailable) 0 else 1)
                 }
+                setOnLongClickListener {
+                    if (binding.dialpadInput.value.isEmpty()) {
+                        binding.dialpadInput.setText(getTextFromClipboard())
+                        binding.dialpadInput.requestFocusFromTouch(); true
+                    } else {
+                        copyNumber(); true
+                    }
+                }
+                contentDescription = getString(
+                    if (areMultipleSIMsAvailable) {
+                        if (simOnePrimary) R.string.call_from_sim_1 else R.string.call_from_sim_2
+                    } else R.string.call
+                )
             }
 
             dialpadClearCharHolder.beVisible()
@@ -553,6 +589,7 @@ class DialpadActivity : SimpleActivity() {
                     maybePerformDialpadHapticFeedback(dialpadCallButtonIosHolder)
                     initCall(binding.dialpadInput.value, config.currentSIMCardIndex)
                 }
+                dialpadCallButtonIosHolder.contentDescription = getString(if (config.currentSIMCardIndex == 0) R.string.call_from_sim_1 else R.string.call_from_sim_2 )
             } else {
                 dialpadSimIosHolder.beGone()
                 val color = config.simIconsColors[1]
@@ -563,6 +600,7 @@ class DialpadActivity : SimpleActivity() {
                     maybePerformDialpadHapticFeedback(dialpadCallButtonIosHolder)
                     initCall(binding.dialpadInput.value, 0)
                 }
+                dialpadCallButtonIosHolder.contentDescription = getString(R.string.call)
             }
 
             dialpadCallButtonIosHolder.setOnLongClickListener {
@@ -646,39 +684,48 @@ class DialpadActivity : SimpleActivity() {
             }
 
             val simOnePrimary = config.currentSIMCardIndex == 0
-            if (areMultipleSIMsAvailable) {
-                dialpadCallTwoButton.beVisible()
-                val simTwoColor = if (simOnePrimary) config.simIconsColors[2] else config.simIconsColors[1]
-                val drawableSecondary = if (simOnePrimary) R.drawable.ic_phone_two_vector else R.drawable.ic_phone_one_vector
-                val callIcon = resources.getColoredDrawableWithColor(this@DialpadActivity, drawableSecondary, simTwoColor.getContrastColor())
-                dialpadCallTwoButton.setImageDrawable(callIcon)
-                dialpadCallTwoButton.background.applyColorFilter(simTwoColor)
-                dialpadCallTwoButton.beVisible()
-                dialpadCallTwoButton.setOnClickListener {
-                    maybePerformDialpadHapticFeedback(dialpadCallTwoButton)
-                    initCall(binding.dialpadInput.value, handleIndex = if (simOnePrimary) 1 else 0)
-                }
-            } else {
-                dialpadCallTwoButton.beGone()
-            }
+            dialpadCallTwoButton.apply {
+                if (areMultipleSIMsAvailable) {
+                    beVisible()
+                    val simTwoColor = if (simOnePrimary) config.simIconsColors[2] else config.simIconsColors[1]
+                    val drawableSecondary = if (simOnePrimary) R.drawable.ic_phone_two_vector else R.drawable.ic_phone_one_vector
+                    val callIcon = resources.getColoredDrawableWithColor(this@DialpadActivity, drawableSecondary, simTwoColor.getContrastColor())
+                    setImageDrawable(callIcon)
+                    background.applyColorFilter(simTwoColor)
+                    beVisible()
+                    setOnClickListener {
+                        maybePerformDialpadHapticFeedback(this)
+                        initCall(binding.dialpadInput.value, handleIndex = if (simOnePrimary) 1 else 0)
+                    }
+                    contentDescription = getString(if (simOnePrimary) R.string.call_from_sim_2 else R.string.call_from_sim_1 )
+                } else {
+                    beGone()
+                } }
 
             val simOneColor = if (simOnePrimary) config.simIconsColors[1] else config.simIconsColors[2]
             val drawablePrimary = if (simOnePrimary) R.drawable.ic_phone_one_vector else R.drawable.ic_phone_two_vector
             val callIconId = if (areMultipleSIMsAvailable) drawablePrimary else R.drawable.ic_phone_vector
             val callIcon = resources.getColoredDrawableWithColor(this@DialpadActivity, callIconId, simOneColor.getContrastColor())
-            dialpadCallButton.setImageDrawable(callIcon)
-            dialpadCallButton.background.applyColorFilter(simOneColor)
-            dialpadCallButton.setOnClickListener {
-                maybePerformDialpadHapticFeedback(dialpadCallButton)
-                initCall(binding.dialpadInput.value, handleIndex = if (simOnePrimary || !areMultipleSIMsAvailable) 0 else 1)
-            }
-            dialpadCallButton.setOnLongClickListener {
-                if (binding.dialpadInput.value.isEmpty()) {
-                    binding.dialpadInput.setText(getTextFromClipboard())
-                    binding.dialpadInput.requestFocusFromTouch(); true
-                } else {
-                    copyNumber(); true
+            dialpadCallButton.apply {
+                setImageDrawable(callIcon)
+                background.applyColorFilter(simOneColor)
+                setOnClickListener {
+                    maybePerformDialpadHapticFeedback(this)
+                    initCall(binding.dialpadInput.value, handleIndex = if (simOnePrimary || !areMultipleSIMsAvailable) 0 else 1)
                 }
+                setOnLongClickListener {
+                    if (binding.dialpadInput.value.isEmpty()) {
+                        binding.dialpadInput.setText(getTextFromClipboard())
+                        binding.dialpadInput.requestFocusFromTouch(); true
+                    } else {
+                        copyNumber(); true
+                    }
+                }
+                contentDescription = getString(
+                    if (areMultipleSIMsAvailable) {
+                        if (simOnePrimary) R.string.call_from_sim_1 else R.string.call_from_sim_2
+                    } else R.string.call
+                )
             }
 
             dialpadClearCharHolder.beVisibleIf(binding.dialpadInput.value.isNotEmpty() || areMultipleSIMsAvailable)
@@ -743,6 +790,9 @@ class DialpadActivity : SimpleActivity() {
         binding.dialpadToolbar.menu.apply {
             findItem(R.id.copy_number).isVisible = binding.dialpadInput.value.isNotEmpty()
             findItem(R.id.cab_call_anonymously).isVisible = binding.dialpadInput.value.isNotEmpty()
+            findItem(R.id.clear_call_history).isVisible = config.showRecentCallsOnDialpad
+            findItem(R.id.show_blocked_numbers).isVisible = config.showRecentCallsOnDialpad
+            findItem(R.id.show_blocked_numbers).title = if (config.showBlockedNumbers) getString(R.string.hide_blocked_numbers) else getString(R.string.show_blocked_numbers)
         }
     }
 
@@ -755,6 +805,8 @@ class DialpadActivity : SimpleActivity() {
                 }
                 R.id.copy_number -> copyNumber()
                 R.id.cab_call_anonymously -> initCallAnonymous()
+                R.id.show_blocked_numbers -> showBlockedNumbers()
+                R.id.clear_call_history -> clearCallHistory()
                 R.id.settings_dialpad -> startActivity(Intent(applicationContext, SettingsDialpadActivity::class.java))
                 R.id.settings -> startActivity(Intent(applicationContext, SettingsActivity::class.java))
                 //R.id.add_number_to_contact -> addNumberToContact()
@@ -767,10 +819,12 @@ class DialpadActivity : SimpleActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         when (CallManager.getPhoneState()) {
             NoCall -> {
-                finish()
+                if (intent.getBooleanExtra(SHOW_RECENT_CALLS_ON_DIALPAD, false)) finishAffinity()
+                else finish()
             }
             else -> {
                 startActivity(Intent(this, CallActivity::class.java))
@@ -907,11 +961,15 @@ class DialpadActivity : SimpleActivity() {
         }
 
         (binding.dialpadList.adapter as? ContactsAdapter)?.finishActMode()
+        (binding.dialpadRecentsList.adapter as? RecentCallsAdapter)?.finishActMode()
 
         val filtered = allContacts.filter {
             var convertedName = PhoneNumberUtils.convertKeypadLettersToDigits(it.name.normalizeString())
+            var convertedNameWithoutSpaces = ""
             var convertedNickname = PhoneNumberUtils.convertKeypadLettersToDigits(it.nickname.normalizeString())
             var convertedCompany = PhoneNumberUtils.convertKeypadLettersToDigits(it.organization.company.normalizeString())
+            val convertedNameToDisplay = PhoneNumberUtils.convertKeypadLettersToDigits(it.getNameToDisplay().normalizeString())
+            var convertedNameToDisplayWithoutSpaces = ""
 
             if (hasRussianLocale) {
                 var currConvertedName = ""
@@ -936,8 +994,16 @@ class DialpadActivity : SimpleActivity() {
                 convertedCompany = currConvertedCompany
             }
 
-            it.doesContainPhoneNumber(text, true, true) || (convertedName.contains(text, true))
-                || (convertedNickname.contains(text, true)) || (convertedCompany.contains(text, true))
+            convertedNameWithoutSpaces = convertedName.filterNot { it.isWhitespace() }
+            convertedNameToDisplayWithoutSpaces = convertedNameToDisplay.filterNot { it.isWhitespace() }
+
+            it.doesContainPhoneNumber(text, true, true)
+                || (convertedName.contains(text, true))
+                || (convertedNameWithoutSpaces.contains(text, true))
+                || (convertedNameToDisplay.contains(text, true))
+                || (convertedNameToDisplayWithoutSpaces.contains(text, true))
+                || (convertedNickname.contains(text, true))
+                || (convertedCompany.contains(text, true))
         }.sortedWith(compareBy {
             !it.doesContainPhoneNumber(text, true, true)
         }).toMutableList() as ArrayList<Contact>
@@ -945,7 +1011,8 @@ class DialpadActivity : SimpleActivity() {
         binding.letterFastscroller.setupWithRecyclerView(binding.dialpadList, { position ->
             try {
                 val name = filtered[position].getNameToDisplay()
-                val character = if (name.isNotEmpty()) name.substring(0, 1) else ""
+                val emoji = name.take(2)
+                val character = if (emoji.isEmoji()) emoji else if (name.isNotEmpty()) name.substring(0, 1) else ""
                 FastScrollItemIndicator.Text(character.uppercase(Locale.getDefault()))
             } catch (e: Exception) {
                 FastScrollItemIndicator.Text("")
@@ -983,6 +1050,7 @@ class DialpadActivity : SimpleActivity() {
         binding.dialpadRoundWrapper.dialpadClearCharIosHolder.beVisibleIf((binding.dialpadInput.value.isNotEmpty() && config.dialpadStyle == DIALPAD_IOS) || areMultipleSIMsAvailable)
         binding.dialpadInput.beVisibleIf(binding.dialpadInput.value.isNotEmpty())
         binding.dialpadList.beVisibleIf(binding.dialpadInput.value.isNotEmpty())
+        binding.dialpadRecentsList.beVisibleIf(binding.dialpadInput.value.isEmpty() && config.showRecentCallsOnDialpad)
         refreshMenuItems()
     }
 
@@ -1012,6 +1080,19 @@ class DialpadActivity : SimpleActivity() {
                     }
                 } else {
                     startCallIntent(number)
+                }
+            }
+
+            Handler().postDelayed({
+                binding.dialpadInput.setText("")
+            }, 1000)
+        } else {
+            RecentsHelper(this).getRecentCalls(queryLimit = 1) {
+                val mostRecentNumber = it.firstOrNull()?.phoneNumber
+                if (!mostRecentNumber.isNullOrEmpty()) {
+                    runOnUiThread {
+                        binding.dialpadInput.setText(mostRecentNumber)
+                    }
                 }
             }
         }
@@ -1090,7 +1171,11 @@ class DialpadActivity : SimpleActivity() {
     private fun setupCharClick(view: View, char: Char, longClickable: Boolean = true) {
         view.isClickable = true
         view.isLongClickable = true
-        view.setOnTouchListener { _, event ->
+        if (isTalkBackOn) {
+            view.setOnClickListener { dialpadPressed(char, view) }
+            view.setOnLongClickListener { performLongClick(view, char); true}
+        }
+        else view.setOnTouchListener { _, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     dialpadPressed(char, view)
@@ -1150,6 +1235,164 @@ class DialpadActivity : SimpleActivity() {
             }
         } else {
             initCall("#31#$dialpadValue", 0)
+        }
+    }
+
+    private fun refreshItems(callback: (() -> Unit)?) {
+        gotRecents()
+        refreshCallLog(loadAll = true) {
+//            refreshCallLog(loadAll = true)
+        }
+    }
+
+    private fun refreshCallLog(loadAll: Boolean = false, callback: (() -> Unit)? = null) {
+        getRecentCalls(loadAll) {
+            allRecentCalls = it
+            config.recentCallsCache = Gson().toJson(it.take(200))
+            runOnUiThread { gotRecents(it) }
+
+            callback?.invoke()
+        }
+    }
+
+    private fun getRecentCalls(loadAll: Boolean, callback: (List<RecentCall>) -> Unit) {
+        val queryCount = if (loadAll) config.queryLimitRecent else RecentsHelper.QUERY_LIMIT
+        val existingRecentCalls = allRecentCalls.filterIsInstance<RecentCall>()
+
+        with(recentsHelper) {
+            if (config.groupSubsequentCalls) {
+                getGroupedRecentCalls(existingRecentCalls, queryCount, true) {
+                    prepareCallLog(it, callback)
+                }
+            } else {
+                getRecentCalls(existingRecentCalls, queryCount, true) { it ->
+                    val calls = if (config.groupAllCalls) it.distinctBy { it.phoneNumber } else it
+                    prepareCallLog(calls, callback)
+                }
+            }
+        }
+    }
+
+    private fun prepareCallLog(calls: List<RecentCall>, callback: (List<RecentCall>) -> Unit) {
+        if (calls.isEmpty()) {
+            callback(emptyList())
+            return
+        }
+
+        ContactsHelper(this).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
+            ensureBackgroundThread {
+                val privateContacts = getPrivateContacts()
+                val updatedCalls = updateNamesIfEmpty(
+                    calls = maybeFilterPrivateCalls(calls, privateContacts),
+                    contacts = contacts,
+                    privateContacts = privateContacts
+                )
+
+                callback(
+                    updatedCalls
+                )
+            }
+        }
+    }
+
+    private fun getPrivateContacts(): ArrayList<Contact> {
+        val privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
+        return MyContactsContentProvider.getContacts(this, privateCursor)
+    }
+
+    private fun maybeFilterPrivateCalls(calls: List<RecentCall>, privateContacts: List<Contact>): List<RecentCall> {
+        val ignoredSources = baseConfig.ignoredContactSources
+        return if (SMT_PRIVATE in ignoredSources) {
+            val privateNumbers = privateContacts.flatMap { it.phoneNumbers }.map { it.value }
+            calls.filterNot { it.phoneNumber in privateNumbers }
+        } else {
+            calls
+        }
+    }
+
+    private fun updateNamesIfEmpty(calls: List<RecentCall>, contacts: List<Contact>, privateContacts: List<Contact>): List<RecentCall> {
+        if (calls.isEmpty()) return mutableListOf()
+
+        val contactsWithNumbers = contacts.filter { it.phoneNumbers.isNotEmpty() }
+        return calls.map { call ->
+            if (call.phoneNumber == call.name) {
+                val privateContact = privateContacts.firstOrNull { it.doesContainPhoneNumber(call.phoneNumber) }
+                val contact = contactsWithNumbers.firstOrNull { it.phoneNumbers.first().normalizedNumber == call.phoneNumber }
+
+                when {
+                    privateContact != null -> withUpdatedName(call = call, name = privateContact.getNameToDisplay())
+                    contact != null -> withUpdatedName(call = call, name = contact.getNameToDisplay())
+                    else -> call
+                }
+            } else {
+                call
+            }
+        }
+    }
+
+    private fun withUpdatedName(call: RecentCall, name: String): RecentCall {
+        return call.copy(
+            name = name,
+            groupedCalls = call.groupedCalls
+                ?.map { it.copy(name = name) }
+                ?.toMutableList()
+                ?.ifEmpty { null }
+        )
+    }
+
+    private fun gotRecents(recents: List<RecentCall> = config.parseRecentCallsCache()) {
+        val currAdapter = binding.dialpadRecentsList.adapter
+        if (currAdapter == null) {
+            recentsAdapter = RecentCallsAdapter(
+                activity = this,
+                recyclerView = binding.dialpadRecentsList,
+                refreshItemsListener = null,
+                showOverflowMenu = true,
+                hideTimeAtOtherDays = true,
+                isDialpad = true,
+                itemDelete = { deleted ->
+                    allRecentCalls = allRecentCalls.filter { it !in deleted }
+                },
+                itemClick = {
+                    val recentCall = it as RecentCall
+                    if (config.showCallConfirmation) {
+                        CallConfirmationDialog(this, recentCall.name) {
+                            launchCallIntent(recentCall.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
+                        }
+                    } else {
+                        launchCallIntent(recentCall.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
+                    }
+                }
+            )
+
+            binding.dialpadRecentsList.adapter = recentsAdapter
+            recentsAdapter?.updateItems(recents)
+
+            if (this.areSystemAnimationsEnabled) {
+                binding.dialpadRecentsList.scheduleLayoutAnimation()
+            }
+        } else {
+            recentsAdapter?.updateItems(recents)
+        }
+    }
+
+    private fun showBlockedNumbers() {
+        config.showBlockedNumbers = !config.showBlockedNumbers
+        binding.dialpadToolbar.menu.findItem(R.id.show_blocked_numbers).title = if (config.showBlockedNumbers) getString(R.string.hide_blocked_numbers) else getString(R.string.show_blocked_numbers)
+        config.needUpdateRecents = true
+        runOnUiThread {
+            refreshItems {}
+        }
+    }
+
+    private fun clearCallHistory() {
+        val confirmationText = "${getString(R.string.clear_history_confirmation)}\n\n${getString(R.string.cannot_be_undone)}"
+        ConfirmationDialog(this, confirmationText) {
+            RecentsHelper(this).removeAllRecentCalls(this) {
+                runOnUiThread {
+                    refreshItems {}
+                }
+            }
         }
     }
 }

@@ -3,12 +3,14 @@ package com.goodwy.dialer.helpers
 import android.content.Context
 import android.net.Uri
 import android.telecom.Call
+import com.goodwy.commons.extensions.formatPhoneNumber
 import com.goodwy.commons.extensions.getMyContactsCursor
 import com.goodwy.commons.extensions.getPhoneNumberTypeText
 import com.goodwy.commons.helpers.ContactsHelper
 import com.goodwy.commons.helpers.MyContactsContentProvider
 import com.goodwy.commons.helpers.ensureBackgroundThread
 import com.goodwy.dialer.R
+import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.isConference
 import com.goodwy.dialer.models.CallContact
@@ -19,7 +21,7 @@ fun getCallContact(context: Context, call: Call?, callback: (CallContact) -> Uni
         return
     }
 
-    val privateCursor = context.getMyContactsCursor(false, true)
+    val privateCursor = context.getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
     ensureBackgroundThread {
         val callContact = CallContact("", "", "", "", "")
         val handle = try {
@@ -51,18 +53,23 @@ fun getCallContact(context: Context, call: Call?, callback: (CallContact) -> Uni
                     }
                 }
 
-                callContact.number = number
+                callContact.number = if (context.config.formatPhoneNumbers) {
+                    number.formatPhoneNumber()
+                } else {
+                    number
+                }
+
                 val contact = contacts.firstOrNull { it.doesHavePhoneNumber(number) }
                 if (contact != null) {
                     callContact.name = contact.getNameToDisplay()
                     callContact.photoUri = contact.photoUri
 
-                    if (contact.phoneNumbers.size > 1) {
-                        val specificPhoneNumber = contact.phoneNumbers.firstOrNull { it.value == number }
+//                    if (contact.phoneNumbers.size > 1) {
+                        val specificPhoneNumber = contact.phoneNumbers.firstOrNull { it.normalizedNumber == number }
                         if (specificPhoneNumber != null) {
                             callContact.numberLabel = context.getPhoneNumberTypeText(specificPhoneNumber.type, specificPhoneNumber.label)
                         }
-                    }
+//                    }
 
                     val showCallerDescription = context.config.showCallerDescription
                     if (showCallerDescription != SHOW_CALLER_NOTHING) {
@@ -78,8 +85,9 @@ fun getCallContact(context: Context, call: Call?, callback: (CallContact) -> Uni
                         }
                     }
                 } else {
-                    callContact.name = number
+                    callContact.name = callContact.number
                 }
+
                 callback(callContact)
             }
         }

@@ -4,33 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="AppCompatResource,AlwaysShowAction">
     <item
-        android:id="@+id/cab_call_sim_1"
-        android:icon="@drawable/ic_phone_one_vector"
-        android:title="@string/call_from_sim_1"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/cab_call_sim_2"
-        android:icon="@drawable/ic_phone_two_vector"
-        android:title="@string/call_from_sim_2"
-        app:showAsAction="ifRoom" />
-    <item
         android:id="@+id/cab_delete"
         android:icon="@drawable/ic_delete_outline"
         android:showAsAction="always"
         android:title="@string/delete"
         app:showAsAction="always" />
     <item
-        android:id="@+id/cab_view_details"
-        android:icon="@drawable/ic_contact_details"
+        android:id="@+id/cab_call"
+        android:icon="@drawable/ic_phone_vector"
         android:showAsAction="always"
-        android:title="@string/view_contact_details"
+        android:title="@string/call"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/cab_call_sim_1"
+        android:icon="@drawable/ic_phone_one_vector"
+        android:showAsAction="always"
+        android:title="@string/call_from_sim_1"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/cab_call_sim_2"
+        android:icon="@drawable/ic_phone_two_vector"
+        android:showAsAction="always"
+        android:title="@string/call_from_sim_2"
         app:showAsAction="always" />
     <item
         android:id="@+id/cab_send_sms"
         android:icon="@drawable/ic_messages"
-        android:showAsAction="always"
+        android:showAsAction="ifRoom"
         android:title="@string/send_sms"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/cab_view_details"
+        android:icon="@drawable/ic_contact_details"
+        android:showAsAction="ifRoom"
+        android:title="@string/view_contact_details"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/cab_block_unblock_contact"
         android:icon="@drawable/ic_block_vector"

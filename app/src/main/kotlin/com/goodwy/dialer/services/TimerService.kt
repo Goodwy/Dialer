@@ -1,5 +1,6 @@
 package com.goodwy.dialer.services
 
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -34,11 +35,12 @@ class TimerService : Service() {
 
     override fun onBind(intent: Intent?): IBinder? = null
 
+    @SuppressLint("ForegroundServiceType")
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         super.onStartCommand(intent, flags, startId)
         isStopping = false
         updateNotification()
-        startForeground(TIMER_RUNNING_NOTIF_ID, notification(getString(R.string.app_name), getString(R.string.timers_notification_msg), INVALID_TIMER_ID))
+        startForeground(TIMER_RUNNING_NOTIF_ID, notification(getString(R.string.app_launcher_name), getString(R.string.timers_notification_msg), INVALID_TIMER_ID))
         return START_NOT_STICKY
     }
 

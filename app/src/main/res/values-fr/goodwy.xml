@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Écran d’appel transparent</string>
     <string name="call_back_g">Rappeler</string>
     <string name="call_back_person_g">Rappeler %s</string>
@@ -52,4 +51,12 @@
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Slider avec contour</string>
     <string name="answer_slider_vertical">Slider vertical</string>
+    <string name="show_recent_calls">Afficher les appels récents</string>
+    <string name="open_dialpad_when_call_from_another_app">Lorsque vous essayez de passer un appel à partir d’une autre application, ouvrez le pavé numérique</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Cela peut vous protéger contre les logiciels malveillants qui passent des appels à votre insu.</string>
+    <string name="number_of_recent_calls_displays">Affichage du nombre d’appels récents</string>
+    <string name="group_calls">Regroupement d’appels</string>
+    <string name="group_all_calls">Regroupez tous les appels, seul le dernier appel sera affiché</string>
+    <string name="call_button_style">Style de bouton de cloche</string>
+    <string name="answer_end_other_call">Répondre à l’appel en cours et y mettre fin</string>
 </resources>

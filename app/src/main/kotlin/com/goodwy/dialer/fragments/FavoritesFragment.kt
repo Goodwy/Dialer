@@ -11,6 +11,7 @@ import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MyGridLayoutManager
 import com.goodwy.commons.views.MyLinearLayoutManager
+import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.adapters.ContactsAdapter
@@ -126,12 +127,12 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
                 if (context.config.showCallConfirmation) {
                     CallConfirmationDialog(activity as SimpleActivity, (it as Contact).getNameToDisplay()) {
                         activity?.apply {
-                            initiateCall(it) { launchCallIntent(it) }
+                            initiateCall(it) { launchCallIntent(it, key = BuildConfig.RIGHT_APP_KEY) }
                         }
                     }
                 } else {
                     activity?.apply {
-                        initiateCall(it as Contact) { launchCallIntent(it) }
+                        initiateCall(it as Contact) { launchCallIntent(it, key = BuildConfig.RIGHT_APP_KEY) }
                     }
                 }
             }.apply {
@@ -193,7 +194,8 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
         binding.letterFastscroller.setupWithRecyclerView(binding.fragmentList, { position ->
             try {
                 val name = contacts[position].getNameToDisplay()
-                val character = if (name.isNotEmpty()) name.substring(0, 1) else ""
+                val emoji = name.take(2)
+                val character = if (emoji.isEmoji()) emoji else if (name.isNotEmpty()) name.substring(0, 1) else ""
                 FastScrollItemIndicator.Text(character.uppercase(Locale.getDefault()).normalizeString())
             } catch (e: Exception) {
                 FastScrollItemIndicator.Text("")
@@ -208,26 +210,27 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
     }
 
     override fun onSearchQueryChanged(text: String) {
-        val shouldNormalize = text.normalizeString() == text
+        val fixedText = text.trim().replace("\\s+".toRegex(), " ")
+        val shouldNormalize = fixedText.normalizeString() == fixedText
         val contacts = allContacts.filter {
-            getProperText(it.getNameToDisplay(), shouldNormalize).contains(text, true) ||
-                getProperText(it.nickname, shouldNormalize).contains(text, true) ||
-                it.phoneNumbers.any {
-                    text.normalizePhoneNumber().isNotEmpty() && it.normalizedNumber.contains(text.normalizePhoneNumber(), true)
-                } ||
-                it.emails.any { it.value.contains(text, true) } ||
-                it.addresses.any { getProperText(it.value, shouldNormalize).contains(text, true) } ||
-                it.IMs.any { it.value.contains(text, true) } ||
-                getProperText(it.notes, shouldNormalize).contains(text, true) ||
-                getProperText(it.organization.company, shouldNormalize).contains(text, true) ||
-                getProperText(it.organization.jobPosition, shouldNormalize).contains(text, true) ||
-                it.websites.any { it.contains(text, true) }
+            getProperText(it.getNameToDisplay(), shouldNormalize).contains(fixedText, true) ||
+                getProperText(it.nickname, shouldNormalize).contains(fixedText, true) ||
+                (fixedText.toIntOrNull() != null && it.phoneNumbers.any {
+                    fixedText.normalizePhoneNumber().isNotEmpty() && it.normalizedNumber.contains(fixedText.normalizePhoneNumber(), true)
+                }) ||
+                it.emails.any { it.value.contains(fixedText, true) } ||
+                it.addresses.any { getProperText(it.value, shouldNormalize).contains(fixedText, true) } ||
+                it.IMs.any { it.value.contains(fixedText, true) } ||
+                getProperText(it.notes, shouldNormalize).contains(fixedText, true) ||
+                getProperText(it.organization.company, shouldNormalize).contains(fixedText, true) ||
+                getProperText(it.organization.jobPosition, shouldNormalize).contains(fixedText, true) ||
+                it.websites.any { it.contains(fixedText, true) }
         }.sortedByDescending {
-            it.name.startsWith(text, true)
+            it.name.startsWith(fixedText, true)
         }.toMutableList() as ArrayList<Contact>
 
         binding.fragmentPlaceholder.beVisibleIf(contacts.isEmpty())
-        (binding.fragmentList.adapter as? ContactsAdapter)?.updateItems(contacts, text)
+        (binding.fragmentList.adapter as? ContactsAdapter)?.updateItems(contacts, fixedText)
         setupLetterFastScroller(contacts)
     }
 

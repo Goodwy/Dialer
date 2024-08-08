@@ -1,5 +1,6 @@
 package com.goodwy.dialer.dialogs
 
+import android.content.res.Configuration
 import android.graphics.Color
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
@@ -7,6 +8,10 @@ import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
 import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import com.goodwy.commons.extensions.*
+import com.goodwy.commons.helpers.SORT_BY_FIRST_NAME
+import com.goodwy.commons.helpers.SORT_BY_MIDDLE_NAME
+import com.goodwy.commons.helpers.SORT_BY_SURNAME
+import com.goodwy.commons.helpers.getProperText
 import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MySearchMenu
 import com.goodwy.dialer.R
@@ -52,15 +57,51 @@ class SelectContactDialog(val activity: SimpleActivity, val contacts: List<Conta
     }
 
     private fun setupLetterFastScroller(contacts: List<Contact>) {
+        try {
+            //Decrease the font size based on the number of letters in the letter scroller
+            val all = contacts.map { it.getNameToDisplay().substring(0, 1) }
+            val unique: Set<String> = HashSet(all)
+            val sizeUnique = unique.size
+            if (isHighScreenSize()) {
+                if (sizeUnique > 48) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTooTiny
+                else if (sizeUnique > 37) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTiny
+                else binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleSmall
+            } else {
+                if (sizeUnique > 36) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTooTiny
+                else if (sizeUnique > 30) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTiny
+                else binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleSmall
+            }
+        } catch (_: Exception) { }
+
+        val sorting = activity.baseConfig.sorting
+        binding.letterFastscroller.beVisibleIf(contacts.size > 10)
         binding.letterFastscroller.setupWithRecyclerView(binding.selectContactList, { position ->
             try {
-                val name = contacts[position].getNameToDisplay()
-                val character = if (name.isNotEmpty()) name.substring(0, 1) else ""
+                val contact = contacts[position]
+                val name = when {
+                    contact.isABusinessContact() -> contact.getFullCompany()
+                    sorting and SORT_BY_SURNAME != 0 && contact.surname.isNotEmpty() -> contact.surname
+                    sorting and SORT_BY_MIDDLE_NAME != 0 && contact.middleName.isNotEmpty() -> contact.middleName
+                    sorting and SORT_BY_FIRST_NAME != 0 && contact.firstName.isNotEmpty() -> contact.firstName
+                    activity.baseConfig.startNameWithSurname -> contact.surname
+                    else -> contact.getNameToDisplay()
+                }
+
+                val emoji = name.take(2)
+                val character = if (emoji.isEmoji()) emoji else if (name.isNotEmpty()) name.substring(0, 1) else ""
                 FastScrollItemIndicator.Text(character.uppercase(Locale.getDefault()))
             } catch (e: Exception) {
                 FastScrollItemIndicator.Text("")
             }
         })
+    }
+
+    private fun isHighScreenSize(): Boolean {
+        return when (activity.resources.configuration.screenLayout
+            and Configuration.SCREENLAYOUT_LONG_MASK) {
+            Configuration.SCREENLAYOUT_LONG_NO -> false
+            else -> true
+        }
     }
 
     private fun configureSearchView() = with(binding.contactSearchView) {
@@ -105,8 +146,23 @@ class SelectContactDialog(val activity: SimpleActivity, val contacts: List<Conta
     private fun filterContactListBySearchQuery(query: String) {
         val adapter = binding.selectContactList.adapter as? ContactsAdapter
         var contactsToShow = contacts
+        val fixedText = query.trim().replace("\\s+".toRegex(), " ")
+        val shouldNormalize = fixedText.normalizeString() == fixedText
         if (query.isNotEmpty()) {
-            contactsToShow = contacts.filter { it.name.contains(query, true) }
+            contactsToShow = contacts.filter {
+                getProperText(it.getNameToDisplay(), shouldNormalize).contains(fixedText, true) ||
+                    getProperText(it.nickname, shouldNormalize).contains(fixedText, true) ||
+                    (fixedText.toIntOrNull() != null && it.phoneNumbers.any {
+                        fixedText.normalizePhoneNumber().isNotEmpty() && it.normalizedNumber.contains(fixedText.normalizePhoneNumber(), true)
+                    }) ||
+                    it.emails.any { it.value.contains(fixedText, true) } ||
+                    it.addresses.any { getProperText(it.value, shouldNormalize).contains(fixedText, true) } ||
+                    it.IMs.any { it.value.contains(fixedText, true) } ||
+                    getProperText(it.notes, shouldNormalize).contains(fixedText, true) ||
+                    getProperText(it.organization.company, shouldNormalize).contains(fixedText, true) ||
+                    getProperText(it.organization.jobPosition, shouldNormalize).contains(fixedText, true) ||
+                    it.websites.any { it.contains(fixedText, true) }
+            }
         }
         checkPlaceholderVisibility(contactsToShow)
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Transparentni zaslon klica</string>
     <string name="call_back_g">Klic nazaj</string>
     <string name="call_back_person_g">Povratni klic %s</string>
@@ -53,4 +52,12 @@
     <string name="answer_slider">Drsnik</string>
     <string name="answer_slider_outline">Orisni drsnik</string>
     <string name="answer_slider_vertical">Navpični drsnik</string>
+    <string name="show_recent_calls">Prikaz nedavnih klicev</string>
+    <string name="open_dialpad_when_call_from_another_app">Ko poskušate klicati iz druge aplikacije, odprite številčnico</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">To vas lahko zaščiti pred zlonamerno programsko opremo, ki kliče brez vaše vednosti.</string>
+    <string name="number_of_recent_calls_displays">Prikazano število nedavnih klicev</string>
+    <string name="group_calls">Združevanje klicev</string>
+    <string name="group_all_calls">Združite vse klice, prikazan bo samo zadnji klic</string>
+    <string name="call_button_style">Slog zvonca</string>
+    <string name="answer_end_other_call">Sprejemanje in končanje trenutnega klica</string>
 </resources>

@@ -1,7 +1,5 @@
 package com.goodwy.dialer.services
 
-import android.app.KeyguardManager
-import android.content.Context
 import android.telecom.CallAudioState
 import android.telecom.Call
 import android.telecom.DisconnectCause
@@ -13,6 +11,8 @@ import com.goodwy.dialer.extensions.powerManager
 import com.goodwy.dialer.extensions.showMessageNotification
 import com.goodwy.dialer.helpers.*
 import com.goodwy.dialer.helpers.CallManager.Companion.getPhoneSize
+import com.goodwy.dialer.models.Events
+import org.greenrobot.eventbus.EventBus
 
 class CallService : InCallService() {
     private val callNotificationManager by lazy { CallNotificationManager(this) }
@@ -54,7 +54,7 @@ class CallService : InCallService() {
                     callNotificationManager.setupNotification()
                 }
             }
-            config.showIncomingCallsFullScreen && getPhoneSize() < 2 -> {
+            config.showIncomingCallsFullScreen /*&& getPhoneSize() < 2*/ -> {
                 try {
                     startActivity(CallActivity.getStartIntent(this))
                     callNotificationManager.setupNotification(true)
@@ -91,6 +91,8 @@ class CallService : InCallService() {
             }
             if (config.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
         }
+
+        EventBus.getDefault().post(Events.RefreshCallLog)
     }
 
     override fun onCallAudioStateChanged(audioState: CallAudioState?) {

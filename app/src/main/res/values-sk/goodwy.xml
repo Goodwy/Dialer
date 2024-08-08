@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Priehľadná obrazovka hovoru</string>
     <string name="call_back_g">Zavolať</string>
     <string name="call_back_person_g">Zavolajte späť %s</string>
@@ -52,4 +51,12 @@
     <string name="answer_slider">Posúvač</string>
     <string name="answer_slider_outline">Posúvač obrysu</string>
     <string name="answer_slider_vertical">Vertikálny posúvač</string>
+    <string name="show_recent_calls">Zobrazenie nedávnych hovorov</string>
+    <string name="open_dialpad_when_call_from_another_app">Keď sa pokúšate uskutočniť hovor z inej aplikácie, otvorte klávesnicu na vytáčanie</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">To vás môže ochrániť pred škodlivým softvérom, ktorý uskutočňuje hovory bez vášho vedomia.</string>
+    <string name="number_of_recent_calls_displays">Zobrazený počet posledných hovorov</string>
+    <string name="group_calls">Zoskupovanie hovorov</string>
+    <string name="group_all_calls">Zoskupte všetky hovory, zobrazí sa iba posledný hovor</string>
+    <string name="call_button_style">Štýl zvončeka</string>
+    <string name="answer_end_other_call">Prijmite a ukončite aktuálny hovor</string>
 </resources>

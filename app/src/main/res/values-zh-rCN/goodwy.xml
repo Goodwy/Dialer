@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">透明通話螢幕</string>
     <string name="call_back_g">叫</string>
     <string name="call_back_person_g">回拨 %s</string>
@@ -50,4 +49,12 @@
     <string name="answer_slider">滑块样式</string>
     <string name="answer_slider_outline">带大纲的滑块</string>
     <string name="answer_slider_vertical">垂直滑块</string>
+    <string name="show_recent_calls">显示最近的通话</string>
+    <string name="open_dialpad_when_call_from_another_app">当您尝试从其他应用拨打电话时，请打开拨号盘</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">这可以保护您免受恶意软件在您不知情的情况下拨打电话的侵害。</string>
+    <string name="number_of_recent_calls_displays">显示最近通话的数量</string>
+    <string name="group_calls">呼叫分组</string>
+    <string name="group_all_calls">对所有呼叫进行分组，仅显示最后一个呼叫</string>
+    <string name="call_button_style">铃铛按钮样式</string>
+    <string name="answer_end_other_call">接听并结束当前通话</string>
 </resources>

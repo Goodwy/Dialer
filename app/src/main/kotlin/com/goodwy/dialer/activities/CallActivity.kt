@@ -21,6 +21,9 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupMenu
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.postDelayed
+import androidx.core.view.children
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.helpers.setWindowTransparency
@@ -36,6 +39,7 @@ import com.mikhaellopez.rxanimation.fadeIn
 import com.mikhaellopez.rxanimation.fadeOut
 import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.TimeUnit
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
@@ -72,7 +76,6 @@ class CallActivity : SimpleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         showTransparentTop = true
         super.onCreate(savedInstanceState)
-        addLockScreenFlags()
         setContentView(binding.root)
 
         if (CallManager.getPhoneState() == NoCall) {
@@ -83,11 +86,12 @@ class CallActivity : SimpleActivity() {
         needSelectSIM = intent.getBooleanExtra(NEED_SELECT_SIM, false)
         if (needSelectSIM) initOutgoingCall(CallManager.getPrimaryCall()!!.details.handle)
 
+        initButtons()
         audioManager.mode = AudioManager.MODE_IN_CALL
+        addLockScreenFlags()
         CallManager.addListener(callCallback)
         updateCallContactInfo(CallManager.getPrimaryCall())
         updateTextColors(binding.callHolder)
-        initButtons()
 
         if (config.backgroundCallScreen == TRANSPARENT_BACKGROUND) checkPermission()
 
@@ -122,15 +126,15 @@ class CallActivity : SimpleActivity() {
                     dialpadInclude.dialpad8Letters, dialpadInclude.dialpad9Letters,
                     onHoldCallerName, onHoldLabel, callMessageLabel, callRemindLabel,
                     callToggleMicrophoneLabel, callDialpadLabel, callToggleSpeakerLabel, callAddLabel,
-                    callSwapLabel, callMergeLabel, callToggleLabel, callAddContactLabel, callManageLabel,
-                    dialpadClose
+                    callSwapLabel, callMergeLabel, callToggleLabel, callAddContactLabel,
+                    dialpadClose, callEndLabel, callAcceptAndDecline
                 ).forEach {
                     it.setTextColor(Color.WHITE)
                 }
 
                 arrayOf(
                     callToggleMicrophone, callToggleSpeaker, callDialpad, /*dialpadClose,*/ callSimImage,
-                    callToggleHold, callAddContact, callAdd, callSwap, callMerge, callManage, imageView,
+                    callToggleHold, callAddContact, callAdd, callSwap, callMerge, callInfo, imageView,
                     dialpadInclude.dialpadAsterisk, dialpadInclude.dialpadHashtag
                 ).forEach {
                     it.applyColorFilter(Color.WHITE)
@@ -149,7 +153,7 @@ class CallActivity : SimpleActivity() {
             binding.apply {
                 arrayOf(
                     callToggleMicrophone, callToggleSpeaker, callDialpad, /*dialpadClose,*/ callSimImage,
-                    callToggleHold, callAddContact, callAdd, callSwap, callMerge, callManage, imageView,
+                    callToggleHold, callAddContact, callAdd, callSwap, callMerge, callInfo, imageView,
                     dialpadInclude.dialpadAsterisk, dialpadInclude.dialpadHashtag, callMessage, callRemind
                 ).forEach {
                     it.applyColorFilter(properTextColor)
@@ -168,7 +172,8 @@ class CallActivity : SimpleActivity() {
             arrayOf(
                 callToggleMicrophone, callToggleSpeaker, callToggleHold, onHoldStatusHolder,
                 callRemind, callMessage,
-                callDialpadHolder, callAddContactHolder, callAddHolder, callSwapHolder, callMergeHolder
+                callDialpadHolder, callAddContactHolder, callAddHolder, callSwapHolder, callMergeHolder,
+                callAcceptAndDecline
             ).forEach {
                 it.background.applyColorFilter(Color.GRAY)
                 it.background.alpha = 60
@@ -181,6 +186,46 @@ class CallActivity : SimpleActivity() {
                 it.foreground.applyColorFilter(Color.GRAY)
                 it.foreground.alpha = 60
             }
+        }
+
+        if (config.callButtonStyle == IOS17) {
+            binding.callEndLabel.beVisible()
+            binding.callAddContactHolder.beGone()
+
+            val callAddHolderParams = binding.callAddHolder.layoutParams as ConstraintLayout.LayoutParams
+            callAddHolderParams.topToTop = binding.callEnd.id
+            callAddHolderParams.bottomToBottom = binding.callEnd.id
+            callAddHolderParams.topMargin = 0
+            binding.callAddHolder.requestLayout()
+            val callSwapHolderParams = binding.callSwapHolder.layoutParams as ConstraintLayout.LayoutParams
+            callSwapHolderParams.topToTop = binding.callEnd.id
+            callSwapHolderParams.bottomToBottom = binding.callEnd.id
+            callSwapHolderParams.topMargin = 0
+            binding.callSwapHolder.requestLayout()
+
+            val marginStartEnd = resources.getDimension(R.dimen.margin_button_horizontal).toInt()
+            val callToggleHoldParams = binding.callToggleHold.layoutParams as ConstraintLayout.LayoutParams
+            callToggleHoldParams.topToTop = binding.callEnd.id
+            callToggleHoldParams.bottomToBottom = binding.callEnd.id
+            callToggleHoldParams.leftToRight = binding.callEnd.id
+            callToggleHoldParams.topMargin = 0
+            callToggleHoldParams.marginStart = marginStartEnd
+            binding.callToggleHold.requestLayout()
+            val callMergeHolderParams = binding.callMergeHolder.layoutParams as ConstraintLayout.LayoutParams
+            callMergeHolderParams.topToTop = binding.callEnd.id
+            callMergeHolderParams.bottomToBottom = binding.callEnd.id
+            callMergeHolderParams.leftToRight = binding.callEnd.id
+            callMergeHolderParams.topMargin = 0
+            callMergeHolderParams.marginStart = marginStartEnd
+            binding.callMergeHolder.requestLayout()
+
+            val marginBottom = resources.getDimension(R.dimen.call_button_row_margin).toInt()
+            val callDialpadHolderParams = binding.callDialpadHolder.layoutParams as ConstraintLayout.LayoutParams
+            callDialpadHolderParams.topToTop = -1
+            callDialpadHolderParams.bottomToBottom = -1
+            callDialpadHolderParams.bottomToTop = binding.callEnd.id
+            callDialpadHolderParams.bottomMargin = marginBottom
+            binding.callDialpadHolder.requestLayout()
         }
     }
 
@@ -206,11 +251,6 @@ class CallActivity : SimpleActivity() {
     override fun onResume() {
         super.onResume()
         updateState()
-//        if (config.backgroundCallScreen == TRANSPARENT_BACKGROUND || config.backgroundCallScreen == BLUR_AVATAR || config.backgroundCallScreen == AVATAR) {
-//            updateStatusbarColor(Color.BLACK)
-//            updateNavigationBarColor(Color.BLACK)
-//        }
-//        updateNavigationBarColor(getBottomNavigationBackgroundColor())
     }
 
     @Suppress("DEPRECATION")
@@ -238,15 +278,6 @@ class CallActivity : SimpleActivity() {
         }
     }
 
-//    private fun refreshTimers() {
-//        timerHelper.getTimers { timers ->
-//            runOnUiThread {
-//                //startTimerService(this)
-//                endCall(true)
-//            }
-//        }
-//    }
-
     @Suppress("DEPRECATION")
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
@@ -257,10 +288,10 @@ class CallActivity : SimpleActivity() {
             super.onBackPressed()
         }
 
-        val callState = CallManager.getState()
-        if (callState == Call.STATE_CONNECTING || callState == Call.STATE_DIALING) {
-            endCall()
-        }
+//        val callState = CallManager.getState()
+//        if (callState == Call.STATE_CONNECTING || callState == Call.STATE_DIALING) {
+//            endCall()
+//        }
     }
 
     private fun initButtons() = binding.apply {
@@ -358,7 +389,7 @@ class CallActivity : SimpleActivity() {
             CallManager.merge()
         }
 
-        callManage.setOnClickListener {
+        callInfo.setOnClickListener {
             maybePerformDialpadHapticFeedback(it)
             startActivity(Intent(this@CallActivity, ConferenceActivity::class.java))
         }
@@ -396,7 +427,7 @@ class CallActivity : SimpleActivity() {
 
         arrayOf(
             callToggleMicrophone, callDialpadHolder, callToggleHold,
-            callAddHolder, callSwapHolder, callMergeHolder, callManage, callAddContactHolder
+            callAddHolder, callSwapHolder, callMergeHolder, callInfo, callAddContactHolder
         ).forEach { imageView ->
             imageView.setOnLongClickListener {
                 if (!imageView.contentDescription.isNullOrEmpty()) {
@@ -424,8 +455,10 @@ class CallActivity : SimpleActivity() {
 
         val isRtl = isRTLLayout
         callAccept.onGlobalLayout {
-            minDragX = if (isRtl) callDraggableBackground.left.toFloat() + resources.getDimension(R.dimen.three_dp) else callDraggableBackground.left.toFloat() - callDraggable.width.toFloat() //+ resources.getDimension(R.dimen.bigger_margin)
-            maxDragX = if (isRtl) callDraggableBackground.right.toFloat() - 60f else callDraggableBackground.right.toFloat() - callDraggable.width.toFloat() - resources.getDimension(R.dimen.three_dp)
+            minDragX = if (isRtl) callDraggableBackground.left.toFloat() + resources.getDimension(R.dimen.three_dp)
+                        else callDraggableBackground.left.toFloat() - callDraggable.width.toFloat()
+            maxDragX = if (isRtl) callDraggableBackground.right.toFloat() - 60f
+                        else callDraggableBackground.right.toFloat() - callDraggable.width.toFloat() - resources.getDimension(R.dimen.three_dp) - 20f
             initialDraggableX = if (isRtl) callDraggableBackground.right.toFloat() - callDraggable.width.toFloat() else callDraggableBackground.left.toFloat() + resources.getDimension(R.dimen.three_dp)
             initialLeftArrowX = callLeftArrow.x
             initialRightArrowX = callRightArrow.x
@@ -469,6 +502,7 @@ class CallActivity : SimpleActivity() {
                     callRightArrow.animate().alpha(0f)
                     lock = false
                 }
+
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                     dragDownX = 0f
 //                    callDraggable.animate().x(initialDraggableX).withEndAction {
@@ -486,6 +520,7 @@ class CallActivity : SimpleActivity() {
                     callDraggableBackground.layoutParams.width = initialBackgroundWidth
                     callDraggableBackground.layoutParams = callDraggableBackground.layoutParams
                 }
+
                 MotionEvent.ACTION_MOVE -> {
                     callDraggable.x = min(maxDragX, max(minDragX, event.rawX - dragDownX))
                     callDraggableBackground.layoutParams.width = if (isRtl) (initialBackgroundWidth - (maxDragX + 60 - callDraggable.height.toFloat() - callDraggable.x)).toInt()
@@ -619,6 +654,7 @@ class CallActivity : SimpleActivity() {
                     callUpArrow.animate().alpha(0f)
                     lock = false
                 }
+
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                     dragDownX = 0f
                     callDraggableVertical.animate().y(initialDraggableY)
@@ -630,6 +666,7 @@ class CallActivity : SimpleActivity() {
                     startArrowAnimationVertical(callDownArrow, initialDownArrowY, initialDownArrowScaleX, initialDownArrowScaleY, downArrowTranslation)
                     startArrowAnimationVertical(callUpArrow, initialUpArrowY, initialUpArrowScaleX, initialUpArrowScaleY, upArrowTranslation)
                 }
+
                 MotionEvent.ACTION_MOVE -> {
                     callDraggableVertical.y = min(maxDragY, max(minDragY, event.rawY - dragDownX - statusBarHeight))
                     //callerNameLabel.text = callDraggableVertical.y.toString() + "   " + statusBarHeight.toString() + "   " + callDraggableVertical.top.toFloat().toString()
@@ -807,7 +844,7 @@ class CallActivity : SimpleActivity() {
             arrayOf(
                 callerAvatar, callerNameLabel, callerDescription, callerNumber, callStatusLabel,
                 callSimImage, callSimId, callToggleMicrophone, callDialpadHolder,
-                callToggleSpeaker, callAddContactHolder, callManage, callManageLabel
+                callToggleSpeaker, callAddContactHolder, callInfo
             ).forEach {
                 it.beGone()
             }
@@ -836,10 +873,11 @@ class CallActivity : SimpleActivity() {
                 arrayOf(
                     callerAvatar, callerNameLabel, callerNumber, callStatusLabel,
                     callToggleMicrophone, callDialpadHolder,
-                    callToggleSpeaker, callAddContactHolder
+                    callToggleSpeaker
                 ).forEach {
                     it.beVisible()
                 }
+                callAddContactHolder.beVisibleIf(config.callButtonStyle == IOS16)
                 callerDescription.beVisibleIf(callerDescription.text.isNotEmpty())
                 val accounts = telecomManager.callCapablePhoneAccounts
                 callSimImage.beVisibleIf(accounts.size > 1)
@@ -857,7 +895,7 @@ class CallActivity : SimpleActivity() {
             val description = getString(if (isOnHold) R.string.resume_call else R.string.hold_call)
             callToggleLabel.text = description
             callToggleHold.contentDescription = description
-            holdStatusLabel.beVisibleIf(isOnHold)
+            holdStatusLabel.beInvisibleIf(!isOnHold)
             RxAnimation.from(holdStatusLabel)
                 .shake()
                 .subscribe()
@@ -884,39 +922,62 @@ class CallActivity : SimpleActivity() {
     }
 
     @Suppress("DEPRECATION")
-    private fun updateOtherPersonsInfo(avatar: Bitmap?) {
+    private fun updateOtherPersonsInfo(avatarUri: String, isConference: Boolean) {
         if (callContact == null) {
             return
         }
 
         binding.apply {
+            val (name, _, number, numberLabel, description) = callContact!!
             callerNameLabel.text =
-                formatterUnicodeWrap(callContact!!.name.ifEmpty { getString(R.string.unknown_caller) })//callContact!!.name.ifEmpty { getString(R.string.unknown_caller) }
-            //callerNameLabel.textDirection = 3
-            if (callContact!!.number.isNotEmpty() && callContact!!.number != callContact!!.name) {
-                callerNumber.text = formatterUnicodeWrap(callContact!!.number)//callContact!!.number
-
-                if (callContact!!.numberLabel.isNotEmpty()) {
-                    callerNumber.text =
-                        formatterUnicodeWrap("${callContact!!.number} - ${callContact!!.numberLabel}")//"${callContact!!.number} - ${callContact!!.numberLabel}"
+                formatterUnicodeWrap(name.ifEmpty { getString(R.string.unknown_caller) })
+            if (number.isNotEmpty() && number != name) {
+                val numberText = formatterUnicodeWrap(number)
+                if (numberLabel.isNotEmpty()) {
+                    val numberLabelText = formatterUnicodeWrap(numberLabel)
+                    callerNumber.text = numberLabelText
+                    callerNumber.setOnClickListener {
+                        if (callerNumber.text == numberLabelText) callerNumber.text = numberText
+                        else callerNumber.text = numberLabelText
+                    }
+                } else {
+                    callerNumber.text = numberText
                 }
 
-                if (callContact!!.description.isNotEmpty()) {
-                    callerDescription.text = formatterUnicodeWrap(callContact!!.description)
+                if (description.isNotEmpty() && description != name) {
+                    callerDescription.text = formatterUnicodeWrap(description)
                     callerDescription.beVisible()
                 } else callerDescription.beGone()
             } else {
                 callerDescription.beGone()
-                val country = if (callContact!!.number.startsWith("+")) getCountryByNumber(this@CallActivity, callContact!!.number) else ""
+                val country = if (number.startsWith("+")) getCountryByNumber(number) else ""
                 if (country != "") {
                     callerNumber.text = formatterUnicodeWrap(country)//country
                 } else callerNumber.beGone()
             }
 
-            if (avatar != null) {
-                callerAvatar.setImageBitmap(avatar)
-            } else {
-                callerAvatar.setImageDrawable(null)
+            callerAvatar.apply {
+                if (number == name || isDestroyed || isFinishing) {
+                    val drawable = AppCompatResources.getDrawable(this@CallActivity, R.drawable.placeholder_contact)
+                    if (baseConfig.useColoredContacts) {
+                        val letterBackgroundColors = getLetterBackgroundColors()
+                        val color = letterBackgroundColors[abs(name.hashCode()) % letterBackgroundColors.size].toInt()
+                        (drawable as LayerDrawable).findDrawableByLayerId(R.id.placeholder_contact_background).applyColorFilter(color)
+                    }
+                    setImageDrawable(drawable)
+                } else {
+                    if (!isFinishing && !isDestroyed) {
+                        val placeholder = if (isConference) {
+                            SimpleContactsHelper(this@CallActivity).getColoredGroupIcon(name)
+                        } else null
+                        SimpleContactsHelper(this@CallActivity.applicationContext).loadContactImage(
+                            avatarUri,
+                            this,
+                            name,
+                            placeholder
+                        )
+                    }
+                }
             }
 
             callMessage.apply {
@@ -1054,10 +1115,11 @@ class CallActivity : SimpleActivity() {
                             1 -> R.drawable.ic_phone_two_vector
                             else -> R.drawable.ic_phone_vector
                         }
+                        val acceptDrawable = AppCompatResources.getDrawable(this@CallActivity, acceptDrawableId)
 
                         val rippleBg = AppCompatResources.getDrawable(this, R.drawable.ic_call_accept) as RippleDrawable
                         val layerDrawable = rippleBg.findDrawableByLayerId(R.id.accept_call_background_holder) as LayerDrawable
-                        layerDrawable.setDrawableByLayerId(R.id.accept_call_icon, AppCompatResources.getDrawable(this@CallActivity, acceptDrawableId))
+                        layerDrawable.setDrawableByLayerId(R.id.accept_call_icon, acceptDrawable)
                         binding.callAccept.setImageDrawable(rippleBg)
                     }
                 }
@@ -1087,10 +1149,10 @@ class CallActivity : SimpleActivity() {
                 callStatusLabel.text = getString(statusTextId)
             }
 
-            callManage.beVisibleIf(call.hasCapability(Call.Details.CAPABILITY_MANAGE_CONFERENCE))
+            callInfo.beVisibleIf(!isCallEnded && call.hasCapability(Call.Details.CAPABILITY_MANAGE_CONFERENCE))
             if (dialpadWrapper.isGone()) {
-                setActionButtonEnabled(callSwapHolder, state == Call.STATE_ACTIVE)
-                setActionButtonEnabled(callMergeHolder, state == Call.STATE_ACTIVE)
+                setActionButtonEnabled(callSwapHolder, enabled = !isCallEnded && state == Call.STATE_ACTIVE)
+                setActionButtonEnabled(callMergeHolder, enabled = !isCallEnded && state == Call.STATE_ACTIVE)
             }
         }
     }
@@ -1101,7 +1163,7 @@ class CallActivity : SimpleActivity() {
             updateCallState(phoneState.call)
             updateCallOnHoldState(null)
             val state = phoneState.call.getStateCompat()
-            val isSingleCallActionsEnabled = (state == Call.STATE_ACTIVE || state == Call.STATE_DISCONNECTED
+            val isSingleCallActionsEnabled = !isCallEnded && (state == Call.STATE_ACTIVE || state == Call.STATE_DISCONNECTED
                 || state == Call.STATE_DISCONNECTING || state == Call.STATE_HOLDING)
             if (binding.dialpadWrapper.isGone()) {
                 setActionImageViewEnabled(binding.callToggleHold, isSingleCallActionsEnabled)
@@ -1109,7 +1171,7 @@ class CallActivity : SimpleActivity() {
             }
         } else if (phoneState is TwoCalls) {
             updateCallState(phoneState.active)
-            updateCallOnHoldState(phoneState.onHold)
+            updateCallOnHoldState(phoneState.onHold, phoneState.active)
         }
 
         runOnUiThread {
@@ -1118,7 +1180,7 @@ class CallActivity : SimpleActivity() {
         }
     }
 
-    private fun updateCallOnHoldState(call: Call?) {
+    private fun updateCallOnHoldState(call: Call?, callActive: Call? = null) {
         val hasCallOnHold = call != null
         if (hasCallOnHold) {
             getCallContact(applicationContext, call) { contact ->
@@ -1126,7 +1188,44 @@ class CallActivity : SimpleActivity() {
                     binding.onHoldCallerName.text = getContactNameOrNumber(contact)
                 }
             }
+
+            // A second call has been received but not yet accepted
+            if (call!!.getStateCompat() == Call.REJECT_REASON_UNWANTED) {
+                binding.apply {
+                    ongoingCallHolder.beGone()
+                    incomingCallHolder.beVisible()
+                    callStatusLabel.text = getString(R.string.is_calling)
+
+                    arrayOf(
+                        callDraggable, callDraggableBackground, callDraggableVertical,
+                        callLeftArrow, callRightArrow,
+                        callUpArrow, callDownArrow
+                    ).forEach {
+                        it.beGone()
+                    }
+
+
+                    callDecline.beVisible()
+                    callDecline.setOnClickListener {
+                        endCall()
+                    }
+
+                    callAccept.beVisible()
+                    callAccept.setOnClickListener {
+                        acceptCall()
+                    }
+
+                    callAcceptAndDecline.apply {
+                        beVisible()
+                        setOnClickListener {
+                            acceptCall()
+                            callActive?.disconnect()
+                        }
+                    }
+                }
+            }
         }
+
         binding.apply {
             onHoldStatusHolder.beVisibleIf(hasCallOnHold)
             controlsSingleCall.beVisibleIf(!hasCallOnHold && dialpadWrapper.isGone())
@@ -1145,8 +1244,9 @@ class CallActivity : SimpleActivity() {
 
             runOnUiThread {
                 val configBackgroundCallScreen = config.backgroundCallScreen
+                val isConference = call.isConference()
                 if (configBackgroundCallScreen == BLUR_AVATAR || configBackgroundCallScreen == AVATAR) {
-                    val avatar = if (!call.isConference()) callContactAvatarHelper.getCallContactAvatar(contact, false) else null
+                    val avatar = if (!isConference) callContactAvatarHelper.getCallContactAvatar(contact.photoUri, false) else null
                     if (avatar != null) {
                         val bg = when (configBackgroundCallScreen) {
                             BLUR_AVATAR -> BlurFactory.fileToBlurBitmap(avatar, this, 0.6f, 5f)
@@ -1179,8 +1279,8 @@ class CallActivity : SimpleActivity() {
                     }
                 }
 
-                val avatarRound = if (!call.isConference()) callContactAvatarHelper.getCallContactAvatar(contact) else null
-                updateOtherPersonsInfo(avatarRound)
+                val avatarRound = if (!isConference) contact.photoUri else ""
+                updateOtherPersonsInfo(avatarRound, isConference)
                 checkCalledSIMCard()
             }
         }
@@ -1194,6 +1294,7 @@ class CallActivity : SimpleActivity() {
         enableProximitySensor()
         binding.incomingCallHolder.beGone()
         binding.ongoingCallHolder.beVisible()
+        binding.callEnd.beVisible()
     }
 
     private fun callRinging() {
@@ -1205,6 +1306,7 @@ class CallActivity : SimpleActivity() {
         enableProximitySensor()
         binding.incomingCallHolder.beGone()
         binding.ongoingCallHolder.beVisible()
+        binding.callEnd.beVisible()
         callDurationHandler.removeCallbacks(updateCallDurationTask)
         callDurationHandler.post(updateCallDurationTask)
         if (config.flashForAlerts) MyCameraImpl.newInstance(this).toggleSOS()
@@ -1236,19 +1338,24 @@ class CallActivity : SimpleActivity() {
         }
 
         isCallEnded = true
-        if (callDuration > 0) {
-            runOnUiThread {
+        runOnUiThread {
+            if (callDuration > 0) {
+                disableAllActionButtons()
+                @SuppressLint("SetTextI18n")
                 val label = "${callDuration.getFormattedDuration()} (${getString(R.string.call_ended)})"
                 binding.callStatusLabel.text = label
-                Handler().postDelayed({
+                Handler(mainLooper).postDelayed(100) {
                     finishAndRemoveTask()
                     if (CallManager.getPhoneState() != NoCall) startActivity(Intent(this, CallActivity::class.java))
-                }, 500)
+                }
+            } else {
+                disableAllActionButtons()
+                binding.callStatusLabel.text = getString(R.string.call_ended)
+                if (CallManager.getPhoneState() != NoCall) {
+                    finishAndRemoveTask()
+                    startActivity(Intent(this, CallActivity::class.java))
+                } else finish()
             }
-        } else {
-            binding.callStatusLabel.text = getString(R.string.call_ended)
-            finish()
-            //if (CallManager.getPhoneState() != NoCall) startActivity(Intent(this, CallActivity::class.java))
         }
     }
 
@@ -1270,8 +1377,9 @@ class CallActivity : SimpleActivity() {
 
     private val updateCallDurationTask = object : Runnable {
         override fun run() {
-            callDuration = CallManager.getPrimaryCall().getCallDuration()
-            if (!isCallEnded) {
+            val call = CallManager.getPrimaryCall()
+            callDuration = call.getCallDuration()
+            if (!isCallEnded && call.getStateCompat() != Call.REJECT_REASON_UNWANTED) {
                 binding.callStatusLabel.text = callDuration.getFormattedDuration()
                 callDurationHandler.postDelayed(this, 1000)
             }
@@ -1322,7 +1430,27 @@ class CallActivity : SimpleActivity() {
         }
     }
 
+    private fun disableAllActionButtons() {
+        (binding.ongoingCallHolder.children + binding.callEnd)
+            .filter { it is ImageView && it.isVisible() }
+            .forEach { view ->
+                setActionButtonEnabled(button = view as ImageView, enabled = false)
+            }
+        (binding.ongoingCallHolder.children)
+            .filter { it is LinearLayout && it.isVisible() }
+            .forEach { view ->
+                setActionButtonEnabled(button = view as LinearLayout, enabled = false)
+            }
+    }
+
     private fun setActionButtonEnabled(button: LinearLayout, enabled: Boolean) {
+        button.apply {
+            isEnabled = enabled
+            alpha = if (enabled) 1.0f else LOWER_ALPHA
+        }
+    }
+
+    private fun setActionButtonEnabled(button: ImageView, enabled: Boolean) {
         button.apply {
             isEnabled = enabled
             alpha = if (enabled) 1.0f else LOWER_ALPHA

@@ -2,7 +2,9 @@ package com.goodwy.dialer.activities
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
+import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -16,6 +18,7 @@ import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.helpers.rustore.RuStoreHelper
 import com.goodwy.commons.helpers.rustore.model.StartPurchasesEvent
+import com.goodwy.commons.models.FAQItem
 import com.goodwy.commons.models.RadioItem
 import com.goodwy.commons.models.Release
 import com.goodwy.dialer.BuildConfig
@@ -34,7 +37,7 @@ import kotlinx.serialization.SerializationException
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import ru.rustore.sdk.core.feature.model.FeatureAvailabilityResult
-import java.util.*
+import java.util.Locale
 import kotlin.math.abs
 import kotlin.system.exitProcess
 
@@ -67,7 +70,7 @@ class SettingsActivity : SimpleActivity() {
     private val saveDocument = registerForActivityResult(ActivityResultContracts.CreateDocument(CALL_HISTORY_FILE_TYPE)) { uri ->
         if (uri != null) {
             toast(R.string.exporting)
-            RecentsHelper(this).getRecentCalls(false, Int.MAX_VALUE) { recents ->
+            RecentsHelper(this).getRecentCalls(queryLimit = QUERY_LIMIT_MAX_VALUE) { recents ->
                 exportCallHistory(recents, uri)
             }
         }
@@ -192,15 +195,19 @@ class SettingsActivity : SimpleActivity() {
         setupDeleteConfirmation()
 
         setupDialpadStyle()
+        setupShowRecentCallsOnDialpad()
 
         setupBackgroundCallScreen()
         setupTransparentCallScreen()
         setupAnswerStyle()
+        setupCallButtonStyle()
         setupAlwaysShowFullscreen()
         setupCallerDescription()
         setupFlashForAlerts()
         setupMissedCallNotifications()
+        setupGroupCalls()
         setupGroupSubsequentCalls()
+        setupQueryLimitRecent()
         setupShowCallConfirmation()
         setupHideDialpadLetters()
         setupDialpadNumbers()
@@ -209,10 +216,13 @@ class SettingsActivity : SimpleActivity() {
         setupCallStartEndVibrations()
         setupDialpadBeeps()
         setupDisableSwipeToAnswer()
+        setupBlockCallFromAnotherApp()
 
         setupShowDividers()
         setupShowContactThumbnails()
+        setupContactThumbnailsSize()
         setupShowPhoneNumbers()
+        setupFormatPhoneNumbers()
         setupStartNameWithSurname()
         setupUseRelativeDate()
 
@@ -234,6 +244,8 @@ class SettingsActivity : SimpleActivity() {
                 settingsSwipeGesturesLabel,
                 settingsDialpadLabel,
                 settingsCallsLabel,
+                settingsNotificationsLabel,
+                settingsSecurityLabel,
                 settingsListViewLabel,
                 settingsBackupsLabel,
                 settingsOtherLabel).forEach {
@@ -247,11 +259,13 @@ class SettingsActivity : SimpleActivity() {
                 settingsSwipeGesturesHolder,
                 settingsDialpadHolder,
                 settingsCallsHolder,
+                settingsNotificationsHolder,
+                settingsSecurityHolder,
                 settingsListViewHolder,
                 settingsBackupsHolder,
                 settingsOtherHolder
             ).forEach {
-                it.background.applyColorFilter(getBottomNavigationBackgroundColor())
+                it.setCardBackgroundColor(getBottomNavigationBackgroundColor())
             }
 
             arrayOf(
@@ -315,7 +329,6 @@ class SettingsActivity : SimpleActivity() {
             startCustomizationActivity(
                 true,
                 isCollection = isOrWasThankYouInstalled() || isCollection(),
-                licensingKey = BuildConfig.GOOGLE_PLAY_LICENSING_KEY,
                 productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
                 productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
                 subscriptionIdList = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
@@ -345,7 +358,7 @@ class SettingsActivity : SimpleActivity() {
             settingsLanguage.text = Locale.getDefault().displayLanguage
             settingsLanguageHolder.beVisibleIf(isTiramisuPlus())
             settingsLanguageHolder.setOnClickListener {
-                launchChangeAppLanguageIntent()
+                if (isTiramisuPlus()) launchChangeAppLanguageIntent()
             }
         }
     }
@@ -501,6 +514,7 @@ class SettingsActivity : SimpleActivity() {
         settingsShowDividersHolder.setOnClickListener {
             settingsShowDividers.toggle()
             config.useDividers = settingsShowDividers.isChecked
+            config.tabsChanged = true
         }
     }
 
@@ -514,6 +528,44 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupContactThumbnailsSize() = binding.apply {
+        val pro = checkPro()
+        settingsContactThumbnailsSizeHolder.alpha = if (pro) 1f else 0.4f
+        settingsContactThumbnailsSizeLabel.text = addLockedLabelIfNeeded(R.string.contact_thumbnails_size, pro)
+        settingsContactThumbnailsSize.text = getContactThumbnailsSizeText()
+        settingsContactThumbnailsSizeHolder.setOnClickListener {
+            if (pro) {
+                val items = arrayListOf(
+                    RadioItem(FONT_SIZE_SMALL, getString(R.string.small), CONTACT_THUMBNAILS_SIZE_SMALL),
+                    RadioItem(FONT_SIZE_MEDIUM, getString(R.string.medium), CONTACT_THUMBNAILS_SIZE_MEDIUM),
+                    RadioItem(FONT_SIZE_LARGE, getString(R.string.large), CONTACT_THUMBNAILS_SIZE_LARGE),
+                    RadioItem(FONT_SIZE_EXTRA_LARGE, getString(R.string.extra_large), CONTACT_THUMBNAILS_SIZE_EXTRA_LARGE)
+                )
+
+                RadioGroupDialog(this@SettingsActivity, items, config.contactThumbnailsSize, R.string.contact_thumbnails_size) {
+                    config.contactThumbnailsSize = it as Int
+                    settingsContactThumbnailsSize.text = getContactThumbnailsSizeText()
+                    config.tabsChanged = true
+                }
+            } else {
+                RxAnimation.from(settingsContactThumbnailsSizeHolder)
+                    .shake(shakeTranslation = 2f)
+                    .subscribe()
+
+                showSnackbar(binding.root)
+            }
+        }
+    }
+
+    private fun getContactThumbnailsSizeText() = getString(
+        when (baseConfig.contactThumbnailsSize) {
+            CONTACT_THUMBNAILS_SIZE_SMALL -> com.goodwy.commons.R.string.small
+            CONTACT_THUMBNAILS_SIZE_MEDIUM -> com.goodwy.commons.R.string.medium
+            CONTACT_THUMBNAILS_SIZE_LARGE -> com.goodwy.commons.R.string.large
+            else -> com.goodwy.commons.R.string.extra_large
+        }
+    )
+
     private fun setupShowPhoneNumbers() {
         binding.apply {
             settingsShowPhoneNumbers.isChecked = config.showPhoneNumbers
@@ -525,20 +577,13 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupUseColoredContacts() = binding.apply {
-        updateWrapperUseColoredContacts()
         settingsColoredContacts.isChecked = config.useColoredContacts
         settingsColoredContactsHolder.setOnClickListener {
             settingsColoredContacts.toggle()
             config.useColoredContacts = settingsColoredContacts.isChecked
             settingsContactColorListHolder.beVisibleIf(config.useColoredContacts)
-            updateWrapperUseColoredContacts()
+            config.tabsChanged = true
         }
-    }
-
-    private fun updateWrapperUseColoredContacts() {
-        val getBottomNavigationBackgroundColor = getBottomNavigationBackgroundColor()
-        val wrapperColor = if (config.useColoredContacts) getBottomNavigationBackgroundColor.lightenColor(4) else getBottomNavigationBackgroundColor
-        binding.settingsColoredContactsWrapper.background.applyColorFilter(wrapperColor)
     }
 
     private fun setupContactsColorList() = binding.apply {
@@ -689,6 +734,48 @@ class SettingsActivity : SimpleActivity() {
         }
     )
 
+    private fun setupCallButtonStyle() {
+        binding.settingsCallButtonStyle.text = getCallButtonStyleText()
+        binding.settingsCallButtonStyleHolder.setOnClickListener {
+            launchCallButtonStyleDialog()
+        }
+    }
+
+    private fun launchCallButtonStyleDialog() {
+        val pro = checkPro()
+        val iOS17Text = addLockedLabelIfNeeded(R.string.bottom, pro)
+        val items = arrayListOf(
+            RadioItem(IOS16, getString(R.string.top), icon = R.drawable.ic_call_button_top),
+            RadioItem(IOS17, iOS17Text, icon = R.drawable.ic_call_button_bottom),
+        )
+
+        RadioGroupIconDialog(this@SettingsActivity, items, config.callButtonStyle, R.string.call_button_style) {
+            if (it as Int == IOS17) {
+                if (pro) {
+                    config.callButtonStyle = it
+                    binding.settingsCallButtonStyle.text = getCallButtonStyleText()
+                } else {
+                    RxAnimation.from(binding.settingsCallButtonStyleHolder)
+                        .shake(shakeTranslation = 2f)
+                        .subscribe()
+
+                    showSnackbar(binding.root)
+                }
+            } else {
+                config.callButtonStyle = it
+                binding.settingsCallButtonStyle.text = getCallButtonStyleText()
+            }
+
+        }
+    }
+
+    private fun getCallButtonStyleText() = getString(
+        when (config.callButtonStyle) {
+            IOS16 -> R.string.top
+            else -> R.string.bottom
+        }
+    )
+
     private fun setupCallerDescription() {
         binding.settingsShowCallerDescription.text = getCallerDescriptionText()
         binding.settingsShowCallerDescriptionHolder.setOnClickListener {
@@ -819,6 +906,52 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupGroupCalls() {
+        binding.settingsGroupCalls.text = getGroupCallsText()
+        binding.settingsGroupCallsHolder.setOnClickListener {
+            val items = arrayListOf(
+                RadioItem(GROUP_CALLS_NO, getString(R.string.no)),
+                RadioItem(GROUP_CALLS_SUBSEQUENT, getString(R.string.group_subsequent_calls)),
+                RadioItem(GROUP_CALLS_ALL, getString(R.string.group_all_calls))
+            )
+
+            RadioGroupDialog(this@SettingsActivity, items, getGroupCallsCheckedItemId(), R.string.group_calls) {
+                when(it) {
+                    GROUP_CALLS_SUBSEQUENT -> {
+                        config.groupSubsequentCalls = true
+                        config.groupAllCalls = false
+                    }
+                    GROUP_CALLS_ALL -> {
+                        config.groupSubsequentCalls = false
+                        config.groupAllCalls = true
+                    }
+                    else -> {
+                        config.groupSubsequentCalls = false
+                        config.groupAllCalls = false
+                    }
+                }
+                binding.settingsGroupCalls.text = getGroupCallsText()
+            }
+        }
+    }
+
+    private fun getGroupCallsText() = getString(
+        when {
+            config.groupSubsequentCalls -> R.string.group_subsequent_calls
+            config.groupAllCalls -> R.string.group_all_calls
+            else -> com.goodwy.commons.R.string.no
+        }
+    )
+
+    private fun getGroupCallsCheckedItemId(): Int {
+        return when {
+            config.groupSubsequentCalls -> GROUP_CALLS_SUBSEQUENT
+            config.groupAllCalls -> GROUP_CALLS_ALL
+            else -> GROUP_CALLS_NO
+        }
+    }
+
+
     private fun setupGroupSubsequentCalls() {
         binding.apply {
             settingsGroupSubsequentCalls.isChecked = config.groupSubsequentCalls
@@ -829,6 +962,37 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+//    private fun setupGroupCallsByDate() {
+//        binding.apply {
+//            settingsGroupCallsByDate.isChecked = config.groupCallsByDate
+//            settingsGroupCallsByDateHolder.setOnClickListener {
+//                settingsGroupCallsByDate.toggle()
+//                config.groupCallsByDate = settingsGroupCallsByDate.isChecked
+//            }
+//        }
+//    }
+
+    private fun setupQueryLimitRecent() {
+        binding.settingsQueryLimitRecent.text = getQueryLimitRecentText()
+        binding.settingsQueryLimitRecentHolder.setOnClickListener {
+            val items = arrayListOf(
+                RadioItem(QUERY_LIMIT_SMALL_VALUE, QUERY_LIMIT_SMALL_VALUE.toString()),
+                RadioItem(QUERY_LIMIT_MEDIUM_VALUE, QUERY_LIMIT_MEDIUM_VALUE.toString()),
+                RadioItem(QUERY_LIMIT_NORMAL_VALUE, QUERY_LIMIT_NORMAL_VALUE.toString()),
+                RadioItem(QUERY_LIMIT_BIG_VALUE, QUERY_LIMIT_BIG_VALUE.toString()),
+                RadioItem(QUERY_LIMIT_MAX_VALUE, "MAX"))
+
+            RadioGroupDialog(this@SettingsActivity, items, config.queryLimitRecent, R.string.number_of_recent_calls_displays) {
+                config.queryLimitRecent = it as Int
+                binding.settingsQueryLimitRecent.text = getQueryLimitRecentText()
+            }
+        }
+    }
+
+    private fun getQueryLimitRecentText(): String {
+        return if (config.queryLimitRecent == QUERY_LIMIT_MAX_VALUE) "MAX" else config.queryLimitRecent.toString()
+    }
+
     private fun setupStartNameWithSurname() {
         binding.apply {
             settingsStartNameWithSurname.isChecked = config.startNameWithSurname
@@ -836,6 +1000,15 @@ class SettingsActivity : SimpleActivity() {
                 settingsStartNameWithSurname.toggle()
                 config.startNameWithSurname = settingsStartNameWithSurname.isChecked
             }
+        }
+    }
+
+    private fun setupFormatPhoneNumbers() {
+        binding.settingsFormatPhoneNumbers.isChecked = config.formatPhoneNumbers
+        binding.settingsFormatPhoneNumbersHolder.setOnClickListener {
+            binding.settingsFormatPhoneNumbers.toggle()
+            config.formatPhoneNumbers = binding.settingsFormatPhoneNumbers.isChecked
+            config.tabsChanged = true
         }
     }
 
@@ -991,6 +1164,16 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupShowRecentCallsOnDialpad() {
+        binding.apply {
+            settingsShowRecentCallsOnDialpad.isChecked = config.showRecentCallsOnDialpad
+            settingsShowRecentCallsOnDialpadHolder.setOnClickListener {
+                settingsShowRecentCallsOnDialpad.toggle()
+                config.showRecentCallsOnDialpad = settingsShowRecentCallsOnDialpad.isChecked
+            }
+        }
+    }
+
     private fun setupOpenSearch() {
         binding.apply {
             settingsOpenSearch.isChecked = config.openSearch
@@ -1034,7 +1217,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupSwipeRightAction() = binding.apply {
-        if (isRTLLayout) settingsSwipeRightActionLabel.text = getString(com.goodwy.commons.R.string.swipe_left_action)
+        if (isRTLLayout) settingsSwipeRightActionLabel.text = getString(R.string.swipe_left_action)
         settingsSwipeRightAction.text = getSwipeActionText(false)
         settingsSwipeRightActionHolder.setOnClickListener {
             val items = if (isNougatPlus()) arrayListOf(
@@ -1049,7 +1232,7 @@ class SettingsActivity : SimpleActivity() {
             )
 
             val title =
-                if (isRTLLayout) com.goodwy.commons.R.string.swipe_left_action else com.goodwy.commons.R.string.swipe_right_action
+                if (isRTLLayout) R.string.swipe_left_action else R.string.swipe_right_action
             RadioGroupIconDialog(this@SettingsActivity, items, config.swipeRightAction, title) {
                 config.swipeRightAction = it as Int
                 config.tabsChanged = true
@@ -1062,7 +1245,7 @@ class SettingsActivity : SimpleActivity() {
     private fun setupSwipeLeftAction() = binding.apply {
         val pro = checkPro()
         settingsSwipeLeftActionHolder.alpha = if (pro) 1f else 0.4f
-        val stringId = if (isRTLLayout) com.goodwy.commons.R.string.swipe_right_action else com.goodwy.commons.R.string.swipe_left_action
+        val stringId = if (isRTLLayout) R.string.swipe_right_action else R.string.swipe_left_action
         settingsSwipeLeftActionLabel.text = addLockedLabelIfNeeded(stringId, pro)
         settingsSwipeLeftAction.text = getSwipeActionText(true)
         settingsSwipeLeftActionHolder.setOnClickListener {
@@ -1079,7 +1262,7 @@ class SettingsActivity : SimpleActivity() {
                 )
 
                 val title =
-                    if (isRTLLayout) com.goodwy.commons.R.string.swipe_right_action else com.goodwy.commons.R.string.swipe_left_action
+                    if (isRTLLayout) R.string.swipe_right_action else R.string.swipe_left_action
                 RadioGroupIconDialog(this@SettingsActivity, items, config.swipeLeftAction, title) {
                     config.swipeLeftAction = it as Int
                     config.tabsChanged = true
@@ -1173,6 +1356,20 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupBlockCallFromAnotherApp() {
+        binding.apply {
+            settingsBlockCallFromAnotherApp.isChecked = config.blockCallFromAnotherApp
+            settingsBlockCallFromAnotherAppHolder.setOnClickListener {
+                settingsBlockCallFromAnotherApp.toggle()
+                config.blockCallFromAnotherApp = settingsBlockCallFromAnotherApp.isChecked
+            }
+            settingsBlockCallFromAnotherAppFaq.imageTintList = ColorStateList.valueOf(getProperTextColor())
+            settingsBlockCallFromAnotherAppFaq.setOnClickListener {
+                ConfirmationDialog(this@SettingsActivity, messageId = R.string.open_dialpad_when_call_from_another_app_summary, positive = com.goodwy.commons.R.string.ok, negative = 0) {}
+            }
+        }
+    }
+
     private fun setupDisableSwipeToAnswer() {
         binding.apply {
             settingsDisableSwipeToAnswer.isChecked = config.disableSwipeToAnswer
@@ -1189,12 +1386,13 @@ class SettingsActivity : SimpleActivity() {
             settingsRelativeDateHolder.setOnClickListener {
                 settingsRelativeDate.toggle()
                 config.useRelativeDate = settingsRelativeDate.isChecked
+                config.tabsChanged = true
             }
         }
     }
 
     private fun setupOptionsMenu() {
-        val id = 510 //TODO changelog
+        val id = 511 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1211,7 +1409,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_510)) //TODO changelog
+            add(Release(id, R.string.release_511)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }
@@ -1222,6 +1420,7 @@ class SettingsActivity : SimpleActivity() {
             add(Release(500, R.string.release_500))
             add(Release(501, R.string.release_501))
             add(Release(510, R.string.release_510))
+            add(Release(511, R.string.release_511))
             checkWhatsNew(this, BuildConfig.VERSION_CODE)
         }
     }

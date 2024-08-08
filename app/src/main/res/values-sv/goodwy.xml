@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Transparent samtalsskärm</string>
     <string name="call_back_g">Kalla</string>
     <string name="call_back_person_g">Ring tillbaka %s</string>
@@ -51,4 +50,12 @@
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Konturreglage</string>
     <string name="answer_slider_vertical">Vertikal skjutreglage</string>
+    <string name="show_recent_calls">Visa de senaste utlysningarna</string>
+    <string name="open_dialpad_when_call_from_another_app">När du försöker ringa ett samtal från en annan app öppnar du knappsatsen</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Detta kan skydda dig från skadlig programvara som ringer samtal utan din vetskap.</string>
+    <string name="number_of_recent_calls_displays">Visat antal senaste samtal</string>
+    <string name="group_calls">Gruppering av samtal</string>
+    <string name="group_all_calls">Gruppera alla samtal, endast det senaste samtalet kommer att visas</string>
+    <string name="call_button_style">Klockknapp stil</string>
+    <string name="answer_end_other_call">Besvara och avsluta det aktuella samtalet</string>
 </resources>

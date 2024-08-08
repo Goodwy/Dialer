@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Průhledná obrazovka hovoru</string>
     <string name="call_back_g">Zavolat</string>
     <string name="call_back_person_g">Zavolejte zpět %s</string>
@@ -52,4 +51,12 @@
     <string name="answer_slider">Posuvník</string>
     <string name="answer_slider_outline">Posuvník obrysu</string>
     <string name="answer_slider_vertical">Vertikální posuvník</string>
+    <string name="show_recent_calls">Zobrazit poslední hovory</string>
+    <string name="open_dialpad_when_call_from_another_app">Když se pokusíte zavolat z jiné aplikace, otevřete číselník</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">To vás může chránit před malwarem, který volá bez vašeho vědomí.</string>
+    <string name="number_of_recent_calls_displays">Zobrazený počet posledních hovorů</string>
+    <string name="group_calls">Seskupování hovorů</string>
+    <string name="group_all_calls">Seskupte všechny hovory, zobrazí se pouze poslední hovor</string>
+    <string name="call_button_style">Styl tlačítka zvonku</string>
+    <string name="answer_end_other_call">Přijměte a ukončete aktuální hovor</string>
 </resources>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">شاشة مكالمة شفافة</string>
     <string name="call_back_g">دعا</string>
     <string name="call_back_person_g">اتصل مرة أخرى %s</string>
@@ -55,4 +54,12 @@
     <string name="answer_slider">شريط التمرير</string>
     <string name="answer_slider_outline">شريط تمرير المخطط التفصيلي</string>
     <string name="answer_slider_vertical">شريط التمرير العمودي</string>
+    <string name="show_recent_calls">إظهار المكالمات الأخيرة</string>
+    <string name="open_dialpad_when_call_from_another_app">عند محاولة إجراء مكالمة من تطبيق آخر، افتح لوحة الطلب</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">يمكن أن يحميك هذا من البرامج الضارة التي تجري مكالمات دون علمك.</string>
+    <string name="number_of_recent_calls_displays">عدد المكالمات الأخيرة المعروضة</string>
+    <string name="group_calls">تجميع المكالمات</string>
+    <string name="group_all_calls">تجميع جميع المكالمات ، سيتم عرض المكالمة الأخيرة فقط</string>
+    <string name="call_button_style">نمط زر الجرس</string>
+    <string name="answer_end_other_call">الرد على المكالمة الحالية وإنهاؤها</string>
 </resources>

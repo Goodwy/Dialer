@@ -33,7 +33,7 @@ class CallNotificationManager(private val context: Context) {
     @SuppressLint("NewApi")
     fun setupNotificationOld(forceLowPriority: Boolean = false) {
         getCallContact(context.applicationContext, CallManager.getPrimaryCall()) { callContact ->
-            val callContactAvatar = callContactAvatarHelper.getCallContactAvatar(callContact)
+            val callContactAvatar = callContactAvatarHelper.getCallContactAvatar(callContact.photoUri)
             val callState = CallManager.getState()
             val isHighPriority = context.powerManager.isInteractive && callState == Call.STATE_RINGING && !forceLowPriority
             val channelId = if (isHighPriority) "right_dialer_call_high_priority" else "right_dialer_call"
@@ -75,7 +75,7 @@ class CallNotificationManager(private val context: Context) {
 
             var callerNumberType = ""
             if (callContact.name == callContact.number) {
-                val country = if (callContact.number.startsWith("+")) getCountryByNumber(context, callContact.number) else ""
+                val country = if (callContact.number.startsWith("+")) getCountryByNumber(callContact.number) else ""
                 if (country != "") callerNumberType = country
             } else callerNumberType = callContact.numberLabel
 
@@ -140,7 +140,7 @@ class CallNotificationManager(private val context: Context) {
     @SuppressLint("NewApi")
     fun setupNotificationNew(forceLowPriority: Boolean = false) {
         getCallContact(context.applicationContext, CallManager.getPrimaryCall()) { callContact ->
-            val callContactAvatar = callContactAvatarHelper.getCallContactAvatar(callContact)
+            val callContactAvatar = callContactAvatarHelper.getCallContactAvatar(callContact.photoUri)
             val callState = CallManager.getState()
             val isHighPriority = context.powerManager.isInteractive && callState == Call.STATE_RINGING && !forceLowPriority
             val channelId = if (isHighPriority) "right_dialer_call_high_priority" else "right_dialer_call"

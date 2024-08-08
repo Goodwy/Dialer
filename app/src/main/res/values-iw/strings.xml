@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">חייגן פשוט</string>
     <string name="app_launcher_name">חייגן</string>
     <string name="default_phone_app_prompt">אנא הפוך את האפליקציה הזו לחייגן ברירת המחדל</string>
     <string name="allow_displaying_over_other_apps">אנא אפשר הצגה מעל אפליקציות אחרות לצורך התנהגות אמינה</string>
-    <!-- Contacts -->
     <string name="could_not_access_contacts">לא ניתן היה לגשת לאנשי הקשר שלך נא אפשר ידנית דרך הגדרות האפליקציה</string>
-    <!-- Recents -->
     <string name="no_previous_calls">לא נמצאו שיחות קודמות</string>
     <string name="could_not_access_the_call_history">לא ניתן היה לגשת להיסטוריית השיחות נא התקן מחדש או אפשר הרשאות</string>
     <string name="request_access">לבקש גישה</string>
@@ -14,14 +11,12 @@
     <string name="clear_history_confirmation">האם אתה בטוח שברצונך לאפס את כל היסטוריית השיחות\?</string>
     <string name="clear_call_history">נקה היסטוריית שיחות</string>
     <string name="show_call_details">הצג פרטי שיחה</string>
-    <!-- Dialpad -->
     <string name="dialpad">חייגן</string>
     <string name="asterisk">כוכבית</string>
     <string name="hashtag">סולמית</string>
     <string name="call_number">מספר שיחה</string>
     <string name="dialpad_beeps">Enable beeps on dialpad button clicks</string>
     <string name="dialpad_vibrations">Enable vibrations on dialpad button clicks</string>
-    <!-- Dialer -->
     <string name="dialer">חייגן</string>
     <string name="accept">לקבל</string>
     <string name="accept_call">לקבל שיחה</string>
@@ -59,11 +54,9 @@
     <string name="audio_route_wired_or_earpiece">חוטי או אוזנייה</string>
     <string name="choose_audio_route">בחר מסלול שמע</string>
     <string name="calling_blocked_number">המספר שאתה מתקשר אליו חסום</string>
-    <!-- Speed dial -->
     <string name="speed_dial">חיוג מהיר</string>
     <string name="manage_speed_dial">נהל חיוג מהיר</string>
     <string name="speed_dial_label">לחץ על מספר כדי להקצות לו איש קשר. לאחר מכן תוכל להתקשר במהירות לאיש הקשר שבחרת על ידי לחיצה ארוכה על המספר הנבחר בחייגן.</string>
-    <!-- Settings -->
     <string name="group_subsequent_calls">מזג שיחות עוקבות עם אותו מספר ביומן השיחות</string>
     <string name="open_dialpad_by_default">פתח את לוח החיוג כברירת מחדל כאשר האפליקציה נפתחת</string>
     <string name="disable_proximity_sensor">השבת את חיישן הקרבה במהלך שיחות</string>
@@ -72,13 +65,6 @@
     <string name="hide_dialpad_numbers">הסתר מספרי לוח החיוג</string>
     <string name="export_call_history">ייצוא היסטוריית שיחות</string>
     <string name="import_call_history">ייבא היסטוריית שיחות</string>
-
-    <!-- FAQ -->
     <string name="faq_1_title">אני שומע שיחות נכנסות, אבל המסך לא נדלק. מה אני יכול לעשות?</string>
     <string name="faq_1_text">לבעיות כאלה יכולות להיות סיבות רבות למכשיר ולמערכת, שקשה לומר באופן כללי. כדאי להסתכל מסביב בהגדרות המכשיר ולוודא שהאפליקציה מורשית לצוץ ברקע ולאפשר הצגה מעל אפליקציות אחרות.</string>
-
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
-    -->
 </resources>

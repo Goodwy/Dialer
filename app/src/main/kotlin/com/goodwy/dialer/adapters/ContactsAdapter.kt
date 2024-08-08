@@ -6,6 +6,7 @@ import android.content.pm.ShortcutInfo
 import android.content.res.Resources
 import android.graphics.drawable.Icon
 import android.net.Uri
+import android.telephony.PhoneNumberUtils
 import android.text.TextUtils
 import android.util.TypedValue
 import android.view.*
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.behaviorule.arturdumchev.library.pixels
 import com.bumptech.glide.Glide
 import com.goodwy.commons.adapters.MyRecyclerViewAdapter
 import com.goodwy.commons.databinding.ItemContactWithNumberGridBinding
@@ -25,7 +27,6 @@ import com.goodwy.commons.databinding.ItemContactWithNumberInfoBinding
 import com.goodwy.commons.dialogs.CallConfirmationDialog
 import com.goodwy.commons.dialogs.ConfirmationAdvancedDialog
 import com.goodwy.commons.dialogs.ConfirmationDialog
-import com.goodwy.commons.dialogs.FeatureLockedDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.interfaces.ItemMoveCallback
@@ -33,6 +34,7 @@ import com.goodwy.commons.interfaces.ItemTouchHelperContract
 import com.goodwy.commons.interfaces.StartReorderDragListener
 import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MyRecyclerView
+import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.databinding.ItemContactWithNumberGridSwipeBinding
@@ -42,11 +44,12 @@ import com.goodwy.dialer.helpers.SWIPE_ACTION_BLOCK
 import com.goodwy.dialer.helpers.SWIPE_ACTION_DELETE
 import com.goodwy.dialer.helpers.SWIPE_ACTION_MESSAGE
 import com.goodwy.dialer.interfaces.RefreshItemsListener
-import com.goodwy.dialer.models.RecentCall
+import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import me.thanel.swipeactionview.SwipeActionView
 import me.thanel.swipeactionview.SwipeDirection
 import me.thanel.swipeactionview.SwipeGestureListener
-import java.util.*
+import java.util.Collections
+import java.util.Locale
 
 class ContactsAdapter(
     activity: SimpleActivity,
@@ -98,6 +101,7 @@ class ContactsAdapter(
         val selectedNumber = "tel:${getSelectedPhoneNumber()}".replace("+","%2B")
 
         menu.apply {
+            findItem(R.id.cab_call).isVisible = !hasMultipleSIMs && isOneItemSelected
             findItem(R.id.cab_call_sim_1).isVisible = hasMultipleSIMs && isOneItemSelected
             findItem(R.id.cab_call_sim_2).isVisible = hasMultipleSIMs && isOneItemSelected
             findItem(R.id.cab_remove_default_sim).isVisible = isOneItemSelected && (activity.config.getCustomSIM(selectedNumber) ?: "") != ""
@@ -120,6 +124,7 @@ class ContactsAdapter(
 
         when (id) {
             R.id.cab_block_unblock_contact -> tryBlockingUnblocking()
+            R.id.cab_call -> callContact()
             R.id.cab_call_sim_1 -> callContact(true)
             R.id.cab_call_sim_2 -> callContact(false)
             R.id.cab_remove_default_sim -> removeDefaultSIM()
@@ -166,6 +171,8 @@ class ContactsAdapter(
     }
 
     override fun getItemCount() = contacts.size
+
+    private fun getItemWithKey(key: Int): Contact? = contacts.firstOrNull { it.id == key }
 
     private fun getCabBlockContactTitle(callback: (String) -> Unit) {
         val contact = getSelectedItems().firstOrNull() ?: return callback("")
@@ -237,6 +244,21 @@ class ContactsAdapter(
         } else if (textToHighlight != highlightText) {
             textToHighlight = highlightText
             notifyDataSetChanged()
+        }
+    }
+
+    private fun callContact() {
+        val contact = getItemWithKey(selectedKeys.first()) ?: return
+        if (activity.config.showCallConfirmation) {
+            CallConfirmationDialog(activity as SimpleActivity, contact.getNameToDisplay()) {
+                activity.apply {
+                    initiateCall(contact) { launchCallIntent(it, key = BuildConfig.RIGHT_APP_KEY) }
+                }
+            }
+        } else {
+            activity.apply {
+                initiateCall(contact) { launchCallIntent(it, key = BuildConfig.RIGHT_APP_KEY) }
+            }
         }
     }
 
@@ -348,6 +370,7 @@ class ContactsAdapter(
                         val action = if (hasPermission) Intent.ACTION_CALL else Intent.ACTION_DIAL
                         val intent = Intent(action).apply {
                             data = Uri.fromParts("tel", getSelectedPhoneNumber(), null)
+                            putExtra(IS_RIGHT_APP, BuildConfig.RIGHT_APP_KEY)
                         }
 
                         val shortcut = ShortcutInfo.Builder(activity, contact.hashCode().toString())
@@ -385,7 +408,21 @@ class ContactsAdapter(
                     if (name.contains(textToHighlight, true)) {
                         name.highlightTextPart(textToHighlight, properPrimaryColor)
                     } else {
-                        name.highlightTextFromNumbers(textToHighlight, properPrimaryColor)
+                        var spacedTextToHighlight = textToHighlight
+                        val strippedName = PhoneNumberUtils.convertKeypadLettersToDigits(name.filterNot { it.isWhitespace() })
+                        val startIndex = strippedName.indexOf(textToHighlight)
+
+                        if (strippedName.contains(textToHighlight) && strippedName != name) {
+                            for (i in 0..spacedTextToHighlight.length) {
+                                if (name.toCharArray().size > startIndex + i) {
+                                    if (name[startIndex + i].isWhitespace()) {
+                                        spacedTextToHighlight = spacedTextToHighlight.replaceRange(i, i, " ")
+                                    }
+                                }
+                            }
+                        }
+
+                        name.highlightTextFromNumbers(spacedTextToHighlight, properPrimaryColor)
                     }
                 }
             }
@@ -429,8 +466,13 @@ class ContactsAdapter(
             }
 
             if (!activity.isDestroyed) {
-                itemContactImage.beVisibleIf(activity.config.showContactThumbnails)
-                if (activity.config.showContactThumbnails) {
+                val showContactThumbnails = activity.config.showContactThumbnails
+                itemContactImage.beVisibleIf(showContactThumbnails)
+                if (showContactThumbnails) {
+                    if (viewType != VIEW_TYPE_GRID) {
+                        val size = (root.context.pixels(R.dimen.normal_icon_size) * contactThumbnailsSize).toInt()
+                        itemContactImage.setHeightAndWidth(size)
+                    }
                     SimpleContactsHelper(root.context).loadContactImage(contact.photoUri, itemContactImage, contact.getNameToDisplay())
                 }
             }
@@ -734,12 +776,12 @@ class ContactsAdapter(
         if (activity.config.showCallConfirmation) {
             CallConfirmationDialog(activity as SimpleActivity, contact.getNameToDisplay()) {
                 activity.apply {
-                    initiateCall(contact) { launchCallIntent(it) }
+                    initiateCall(contact) { launchCallIntent(it, key = BuildConfig.RIGHT_APP_KEY) }
                 }
             }
         } else {
             activity.apply {
-                initiateCall(contact) { launchCallIntent(it) }
+                initiateCall(contact) { launchCallIntent(it, key = BuildConfig.RIGHT_APP_KEY) }
             }
         }
     }

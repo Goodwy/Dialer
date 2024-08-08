@@ -584,14 +584,15 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_centerInParent="true"
-                android:contentDescription="@string/hide_dialpad"
-                android:src="@drawable/ic_dialpad_vector" />
+                android:src="@drawable/ic_dialpad_vector"
+                android:contentDescription="null" />
         </RelativeLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/dialpadCallButtonHolder"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:contentDescription="@string/call"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/divider_vertical_two"
             app:layout_constraintStart_toEndOf="@+id/divider_vertical_one"
@@ -601,7 +602,7 @@
                 android:id="@+id/dialpadCallIcon"
                 android:layout_width="@dimen/dialpad_phone_button_size"
                 android:layout_height="@dimen/dialpad_phone_button_size"
-                android:contentDescription="@string/call_number"
+                android:contentDescription="null"
                 android:padding="@dimen/medium_margin"
                 android:src="@drawable/ic_phone_vector"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -628,6 +629,7 @@
                 android:layout_centerInParent="true"
                 android:layoutDirection="ltr"
                 android:paddingEnd="3dp"
+                android:contentDescription="null"
                 android:src="@drawable/ic_backspace" />
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

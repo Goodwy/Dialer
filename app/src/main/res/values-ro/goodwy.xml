@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Ecran de apel transparent</string>
     <string name="call_back_g">Sună înapoi</string>
     <string name="call_back_person_g">Sună înapoi %s</string>
@@ -53,4 +52,12 @@
     <string name="answer_slider">Slider</string>.
     <string name="answer_slider_outline">Slider cu contur</string>
     <string name="answer_slider_vertical">Slider vertical</string>
+    <string name="show_recent_calls">Afișarea apelurilor recente</string>
+    <string name="open_dialpad_when_call_from_another_app">Când încercați să efectuați un apel din altă aplicație, deschideți tastatura telefonică</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Acest lucru vă poate proteja de programele malware care efectuează apeluri fără știrea dvs.</string>
+    <string name="number_of_recent_calls_displays">Numărul afișat de apeluri recente</string>
+    <string name="group_calls">Gruparea apelurilor</string>
+    <string name="group_all_calls">Grupați toate apelurile, va fi afișat doar ultimul apel</string>
+    <string name="call_button_style">Stil buton clopot</string>
+    <string name="answer_end_other_call">Răspundeți și încheiați apelul curent</string>
 </resources>

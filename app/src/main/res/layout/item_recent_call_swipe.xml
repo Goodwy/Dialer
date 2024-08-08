@@ -99,6 +99,7 @@
                 app:layout_constraintStart_toEndOf="@+id/item_recents_image"
                 app:layout_constraintEnd_toStartOf="@+id/item_recents_date_time"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/item_recents_type"
                 tools:text="John Doe"/>
 
             <ImageView
@@ -108,9 +109,10 @@
                 android:layout_marginEnd="@dimen/tiny_margin"
                 android:layout_marginBottom="11dp"
                 android:alpha="0.6"
-                android:src="@drawable/ic_incoming_call_vector"
+                android:src="@drawable/ic_call_received_vector"
                 android:scaleType="fitStart"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_recents_name"
                 app:layout_constraintStart_toStartOf="@+id/item_recents_name"/>
 
             <ImageView
@@ -200,6 +202,7 @@
                 android:layout_width="76dp"
                 android:layout_height="0dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/details"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>

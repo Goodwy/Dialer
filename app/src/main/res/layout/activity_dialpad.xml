@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/dialpad_toolbar"
+        android:id="@+id/dialpadToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/default_background_color"
@@ -83,6 +83,17 @@
             android:paddingBottom="64dp"
             android:scrollbars="none"
             android:visibility="gone"
+            app:layoutManager="com.goodwy.commons.views.MyLinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dialpad_add_number"/>
+
+        <com.goodwy.commons.views.MyRecyclerView
+            android:id="@+id/dialpadRecentsList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:paddingBottom="64dp"
+            android:scrollbars="none"
             app:layoutManager="com.goodwy.commons.views.MyLinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dialpad_add_number"/>

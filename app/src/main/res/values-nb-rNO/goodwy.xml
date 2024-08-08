@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Gjennomsiktig samtaleskjerm</string>
     <string name="call_back_g">Ring tilbake</string>
     <string name="call_back_person_g">Ring tilbake %s</string>
@@ -52,4 +51,12 @@
     <string name="answer_slider">Glidebryter</string>
     <string name="answer_slider_outline">Glidebryter for omriss</string>
     <string name="answer_slider_vertical">Vertikal glidebryter</string>
+    <string name="show_recent_calls">Vis nylige anrop</string>
+    <string name="open_dialpad_when_call_from_another_app">Når du prøver å ringe fra en annen app, åpner du det numeriske tastaturet</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Dette kan beskytte deg mot skadelig programvare som ringer uten at du vet det.</string>
+    <string name="number_of_recent_calls_displays">Vist antall nylige anrop</string>
+    <string name="group_calls">Gruppering av anrop</string>
+    <string name="group_all_calls">Grupper alle samtaler, bare den siste samtalen vises</string>
+    <string name="call_button_style">Bell Button Stil</string>
+    <string name="answer_end_other_call">Svar på og avslutt gjeldende samtale</string>
 </resources>

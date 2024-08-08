@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Átlátszó hívás képernyő</string>
     <string name="call_back_g">Hív</string>
     <string name="call_back_person_g">Hívjon vissza %s</string>
@@ -51,4 +50,12 @@
     <string name="answer_slider">Csúszka</string>
     <string name="answer_slider_outline">Körvonal csúszka</string>
     <string name="answer_slider_vertical">Függőleges csúszka</string>
+    <string name="show_recent_calls">Legutóbbi hívások megjelenítése</string>
+    <string name="open_dialpad_when_call_from_another_app">Amikor hívást próbál kezdeményezni egy másik alkalmazásból, nyissa meg a tárcsázót</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Ez megvédheti Önt a rosszindulatú programoktól, amelyek az Ön tudta nélkül hívásokat kezdeményeznek.</string>
+    <string name="number_of_recent_calls_displays">A legutóbbi hívások megjelenített száma</string>
+    <string name="group_calls">Híváscsoportosítás</string>
+    <string name="group_all_calls">Csoportosítsa az összes hívást, csak az utolsó hívás jelenik meg</string>
+    <string name="call_button_style">Csengő gomb stílusa</string>
+    <string name="answer_end_other_call">Az aktuális hívás fogadása és befejezése</string>
 </resources>

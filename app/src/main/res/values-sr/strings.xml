@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--TODO Edit-->
-    <string name="app_name">Simple Dialer</string>
     <string name="app_launcher_name">Телефон</string>
     <string name="default_phone_app_prompt">Учините ову апликацију подразумеваном апликацијом за телефон</string>
     <string name="allow_displaying_over_other_apps">Дозволи приказ преко других апликација ради поузданог понашања</string>
-
-    <!-- Contacts -->
     <string name="could_not_access_contacts">Није могуће приступити вашим контактима</string>
-
-    <!-- Recents -->
     <string name="no_previous_calls">Није пронађен ниједан претходни позив</string>
     <string name="could_not_access_the_call_history">Није могуће приступити историји позива</string>
     <string name="request_access">Захтевај приступ</string>
@@ -17,16 +11,12 @@
     <string name="clear_history_confirmation">Да ли сте сигурни да желите да уклоните све из историје позива\?</string>
     <string name="clear_call_history">Обриши историју позива</string>
     <string name="show_call_details">Прикажи детаље позива</string>
-
-    <!-- Dialpad -->
     <string name="dialpad">Тастатура</string>
     <string name="asterisk">Звездица</string>
     <string name="hashtag">Тараба</string>
     <string name="call_number">Позови број</string>
     <string name="dialpad_beeps">Омогући тонове додиром на дугмад тастатуре</string>
     <string name="dialpad_vibrations">Омогући вибрације додиром на дугмад тастатуре</string>
-
-    <!-- Dialer -->
     <string name="dialer">Телефон</string>
     <string name="accept">Прихвати</string>
     <string name="accept_call">Прихвати позив</string>
@@ -64,13 +54,9 @@
     <string name="audio_route_wired_or_earpiece">Жичане или слушалица</string>
     <string name="choose_audio_route">Изаберите аудио руту</string>
     <string name="calling_blocked_number">Број који позивате је блокиран</string>
-
-    <!-- Speed dial -->
     <string name="speed_dial">Брзо бирање</string>
     <string name="manage_speed_dial">Управљај брзим бирањем</string>
     <string name="speed_dial_label">Додирните број да бисте му доделили контакт. Затим можете брзо позвати додељени контакт дугим притиском на одговарајући број на тастатури.</string>
-
-    <!-- Settings -->
     <string name="group_subsequent_calls">Групиши наредне позиве са истим бројем у евиденцији позива</string>
     <string name="open_dialpad_by_default">Подразумевано отвори тастатуру за бирање бројева када се апликација отвори</string>
     <string name="disable_proximity_sensor">Онемогући сензор близине током позива</string>
@@ -79,8 +65,6 @@
     <string name="hide_dialpad_numbers">Сакриј бројеве на тастатури</string>
     <string name="export_call_history">Извези историју позива</string>
     <string name="import_call_history">Увезите историју позива</string>
-
-    <!-- FAQ -->
     <string name="faq_1_title">Чујем долазне позиве, али екран се не укључује. Шта могу да урадим\?</string>
     <string name="faq_1_text">Такви проблеми могу имати много специфичних узрока везаних за уређај и систем, па је тешко уопштено рећи. Требало би да проверите подешавања уређаја и уверите се да је апликацији дозвољено да искаче када је у позадини и да јој је дозвољен приказ преко других апликација.</string>
 </resources>

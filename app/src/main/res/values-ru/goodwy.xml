@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Прозрачный фон экрана звонков</string>
     <string name="call_back_g">Перезвонить</string>
     <string name="call_back_person_g">Перезвоните %s</string>
@@ -9,9 +8,17 @@
     <string name="missed_call_notifications_g">Уведомления о пропущенных звонках</string>
     <string name="call_notification_channel_high_priority_g">Уведомления о звонках с высоким приоритетом</string>
     <string name="call_notification_channel_g">Уведомления о звонках</string>
-    <string name="dialpad_preferences">Параметры кнопок набора</string>
-    <string name="call_start_end_vibration">Вибрация при начале и завершении вызова</string>
+    <string name="call_start_end_vibration">Вибрация при начале и завершении звонка</string>
+    <string name="show_recent_calls">Показывать недавние звонки</string>
+    <string name="open_dialpad_when_call_from_another_app">При попытке совершить звонок из другого приложения открывать панель набора номера</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Это может защитить вас от вредоносных программ, совершающих звонки без вашего ведома.</string>
+    <string name="number_of_recent_calls_displays">Отображаемое количество недавних звонков</string>
+    <string name="group_calls">Группировка звонков</string>
+    <string name="group_all_calls">Группировать все звонки, будет показан только последний звонок</string>
+    <string name="call_button_style">Стиль кнопок звонка</string>
 
+    <string name="answer_end_other_call">Ответить и завершить текущий вызов</string>
+    <string name="dialpad_preferences">Параметры кнопок набора</string>
     <string name="show_contact_thumbnails_g">Показывать фото контакта</string>
     <string name="hide_dialpad_letters_g">Скрыть буквы набора номера</string>
     <string name="show_caller_description_g">Показать дополнительную информацию абонента</string>

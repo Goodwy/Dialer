@@ -62,7 +62,7 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
 
     override fun setupColors(textColor: Int, primaryColor: Int, properPrimaryColor: Int) {
         binding.apply {
-            (fragmentList?.adapter as? MyRecyclerViewAdapter)?.apply {
+            (fragmentList.adapter as? MyRecyclerViewAdapter)?.apply {
                 updateTextColor(textColor)
                 updatePrimaryColor()
                 updateBackgroundColor(context.getProperBackgroundColor())
@@ -120,11 +120,13 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
                 val unique: Set<String> = HashSet(all)
                 val sizeUnique = unique.size
                 if (isHighScreenSize()) {
-                    if (sizeUnique > 37) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTiny
-                    else if (sizeUnique > 26) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleSmall
+                    if (sizeUnique > 48) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTooTiny
+                    else if (sizeUnique > 37) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTiny
+                    else binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleSmall
                 } else {
-                    if (sizeUnique > 30) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTiny
-                    else if (sizeUnique > 25) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleSmall
+                    if (sizeUnique > 36) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTooTiny
+                    else if (sizeUnique > 30) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTiny
+                    else binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleSmall
                 }
             } catch (_: Exception) { }
 
@@ -161,11 +163,22 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
     }
 
     private fun setupLetterFastScroller(contacts: ArrayList<Contact>) {
+        val sorting = context.baseConfig.sorting
         binding.letterFastscroller.beVisibleIf(contacts.size > 10)
         binding.letterFastscroller.setupWithRecyclerView(binding.fragmentList, { position ->
             try {
-                val name = contacts[position].getNameToDisplay()
-                val character = if (name.isNotEmpty()) name.substring(0, 1) else ""
+                val contact = contacts[position]
+                val name = when {
+                    contact.isABusinessContact() -> contact.getFullCompany()
+                    sorting and SORT_BY_SURNAME != 0 && contact.surname.isNotEmpty() -> contact.surname
+                    sorting and SORT_BY_MIDDLE_NAME != 0 && contact.middleName.isNotEmpty() -> contact.middleName
+                    sorting and SORT_BY_FIRST_NAME != 0 && contact.firstName.isNotEmpty() -> contact.firstName
+                    context.baseConfig.startNameWithSurname -> contact.surname
+                    else -> contact.getNameToDisplay()
+                }
+
+                val emoji = name.take(2)
+                val character = if (emoji.isEmoji()) emoji else if (name.isNotEmpty()) name.substring(0, 1) else ""
                 FastScrollItemIndicator.Text(character.uppercase(Locale.getDefault()).normalizeString())
             } catch (e: Exception) {
                 FastScrollItemIndicator.Text("")
@@ -180,29 +193,30 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
     }
 
     override fun onSearchQueryChanged(text: String) {
-        val shouldNormalize = text.normalizeString() == text
+        val fixedText = text.trim().replace("\\s+".toRegex(), " ")
+        val shouldNormalize = fixedText.normalizeString() == fixedText
         val filtered = allContacts.filter {
-            getProperText(it.getNameToDisplay(), shouldNormalize).contains(text, true) ||
-                getProperText(it.nickname, shouldNormalize).contains(text, true) ||
-                it.phoneNumbers.any {
-                    text.normalizePhoneNumber().isNotEmpty() && it.normalizedNumber.contains(text.normalizePhoneNumber(), true)
-                } ||
-                it.emails.any { it.value.contains(text, true) } ||
-                it.addresses.any { getProperText(it.value, shouldNormalize).contains(text, true) } ||
-                it.IMs.any { it.value.contains(text, true) } ||
-                getProperText(it.notes, shouldNormalize).contains(text, true) ||
-                getProperText(it.organization.company, shouldNormalize).contains(text, true) ||
-                getProperText(it.organization.jobPosition, shouldNormalize).contains(text, true) ||
-                it.websites.any { it.contains(text, true) }
+            getProperText(it.getNameToDisplay(), shouldNormalize).contains(fixedText, true) ||
+                getProperText(it.nickname, shouldNormalize).contains(fixedText, true) ||
+                (fixedText.toIntOrNull() != null && it.phoneNumbers.any {
+                    fixedText.normalizePhoneNumber().isNotEmpty() && it.normalizedNumber.contains(fixedText.normalizePhoneNumber(), true)
+                }) ||
+                it.emails.any { it.value.contains(fixedText, true) } ||
+                it.addresses.any { getProperText(it.value, shouldNormalize).contains(fixedText, true) } ||
+                it.IMs.any { it.value.contains(fixedText, true) } ||
+                getProperText(it.notes, shouldNormalize).contains(fixedText, true) ||
+                getProperText(it.organization.company, shouldNormalize).contains(fixedText, true) ||
+                getProperText(it.organization.jobPosition, shouldNormalize).contains(fixedText, true) ||
+                it.websites.any { it.contains(fixedText, true) }
         } as ArrayList
 
         filtered.sortBy {
             val nameToDisplay = it.getNameToDisplay()
-            !getProperText(nameToDisplay, shouldNormalize).startsWith(text, true) && !nameToDisplay.contains(text, true)
+            !getProperText(nameToDisplay, shouldNormalize).startsWith(fixedText, true) && !nameToDisplay.contains(fixedText, true)
         }
 
         binding.fragmentPlaceholder.beVisibleIf(filtered.isEmpty())
-        (binding.fragmentList.adapter as? ContactsAdapter)?.updateItems(filtered, text)
+        (binding.fragmentList.adapter as? ContactsAdapter)?.updateItems(filtered, fixedText)
         setupLetterFastScroller(filtered)
     }
 

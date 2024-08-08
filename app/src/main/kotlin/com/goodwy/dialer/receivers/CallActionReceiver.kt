@@ -17,6 +17,7 @@ class CallActionReceiver : BroadcastReceiver() {
                 context.startActivity(CallActivity.getStartIntent(context))
                 CallManager.accept()
             }
+
             DECLINE_CALL -> CallManager.reject()
             MICROPHONE_CALL -> {
                 val isMicrophoneMute = context.audioManager.isMicrophoneMute

@@ -33,7 +33,7 @@ class ManageVisibleTabsDialog(val activity: BaseSimpleActivity) {
             .setPositiveButton(R.string.ok) { dialog, which -> dialogConfirmed() }
             .setNegativeButton(R.string.cancel, null)
             .apply {
-                activity.setupDialogStuff(binding.root, this)
+                activity.setupDialogStuff(binding.root, this, R.string.manage_shown_tabs)
             }
     }
 

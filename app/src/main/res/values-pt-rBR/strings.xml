@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Discador Simples</string>
-    <string name="app_launcher_name">Discador</string>
-    <string name="default_phone_app_prompt">Por favor, torne este aplicativo o aplicativo de telefone padrão</string>
+    <string name="default_phone_app_prompt">Por favor, torne este o aplicativo de telefone padrão</string>
     <string name="allow_displaying_over_other_apps">Por favor, permita a sobreposição sobre outros aplicativos para um comportamento mais estável</string>
-
-    <!-- Contacts -->
     <string name="could_not_access_contacts">Não foi possível acessar seus contatos</string>
-
-    <!-- Recents -->
     <string name="no_previous_calls">Nenhuma chamada anterior foi encontrada</string>
     <string name="could_not_access_the_call_history">Não foi possível acessar o histórico de chamadas</string>
     <string name="request_access">Solicitar acesso</string>
     <string name="remove_confirmation">Tem certeza que quer remover os itens selecionados do Histórico de Chamadas\?</string>
     <string name="clear_history_confirmation">Tem certeza que quer remover tudo do Histórico de Chamadas\?</string>
+    <string name="show_grouped_calls">Mostrar chamadas agrupadas</string>
     <string name="clear_call_history">Limpar histórico de chamadas</string>
     <string name="show_call_details">Exibir detalhes da chamada</string>
-
-    <!-- Dialpad -->
     <string name="dialpad">Discador</string>
     <string name="asterisk">Asterisco</string>
-    <string name="hashtag">Hashtag</string>
     <string name="call_number">Número de telefone</string>
     <string name="dialpad_beeps">Ativar sons ao apertar nos botôes do discador</string>
     <string name="dialpad_vibrations">Ativar vibrações ao apertar nos botôes do discador</string>
-
-    <!-- Dialer -->
     <string name="dialer">Discador</string>
     <string name="accept">Aceitar</string>
     <string name="accept_call">Aceitar chamada</string>
     <string name="decline">Rejeitar</string>
     <string name="decline_call">Rejeitar chamada</string>
-    <string name="unknown_caller">Número Desconhecido</string>
+    <string name="unknown_caller">Chamada Desconhecido</string>
     <string name="is_calling">Está chamando…</string>
     <string name="dialing">Discando…</string>
     <string name="call_ended">Chamada Encerrada</string>
@@ -58,33 +48,24 @@
     <string name="conference_manage">Gerenciar chamada em conferência</string>
     <string name="conference">Conferência</string>
     <string name="audio_route_speaker">Alto-falante</string>
-    <string name="audio_route_bluetooth">Bluetooth</string>
+    <string name="audio_route_earpiece">Fone de ouvido</string>
     <string name="audio_route_wired_headset">Headset com fio</string>
-    <string name="audio_route_wired_or_earpiece">Com fio ou auricular</string>
-    <string name="choose_audio_route">Escolha a rota de áudio</string>
+    <string name="choose_audio_route">Escolher a rota de áudio</string>
     <string name="calling_blocked_number">O número que você está ligando está bloqueado</string>
-
-    <!-- Speed dial -->
     <string name="speed_dial">Ligação rápida</string>
     <string name="manage_speed_dial">Gerenciar ligações rápidas</string>
     <string name="speed_dial_label">Clique em um número para atribuir um contato a ele. Você pode então ligar rapidamente para o contato com um toque longo neste número no discador.</string>
-
-    <!-- Settings -->
     <string name="group_subsequent_calls">Agrupar as chamadas consecutivas com o mesmo número no histórico de chamadas</string>
     <string name="open_dialpad_by_default">Exibir o discador ao abrir o aplicativo</string>
     <string name="disable_proximity_sensor">Desativar sensor de proximidade durante as chamadas</string>
     <string name="disable_swipe_to_answer">Apertar em vez de deslizar para responder chamadas</string>
     <string name="show_incoming_calls_full_screen">Sempre exibir as chamadas recebidas em tela cheia</string>
     <string name="hide_dialpad_numbers">Ocultar números do discador</string>
-    <string name="export_call_history">Exportar histórico de chamadas</string>
-    <string name="import_call_history">Importar histórico de chamadas</string>
-
-    <!-- FAQ -->
     <string name="faq_1_title">Ouço chamadas recebidas, mas a tela não liga. O que posso fazer?</string>
     <string name="faq_1_text">Esses problemas podem ter muitos motivos específicos do dispositivo e do sistema, difíceis de dizer, em geral. Você deve olhar em volta nas configurações do seu dispositivo e certificar-se de que o aplicativo pode aparecer quando estiver em segundo plano e permitir a exibição sobre outros aplicativos.</string>
-
-    <!--
-        Haven't found some strings? There's more at
-        https://github.com/SimpleMobileTools/Simple-Commons/tree/master/commons/src/main/res
-    -->
+    <string name="export_call_history">Exportar histórico de chamadas</string>
+    <string name="audio_route_bluetooth">Bluetooth</string>
+    <string name="app_launcher_name">Telefone</string>
+    <string name="import_call_history">Importar histórico de chamadas</string>
+    <string name="audio_route_wired_or_earpiece">Com fio ou auricular</string>
 </resources>

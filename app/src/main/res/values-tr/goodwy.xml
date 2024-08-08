@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Şeffaf Arama Ekranı</string>
     <string name="call_back_g">Çağırmak</string>
     <string name="call_back_person_g">Geri ara %s</string>
@@ -51,4 +50,12 @@
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Anahatlı kaydırıcı</string>
     <string name="answer_slider_vertical">Dikey kaydırıcı</string>
+    <string name="show_recent_calls">Son aramaları göster</string>
+    <string name="open_dialpad_when_call_from_another_app">Başka bir uygulamadan arama yapmaya çalıştığınızda, tuş takımını açın</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Bu, bilginiz olmadan arama yapan kötü amaçlı yazılımlardan sizi koruyabilir.</string>
+    <string name="number_of_recent_calls_displays">Görüntülenen son aramaların sayısı</string>
+    <string name="group_calls">Çağrı gruplandırma</string>
+    <string name="group_all_calls">Tüm aramaları gruplandırın, yalnızca son arama gösterilecektir</string>
+    <string name="call_button_style">Zil Düğmesi Stili</string>
+    <string name="answer_end_other_call">Mevcut aramayı cevaplayın ve sonlandırın</string>
 </resources>

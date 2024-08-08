@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">หน้าจอการโทรแบบโปร่งใส</string>
     <string name="call_back_g">เรียก</string>
     <string name="call_back_person_g">โทรกลับ %s</string>
@@ -50,4 +49,12 @@
     <string name="answer_slider">แถบเลื่อน</string>
     <string name="answer_slider_outline">แถบเลื่อนเค้าร่าง</string>
     <string name="answer_slider_vertical">แถบเลื่อนแนวตั้ง</string>
+    <string name="show_recent_calls">แสดงการโทรล่าสุด</string>
+    <string name="open_dialpad_when_call_from_another_app">เมื่อคุณพยายามโทรออกจากแอปอื่น ให้เปิดแป้นกดหมายเลข</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">สิ่งนี้สามารถปกป้องคุณจากมัลแวร์ที่โทรออกโดยที่คุณไม่รู้ตัว</string>
+    <string name="number_of_recent_calls_displays">จํานวนการโทรล่าสุดที่แสดง</string>
+    <string name="group_calls">การจัดกลุ่มการโทร</string>
+    <string name="group_all_calls">จัดกลุ่มการโทรทั้งหมด จะแสดงเฉพาะการโทรครั้งสุดท้ายเท่านั้น</string>
+    <string name="call_button_style">รูปแบบปุ่มกระดิ่ง</string>
+    <string name="answer_end_other_call">รับสายและวางสายปัจจุบัน</string>
 </resources>

@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/call_history_appbar"
+        android:id="@+id/callHistoryAppbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -26,6 +26,7 @@
                 android:id="@+id/callHistoryToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar_height"
+                app:navigationContentDescription="@string/back"
                 app:menu="@menu/menu_call_history"
                 app:layout_collapseMode="pin"
                 app:navigationIcon="@drawable/ic_chevron_left_vector"/>

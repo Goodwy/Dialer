@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">സുതാര്യമായ കോൾ സ്ക്രീൻ</string>
     <string name="call_back_g">തിരിച്ചുവിളിക്കുക</string>
     <string name="call_back_person_g">തിരികെ വിളിക്കുക %s</string>
@@ -51,4 +50,12 @@
     <string name="answer_slider">സ്ലൈഡർ</string>
     <string name="answer_slider_outline">ഔട്ട്‌ലൈൻ സ്ലൈഡർ</string>
     <string name="answer_slider_vertical">ലംബ സ്ലൈഡർ</string>
+    <string name="show_recent_calls">സമീപകാല കോളുകൾ കാണിക്കുക</string>
+    <string name="open_dialpad_when_call_from_another_app">നിങ്ങൾ മറ്റൊരു ആപ്ലിക്കേഷനിൽ നിന്ന് ഒരു കോൾ ചെയ്യാൻ ശ്രമിക്കുമ്പോൾ, ഡയൽ പാഡ് തുറക്കുക</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">നിങ്ങളുടെ അറിവില്ലാതെ ക്ഷുദ്രവെയർ കോളുകൾ ചെയ്യുന്നതിൽ നിന്ന് ഇത് നിങ്ങളെ സംരക്ഷിക്കും.</string>
+    <string name="number_of_recent_calls_displays">സമീപകാല കോളുകളുടെ എണ്ണം പ്രദർശിപ്പിച്ചു</string>
+    <string name="group_calls">കോൾ ഗ്രൂപ്പിംഗ്</string>
+    <string name="group_all_calls">എല്ലാ കോളുകളും ഗ്രൂപ്പുചെയ്യുക, അവസാന കോൾ മാത്രമേ കാണിക്കൂ</string>
+    <string name="call_button_style">കോൾ ബട്ടൺ ശൈലി</string>
+    <string name="answer_end_other_call">നിലവിലെ കോളിന് ഉത്തരം നൽകി അവസാനിപ്പിക്കുക</string>
 </resources>

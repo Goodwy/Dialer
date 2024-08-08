@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.provider.CallLog.Calls
+import android.telephony.PhoneNumberUtils
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.contacts.Contact
@@ -14,35 +15,122 @@ import com.goodwy.dialer.extensions.getAvailableSIMCardLabels
 import com.goodwy.dialer.models.RecentCall
 
 class RecentsHelper(private val context: Context) {
-    private val COMPARABLE_PHONE_NUMBER_LENGTH = 9
-    private val QUERY_LIMIT = 500
+    companion object {
+        private const val COMPARABLE_PHONE_NUMBER_LENGTH = 9
+        const val QUERY_LIMIT = 100
+    }
+
     private val contentUri = Calls.CONTENT_URI
+    private var queryLimit = QUERY_LIMIT
 
-    fun getRecentCalls(groupSubsequentCalls: Boolean, maxSize: Int = QUERY_LIMIT, callback: (List<RecentCall>) -> Unit) {
+    fun getRecentCalls(
+        previousRecents: List<RecentCall> = ArrayList(),
+        queryLimit: Int = QUERY_LIMIT,
+        isDialpad: Boolean = false,
+        callback: (List<RecentCall>) -> Unit,
+    ) {
         val privateCursor = context.getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
-        ensureBackgroundThread {
-            if (!context.hasPermission(PERMISSION_READ_CALL_LOG)) {
-                callback(ArrayList())
-                return@ensureBackgroundThread
-            }
+        if (!context.hasPermission(PERMISSION_READ_CALL_LOG)) {
+            callback(ArrayList())
+            return
+        }
 
-            ContactsHelper(context).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
+        ContactsHelper(context).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
+            ensureBackgroundThread {
                 val privateContacts = MyContactsContentProvider.getContacts(context, privateCursor)
                 if (privateContacts.isNotEmpty()) {
                     contacts.addAll(privateContacts)
                 }
 
-                getRecents(contacts, groupSubsequentCalls, maxSize, callback = callback)
+                this.queryLimit = queryLimit
+                //Do not use the current list if the recent ones have been changed in another activity
+                val needUpdateRecents = context.config.needUpdateRecents
+                val previousRecentsOrEmpty = if (needUpdateRecents) ArrayList() else previousRecents
+                if (needUpdateRecents && !isDialpad) context.config.needUpdateRecents = false
+                val recentCalls = if (previousRecentsOrEmpty.isNotEmpty()) {
+                    val previousRecentCalls = previousRecentsOrEmpty.flatMap {
+                        it.groupedCalls ?: listOf(it)
+                    }
+
+                    val newerRecents = getRecents(
+                        contacts = contacts,
+                        selection = "${Calls.DATE} > ?",
+                        selectionParams = arrayOf("${previousRecentCalls.first().startTS}")
+                    )
+
+                    val olderRecents = getRecents(
+                        contacts = contacts,
+                        selection = "${Calls.DATE} < ?",
+                        selectionParams = arrayOf("${previousRecentCalls.last().startTS}")
+                    )
+
+                    newerRecents + previousRecentCalls + olderRecents
+                } else {
+                    getRecents(contacts)
+                }
+
+                callback(recentCalls)
             }
         }
     }
 
-    @SuppressLint("NewApi")
-    private fun getRecents(contacts: List<Contact>, groupSubsequentCalls: Boolean, maxSize: Int, callback: (List<RecentCall>) -> Unit) {
+    fun getGroupedRecentCalls(
+        previousRecents: List<RecentCall> = ArrayList(),
+        queryLimit: Int = QUERY_LIMIT,
+        isDialpad: Boolean = false,
+        callback: (List<RecentCall>) -> Unit,
+    ) {
+        getRecentCalls(previousRecents, queryLimit, isDialpad) { recentCalls ->
+            callback(
+                groupSubsequentCalls(calls = recentCalls)
+            )
+        }
+    }
 
+    private fun shouldGroupCalls(callA: RecentCall, callB: RecentCall): Boolean {
+        if (
+            callA.simID != callB.simID
+            || (callA.name != callB.name && callA.name != callA.phoneNumber && callB.name != callB.phoneNumber)
+            || callA.getDayCode() != callB.getDayCode()
+        ) {
+            return false
+        }
+
+        @Suppress("DEPRECATION")
+        return PhoneNumberUtils.compare(callA.phoneNumber, callB.phoneNumber)
+    }
+
+    private fun groupSubsequentCalls(calls: List<RecentCall>): List<RecentCall> {
+        val result = mutableListOf<RecentCall>()
+        if (calls.isEmpty()) return result
+
+        var currentCall = calls[0]
+        for (i in 1 until calls.size) {
+            val nextCall = calls[i]
+            if (shouldGroupCalls(currentCall, nextCall)) {
+                if (currentCall.groupedCalls.isNullOrEmpty()) {
+                    currentCall = currentCall.copy(groupedCalls = mutableListOf(currentCall))
+                }
+
+                currentCall.groupedCalls?.add(nextCall)
+            } else {
+                result += currentCall
+                currentCall = nextCall
+            }
+        }
+
+        result.add(currentCall)
+        return result
+    }
+
+    @SuppressLint("NewApi")
+    private fun getRecents(
+        contacts: List<Contact>,
+        selection: String? = null,
+        selectionParams: Array<String>? = null,
+    ): List<RecentCall> {
         val recentCalls = mutableListOf<RecentCall>()
-        var previousRecentCallFrom = ""
-        var previousStartTS = 0
+        var previousStartTS = 0L
         val contactsNumbersMap = HashMap<String, String>()
         val contactPhotosMap = HashMap<String, String>()
 
@@ -65,13 +153,13 @@ class RecentsHelper(private val context: Context) {
         val cursor = if (isNougatPlus()) {
             // https://issuetracker.google.com/issues/175198972?pli=1#comment6
             val limitedUri = contentUri.buildUpon()
-                .appendQueryParameter(Calls.LIMIT_PARAM_KEY, QUERY_LIMIT.toString())
+                .appendQueryParameter(Calls.LIMIT_PARAM_KEY, queryLimit.toString())
                 .build()
             val sortOrder = "${Calls.DATE} DESC" //TODO Sort call
-            context.contentResolver.query(limitedUri, projection, null, null, sortOrder)
+            context.contentResolver.query(limitedUri, projection, selection, selectionParams, sortOrder)
         } else {
-            val sortOrder = "${Calls.DATE} DESC LIMIT $QUERY_LIMIT"
-            context.contentResolver.query(contentUri, projection, null, null, sortOrder)
+            val sortOrder = "${Calls.DATE} DESC LIMIT $queryLimit"
+            context.contentResolver.query(contentUri, projection, selection, selectionParams, sortOrder)
         }
 
         //not work
@@ -102,33 +190,34 @@ class RecentsHelper(private val context: Context) {
                     name = number.orEmpty()
                 }
 
-                if (name == number && !isUnknownNumber) {
-                    if (contactsNumbersMap.containsKey(number)) {
-                        name = contactsNumbersMap[number]!!
-                    } else {
-                        val normalizedNumber = number.normalizePhoneNumber()
-                        if (normalizedNumber!!.length >= COMPARABLE_PHONE_NUMBER_LENGTH) {
-                            name = contacts.filter { it.phoneNumbers.isNotEmpty() }.firstOrNull { contact ->
-                                val curNumber = contact.phoneNumbers.first().normalizedNumber
-                                if (curNumber != "") {
-                                    if (curNumber.length >= COMPARABLE_PHONE_NUMBER_LENGTH) {
-                                        if (curNumber.substring(curNumber.length - COMPARABLE_PHONE_NUMBER_LENGTH) == normalizedNumber.substring(
-                                                normalizedNumber.length - COMPARABLE_PHONE_NUMBER_LENGTH
-                                            )
-                                        ) {
-                                            contactsNumbersMap[number] = contact.getNameToDisplay()
-                                            return@firstOrNull true
-                                        }
-                                    }
-                                }
-                                false
-                            }?.name ?: number
-                        }
-                    }
-                }
+//                if (name == number && !isUnknownNumber) {
+//                    if (contactsNumbersMap.containsKey(number)) {
+//                        name = contactsNumbersMap[number]!!
+//                    } else {
+//                        val normalizedNumber = number.normalizePhoneNumber()
+//                        if (normalizedNumber!!.length >= COMPARABLE_PHONE_NUMBER_LENGTH) {
+//                            name = contacts.filter { it.phoneNumbers.isNotEmpty() }.firstOrNull { contact ->
+//                                val curNumber = contact.phoneNumbers.first().normalizedNumber
+//                                if (curNumber != "") {
+//                                    if (curNumber.length >= COMPARABLE_PHONE_NUMBER_LENGTH) {
+//                                        if (curNumber.substring(curNumber.length - COMPARABLE_PHONE_NUMBER_LENGTH) == normalizedNumber.substring(
+//                                                normalizedNumber.length - COMPARABLE_PHONE_NUMBER_LENGTH
+//                                            )
+//                                        ) {
+//                                            contactsNumbersMap[number] = contact.getNameToDisplay()
+//                                            return@firstOrNull true
+//                                        }
+//                                    }
+//                                }
+//                                false
+//                            }?.name ?: number
+//                        }
+//                    }
+//                }
 
                 var contact: Contact? = null
                 if (number != null) {
+//                    val filteredContacts = contacts.filter { context.baseConfig.ignoredContactSources.contains(it.source) }
                     contact = contacts.firstOrNull { it.doesContainPhoneNumber(number) }
                     // If the number in the contacts is written without + or 8 instead of +7
                     if (contact == null) contact = contacts.firstOrNull {
@@ -139,8 +228,8 @@ class RecentsHelper(private val context: Context) {
 
                 //Without this, the call history does not reflect the contact name for the contact's second and subsequent numbers
                 //TODO try again to find the contact name
-                if (name == number && !isUnknownNumber) {
-                    if (contact != null) name = contact.name
+                if (!isUnknownNumber) {
+                    if (contact != null) name = contact.getNameToDisplay()
                 }
 
                 if (name.isEmpty() || name == "-1") {
@@ -159,7 +248,7 @@ class RecentsHelper(private val context: Context) {
                     }
                 }
 
-                val startTS = (cursor.getLongValue(Calls.DATE) / 1000L).toInt()
+                val startTS = cursor.getLongValue(Calls.DATE)
                 if (previousStartTS == startTS) {
                     continue
                 } else {
@@ -170,7 +259,6 @@ class RecentsHelper(private val context: Context) {
                 val type = cursor.getIntValue(Calls.TYPE)
                 val accountId = cursor.getStringValue(Calls.PHONE_ACCOUNT_ID)
                 val simID = accountIdToSimIDMap[accountId] ?: -1
-                val neighbourIDs = mutableListOf<Int>()
                 var specificNumber = ""
                 var specificType = ""
 
@@ -202,45 +290,36 @@ class RecentsHelper(private val context: Context) {
                     contactID = contact.id
                 }
 
-                val recentCall = RecentCall(
-                    id = id,
-                    phoneNumber = number.orEmpty(),
-                    name = name,
-                    nickname = nickname,
-                    company = company,
-                    jobPosition = jobPosition,
-                    photoUri = photoUri,
-                    startTS = startTS,
-                    duration = duration,
-                    type = type,
-                    neighbourIDs = neighbourIDs,
-                    simID = simID,
-                    specificNumber = specificNumber,
-                    specificType = specificType,
-                    isUnknownNumber = isUnknownNumber,
-                    contactID = contactID
+                recentCalls.add(
+                    RecentCall(
+                        id = id,
+                        phoneNumber = number.orEmpty(),
+                        name = name,
+                        nickname = nickname,
+                        company = company,
+                        jobPosition = jobPosition,
+                        photoUri = photoUri,
+                        startTS = startTS,
+                        duration = duration,
+                        type = type,
+                        simID = simID,
+                        specificNumber = specificNumber,
+                        specificType = specificType,
+                        isUnknownNumber = isUnknownNumber,
+                        contactID = contactID
+                    )
                 )
-
-                // if we have multiple missed calls from the same number, show it just once
-                if (!groupSubsequentCalls || "$number$name$simID" != previousRecentCallFrom) {
-                    recentCalls.add(recentCall)
-                } else {
-                    recentCalls.lastOrNull()?.neighbourIDs?.add(id)
-                }
-
-                previousRecentCallFrom = "$number$name$simID"
-            } while (cursor.moveToNext() && recentCalls.size < maxSize)
+            } while (cursor.moveToNext() && recentCalls.size < queryLimit)
         }
 
         val blockedNumbers = context.getBlockedNumbers()
 
-        val recentResult = if (context.config.showBlockedNumbers) recentCalls else
+        return if (context.config.showBlockedNumbers) recentCalls else
             recentCalls.filter { !context.isNumberBlocked(it.phoneNumber, blockedNumbers) }
-
-        callback(recentResult)
     }
 
     fun removeRecentCalls(ids: List<Int>, callback: () -> Unit) {
+        context.config.needUpdateRecents = true
         ensureBackgroundThread {
             ids.chunked(30).forEach { chunk ->
                 val selection = "${Calls._ID} IN (${getQuestionMarks(chunk.size)})"
@@ -255,6 +334,7 @@ class RecentsHelper(private val context: Context) {
     fun removeAllRecentCalls(activity: SimpleActivity, callback: () -> Unit) {
         activity.handlePermission(PERMISSION_WRITE_CALL_LOG) {
             if (it) {
+                context.config.needUpdateRecents = true
                 ensureBackgroundThread {
                     context.contentResolver.delete(contentUri, null, null)
                     callback()
@@ -264,8 +344,8 @@ class RecentsHelper(private val context: Context) {
     }
 
     fun restoreRecentCalls(activity: SimpleActivity, objects: List<RecentCall>, callback: () -> Unit) {
-        activity.handlePermission(PERMISSION_WRITE_CALL_LOG) {
-            if (it) {
+        activity.handlePermission(PERMISSION_WRITE_CALL_LOG) { granted ->
+            if (granted) {
                 ensureBackgroundThread {
                     val values = objects
                         .sortedBy { it.startTS }
@@ -273,7 +353,7 @@ class RecentsHelper(private val context: Context) {
                             ContentValues().apply {
                                 put(Calls.NUMBER, it.phoneNumber)
                                 put(Calls.TYPE, it.type)
-                                put(Calls.DATE, it.startTS.toLong() * 1000L)
+                                put(Calls.DATE, it.startTS)
                                 put(Calls.DURATION, it.duration)
                                 put(Calls.CACHED_NAME, it.name)
                             }

@@ -1,9 +1,11 @@
 package com.goodwy.dialer.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.RelativeLayout
 import com.goodwy.commons.adapters.MyRecyclerViewAdapter
+import com.goodwy.commons.adapters.MyRecyclerViewListAdapter
 import com.goodwy.commons.extensions.getProperPrimaryColor
 import com.goodwy.commons.extensions.getProperTextColor
 import com.goodwy.commons.extensions.getTextSize
@@ -46,12 +48,13 @@ abstract class MyViewPagerFragment<BINDING : MyViewPagerFragment.InnerBinding>(c
 
     fun finishActMode() {
         (innerBinding.fragmentList?.adapter as? MyRecyclerViewAdapter)?.finishActMode()
-        (innerBinding.recentsList?.adapter as? MyRecyclerViewAdapter)?.finishActMode()
+        (innerBinding.recentsList?.adapter as? MyRecyclerViewListAdapter<*>)?.finishActMode()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun fontSizeChanged() {
         if (this is RecentsFragment) {
-            (innerBinding.recentsList?.adapter as? RecentCallsAdapter)?.apply {
+            (innerBinding.recentsList.adapter as? RecentCallsAdapter)?.apply {
                 fontSize = activity.getTextSize()
                 notifyDataSetChanged()
             }

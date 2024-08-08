@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name_g">Right Dialer</string>
     <string name="transparent_call_screen_g">Transparent Call Screen</string>
     <string name="call_back_g">Call back</string>
     <string name="call_back_person_g">Call back %s</string>

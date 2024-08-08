@@ -13,40 +13,47 @@ import android.view.*
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.DiffUtil
+import com.behaviorule.arturdumchev.library.pixels
 import com.bumptech.glide.Glide
-import com.goodwy.commons.adapters.MyRecyclerViewAdapter
+import com.goodwy.commons.adapters.MyRecyclerViewListAdapter
 import com.goodwy.commons.dialogs.CallConfirmationDialog
 import com.goodwy.commons.dialogs.ConfirmationAdvancedDialog
-import com.goodwy.commons.dialogs.ConfirmationDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MyRecyclerView
+import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.CallHistoryActivity
+import com.goodwy.dialer.activities.DialpadActivity
 import com.goodwy.dialer.activities.MainActivity
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.databinding.ItemRecentCallBinding
 import com.goodwy.dialer.databinding.ItemRecentCallSwipeBinding
+import com.goodwy.dialer.databinding.ItemRecentsDateBinding
 import com.goodwy.dialer.extensions.*
 import com.goodwy.dialer.helpers.*
 import com.goodwy.dialer.interfaces.RefreshItemsListener
+import com.goodwy.dialer.models.CallLogItem
 import com.goodwy.dialer.models.RecentCall
 import me.thanel.swipeactionview.SwipeActionView
 import me.thanel.swipeactionview.SwipeDirection
 import me.thanel.swipeactionview.SwipeGestureListener
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.minutes
+import org.joda.time.DateTime
 
 class RecentCallsAdapter(
     activity: SimpleActivity,
-    private var recentCalls: MutableList<RecentCall>,
     recyclerView: MyRecyclerView,
     private val refreshItemsListener: RefreshItemsListener?,
     private val showOverflowMenu: Boolean = false,
     private val hideTimeAtOtherDays: Boolean = false,
-    itemClick: (Any) -> Unit
-) : MyRecyclerViewAdapter(activity, recyclerView, itemClick) {
+    private val isDialpad: Boolean = false,
+    private val itemDelete: (List<RecentCall>) -> Unit = {},
+    itemClick: (Any) -> Unit,
+) : MyRecyclerViewListAdapter<CallLogItem>(activity, recyclerView, RecentCallsDiffCallback(), itemClick) {
 
     private lateinit var outgoingCallIcon: Drawable
     private lateinit var incomingCallIcon: Drawable
@@ -54,13 +61,16 @@ class RecentCallsAdapter(
     //private lateinit var infoIcon: Drawable
     var fontSize: Float = activity.getTextSize()
     private val areMultipleSIMsAvailable = activity.areMultipleSIMsAvailable()
-    private val redColor = resources.getColor(R.color.red_missed) //md_red_700
+    private val missedCallColor = resources.getColor(R.color.red_missed)
+    private var secondaryTextColor = textColor.adjustAlpha(0.6f)
     private var textToHighlight = ""
     //private var durationPadding = resources.getDimension(R.dimen.normal_margin).toInt()
 
     init {
         initDrawables()
         setupDragListener(true)
+        setHasStableIds(true)
+        recyclerView.itemAnimator?.changeDuration = 0
     }
 
     override fun getActionMenuId() = R.menu.cab_recent_calls
@@ -122,60 +132,96 @@ class RecentCallsAdapter(
         }
     }
 
-    override fun getSelectableItemCount() = recentCalls.size
+    override fun getItemId(position: Int) = currentList[position].getItemId().toLong()
 
-    override fun getIsItemSelectable(position: Int) = true
+    override fun getSelectableItemCount() = currentList.filterIsInstance<RecentCall>().size
 
-    override fun getItemSelectionKey(position: Int) = recentCalls.getOrNull(position)?.id
+    override fun getIsItemSelectable(position: Int) = currentList[position] is RecentCall
 
-    override fun getItemKeyPosition(key: Int) = recentCalls.indexOfFirst { it.id == key }
+    override fun getItemSelectionKey(position: Int) = currentList.getOrNull(position)?.getItemId()
+
+    override fun getItemKeyPosition(key: Int) = currentList.indexOfFirst { it.getItemId() == key }
 
     override fun onActionModeCreated() {}
 
     override fun onActionModeDestroyed() {}
 
+    override fun getItemViewType(position: Int): Int {
+        return when (currentList[position]) {
+            is CallLogItem.Date -> VIEW_TYPE_DATE
+            is RecentCall -> if (activity.config.useSwipeToAction) VIEW_TYPE_CALL_SWIPE else VIEW_TYPE_CALL
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view =
-            if (activity.config.useSwipeToAction) ItemRecentCallSwipeBinding.inflate(layoutInflater, parent, false).root
-            else ItemRecentCallBinding.inflate(layoutInflater, parent, false).root
-        return createViewHolder(view)
+        val viewHolder = when (viewType) {
+            VIEW_TYPE_DATE -> RecentCallDateViewHolder(
+                ItemRecentsDateBinding.inflate(layoutInflater, parent, false)
+            )
+
+            VIEW_TYPE_CALL -> RecentCallViewHolder(
+                ItemRecentCallBinding.inflate(layoutInflater, parent, false)
+            )
+
+            VIEW_TYPE_CALL_SWIPE -> RecentCallSwipeViewHolder(
+                ItemRecentCallSwipeBinding.inflate(layoutInflater, parent, false)
+            )
+
+            else -> throw IllegalArgumentException("Unknown view type: $viewType")
+        }
+
+        return viewHolder
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val recentCall = recentCalls[position]
-        holder.bindView(
-            any = recentCall,
-            allowSingleClick = refreshItemsListener != null && !recentCall.isUnknownNumber,
-            allowLongClick = refreshItemsListener != null && !recentCall.isUnknownNumber
-        ) { itemView, _ ->
-            if (activity.config.useSwipeToAction) setupViewSwipe(ItemRecentCallSwipeBinding.bind(itemView), recentCall)
-            else setupView(ItemRecentCallBinding.bind(itemView), recentCall)
+        val callRecord = currentList[position]
+        when (holder) {
+            is RecentCallDateViewHolder -> holder.bind(callRecord as CallLogItem.Date)
+            is RecentCallViewHolder -> holder.bind(callRecord as RecentCall)
+            is RecentCallSwipeViewHolder -> holder.bind(callRecord as RecentCall)
         }
+
         bindViewHolder(holder)
     }
-
-    override fun getItemCount() = recentCalls.size
 
     override fun onViewRecycled(holder: ViewHolder) {
         super.onViewRecycled(holder)
         if (!activity.isDestroyed && !activity.isFinishing) {
             if (activity.config.useSwipeToAction) {
-                ItemRecentCallSwipeBinding.bind(holder.itemView).apply {
-                    Glide.with(activity).clear(itemRecentsImage)
+                if (holder is RecentCallSwipeViewHolder) {
+                    Glide.with(activity).clear(holder.binding.itemRecentsImage)
                 }
             } else {
-                ItemRecentCallBinding.bind(holder.itemView).apply {
-                    Glide.with(activity).clear(itemRecentsImage)
+                if (holder is RecentCallViewHolder) {
+                    Glide.with(activity).clear(holder.binding.itemRecentsImage)
                 }
             }
         }
     }
 
+    override fun submitList(list: List<CallLogItem>?) {
+        val layoutManager = recyclerView.layoutManager!!
+        val recyclerViewState = layoutManager.onSaveInstanceState()
+        super.submitList(list) {
+            layoutManager.onRestoreInstanceState(recyclerViewState)
+        }
+    }
+
     fun initDrawables(newColor: Int = textColor) {
-        outgoingCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_outgoing_call_vector, newColor)
-        incomingCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_incoming_call_vector, newColor)
-        incomingMissedCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_missed_call_vector, newColor)
+//        val theme = activity.theme
+//        missedCallColor = resources.getColor(R.color.red_missed, theme)
+        secondaryTextColor = textColor.adjustAlpha(0.6f)
+
+//        val outgoingCallColor = resources.getColor(R.color.color_outgoing_call, theme)
+//        val incomingCallColor = resources.getColor(R.color.color_incoming_call, theme)
+//        outgoingCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_call_made_vector, outgoingCallColor)
+//        incomingCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_call_received_vector, incomingCallColor)
+//        incomingMissedCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_call_missed_vector, missedCallColor)
+
+        outgoingCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_call_made_vector, newColor)
+        incomingCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_call_received_vector, newColor)
+        incomingMissedCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_call_missed_vector, newColor)
         //infoIcon = resources.getColoredDrawableWithColor(R.drawable.ic_info, properPrimaryColor)
     }
 
@@ -217,16 +263,15 @@ class RecentCallsAdapter(
         }
 
         val callsToBlock = getSelectedItems()
-        val positions = getSelectedItemPositions()
-        if (!activity.config.showBlockedNumbers) recentCalls.removeAll(callsToBlock.toSet())
 
         ensureBackgroundThread {
             callsToBlock.map { it.phoneNumber }.forEach { number ->
                 activity.addBlockedNumber(number)
             }
 
+            val recentCalls = currentList.toMutableList().also { if (!activity.config.showBlockedNumbers) it.removeAll(callsToBlock) }
             activity.runOnUiThread {
-                if (!activity.config.showBlockedNumbers) removeSelectedItems(positions)
+                if (!activity.config.showBlockedNumbers) submitList(recentCalls)
                 finishActMode()
                 selectedKeys.clear()
             }
@@ -289,9 +334,8 @@ class RecentCallsAdapter(
 
     private fun showCallDetails() {
         val recentCall = getSelectedItems().firstOrNull() ?: return
-//        val callIds = recentCall.neighbourIDs.map { it }.toMutableList() as ArrayList<Int>
-//        callIds.add(recentCall.id)
-//        ShowGroupedCallsDialog(activity, callIds)
+//        val recentCalls = recentCall.groupedCalls ?: listOf(recentCall)
+//        ShowGroupedCallsDialog(activity, recentCalls)
         showCallHistory(recentCall)
     }
 
@@ -317,28 +361,26 @@ class RecentCallsAdapter(
         }
 
         val callsToRemove = getSelectedItems()
-        val positions = getSelectedItemPositions()
         val idsToRemove = ArrayList<Int>()
         callsToRemove.forEach {
             idsToRemove.add(it.id)
-            it.neighbourIDs.mapTo(idsToRemove, { it })
+            it.groupedCalls?.mapTo(idsToRemove) { call -> call.id }
         }
 
         RecentsHelper(activity).removeRecentCalls(idsToRemove) {
-            recentCalls.removeAll(callsToRemove.toSet())
+            itemDelete(callsToRemove)
+            val recentCalls = currentList.toMutableList().also { it.removeAll(callsToRemove) }
             activity.runOnUiThread {
                 refreshItemsListener?.refreshItems()
-                if (recentCalls.isEmpty()) {
-                    finishActMode()
-                } else {
-                    removeSelectedItems(positions)
-                }
+                submitList(recentCalls)
+                finishActMode()
             }
         }
     }
 
     private fun findContactByCall(recentCall: RecentCall): Contact? {
-        return (activity as MainActivity).cachedContacts.find { it.name == recentCall.name && it.doesHavePhoneNumber(recentCall.phoneNumber) }
+        return if (isDialpad) (activity as DialpadActivity).allContacts.find { it.name == recentCall.name && it.doesHavePhoneNumber(recentCall.phoneNumber) }
+        else (activity as MainActivity).cachedContacts.find { it.name == recentCall.name && it.doesHavePhoneNumber(recentCall.phoneNumber) }
     }
 
     private fun launchContactDetailsIntent(contact: Contact?) {
@@ -348,328 +390,23 @@ class RecentCallsAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateItems(newItems: List<RecentCall>, highlightText: String = "") {
-        if (newItems.hashCode() != recentCalls.hashCode()) {
-            recentCalls = newItems.toMutableList()
+    fun updateItems(newItems: List<CallLogItem>, highlightText: String = "") {
+        if (textToHighlight != highlightText) {
             textToHighlight = highlightText
-            recyclerView.resetItemCount()
+            submitList(newItems)
             notifyDataSetChanged()
             finishActMode()
-        } else if (textToHighlight != highlightText) {
-            textToHighlight = highlightText
-            notifyDataSetChanged()
+        } else {
+            submitList(newItems)
         }
     }
 
-    private fun getSelectedItems() = recentCalls.filter { selectedKeys.contains(it.id) } as ArrayList<RecentCall>
+    private fun getSelectedItems() = currentList.filterIsInstance<RecentCall>()
+        .filter { selectedKeys.contains(it.getItemId()) }
 
-    private fun getLastItem() = recentCalls.last()
+    private fun getLastItem() = currentList.last()
 
     private fun getSelectedPhoneNumber() = getSelectedItems().firstOrNull()?.phoneNumber
-
-    @RequiresApi(Build.VERSION_CODES.N)
-    private fun setupView(binding: ItemRecentCallBinding, call: RecentCall) {
-        binding.apply {
-            val currentFontSize = fontSize
-            itemRecentsHolder.isSelected = selectedKeys.contains(call.id)
-
-            divider.setBackgroundColor(textColor)
-            if (getLastItem() == call || !activity.config.useDividers) divider.visibility = View.INVISIBLE else divider.visibility = View.VISIBLE
-
-            //val name = findContactByCall(call)?.getNameToDisplay() ?: call.name
-            var nameToShow = SpannableString(call.name)
-
-            if (nameToShow.startsWith("+")) nameToShow = SpannableString(getPhoneNumberFormat(activity, number = nameToShow.toString()))
-            if (call.neighbourIDs.isNotEmpty()) {
-                nameToShow = SpannableString("$nameToShow (${call.neighbourIDs.size + 1})")
-            }
-
-            if (textToHighlight.isNotEmpty() && nameToShow.contains(textToHighlight, true)) {
-                nameToShow = SpannableString(nameToShow.toString().highlightTextPart(textToHighlight, properPrimaryColor))
-            }
-
-            itemRecentsName.apply {
-                val name = nameToShow.toString()
-                text = formatterUnicodeWrap(name)
-                setTextColor(if (call.type == Calls.MISSED_TYPE) redColor else textColor) //(textColor)
-                setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize)
-            }
-
-            itemRecentsNumber.apply {
-                setTextColor(textColor)
-                setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
-                val recentsNumber = if (call.phoneNumber == call.name) {
-                    val country = if (call.phoneNumber.startsWith("+")) getCountryByNumber(activity, call.phoneNumber) else ""
-                    country
-                } else {
-                    val phoneNumber =
-                        if (call.phoneNumber.startsWith("+")) getPhoneNumberFormat(activity, number = call.phoneNumber) else call.phoneNumber
-                    if (call.specificType.isNotEmpty() && call.specificNumber.isNotEmpty()) call.specificType else phoneNumber
-                    //setTextColor(if (call.type == Calls.MISSED_TYPE) redColor else textColor)
-                }
-                text = formatterUnicodeWrap(recentsNumber)
-            }
-
-            itemRecentsDateTime.apply {
-                val relativeDate = DateUtils.getRelativeDateTimeString(
-                    context,
-                    call.startTS * 1000L,
-                    1.minutes.inWholeMilliseconds,
-                    2.days.inWholeMilliseconds,
-                    0,
-                )
-                val date = call.startTS.formatDateOrTime(context, hideTimeAtOtherDays = hideTimeAtOtherDays, false)
-                text = if (activity.config.useRelativeDate) relativeDate else date
-                //setTextColor(if (call.type == Calls.MISSED_TYPE) redColor else textColor)
-                setTextColor(textColor)
-                setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
-            }
-
-            itemRecentsDuration.apply {
-                text = call.duration.getFormattedDuration()
-                setTextColor(textColor)
-                beVisibleIf(call.type != Calls.MISSED_TYPE && call.type != Calls.REJECTED_TYPE && call.duration > 0)
-                setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
-//                if (!showOverflowMenu) {
-//                    itemRecentsDuration.setPadding(0, 0, durationPadding, 0)
-//                }
-            }
-
-            itemRecentsSimImage.beVisibleIf(areMultipleSIMsAvailable && call.simID != -1)
-            itemRecentsSimId.beVisibleIf(areMultipleSIMsAvailable && call.simID != -1)
-            if (areMultipleSIMsAvailable && call.simID != -1) {
-                val simColor = if (!activity.config.colorSimIcons) textColor
-                else {
-                    when (call.simID) {
-                        1 -> activity.config.simIconsColors[1]
-                        2 -> activity.config.simIconsColors[2]
-                        3 -> activity.config.simIconsColors[3]
-                        4 -> activity.config.simIconsColors[4]
-                        else -> activity.config.simIconsColors[0]
-                    }
-                }
-                itemRecentsSimImage.applyColorFilter(simColor)
-                itemRecentsSimImage.alpha = if (!activity.config.colorSimIcons) 0.6f else 1f
-                itemRecentsSimId.setTextColor(simColor.getContrastColor())
-                itemRecentsSimId.text = call.simID.toString()
-            }
-
-            val showContactThumbnails = activity.config.showContactThumbnails
-            itemRecentsImage.beVisibleIf(showContactThumbnails)
-            itemRecentsImageIcon.beVisibleIf(showContactThumbnails)
-            if (showContactThumbnails) {
-                if (call.phoneNumber == call.name) {
-                    SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name, letter = false)
-                    itemRecentsImageIcon.beVisibleIf(call.photoUri == "")
-                } else {
-                    SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name)
-                    itemRecentsImageIcon.beGone()
-                }
-            }
-
-            val drawable = when (call.type) {
-                Calls.OUTGOING_TYPE -> outgoingCallIcon
-                Calls.MISSED_TYPE -> incomingMissedCallIcon
-                else -> incomingCallIcon
-            }
-            itemRecentsType.setImageDrawable(drawable)
-
-            itemRecentsInfo.apply {
-                beVisibleIf(showOverflowMenu)
-                applyColorFilter(accentColor)
-                setOnClickListener {
-                    showCallHistory(call)
-                }
-                setOnLongClickListener {
-                    showPopupMenu(overflowMenuAnchor, call)
-                    true
-                }
-            }
-            //In order not to miss the icon item_recents_info
-            itemRecentsInfoHolder.apply {
-                setOnClickListener {
-                    showCallHistory(call)
-                }
-                setOnLongClickListener {
-                    showPopupMenu(overflowMenuAnchor, call)
-                    true
-                }
-            }
-        }
-
-//            overflowMenuIcon.beVisibleIf(showOverflowMenu)
-//            overflowMenuIcon.drawable.apply {
-//                mutate()
-//                setTint(activity.getProperTextColor())
-//            }
-//            overflowMenuIcon.setOnClickListener {
-//                showPopupMenu(overflowMenuAnchor, call)
-//            }
-    }
-
-    private fun setupViewSwipe(binding: ItemRecentCallSwipeBinding, call: RecentCall) {
-        binding.apply {
-            itemRecentsFrameSelect.setupViewBackground(activity)
-            itemRecentsFrame.setBackgroundColor(backgroundColor)
-
-            val currentFontSize = fontSize
-            itemRecentsHolder.isSelected = selectedKeys.contains(call.id)
-
-            divider.setBackgroundColor(textColor)
-            if (getLastItem() == call || !activity.config.useDividers) divider.visibility = View.INVISIBLE else divider.visibility = View.VISIBLE
-
-            //val name = findContactByCall(call)?.getNameToDisplay() ?: call.name
-            var nameToShow = SpannableString(call.name)
-
-            if (nameToShow.startsWith("+")) nameToShow = SpannableString(getPhoneNumberFormat(activity, number = nameToShow.toString()))
-            if (call.neighbourIDs.isNotEmpty()) {
-                nameToShow = SpannableString("$nameToShow (${call.neighbourIDs.size + 1})")
-            }
-
-            if (textToHighlight.isNotEmpty() && nameToShow.contains(textToHighlight, true)) {
-                nameToShow = SpannableString(nameToShow.toString().highlightTextPart(textToHighlight, properPrimaryColor))
-            }
-
-            itemRecentsName.apply {
-                val name = nameToShow.toString()
-                text = formatterUnicodeWrap(name)
-                setTextColor(if (call.type == Calls.MISSED_TYPE) redColor else textColor) //(textColor)
-                setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize)
-            }
-
-            itemRecentsNumber.apply {
-                setTextColor(textColor)
-                setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
-                val recentsNumber = if (call.phoneNumber == call.name) {
-                    val country = if (call.phoneNumber.startsWith("+")) getCountryByNumber(activity, call.phoneNumber) else ""
-                    country
-                } else {
-                    val phoneNumber =
-                        if (call.phoneNumber.startsWith("+")) getPhoneNumberFormat(activity, number = call.phoneNumber) else call.phoneNumber
-                    if (call.specificType.isNotEmpty() && call.specificNumber.isNotEmpty()) call.specificType else phoneNumber
-                    //setTextColor(if (call.type == Calls.MISSED_TYPE) redColor else textColor)
-                }
-                text = formatterUnicodeWrap(recentsNumber)
-            }
-
-            itemRecentsDateTime.apply {
-                val relativeDate = DateUtils.getRelativeDateTimeString(
-                    context,
-                    call.startTS * 1000L,
-                    1.minutes.inWholeMilliseconds,
-                    2.days.inWholeMilliseconds,
-                    0,
-                )
-                val date = call.startTS.formatDateOrTime(context, hideTimeAtOtherDays = hideTimeAtOtherDays, false)
-                text = if (activity.config.useRelativeDate) relativeDate else date
-                //setTextColor(if (call.type == Calls.MISSED_TYPE) redColor else textColor)
-                setTextColor(textColor)
-                setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
-            }
-
-            itemRecentsDuration.apply {
-                text = call.duration.getFormattedDuration()
-                setTextColor(textColor)
-                beVisibleIf(call.type != Calls.MISSED_TYPE && call.type != Calls.REJECTED_TYPE && call.duration > 0)
-                setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
-//                if (!showOverflowMenu) {
-//                    itemRecentsDuration.setPadding(0, 0, durationPadding, 0)
-//                }
-            }
-
-            itemRecentsSimImage.beVisibleIf(areMultipleSIMsAvailable && call.simID != -1)
-            itemRecentsSimId.beVisibleIf(areMultipleSIMsAvailable && call.simID != -1)
-            if (areMultipleSIMsAvailable && call.simID != -1) {
-                val simColor = if (!activity.config.colorSimIcons) textColor
-                else {
-                    when (call.simID) {
-                        1 -> activity.config.simIconsColors[1]
-                        2 -> activity.config.simIconsColors[2]
-                        3 -> activity.config.simIconsColors[3]
-                        4 -> activity.config.simIconsColors[4]
-                        else -> activity.config.simIconsColors[0]
-                    }
-                }
-                itemRecentsSimImage.applyColorFilter(simColor)
-                itemRecentsSimImage.alpha = if (!activity.config.colorSimIcons) 0.6f else 1f
-                itemRecentsSimId.setTextColor(simColor.getContrastColor())
-                itemRecentsSimId.text = call.simID.toString()
-            }
-
-            val showContactThumbnails = activity.config.showContactThumbnails
-            itemRecentsImage.beVisibleIf(showContactThumbnails)
-            itemRecentsImageIcon.beVisibleIf(showContactThumbnails)
-            if (showContactThumbnails) {
-                if (call.phoneNumber == call.name) {
-                    SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name, letter = false)
-                    itemRecentsImageIcon.beVisibleIf(call.photoUri == "")
-                } else {
-                    SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name)
-                    itemRecentsImageIcon.beGone()
-                }
-            }
-
-            val drawable = when (call.type) {
-                Calls.OUTGOING_TYPE -> outgoingCallIcon
-                Calls.MISSED_TYPE -> incomingMissedCallIcon
-                else -> incomingCallIcon
-            }
-            itemRecentsType.setImageDrawable(drawable)
-
-            itemRecentsInfo.apply {
-                beVisibleIf(showOverflowMenu)
-                applyColorFilter(accentColor)
-                setOnClickListener {
-                    showCallHistory(call)
-                }
-                setOnLongClickListener {
-                    showPopupMenu(overflowMenuAnchor, call)
-                    true
-                }
-            }
-            //In order not to miss the icon item_recents_info
-            itemRecentsInfoHolder.apply {
-                setOnClickListener {
-                    showCallHistory(call)
-                }
-                setOnLongClickListener {
-                    showPopupMenu(overflowMenuAnchor, call)
-                    true
-                }
-            }
-
-            //swipe
-            val isRTL = activity.isRTLLayout
-            val swipeLeftAction = if (isRTL) activity.config.swipeRightAction else activity.config.swipeLeftAction
-            swipeLeftIcon.setImageResource(swipeActionImageResource(swipeLeftAction))
-            swipeLeftIcon.setColorFilter(properPrimaryColor.getContrastColor())
-            swipeLeftIconHolder.setBackgroundColor(swipeActionColor(swipeLeftAction))
-
-            val swipeRightAction = if (isRTL) activity.config.swipeLeftAction else activity.config.swipeRightAction
-            swipeRightIcon.setImageResource(swipeActionImageResource(swipeRightAction))
-            swipeRightIcon.setColorFilter(properPrimaryColor.getContrastColor())
-            swipeRightIconHolder.setBackgroundColor(swipeActionColor(swipeRightAction))
-
-            itemRecentsHolder.setRippleColor(SwipeDirection.Left, swipeActionColor(swipeLeftAction))
-            itemRecentsHolder.setRippleColor(SwipeDirection.Right, swipeActionColor(swipeRightAction))
-
-            itemRecentsHolder.swipeGestureListener = object : SwipeGestureListener {
-                override fun onSwipedLeft(swipeActionView: SwipeActionView): Boolean {
-                    val swipeLeftOrRightAction = if (activity.isRTLLayout) activity.config.swipeRightAction else activity.config.swipeLeftAction
-                    swipeAction(swipeLeftOrRightAction, call)
-                    if (activity.config.swipeVibration) itemRecentsHolder.performHapticFeedback()
-                    return true
-                }
-
-                override fun onSwipedRight(swipeActionView: SwipeActionView): Boolean {
-                    val swipeRightOrLeftAction = if (activity.isRTLLayout) activity.config.swipeLeftAction else activity.config.swipeRightAction
-                    swipeAction(swipeRightOrLeftAction, call)
-                    if (activity.config.swipeVibration) itemRecentsHolder.performHapticFeedback()
-                    return true
-                }
-            }
-        }
-    }
 
     private fun showPopupMenu(view: View, call: RecentCall) {
         finishActMode()
@@ -813,7 +550,345 @@ class RecentCallsAdapter(
         selectedKeys.remove(callId)
     }
 
-//    private fun getCallList(call: RecentCall) = recentCalls.filter { it.phoneNumber == call.phoneNumber}.toMutableList() as ArrayList<RecentCall>
+    private inner class RecentCallViewHolder(val binding: ItemRecentCallBinding) : ViewHolder(binding.root) {
+        fun bind(call: RecentCall) = bindView(
+            item = call,
+            allowSingleClick = (refreshItemsListener != null || isDialpad) && !call.isUnknownNumber,
+            allowLongClick = (refreshItemsListener != null || isDialpad) && !call.isUnknownNumber
+        ) { _, _ ->
+            binding.apply {
+                val currentFontSize = fontSize
+                itemRecentsHolder.isSelected = selectedKeys.contains(call.id)
+                itemRecentsHolder.setupViewBackground(activity)
+
+                divider.setBackgroundColor(textColor)
+                if (getLastItem() == call || !activity.config.useDividers) divider.visibility = View.INVISIBLE else divider.visibility = View.VISIBLE
+
+                val name = call.name //findContactByCall(call)?.getNameToDisplay() ?: call.name
+                val formatPhoneNumbers = activity.config.formatPhoneNumbers
+                var nameToShow = if (name == call.phoneNumber && formatPhoneNumbers) {
+                    SpannableString(name.formatPhoneNumber())
+                } else {
+                    SpannableString(name)
+                }
+
+                if (call.groupedCalls != null) {
+                    nameToShow = SpannableString("$nameToShow (${call.groupedCalls.size})")
+                }
+
+                if (textToHighlight.isNotEmpty() && nameToShow.contains(textToHighlight, true)) {
+                    nameToShow = SpannableString(nameToShow.toString().highlightTextPart(textToHighlight, properPrimaryColor))
+                }
+
+                itemRecentsName.apply {
+                    text = formatterUnicodeWrap(nameToShow.toString())
+                    setTextColor(if (call.type == Calls.MISSED_TYPE) missedCallColor else textColor)
+                    setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize)
+                }
+
+                itemRecentsNumber.apply {
+                    setTextColor(textColor)
+                    setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
+                    val recentsNumber = if (call.phoneNumber == call.name) {
+                        if (call.phoneNumber.startsWith("+")) getCountryByNumber(call.phoneNumber) else ""
+                    } else {
+                        if (call.specificType.isNotEmpty() && call.specificNumber.isNotEmpty()) call.specificType
+                        else {
+                            if (formatPhoneNumbers) call.phoneNumber.formatPhoneNumber() else call.phoneNumber
+                        }
+                    }
+                    text = formatterUnicodeWrap(recentsNumber)
+                }
+
+                itemRecentsDateTime.apply {
+                    text = if (activity.config.useRelativeDate) {
+                        DateUtils.getRelativeDateTimeString(
+                            context,
+                            call.startTS,
+                            1.minutes.inWholeMilliseconds,
+                            2.days.inWholeMilliseconds,
+                            0,
+                        )
+                    } else {
+                        call.startTS.formatDateOrTime(context, hideTimeOnOtherDays = hideTimeAtOtherDays, false)
+                    }
+                    setTextColor(textColor)
+                    setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
+                }
+
+                itemRecentsDuration.apply {
+                    text = call.duration.getFormattedDuration()
+                    setTextColor(textColor)
+                    beVisibleIf(call.type != Calls.MISSED_TYPE && call.type != Calls.REJECTED_TYPE && call.duration > 0)
+                    setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
+                }
+
+                itemRecentsSimImage.beVisibleIf(areMultipleSIMsAvailable)
+                itemRecentsSimId.beVisibleIf(areMultipleSIMsAvailable)
+                if (areMultipleSIMsAvailable) {
+                    val colorSimIcons = activity.config.colorSimIcons
+                    val simColor = if (!colorSimIcons) textColor
+                    else {
+                        when (call.simID) {
+                            1 -> activity.config.simIconsColors[1]
+                            2 -> activity.config.simIconsColors[2]
+                            3 -> activity.config.simIconsColors[3]
+                            4 -> activity.config.simIconsColors[4]
+                            else -> activity.config.simIconsColors[0]
+                        }
+                    }
+                    itemRecentsSimImage.applyColorFilter(simColor)
+                    itemRecentsSimImage.alpha = if (!colorSimIcons) 0.6f else 1f
+                    itemRecentsSimId.setTextColor(simColor.getContrastColor())
+                    itemRecentsSimId.text = call.simID.toString()
+                }
+
+                val showContactThumbnails = activity.config.showContactThumbnails
+                itemRecentsImage.beVisibleIf(showContactThumbnails)
+                itemRecentsImageIcon.beVisibleIf(showContactThumbnails)
+                if (showContactThumbnails) {
+                    val size = (root.context.pixels(R.dimen.normal_icon_size) * contactThumbnailsSize).toInt()
+                    itemRecentsImage.setHeightAndWidth(size)
+                    itemRecentsImageIcon.setHeightAndWidth(size)
+                    if (call.phoneNumber == call.name) {
+                        SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name, letter = false)
+                        itemRecentsImageIcon.beVisibleIf(call.photoUri == "")
+                    } else {
+                        SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name)
+                        itemRecentsImageIcon.beGone()
+                    }
+                }
+
+                val drawable = when (call.type) {
+                    Calls.OUTGOING_TYPE -> outgoingCallIcon
+                    Calls.MISSED_TYPE -> incomingMissedCallIcon
+                    else -> incomingCallIcon
+                }
+                itemRecentsType.setImageDrawable(drawable)
+
+                itemRecentsInfo.apply {
+                    beVisibleIf(showOverflowMenu)
+                    applyColorFilter(accentColor)
+                    setOnClickListener {
+                        showCallHistory(call)
+                    }
+                    setOnLongClickListener {
+                        showPopupMenu(overflowMenuAnchor, call)
+                        true
+                    }
+                }
+                //In order not to miss the icon item_recents_info
+                itemRecentsInfoHolder.apply {
+                    setOnClickListener {
+                        showCallHistory(call)
+                    }
+                    setOnLongClickListener {
+                        showPopupMenu(overflowMenuAnchor, call)
+                        true
+                    }
+                }
+            }
+        }
+    }
+
+    private inner class RecentCallSwipeViewHolder(val binding: ItemRecentCallSwipeBinding) : ViewHolder(binding.root) {
+        fun bind(call: RecentCall) = bindView(
+            item = call,
+            allowSingleClick = (refreshItemsListener != null || isDialpad) && !call.isUnknownNumber,
+            allowLongClick = (refreshItemsListener != null || isDialpad) && !call.isUnknownNumber
+        ) { _, _ ->
+            binding.apply {
+                itemRecentsFrameSelect.setupViewBackground(activity)
+                itemRecentsFrame.setBackgroundColor(backgroundColor)
+
+                val currentFontSize = fontSize
+                itemRecentsHolder.isSelected = selectedKeys.contains(call.id)
+
+                divider.setBackgroundColor(textColor)
+                if (getLastItem() == call || !activity.config.useDividers) divider.visibility = View.INVISIBLE else divider.visibility = View.VISIBLE
+
+                val name = call.name //findContactByCall(call)?.getNameToDisplay() ?: call.name
+                val formatPhoneNumbers = activity.config.formatPhoneNumbers
+                var nameToShow = if (name == call.phoneNumber && formatPhoneNumbers) {
+                    SpannableString(name.formatPhoneNumber())
+                } else {
+                    SpannableString(name)
+                }
+
+                if (call.groupedCalls != null) {
+                    nameToShow = SpannableString("$nameToShow (${call.groupedCalls.size})")
+                }
+
+                if (textToHighlight.isNotEmpty() && nameToShow.contains(textToHighlight, true)) {
+                    nameToShow = SpannableString(nameToShow.toString().highlightTextPart(textToHighlight, properPrimaryColor))
+                }
+
+                itemRecentsName.apply {
+                    text = formatterUnicodeWrap(nameToShow.toString())
+                    setTextColor(if (call.type == Calls.MISSED_TYPE) missedCallColor else textColor)
+                    setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize)
+                }
+
+                itemRecentsNumber.apply {
+                    setTextColor(textColor)
+                    setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
+                    val recentsNumber = if (call.phoneNumber == call.name) {
+                        if (call.phoneNumber.startsWith("+")) getCountryByNumber(call.phoneNumber) else ""
+                    } else {
+                        if (call.specificType.isNotEmpty() && call.specificNumber.isNotEmpty()) call.specificType
+                        else {
+                            if (formatPhoneNumbers) call.phoneNumber.formatPhoneNumber() else call.phoneNumber
+                        }
+                    }
+                    text = formatterUnicodeWrap(recentsNumber)
+                }
+
+                itemRecentsDateTime.apply {
+                    text = if (activity.config.useRelativeDate) {
+                        DateUtils.getRelativeDateTimeString(
+                            context,
+                            call.startTS,
+                            1.minutes.inWholeMilliseconds,
+                            2.days.inWholeMilliseconds,
+                            0,
+                        )
+                    } else {
+                        call.startTS.formatDateOrTime(context, hideTimeOnOtherDays = hideTimeAtOtherDays, false)
+                    }
+                    setTextColor(textColor)
+                    setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
+                }
+
+                itemRecentsDuration.apply {
+                    text = call.duration.getFormattedDuration()
+                    setTextColor(textColor)
+                    beVisibleIf(call.type != Calls.MISSED_TYPE && call.type != Calls.REJECTED_TYPE && call.duration > 0)
+                    setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
+                }
+
+                itemRecentsSimImage.beVisibleIf(areMultipleSIMsAvailable)
+                itemRecentsSimId.beVisibleIf(areMultipleSIMsAvailable)
+                if (areMultipleSIMsAvailable) {
+                    val colorSimIcons = activity.config.colorSimIcons
+                    val simColor = if (!colorSimIcons) textColor
+                    else {
+                        when (call.simID) {
+                            1 -> activity.config.simIconsColors[1]
+                            2 -> activity.config.simIconsColors[2]
+                            3 -> activity.config.simIconsColors[3]
+                            4 -> activity.config.simIconsColors[4]
+                            else -> activity.config.simIconsColors[0]
+                        }
+                    }
+                    itemRecentsSimImage.applyColorFilter(simColor)
+                    itemRecentsSimImage.alpha = if (!colorSimIcons) 0.6f else 1f
+                    itemRecentsSimId.setTextColor(simColor.getContrastColor())
+                    itemRecentsSimId.text = call.simID.toString()
+                }
+
+                val showContactThumbnails = activity.config.showContactThumbnails
+                itemRecentsImage.beVisibleIf(showContactThumbnails)
+                itemRecentsImageIcon.beVisibleIf(showContactThumbnails)
+                if (showContactThumbnails) {
+                    val size = (root.context.pixels(R.dimen.normal_icon_size) * contactThumbnailsSize).toInt()
+                    itemRecentsImage.setHeightAndWidth(size)
+                    itemRecentsImageIcon.setHeightAndWidth(size)
+                    if (call.phoneNumber == call.name) {
+                        SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name, letter = false)
+                        itemRecentsImageIcon.beVisibleIf(call.photoUri == "")
+                    } else {
+                        SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name)
+                        itemRecentsImageIcon.beGone()
+                    }
+                }
+
+                val drawable = when (call.type) {
+                    Calls.OUTGOING_TYPE -> outgoingCallIcon
+                    Calls.MISSED_TYPE -> incomingMissedCallIcon
+                    else -> incomingCallIcon
+                }
+                itemRecentsType.setImageDrawable(drawable)
+
+                itemRecentsInfo.apply {
+                    beVisibleIf(showOverflowMenu)
+                    applyColorFilter(accentColor)
+                    setOnClickListener {
+                        showCallHistory(call)
+                    }
+                    setOnLongClickListener {
+                        showPopupMenu(overflowMenuAnchor, call)
+                        true
+                    }
+                }
+                //In order not to miss the icon item_recents_info
+                itemRecentsInfoHolder.apply {
+                    setOnClickListener {
+                        showCallHistory(call)
+                    }
+                    setOnLongClickListener {
+                        showPopupMenu(overflowMenuAnchor, call)
+                        true
+                    }
+                }
+
+                //swipe
+                val isRTL = activity.isRTLLayout
+                val swipeLeftAction = if (isRTL) activity.config.swipeRightAction else activity.config.swipeLeftAction
+                swipeLeftIcon.setImageResource(swipeActionImageResource(swipeLeftAction))
+                swipeLeftIcon.setColorFilter(properPrimaryColor.getContrastColor())
+                swipeLeftIconHolder.setBackgroundColor(swipeActionColor(swipeLeftAction))
+
+                val swipeRightAction = if (isRTL) activity.config.swipeLeftAction else activity.config.swipeRightAction
+                swipeRightIcon.setImageResource(swipeActionImageResource(swipeRightAction))
+                swipeRightIcon.setColorFilter(properPrimaryColor.getContrastColor())
+                swipeRightIconHolder.setBackgroundColor(swipeActionColor(swipeRightAction))
+
+                itemRecentsHolder.setRippleColor(SwipeDirection.Left, swipeActionColor(swipeLeftAction))
+                itemRecentsHolder.setRippleColor(SwipeDirection.Right, swipeActionColor(swipeRightAction))
+
+                itemRecentsHolder.swipeGestureListener = object : SwipeGestureListener {
+                    override fun onSwipedLeft(swipeActionView: SwipeActionView): Boolean {
+                        val swipeLeftOrRightAction = if (activity.isRTLLayout) activity.config.swipeRightAction else activity.config.swipeLeftAction
+                        swipeAction(swipeLeftOrRightAction, call)
+                        if (activity.config.swipeVibration) itemRecentsHolder.performHapticFeedback()
+                        return true
+                    }
+
+                    override fun onSwipedRight(swipeActionView: SwipeActionView): Boolean {
+                        val swipeRightOrLeftAction = if (activity.isRTLLayout) activity.config.swipeLeftAction else activity.config.swipeRightAction
+                        swipeAction(swipeRightOrLeftAction, call)
+                        if (activity.config.swipeVibration) itemRecentsHolder.performHapticFeedback()
+                        return true
+                    }
+                }
+            }
+        }
+    }
+
+    private inner class RecentCallDateViewHolder(val binding: ItemRecentsDateBinding) : ViewHolder(binding.root) {
+        fun bind(date: CallLogItem.Date) {
+            binding.dateTextView.apply {
+                setTextColor(secondaryTextColor)
+                setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize * 0.76f)
+
+                val now = DateTime.now()
+                text = when (date.dayCode) {
+                    now.millis.toDayCode() -> activity.getString(R.string.today)
+                    now.minusDays(1).millis.toDayCode() -> activity.getString(R.string.yesterday)
+                    else -> date.timestamp.formatDateOrTime(activity, hideTimeOnOtherDays = true, showCurrentYear = false)
+                }
+            }
+        }
+    }
+
+    companion object {
+        private const val VIEW_TYPE_DATE = 0
+        private const val VIEW_TYPE_CALL = 1
+        private const val VIEW_TYPE_CALL_SWIPE = 2
+    }
+
+
+
 
     private fun showCallHistory(call: RecentCall) {
 //        val callIdList : ArrayList<Int> = arrayListOf()
@@ -878,11 +953,37 @@ class RecentCallsAdapter(
     private fun swipedCall(call: RecentCall) {
         if (activity.config.showCallConfirmation) {
             CallConfirmationDialog(activity as SimpleActivity, call.name) {
-                activity.launchCallIntent(call.phoneNumber)
+                activity.launchCallIntent(call.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
             }
         } else {
-            activity.launchCallIntent(call.phoneNumber)
+            activity.launchCallIntent(call.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
         }
         //(activity as SimpleActivity).startCallIntent(call.phoneNumber)
+    }
+}
+
+class RecentCallsDiffCallback : DiffUtil.ItemCallback<CallLogItem>() {
+
+    override fun areItemsTheSame(oldItem: CallLogItem, newItem: CallLogItem) = oldItem.getItemId() == newItem.getItemId()
+
+    override fun areContentsTheSame(oldItem: CallLogItem, newItem: CallLogItem): Boolean {
+        return when {
+            oldItem is CallLogItem.Date && newItem is CallLogItem.Date -> oldItem.timestamp == newItem.timestamp && oldItem.dayCode == newItem.dayCode
+            oldItem is RecentCall && newItem is RecentCall -> {
+                oldItem.phoneNumber == newItem.phoneNumber &&
+                    oldItem.name == newItem.name &&
+                    oldItem.photoUri == newItem.photoUri &&
+                    oldItem.startTS == newItem.startTS &&
+                    oldItem.duration == newItem.duration &&
+                    oldItem.type == newItem.type &&
+                    oldItem.simID == newItem.simID &&
+                    oldItem.specificNumber == newItem.specificNumber &&
+                    oldItem.specificType == newItem.specificType &&
+                    oldItem.isUnknownNumber == newItem.isUnknownNumber &&
+                    oldItem.groupedCalls?.size == newItem.groupedCalls?.size
+            }
+
+            else -> false
+        }
     }
 }
