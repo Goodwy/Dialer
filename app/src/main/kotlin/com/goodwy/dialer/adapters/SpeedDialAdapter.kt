@@ -50,7 +50,7 @@ class SpeedDialAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val speedDial = speedDialValues[position]
-        holder.bindView(speedDial, true, true) { itemView, layoutPosition ->
+        holder.bindView(speedDial, allowSingleClick = true, allowLongClick = true) { itemView, layoutPosition ->
             val binding = ItemSpeedDialBinding.bind(itemView)
             setupView(binding, speedDial)
         }

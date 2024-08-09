@@ -254,7 +254,7 @@ class CallActivity : SimpleActivity() {
     }
 
     @Suppress("DEPRECATION")
-    @SuppressLint("MissingSuperCall")
+    @SuppressLint("MissingSuperCall", "Wakelock")
     override fun onDestroy() {
         super.onDestroy()
         CallManager.removeListener(callCallback)
@@ -729,14 +729,14 @@ class CallActivity : SimpleActivity() {
         maybePerformDialpadHapticFeedback(binding.dialpadInput)
     }
 
-    private fun openBluetoothSettings() {
-        try {
-            val storageSettingsIntent = Intent(Settings.ACTION_BLUETOOTH_SETTINGS)
-            startActivity(storageSettingsIntent)
-        } catch (e: Exception) {
-            showErrorToast(e)
-        }
-    }
+//    private fun openBluetoothSettings() {
+//        try {
+//            val storageSettingsIntent = Intent(Settings.ACTION_BLUETOOTH_SETTINGS)
+//            startActivity(storageSettingsIntent)
+//        } catch (e: Exception) {
+//            showErrorToast(e)
+//        }
+//    }
 
     private fun changeCallAudioRoute() {
         val supportAudioRoutes = CallManager.getSupportedAudioRoutes()
@@ -772,7 +772,7 @@ class CallActivity : SimpleActivity() {
         }
     }
 
-    private fun updateCallAudioState(route: AudioRoute?) {
+    private fun updateCallAudioState(route: AudioRoute?, changeProximitySensor: Boolean = true) {
         if (route != null) {
             //If enabled, one of the users has his microphone turned off at the start of a call
             //isMicrophoneOff = audioManager.isMicrophoneMute
@@ -799,10 +799,12 @@ class CallActivity : SimpleActivity() {
             toggleButtonColor(binding.callToggleSpeaker, enabled = route != AudioRoute.EARPIECE && route != AudioRoute.WIRED_HEADSET)
             createOrUpdateAudioRouteChooser(supportedAudioRoutes, create = false)
 
-            if (isSpeakerOn) {
-                disableProximitySensor()
-            } else {
-                enableProximitySensor()
+            if (changeProximitySensor) { // No need to turn on the sensor when a call has not yet been answered
+                if (isSpeakerOn) {
+                    disableProximitySensor()
+                } else {
+                    enableProximitySensor()
+                }
             }
         }
     }
@@ -1159,6 +1161,7 @@ class CallActivity : SimpleActivity() {
 
     private fun updateState() {
         val phoneState = CallManager.getPhoneState()
+        var changeProximitySensor = true
         if (phoneState is SingleCall) {
             updateCallState(phoneState.call)
             updateCallOnHoldState(null)
@@ -1169,13 +1172,14 @@ class CallActivity : SimpleActivity() {
                 setActionImageViewEnabled(binding.callToggleHold, isSingleCallActionsEnabled)
                 setActionButtonEnabled(binding.callAddHolder, isSingleCallActionsEnabled)
             }
+            if (state == Call.REJECT_REASON_UNWANTED) changeProximitySensor = false
         } else if (phoneState is TwoCalls) {
             updateCallState(phoneState.active)
             updateCallOnHoldState(phoneState.onHold, phoneState.active)
         }
 
         runOnUiThread {
-            updateCallAudioState(CallManager.getCallAudioRoute())
+            updateCallAudioState(CallManager.getCallAudioRoute(), changeProximitySensor)
             updateMicrophoneButton()
         }
     }
@@ -1320,7 +1324,6 @@ class CallActivity : SimpleActivity() {
         }
     }
 
-    @Suppress("DEPRECATION")
     private fun endCall(rejectWithMessage: Boolean = false, textMessage: String? = null) {
         CallManager.reject(rejectWithMessage, textMessage)
         maybePerformCallHapticFeedback(binding.callerNameLabel)

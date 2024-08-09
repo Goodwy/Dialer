@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.ContentUris
 import android.content.Intent
-import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.LayerDrawable
@@ -12,7 +11,6 @@ import android.os.Bundle
 import android.provider.ContactsContract
 import android.text.SpannableString
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.DrawableCompat
@@ -37,12 +35,6 @@ import com.goodwy.dialer.dialogs.ChooseSocialDialog
 import com.goodwy.dialer.extensions.*
 import com.goodwy.dialer.helpers.*
 import com.goodwy.dialer.models.RecentCall
-import org.joda.time.DateTime
-import org.joda.time.Years
-import org.joda.time.format.DateTimeFormat
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.Locale
 import kotlin.collections.ArrayList
 import kotlin.math.abs
 
@@ -1278,9 +1270,9 @@ class CallHistoryActivity : SimpleActivity() {
         }
     }
 
-    private fun finishActMode() {
-        recentsAdapter?.finishActMode()
-    }
+//    private fun finishActMode() {
+//        recentsAdapter?.finishActMode()
+//    }
 
     private fun viewContactInfo(contact: Contact) {
         this.startContactDetailsIntentRecommendation(contact)
@@ -1313,31 +1305,31 @@ class CallHistoryActivity : SimpleActivity() {
 }
 
 // hide private contacts from recent calls
-private fun List<RecentCall>.hidePrivateContacts(privateContacts: List<Contact>, shouldHide: Boolean): List<RecentCall> {
-    return if (shouldHide) {
-        filterNot { recent ->
-            val privateNumbers = privateContacts.flatMap { it.phoneNumbers }.map { it.value }
-            recent.phoneNumber in privateNumbers
-        }
-    } else {
-        this
-    }
-}
+//private fun List<RecentCall>.hidePrivateContacts(privateContacts: List<Contact>, shouldHide: Boolean): List<RecentCall> {
+//    return if (shouldHide) {
+//        filterNot { recent ->
+//            val privateNumbers = privateContacts.flatMap { it.phoneNumbers }.map { it.value }
+//            recent.phoneNumber in privateNumbers
+//        }
+//    } else {
+//        this
+//    }
+//}
 
-private fun List<RecentCall>.setNamesIfEmpty(contacts: List<Contact>, privateContacts: List<Contact>): ArrayList<RecentCall> {
-    val contactsWithNumbers = contacts.filter { it.phoneNumbers.isNotEmpty() }
-    return map { recent ->
-        if (recent.phoneNumber == recent.name) {
-            val privateContact = privateContacts.firstOrNull { it.doesContainPhoneNumber(recent.phoneNumber) }
-            val contact = contactsWithNumbers.firstOrNull { it.phoneNumbers.first().normalizedNumber == recent.phoneNumber }
-
-            when {
-                privateContact != null -> recent.copy(name = privateContact.getNameToDisplay())
-                contact != null -> recent.copy(name = contact.getNameToDisplay())
-                else -> recent
-            }
-        } else {
-            recent
-        }
-    } as ArrayList
-}
+//private fun List<RecentCall>.setNamesIfEmpty(contacts: List<Contact>, privateContacts: List<Contact>): ArrayList<RecentCall> {
+//    val contactsWithNumbers = contacts.filter { it.phoneNumbers.isNotEmpty() }
+//    return map { recent ->
+//        if (recent.phoneNumber == recent.name) {
+//            val privateContact = privateContacts.firstOrNull { it.doesContainPhoneNumber(recent.phoneNumber) }
+//            val contact = contactsWithNumbers.firstOrNull { it.phoneNumbers.first().normalizedNumber == recent.phoneNumber }
+//
+//            when {
+//                privateContact != null -> recent.copy(name = privateContact.getNameToDisplay())
+//                contact != null -> recent.copy(name = contact.getNameToDisplay())
+//                else -> recent
+//            }
+//        } else {
+//            recent
+//        }
+//    } as ArrayList
+//}

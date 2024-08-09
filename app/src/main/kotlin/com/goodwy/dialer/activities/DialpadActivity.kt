@@ -490,7 +490,8 @@ class DialpadActivity : SimpleActivity() {
             val callIconColor = if (simOneColor == Color.WHITE) simOneColor.getContrastColor() else textColor
             val callIcon = resources.getColoredDrawableWithColor(this@DialpadActivity, callIconId, callIconColor)
             dialpadCallIcon.setImageDrawable(callIcon)
-            dialpadCallButtonHolder.apply { background.applyColorFilter(simOneColor)
+            dialpadCallButtonHolder.apply {
+                background.applyColorFilter(simOneColor)
                 setOnClickListener {
                     maybePerformDialpadHapticFeedback(this)
                     initCall(binding.dialpadInput.value, handleIndex = if (simOnePrimary || !areMultipleSIMsAvailable) 0 else 1)
@@ -757,15 +758,19 @@ class DialpadActivity : SimpleActivity() {
         binding.dialpadRoundWrapperUp.setColorFilter(simOneColor.getContrastColor())
     }
 
-    private fun dialpadView() = if (config.dialpadStyle == DIALPAD_IOS) binding.dialpadRoundWrapper.root
-        else if (config.dialpadStyle == DIALPAD_CONCEPT) binding.dialpadRectWrapper.root
-        else binding.dialpadClearWrapper.root
+    private fun dialpadView() = when (config.dialpadStyle) {
+        DIALPAD_IOS -> binding.dialpadRoundWrapper.root
+        DIALPAD_CONCEPT -> binding.dialpadRectWrapper.root
+        else -> binding.dialpadClearWrapper.root
+    }
 
     private fun updateDialpadSize() {
         val size = config.dialpadSize
-        val view = if (config.dialpadStyle == DIALPAD_IOS) binding.dialpadRoundWrapper.dialpadIosWrapper
-            else if (config.dialpadStyle == DIALPAD_CONCEPT) binding.dialpadRectWrapper.dialpadGridWrapper
-            else binding.dialpadClearWrapper.dialpadGridWrapper
+        val view = when (config.dialpadStyle) {
+            DIALPAD_IOS -> binding.dialpadRoundWrapper.dialpadIosWrapper
+            DIALPAD_CONCEPT -> binding.dialpadRectWrapper.dialpadGridWrapper
+            else -> binding.dialpadClearWrapper.dialpadGridWrapper
+        }
         val dimens = if (config.dialpadStyle == DIALPAD_IOS) pixels(R.dimen.dialpad_ios_height) else pixels(R.dimen.dialpad_grid_height)
         view.setHeight((dimens * (size / 100f)).toInt())
     }
@@ -965,11 +970,11 @@ class DialpadActivity : SimpleActivity() {
 
         val filtered = allContacts.filter {
             var convertedName = PhoneNumberUtils.convertKeypadLettersToDigits(it.name.normalizeString())
-            var convertedNameWithoutSpaces = ""
+            var convertedNameWithoutSpaces = convertedName.filterNot { it.isWhitespace() }
             var convertedNickname = PhoneNumberUtils.convertKeypadLettersToDigits(it.nickname.normalizeString())
             var convertedCompany = PhoneNumberUtils.convertKeypadLettersToDigits(it.organization.company.normalizeString())
             val convertedNameToDisplay = PhoneNumberUtils.convertKeypadLettersToDigits(it.getNameToDisplay().normalizeString())
-            var convertedNameToDisplayWithoutSpaces = ""
+            val convertedNameToDisplayWithoutSpaces = convertedNameToDisplay.filterNot { it.isWhitespace() }
 
             if (hasRussianLocale) {
                 var currConvertedName = ""
@@ -978,6 +983,7 @@ class DialpadActivity : SimpleActivity() {
                     currConvertedName += convertedChar
                 }
                 convertedName = currConvertedName
+                convertedNameWithoutSpaces = currConvertedName.filterNot { it.isWhitespace() }
 
                 var currConvertedNickname = ""
                 convertedNickname.lowercase(Locale.getDefault()).forEach { char ->
@@ -994,10 +1000,7 @@ class DialpadActivity : SimpleActivity() {
                 convertedCompany = currConvertedCompany
             }
 
-            convertedNameWithoutSpaces = convertedName.filterNot { it.isWhitespace() }
-            convertedNameToDisplayWithoutSpaces = convertedNameToDisplay.filterNot { it.isWhitespace() }
-
-            it.doesContainPhoneNumber(text, true, true)
+            it.doesContainPhoneNumber(text, convertLetters = true, search = true)
                 || (convertedName.contains(text, true))
                 || (convertedNameWithoutSpaces.contains(text, true))
                 || (convertedNameToDisplay.contains(text, true))
@@ -1005,7 +1008,7 @@ class DialpadActivity : SimpleActivity() {
                 || (convertedNickname.contains(text, true))
                 || (convertedCompany.contains(text, true))
         }.sortedWith(compareBy {
-            !it.doesContainPhoneNumber(text, true, true)
+            !it.doesContainPhoneNumber(text, convertLetters = true, search = true)
         }).toMutableList() as ArrayList<Contact>
 
         binding.letterFastscroller.setupWithRecyclerView(binding.dialpadList, { position ->
@@ -1257,7 +1260,7 @@ class DialpadActivity : SimpleActivity() {
 
     private fun getRecentCalls(loadAll: Boolean, callback: (List<RecentCall>) -> Unit) {
         val queryCount = if (loadAll) config.queryLimitRecent else RecentsHelper.QUERY_LIMIT
-        val existingRecentCalls = allRecentCalls.filterIsInstance<RecentCall>()
+        val existingRecentCalls = allRecentCalls
 
         with(recentsHelper) {
             if (config.groupSubsequentCalls) {

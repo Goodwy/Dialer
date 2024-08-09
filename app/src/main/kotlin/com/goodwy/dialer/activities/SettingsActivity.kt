@@ -2,7 +2,6 @@ package com.goodwy.dialer.activities
 
 import android.annotation.SuppressLint
 import android.annotation.TargetApi
-import android.content.Context
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.net.Uri
@@ -18,7 +17,6 @@ import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.helpers.rustore.RuStoreHelper
 import com.goodwy.commons.helpers.rustore.model.StartPurchasesEvent
-import com.goodwy.commons.models.FAQItem
 import com.goodwy.commons.models.RadioItem
 import com.goodwy.commons.models.Release
 import com.goodwy.dialer.BuildConfig
@@ -155,7 +153,7 @@ class SettingsActivity : SimpleActivity() {
             }
         }
 
-        checkWhatsNewDialog()
+//        checkWhatsNewDialog()
     }
 
     @SuppressLint("MissingSuperCall")
@@ -1309,6 +1307,7 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setupAbout() = binding.apply {
         settingsAboutVersion.text = "Version: " + BuildConfig.VERSION_NAME
         settingsAboutHolder.setOnClickListener {
@@ -1392,7 +1391,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 511 //TODO changelog
+        val id = 522 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1409,21 +1408,21 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_511)) //TODO changelog
+            add(Release(id, R.string.release_522)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }
 
-    private fun checkWhatsNewDialog() {
-        arrayListOf<Release>().apply {
-            add(Release(492, R.string.release_492))
-            add(Release(500, R.string.release_500))
-            add(Release(501, R.string.release_501))
-            add(Release(510, R.string.release_510))
-            add(Release(511, R.string.release_511))
-            checkWhatsNew(this, BuildConfig.VERSION_CODE)
-        }
-    }
+//    private fun checkWhatsNewDialog() {
+//        arrayListOf<Release>().apply {
+//            add(Release(492, R.string.release_492))
+//            add(Release(500, R.string.release_500))
+//            add(Release(501, R.string.release_501))
+//            add(Release(510, R.string.release_510))
+//            add(Release(511, R.string.release_511))
+//            checkWhatsNew(this, BuildConfig.VERSION_CODE)
+//        }
+//    }
 
     private fun updateProducts() {
         val productList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3, subscriptionIdX1, subscriptionIdX2, subscriptionIdX3, subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3)

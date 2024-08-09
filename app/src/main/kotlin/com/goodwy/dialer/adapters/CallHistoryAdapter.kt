@@ -3,7 +3,6 @@ package com.goodwy.dialer.adapters
 import android.annotation.SuppressLint
 import android.os.Build
 import android.provider.CallLog.Calls
-import android.text.SpannableString
 import android.util.TypedValue
 import android.view.*
 import android.widget.PopupMenu
@@ -37,7 +36,6 @@ class CallHistoryAdapter(
     private var fontSize: Float = activity.getTextSize()
     private val areMultipleSIMsAvailable = activity.areMultipleSIMsAvailable()
     private val missedCallColor = resources.getColor(R.color.red_missed)
-    private var textToHighlight = ""
 
     private val colorSimIcons = activity.config.colorSimIcons
     private val simIconsColors = activity.config.simIconsColors
@@ -97,9 +95,9 @@ class CallHistoryAdapter(
         bindViewHolder(holder)
     }
 
-    override fun onViewRecycled(holder: ViewHolder) {
-        super.onViewRecycled(holder)
-    }
+//    override fun onViewRecycled(holder: ViewHolder) {
+//        super.onViewRecycled(holder)
+//    }
 
     private fun initString() {
         outgoingCallText = resources.getString(R.string.outgoing_call)
@@ -181,6 +179,7 @@ class CallHistoryAdapter(
     }
 
     private inner class RecentCallViewHolder(val binding: ItemCallHistoryBinding) : ViewHolder(binding.root) {
+        @RequiresApi(Build.VERSION_CODES.N)
         fun bind(call: RecentCall) = bindView(
             item = call,
             allowSingleClick = refreshItemsListener != null && !call.isUnknownNumber,

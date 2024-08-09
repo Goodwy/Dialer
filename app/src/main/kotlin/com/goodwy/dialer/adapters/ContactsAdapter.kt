@@ -44,12 +44,10 @@ import com.goodwy.dialer.helpers.SWIPE_ACTION_BLOCK
 import com.goodwy.dialer.helpers.SWIPE_ACTION_DELETE
 import com.goodwy.dialer.helpers.SWIPE_ACTION_MESSAGE
 import com.goodwy.dialer.interfaces.RefreshItemsListener
-import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import me.thanel.swipeactionview.SwipeActionView
 import me.thanel.swipeactionview.SwipeDirection
 import me.thanel.swipeactionview.SwipeGestureListener
 import java.util.Collections
-import java.util.Locale
 
 class ContactsAdapter(
     activity: SimpleActivity,
@@ -437,7 +435,10 @@ class ContactsAdapter(
                     contact.phoneNumbers.firstOrNull { it.value.contains(textToHighlight) } ?: contact.phoneNumbers.firstOrNull()
                 }
                 val numberText = phoneNumberToUse?.value ?: ""
-                text = if (textToHighlight.isEmpty()) numberText else numberText.highlightTextPart(textToHighlight, properPrimaryColor, false, true)
+                text = if (textToHighlight.isEmpty()) numberText else numberText.highlightTextPart(textToHighlight, properPrimaryColor,
+                    highlightAll = false,
+                    ignoreCharsBetweenDigits = true
+                )
             }
             itemContactInfo?.applyColorFilter(accentColor)
             itemContactInfoHolder?.apply {

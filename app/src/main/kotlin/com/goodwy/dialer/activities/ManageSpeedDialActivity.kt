@@ -41,7 +41,7 @@ class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
         ContactsHelper(this).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
             allContacts.addAll(contacts)
 
-            val privateCursor = getMyContactsCursor(false, true)
+            val privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
             val privateContacts = MyContactsContentProvider.getContacts(this, privateCursor)
             allContacts.addAll(privateContacts)
             allContacts.sort()

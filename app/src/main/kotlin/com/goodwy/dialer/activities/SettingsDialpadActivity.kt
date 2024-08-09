@@ -40,7 +40,6 @@ import ru.rustore.sdk.core.feature.model.FeatureAvailabilityResult
 import java.util.*
 import kotlin.math.abs
 
-
 class SettingsDialpadActivity : SimpleActivity() {
     private val binding by viewBinding(ActivitySettingsDialpadBinding::inflate)
     private val purchaseHelper = PurchaseHelper(this)
@@ -640,7 +639,7 @@ class SettingsDialpadActivity : SimpleActivity() {
             }
 
             dialpadSizeMinus.setOnClickListener {
-                dialpadSize.progress = dialpadSize.progress - 1
+                dialpadSize.progress -= 1
                 showDialpad()
             }
             dialpadSizeValue.setOnClickListener {
@@ -648,7 +647,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                 showDialpad()
             }
             dialpadSizePlus.setOnClickListener {
-                dialpadSize.progress = dialpadSize.progress + 1
+                dialpadSize.progress += 1
                 showDialpad()
             }
 
@@ -721,7 +720,7 @@ class SettingsDialpadActivity : SimpleActivity() {
             }
 
             buttonSizeMinus.setOnClickListener {
-                buttonSize.progress = buttonSize.progress - 1
+                buttonSize.progress -= 1
                 showDialpad()
             }
             buttonSizeValue.setOnClickListener {
@@ -729,7 +728,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                 showDialpad()
             }
             buttonSizePlus.setOnClickListener {
-                buttonSize.progress = buttonSize.progress + 1
+                buttonSize.progress += 1
                 showDialpad()
             }
 
@@ -763,7 +762,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                 }
 
                 buttonSecondSizeMinus.setOnClickListener {
-                    buttonSecondSize.progress = buttonSecondSize.progress - 1
+                    buttonSecondSize.progress -= 1
                     showDialpad()
                 }
                 buttonSecondSizeValue.setOnClickListener {
@@ -771,7 +770,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                     showDialpad()
                 }
                 buttonSecondSizePlus.setOnClickListener {
-                    buttonSecondSize.progress = buttonSecondSize.progress + 1
+                    buttonSecondSize.progress += 1
                     showDialpad()
                 }
 
@@ -1109,13 +1108,13 @@ class SettingsDialpadActivity : SimpleActivity() {
             }
 
             toneVolumeMinus.setOnClickListener {
-                toneVolumeSeekBar.progress = toneVolumeSeekBar.progress - 1
+                toneVolumeSeekBar.progress -= 1
             }
             toneVolumeValue.setOnClickListener {
                 toneVolumeSeekBar.progress = 80
             }
             toneVolumePlus.setOnClickListener {
-                toneVolumeSeekBar.progress = toneVolumeSeekBar.progress + 1
+                toneVolumeSeekBar.progress += 1
             }
 
             toneVolumeSeekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
@@ -1198,5 +1197,5 @@ class SettingsDialpadActivity : SimpleActivity() {
         }
     }
 
-    private fun checkPro(collection: Boolean = true) = isOrWasThankYouInstalled() || isPro() || isCollection()
+    private fun checkPro() = isOrWasThankYouInstalled() || isPro() || isCollection()
 }

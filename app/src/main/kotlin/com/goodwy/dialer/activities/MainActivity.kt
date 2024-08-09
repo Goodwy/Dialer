@@ -33,7 +33,6 @@ import com.goodwy.commons.dialogs.ConfirmationDialog
 import com.goodwy.commons.dialogs.PermissionRequiredDialog
 import com.goodwy.commons.dialogs.RadioGroupDialog
 import com.goodwy.commons.extensions.*
-import com.goodwy.commons.extensions.notificationManager
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.RadioItem
 import com.goodwy.commons.models.contacts.Contact
@@ -142,7 +141,6 @@ class MainActivity : SimpleActivity() {
         binding.mainTopTabsContainer.beGoneIf(binding.mainTopTabsHolder.tabCount == 1 || useBottomNavigationBar)
     }
 
-    @Suppress("DEPRECATION")
     override fun onResume() {
         super.onResume()
         if (storedShowTabs != config.showTabs || storedShowPhoneNumbers != config.showPhoneNumbers) {
@@ -635,7 +633,7 @@ class MainActivity : SimpleActivity() {
         this.scrollingView = scrollingView
         this.mySearchMenu = searchMenu
         if (scrollingView is RecyclerView) {
-            scrollingView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            scrollingView.setOnScrollChangeListener { _, _, _, _, _ ->
                 val newScrollY = scrollingView.computeVerticalScrollOffset()
                 scrollingChanged(newScrollY)
                 currentScrollY = newScrollY
