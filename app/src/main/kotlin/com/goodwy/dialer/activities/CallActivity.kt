@@ -914,7 +914,7 @@ class CallActivity : SimpleActivity() {
     }
 
     private fun addContact() {
-        val number = callContact!!.number.ifEmpty { "" }
+        val number = callContact?.number?.ifEmpty { "" } ?: ""
         Intent().apply {
             action = Intent.ACTION_INSERT_OR_EDIT
             type = "vnd.android.cursor.item/contact"
@@ -1261,7 +1261,8 @@ class CallActivity : SimpleActivity() {
                         val windowWidth = window.decorView.width
                         if (bg != null && windowWidth != 0) {
                             val aspectRatio = windowHeight / windowWidth
-                            val drawable: Drawable = BitmapDrawable(resources, bg.cropCenter(bg.width/aspectRatio, bg.height))
+                            val aspectRatioNotZero = if (aspectRatio == 0) 1 else aspectRatio
+                            val drawable: Drawable = BitmapDrawable(resources, bg.cropCenter(bg.width/aspectRatioNotZero, bg.height))
                             binding.callHolder.background = drawable
                             binding.callHolder.background.alpha = 60
                             if (isQPlus()) {

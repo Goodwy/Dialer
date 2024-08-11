@@ -128,7 +128,10 @@ class RecentCallsAdapter(
             R.id.cab_copy_number -> copyNumber()
             R.id.cab_remove -> askConfirmRemove()
             R.id.cab_select_all -> selectAll()
-            R.id.cab_view_details -> launchContactDetailsIntent(findContactByCall(getSelectedItems().first()))
+            R.id.cab_view_details -> {
+                val selectItems = getSelectedItems().firstOrNull() ?: return
+                launchContactDetailsIntent(findContactByCall(selectItems))
+            }
         }
     }
 
@@ -136,7 +139,8 @@ class RecentCallsAdapter(
 
     override fun getSelectableItemCount() = currentList.filterIsInstance<RecentCall>().size
 
-    override fun getIsItemSelectable(position: Int) = currentList[position] is RecentCall
+    override fun getIsItemSelectable(position: Int) =
+        if (position < 0 || position >= currentList.size) false else currentList[position] is RecentCall
 
     override fun getItemSelectionKey(position: Int) = currentList.getOrNull(position)?.getItemId()
 

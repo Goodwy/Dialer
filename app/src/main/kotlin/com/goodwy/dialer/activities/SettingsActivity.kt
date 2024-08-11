@@ -1391,7 +1391,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 522 //TODO changelog
+        val id = 523 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
