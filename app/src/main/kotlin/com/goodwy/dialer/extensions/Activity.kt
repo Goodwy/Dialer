@@ -203,11 +203,11 @@ fun SimpleActivity.showSnackbar(view: View) {
     view.performHapticFeedback()
 
     val snackbar = Snackbar.make(view, R.string.support_project_to_unlock, Snackbar.LENGTH_SHORT)
-        .setAction(com.goodwy.commons.R.string.support) {
+        .setAction(R.string.support) {
             launchPurchase()
         }
 
-    val bgDrawable = ResourcesCompat.getDrawable(view.resources, com.goodwy.commons.R.drawable.button_background_16dp, null)
+    val bgDrawable = ResourcesCompat.getDrawable(view.resources, R.drawable.button_background_16dp, null)
     snackbar.view.background = bgDrawable
     val properBackgroundColor = getProperBackgroundColor()
     val backgroundColor = if (properBackgroundColor == Color.BLACK) getBottomNavigationBackgroundColor().lightenColor(6) else getBottomNavigationBackgroundColor().darkenColor(6)

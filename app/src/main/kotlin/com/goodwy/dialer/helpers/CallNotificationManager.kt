@@ -190,6 +190,7 @@ class CallNotificationManager(private val context: Context) {
             }
 
             val builder = Notification.Builder(context, channelId)
+                .setFullScreenIntent(openAppPendingIntent, true)
                 .setSmallIcon(R.drawable.ic_phone_vector)
                 .setContentIntent(openAppPendingIntent)
                 .setCategory(Notification.CATEGORY_CALL)
@@ -210,9 +211,9 @@ class CallNotificationManager(private val context: Context) {
                 builder.addAction(microphoneCallAction.build())
             }
 
-            if (isHighPriority) {
-                builder.setFullScreenIntent(openAppPendingIntent, true)
-            }
+//            if (isHighPriority) {
+//                builder.setFullScreenIntent(openAppPendingIntent, true)
+//            }
 
             val notification = builder.build()
             // it's rare but possible for the call state to change by now
