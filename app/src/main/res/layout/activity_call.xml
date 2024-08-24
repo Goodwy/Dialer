@@ -136,22 +136,35 @@
         app:layout_constraintTop_toBottomOf="@+id/callerNumber">
 
         <ImageView
-            android:id="@+id/call_sim_image"
+            android:id="@+id/callDetails"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:alpha="0.8"
+            android:contentDescription="HD"
+            android:src="@drawable/ic_hd"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:id="@+id/callSimImage"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_toEndOf="@+id/callDetails"
+            android:alpha="0.8"
+            android:contentDescription="@null"
             android:src="@drawable/ic_sim_vector"
             android:visibility="gone"
             tools:visibility="visible"/>
 
         <TextView
-            android:id="@+id/call_sim_id"
+            android:id="@+id/callSimId"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_alignTop="@+id/call_sim_image"
-            android:layout_alignBottom="@+id/call_sim_image"
-            android:layout_alignStart="@+id/call_sim_image"
-            android:layout_alignEnd="@+id/call_sim_image"
+            android:layout_alignTop="@+id/callSimImage"
+            android:layout_alignBottom="@+id/callSimImage"
+            android:layout_alignStart="@+id/callSimImage"
+            android:layout_alignEnd="@+id/callSimImage"
             android:alpha="0.8"
             android:gravity="center"
             android:textColor="@color/md_grey_black"
@@ -161,10 +174,13 @@
             tools:visibility="visible"/>
 
         <com.goodwy.commons.views.MyTextView
-            android:id="@+id/call_status_label"
+            android:id="@+id/callStatusLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/call_sim_image"
+            android:layout_marginTop="@dimen/one_dp"
+            android:layout_alignTop="@+id/callSimImage"
+            android:layout_alignBottom="@+id/callSimImage"
+            android:layout_toEndOf="@+id/callSimImage"
             android:layout_marginStart="@dimen/small_margin"
             android:alpha="0.8"
             android:textSize="@dimen/call_status_text_size"

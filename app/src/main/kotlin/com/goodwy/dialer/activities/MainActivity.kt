@@ -232,6 +232,7 @@ class MainActivity : SimpleActivity() {
         getAllFragments().forEach {
             it?.setBackgroundColor(properBackgroundColor)
         }
+        if (getCurrentFragment() is RecentsFragment) clearMissedCalls()
     }
 
     override fun onPause() {
@@ -566,11 +567,11 @@ class MainActivity : SimpleActivity() {
                     it?.finishActMode()
                 }
                 refreshMenuItems()
-//                if (getCurrentFragment() == getRecentsFragment()) {
-//                    ensureBackgroundThread {
-//                        clearMissedCalls()
-//                    }
-//                }
+                if (getCurrentFragment() == getRecentsFragment()) {
+                    ensureBackgroundThread {
+                        clearMissedCalls()
+                    }
+                }
             }
         })
 
@@ -704,9 +705,9 @@ class MainActivity : SimpleActivity() {
                 it.icon?.alpha = 220 // max 255
 
                 val lastPosition = binding.mainTopTabsHolder.tabCount - 1
-                if (it.position == lastPosition && config.showTabs and TAB_CALL_HISTORY > 0) {
-                    clearMissedCalls()
-                }
+//                if (it.position == lastPosition && config.showTabs and TAB_CALL_HISTORY > 0) {
+//                    clearMissedCalls()
+//                }
 
                 if (config.openSearch) {
                     if (getCurrentFragment() is ContactsFragment) {
@@ -756,9 +757,9 @@ class MainActivity : SimpleActivity() {
                 updateBottomTabItemColors(it.customView, true, getSelectedTabDrawableIds()[it.position])
 
                 val lastPosition = binding.mainTabsHolder.tabCount - 1
-                if (it.position == lastPosition && config.showTabs and TAB_CALL_HISTORY > 0) {
-                    clearMissedCalls()
-                }
+//                if (it.position == lastPosition && config.showTabs and TAB_CALL_HISTORY > 0) {
+//                    clearMissedCalls()
+//                }
 
                 if (config.openSearch) {
                     if (getCurrentFragment() is ContactsFragment) {

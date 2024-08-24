@@ -190,7 +190,6 @@ class CallNotificationManager(private val context: Context) {
             }
 
             val builder = Notification.Builder(context, channelId)
-                .setFullScreenIntent(openAppPendingIntent, true)
                 .setSmallIcon(R.drawable.ic_phone_vector)
                 .setContentIntent(openAppPendingIntent)
                 .setCategory(Notification.CATEGORY_CALL)

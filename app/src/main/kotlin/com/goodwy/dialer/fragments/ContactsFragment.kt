@@ -202,6 +202,7 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
                     fixedText.normalizePhoneNumber().isNotEmpty() && it.normalizedNumber.contains(fixedText.normalizePhoneNumber(), true)
                 }) ||
                 it.emails.any { it.value.contains(fixedText, true) } ||
+                it.relations.any { it.name.contains(fixedText, true) } ||
                 it.addresses.any { getProperText(it.value, shouldNormalize).contains(fixedText, true) } ||
                 it.IMs.any { it.value.contains(fixedText, true) } ||
                 getProperText(it.notes, shouldNormalize).contains(fixedText, true) ||

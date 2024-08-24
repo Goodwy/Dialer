@@ -353,7 +353,7 @@ class RecentCallsAdapter(
         ConfirmationAdvancedDialog(activity, activity.getString(R.string.remove_confirmation), cancelOnTouchOutside = false) {
             if (it) {
                 activity.handlePermission(PERMISSION_WRITE_CALL_LOG) {
-                    removeRecents()
+                    if (it) removeRecents()
                 }
             } else selectedKeys.clear()
         }
@@ -939,7 +939,7 @@ class RecentCallsAdapter(
         selectedKeys.add(call.id)
         if (activity.config.skipDeleteConfirmation) {
             activity.handlePermission(PERMISSION_WRITE_CALL_LOG) {
-                removeRecents()
+                if (it) removeRecents()
             }
         } else askConfirmRemove()
     }

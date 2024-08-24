@@ -1179,18 +1179,20 @@ class CallHistoryActivity : SimpleActivity() {
             defaultSim2Icon.setColorFilter(background.adjustAlpha(0.60f))
             defaultSim2Id.setTextColor(black)
 
-            if ((config.getCustomSIM("tel:$phoneNumber") ?: "") == simList[0].handle && !call.isUnknownNumber) {
-                defaultSim1Icon.background.setTint(sim1)
-                defaultSim1Icon.background.alpha = 255
-                defaultSim1Icon.setColorFilter(white)
-                defaultSim1Id.setTextColor(sim1)
-            }
+            if (simList.size > 1) {
+                if ((config.getCustomSIM("tel:$phoneNumber") ?: "") == simList[0].handle && !call.isUnknownNumber) {
+                    defaultSim1Icon.background.setTint(sim1)
+                    defaultSim1Icon.background.alpha = 255
+                    defaultSim1Icon.setColorFilter(white)
+                    defaultSim1Id.setTextColor(sim1)
+                }
 
-            if ((config.getCustomSIM("tel:$phoneNumber") ?: "") == simList[1].handle && !call.isUnknownNumber) {
-                defaultSim2Icon.background.setTint(sim2)
-                defaultSim2Icon.background.alpha = 255
-                defaultSim2Icon.setColorFilter(white)
-                defaultSim2Id.setTextColor(sim2)
+                if ((config.getCustomSIM("tel:$phoneNumber") ?: "") == simList[1].handle && !call.isUnknownNumber) {
+                    defaultSim2Icon.background.setTint(sim2)
+                    defaultSim2Icon.background.alpha = 255
+                    defaultSim2Icon.setColorFilter(white)
+                    defaultSim2Id.setTextColor(sim2)
+                }
             }
         }
     }

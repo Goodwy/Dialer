@@ -70,7 +70,7 @@ class CallHistoryTopBehavior(
                     interpolator = ReverseInterpolator(LinearInterpolator())
                 ),
                 BRuleYOffset(
-                    min = -pixels(R.dimen.section_margin), max = pixels(R.dimen.zero),
+                    min = -pixels(R.dimen.company_top_margin), max = pixels(R.dimen.zero),
                     interpolator = LinearInterpolator()
                 ),
                 BRuleScale(min = 0.8f, max = 1f),

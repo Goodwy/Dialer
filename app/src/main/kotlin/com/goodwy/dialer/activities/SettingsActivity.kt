@@ -325,7 +325,7 @@ class SettingsActivity : SimpleActivity() {
     private fun setupCustomizeColors() {
         binding.settingsCustomizeColorsHolder.setOnClickListener {
             startCustomizationActivity(
-                true,
+                showAccentColor = true,
                 isCollection = isOrWasThankYouInstalled() || isCollection(),
                 productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
                 productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
@@ -1391,7 +1391,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 523 //TODO changelog
+        val id = 524 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1408,7 +1408,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_522)) //TODO changelog
+            add(Release(id, R.string.release_524)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }

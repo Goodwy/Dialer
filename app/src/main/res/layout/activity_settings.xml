@@ -208,6 +208,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
+                            android:paddingEnd="@dimen/small_margin"
                             android:layout_marginEnd="@dimen/settings_margin"
                             android:clickable="false"
                             android:contentDescription="@string/contact_color_list"

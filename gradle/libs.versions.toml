@@ -9,10 +9,10 @@ eventbus = "3.3.1"
 #Gradle
 gradlePlugins-agp = "8.3.2"
 #Other
-indicatorFastScroll = "1a72604856"
+indicatorFastScroll = "e37b5b2ad6"
 autofitTextView = "0.2.1"
 #Goodwy
-right-commons = "cfe11582ea"
+right-commons = "4e078ff296"
 rustore = "5.1.1"
 badger = "1.1.22"
 libphonenumber = "8.13.26"
@@ -22,7 +22,7 @@ behavioRule = "1.0.1"
 rxAnimation = "2.1.1"
 rxJava3 = "3.1.5"
 room = "2.6.1"
-swipeToActionLayout = "035dfba3fb"
+swipeToActionLayout = "2f8803b6c4"
 #build
 app-build-compileSDKVersion = "34"
 app-build-targetSDK = "34"
@@ -31,8 +31,8 @@ app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
 #versioning
 app-version-appId = "com.goodwy.dialer"
-app-version-versionCode = "523"
-app-version-versionName = "5.2.3"
+app-version-versionCode = "524"
+app-version-versionName = "5.2.4"
 [libraries]
 #EventBus
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }

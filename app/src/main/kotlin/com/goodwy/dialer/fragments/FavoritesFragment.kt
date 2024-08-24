@@ -162,7 +162,7 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
     }
 
     fun columnCountChanged() {
-        (binding.fragmentList.layoutManager as MyGridLayoutManager).spanCount = context!!.config.contactsGridColumnCount
+        if (context.config.viewType == VIEW_TYPE_GRID) (binding.fragmentList.layoutManager as MyGridLayoutManager).spanCount = context!!.config.contactsGridColumnCount
         binding.fragmentList.adapter?.apply {
             notifyItemRangeChanged(0, allContacts.size)
         }

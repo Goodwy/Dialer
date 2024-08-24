@@ -108,7 +108,7 @@ class CallHistoryAdapter(
     private fun askConfirmRemove() {
         ConfirmationDialog(activity, activity.getString(R.string.remove_confirmation)) {
             activity.handlePermission(PERMISSION_WRITE_CALL_LOG) {
-                removeRecents()
+                if (it) removeRecents()
             }
         }
     }
@@ -179,6 +179,7 @@ class CallHistoryAdapter(
     }
 
     private inner class RecentCallViewHolder(val binding: ItemCallHistoryBinding) : ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         @RequiresApi(Build.VERSION_CODES.N)
         fun bind(call: RecentCall) = bindView(
             item = call,
@@ -226,8 +227,17 @@ class CallHistoryAdapter(
                     Calls.MISSED_TYPE -> incomingMissedCallText
                     else -> incomingCallText
                 }
+                val features = when (call.features) {
+                    Calls.FEATURES_HD_CALL -> " (HD)"
+                    Calls.FEATURES_PULLED_EXTERNALLY -> " (Externally)"
+                    Calls.FEATURES_RTT -> " (RTT)"
+                    Calls.FEATURES_VIDEO -> " (Video)"
+                    Calls.FEATURES_VOLTE, 256 -> " (VoLTE)"
+                    Calls.FEATURES_WIFI -> " (Wi-Fi)"
+                    else -> ""
+                }
                 itemRecentsTypeName.apply {
-                    text = type
+                    text = type + features
                     setTextColor(if (call.type == Calls.MISSED_TYPE) missedCallColor else textColor)
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
                 }

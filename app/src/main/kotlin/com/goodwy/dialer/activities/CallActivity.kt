@@ -133,7 +133,7 @@ class CallActivity : SimpleActivity() {
                 }
 
                 arrayOf(
-                    callToggleMicrophone, callToggleSpeaker, callDialpad, /*dialpadClose,*/ callSimImage,
+                    callToggleMicrophone, callToggleSpeaker, callDialpad, /*dialpadClose,*/ callSimImage, callDetails,
                     callToggleHold, callAddContact, callAdd, callSwap, callMerge, callInfo, imageView,
                     dialpadInclude.dialpadAsterisk, dialpadInclude.dialpadHashtag
                 ).forEach {
@@ -152,7 +152,7 @@ class CallActivity : SimpleActivity() {
             val properTextColor = getProperTextColor()
             binding.apply {
                 arrayOf(
-                    callToggleMicrophone, callToggleSpeaker, callDialpad, /*dialpadClose,*/ callSimImage,
+                    callToggleMicrophone, callToggleSpeaker, callDialpad, /*dialpadClose,*/ callSimImage, callDetails,
                     callToggleHold, callAddContact, callAdd, callSwap, callMerge, callInfo, imageView,
                     dialpadInclude.dialpadAsterisk, dialpadInclude.dialpadHashtag, callMessage, callRemind
                 ).forEach {
@@ -1240,6 +1240,7 @@ class CallActivity : SimpleActivity() {
     @Suppress("DEPRECATION")
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun updateCallContactInfo(call: Call?) {
+        binding.callDetails.beVisibleIf(call.isHD())
         getCallContact(applicationContext, call) { contact ->
             if (call != CallManager.getPrimaryCall()) {
                 return@getCallContact

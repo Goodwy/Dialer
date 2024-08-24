@@ -49,7 +49,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/item_recents_sim_image"
-            app:layout_constraintEnd_toStartOf="@+id/item_recents_type_name"
+            app:layout_constraintEnd_toStartOf="@+id/itemRecentsTypeName"
             android:alpha="0.8"
             android:gravity="center|start"
             android:maxLines="1"
@@ -59,7 +59,7 @@
             tools:text="31.12" />
 
         <TextView
-            android:id="@+id/item_recents_type_name"
+            android:id="@+id/itemRecentsTypeName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintHorizontal_weight="0.2"
