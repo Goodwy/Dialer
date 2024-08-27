@@ -22,6 +22,7 @@ import com.goodwy.commons.models.Release
 import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
 import com.goodwy.dialer.databinding.ActivitySettingsBinding
+import com.goodwy.dialer.dialogs.ChangeTextDialog
 import com.goodwy.dialer.dialogs.ExportCallHistoryDialog
 import com.goodwy.dialer.dialogs.ManageVisibleTabsDialog
 import com.goodwy.dialer.extensions.*
@@ -200,6 +201,7 @@ class SettingsActivity : SimpleActivity() {
         setupAnswerStyle()
         setupCallButtonStyle()
         setupAlwaysShowFullscreen()
+        setupQuickAnswers()
         setupCallerDescription()
         setupFlashForAlerts()
         setupMissedCallNotifications()
@@ -807,6 +809,61 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupQuickAnswers() {
+        binding.apply {
+            val getProperTextColor = getProperTextColor()
+            settingsQuickAnswerOne.applyColorFilter(getProperTextColor)
+            settingsQuickAnswerTwo.applyColorFilter(getProperTextColor)
+            settingsQuickAnswerThree.applyColorFilter(getProperTextColor)
+
+            settingsQuickAnswerOne.setOnClickListener {
+                val index = 0
+                ChangeTextDialog(this@SettingsActivity, config.quickAnswers[index]) {
+                    if (it == "") {
+                        val text = getString(R.string.message_call_later)
+                        addQuickAnswer(index, text)
+                    } else {
+                        addQuickAnswer(index, it)
+                    }
+                    toast(config.quickAnswers[index])
+                }
+            }
+            settingsQuickAnswerTwo.setOnClickListener {
+                val index = 1
+                ChangeTextDialog(this@SettingsActivity, config.quickAnswers[index]) {
+                    if (it == "") {
+                        val text = getString(R.string.message_on_my_way)
+                        addQuickAnswer(index, text)
+                    } else {
+                        addQuickAnswer(index, it)
+                    }
+                    toast(config.quickAnswers[index])
+                }
+            }
+            settingsQuickAnswerThree.setOnClickListener {
+                val index = 2
+                ChangeTextDialog(this@SettingsActivity, config.quickAnswers[index]) {
+                    if (it == "") {
+                        val text = getString(R.string.message_cant_talk_right_now)
+                        addQuickAnswer(index, text)
+                    } else {
+                        addQuickAnswer(index, it)
+                    }
+                    toast(config.quickAnswers[index])
+                }
+            }
+        }
+    }
+
+    private fun addQuickAnswer(index: Int, text: String) {
+        val quickAnswers = config.quickAnswers
+
+        quickAnswers.removeAt(index)
+        quickAnswers.add(index, text)
+
+        config.quickAnswers = quickAnswers
+    }
+
     private fun setupCallsExport() {
         binding.settingsExportCallsHolder.setOnClickListener {
             ExportCallHistoryDialog(this) { filename ->
@@ -1391,7 +1448,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 525 //TODO changelog
+        val id = 526 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1408,7 +1465,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_525)) //TODO changelog
+            add(Release(id, R.string.release_526)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }

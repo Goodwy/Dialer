@@ -45,6 +45,8 @@ const val NEED_UPDATE_RECENTS = "need_update_recents"
 const val RECENT_CALL = "recent_call"
 const val QUERY_LIMIT_RECENT = "query_limit_recent"
 const val CALL_BUTTON_STYLE = "call_button_style"
+const val QUICK_ANSWERS = "quick_answers"
+const val SHOW_VOICEMAIL_ICON = "show_voicemail_icon"
 
 const val ALL_TABS_MASK = TAB_CONTACTS or TAB_FAVORITES or TAB_CALL_HISTORY
 

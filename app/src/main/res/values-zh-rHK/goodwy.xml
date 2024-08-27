@@ -58,4 +58,7 @@
     <string name="group_all_calls">對所有呼叫進行分組，僅顯示最後一個呼叫</string>
     <string name="call_button_style">鈴鐺按鈕樣式</string>
     <string name="answer_end_other_call">接聽並結束當前通話</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

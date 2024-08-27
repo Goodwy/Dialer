@@ -963,6 +963,62 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/settingsQuickAnswersHolder"
+                        style="@style/SettingsHolderStyle"
+                        android:padding="@dimen/smaller_margin">
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settingsQuickAnswersLabel"
+                            style="@style/SettingsTextLabelStyle"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/settingsQuickAnswerOne"
+                            android:text="@string/quick_answers"/>
+
+                        <ImageView
+                            android:id="@+id/settingsQuickAnswerOne"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_toStartOf="@+id/settingsQuickAnswerTwo"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/settings_margin"
+                            android:padding="@dimen/smaller_margin"
+                            android:foreground="@drawable/ripple_all_corners_56dp"
+                            android:contentDescription="@string/quick_answers"
+                            android:src="@drawable/ic_clock_vector"
+                            android:alpha="0.6"
+                            tools:tint="@color/white"/>
+
+                        <ImageView
+                            android:id="@+id/settingsQuickAnswerTwo"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_toStartOf="@+id/settingsQuickAnswerThree"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/settings_margin"
+                            android:padding="@dimen/smaller_margin"
+                            android:foreground="@drawable/ripple_all_corners_56dp"
+                            android:contentDescription="@string/quick_answers"
+                            android:src="@drawable/ic_run"
+                            android:alpha="0.6"
+                            tools:tint="@color/white"/>
+
+                        <ImageView
+                            android:id="@+id/settingsQuickAnswerThree"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/small_margin"
+                            android:padding="@dimen/smaller_margin"
+                            android:foreground="@drawable/ripple_all_corners_56dp"
+                            android:contentDescription="@string/quick_answers"
+                            android:src="@drawable/ic_microphone_off_vector"
+                            android:alpha="0.6"
+                            tools:tint="@color/white"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:id="@+id/settings_show_caller_description_holder"
                         style="@style/SettingsHolderStyle">
 

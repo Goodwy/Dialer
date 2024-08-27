@@ -57,4 +57,7 @@
     <string name="group_all_calls">Kelompokkan semua panggilan, hanya panggilan terakhir yang akan ditampilkan</string>
     <string name="call_button_style">Gaya tombol panggil</string>
     <string name="answer_end_other_call">Jawab dan akhiri panggilan saat ini</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

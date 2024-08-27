@@ -52,6 +52,7 @@ class CallHistoryActivity : SimpleActivity() {
     private var recentsAdapter: CallHistoryAdapter? = null
     private var currentRecentCall: RecentCall? = null
     private var recentsHelper = RecentsHelper(this)
+    private var permissionContact = false
 
     private var getCurrentPhoneNumber = ""
     private var getCurrentRecentId = 0
@@ -68,6 +69,9 @@ class CallHistoryActivity : SimpleActivity() {
 
         getCurrentPhoneNumber = intent.getStringExtra(CURRENT_PHONE_NUMBER) ?: ""
         getCurrentRecentId = intent.getIntExtra(CURRENT_RECENT_CALL, CURRENT_RECENT_CALL_ID)
+        handlePermission(PERMISSION_READ_CONTACTS) {
+            permissionContact = it
+        }
         initButton()
         gotRecents()
     }
@@ -398,12 +402,9 @@ class CallHistoryActivity : SimpleActivity() {
         }
 
         if (contactId != 0 && !wasLookupKeyUsed) {
-            contact = ContactsHelper(this).getContactWithId(contactId, intent.getBooleanExtra(IS_PRIVATE, false))
+            if (permissionContact) contact = ContactsHelper(this).getContactWithId(contactId, intent.getBooleanExtra(IS_PRIVATE, false))
 
-            if (contact == null) {
-               // toast(R.string.unknown_error_occurred)
-               // finish()
-            } else {
+            if (contact != null) {
                 getDuplicateContacts {
                     ContactsHelper(this).getContactSources {
                         contactSources = it

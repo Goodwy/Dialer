@@ -58,4 +58,7 @@
     <string name="group_all_calls">Grupējiet visus zvanus, tiks parādīts tikai pēdējais zvans</string>
     <string name="call_button_style">Zvana pogas stils</string>
     <string name="answer_end_other_call">Atbildiet uz pašreizējo zvanu un beidziet to</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

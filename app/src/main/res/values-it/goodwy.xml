@@ -59,4 +59,7 @@
     <string name="group_all_calls">Raggruppa tutte le chiamate, verrà mostrata solo l\'ultima chiamata</string>
     <string name="call_button_style">Stile pulsante campanello</string>
     <string name="answer_end_other_call">Rispondi e termina la chiamata in corso</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

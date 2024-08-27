@@ -58,4 +58,7 @@
     <string name="group_all_calls">تمام کالوں کو گروپ کریں، صرف آخری کال دکھائی جائے گی۔</string>
     <string name="call_button_style">کال بٹن کا انداز</string>
     <string name="answer_end_other_call">موجودہ کال کا جواب دیں اور ختم کریں۔</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

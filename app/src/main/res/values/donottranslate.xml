@@ -3,6 +3,12 @@
     <string name="app_name_g">Right Dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
+    <string name="release_526">
+        Added ability to change quick answers to a call\n
+        Added option to speed dial to select voicemail\n
+        Changed the depth of swipes\n
+        Fixed bugs, improved stability
+    </string>
     <string name="release_525">
         Added an indicator for using high-resolution audio when making a call\n
         Added VoLTE display in call details\n

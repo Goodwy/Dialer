@@ -58,4 +58,7 @@
     <string name="group_all_calls">அனைத்து அழைப்புகளையும் குழுவாக்கவும், கடைசி அழைப்பு மட்டுமே காட்டப்படும்</string>
     <string name="call_button_style">அழைப்பு பொத்தான் நடை</string>
     <string name="answer_end_other_call">தற்போதைய அழைப்பிற்கு பதிலளித்து முடிக்கவும்</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

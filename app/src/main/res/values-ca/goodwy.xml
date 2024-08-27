@@ -59,4 +59,7 @@
     <string name="group_all_calls">Agrupa totes les trucades, només es mostrarà l\'última trucada</string>
     <string name="call_button_style">Estil de campana</string>
     <string name="answer_end_other_call">Respondre i finalitzar la trucada actual</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

@@ -891,9 +891,6 @@ class RecentCallsAdapter(
         private const val VIEW_TYPE_CALL_SWIPE = 2
     }
 
-
-
-
     private fun showCallHistory(call: RecentCall) {
 //        val callIdList : ArrayList<Int> = arrayListOf()
 //        for (i in getCallList(call)){ callIdList.add(i.id) } // add all the individual records

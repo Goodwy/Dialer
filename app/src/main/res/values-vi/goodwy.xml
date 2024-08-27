@@ -57,4 +57,7 @@
     <string name="group_all_calls">Nhóm tất cả các cuộc gọi, chỉ cuộc gọi cuối cùng sẽ được hiển thị</string>
     <string name="call_button_style">Kiểu nút chuông</string>
     <string name="answer_end_other_call">Trả lời và kết thúc cuộc gọi hiện tại</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

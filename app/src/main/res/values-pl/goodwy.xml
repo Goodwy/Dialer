@@ -60,4 +60,7 @@
     <string name="group_all_calls">Grupuj wszystkie połączenia, zostanie wyświetlone tylko ostatnie połączenie</string>
     <string name="call_button_style">Styl przycisku dzwonka</string>
     <string name="answer_end_other_call">Odbieranie i kończenie bieżącego połączenia</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

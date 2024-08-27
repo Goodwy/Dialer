@@ -58,4 +58,7 @@
     <string name="group_all_calls">Grŵp pob galwad, dim ond yr alwad olaf fydd yn cael ei dangos</string>
     <string name="call_button_style">Bell Button Arddull</string>
     <string name="answer_end_other_call">Ateb a gorffen yr alwad bresennol</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

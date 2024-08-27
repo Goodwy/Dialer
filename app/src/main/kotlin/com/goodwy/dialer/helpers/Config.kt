@@ -4,6 +4,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.media.RingtoneManager
 import android.telecom.PhoneAccountHandle
+import androidx.core.content.ContextCompat
 import com.goodwy.commons.extensions.getDefaultAlarmSound
 import com.goodwy.commons.extensions.getDefaultAlarmTitle
 import com.google.gson.Gson
@@ -195,6 +196,21 @@ class Config(context: Context) : BaseConfig(context) {
     var callButtonStyle: Int
         get() = prefs.getInt(CALL_BUTTON_STYLE, IOS16)
         set(callButtonStyle) = prefs.edit().putInt(CALL_BUTTON_STYLE, callButtonStyle).apply()
+
+    var quickAnswers: ArrayList<String>
+        get(): ArrayList<String> {
+            val defaultList = arrayListOf(
+                ContextCompat.getString(context, com.goodwy.dialer.R.string.message_call_later),
+                ContextCompat.getString(context, com.goodwy.dialer.R.string.message_on_my_way),
+                ContextCompat.getString(context, com.goodwy.dialer.R.string.message_cant_talk_right_now)
+            )
+            return ArrayList(prefs.getString(QUICK_ANSWERS, null)?.lines()?.map { it } ?: defaultList)
+        }
+        set(quickAnswers) = prefs.edit().putString(QUICK_ANSWERS, quickAnswers.joinToString(separator = "\n")).apply()
+
+    var showVoicemailIcon: Boolean
+        get() = prefs.getBoolean(SHOW_VOICEMAIL_ICON, false)
+        set(showVoicemailIcon) = prefs.edit().putBoolean(SHOW_VOICEMAIL_ICON, showVoicemailIcon).apply()
 
     //Timer
     var timerSeconds: Int

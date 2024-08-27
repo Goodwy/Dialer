@@ -18,6 +18,9 @@
     <string name="call_button_style">Call button style</string>
 
     <string name="answer_end_other_call">Answer &amp; end other call</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
     <string name="dialpad_preferences">Dialpad preferences</string>
     <string name="show_contact_thumbnails_g">Show contact thumbnails</string>
     <string name="hide_dialpad_letters_g">Hide dialpad letters</string>

@@ -18,6 +18,9 @@
     <string name="call_button_style">Стиль кнопок звонка</string>
 
     <string name="answer_end_other_call">Ответить и завершить текущий вызов</string>
+    <string name="quick_answers">Быстрые ответы</string>
+    <string name="voicemail">Голосовая почта</string>
+    <string name="show_voicemail_icon">Показывать значок голосовой почты</string>
     <string name="dialpad_preferences">Параметры кнопок набора</string>
     <string name="show_contact_thumbnails_g">Показывать фото контакта</string>
     <string name="hide_dialpad_letters_g">Скрыть буквы набора номера</string>

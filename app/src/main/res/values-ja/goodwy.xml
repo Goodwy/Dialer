@@ -57,4 +57,7 @@
     <string name="group_all_calls">すべての通話をグループ化し、最後の通話のみが表示されます</string>
     <string name="call_button_style">ベルボタンスタイル</string>
     <string name="answer_end_other_call">現在の通話に応答して終了する</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

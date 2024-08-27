@@ -58,4 +58,7 @@
     <string name="group_all_calls">모든 통화를 그룹화하면 마지막 통화만 표시됩니다.</string>
     <string name="call_button_style">벨 버튼 스타일</string>
     <string name="answer_end_other_call">현재 전화 받기 및 종료</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

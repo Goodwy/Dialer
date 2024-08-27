@@ -57,4 +57,7 @@
     <string name="group_all_calls">对所有呼叫进行分组，仅显示最后一个呼叫</string>
     <string name="call_button_style">铃铛按钮样式</string>
     <string name="answer_end_other_call">接听并结束当前通话</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

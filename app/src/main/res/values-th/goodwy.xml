@@ -57,4 +57,7 @@
     <string name="group_all_calls">จัดกลุ่มการโทรทั้งหมด จะแสดงเฉพาะการโทรครั้งสุดท้ายเท่านั้น</string>
     <string name="call_button_style">รูปแบบปุ่มกระดิ่ง</string>
     <string name="answer_end_other_call">รับสายและวางสายปัจจุบัน</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

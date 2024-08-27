@@ -58,4 +58,7 @@
     <string name="group_all_calls">Agrupa todas as chamadas, só se mostrará a última chamada</string>
     <string name="call_button_style">Estilo do botón de chamada</string>
     <string name="answer_end_other_call">Responde e finaliza a chamada actual</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

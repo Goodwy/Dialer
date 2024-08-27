@@ -58,4 +58,7 @@
     <string name="group_all_calls">Gruppér alle opkald, kun det sidste opkald vises</string>
     <string name="call_button_style">Klokkeknap stil</string>
     <string name="answer_end_other_call">Besvar og afslut det aktuelle opkald</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

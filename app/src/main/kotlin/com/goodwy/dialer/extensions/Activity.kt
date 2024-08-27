@@ -118,7 +118,7 @@ fun SimpleActivity.getHandleToUse(intent: Intent?, phoneNumber: String, callback
                         if (this is DialerActivity) {
                             finish()
                         }
-                    }) { handle ->
+                    }) { handle, _ ->
                         callback(handle)
                     }
                 }

@@ -59,4 +59,7 @@
     <string name="group_all_calls">קבץ את כל השיחות, רק השיחה האחרונה תוצג</string>
     <string name="call_button_style">סגנון לחצן פעמון</string>
     <string name="answer_end_other_call">מענה לשיחה הנוכחית וסיום שלה</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

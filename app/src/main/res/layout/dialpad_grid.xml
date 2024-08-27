@@ -175,6 +175,17 @@
                     android:gravity="center_horizontal"
                     android:text="ABC"
                     android:visibility="invisible"/>
+
+                <ImageView
+                    android:id="@+id/dialpadVoicemail"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignTop="@+id/dialpad_1_letters"
+                    android:layout_alignBottom="@+id/dialpad_1_letters"
+                    android:layout_centerInParent="true"
+                    android:paddingTop="1dp"
+                    android:alpha="0.5"
+                    app:srcCompat="@drawable/ic_voicemail" />
             </RelativeLayout>
         </RelativeLayout>
 

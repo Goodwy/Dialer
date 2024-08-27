@@ -195,6 +195,7 @@ class SettingsDialpadActivity : SimpleActivity() {
         setupDialpadStyle()
         setupSimCardColorList()
         setupPrimarySimCard()
+        setupShowVoicemailIcon()
         setupHideDialpadLetters()
         setupDialpadVibrations()
         setupDialpadBeeps()
@@ -222,10 +223,14 @@ class SettingsDialpadActivity : SimpleActivity() {
                 toneVolumeMinus, toneVolumePlus,
                 dialpadSizeMinus, dialpadSizePlus,
                 buttonSizeMinus, buttonSizePlus,
-                buttonSecondSizeMinus, buttonSecondSizePlus
+                buttonSecondSizeMinus, buttonSecondSizePlus,
+                dialpadClearWrapper.dialpadVoicemail, dialpadRoundWrapper.dialpadVoicemail
             ).forEach {
                 it.applyColorFilter(properTextColor)
             }
+
+            binding.dialpadClearWrapper.dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
+            binding.dialpadRoundWrapper.dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
             dialpadClearWrapper.dialpadGridHolder.setBackgroundColor(properBackgroundColor)
             dialpadRectWrapper.dialpadGridHolder.setBackgroundColor(properBackgroundColor)
         }
@@ -452,10 +457,12 @@ class SettingsDialpadActivity : SimpleActivity() {
             }
 
             arrayOf(
-                binding.dialpadRectWrapper.dialpadAsterisk, binding.dialpadRectWrapper.dialpadHashtag
+                binding.dialpadRectWrapper.dialpadAsterisk, binding.dialpadRectWrapper.dialpadHashtag,
+                binding.dialpadRectWrapper.dialpadVoicemail
             ).forEach {
                 it.applyColorFilter(textColor)
             }
+            binding.dialpadRectWrapper.dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
 
             val simOnePrimary = config.currentSIMCardIndex == 0
             val simTwoColor = if (areMultipleSIMsAvailable) {
@@ -1051,6 +1058,18 @@ class SettingsDialpadActivity : SimpleActivity() {
                 }
             }
         } else binding.settingsPrimarySimCardHolder.beGone()
+    }
+
+    private fun setupShowVoicemailIcon() {
+        binding.apply {
+            settingsShowVoicemailIcon.isChecked = config.showVoicemailIcon
+            settingsShowVoicemailIconHolder.setOnClickListener {
+                settingsShowVoicemailIcon.toggle()
+                config.showVoicemailIcon = settingsShowVoicemailIcon.isChecked
+                initStyle()
+                showDialpad()
+            }
+        }
     }
 
     private fun setupHideDialpadLetters() {

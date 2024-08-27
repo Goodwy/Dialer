@@ -59,4 +59,7 @@
     <string name="group_all_calls">Agrupar todas as chamadas, apenas a última chamada será mostrada</string>
     <string name="call_button_style">Estilo de botão de anel</string>
     <string name="answer_end_other_call">Atender e terminar a chamada atual</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

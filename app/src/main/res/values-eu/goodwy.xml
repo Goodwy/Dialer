@@ -58,4 +58,7 @@
     <string name="group_all_calls">Talde dei guztiak, azken deia bakarrik erakutsiko da</string>
     <string name="call_button_style">Deitzeko botoiaren estiloa</string>
     <string name="answer_end_other_call">Erantzun eta amaitu uneko deia</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

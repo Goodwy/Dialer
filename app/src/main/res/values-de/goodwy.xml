@@ -58,4 +58,7 @@
     <string name="group_all_calls">Gruppieren Sie alle Anrufe, es wird nur der letzte Anruf angezeigt</string>
     <string name="call_button_style">Klingelknopf-Stil</string>
     <string name="answer_end_other_call">Annehmen und Beenden des aktuellen Anrufs</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

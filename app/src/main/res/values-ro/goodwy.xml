@@ -60,4 +60,7 @@
     <string name="group_all_calls">Grupați toate apelurile, va fi afișat doar ultimul apel</string>
     <string name="call_button_style">Stil buton clopot</string>
     <string name="answer_end_other_call">Răspundeți și încheiați apelul curent</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

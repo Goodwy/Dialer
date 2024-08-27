@@ -15,33 +15,32 @@ import com.goodwy.dialer.databinding.DialogSelectSimBinding
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.getAvailableSIMCardLabels
 
-@SuppressLint("MissingPermission")
+@SuppressLint("MissingPermission", "SetTextI18n")
 class SelectSIMDialog(
     val activity: BaseSimpleActivity,
     val phoneNumber: String,
     onDismiss: () -> Unit = {},
-    val callback: (handle: PhoneAccountHandle?) -> Unit
+    val callback: (handle: PhoneAccountHandle?, label: String?) -> Unit
 ) {
     private var dialog: AlertDialog? = null
     private val binding by activity.viewBinding(DialogSelectSimBinding::inflate)
 
     init {
+        val isManageSpeedDial = phoneNumber == ""
+        binding.selectSimLabel.beGoneIf(isManageSpeedDial)
+        binding.divider.beGoneIf(isManageSpeedDial)
+        binding.selectSimRememberHolder.beGoneIf(isManageSpeedDial)
         binding.selectSimRememberHolder.setOnClickListener {
             binding.selectSimRemember.toggle()
         }
 
         activity.getAvailableSIMCardLabels().forEachIndexed { index, SIMAccount ->
-//            val radioButton = (activity.layoutInflater.inflate(R.layout.radio_button, null) as RadioButton).apply {
-//                text = "${index + 1} - ${SIMAccount.label}"
-//                id = index
-//                setOnClickListener { selectedSIM(SIMAccount.handle) }
-//            }
             val radioButton = RadioButtonIconBinding.inflate(activity.layoutInflater, null, false).apply {
                 val indexText = index + 1
                 dialogRadioButton.apply {
                     text = "$indexText - ${SIMAccount.label}"
                     id = index
-                    setOnClickListener { selectedSIM(SIMAccount.handle) }
+                    setOnClickListener { selectedSIM(SIMAccount.handle, SIMAccount.label) }
                 }
                 dialogRadioButtonIcon.apply {
                     val simColor = if (indexText in 1..4) activity.config.simIconsColors[indexText] else activity.config.simIconsColors[0]
@@ -60,7 +59,6 @@ class SelectSIMDialog(
         }
 
         activity.getAlertDialogBuilder()
-            //.setOnCancelListener { callback.invoke(null) }
             .setNegativeButton(R.string.cancel, null)
             .apply {
                 activity.setupDialogStuff(binding.root, this) { alertDialog ->
@@ -73,12 +71,12 @@ class SelectSIMDialog(
         }
     }
 
-    private fun selectedSIM(handle: PhoneAccountHandle) {
+    private fun selectedSIM(handle: PhoneAccountHandle, label: String) {
         if (binding.selectSimRemember.isChecked) {
             activity.config.saveCustomSIM(phoneNumber, handle)
         }
 
-        callback(handle)
+        callback(handle, label)
         dialog?.dismiss()
     }
 }

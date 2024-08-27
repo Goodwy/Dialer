@@ -58,4 +58,7 @@
     <string name="group_all_calls">Csoportosítsa az összes hívást, csak az utolsó hívás jelenik meg</string>
     <string name="call_button_style">Csengő gomb stílusa</string>
     <string name="answer_end_other_call">Az aktuális hívás fogadása és befejezése</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

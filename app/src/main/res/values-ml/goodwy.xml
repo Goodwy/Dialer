@@ -58,4 +58,7 @@
     <string name="group_all_calls">എല്ലാ കോളുകളും ഗ്രൂപ്പുചെയ്യുക, അവസാന കോൾ മാത്രമേ കാണിക്കൂ</string>
     <string name="call_button_style">കോൾ ബട്ടൺ ശൈലി</string>
     <string name="answer_end_other_call">നിലവിലെ കോളിന് ഉത്തരം നൽകി അവസാനിപ്പിക്കുക</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

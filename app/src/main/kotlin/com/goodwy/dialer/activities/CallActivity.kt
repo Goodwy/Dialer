@@ -986,10 +986,13 @@ class CallActivity : SimpleActivity() {
                 setOnClickListener {
                     val wrapper: Context = ContextThemeWrapper(this@CallActivity, getPopupMenuTheme())
                     val popupMenu = PopupMenu(wrapper, callMessage, Gravity.END)
+                    val quickAnswers = config.quickAnswers
                     popupMenu.menu.add(1, 1, 1, R.string.other).setIcon(R.drawable.ic_transparent)
-                    popupMenu.menu.add(1, 2, 2, R.string.message_call_later).setIcon(R.drawable.ic_clock_vector)
-                    popupMenu.menu.add(1, 3, 3, R.string.message_on_my_way).setIcon(R.drawable.ic_run)
-                    popupMenu.menu.add(1, 4, 4, R.string.message_cant_talk_right_now).setIcon(R.drawable.ic_microphone_off_vector)
+                    if (quickAnswers.size == 3) {
+                        popupMenu.menu.add(1, 2, 2, quickAnswers[0]).setIcon(R.drawable.ic_clock_vector)
+                        popupMenu.menu.add(1, 3, 3, quickAnswers[1]).setIcon(R.drawable.ic_run)
+                        popupMenu.menu.add(1, 4, 4, quickAnswers[2]).setIcon(R.drawable.ic_microphone_off_vector)
+                    }
                     popupMenu.setOnMenuItemClickListener { item ->
                         when (item.itemId) {
                             1 -> {

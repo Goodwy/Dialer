@@ -60,4 +60,7 @@
     <string name="group_all_calls">Sugrupuokite visus skambučius, bus rodomas tik paskutinis skambutis</string>
     <string name="call_button_style">Varpo mygtuko stilius</string>
     <string name="answer_end_other_call">Atsiliepkite ir užbaikite dabartinį skambutį</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

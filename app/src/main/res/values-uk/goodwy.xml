@@ -60,4 +60,7 @@
     <string name="group_all_calls">Згрупуйте всі дзвінки, буде показаний тільки останній дзвінок</string>
     <string name="call_button_style">Стиль кнопки дзвінка</string>
     <string name="answer_end_other_call">Відповідь на поточний дзвінок і його завершення</string>
+    <string name="quick_answers">Швидкі відповіді</string>
+    <string name="voicemail">Голосова пошта</string>
+    <string name="show_voicemail_icon">Показувати значок голосової пошти</string>
 </resources>

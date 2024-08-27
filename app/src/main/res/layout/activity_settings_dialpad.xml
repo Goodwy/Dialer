@@ -221,6 +221,17 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/settingsShowVoicemailIconHolder"
+                            style="@style/SettingsHolderSwitchStyle">
+
+                            <com.goodwy.commons.views.MySwitchCompat
+                                android:id="@+id/settingsShowVoicemailIcon"
+                                style="@style/SettingsSwitchStyle"
+                                android:text="@string/show_voicemail_icon"
+                                app:switchPadding="@dimen/bigger_margin"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
                             android:id="@+id/settingsHideDialpadLettersHolder"
                             style="@style/SettingsHolderSwitchStyle">
 

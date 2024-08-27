@@ -62,4 +62,7 @@
     <string name="group_all_calls">تجميع جميع المكالمات ، سيتم عرض المكالمة الأخيرة فقط</string>
     <string name="call_button_style">نمط زر الجرس</string>
     <string name="answer_end_other_call">الرد على المكالمة الحالية وإنهاؤها</string>
+    <string name="quick_answers">Quick answers</string>
+    <string name="voicemail">Voicemail</string>
+    <string name="show_voicemail_icon">Show voicemail icon</string>
 </resources>

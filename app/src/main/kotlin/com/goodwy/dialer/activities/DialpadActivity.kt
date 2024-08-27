@@ -231,10 +231,15 @@ class DialpadActivity : SimpleActivity() {
         setupToolbar(binding.dialpadToolbar, NavigationIcon.Arrow, statusBarColor = properBackgroundColor, navigationClick = false)
 
         arrayOf(binding.dialpadClearWrapper.dialpadAsterisk, binding.dialpadClearWrapper.dialpadHashtag,
-            binding.dialpadRoundWrapper.dialpadAsteriskIos, binding.dialpadRoundWrapper.dialpadHashtagIos
+            binding.dialpadRoundWrapper.dialpadAsteriskIos, binding.dialpadRoundWrapper.dialpadHashtagIos,
+            binding.dialpadClearWrapper.dialpadVoicemail, binding.dialpadRoundWrapper.dialpadVoicemail
         ).forEach {
             it.applyColorFilter(properTextColor)
         }
+
+        binding.dialpadClearWrapper.dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
+        binding.dialpadRoundWrapper.dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
+
         binding.dialpadClearWrapper.root.setBackgroundColor(properBackgroundColor)
         binding.dialpadRectWrapper.root.setBackgroundColor(properBackgroundColor)
         binding.dialpadAddNumber.setTextColor(properPrimaryColor)
@@ -454,10 +459,12 @@ class DialpadActivity : SimpleActivity() {
             }
 
             arrayOf(
-                binding.dialpadRectWrapper.dialpadAsterisk, binding.dialpadRectWrapper.dialpadHashtag
+                binding.dialpadRectWrapper.dialpadAsterisk, binding.dialpadRectWrapper.dialpadHashtag,
+                binding.dialpadRectWrapper.dialpadVoicemail
             ).forEach {
                 it.applyColorFilter(textColor)
             }
+            binding.dialpadRectWrapper.dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
 
             val simOnePrimary = config.currentSIMCardIndex == 0
             val simTwoColor = if (areMultipleSIMsAvailable) {

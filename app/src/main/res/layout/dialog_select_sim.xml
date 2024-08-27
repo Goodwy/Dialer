@@ -9,7 +9,7 @@
     android:paddingEnd="@dimen/activity_margin">
 
     <com.goodwy.commons.views.MyTextView
-        android:id="@+id/select_sim_label"
+        android:id="@+id/selectSimLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/small_margin"
@@ -23,10 +23,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/medium_margin"/>
 
-    <include layout="@layout/divider"/>
+    <include
+        android:id="@+id/divider"
+        layout="@layout/divider"/>
 
     <RelativeLayout
-        android:id="@+id/select_sim_remember_holder"
+        android:id="@+id/selectSimRememberHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_margin"
