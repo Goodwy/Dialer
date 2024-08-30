@@ -260,15 +260,20 @@ class RecentsHelper(private val context: Context) {
                 val type = cursor.getIntValue(Calls.TYPE)
                 val features = cursor.getIntValue(Calls.FEATURES)
                 val accountId = cursor.getStringValue(Calls.PHONE_ACCOUNT_ID)
-                var simID = accountIdToSimIDMap[accountId] ?: -1
+                //var simID = accountIdToSimIDMap[accountId] ?: -1
                 // Some users do not correctly detect the second ESIM card
                 // https://stackoverflow.com/questions/63834168/identifying-a-sim-card-slot-with-phone-account-id-in-android-calllogcalls
-                // on some devices it just returns the SIM card slot index
-                if (simID == -1 && accountId != null) {
-                    accountId.toIntOrNull()?.let {
-                        if (it >= 0) simID = it
+                // On some devices PHONE_ACCOUNT_ID just returns the SIM card slot index
+                var simID = -1
+                if (accountId != null) {
+                    if (accountId.length == 1) {
+                        accountId.toIntOrNull()?.let {
+                            simID = if (it >= 0) it + 1 else -1
+                        }
                     }
                 }
+                if (simID == -1) simID = accountIdToSimIDMap[accountId] ?: -1
+
                 var specificNumber = ""
                 var specificType = ""
 

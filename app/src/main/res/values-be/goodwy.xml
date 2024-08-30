@@ -63,4 +63,5 @@
     <string name="quick_answers">Хуткія адказы</string>
     <string name="voicemail">Галасавая пошта</string>
     <string name="show_voicemail_icon">Паказваць значок галасавой пошты</string>
+    <string name="secondary_dialpad_language">Дадатковая мова на клавіятуры</string>
 </resources>

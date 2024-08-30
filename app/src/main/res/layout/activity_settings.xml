@@ -175,7 +175,6 @@
                             android:clickable="false"
                             android:contentDescription="@string/settings_icon"
                             android:src="@drawable/ic_more_horiz" />
-
                     </RelativeLayout>
 
                     <RelativeLayout

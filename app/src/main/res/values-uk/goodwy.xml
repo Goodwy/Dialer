@@ -63,4 +63,5 @@
     <string name="quick_answers">Швидкі відповіді</string>
     <string name="voicemail">Голосова пошта</string>
     <string name="show_voicemail_icon">Показувати значок голосової пошти</string>
+    <string name="secondary_dialpad_language">Додаткова мова на клавіатурі</string>
 </resources>

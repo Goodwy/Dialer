@@ -15,6 +15,7 @@ const val SHOW_TABS = "show_tabs"
 const val WAS_OVERLAY_SNACKBAR_CONFIRMED = "was_overlay_snackbar_confirmed"
 const val DIALPAD_VIBRATION = "dialpad_vibration"
 const val DIALPAD_BEEPS = "dialpad_beeps"
+const val DIALPAD_SECONDARY_LANGUAGE = "dialpad_secondary_language"
 const val HIDE_DIALPAD_NUMBERS = "hide_dialpad_numbers"
 const val ALWAYS_SHOW_FULLSCREEN = "always_show_fullscreen" // not used SHOW_INCOMING_CALLS_FULL_SCREEN
 //Goodwy
@@ -135,3 +136,11 @@ const val GROUP_CALLS_ALL = 2
 // Call button style
 const val IOS16 = 0
 const val IOS17 = 1
+
+
+// Additional language on dialpad
+const val LANGUAGE_NONE = "none"
+const val LANGUAGE_SYSTEM = "system"
+const val SECONDARY_LANGUAGE_NONE_ID: Int = -1
+const val SECONDARY_LANGUAGE_SYSTEM_ID: Int = -2
+const val LOCALE_EN = "en"

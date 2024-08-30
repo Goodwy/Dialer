@@ -87,6 +87,10 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(HIDE_DIALPAD_NUMBERS, false)
         set(hideDialpadNumbers) = prefs.edit().putBoolean(HIDE_DIALPAD_NUMBERS, hideDialpadNumbers).apply()
 
+    var dialpadSecondaryLanguage: String?
+        get() = prefs.getString(DIALPAD_SECONDARY_LANGUAGE, LANGUAGE_SYSTEM)
+        set(dialpadSecondaryLanguage) = prefs.edit().putString(DIALPAD_SECONDARY_LANGUAGE, dialpadSecondaryLanguage).apply()
+
     var dialpadBeeps: Boolean
         get() = prefs.getBoolean(DIALPAD_BEEPS, false)
         set(dialpadBeeps) = prefs.edit().putBoolean(DIALPAD_BEEPS, dialpadBeeps).apply()

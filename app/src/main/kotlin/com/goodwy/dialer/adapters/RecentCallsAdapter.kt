@@ -850,18 +850,17 @@ class RecentCallsAdapter(
                 itemRecentsHolder.setRippleColor(SwipeDirection.Left, swipeActionColor(swipeLeftAction))
                 itemRecentsHolder.setRippleColor(SwipeDirection.Right, swipeActionColor(swipeRightAction))
 
+                itemRecentsHolder.useHapticFeedback = activity.config.swipeVibration
                 itemRecentsHolder.swipeGestureListener = object : SwipeGestureListener {
                     override fun onSwipedLeft(swipeActionView: SwipeActionView): Boolean {
                         val swipeLeftOrRightAction = if (activity.isRTLLayout) activity.config.swipeRightAction else activity.config.swipeLeftAction
                         swipeAction(swipeLeftOrRightAction, call)
-                        if (activity.config.swipeVibration) itemRecentsHolder.performHapticFeedback()
                         return true
                     }
 
                     override fun onSwipedRight(swipeActionView: SwipeActionView): Boolean {
                         val swipeRightOrLeftAction = if (activity.isRTLLayout) activity.config.swipeLeftAction else activity.config.swipeRightAction
                         swipeAction(swipeRightOrLeftAction, call)
-                        if (activity.config.swipeVibration) itemRecentsHolder.performHapticFeedback()
                         return true
                     }
                 }

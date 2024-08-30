@@ -15,6 +15,7 @@ import android.media.AudioManager
 import android.net.Uri
 import android.os.Build
 import android.os.PowerManager
+import android.telephony.SubscriptionManager
 import androidx.core.app.NotificationCompat
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
@@ -70,6 +71,7 @@ fun Context.areMultipleSIMsAvailable(): Boolean {
     }
 }
 
+@SuppressLint("MissingPermission")
 fun Context.clearMissedCalls() {
     ensureBackgroundThread {
         try {
@@ -356,4 +358,8 @@ fun Context.createNewTimer(): Timer {
         System.currentTimeMillis(),
         config.timerChannelId,
     )
+}
+
+fun Context.subscriptionManagerCompat(): SubscriptionManager {
+    return getSystemService(SubscriptionManager::class.java)
 }

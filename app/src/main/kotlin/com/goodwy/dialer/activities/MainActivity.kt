@@ -54,6 +54,8 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import me.grantland.widget.AutofitHelper
+import java.io.InputStreamReader
+import java.util.Locale
 
 class MainActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityMainBinding::inflate)
@@ -139,6 +141,8 @@ class MainActivity : SimpleActivity() {
         Contact.sorting = config.sorting
 
         binding.mainTopTabsContainer.beGoneIf(binding.mainTopTabsHolder.tabCount == 1 || useBottomNavigationBar)
+
+        setupSecondaryLanguage()
     }
 
     override fun onResume() {
@@ -636,7 +640,7 @@ class MainActivity : SimpleActivity() {
         if (scrollingView is RecyclerView) {
             scrollingView.setOnScrollChangeListener { _, _, _, _, _ ->
                 val newScrollY = scrollingView.computeVerticalScrollOffset()
-                scrollingChanged(newScrollY)
+                if (newScrollY == 0 || currentOldScrollY == 0) scrollingChanged(newScrollY)
                 currentScrollY = newScrollY
                 currentOldScrollY = currentScrollY
             }
@@ -957,6 +961,22 @@ class MainActivity : SimpleActivity() {
             cachedContacts.addAll(contacts)
         } catch (_: Exception) {
         }
+    }
+
+    private fun setupSecondaryLanguage() {
+        if (!DialpadT9.Initialized) {
+            val reader = InputStreamReader(resources.openRawResource(R.raw.t9languages))
+            DialpadT9.readFromJson(reader.readText())
+        }
+
+//        if (config.dialpadSecondaryLanguage == "") {
+//            val currentLang = Locale.getDefault().language
+//            if (DialpadT9.getSupportedSecondaryLanguages().contains(currentLang)) {
+//                config.dialpadSecondaryLanguage = currentLang
+//            } else {
+//                config.dialpadSecondaryLanguage = LANGUAGE_NONE
+//            }
+//        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

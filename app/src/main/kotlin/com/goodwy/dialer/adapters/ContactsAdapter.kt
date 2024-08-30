@@ -510,18 +510,17 @@ class ContactsAdapter(
                     swipeRightIconHolder!!.setWidth(width)
                 }
 
+                itemContactSwipe!!.useHapticFeedback = activity.config.swipeVibration
                 itemContactSwipe!!.swipeGestureListener = object : SwipeGestureListener {
                     override fun onSwipedLeft(swipeActionView: SwipeActionView): Boolean {
                         val swipeLeftOrRightAction = if (activity.isRTLLayout) activity.config.swipeRightAction else activity.config.swipeLeftAction
                         swipeAction(swipeLeftOrRightAction, contact)
-                        if (activity.config.swipeVibration) itemContactSwipe!!.performHapticFeedback()
                         return true
                     }
 
                     override fun onSwipedRight(swipeActionView: SwipeActionView): Boolean {
                         val swipeRightOrLeftAction = if (activity.isRTLLayout) activity.config.swipeLeftAction else activity.config.swipeRightAction
                         swipeAction(swipeRightOrLeftAction, contact)
-                        if (activity.config.swipeVibration) itemContactSwipe!!.performHapticFeedback()
                         return true
                     }
                 }

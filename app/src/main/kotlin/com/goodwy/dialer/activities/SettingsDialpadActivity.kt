@@ -37,6 +37,7 @@ import com.mikhaellopez.rxanimation.RxAnimation
 import com.mikhaellopez.rxanimation.shake
 import kotlinx.coroutines.launch
 import ru.rustore.sdk.core.feature.model.FeatureAvailabilityResult
+import java.io.InputStreamReader
 import java.util.*
 import kotlin.math.abs
 
@@ -56,8 +57,6 @@ class SettingsDialpadActivity : SimpleActivity() {
     private var ruStoreIsConnected = false
 
     private var speedDialValues = ArrayList<SpeedDial>()
-    private val russianCharsMap = HashMap<Char, Int>()
-    private var hasRussianLocale = false
     private var privateCursor: Cursor? = null
     private var toneGeneratorHelper: ToneGeneratorHelper? = null
     private val hideDialpadHandler = Handler(Looper.getMainLooper())
@@ -67,7 +66,6 @@ class SettingsDialpadActivity : SimpleActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        hasRussianLocale = Locale.getDefault().language == "ru"
 
         binding.apply {
             updateMaterialActivityViews(dialpadCoordinator, dialpadHolder, useTransparentNavigation = true, useTopSearchMenu = false)
@@ -126,63 +124,6 @@ class SettingsDialpadActivity : SimpleActivity() {
         privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
 
         toneGeneratorHelper = ToneGeneratorHelper(this, DIALPAD_TONE_LENGTH_MS)
-
-        if (hasRussianLocale) {
-            initRussianChars()
-            val fontSizeRu = getTextSize() - 16f//resources.getDimension(R.dimen.small_text_size)
-            binding.dialpadClearWrapper.apply {
-                dialpad2Letters.text = "АБВГ\nABC"
-                dialpad3Letters.text = "ДЕЁЖЗ\nDEF"
-                dialpad4Letters.text = "ИЙКЛ\nGHI"
-                dialpad5Letters.text = "МНОП\nJKL"
-                dialpad6Letters.text = "РСТУ\nMNO"
-                dialpad7Letters.text = "ФХЦЧ\nPQRS"
-                dialpad8Letters.text = "ШЩЪЫ\nTUV"
-                dialpad9Letters.text = "ЬЭЮЯ\nWXYZ"
-
-                arrayOf(
-                    dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
-                    dialpad6Letters, dialpad7Letters, dialpad8Letters, dialpad9Letters
-                ).forEach {
-                    it.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizeRu)
-                }
-            }
-
-            binding.dialpadRoundWrapper.apply {
-                dialpad2IosLetters.text = "АБВГ\nABC"
-                dialpad3IosLetters.text = "ДЕЁЖЗ\nDEF"
-                dialpad4IosLetters.text = "ИЙКЛ\nGHI"
-                dialpad5IosLetters.text = "МНОП\nJKL"
-                dialpad6IosLetters.text = "РСТУ\nMNO"
-                dialpad7IosLetters.text = "ФХЦЧ\nPQRS"
-                dialpad8IosLetters.text = "ШЩЪЫ\nTUV"
-                dialpad9IosLetters.text = "ЬЭЮЯ\nWXYZ"
-
-                arrayOf(
-                    dialpad2IosLetters, dialpad3IosLetters, dialpad4IosLetters, dialpad5IosLetters,
-                    dialpad6IosLetters, dialpad7IosLetters, dialpad8IosLetters, dialpad9IosLetters
-                ).forEach {
-                    it.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizeRu)
-                }
-            }
-            binding.dialpadRectWrapper.apply {
-                dialpad2Letters.text = "АБВГ\nABC"
-                dialpad3Letters.text = "ДЕЁЖЗ\nDEF"
-                dialpad4Letters.text = "ИЙКЛ\nGHI"
-                dialpad5Letters.text = "МНОП\nJKL"
-                dialpad6Letters.text = "РСТУ\nMNO"
-                dialpad7Letters.text = "ФХЦЧ\nPQRS"
-                dialpad8Letters.text = "ШЩЪЫ\nTUV"
-                dialpad9Letters.text = "ЬЭЮЯ\nWXYZ"
-
-                arrayOf(
-                    dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
-                    dialpad6Letters, dialpad7Letters, dialpad8Letters, dialpad9Letters
-                ).forEach {
-                    it.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizeRu)
-                }
-            }
-        }
     }
 
     @SuppressLint("MissingSuperCall")
@@ -197,6 +138,7 @@ class SettingsDialpadActivity : SimpleActivity() {
         setupPrimarySimCard()
         setupShowVoicemailIcon()
         setupHideDialpadLetters()
+        setupDialpadSecondaryLanguage()
         setupDialpadVibrations()
         setupDialpadBeeps()
         setupToneVolume()
@@ -229,8 +171,6 @@ class SettingsDialpadActivity : SimpleActivity() {
                 it.applyColorFilter(properTextColor)
             }
 
-            binding.dialpadClearWrapper.dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
-            binding.dialpadRoundWrapper.dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
             dialpadClearWrapper.dialpadGridHolder.setBackgroundColor(properBackgroundColor)
             dialpadRectWrapper.dialpadGridHolder.setBackgroundColor(properBackgroundColor)
         }
@@ -367,6 +307,7 @@ class SettingsDialpadActivity : SimpleActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initLettersConcept() {
         val areMultipleSIMsAvailable = areMultipleSIMsAvailable()
         val baseColor = baseConfig.backgroundColor
@@ -394,9 +335,42 @@ class SettingsDialpadActivity : SimpleActivity() {
                     it.beVisible()
                 }
 
-                hasRussianLocale = Locale.getDefault().language == "ru"
-                if (!hasRussianLocale) {
-                    val fontSize = getTextSize() - 8f//resources.getDimension(R.dimen.small_text_size)
+                if (!DialpadT9.Initialized) {
+                    val reader = InputStreamReader(resources.openRawResource(R.raw.t9languages))
+                    DialpadT9.readFromJson(reader.readText())
+                }
+                val langPref = config.dialpadSecondaryLanguage
+                val langLocale = Locale.getDefault().language
+                val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
+                if (langPref!! != LANGUAGE_NONE && langPref != LANGUAGE_SYSTEM || isAutoLang) {
+                    val lang = if (isAutoLang) langLocale else langPref
+                    val fontSize = getTextSize() - 16f
+                    dialpad2Letters.text = DialpadT9.getLettersForNumber(2, lang) + "\nABC"
+                    dialpad3Letters.text = DialpadT9.getLettersForNumber(3, lang) + "\nDEF"
+                    dialpad4Letters.text = DialpadT9.getLettersForNumber(4, lang) + "\nGHI"
+                    dialpad5Letters.text = DialpadT9.getLettersForNumber(5, lang) + "\nJKL"
+                    dialpad6Letters.text = DialpadT9.getLettersForNumber(6, lang) + "\nMNO"
+                    dialpad7Letters.text = DialpadT9.getLettersForNumber(7, lang) + "\nPQRS"
+                    dialpad8Letters.text = DialpadT9.getLettersForNumber(8, lang) + "\nTUV"
+                    dialpad9Letters.text = DialpadT9.getLettersForNumber(9, lang) + "\nWXYZ"
+
+                    arrayOf(
+                        dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
+                        dialpad6Letters, dialpad7Letters, dialpad8Letters, dialpad9Letters
+                    ).forEach {
+                        it.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize)
+                    }
+                } else {
+                    dialpad2Letters.text = "ABC"
+                    dialpad3Letters.text = "DEF"
+                    dialpad4Letters.text = "GHI"
+                    dialpad5Letters.text = "JKL"
+                    dialpad6Letters.text = "MNO"
+                    dialpad7Letters.text = "PQRS"
+                    dialpad8Letters.text = "TUV"
+                    dialpad9Letters.text = "WXYZ"
+
+                    val fontSize = getTextSize() - 8f
                     arrayOf(
                         dialpad1Letters, dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
                         dialpad6Letters, dialpad7Letters, dialpad8Letters, dialpad9Letters
@@ -490,6 +464,7 @@ class SettingsDialpadActivity : SimpleActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initLetters() {
         binding.dialpadClearWrapper.apply {
             if (config.hideDialpadLetters) {
@@ -508,9 +483,42 @@ class SettingsDialpadActivity : SimpleActivity() {
                     it.beVisible()
                 }
 
-                hasRussianLocale = Locale.getDefault().language == "ru"
-                if (!hasRussianLocale) {
-                    val fontSize = getTextSize() - 8f//resources.getDimension(R.dimen.small_text_size)
+                if (!DialpadT9.Initialized) {
+                    val reader = InputStreamReader(resources.openRawResource(R.raw.t9languages))
+                    DialpadT9.readFromJson(reader.readText())
+                }
+                val langPref = config.dialpadSecondaryLanguage
+                val langLocale = Locale.getDefault().language
+                val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
+                if (langPref!! != LANGUAGE_NONE && langPref != LANGUAGE_SYSTEM || isAutoLang) {
+                    val lang = if (isAutoLang) langLocale else langPref
+                    dialpad2Letters.text = DialpadT9.getLettersForNumber(2, lang) + "\nABC"
+                    dialpad3Letters.text = DialpadT9.getLettersForNumber(3, lang) + "\nDEF"
+                    dialpad4Letters.text = DialpadT9.getLettersForNumber(4, lang) + "\nGHI"
+                    dialpad5Letters.text = DialpadT9.getLettersForNumber(5, lang) + "\nJKL"
+                    dialpad6Letters.text = DialpadT9.getLettersForNumber(6, lang) + "\nMNO"
+                    dialpad7Letters.text = DialpadT9.getLettersForNumber(7, lang) + "\nPQRS"
+                    dialpad8Letters.text = DialpadT9.getLettersForNumber(8, lang) + "\nTUV"
+                    dialpad9Letters.text = DialpadT9.getLettersForNumber(9, lang) + "\nWXYZ"
+
+                    val fontSizeRu = getTextSize() - 16f
+                    arrayOf(
+                        dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
+                        dialpad6Letters, dialpad7Letters, dialpad8Letters, dialpad9Letters
+                    ).forEach {
+                        it.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizeRu)
+                    }
+                } else {
+                    dialpad2Letters.text = "ABC"
+                    dialpad3Letters.text = "DEF"
+                    dialpad4Letters.text = "GHI"
+                    dialpad5Letters.text = "JKL"
+                    dialpad6Letters.text = "MNO"
+                    dialpad7Letters.text = "PQRS"
+                    dialpad8Letters.text = "TUV"
+                    dialpad9Letters.text = "WXYZ"
+
+                    val fontSize = getTextSize() - 8f
                     arrayOf(
                         dialpad1Letters, dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
                         dialpad6Letters, dialpad7Letters, dialpad8Letters, dialpad9Letters
@@ -543,6 +551,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                     setMargins(margin, margin, margin, margin)
                 }
             }
+            binding.dialpadClearWrapper.dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
 
             val areMultipleSIMsAvailable = areMultipleSIMsAvailable()
             val simOnePrimary = config.currentSIMCardIndex == 0
@@ -572,6 +581,7 @@ class SettingsDialpadActivity : SimpleActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initLettersIos() {
         binding.dialpadRoundWrapper.apply {
             if (config.hideDialpadLetters) {
@@ -591,9 +601,43 @@ class SettingsDialpadActivity : SimpleActivity() {
                     it.beVisible()
                 }
 
-                hasRussianLocale = Locale.getDefault().language == "ru"
-                if (!hasRussianLocale) {
-                    val fontSize = getTextSize() - 8f//resources.getDimension(R.dimen.small_text_size)
+
+                if (!DialpadT9.Initialized) {
+                    val reader = InputStreamReader(resources.openRawResource(R.raw.t9languages))
+                    DialpadT9.readFromJson(reader.readText())
+                }
+                val langPref = config.dialpadSecondaryLanguage
+                val langLocale = Locale.getDefault().language
+                val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
+                if (langPref!! != LANGUAGE_NONE && langPref != LANGUAGE_SYSTEM || isAutoLang) {
+                    val lang = if (isAutoLang) langLocale else langPref
+                    dialpad2IosLetters.text = DialpadT9.getLettersForNumber(2, lang) + "\nABC"
+                    dialpad3IosLetters.text = DialpadT9.getLettersForNumber(3, lang) + "\nDEF"
+                    dialpad4IosLetters.text = DialpadT9.getLettersForNumber(4, lang) + "\nGHI"
+                    dialpad5IosLetters.text = DialpadT9.getLettersForNumber(5, lang) + "\nJKL"
+                    dialpad6IosLetters.text = DialpadT9.getLettersForNumber(6, lang) + "\nMNO"
+                    dialpad7IosLetters.text = DialpadT9.getLettersForNumber(7, lang) + "\nPQRS"
+                    dialpad8IosLetters.text = DialpadT9.getLettersForNumber(8, lang) + "\nTUV"
+                    dialpad9IosLetters.text = DialpadT9.getLettersForNumber(9, lang) + "\nWXYZ"
+
+                    val fontSizeRu = getTextSize() - 16f
+                    arrayOf(
+                        dialpad2IosLetters, dialpad3IosLetters, dialpad4IosLetters, dialpad5IosLetters,
+                        dialpad6IosLetters, dialpad7IosLetters, dialpad8IosLetters, dialpad9IosLetters
+                    ).forEach {
+                        it.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizeRu)
+                    }
+                } else {
+                    dialpad2IosLetters.text = "ABC"
+                    dialpad3IosLetters.text = "DEF"
+                    dialpad4IosLetters.text = "GHI"
+                    dialpad5IosLetters.text = "JKL"
+                    dialpad6IosLetters.text = "MNO"
+                    dialpad7IosLetters.text = "PQRS"
+                    dialpad8IosLetters.text = "TUV"
+                    dialpad9IosLetters.text = "WXYZ"
+
+                    val fontSize = getTextSize() - 8f
                     arrayOf(
                         dialpad1IosLetters, dialpad2IosLetters, dialpad3IosLetters, dialpad4IosLetters, dialpad5IosLetters,
                         dialpad6IosLetters, dialpad7IosLetters, dialpad8IosLetters, dialpad9IosLetters
@@ -602,6 +646,8 @@ class SettingsDialpadActivity : SimpleActivity() {
                     }
                 }
             }
+            binding.dialpadRoundWrapper.dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
+
             val areMultipleSIMsAvailable = areMultipleSIMsAvailable()
             val getProperTextColor = getProperTextColor()
             if (areMultipleSIMsAvailable) {
@@ -861,17 +907,6 @@ class SettingsDialpadActivity : SimpleActivity() {
         view.beGone()
     }
 
-    private fun initRussianChars() {
-        russianCharsMap['а'] = 2; russianCharsMap['б'] = 2; russianCharsMap['в'] = 2; russianCharsMap['г'] = 2
-        russianCharsMap['д'] = 3; russianCharsMap['е'] = 3; russianCharsMap['ё'] = 3; russianCharsMap['ж'] = 3; russianCharsMap['з'] = 3
-        russianCharsMap['и'] = 4; russianCharsMap['й'] = 4; russianCharsMap['к'] = 4; russianCharsMap['л'] = 4
-        russianCharsMap['м'] = 5; russianCharsMap['н'] = 5; russianCharsMap['о'] = 5; russianCharsMap['п'] = 5
-        russianCharsMap['р'] = 6; russianCharsMap['с'] = 6; russianCharsMap['т'] = 6; russianCharsMap['у'] = 6
-        russianCharsMap['ф'] = 7; russianCharsMap['х'] = 7; russianCharsMap['ц'] = 7; russianCharsMap['ч'] = 7
-        russianCharsMap['ш'] = 8; russianCharsMap['щ'] = 8; russianCharsMap['ъ'] = 8; russianCharsMap['ы'] = 8
-        russianCharsMap['ь'] = 9; russianCharsMap['э'] = 9; russianCharsMap['ю'] = 9; russianCharsMap['я'] = 9
-    }
-
     private fun setupDialpadStyle() {
         val pro = checkPro()
         val iOS = addLockedLabelIfNeeded(R.string.ios_g, pro)
@@ -1078,6 +1113,49 @@ class SettingsDialpadActivity : SimpleActivity() {
             settingsHideDialpadLettersHolder.setOnClickListener {
                 settingsHideDialpadLetters.toggle()
                 config.hideDialpadLetters = settingsHideDialpadLetters.isChecked
+                binding.settingsDialpadSecondaryLanguageHolder.beGoneIf(config.hideDialpadLetters)
+                initStyle()
+                showDialpad()
+            }
+        }
+    }
+
+    private fun getLanguageName(lang: String?): String? {
+        return when (lang) {
+            LANGUAGE_NONE -> getString(R.string.none)
+            LANGUAGE_SYSTEM -> getString(R.string.auto_theme)
+            else -> {
+                val currentLocale = Locale.getDefault()
+                val locale = Locale(lang!!)
+                locale.getDisplayLanguage(currentLocale)
+            }
+        }
+    }
+
+    private fun setupDialpadSecondaryLanguage() {
+        binding.settingsDialpadSecondaryLanguageHolder.beGoneIf(config.hideDialpadLetters)
+        binding.settingsDialpadSecondaryLanguage.text = getLanguageName(config.dialpadSecondaryLanguage)
+        binding.settingsDialpadSecondaryLanguageHolder.setOnClickListener {
+            val items: ArrayList<RadioItem> = arrayListOf(
+                RadioItem(SECONDARY_LANGUAGE_NONE_ID, getString(R.string.none)),
+                RadioItem(SECONDARY_LANGUAGE_SYSTEM_ID, getString(R.string.auto_theme))
+            )
+            val supportedLanguages = DialpadT9.getSupportedSecondaryLanguages()
+            for (i in supportedLanguages.indices) {
+                items.add(RadioItem(i, getLanguageName(supportedLanguages[i])!!))
+            }
+            val checkedItemId = if (config.dialpadSecondaryLanguage == LANGUAGE_SYSTEM) SECONDARY_LANGUAGE_SYSTEM_ID else supportedLanguages.indexOf(config.dialpadSecondaryLanguage)
+
+            RadioGroupDialog(this@SettingsDialpadActivity, items, checkedItemId) {
+                val index = it as Int
+                if (index == -2) {
+                    config.dialpadSecondaryLanguage = LANGUAGE_SYSTEM
+                } else if (index == -1 || index >= supportedLanguages.size) {
+                    config.dialpadSecondaryLanguage = LANGUAGE_NONE
+                } else {
+                    config.dialpadSecondaryLanguage = supportedLanguages[it]
+                }
+                binding.settingsDialpadSecondaryLanguage.text = getLanguageName(config.dialpadSecondaryLanguage)
                 initStyle()
                 showDialpad()
             }

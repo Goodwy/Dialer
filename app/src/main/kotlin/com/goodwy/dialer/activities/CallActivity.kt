@@ -1347,19 +1347,18 @@ class CallActivity : SimpleActivity() {
 
         isCallEnded = true
         runOnUiThread {
+            val phoneState = CallManager.getPhoneState()
             if (callDuration > 0) {
                 disableAllActionButtons()
                 @SuppressLint("SetTextI18n")
                 val label = "${callDuration.getFormattedDuration()} (${getString(R.string.call_ended)})"
                 binding.callStatusLabel.text = label
-                Handler(mainLooper).postDelayed(100) {
-                    finishAndRemoveTask()
-                    if (CallManager.getPhoneState() != NoCall) startActivity(Intent(this, CallActivity::class.java))
-                }
+                finishAndRemoveTask()
+                if (phoneState is TwoCalls) startActivity(Intent(this, CallActivity::class.java))
             } else {
                 disableAllActionButtons()
                 binding.callStatusLabel.text = getString(R.string.call_ended)
-                if (CallManager.getPhoneState() != NoCall) {
+                if (phoneState is TwoCalls) {
                     finishAndRemoveTask()
                     startActivity(Intent(this, CallActivity::class.java))
                 } else finish()
