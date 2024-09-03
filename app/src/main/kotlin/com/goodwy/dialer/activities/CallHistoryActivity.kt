@@ -345,7 +345,7 @@ class CallHistoryActivity : SimpleActivity() {
                 activity = this as SimpleActivity,
                 recyclerView = binding.callHistoryList,
                 refreshItemsListener = null,
-                hideTimeAtOtherDays = true,
+                hideTimeAtOtherDays = false,
                 itemDelete = { deleted ->
                     allRecentCall = allRecentCall.filter { it !in deleted }
                 },

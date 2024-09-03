@@ -3,6 +3,7 @@ package com.goodwy.dialer.helpers
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
+import android.os.Build
 import android.provider.CallLog.Calls
 import android.telephony.PhoneNumberUtils
 import com.goodwy.commons.extensions.*
@@ -13,6 +14,7 @@ import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.getAvailableSIMCardLabels
 import com.goodwy.dialer.models.RecentCall
+import java.util.Locale
 
 class RecentsHelper(private val context: Context) {
     companion object {
@@ -150,6 +152,8 @@ class RecentsHelper(private val context: Context) {
         context.getAvailableSIMCardLabels().forEach {
             accountIdToSimIDMap[it.handle.id] = it.id
         }
+        val manufacturer = Build.MANUFACTURER.lowercase(Locale.getDefault())
+        val isHuawei = manufacturer.contains(Regex(pattern = "huawei|honor"))
 
         val cursor = if (isNougatPlus()) {
             // https://issuetracker.google.com/issues/175198972?pli=1#comment6
@@ -268,7 +272,8 @@ class RecentsHelper(private val context: Context) {
                 if (accountId != null) {
                     if (accountId.length == 1) {
                         accountId.toIntOrNull()?.let {
-                            simID = if (it >= 0) it + 1 else -1
+                            val index = if (isHuawei) 1 else 0 //Huawei's sim card index returns (0,1...)
+                            simID = if (it >= 0) it + index else -1
                         }
                     }
                 }
