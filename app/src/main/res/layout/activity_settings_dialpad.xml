@@ -347,7 +347,7 @@
 
                                     <com.goodwy.commons.views.MyTextView
                                         android:id="@+id/toneVolumeValue"
-                                        android:layout_width="48dp"
+                                        android:layout_width="58dp"
                                         android:layout_height="32dp"
                                         android:layout_alignTop="@+id/toneVolumePlus"
                                         android:layout_alignBottom="@+id/toneVolumePlus"
@@ -358,7 +358,7 @@
                                         android:alpha="0.6"
                                         android:gravity="center"
                                         android:background="?attr/selectableItemBackgroundBorderless"
-                                        tools:text="100"/>
+                                        tools:text="100%"/>
 
                                     <ImageView
                                         android:id="@+id/toneVolumePlus"
@@ -443,7 +443,7 @@
 
                             <com.goodwy.commons.views.MyTextView
                                 android:id="@+id/dialpadSizeValue"
-                                android:layout_width="48dp"
+                                android:layout_width="58dp"
                                 android:layout_height="32dp"
                                 android:layout_alignTop="@+id/dialpadSizePlus"
                                 android:layout_alignBottom="@+id/dialpadSizePlus"
@@ -454,7 +454,7 @@
                                 android:alpha="0.6"
                                 android:gravity="center"
                                 android:background="?attr/selectableItemBackgroundBorderless"
-                                tools:text="100"/>
+                                tools:text="100%"/>
 
                             <ImageView
                                 android:id="@+id/dialpadSizePlus"
@@ -539,7 +539,7 @@
 
                             <com.goodwy.commons.views.MyTextView
                                 android:id="@+id/buttonSizeValue"
-                                android:layout_width="48dp"
+                                android:layout_width="58dp"
                                 android:layout_height="32dp"
                                 android:layout_alignTop="@+id/buttonSizePlus"
                                 android:layout_alignBottom="@+id/buttonSizePlus"
@@ -550,7 +550,7 @@
                                 android:alpha="0.6"
                                 android:gravity="center"
                                 android:background="?attr/selectableItemBackgroundBorderless"
-                                tools:text="100"/>
+                                tools:text="100%"/>
 
                             <ImageView
                                 android:id="@+id/buttonSizePlus"
@@ -626,7 +626,7 @@
 
                             <com.goodwy.commons.views.MyTextView
                                 android:id="@+id/buttonSecondSizeValue"
-                                android:layout_width="48dp"
+                                android:layout_width="58dp"
                                 android:layout_height="32dp"
                                 android:layout_alignTop="@+id/buttonSecondSizePlus"
                                 android:layout_alignBottom="@+id/buttonSecondSizePlus"

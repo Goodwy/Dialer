@@ -22,7 +22,7 @@
             android:id="@+id/swipeRightIcon"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:layout_marginLeft='28dp'
+            android:layout_marginLeft='@dimen/big_margin'
             android:layout_alignParentLeft='true'
             android:layout_centerVertical='true'
             android:src="@drawable/ic_messages"/>
@@ -40,7 +40,7 @@
             android:id="@+id/swipeLeftIcon"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:layout_marginRight='28dp'
+            android:layout_marginRight='@dimen/big_margin'
             android:layout_alignParentRight='true'
             android:layout_centerVertical='true'
             android:src="@drawable/ic_delete_outline"/>

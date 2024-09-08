@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/callHistoryImage"
-        android:layout_width="@dimen/contact_photo_big_size"
-        android:layout_height="@dimen/contact_photo_big_size"
+        android:layout_width="@dimen/contact_photo_size"
+        android:layout_height="@dimen/contact_photo_size"
         android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

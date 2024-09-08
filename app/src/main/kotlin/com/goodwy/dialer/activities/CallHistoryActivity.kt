@@ -1138,17 +1138,19 @@ class CallHistoryActivity : SimpleActivity() {
                     updateDefaultSIMButton(call)
                     binding.defaultSim1Button.performHapticFeedback()
                 }
-                binding.defaultSim2Button.setOnClickListener {
-                    val sim2 = simList[1]
-                    if ((config.getCustomSIM("tel:$phoneNumber") ?: "") == sim2.handle) {
-                        removeDefaultSIM()
-                    } else {
-                        config.saveCustomSIM("tel:$phoneNumber", sim2.handle)
-                        toast(sim2.label)
+                if (simList.size > 1) {
+                    binding.defaultSim2Button.setOnClickListener {
+                        val sim2 = simList[1]
+                        if ((config.getCustomSIM("tel:$phoneNumber") ?: "") == sim2.handle) {
+                            removeDefaultSIM()
+                        } else {
+                            config.saveCustomSIM("tel:$phoneNumber", sim2.handle)
+                            toast(sim2.label)
+                        }
+                        updateDefaultSIMButton(call)
+                        binding.defaultSim2Button.performHapticFeedback()
                     }
-                    updateDefaultSIMButton(call)
-                    binding.defaultSim2Button.performHapticFeedback()
-                }
+                }  else binding.defaultSimButtonContainer.beGone()
             } else binding.defaultSimButtonContainer.beGone()
 
             binding.blockButton.apply {

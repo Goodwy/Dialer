@@ -523,9 +523,43 @@ class ContactsAdapter(
                         swipeAction(swipeRightOrLeftAction, contact)
                         return true
                     }
+
+                    override fun onSwipedActivated(swipedRight: Boolean) {
+                        if (viewType != VIEW_TYPE_GRID) {
+                            if (swipedRight) slideRight(swipeRightIcon!!, swipeRightIconHolder!!)
+                            else slideLeft(swipeLeftIcon!!)
+                        }
+                    }
+
+                    override fun onSwipedDeactivated(swipedRight: Boolean) {
+                        if (viewType != VIEW_TYPE_GRID) {
+                            if (swipedRight) slideRightReturn(swipeRightIcon!!, swipeRightIconHolder!!)
+                            else slideLeftReturn(swipeLeftIcon!!, swipeLeftIconHolder!!)
+                        }
+                    }
                 }
             }
         }
+    }
+
+    private fun slideRight(view: View, parent: View) {
+        view.animate()
+            .x(parent.right - activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin) - view.width)
+    }
+
+    private fun slideLeft(view: View) {
+        view.animate()
+            .x(activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin))
+    }
+
+    private fun slideRightReturn(view: View, parent: View) {
+        view.animate()
+            .x(parent.left + activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin))
+    }
+
+    private fun slideLeftReturn(view: View, parent: View) {
+        view.animate()
+            .x(parent.width - activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin) - view.width)
     }
 
     override fun onRowMoved(fromPosition: Int, toPosition: Int) {

@@ -269,15 +269,25 @@ class RecentsHelper(private val context: Context) {
                 // https://stackoverflow.com/questions/63834168/identifying-a-sim-card-slot-with-phone-account-id-in-android-calllogcalls
                 // On some devices PHONE_ACCOUNT_ID just returns the SIM card slot index
                 var simID = -1
-                if (accountId != null) {
-                    if (accountId.length == 1) {
-                        accountId.toIntOrNull()?.let {
-                            val index = if (isHuawei) 1 else 0 //Huawei's sim card index returns (0,1...)
-                            simID = if (it >= 0) it + index else -1
+                if (isHuawei) {
+                    if (accountId != null) {
+                        if (accountId.length == 1) {
+                            accountId.toIntOrNull()?.let {
+                                simID = if (it >= 0) it + 1 else -1 //Huawei's sim card index returns (0,1...)
+                            }
+                        }
+                    }
+                    if (simID == -1) simID = accountIdToSimIDMap[accountId] ?: -1
+                } else {
+                    simID = accountIdToSimIDMap[accountId] ?: -1
+                    if (simID == -1 && accountId != null) {
+                        if (accountId.length == 1) {
+                            accountId.toIntOrNull()?.let {
+                                simID = if (it >= 0) it else -1
+                            }
                         }
                     }
                 }
-                if (simID == -1) simID = accountIdToSimIDMap[accountId] ?: -1
 
                 var specificNumber = ""
                 var specificType = ""

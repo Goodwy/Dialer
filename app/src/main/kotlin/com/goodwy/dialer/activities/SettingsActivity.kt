@@ -524,12 +524,14 @@ class SettingsActivity : SimpleActivity() {
             settingsShowContactThumbnailsHolder.setOnClickListener {
                 settingsShowContactThumbnails.toggle()
                 config.showContactThumbnails = settingsShowContactThumbnails.isChecked
+                settingsContactThumbnailsSizeHolder.beVisibleIf(config.showContactThumbnails)
             }
         }
     }
 
     private fun setupContactThumbnailsSize() = binding.apply {
         val pro = checkPro()
+        settingsContactThumbnailsSizeHolder.beVisibleIf(config.showContactThumbnails)
         settingsContactThumbnailsSizeHolder.alpha = if (pro) 1f else 0.4f
         settingsContactThumbnailsSizeLabel.text = addLockedLabelIfNeeded(R.string.contact_thumbnails_size, pro)
         settingsContactThumbnailsSize.text = getContactThumbnailsSizeText()
@@ -1448,7 +1450,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 528 //TODO changelog
+        val id = 529 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1465,7 +1467,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_528)) //TODO changelog
+            add(Release(id, R.string.release_529)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }

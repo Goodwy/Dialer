@@ -28,9 +28,9 @@
     <!--collapsing toolbar-->
     <dimen name="toolbar_height">102dp</dimen>
     <dimen name="image_top_margin">24dp</dimen>
-    <dimen name="image_right_margin">32dp</dimen>
-    <dimen name="name_top_margin">42dp</dimen>
-    <dimen name="company_top_margin">56dp</dimen>
+    <dimen name="image_right_margin">23dp</dimen>
+    <dimen name="name_top_margin">12dp</dimen>
+    <dimen name="company_top_margin">32dp</dimen>
     <dimen name="name_right_margin">38dp</dimen>
     <dimen name="zero">0dp</dimen>
 

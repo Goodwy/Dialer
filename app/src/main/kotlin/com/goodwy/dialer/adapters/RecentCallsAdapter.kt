@@ -364,7 +364,7 @@ class RecentCallsAdapter(
             return
         }
 
-        val callsToRemove = getSelectedItems()
+        val callsToRemove = getSelectedItems() as ArrayList<RecentCall>
         val idsToRemove = ArrayList<Int>()
         callsToRemove.forEach {
             idsToRemove.add(it.id)
@@ -373,7 +373,7 @@ class RecentCallsAdapter(
 
         RecentsHelper(activity).removeRecentCalls(idsToRemove) {
             itemDelete(callsToRemove)
-            val recentCalls = currentList.toMutableList().also { it.removeAll(callsToRemove) }
+            val recentCalls = currentList.filterIsInstance<RecentCall>().toMutableList().also { it.removeAll(callsToRemove) }
             activity.runOnUiThread {
                 refreshItemsListener?.refreshItems()
                 submitList(recentCalls)
@@ -855,17 +855,49 @@ class RecentCallsAdapter(
                     override fun onSwipedLeft(swipeActionView: SwipeActionView): Boolean {
                         val swipeLeftOrRightAction = if (activity.isRTLLayout) activity.config.swipeRightAction else activity.config.swipeLeftAction
                         swipeAction(swipeLeftOrRightAction, call)
+                        slideLeftReturn(swipeLeftIcon, swipeLeftIconHolder)
                         return true
                     }
 
                     override fun onSwipedRight(swipeActionView: SwipeActionView): Boolean {
                         val swipeRightOrLeftAction = if (activity.isRTLLayout) activity.config.swipeLeftAction else activity.config.swipeRightAction
                         swipeAction(swipeRightOrLeftAction, call)
+                        slideRightReturn(swipeRightIcon, swipeRightIconHolder)
                         return true
+                    }
+
+                    override fun onSwipedActivated(swipedRight: Boolean) {
+                        if (swipedRight) slideRight(swipeRightIcon, swipeRightIconHolder)
+                        else slideLeft(swipeLeftIcon)
+                    }
+
+                    override fun onSwipedDeactivated(swipedRight: Boolean) {
+                        if (swipedRight) slideRightReturn(swipeRightIcon, swipeRightIconHolder)
+                        else slideLeftReturn(swipeLeftIcon, swipeLeftIconHolder)
                     }
                 }
             }
         }
+    }
+
+    private fun slideRight(view: View, parent: View) {
+        view.animate()
+            .x(parent.right - activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin) - view.width)
+    }
+
+    private fun slideLeft(view: View) {
+        view.animate()
+            .x(activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin))
+    }
+
+    private fun slideRightReturn(view: View, parent: View) {
+        view.animate()
+            .x(parent.left + activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin))
+    }
+
+    private fun slideLeftReturn(view: View, parent: View) {
+        view.animate()
+            .x(parent.width - activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin) - view.width)
     }
 
     private inner class RecentCallDateViewHolder(val binding: ItemRecentsDateBinding) : ViewHolder(binding.root) {
