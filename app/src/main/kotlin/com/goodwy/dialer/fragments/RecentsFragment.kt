@@ -182,7 +182,7 @@ class RecentsFragment(
     private fun refreshCallLog(loadAll: Boolean = false, callback: (() -> Unit)? = null) {
         getRecentCalls(loadAll) {
             allRecentCalls = it
-            context.config.recentCallsCache = Gson().toJson(it.filterIsInstance<RecentCall>().take(100))
+            context.config.recentCallsCache = Gson().toJson(it.filterIsInstance<RecentCall>().take(400))
             if (searchQuery.isNullOrEmpty()) {
                 activity?.runOnUiThread { gotRecents(it) }
             } else {

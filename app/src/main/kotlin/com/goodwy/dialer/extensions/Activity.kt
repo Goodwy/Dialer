@@ -23,6 +23,8 @@ import com.goodwy.dialer.activities.DialerActivity
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.dialogs.SelectSIMDialog
+import com.goodwy.dialer.dialogs.SelectSimButtonDialog
+import com.goodwy.dialer.helpers.SIM_DIALOG_STYLE_LIST
 import com.google.android.material.snackbar.Snackbar
 
 fun SimpleActivity.startCallIntent(recipient: String) {
@@ -114,12 +116,22 @@ fun SimpleActivity.getHandleToUse(intent: Intent?, phoneNumber: String, callback
                 config.getCustomSIM(phoneNumber) != null && areMultipleSIMsAvailable() -> callback(config.getCustomSIM(phoneNumber))
                 defaultHandle != null -> callback(defaultHandle)
                 else -> {
-                    SelectSIMDialog(this, phoneNumber, onDismiss = {
-                        if (this is DialerActivity) {
-                            finish()
+                    if (config.simDialogStyle == SIM_DIALOG_STYLE_LIST) {
+                        SelectSIMDialog(this, phoneNumber, onDismiss = {
+                            if (this is DialerActivity) {
+                                finish()
+                            }
+                        }) { handle, _ ->
+                            callback(handle)
                         }
-                    }) { handle, _ ->
-                        callback(handle)
+                    } else {
+                        SelectSimButtonDialog(this, phoneNumber, onDismiss = {
+                            if (this is DialerActivity) {
+                                finish()
+                            }
+                        }) { handle, _ ->
+                            callback(handle)
+                        }
                     }
                 }
             }

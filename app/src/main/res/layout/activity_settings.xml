@@ -567,6 +567,17 @@
                             android:text="@string/open_search_when_open_contacts"
                             app:switchPadding="@dimen/bigger_margin"/>
                     </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/settingsEndSearchHolder"
+                        style="@style/SettingsHolderSwitchStyle">
+
+                        <com.goodwy.commons.views.MySwitchCompat
+                            android:id="@+id/settingsEndSearch"
+                            style="@style/SettingsSwitchStyle"
+                            android:text="@string/end_search_when_changing_tab"
+                            app:switchPadding="@dimen/bigger_margin"/>
+                    </RelativeLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -1061,6 +1072,26 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/settingsSimDialogStyleHolder"
+                        style="@style/SettingsHolderStyle">
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settingsSimDialogStyleLabel"
+                            style="@style/SettingsTextLabelStyle"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/settingsSimDialogStyle"
+                            android:text="@string/sim_card_selection_dialog_style"/>
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settingsSimDialogStyle"
+                            style="@style/SettingsTextValueStyle"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/settings_margin"
+                            tools:text="@string/list"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:id="@+id/settings_disable_proximity_sensor_holder"
                         style="@style/SettingsHolderSwitchStyle">
 
@@ -1317,6 +1348,17 @@
                             style="@style/SettingsSwitchStyle"
                             android:text="@string/relative_date"
                             app:switchPadding="@dimen/bigger_margin"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/settingsChangeColourTopBarHolder"
+                        style="@style/SettingsHolderSwitchStyle">
+
+                        <com.goodwy.commons.views.MySwitchCompat
+                            android:id="@+id/settingsChangeColourTopBar"
+                            style="@style/SettingsSwitchStyle"
+                            android:text="@string/change_top_bar_colour_when_scrolling"
+                            app:switchPadding="@dimen/bigger_margin" />
                     </RelativeLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

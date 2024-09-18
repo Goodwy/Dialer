@@ -23,6 +23,7 @@
     <string name="show_voicemail_icon">Показывать значок голосовой почты</string>
     <string name="dialpad_preferences">Параметры кнопок набора</string>
     <string name="secondary_dialpad_language">Дополнительный язык на клавиатуре</string>
+    <string name="sim_card_selection_dialog_style">Стиль диалога выбора SIM карты</string>
     <string name="show_contact_thumbnails_g">Показывать фото контакта</string>
     <string name="hide_dialpad_letters_g">Скрыть буквы набора номера</string>
     <string name="show_caller_description_g">Показать дополнительную информацию абонента</string>

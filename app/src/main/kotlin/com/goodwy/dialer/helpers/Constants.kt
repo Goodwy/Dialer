@@ -48,6 +48,7 @@ const val QUERY_LIMIT_RECENT = "query_limit_recent"
 const val CALL_BUTTON_STYLE = "call_button_style"
 const val QUICK_ANSWERS = "quick_answers"
 const val SHOW_VOICEMAIL_ICON = "show_voicemail_icon"
+const val SIM_DIALOG_STYLE = "sim_dialog_style"
 
 const val ALL_TABS_MASK = TAB_CONTACTS or TAB_FAVORITES or TAB_CALL_HISTORY
 
@@ -137,6 +138,9 @@ const val GROUP_CALLS_ALL = 2
 const val IOS16 = 0
 const val IOS17 = 1
 
+// SIM dialog style
+const val SIM_DIALOG_STYLE_LIST = 0
+const val SIM_DIALOG_STYLE_BUTTON = 1
 
 // Additional language on dialpad
 const val LANGUAGE_NONE = "none"

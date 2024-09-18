@@ -565,6 +565,7 @@
                     android:gravity="center"
                     android:inputType="phone"
                     android:textCursorDrawable="@null"
+                    android:background="@null"
                     android:textSize="@dimen/dialpad_text_size"
                     android:focusable="false"/>
             </RelativeLayout>

@@ -186,6 +186,7 @@ class SettingsActivity : SimpleActivity() {
         setupUseIconTabs()
         setupScreenSlideAnimation()
         setupOpenSearch()
+        setupEndSearch()
 
         setupUseSwipeToAction()
         setupSwipeVibration()
@@ -209,6 +210,7 @@ class SettingsActivity : SimpleActivity() {
         setupGroupSubsequentCalls()
         setupQueryLimitRecent()
         setupShowCallConfirmation()
+        setupSimDialogStyle()
         setupHideDialpadLetters()
         setupDialpadNumbers()
         setupDisableProximitySensor()
@@ -225,6 +227,7 @@ class SettingsActivity : SimpleActivity() {
         setupFormatPhoneNumbers()
         setupStartNameWithSurname()
         setupUseRelativeDate()
+        setupChangeColourTopBar()
 
         setupCallsExport()
         setupCallsImport()
@@ -461,6 +464,7 @@ class SettingsActivity : SimpleActivity() {
                 config.bottomNavigationBar = it == 1
                 config.tabsChanged = true
                 binding.settingsNavigationBarStyle.text = getNavigationBarStyleText()
+                binding.settingsChangeColourTopBarHolder.beVisibleIf(config.bottomNavigationBar)
             }
         }
     }
@@ -1079,6 +1083,28 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupSimDialogStyle() {
+        binding.settingsSimDialogStyleHolder.beGoneIf(!areMultipleSIMsAvailable())
+        binding.settingsSimDialogStyle.text = getSimDialogStyleText()
+        binding.settingsSimDialogStyleHolder.setOnClickListener {
+            val items = arrayListOf(
+                RadioItem(SIM_DIALOG_STYLE_LIST, getString(R.string.list)),
+                RadioItem(SIM_DIALOG_STYLE_BUTTON, getString(R.string.buttons)))
+
+            RadioGroupDialog(this@SettingsActivity, items, config.simDialogStyle, R.string.sim_card_selection_dialog_style) {
+                config.simDialogStyle = it as Int
+                binding.settingsSimDialogStyle.text = getSimDialogStyleText()
+            }
+        }
+    }
+
+    private fun getSimDialogStyleText() = getString(
+        when (config.simDialogStyle) {
+            SIM_DIALOG_STYLE_LIST -> R.string.list
+            else -> R.string.buttons
+        }
+    )
+
     private fun setupMaterialDesign3() {
         binding.apply {
             settingsMaterialDesign3.isChecked = config.materialDesign3
@@ -1237,6 +1263,16 @@ class SettingsActivity : SimpleActivity() {
             settingsOpenSearchHolder.setOnClickListener {
                 settingsOpenSearch.toggle()
                 config.openSearch = settingsOpenSearch.isChecked
+            }
+        }
+    }
+
+    private fun setupEndSearch() {
+        binding.apply {
+            settingsEndSearch.isChecked = config.closeSearch
+            settingsEndSearchHolder.setOnClickListener {
+                settingsEndSearch.toggle()
+                config.closeSearch = settingsEndSearch.isChecked
             }
         }
     }
@@ -1449,8 +1485,20 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupChangeColourTopBar() {
+        binding.apply {
+            settingsChangeColourTopBarHolder.beVisibleIf(config.bottomNavigationBar)
+            settingsChangeColourTopBar.isChecked = config.changeColourTopBar
+            settingsChangeColourTopBarHolder.setOnClickListener {
+                settingsChangeColourTopBar.toggle()
+                config.changeColourTopBar = settingsChangeColourTopBar.isChecked
+                config.tabsChanged = true
+            }
+        }
+    }
+
     private fun setupOptionsMenu() {
-        val id = 529 //TODO changelog
+        val id = 530 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1467,7 +1515,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_529)) //TODO changelog
+            add(Release(id, R.string.release_530)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }

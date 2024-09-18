@@ -64,4 +64,5 @@
     <string name="voicemail">Голосова пошта</string>
     <string name="show_voicemail_icon">Показувати значок голосової пошти</string>
     <string name="secondary_dialpad_language">Додаткова мова на клавіатурі</string>
+    <string name="sim_card_selection_dialog_style">Стиль діалогу вибору SIM карти</string>
 </resources>

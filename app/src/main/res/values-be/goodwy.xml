@@ -64,4 +64,5 @@
     <string name="voicemail">Галасавая пошта</string>
     <string name="show_voicemail_icon">Паказваць значок галасавой пошты</string>
     <string name="secondary_dialpad_language">Дадатковая мова на клавіятуры</string>
+    <string name="sim_card_selection_dialog_style">Стыль дыялогу выбару SIM карты</string>
 </resources>

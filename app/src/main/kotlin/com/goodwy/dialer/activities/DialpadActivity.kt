@@ -267,17 +267,18 @@ class DialpadActivity : SimpleActivity() {
             }
 
             DIALPAD_GRID -> {
+                binding.dialpadRoundWrapper.root.beGone()
+                binding.dialpadRectWrapper.root.beGone()
                 binding.dialpadClearWrapper.apply {
+                    dialpadGridHolder.beVisible()
+                    dialpadGridHolder.setBackgroundColor(getProperBackgroundColor())
                     arrayOf(
                         dividerHorizontalZero, dividerHorizontalOne, dividerHorizontalTwo, dividerHorizontalThree,
                         dividerHorizontalFour, dividerVerticalOne, dividerVerticalTwo, dividerVerticalStart, dividerVerticalEnd
                     ).forEach {
                         it.beVisible()
                     }
-                    dialpadGridHolder.beVisible()
                 }
-                binding.dialpadRoundWrapper.root.beGone()
-                binding.dialpadRectWrapper.root.beGone()
                 initLetters()
             }
 
@@ -503,6 +504,7 @@ class DialpadActivity : SimpleActivity() {
             //setupCharClick(dialpadPlusHolder, '+', longClickable = false)
             setupCharClick(dialpadAsteriskHolder, '*')
             setupCharClick(dialpadHashtagHolder, '#')
+            dialpadGridHolder.setOnClickListener { } //Do not press between the buttons
         }
         binding.dialpadAddNumber.setOnClickListener { addNumberToContact() }
 
@@ -763,6 +765,7 @@ class DialpadActivity : SimpleActivity() {
             //setupCharClick(dialpadPlusHolder, '+', longClickable = false)
             setupCharClick(dialpadAsteriskHolder, '*')
             setupCharClick(dialpadHashtagHolder, '#')
+            dialpadGridHolder.setOnClickListener { } //Do not press between the buttons
         }
         binding.dialpadAddNumber.setOnClickListener { addNumberToContact() }
 
@@ -1080,9 +1083,9 @@ class DialpadActivity : SimpleActivity() {
                 }
             }
 
-            Handler().postDelayed({
-                binding.dialpadInput.setText("")
-            }, 1000)
+//            Handler().postDelayed({
+//                binding.dialpadInput.setText("")
+//            }, 1000)
         } else {
             RecentsHelper(this).getRecentCalls(queryLimit = 1) {
                 val mostRecentNumber = it.firstOrNull()?.phoneNumber
@@ -1234,7 +1237,7 @@ class DialpadActivity : SimpleActivity() {
     private fun refreshCallLog(loadAll: Boolean = false, callback: (() -> Unit)? = null) {
         getRecentCalls(loadAll) {
             allRecentCalls = it
-            config.recentCallsCache = Gson().toJson(it.take(200))
+            config.recentCallsCache = Gson().toJson(it.take(400))
             runOnUiThread { gotRecents(it) }
 
             callback?.invoke()

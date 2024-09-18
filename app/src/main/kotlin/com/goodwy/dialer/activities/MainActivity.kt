@@ -564,7 +564,7 @@ class MainActivity : SimpleActivity() {
             override fun onPageSelected(position: Int) {
                 if (config.bottomNavigationBar) {
                     binding.mainTabsHolder.getTabAt(position)?.select()
-                    scrollChange()
+                    if (config.changeColourTopBar) scrollChange()
                 } else binding.mainTopTabsHolder.getTabAt(position)?.select()
 
                 getAllFragments().forEach {
@@ -616,7 +616,7 @@ class MainActivity : SimpleActivity() {
 
         binding.viewPager.onGlobalLayout {
             refreshMenuItems()
-            if (config.bottomNavigationBar) scrollChange()
+            if (config.bottomNavigationBar && config.changeColourTopBar) scrollChange()
         }
 
         if (config.openDialPadAtLaunch && !launchedDialer) {
@@ -701,14 +701,21 @@ class MainActivity : SimpleActivity() {
                 it.icon?.applyColorFilter(properTextColor)
                 it.icon?.alpha = 220 // max 255
                 getFavoritesFragment()?.refreshItems() //to save sorting
-                closeSearch()
             },
             tabSelectedAction = {
+                if (config.closeSearch) {
+                    closeSearch()
+                } else {
+                    //On tab switch, the search string is not deleted
+                    //It should not start on the first startup
+                    if (isSearchOpen) getCurrentFragment()?.onSearchQueryChanged(searchQuery)
+                }
+
                 binding.viewPager.currentItem = it.position
                 it.icon?.applyColorFilter(properPrimaryColor)
                 it.icon?.alpha = 220 // max 255
 
-                val lastPosition = binding.mainTopTabsHolder.tabCount - 1
+//                val lastPosition = binding.mainTopTabsHolder.tabCount - 1
 //                if (it.position == lastPosition && config.showTabs and TAB_CALL_HISTORY > 0) {
 //                    clearMissedCalls()
 //                }
@@ -751,16 +758,18 @@ class MainActivity : SimpleActivity() {
                 updateBottomTabItemColors(it.customView, false, getDeselectedTabDrawableIds()[it.position])
             },
             tabSelectedAction = {
-//                binding.mainMenu.closeSearch()
-
-                //On tab switch, the search string is not deleted
-                //It should not start on the first startup
-                if (binding.mainMenu.isSearchOpen) getCurrentFragment()?.onSearchQueryChanged(binding.mainMenu.getCurrentQuery())
+                if (config.closeSearch) {
+                    binding.mainMenu.closeSearch()
+                } else {
+                    //On tab switch, the search string is not deleted
+                    //It should not start on the first startup
+                    if (binding.mainMenu.isSearchOpen) getCurrentFragment()?.onSearchQueryChanged(binding.mainMenu.getCurrentQuery())
+                }
 
                 binding.viewPager.currentItem = it.position
                 updateBottomTabItemColors(it.customView, true, getSelectedTabDrawableIds()[it.position])
 
-                val lastPosition = binding.mainTabsHolder.tabCount - 1
+//                val lastPosition = binding.mainTabsHolder.tabCount - 1
 //                if (it.position == lastPosition && config.showTabs and TAB_CALL_HISTORY > 0) {
 //                    clearMissedCalls()
 //                }

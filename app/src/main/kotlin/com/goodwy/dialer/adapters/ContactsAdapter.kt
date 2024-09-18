@@ -515,12 +515,14 @@ class ContactsAdapter(
                     override fun onSwipedLeft(swipeActionView: SwipeActionView): Boolean {
                         val swipeLeftOrRightAction = if (activity.isRTLLayout) activity.config.swipeRightAction else activity.config.swipeLeftAction
                         swipeAction(swipeLeftOrRightAction, contact)
+                        slideLeftReturn(swipeLeftIcon!!, swipeLeftIconHolder!!)
                         return true
                     }
 
                     override fun onSwipedRight(swipeActionView: SwipeActionView): Boolean {
                         val swipeRightOrLeftAction = if (activity.isRTLLayout) activity.config.swipeLeftAction else activity.config.swipeRightAction
                         swipeAction(swipeRightOrLeftAction, contact)
+                        slideRightReturn(swipeRightIcon!!, swipeRightIconHolder!!)
                         return true
                     }
 

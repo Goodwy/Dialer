@@ -3,6 +3,13 @@
     <string name="app_name_g">Right Dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
+    <string name="release_530">
+        Increased the number of cached recent calls\n
+        Added ‘SIM card selection dialogue style’ option\n
+        Added ‘End search when changing tab’ option\n
+        Added ‘Change the colour of the top bar when scrolling’ option\n
+        Fixed bugs
+    </string>
     <string name="release_529">
         Changed swipe behaviour and added animation\n
         Reduced the contact icon when viewing call details\n

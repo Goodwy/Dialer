@@ -216,6 +216,10 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(SHOW_VOICEMAIL_ICON, false)
         set(showVoicemailIcon) = prefs.edit().putBoolean(SHOW_VOICEMAIL_ICON, showVoicemailIcon).apply()
 
+    var simDialogStyle: Int
+        get() = prefs.getInt(SIM_DIALOG_STYLE, SIM_DIALOG_STYLE_LIST)
+        set(simDialogStyle) = prefs.edit().putInt(SIM_DIALOG_STYLE, simDialogStyle).apply()
+
     //Timer
     var timerSeconds: Int
         get() = prefs.getInt(TIMER_SECONDS, 300)
