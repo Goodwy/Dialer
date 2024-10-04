@@ -20,6 +20,7 @@
     <string name="answer_end_other_call">Answer &amp; end other call</string>
     <string name="quick_answers">Quick answers</string>
     <string name="voicemail">Voicemail</string>
+    <string name="call_using_same_sim">Prefer same SIM on which previous (last) call was made</string>
     <string name="show_voicemail_icon">Show voicemail icon</string>
     <string name="secondary_dialpad_language">Secondary dialpad language</string>
     <string name="sim_card_selection_dialog_style">SIM card selection dialogue style</string>

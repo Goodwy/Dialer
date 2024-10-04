@@ -136,6 +136,7 @@ class SettingsDialpadActivity : SimpleActivity() {
         setupDialpadStyle()
         setupSimCardColorList()
         setupPrimarySimCard()
+        setupCallUsingSameSim()
         setupShowVoicemailIcon()
         setupHideDialpadLetters()
         setupDialpadSecondaryLanguage()
@@ -1082,7 +1083,7 @@ class SettingsDialpadActivity : SimpleActivity() {
             binding.settingsPrimarySimCardHolder.setOnClickListener {
                 val items = arrayListOf(
                     RadioItem(0, simList[0].label),
-                    RadioItem(1, simList[1].label)
+                    RadioItem(1, simList[1].label),
                 )
 
                 RadioGroupDialog(this@SettingsDialpadActivity, items, config.currentSIMCardIndex, R.string.primary_sim_card) {
@@ -1093,6 +1094,17 @@ class SettingsDialpadActivity : SimpleActivity() {
                 }
             }
         } else binding.settingsPrimarySimCardHolder.beGone()
+    }
+
+    private fun setupCallUsingSameSim() {
+        binding.apply {
+            settingsCallFromSameSimHolder.beVisibleIf(areMultipleSIMsAvailable())
+            settingsCallFromSameSim.isChecked = config.callUsingSameSim
+            settingsCallFromSameSimHolder.setOnClickListener {
+                settingsCallFromSameSim.toggle()
+                config.callUsingSameSim = settingsCallFromSameSim.isChecked
+            }
+        }
     }
 
     private fun setupShowVoicemailIcon() {

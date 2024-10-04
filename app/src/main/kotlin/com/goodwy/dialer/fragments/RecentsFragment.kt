@@ -12,6 +12,7 @@ import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.adapters.RecentCallsAdapter
 import com.goodwy.dialer.databinding.FragmentRecentsBinding
+import com.goodwy.dialer.extensions.callContactWithSim
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.helpers.RecentsHelper
 import com.goodwy.dialer.interfaces.RefreshItemsListener
@@ -154,10 +155,10 @@ class RecentsFragment(
                         val recentCall = it as RecentCall
                         if (context.config.showCallConfirmation) {
                             CallConfirmationDialog(activity as SimpleActivity, recentCall.name) {
-                                activity?.launchCallIntent(recentCall.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
+                                callRecentNumber(recentCall);
                             }
                         } else {
-                            activity?.launchCallIntent(recentCall.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
+                            callRecentNumber(recentCall);
                         }
                     }
                 )
@@ -176,6 +177,16 @@ class RecentsFragment(
             } else {
                 recentsAdapter?.updateItems(recents)
             }
+        }
+    }
+
+    private fun callRecentNumber(recentCall: RecentCall) {
+        if (context.config.callUsingSameSim && recentCall.simID > 0) {
+            val sim = recentCall.simID == 1;
+            activity?.callContactWithSim(recentCall.phoneNumber, sim);
+        }
+        else {
+            activity?.launchCallIntent(recentCall.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
         }
     }
 

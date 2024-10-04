@@ -212,6 +212,10 @@ class Config(context: Context) : BaseConfig(context) {
         }
         set(quickAnswers) = prefs.edit().putString(QUICK_ANSWERS, quickAnswers.joinToString(separator = "\n")).apply()
 
+    var callUsingSameSim: Boolean
+        get() = prefs.getBoolean(CALL_USING_SAME_SIM, false)
+        set(callUsingSameSim) = prefs.edit().putBoolean(CALL_USING_SAME_SIM, callUsingSameSim).apply()
+
     var showVoicemailIcon: Boolean
         get() = prefs.getBoolean(SHOW_VOICEMAIL_ICON, false)
         set(showVoicemailIcon) = prefs.edit().putBoolean(SHOW_VOICEMAIL_ICON, showVoicemailIcon).apply()
