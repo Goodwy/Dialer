@@ -47,6 +47,7 @@ const val RECENT_CALL = "recent_call"
 const val QUERY_LIMIT_RECENT = "query_limit_recent"
 const val CALL_BUTTON_STYLE = "call_button_style"
 const val QUICK_ANSWERS = "quick_answers"
+const val CALL_USING_SAME_SIM = "call_using_same_sim"
 const val SHOW_VOICEMAIL_ICON = "show_voicemail_icon"
 const val SIM_DIALOG_STYLE = "sim_dialog_style"
 

@@ -221,6 +221,17 @@
                         </RelativeLayout>
 
                         <RelativeLayout
+                            android:id="@+id/settingsCallFromSameSimHolder"
+                            style="@style/SettingsHolderSwitchStyle">
+
+                            <com.goodwy.commons.views.MySwitchCompat
+                                android:id="@+id/settingsCallFromSameSim"
+                                style="@style/SettingsSwitchStyle"
+                                android:text="@string/call_using_same_sim"
+                                app:switchPadding="@dimen/bigger_margin"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
                             android:id="@+id/settingsShowVoicemailIconHolder"
                             style="@style/SettingsHolderSwitchStyle">
 

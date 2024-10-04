@@ -840,15 +840,15 @@ class RecentCallsAdapter(
                 val swipeLeftAction = if (isRTL) activity.config.swipeRightAction else activity.config.swipeLeftAction
                 swipeLeftIcon.setImageResource(swipeActionImageResource(swipeLeftAction))
                 swipeLeftIcon.setColorFilter(properPrimaryColor.getContrastColor())
-                swipeLeftIconHolder.setBackgroundColor(swipeActionColor(swipeLeftAction))
+                swipeLeftIconHolder.setBackgroundColor(swipeActionColor(call, swipeLeftAction))
 
                 val swipeRightAction = if (isRTL) activity.config.swipeLeftAction else activity.config.swipeRightAction
                 swipeRightIcon.setImageResource(swipeActionImageResource(swipeRightAction))
                 swipeRightIcon.setColorFilter(properPrimaryColor.getContrastColor())
-                swipeRightIconHolder.setBackgroundColor(swipeActionColor(swipeRightAction))
+                swipeRightIconHolder.setBackgroundColor(swipeActionColor(call, swipeRightAction))
 
-                itemRecentsHolder.setRippleColor(SwipeDirection.Left, swipeActionColor(swipeLeftAction))
-                itemRecentsHolder.setRippleColor(SwipeDirection.Right, swipeActionColor(swipeRightAction))
+                itemRecentsHolder.setRippleColor(SwipeDirection.Left, swipeActionColor(call, swipeLeftAction))
+                itemRecentsHolder.setRippleColor(SwipeDirection.Right, swipeActionColor(call, swipeRightAction))
 
                 itemRecentsHolder.useHapticFeedback = activity.config.swipeVibration
                 itemRecentsHolder.swipeGestureListener = object : SwipeGestureListener {
@@ -943,9 +943,12 @@ class RecentCallsAdapter(
         }
     }
 
-    private fun swipeActionColor(swipeAction: Int): Int {
-        val oneSim = activity.config.currentSIMCardIndex == 0
-        val simColor = if (oneSim) activity.config.simIconsColors[1] else activity.config.simIconsColors[2]
+    private fun swipeActionColor(call: RecentCall, swipeAction: Int): Int {
+        val defaultSim = if (activity.config.currentSIMCardIndex == 0) 1 else 2
+        // if we're calling with the same SIM that was used to call us then highlight using that SIMs color
+        // but only if we have the sim ID
+        val simIndex: Int = if (call.simID > 0 && activity.config.callUsingSameSim) call.simID else defaultSim
+        val simColor = activity.config.simIconsColors[simIndex]
         return when (swipeAction) {
             SWIPE_ACTION_DELETE -> resources.getColor(R.color.red_call, activity.theme)
             SWIPE_ACTION_MESSAGE -> resources.getColor(R.color.ic_messages, activity.theme)
@@ -985,12 +988,22 @@ class RecentCallsAdapter(
     private fun swipedCall(call: RecentCall) {
         if (activity.config.showCallConfirmation) {
             CallConfirmationDialog(activity as SimpleActivity, call.name) {
-                activity.launchCallIntent(call.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
+                callRecentNumber(call)
             }
         } else {
-            activity.launchCallIntent(call.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
+            callRecentNumber(call)
         }
         //(activity as SimpleActivity).startCallIntent(call.phoneNumber)
+    }
+
+    private fun callRecentNumber(recentCall: RecentCall) {
+        if (activity.config.callUsingSameSim && recentCall.simID > 0) {
+            val sim = recentCall.simID == 1;
+            activity.callContactWithSim(recentCall.phoneNumber, sim);
+        }
+        else {
+            activity.launchCallIntent(recentCall.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
+        }
     }
 }
 
