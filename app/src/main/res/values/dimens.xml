@@ -21,6 +21,7 @@
     <dimen name="dialpad_text_size">36sp</dimen>
 
     <!--Goodwy-->
+    <dimen name="tab_layout_width">114dp</dimen>
     <dimen name="activity_padding_left_right">0dp</dimen>
     <dimen name="contact_padding_left">16dp</dimen>
     <dimen name="contact_padding_top">8dp</dimen>
@@ -40,10 +41,12 @@
     <dimen name="snackbar_bottom_margin">52dp</dimen>
 
     <!--call button-->
+    <dimen name="call_button_size">82dp</dimen>
     <dimen name="vertical_bias_avatar">0.10</dimen>
     <dimen name="vertical_bias_button">0.5</dimen>
     <dimen name="vertical_bias_call_end">0.90</dimen>
     <dimen name="margin_button_horizontal">230dp</dimen>
+    <dimen name="call_dialpad_height">400dp</dimen>
 
     <!--dialpad button-->
     <dimen name="dialpad_button_height">100dp</dimen>

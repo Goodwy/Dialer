@@ -8,8 +8,8 @@
                 android:color="@android:color/white"/>
 
             <size
-                android:width="@dimen/incoming_call_button_size"
-                android:height="@dimen/incoming_call_button_size"/>
+                android:width="@dimen/call_button_size"
+                android:height="@dimen/call_button_size"/>
         </shape>
     </item>
 </ripple>

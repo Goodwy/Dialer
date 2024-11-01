@@ -58,13 +58,12 @@ class RecentCallsAdapter(
     private lateinit var outgoingCallIcon: Drawable
     private lateinit var incomingCallIcon: Drawable
     private lateinit var incomingMissedCallIcon: Drawable
-    //private lateinit var infoIcon: Drawable
     var fontSize: Float = activity.getTextSize()
     private val areMultipleSIMsAvailable = activity.areMultipleSIMsAvailable()
     private val missedCallColor = resources.getColor(R.color.red_missed)
     private var secondaryTextColor = textColor.adjustAlpha(0.6f)
     private var textToHighlight = ""
-    //private var durationPadding = resources.getDimension(R.dimen.normal_margin).toInt()
+    private var getBlockedNumbers = activity.getBlockedNumbers()
 
     init {
         initDrawables()
@@ -80,6 +79,8 @@ class RecentCallsAdapter(
         val selectedItems = getSelectedItems()
         val isOneItemSelected = selectedItems.size == 1
         val selectedNumber = "tel:${getSelectedPhoneNumber()}".replace("+","%2B")
+        val isAllBlockedNumbers = isAllBlockedNumbers()
+        val isAllUnblockedNumbers = isAllUnblockedNumbers()
 
         menu.apply {
             findItem(R.id.cab_call_sim_1).isVisible = hasMultipleSIMs && isOneItemSelected
@@ -87,9 +88,9 @@ class RecentCallsAdapter(
             findItem(R.id.cab_remove_default_sim).isVisible = isOneItemSelected && (activity.config.getCustomSIM(selectedNumber) ?: "") != ""
 
             findItem(R.id.cab_block_number).title = if (isOneItemSelected) activity.getString(R.string.block_number) else activity.getString(R.string.block_numbers)
-            findItem(R.id.cab_block_number).isVisible = isNougatPlus() && (isAllUnblockedNumbers() && !isAllBlockedNumbers())
+            findItem(R.id.cab_block_number).isVisible = isNougatPlus() && (isAllUnblockedNumbers && !isAllBlockedNumbers)
             findItem(R.id.cab_unblock_number).title = if (isOneItemSelected) activity.getString(R.string.unblock_number) else activity.getString(R.string.unblock_numbers)
-            findItem(R.id.cab_unblock_number).isVisible = isNougatPlus() && (isAllBlockedNumbers() && !isAllUnblockedNumbers())
+            findItem(R.id.cab_unblock_number).isVisible = isNougatPlus() && (isAllBlockedNumbers && !isAllUnblockedNumbers)
             findItem(R.id.cab_add_number).isVisible = isOneItemSelected
             findItem(R.id.cab_show_call_details).isVisible = isOneItemSelected
             findItem(R.id.cab_copy_number).isVisible = isOneItemSelected
@@ -99,14 +100,14 @@ class RecentCallsAdapter(
 
     private fun isAllBlockedNumbers(): Boolean {
         getSelectedItems().map { it.phoneNumber }.forEach { number ->
-            if (activity.isNumberBlocked(number, activity.getBlockedNumbers())) return true
+            if (activity.isNumberBlocked(number, getBlockedNumbers)) return true
         }
         return false
     }
 
     private fun isAllUnblockedNumbers(): Boolean {
         getSelectedItems().map { it.phoneNumber }.forEach { number ->
-            if (!activity.isNumberBlocked(number, activity.getBlockedNumbers())) return true
+            if (!activity.isNumberBlocked(number, getBlockedNumbers)) return true
         }
         return false
     }
@@ -213,20 +214,10 @@ class RecentCallsAdapter(
     }
 
     fun initDrawables(newColor: Int = textColor) {
-//        val theme = activity.theme
-//        missedCallColor = resources.getColor(R.color.red_missed, theme)
         secondaryTextColor = textColor.adjustAlpha(0.6f)
-
-//        val outgoingCallColor = resources.getColor(R.color.color_outgoing_call, theme)
-//        val incomingCallColor = resources.getColor(R.color.color_incoming_call, theme)
-//        outgoingCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_call_made_vector, outgoingCallColor)
-//        incomingCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_call_received_vector, incomingCallColor)
-//        incomingMissedCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_call_missed_vector, missedCallColor)
-
         outgoingCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_call_made_vector, newColor)
         incomingCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_call_received_vector, newColor)
         incomingMissedCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_call_missed_vector, newColor)
-        //infoIcon = resources.getColoredDrawableWithColor(R.drawable.ic_info, properPrimaryColor)
     }
 
     private fun callContact(useSimOne: Boolean) {
@@ -278,6 +269,7 @@ class RecentCallsAdapter(
                 if (!activity.config.showBlockedNumbers) submitList(recentCalls)
                 finishActMode()
                 selectedKeys.clear()
+                getBlockedNumbers = activity.getBlockedNumbers()
             }
         }
     }
@@ -316,6 +308,7 @@ class RecentCallsAdapter(
                 //removeSelectedItems(positions)
                 finishActMode()
                 selectedKeys.clear()
+                getBlockedNumbers = activity.getBlockedNumbers()
             }
         }
     }
@@ -431,10 +424,8 @@ class RecentCallsAdapter(
                 findItem(R.id.cab_add_number).isVisible = !call.isUnknownNumber
                 findItem(R.id.cab_copy_number).isVisible = !call.isUnknownNumber
                 findItem(R.id.cab_show_call_details).isVisible = !call.isUnknownNumber
-                //findItem(R.id.cab_block_number).title = activity.getString(R.string.block_number)
-                findItem(R.id.cab_block_number).isVisible = isNougatPlus() && !call.isUnknownNumber && !activity.isNumberBlocked(call.phoneNumber)
-                //findItem(R.id.cab_unblock_number).title = activity.getString(R.string.unblock_number)
-                findItem(R.id.cab_unblock_number).isVisible = isNougatPlus() && !call.isUnknownNumber && activity.isNumberBlocked(call.phoneNumber)
+                findItem(R.id.cab_block_number).isVisible = isNougatPlus() && !call.isUnknownNumber && !activity.isNumberBlocked(call.phoneNumber, getBlockedNumbers)
+                findItem(R.id.cab_unblock_number).isVisible = isNougatPlus() && !call.isUnknownNumber && activity.isNumberBlocked(call.phoneNumber, getBlockedNumbers)
                 findItem(R.id.cab_remove_default_sim).isVisible = (activity.config.getCustomSIM(selectedNumber) ?: "") != "" && !call.isUnknownNumber
             }
             setOnMenuItemClickListener { item ->
@@ -847,6 +838,13 @@ class RecentCallsAdapter(
                 swipeRightIcon.setColorFilter(properPrimaryColor.getContrastColor())
                 swipeRightIconHolder.setBackgroundColor(swipeActionColor(call, swipeRightAction))
 
+                val halfScreenWidth = activity.resources.displayMetrics.widthPixels / 2
+                val swipeWidth = activity.resources.getDimension(com.goodwy.commons.R.dimen.swipe_width)
+                if (swipeWidth > halfScreenWidth) {
+                    swipeRightIconHolder.setWidth(halfScreenWidth)
+                    swipeLeftIconHolder.setWidth(halfScreenWidth)
+                }
+
                 itemRecentsHolder.setRippleColor(SwipeDirection.Left, swipeActionColor(call, swipeLeftAction))
                 itemRecentsHolder.setRippleColor(SwipeDirection.Right, swipeActionColor(call, swipeRightAction))
 
@@ -982,7 +980,7 @@ class RecentCallsAdapter(
     private fun swipedBlock(call: RecentCall) {
         if (!isNougatPlus() || call.isUnknownNumber) return
         selectedKeys.add(call.id)
-        if (!activity.isNumberBlocked(call.phoneNumber)) askConfirmBlock() else askConfirmUnblock()
+        if (!activity.isNumberBlocked(call.phoneNumber, getBlockedNumbers)) askConfirmBlock() else askConfirmUnblock()
     }
 
     private fun swipedCall(call: RecentCall) {
@@ -993,7 +991,6 @@ class RecentCallsAdapter(
         } else {
             callRecentNumber(call)
         }
-        //(activity as SimpleActivity).startCallIntent(call.phoneNumber)
     }
 
     private fun callRecentNumber(recentCall: RecentCall) {

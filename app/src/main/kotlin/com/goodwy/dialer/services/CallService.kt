@@ -2,15 +2,12 @@ package com.goodwy.dialer.services
 
 import android.telecom.CallAudioState
 import android.telecom.Call
-import android.telecom.DisconnectCause
 import android.telecom.InCallService
 import com.goodwy.dialer.activities.CallActivity
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.isOutgoing
 import com.goodwy.dialer.extensions.powerManager
-import com.goodwy.dialer.extensions.showMessageNotification
 import com.goodwy.dialer.helpers.*
-import com.goodwy.dialer.helpers.CallManager.Companion.getPhoneSize
 import com.goodwy.dialer.models.Events
 import org.greenrobot.eventbus.EventBus
 
@@ -84,11 +81,6 @@ class CallService : InCallService() {
             }
         }
         call.details?.let {
-            if (call.details.disconnectCause.code == DisconnectCause.MISSED && config.missedCallNotifications) {
-                getCallContact(this.applicationContext, call) { callContact ->
-                    showMessageNotification(callContact)
-                }
-            }
             if (config.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
         }
 

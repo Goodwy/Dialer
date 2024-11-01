@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--copy of the original dimen file-->
+    <dimen name="dialpad_phone_button_size">68dp</dimen><!--New-->
+    <dimen name="dialpad_button_size">60dp</dimen>
+    <dimen name="dialpad_button_size_small">50dp</dimen>
+    <dimen name="incoming_call_arrow_size">50dp</dimen>
+    <dimen name="incoming_call_button_size">72dp</dimen>
+    <dimen name="incoming_call_draggable_background_size">82dp</dimen>
+    <dimen name="call_notification_button_size">35dp</dimen>
+    <dimen name="caller_avatar_max_size">100dp</dimen>
+    <dimen name="end_call_button_margin">34dp</dimen>
+    <dimen name="dialpad_bottom_padding">114dp</dimen>
+    <dimen name="call_control_max_height">240dp</dimen>
+    <dimen name="call_control_button_size">72dp</dimen>
+    <dimen name="recyclerview_fab_padding">100dp</dimen>
+
+    <dimen name="caller_name_text_size">26sp</dimen>
+    <dimen name="call_status_text_size">18sp</dimen>
+
+    <!-- keep these 2 values in dp to avoid scaling -->
+    <dimen name="dialpad_text_size">36sp</dimen>
+
+    <!--Goodwy-->
+    <dimen name="tab_layout_width">114dp</dimen>
+    <dimen name="activity_padding_left_right">0dp</dimen>
+    <dimen name="contact_padding_left">16dp</dimen>
+    <dimen name="contact_padding_top">8dp</dimen>
+
+    <!--collapsing toolbar-->
+    <dimen name="toolbar_height">102dp</dimen>
+    <dimen name="image_top_margin">24dp</dimen>
+    <dimen name="image_right_margin">23dp</dimen>
+    <dimen name="name_top_margin">12dp</dimen>
+    <dimen name="company_top_margin">32dp</dimen>
+    <dimen name="name_right_margin">38dp</dimen>
+    <dimen name="zero">0dp</dimen>
+
+    <dimen name="three_dp">3dp</dimen>
+    <dimen name="top_toolbar_search_height">50dp</dimen>
+
+    <dimen name="snackbar_bottom_margin">52dp</dimen>
+
+    <!--call button-->
+    <dimen name="call_button_size">82dp</dimen>
+    <dimen name="vertical_bias_avatar">0.10</dimen>
+    <dimen name="vertical_bias_button">0.5</dimen>
+    <dimen name="vertical_bias_call_end">0.90</dimen>
+    <dimen name="margin_button_horizontal">230dp</dimen>
+    <dimen name="call_dialpad_height">400dp</dimen>
+
+    <!--dialpad button-->
+    <dimen name="dialpad_button_height">100dp</dimen>
+    <dimen name="dialpad_margin_bottom_ios">28dp</dimen>
+    <dimen name="dialpad_grid_height">420dp</dimen>
+    <dimen name="dialpad_ios_height">520dp</dimen>
+
+    <!--dialpad style-->
+    <dimen name="call_slider_margin">68dp</dimen>
+    <dimen name="call_button_row_margin">52dp</dimen>
+</resources>

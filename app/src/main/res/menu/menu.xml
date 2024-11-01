@@ -47,7 +47,7 @@
     <item
         android:id="@+id/settings"
         android:title="@string/settings"
-        android:icon="@drawable/ic_settings_hexagon"
+        android:icon="@drawable/ic_settings_cog_vector"
         app:showAsAction="never"/>
     <item
         android:id="@+id/about"

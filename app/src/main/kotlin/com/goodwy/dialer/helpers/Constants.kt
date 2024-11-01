@@ -23,6 +23,7 @@ const val SHOW_INCOMING_CALLS_FULL_SCREEN = "show_incoming_calls_full_screen"
 const val TRANSPARENT_CALL_SCREEN = "transparent_call_screen"
 const val NUMBER_MISSED_CALLS = "number_missed_calls"
 const val MISSED_CALL_NOTIFICATIONS = "missed_call_notifications"
+const val MISSED_CALL_NOTIFICATION_ID = "missed_call_notification_id"
 const val HIDE_DIALPAD_LETTERS = "hide_dialpad_letters"
 const val BACKGROUND_CALL_SCREEN = "background_call_screen"
 const val SHOW_ALL_RECENT_IN_HISTORY = "show_all_recent_in_history"
@@ -59,6 +60,10 @@ private const val PATH = "com.goodwy.dialer.action."
 const val ACCEPT_CALL = PATH + "accept_call"
 const val DECLINE_CALL = PATH + "decline_call"
 const val MICROPHONE_CALL = PATH + "microphone_call"
+const val MISSED_CALLS = PATH + "missed_call"
+const val MISSED_CALL_BACK = PATH + "missed_call_back"
+const val MISSED_CALL_MESSAGE = PATH + "missed_call_message"
+const val MISSED_CALL_CANCEL = PATH + "missed_call_cancel"
 
 const val DIALPAD_TONE_LENGTH_MS = 150L // The length of DTMF tones in milliseconds
 

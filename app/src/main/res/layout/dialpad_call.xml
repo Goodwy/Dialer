@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dialpad_holder"
     android:layout_width="match_parent"
-    android:layout_height="400dp"
+    android:layout_height="@dimen/call_dialpad_height"
     android:layout_alignParentBottom="true"
     android:focusableInTouchMode="true"
     android:background="@android:color/transparent"
@@ -13,8 +13,8 @@
 
     <RelativeLayout
         android:id="@+id/dialpad_1_holder"
-        android:layout_width="82dp"
-        android:layout_height="82dp"
+        android:layout_width="@dimen/call_button_size"
+        android:layout_height="@dimen/call_button_size"
         android:layout_marginEnd="@dimen/margin_button_horizontal"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:foreground="@drawable/pulsing_background"
@@ -38,8 +38,8 @@
 
     <RelativeLayout
         android:id="@+id/dialpad_2_holder"
-        android:layout_width="82dp"
-        android:layout_height="82dp"
+        android:layout_width="@dimen/call_button_size"
+        android:layout_height="@dimen/call_button_size"
         android:layout_marginBottom="@dimen/medium_margin"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:foreground="@drawable/pulsing_background"
@@ -74,8 +74,8 @@
 
     <RelativeLayout
         android:id="@+id/dialpad_3_holder"
-        android:layout_width="82dp"
-        android:layout_height="82dp"
+        android:layout_width="@dimen/call_button_size"
+        android:layout_height="@dimen/call_button_size"
         android:layout_marginStart="@dimen/margin_button_horizontal"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:foreground="@drawable/pulsing_background"
@@ -109,8 +109,8 @@
 
     <RelativeLayout
         android:id="@+id/dialpad_4_holder"
-        android:layout_width="82dp"
-        android:layout_height="82dp"
+        android:layout_width="@dimen/call_button_size"
+        android:layout_height="@dimen/call_button_size"
         android:layout_marginEnd="@dimen/margin_button_horizontal"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:foreground="@drawable/pulsing_background"
@@ -144,8 +144,8 @@
 
     <RelativeLayout
         android:id="@+id/dialpad_5_holder"
-        android:layout_width="82dp"
-        android:layout_height="82dp"
+        android:layout_width="@dimen/call_button_size"
+        android:layout_height="@dimen/call_button_size"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:foreground="@drawable/pulsing_background"
         android:contentDescription="@string/five"
@@ -179,8 +179,8 @@
 
     <RelativeLayout
         android:id="@+id/dialpad_6_holder"
-        android:layout_width="82dp"
-        android:layout_height="82dp"
+        android:layout_width="@dimen/call_button_size"
+        android:layout_height="@dimen/call_button_size"
         android:layout_marginStart="@dimen/margin_button_horizontal"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:foreground="@drawable/pulsing_background"
@@ -214,8 +214,8 @@
 
     <RelativeLayout
         android:id="@+id/dialpad_7_holder"
-        android:layout_width="82dp"
-        android:layout_height="82dp"
+        android:layout_width="@dimen/call_button_size"
+        android:layout_height="@dimen/call_button_size"
         android:layout_marginEnd="@dimen/margin_button_horizontal"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:foreground="@drawable/pulsing_background"
@@ -249,8 +249,8 @@
 
     <RelativeLayout
         android:id="@+id/dialpad_8_holder"
-        android:layout_width="82dp"
-        android:layout_height="82dp"
+        android:layout_width="@dimen/call_button_size"
+        android:layout_height="@dimen/call_button_size"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:foreground="@drawable/pulsing_background"
         android:contentDescription="@string/eight"
@@ -284,8 +284,8 @@
 
     <RelativeLayout
         android:id="@+id/dialpad_9_holder"
-        android:layout_width="82dp"
-        android:layout_height="82dp"
+        android:layout_width="@dimen/call_button_size"
+        android:layout_height="@dimen/call_button_size"
         android:layout_marginStart="@dimen/margin_button_horizontal"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:foreground="@drawable/pulsing_background"
@@ -319,8 +319,8 @@
 
     <RelativeLayout
         android:id="@+id/dialpad_asterisk_holder"
-        android:layout_width="82dp"
-        android:layout_height="82dp"
+        android:layout_width="@dimen/call_button_size"
+        android:layout_height="@dimen/call_button_size"
         android:layout_marginEnd="@dimen/margin_button_horizontal"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:foreground="@drawable/pulsing_background"
@@ -341,8 +341,8 @@
 
     <RelativeLayout
         android:id="@+id/dialpad_0_holder"
-        android:layout_width="82dp"
-        android:layout_height="82dp"
+        android:layout_width="@dimen/call_button_size"
+        android:layout_height="@dimen/call_button_size"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:foreground="@drawable/pulsing_background"
         android:contentDescription="@string/zero"
@@ -377,8 +377,8 @@
 
     <RelativeLayout
         android:id="@+id/dialpad_hashtag_holder"
-        android:layout_width="82dp"
-        android:layout_height="82dp"
+        android:layout_width="@dimen/call_button_size"
+        android:layout_height="@dimen/call_button_size"
         android:layout_marginStart="@dimen/margin_button_horizontal"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:foreground="@drawable/pulsing_background"

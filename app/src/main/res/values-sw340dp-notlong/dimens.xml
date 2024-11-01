@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--call button-->
+    <dimen name="vertical_bias_avatar">0.05</dimen>
+    <dimen name="vertical_bias_button">0.48</dimen>
+    <dimen name="vertical_bias_call_end">0.95</dimen>
+    <dimen name="call_dialpad_height">400dp</dimen>
+
+    <!--dialpad button-->
+    <dimen name="dialpad_button_height">0dp</dimen>
+    <dimen name="dialpad_margin_bottom_ios">8dp</dimen>
+    <dimen name="dialpad_grid_height">380dp</dimen>
+    <dimen name="dialpad_ios_height">480dp</dimen>
+</resources>

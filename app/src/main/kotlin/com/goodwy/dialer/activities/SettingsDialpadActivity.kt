@@ -12,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.isVisible
 import androidx.core.view.setPadding
@@ -64,11 +65,12 @@ class SettingsDialpadActivity : SimpleActivity() {
 
     @SuppressLint("MissingSuperCall", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
+        isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         binding.apply {
-            updateMaterialActivityViews(dialpadCoordinator, dialpadHolder, useTransparentNavigation = true, useTopSearchMenu = false)
+            updateMaterialActivityViews(dialpadCoordinator, dialpadSettingsHolder, useTransparentNavigation = true, useTopSearchMenu = false)
             setupMaterialScrollListener(dialpadNestedScrollview, dialpadToolbar)
         }
 
@@ -124,6 +126,10 @@ class SettingsDialpadActivity : SimpleActivity() {
         privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
 
         toneGeneratorHelper = ToneGeneratorHelper(this, DIALPAD_TONE_LENGTH_MS)
+
+        (binding.dialpadClearWrapper.dialpadGridHolder.layoutParams as? CoordinatorLayout.LayoutParams)?.bottomMargin = navigationBarHeight
+        (binding.dialpadRoundWrapper.dialpadIosHolder.layoutParams as? CoordinatorLayout.LayoutParams)?.bottomMargin = navigationBarHeight
+        (binding.dialpadRectWrapper.dialpadGridHolder.layoutParams as? CoordinatorLayout.LayoutParams)?.bottomMargin = navigationBarHeight
     }
 
     @SuppressLint("MissingSuperCall")
@@ -136,7 +142,6 @@ class SettingsDialpadActivity : SimpleActivity() {
         setupDialpadStyle()
         setupSimCardColorList()
         setupPrimarySimCard()
-        setupCallUsingSameSim()
         setupShowVoicemailIcon()
         setupHideDialpadLetters()
         setupDialpadSecondaryLanguage()
@@ -158,7 +163,7 @@ class SettingsDialpadActivity : SimpleActivity() {
 
             speedDialValues = config.getSpeedDialValues()
             initStyle()
-            updateTextColors(dialpadHolder)
+            updateTextColors(dialpadSettingsHolder)
             setupToolbar(dialpadToolbar, NavigationIcon.Arrow)
 
             arrayOf(dialpadClearWrapper.dialpadAsterisk, dialpadClearWrapper.dialpadHashtag,
@@ -170,6 +175,17 @@ class SettingsDialpadActivity : SimpleActivity() {
                 dialpadClearWrapper.dialpadVoicemail, dialpadRoundWrapper.dialpadVoicemail
             ).forEach {
                 it.applyColorFilter(properTextColor)
+            }
+
+            val onBackground = properBackgroundColor.getContrastColor()
+            val buttonBackground = onBackground.adjustAlpha(0.2f)
+            arrayOf(toneVolumeButtons, dialpadSizeButtons, buttonSizeButtons, buttonSecondSizeButtons
+            ).forEach {
+                it.background.applyColorFilter(buttonBackground)
+            }
+            arrayOf(toneVolumeDivider, dialpadSizeDivider, buttonSizeDivider, buttonSecondSizeDivider
+            ).forEach {
+                it.background.applyColorFilter(properTextColor)
             }
 
             dialpadClearWrapper.dialpadGridHolder.setBackgroundColor(properBackgroundColor)
@@ -313,7 +329,7 @@ class SettingsDialpadActivity : SimpleActivity() {
         val areMultipleSIMsAvailable = areMultipleSIMsAvailable()
         val baseColor = baseConfig.backgroundColor
         val buttonColor = when {
-            baseConfig.isUsingSystemTheme -> resources.getColor(R.color.you_status_bar_color, theme)
+            isDynamicTheme() -> resources.getColor(R.color.you_status_bar_color, theme)
             baseColor == Color.WHITE -> resources.getColor(R.color.dark_grey, theme)
             baseColor == Color.BLACK -> resources.getColor(R.color.bottom_tabs_black_background, theme)
             else -> baseConfig.backgroundColor.lightenColor(4)
@@ -1094,17 +1110,6 @@ class SettingsDialpadActivity : SimpleActivity() {
                 }
             }
         } else binding.settingsPrimarySimCardHolder.beGone()
-    }
-
-    private fun setupCallUsingSameSim() {
-        binding.apply {
-            settingsCallFromSameSimHolder.beVisibleIf(areMultipleSIMsAvailable())
-            settingsCallFromSameSim.isChecked = config.callUsingSameSim
-            settingsCallFromSameSimHolder.setOnClickListener {
-                settingsCallFromSameSim.toggle()
-                config.callUsingSameSim = settingsCallFromSameSim.isChecked
-            }
-        }
     }
 
     private fun setupShowVoicemailIcon() {

@@ -47,7 +47,7 @@ class SelectSIMDialog(
                     val res = when (indexText) {
                         1 -> R.drawable.ic_sim_one
                         2 -> R.drawable.ic_sim_two
-                        else -> com.goodwy.commons.R.drawable.ic_sim_vector
+                        else -> R.drawable.ic_sim_vector
                     }
                     val drawable = ResourcesCompat.getDrawable(resources, res, activity.theme)?.apply {
                         applyColorFilter(simColor)

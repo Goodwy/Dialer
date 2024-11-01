@@ -11,6 +11,7 @@ import android.view.Menu
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import com.behaviorule.arturdumchev.library.pixels
 import com.goodwy.commons.activities.ManageBlockedNumbersActivity
 import com.goodwy.commons.dialogs.*
 import com.goodwy.commons.extensions.*
@@ -83,13 +84,6 @@ class SettingsActivity : SimpleActivity() {
         binding.apply {
             updateMaterialActivityViews(settingsCoordinator, settingsHolder, useTransparentNavigation = true, useTopSearchMenu = false)
             setupMaterialScrollListener(settingsNestedScrollview, settingsToolbar)
-//            // TODO TRANSPARENT Navigation Bar
-//            if (config.transparentNavigationBar) {
-//                setWindowTransparency(true) { _, _, leftNavigationBarSize, rightNavigationBarSize ->
-//                    settingsCoordinator.setPadding(leftNavigationBarSize, 0, rightNavigationBarSize, 0)
-//                    updateNavigationBarColor(getProperBackgroundColor())
-//                }
-//            }
         }
 
         if (isPlayStoreInstalled()) {
@@ -197,6 +191,8 @@ class SettingsActivity : SimpleActivity() {
         setupDialpadStyle()
         setupShowRecentCallsOnDialpad()
 
+        setupFlashForAlerts()
+
         setupBackgroundCallScreen()
         setupTransparentCallScreen()
         setupAnswerStyle()
@@ -204,12 +200,9 @@ class SettingsActivity : SimpleActivity() {
         setupAlwaysShowFullscreen()
         setupQuickAnswers()
         setupCallerDescription()
-        setupFlashForAlerts()
-        setupMissedCallNotifications()
         setupGroupCalls()
         setupGroupSubsequentCalls()
         setupQueryLimitRecent()
-        setupShowCallConfirmation()
         setupSimDialogStyle()
         setupHideDialpadLetters()
         setupDialpadNumbers()
@@ -218,6 +211,9 @@ class SettingsActivity : SimpleActivity() {
         setupCallStartEndVibrations()
         setupDialpadBeeps()
         setupDisableSwipeToAnswer()
+        setupShowCallConfirmation()
+        setupCallUsingSameSim()
+
         setupBlockCallFromAnotherApp()
 
         setupShowDividers()
@@ -339,7 +335,8 @@ class SettingsActivity : SimpleActivity() {
                 subscriptionYearIdList = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
                 subscriptionYearIdListRu = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
                 playStoreInstalled = isPlayStoreInstalled(),
-                ruStoreInstalled = isRuStoreInstalled()
+                ruStoreInstalled = isRuStoreInstalled(),
+                showAppIconColor = true
             )
         }
     }
@@ -596,9 +593,27 @@ class SettingsActivity : SimpleActivity() {
         settingsContactColorListHolder.beVisibleIf(config.useColoredContacts)
         settingsContactColorListIcon.setImageResource(getContactsColorListIcon(config.contactColorList))
         settingsContactColorListHolder.setOnClickListener {
-            ColorListDialog(this@SettingsActivity) {
-                config.contactColorList = it as Int
-                settingsContactColorListIcon.setImageResource(getContactsColorListIcon(it))
+            val items = arrayListOf(
+                com.goodwy.commons.R.drawable.ic_color_list,
+                com.goodwy.commons.R.drawable.ic_color_list_android,
+                com.goodwy.commons.R.drawable.ic_color_list_ios,
+                com.goodwy.commons.R.drawable.ic_color_list_arc
+            )
+
+            IconListDialog(
+                activity = this@SettingsActivity,
+                items = items,
+                checkedItemId = config.contactColorList,
+                defaultItemId = LBC_ANDROID,
+                titleId = com.goodwy.strings.R.string.overflow_icon
+            ) { wasPositivePressed, newValue ->
+                if (wasPositivePressed) {
+                    if (config.contactColorList != newValue) {
+                        config.contactColorList = newValue
+                        settingsContactColorListIcon.setImageResource(getContactsColorListIcon(config.contactColorList))
+                        config.tabsChanged = true
+                    }
+                }
             }
         }
     }
@@ -927,16 +942,6 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun setupMissedCallNotifications() {
-        binding.apply {
-            settingsMissedCallNotifications.isChecked = config.missedCallNotifications
-            settingsMissedCallNotificationsHolder.setOnClickListener {
-                settingsMissedCallNotifications.toggle()
-                config.missedCallNotifications = settingsMissedCallNotifications.isChecked
-            }
-        }
-    }
-
     private fun setupFlashForAlerts() {
         binding.apply {
             settingsFlashForAlerts.isChecked = config.flashForAlerts
@@ -1083,6 +1088,17 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupCallUsingSameSim() {
+        binding.apply {
+            settingsCallFromSameSimHolder.beVisibleIf(areMultipleSIMsAvailable())
+            settingsCallFromSameSim.isChecked = config.callUsingSameSim
+            settingsCallFromSameSimHolder.setOnClickListener {
+                settingsCallFromSameSim.toggle()
+                config.callUsingSameSim = settingsCallFromSameSim.isChecked
+            }
+        }
+    }
+
     private fun setupSimDialogStyle() {
         binding.settingsSimDialogStyleHolder.beGoneIf(!areMultipleSIMsAvailable())
         binding.settingsSimDialogStyle.text = getSimDialogStyleText()
@@ -1121,8 +1137,27 @@ class SettingsActivity : SimpleActivity() {
             settingsOverflowIcon.applyColorFilter(getProperTextColor())
             settingsOverflowIcon.setImageResource(getOverflowIcon(baseConfig.overflowIcon))
             settingsOverflowIconHolder.setOnClickListener {
-                OverflowIconDialog(this@SettingsActivity) {
-                    settingsOverflowIcon.setImageResource(getOverflowIcon(baseConfig.overflowIcon))
+                val items = arrayListOf(
+                    com.goodwy.commons.R.drawable.ic_more_horiz,
+                    com.goodwy.commons.R.drawable.ic_three_dots_vector,
+                    com.goodwy.commons.R.drawable.ic_more_horiz_round
+                )
+
+                IconListDialog(
+                    activity = this@SettingsActivity,
+                    items = items,
+                    checkedItemId = baseConfig.overflowIcon + 1,
+                    defaultItemId = OVERFLOW_ICON_HORIZONTAL + 1,
+                    titleId = com.goodwy.strings.R.string.overflow_icon,
+                    size = pixels(com.goodwy.commons.R.dimen.normal_icon_size).toInt(),
+                    color = getProperTextColor()
+                ) { wasPositivePressed, newValue ->
+                    if (wasPositivePressed) {
+                        if (baseConfig.overflowIcon != newValue - 1) {
+                            baseConfig.overflowIcon = newValue - 1
+                            settingsOverflowIcon.setImageResource(getOverflowIcon(baseConfig.overflowIcon))
+                        }
+                    }
                 }
             }
         }
@@ -1498,7 +1533,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 530 //TODO changelog
+        val id = 553 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1515,21 +1550,10 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_530)) //TODO changelog
+            add(Release(id, R.string.release_553)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }
-
-//    private fun checkWhatsNewDialog() {
-//        arrayListOf<Release>().apply {
-//            add(Release(492, R.string.release_492))
-//            add(Release(500, R.string.release_500))
-//            add(Release(501, R.string.release_501))
-//            add(Release(510, R.string.release_510))
-//            add(Release(511, R.string.release_511))
-//            checkWhatsNew(this, BuildConfig.VERSION_CODE)
-//        }
-//    }
 
     private fun updateProducts() {
         val productList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3, subscriptionIdX1, subscriptionIdX2, subscriptionIdX3, subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3)

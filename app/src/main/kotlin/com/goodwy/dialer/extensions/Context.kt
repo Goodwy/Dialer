@@ -9,6 +9,8 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.media.AudioAttributes
 import android.media.AudioManager
@@ -17,6 +19,10 @@ import android.os.Build
 import android.os.PowerManager
 import android.telephony.SubscriptionManager
 import androidx.core.app.NotificationCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DecodeFormat
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.dialer.R
@@ -81,7 +87,6 @@ fun Context.clearMissedCalls() {
             telecomManager.cancelMissedCallsNotification()
 
             notificationManager.cancel(420)
-            config.numberMissedCalls = 0
             updateUnreadCountBadge(0)
         } catch (ignored: Exception) {
         }
@@ -95,100 +100,6 @@ fun Context.updateUnreadCountBadge(count: Int) {//conversations: List<RecentCall
     } else {
         ShortcutBadger.applyCount(this, count)
     }
-}
-
-@SuppressLint("NewApi")
-fun Context.showMessageNotification(callContact: CallContact) {//(address: String, body: String, threadId: Long, bitmap: Bitmap?, sender: String) {
-    val id = 420 //if you need to group = callContact.number.hashCode()
-//    val callContactAvatarHelper = CallContactAvatarHelper(this)
-//    val callContactAvatar = callContactAvatarHelper.getCallContactAvatar(callContact)
-    val callerName = if (callContact != null && callContact.name.isNotEmpty()) callContact.name
-                            else if (callContact.numberLabel.isNotEmpty()) " - ${callContact.numberLabel}"
-                            else this.getString(R.string.unknown_caller)
-    config.numberMissedCalls = config.numberMissedCalls + 1
-
-    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-//    val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-    if (isOreoPlus()) {
-//        val audioAttributes = AudioAttributes.Builder()
-//            .setUsage(AudioAttributes.USAGE_NOTIFICATION)
-//            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-//            .setLegacyStreamType(AudioManager.STREAM_NOTIFICATION)
-//            .build()
-
-        val name = getString(R.string.missed_call_notifications_g)
-        val importance = NotificationManager.IMPORTANCE_HIGH
-        NotificationChannel("right_dialer_missed_call", name, importance).apply {
-            setBypassDnd(false)
-            notificationManager.createNotificationChannel(this)
-        }
-    }
-
-    val openAppIntent = CallActivity.getStartIntent(this)
-
-    val pendingIntent = PendingIntent.getActivity(this, id, openAppIntent, PendingIntent.FLAG_MUTABLE)
-    /*val summaryText = getString(R.string.missed_call_g)
-    val markAsReadIntent = Intent(this, MarkAsReadReceiver::class.java).apply {
-    action = MARK_AS_READ
-    putExtra(THREAD_ID, threadId)
-}
-
-val markAsReadPendingIntent = PendingIntent.getBroadcast(this, threadId.hashCode(), markAsReadIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-var replyAction: NotificationCompat.Action? = null
-
-if (isNougatPlus()) {
-    val replyLabel = getString(R.string.call_back_g)
-    val remoteInput = RemoteInput.Builder(REPLY)
-        .setLabel(replyLabel)
-        .build()
-
-    val replyIntent = Intent(this, DirectReplyReceiver::class.java).apply {
-        putExtra(THREAD_ID, threadId)
-        putExtra(THREAD_NUMBER, address)
-    }
-
-    val replyPendingIntent = PendingIntent.getBroadcast(applicationContext, threadId.hashCode(), replyIntent, PendingIntent.FLAG_UPDATE_CURRENT)
-    replyAction = NotificationCompat.Action.Builder(R.drawable.ic_send_vector, replyLabel, replyPendingIntent)
-        .addRemoteInput(remoteInput)
-        .build()
-}*/
-
-    //val largeIcon = bitmap ?: SimpleContactsHelper(this).getContactLetterIcon(sender)
-    val builder = NotificationCompat.Builder(this, "right_dialer_missed_call").apply {
-        if (config.numberMissedCalls == 1) {
-            setContentTitle(getString(R.string.missed_call_g))
-            setContentText(callerName)
-        } else {
-            setContentTitle(config.numberMissedCalls.toString() + " " + getString(R.string.missed_calls_g).lowercase())
-        }
-        color = getProperPrimaryColor()
-        setSmallIcon(R.drawable.ic_call_missed_vector)
-        setContentIntent(pendingIntent)
-        priority = NotificationCompat.PRIORITY_MAX
-        setDefaults(Notification.DEFAULT_LIGHTS)
-        setCategory(Notification.CATEGORY_MISSED_CALL)
-        setAutoCancel(true)
-        addAction(
-            R.drawable.ic_messages,
-            getString(R.string.message),
-            sendSMSPendingIntent(callContact.number)
-        )
-        addAction(
-            R.drawable.ic_phone_vector,
-            getString(R.string.call_back_g),
-            startCallPendingIntent(callContact.number)
-        )
-    }
-
-    /*if (replyAction != null && config.lockScreenVisibilitySetting == LOCK_SCREEN_SENDER_MESSAGE) {
-    builder.addAction(replyAction)
-}
-
-builder.addAction(R.drawable.ic_check_vector, getString(R.string.mark_as_read), markAsReadPendingIntent)
-    .setChannelId("right_dialer_call")*/
-
-    notificationManager.notify(id, builder.build())
-    updateUnreadCountBadge(config.numberMissedCalls)
 }
 
 fun Context.sysLocale(): Locale? {
@@ -304,7 +215,7 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         .addAction(
             R.drawable.ic_phone_vector,
             getString(R.string.call_back_g),
-            startCallPendingIntent(timer.label)
+            startCallPendingIntent(timer.label, BuildConfig.RIGHT_APP_KEY)
         )
 
     if (addDeleteIntent) {
@@ -333,7 +244,8 @@ fun Context.startCallPendingIntentUpdateCurrent(recipient: String): PendingInten
     return PendingIntent.getActivity(
         this,
         0,
-        Intent(Intent.ACTION_CALL, Uri.fromParts("tel", recipient, null)).putExtra(IS_RIGHT_APP, BuildConfig.RIGHT_APP_KEY),
+        Intent(Intent.ACTION_CALL, Uri.fromParts("tel", recipient, null))
+            .putExtra(IS_RIGHT_APP, BuildConfig.RIGHT_APP_KEY),
         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
@@ -362,4 +274,52 @@ fun Context.createNewTimer(): Timer {
 
 fun Context.subscriptionManagerCompat(): SubscriptionManager {
     return getSystemService(SubscriptionManager::class.java)
+}
+
+fun Context.getNotificationBitmap(photoUri: String): Bitmap? {
+    val size = resources.getDimension(R.dimen.contact_photo_size).toInt()
+    if (photoUri.isEmpty()) {
+        return null
+    }
+
+    val options = RequestOptions()
+        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+        .centerCrop()
+
+    return try {
+        Glide.with(this)
+            .asBitmap()
+            .load(photoUri)
+            .apply(options)
+            .apply(RequestOptions.circleCropTransform())
+            .into(size, size)
+            .get()
+    } catch (e: Exception) {
+        null
+    }
+}
+
+// You need to run it in ensureBackgroundThread {}
+fun Context.getShortcutImageNeedBackground(path: String, placeholderName: String, callback: (image: Bitmap) -> Unit) {
+    val placeholder = BitmapDrawable(resources, SimpleContactsHelper(this).getContactLetterIcon(placeholderName))
+    try {
+        val options = RequestOptions()
+            .format(DecodeFormat.PREFER_ARGB_8888)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .error(placeholder)
+            .centerCrop()
+
+        val size = resources.getDimension(R.dimen.shortcut_size).toInt()
+        val bitmap = Glide.with(this).asBitmap()
+            .load(path)
+            //.placeholder(placeholder)
+            .apply(options)
+            .apply(RequestOptions.circleCropTransform())
+            .into(size, size)
+            .get()
+
+        callback(bitmap)
+    } catch (ignored: Exception) {
+        callback(placeholder.bitmap)
+    }
 }

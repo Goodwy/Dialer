@@ -179,8 +179,6 @@ class CallHistoryAdapter(
     }
 
     private inner class RecentCallViewHolder(val binding: ItemCallHistoryBinding) : ViewHolder(binding.root) {
-        @SuppressLint("SetTextI18n")
-        @RequiresApi(Build.VERSION_CODES.N)
         fun bind(call: RecentCall) = bindView(
             item = call,
             allowSingleClick = refreshItemsListener != null && !call.isUnknownNumber,

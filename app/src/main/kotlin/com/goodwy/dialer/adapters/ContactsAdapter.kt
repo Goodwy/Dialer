@@ -508,6 +508,13 @@ class ContactsAdapter(
                         (Resources.getSystem().displayMetrics.widthPixels / contactsGridColumnCount / 2.5).toInt()
                     swipeLeftIconHolder!!.setWidth(width)
                     swipeRightIconHolder!!.setWidth(width)
+                } else {
+                    val halfScreenWidth = activity.resources.displayMetrics.widthPixels / 2
+                    val swipeWidth = activity.resources.getDimension(com.goodwy.commons.R.dimen.swipe_width)
+                    if (swipeWidth > halfScreenWidth) {
+                        swipeRightIconHolder!!.setWidth(halfScreenWidth)
+                        swipeLeftIconHolder!!.setWidth(halfScreenWidth)
+                    }
                 }
 
                 itemContactSwipe!!.useHapticFeedback = activity.config.swipeVibration

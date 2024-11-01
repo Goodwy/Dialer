@@ -108,10 +108,6 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(TRANSPARENT_CALL_SCREEN, false)
         set(transparentCallScreen) = prefs.edit().putBoolean(TRANSPARENT_CALL_SCREEN, transparentCallScreen).apply()
 
-    var numberMissedCalls: Int
-        get() = prefs.getInt(NUMBER_MISSED_CALLS, 0)
-        set(numberMissedCalls) = prefs.edit().putInt(NUMBER_MISSED_CALLS, numberMissedCalls).apply()
-
     var missedCallNotifications: Boolean
         get() = prefs.getBoolean(MISSED_CALL_NOTIFICATIONS, false)
         set(missedCallNotifications) = prefs.edit().putBoolean(MISSED_CALL_NOTIFICATIONS, missedCallNotifications).apply()

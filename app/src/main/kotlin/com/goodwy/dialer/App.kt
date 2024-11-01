@@ -1,6 +1,5 @@
 package com.goodwy.dialer
 
-import android.app.Application
 import android.app.NotificationManager
 import android.content.Context
 import android.os.CountDownTimer
@@ -10,11 +9,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
+import com.goodwy.commons.RightApp
 import com.goodwy.commons.extensions.checkUseEnglish
 import com.goodwy.commons.extensions.showErrorToast
 import com.goodwy.commons.helpers.rustore.RuStoreModule
 import com.goodwy.dialer.extensions.*
-import com.goodwy.dialer.models.CallLogItem
 import com.goodwy.dialer.models.TimerEvent
 import com.goodwy.dialer.models.TimerState
 import com.goodwy.dialer.services.TimerStopService
@@ -23,10 +22,9 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class App : Application(), LifecycleObserver {
+class App : RightApp(), LifecycleObserver {
 
     private var countDownTimers = mutableMapOf<Int, CountDownTimer>()
-    var allRecentCalls = listOf<CallLogItem>()
 
     override fun onCreate() {
         super.onCreate()
@@ -48,9 +46,6 @@ class App : Application(), LifecycleObserver {
                 startTimerService(this)
             }
         }
-//        if (Stopwatch.state == State.RUNNING) {
-//            startStopwatchService(this)
-//        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
@@ -64,9 +59,6 @@ class App : Application(), LifecycleObserver {
                 }
             }
         }
-//        if (Stopwatch.state == State.RUNNING) {
-//            EventBus.getDefault().post(StopwatchStopService)
-//        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

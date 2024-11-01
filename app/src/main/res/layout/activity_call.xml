@@ -226,8 +226,8 @@
 
         <ImageView
             android:id="@+id/callToggleMicrophone"
-            android:layout_width="82dp"
-            android:layout_height="82dp"
+            android:layout_width="@dimen/call_button_size"
+            android:layout_height="@dimen/call_button_size"
             android:layout_marginEnd="@dimen/margin_button_horizontal"
             android:background="@drawable/pulsing_background_ripple"
             android:contentDescription="@string/turn_microphone_off"
@@ -268,8 +268,8 @@
 
             <ImageView
                 android:id="@+id/call_dialpad"
-                android:layout_width="82dp"
-                android:layout_height="82dp"
+                android:layout_width="@dimen/call_button_size"
+                android:layout_height="@dimen/call_button_size"
                 android:paddingStart="@dimen/bigger_margin"
                 android:paddingTop="22dp"
                 android:paddingEnd="@dimen/bigger_margin"
@@ -293,8 +293,8 @@
 
         <ImageView
             android:id="@+id/callToggleSpeaker"
-            android:layout_width="82dp"
-            android:layout_height="82dp"
+            android:layout_width="@dimen/call_button_size"
+            android:layout_height="@dimen/call_button_size"
             android:layout_marginStart="@dimen/margin_button_horizontal"
             android:background="@drawable/pulsing_background_ripple"
             android:contentDescription="@string/turn_speaker_on"
@@ -335,8 +335,8 @@
 
             <ImageView
                 android:id="@+id/call_add"
-                android:layout_width="82dp"
-                android:layout_height="82dp"
+                android:layout_width="@dimen/call_button_size"
+                android:layout_height="@dimen/call_button_size"
                 android:padding="@dimen/bigger_margin"
                 android:src="@drawable/ic_add_call_vector"/>
         </LinearLayout>
@@ -370,8 +370,8 @@
 
             <ImageView
                 android:id="@+id/call_swap"
-                android:layout_width="82dp"
-                android:layout_height="82dp"
+                android:layout_width="@dimen/call_button_size"
+                android:layout_height="@dimen/call_button_size"
                 android:padding="@dimen/bigger_margin"
                 android:src="@drawable/ic_call_swap_vector"/>
         </LinearLayout>
@@ -405,8 +405,8 @@
 
             <ImageView
                 android:id="@+id/call_merge"
-                android:layout_width="82dp"
-                android:layout_height="82dp"
+                android:layout_width="@dimen/call_button_size"
+                android:layout_height="@dimen/call_button_size"
                 android:padding="@dimen/bigger_margin"
                 android:src="@drawable/ic_call_merge_vector"/>
         </LinearLayout>
@@ -427,8 +427,8 @@
 
         <ImageView
             android:id="@+id/callToggleHold"
-            android:layout_width="82dp"
-            android:layout_height="82dp"
+            android:layout_width="@dimen/call_button_size"
+            android:layout_height="@dimen/call_button_size"
             android:layout_marginTop="42dp"
             android:background="@drawable/pulsing_background_ripple"
             android:contentDescription="@string/hold_call"
@@ -468,8 +468,8 @@
 
             <ImageView
                 android:id="@+id/call_add_contact"
-                android:layout_width="82dp"
-                android:layout_height="82dp"
+                android:layout_width="@dimen/call_button_size"
+                android:layout_height="@dimen/call_button_size"
                 android:padding="@dimen/larger_margin"
                 android:src="@drawable/ic_person_rounded_outline"/>
         </LinearLayout>
@@ -490,8 +490,8 @@
 
         <ImageView
             android:id="@+id/callEnd"
-            android:layout_width="@dimen/incoming_call_draggable_background_size"
-            android:layout_height="@dimen/incoming_call_draggable_background_size"
+            android:layout_width="@dimen/call_button_size"
+            android:layout_height="@dimen/call_button_size"
             android:contentDescription="@string/end_call"
             android:src="@drawable/ic_call_end"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -517,8 +517,8 @@
 
         <com.goodwy.commons.views.MyTextView
             android:id="@+id/dialpadClose"
-            android:layout_width="82dp"
-            android:layout_height="@dimen/incoming_call_button_size"
+            android:layout_width="@dimen/call_button_size"
+            android:layout_height="@dimen/call_button_size"
             android:layout_marginStart="@dimen/margin_button_horizontal"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:ellipsize="marquee"
@@ -589,7 +589,7 @@
             android:id="@+id/call_remind"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginEnd="220dp"
+            android:layout_marginEnd="@dimen/margin_button_horizontal"
             android:background="@drawable/pulsing_background_ripple"
             android:alpha="0.9"
             android:contentDescription="@string/remind_me"
@@ -618,7 +618,7 @@
             android:id="@+id/callMessage"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_marginStart="220dp"
+            android:layout_marginStart="@dimen/margin_button_horizontal"
             android:background="@drawable/pulsing_background_ripple"
             android:alpha="0.9"
             android:contentDescription="@string/send_sms"
@@ -645,9 +645,9 @@
 
         <ImageView
             android:id="@+id/callDecline"
-            android:layout_width="@dimen/incoming_call_button_size"
-            android:layout_height="@dimen/incoming_call_button_size"
-            android:layout_marginEnd="220dp"
+            android:layout_width="@dimen/call_button_size"
+            android:layout_height="@dimen/call_button_size"
+            android:layout_marginEnd="@dimen/margin_button_horizontal"
             android:contentDescription="@string/decline_call"
             android:src="@drawable/ic_call_end"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -691,9 +691,9 @@
 
         <ImageView
             android:id="@+id/callAccept"
-            android:layout_width="@dimen/incoming_call_button_size"
-            android:layout_height="@dimen/incoming_call_button_size"
-            android:layout_marginStart="220dp"
+            android:layout_width="@dimen/call_button_size"
+            android:layout_height="@dimen/call_button_size"
+            android:layout_marginStart="@dimen/margin_button_horizontal"
             android:contentDescription="@string/accept_call"
             android:elevation="@dimen/medium_margin"
             android:src="@drawable/ic_call_accept"

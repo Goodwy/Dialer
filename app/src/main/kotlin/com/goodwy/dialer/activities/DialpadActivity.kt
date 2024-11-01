@@ -318,7 +318,7 @@ class DialpadActivity : SimpleActivity() {
         val areMultipleSIMsAvailable = areMultipleSIMsAvailable()
         val baseColor = baseConfig.backgroundColor
         val buttonsColor = when {
-            baseConfig.isUsingSystemTheme -> resources.getColor(R.color.you_status_bar_color, theme)
+            isDynamicTheme() -> resources.getColor(R.color.you_status_bar_color, theme)
             baseColor == Color.WHITE -> resources.getColor(R.color.dark_grey, theme)
             baseColor == Color.BLACK -> resources.getColor(R.color.bottom_tabs_black_background, theme)
             else -> baseConfig.backgroundColor.lightenColor(4)
@@ -1237,7 +1237,7 @@ class DialpadActivity : SimpleActivity() {
     private fun refreshCallLog(loadAll: Boolean = false, callback: (() -> Unit)? = null) {
         getRecentCalls(loadAll) {
             allRecentCalls = it
-            config.recentCallsCache = Gson().toJson(it.take(400))
+            config.recentCallsCache = Gson().toJson(it.take(300))
             runOnUiThread { gotRecents(it) }
 
             callback?.invoke()

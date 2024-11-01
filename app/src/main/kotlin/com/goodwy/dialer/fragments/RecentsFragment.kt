@@ -155,10 +155,10 @@ class RecentsFragment(
                         val recentCall = it as RecentCall
                         if (context.config.showCallConfirmation) {
                             CallConfirmationDialog(activity as SimpleActivity, recentCall.name) {
-                                callRecentNumber(recentCall);
+                                callRecentNumber(recentCall)
                             }
                         } else {
-                            callRecentNumber(recentCall);
+                            callRecentNumber(recentCall)
                         }
                     }
                 )
@@ -193,7 +193,7 @@ class RecentsFragment(
     private fun refreshCallLog(loadAll: Boolean = false, callback: (() -> Unit)? = null) {
         getRecentCalls(loadAll) {
             allRecentCalls = it
-            context.config.recentCallsCache = Gson().toJson(it.filterIsInstance<RecentCall>().take(400))
+            context.config.recentCallsCache = Gson().toJson(it.filterIsInstance<RecentCall>().take(300))
             if (searchQuery.isNullOrEmpty()) {
                 activity?.runOnUiThread { gotRecents(it) }
             } else {

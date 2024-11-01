@@ -13,6 +13,7 @@ import com.goodwy.commons.views.MyGridLayoutManager
 import com.goodwy.commons.views.MyLinearLayoutManager
 import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
+import com.goodwy.dialer.activities.MainActivity
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.adapters.ContactsAdapter
 import com.goodwy.dialer.databinding.FragmentFavoritesBinding
@@ -144,6 +145,7 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
                         val items = adapter.contacts
                         saveCustomOrderToPrefs(items)
                         setupLetterFastScroller(items)
+                        (activity as MainActivity).cacheFavorites(items)
                     }
                 }
 
@@ -155,9 +157,11 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
             if (context.areSystemAnimationsEnabled) {
                 binding.fragmentList.scheduleLayoutAnimation()
             }
+            (activity as MainActivity).cacheFavorites(allContacts)
         } else {
             currAdapter.viewType = viewType
             currAdapter.updateItems(allContacts)
+            (activity as MainActivity).cacheFavorites(allContacts)
         }
     }
 

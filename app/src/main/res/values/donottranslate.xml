@@ -3,6 +3,16 @@
     <string name="app_name_g">Right Dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
+    <string name="release_553">
+        Changed theme logic\n
+        Added ‘App icon color’ option\n
+        Add dynamic shortcuts for starred contacts\n
+        Added support for missed call notifications\n
+        Added display of information about missed calls on the app icon\n
+        Adapted for small screen devices\n
+        Improved scrolling performance and interface\n
+        Improved performance, bug fixes
+    </string>
     <string name="release_530">
         Increased the number of cached recent calls\n
         Added ‘SIM card selection dialogue style’ option\n

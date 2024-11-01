@@ -243,7 +243,7 @@ class CallActivity : SimpleActivity() {
         }
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         updateState()
     }
@@ -276,6 +276,7 @@ class CallActivity : SimpleActivity() {
         if (screenOnWakeLock?.isHeld == true) {
             screenOnWakeLock!!.release()
         }
+        if (config.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
     }
 
     @Suppress("DEPRECATION")

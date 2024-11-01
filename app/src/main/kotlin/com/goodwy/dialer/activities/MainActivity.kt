@@ -10,6 +10,7 @@ import android.content.res.Configuration
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
@@ -34,6 +35,8 @@ import com.goodwy.commons.dialogs.PermissionRequiredDialog
 import com.goodwy.commons.dialogs.RadioGroupDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
+import com.goodwy.commons.helpers.Converters
+import com.goodwy.commons.models.PhoneNumber
 import com.goodwy.commons.models.RadioItem
 import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MySearchMenu
@@ -55,7 +58,6 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import me.grantland.widget.AutofitHelper
 import java.io.InputStreamReader
-import java.util.Locale
 
 class MainActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityMainBinding::inflate)
@@ -71,6 +73,8 @@ class MainActivity : SimpleActivity() {
     private var storedBackgroundColor = 0
     private var currentOldScrollY = 0
     var cachedContacts = ArrayList<Contact>()
+    private var cachedFavorites = ArrayList<Contact>()
+    private var storedContactShortcuts = ArrayList<Contact>()
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -217,7 +221,6 @@ class MainActivity : SimpleActivity() {
             }
         }
 
-        checkShortcuts()
 //        Handler().postDelayed({
 //            getRecentsFragment()?.refreshItems()
 //        }, 2000)
@@ -237,6 +240,8 @@ class MainActivity : SimpleActivity() {
             it?.setBackgroundColor(properBackgroundColor)
         }
         if (getCurrentFragment() is RecentsFragment) clearMissedCalls()
+
+        checkShortcuts()
     }
 
     override fun onPause() {
@@ -441,23 +446,22 @@ class MainActivity : SimpleActivity() {
 
     @SuppressLint("NewApi")
     private fun checkShortcuts() {
-        val appIconColor = config.appIconColor
-        if (isNougatMR1Plus() && config.lastHandledShortcutColor != appIconColor) {
-            val launchDialpad = getLaunchDialpadShortcut(appIconColor)
+        val iconColor = getProperPrimaryColor()
+        if (isNougatMR1Plus() && config.lastHandledShortcutColor != iconColor) {
+            val launchDialpad = getLaunchDialpadShortcut(iconColor)
 
             try {
                 shortcutManager.dynamicShortcuts = listOf(launchDialpad)
-                config.lastHandledShortcutColor = appIconColor
-            } catch (ignored: Exception) {
-            }
+                config.lastHandledShortcutColor = iconColor
+            } catch (ignored: Exception) { }
         }
     }
 
     @SuppressLint("NewApi")
-    private fun getLaunchDialpadShortcut(appIconColor: Int): ShortcutInfo {
+    private fun getLaunchDialpadShortcut(iconColor: Int): ShortcutInfo {
         val newEvent = getString(R.string.dialpad)
         val drawable = AppCompatResources.getDrawable(this, R.drawable.shortcut_dialpad)
-        (drawable as LayerDrawable).findDrawableByLayerId(R.id.shortcut_dialpad_background).applyColorFilter(appIconColor)
+        (drawable as LayerDrawable).findDrawableByLayerId(R.id.shortcut_dialpad_background).applyColorFilter(iconColor)
         val bmp = drawable.convertToBitmap()
 
         val intent = Intent(this, DialpadActivity::class.java)
@@ -468,6 +472,51 @@ class MainActivity : SimpleActivity() {
             .setIcon(Icon.createWithBitmap(bmp))
             .setIntent(intent)
             .build()
+    }
+
+    private fun createContactShortcuts() {
+        if (isRPlus() && shortcutManager.isRequestPinShortcutSupported) {
+            ensureBackgroundThread {
+                val starred = cachedFavorites.filter { it.phoneNumbers.isNotEmpty() }.take(3)
+                if (storedContactShortcuts != starred) {
+                    val allShortcuts = shortcutManager.dynamicShortcuts.filter { it.id != "launch_dialpad" }.map { it.id }
+                    shortcutManager.removeDynamicShortcuts(allShortcuts)
+
+                    storedContactShortcuts.clear()
+                    storedContactShortcuts.addAll(starred)
+
+                    starred.reversed().forEach { contact ->
+                        val name = contact.getNameToDisplay()
+                        getShortcutImageNeedBackground(contact.photoUri, name) { image ->
+                            this.runOnUiThread {
+                                val number = if (contact.phoneNumbers.size == 1) {
+                                    contact.phoneNumbers[0].normalizedNumber
+                                } else {
+                                    contact.phoneNumbers.firstOrNull { it.isPrimary }?.normalizedNumber
+                                }
+
+                                if (number != null) {
+                                    this.handlePermission(PERMISSION_CALL_PHONE) { hasPermission ->
+                                        val action = if (hasPermission) Intent.ACTION_CALL else Intent.ACTION_DIAL
+                                        val intent = Intent(action).apply {
+                                            data = Uri.fromParts("tel", number, null)
+                                            putExtra(IS_RIGHT_APP, BuildConfig.RIGHT_APP_KEY)
+                                        }
+
+                                        val shortcut = ShortcutInfo.Builder(this, "contact_${contact.id}")
+                                            .setShortLabel(name)
+                                            .setIcon(Icon.createWithAdaptiveBitmap(image))
+                                            .setIntent(intent)
+                                            .build()
+                                        this.shortcutManager.pushDynamicShortcut(shortcut)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private fun setupTabColors() {
@@ -970,6 +1019,15 @@ class MainActivity : SimpleActivity() {
             cachedContacts.addAll(contacts)
         } catch (_: Exception) {
         }
+    }
+
+    fun cacheFavorites(contacts: List<Contact>) {
+        try {
+            cachedFavorites.clear()
+            cachedFavorites.addAll(contacts)
+        } catch (_: Exception) {
+        }
+        createContactShortcuts()
     }
 
     private fun setupSecondaryLanguage() {
