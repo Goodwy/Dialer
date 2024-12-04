@@ -51,6 +51,7 @@
     <string name="answer_slider">Lliscant</string>
     <string name="answer_slider_outline">Control lliscant d\'esquema</string>
     <string name="answer_slider_vertical">Lliscant vertical</string>
+
     <string name="show_recent_calls">Mostra les trucades recents</string>
     <string name="open_dialpad_when_call_from_another_app">Quan provis de fer una trucada des d\'una altra aplicació, obre el teclat de marcatge</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Això us pot protegir del programari maliciós que fa trucades sense el vostre coneixement.</string>
@@ -58,8 +59,21 @@
     <string name="group_calls">Agrupació de trucades</string>
     <string name="group_all_calls">Agrupa totes les trucades, només es mostrarà l\'última trucada</string>
     <string name="call_button_style">Estil de campana</string>
+    <string name="call_notes">Notes de la trucada</string>
     <string name="answer_end_other_call">Respondre i finalitzar la trucada actual</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Respostes ràpides</string>
+    <string name="voicemail">Bústia de veu</string>
+    <string name="show_voicemail_icon">Mostra la icona de la bústia de veu</string>
+    <string name="secondary_dialpad_language">Llenguatge del teclat de marcatge secundari</string>
+    <string name="sim_card_selection_dialog_style">Estil de diàleg de selecció de SIM</string>
+    <string name="clear_dialpad_when_start_call">Esborra el número marcat en iniciar una trucada</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d trucada perduda</item>
+        <item quantity="many">%d trucades perdudes</item>
+        <item quantity="other">%d trucades perdudes</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Missatge</string>
 </resources>

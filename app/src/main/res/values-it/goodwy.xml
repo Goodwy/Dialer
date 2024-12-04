@@ -51,6 +51,7 @@
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Slider contorno</string>
     <string name="answer_slider_vertical">Slider verticale</string>
+
     <string name="show_recent_calls">Mostra le chiamate recenti</string>
     <string name="open_dialpad_when_call_from_another_app">Quando provi a effettuare una chiamata da un\'altra app, apri la tastiera</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Questo può proteggerti dal malware che effettua chiamate a tua insaputa.</string>
@@ -58,8 +59,21 @@
     <string name="group_calls">Raggruppamento delle chiamate</string>
     <string name="group_all_calls">Raggruppa tutte le chiamate, verrà mostrata solo l\'ultima chiamata</string>
     <string name="call_button_style">Stile pulsante campanello</string>
+    <string name="call_notes">Note di chiamata</string>
     <string name="answer_end_other_call">Rispondi e termina la chiamata in corso</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Risposte rapide</string>
+    <string name="voicemail">Segreteria telefonica</string>
+    <string name="show_voicemail_icon">Mostra l\'icona della segreteria telefonica</string>
+    <string name="secondary_dialpad_language">Lingua del tastierino secondario</string>
+    <string name="sim_card_selection_dialog_style">Stile finestra di dialogo di selezione SIM</string>
+    <string name="clear_dialpad_when_start_call">Cancella il numero composto all\'avvio di una chiamata</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d chiamata persa</item>
+        <item quantity="many">%d chiamate perse</item>
+        <item quantity="other">%d chiamate perse</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Messaggio</string>
 </resources>

@@ -50,6 +50,7 @@
     <string name="answer_slider">Schieberegler</string>
     <string name="answer_slider_outline">Schieberegler mit Umrandung</string>
     <string name="answer_slider_vertical">Vertikaler Schieberegler</string>
+
     <string name="show_recent_calls">Letzte Anrufe anzeigen</string>
     <string name="open_dialpad_when_call_from_another_app">Wenn Sie versuchen, einen Anruf über eine andere App zu tätigen, öffnen Sie die Wähltastatur</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Dies kann Sie vor Malware schützen, die ohne Ihr Wissen Anrufe tätigt.</string>
@@ -57,8 +58,20 @@
     <string name="group_calls">Gruppierung von Anrufen</string>
     <string name="group_all_calls">Gruppieren Sie alle Anrufe, es wird nur der letzte Anruf angezeigt</string>
     <string name="call_button_style">Klingelknopf-Stil</string>
+    <string name="call_notes">Notizen für Anrufe</string>
     <string name="answer_end_other_call">Annehmen und Beenden des aktuellen Anrufs</string>
-    <string name="quick_answers">Quick answers</string>
+    <string name="quick_answers">Schnelle Antworten</string>
     <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="show_voicemail_icon">Voicemail-Symbol anzeigen</string>
+    <string name="secondary_dialpad_language">Sprache der sekundären Wähltastatur</string>
+    <string name="sim_card_selection_dialog_style">SIM-Auswahl-Dialogstil</string>
+    <string name="clear_dialpad_when_start_call">Gewählte Nummer beim Starten eines Anrufs löschen</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d verpasster Anruf</item>
+        <item quantity="other">%d verpasste Anrufe</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Nachricht</string>
 </resources>

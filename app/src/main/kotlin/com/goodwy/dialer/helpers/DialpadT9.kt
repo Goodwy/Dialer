@@ -10,9 +10,9 @@ private typealias CharMap = HashMap<Char, Int>
  */
 object DialpadT9 {
 
-    private class T9Language{
-        public val letters = Array<String>(8) {""}
-        public val charMap = CharMap()
+    private class T9Language {
+        val letters = Array(8) {""}
+        val charMap = CharMap()
     }
 
     private val languages = HashMap<String, T9Language>()
@@ -23,7 +23,7 @@ object DialpadT9 {
     private fun initLatinChars() {
         val lang = T9Language()
         for (c in 'A'..'Z') {
-            val number = PhoneNumberUtils.convertKeypadLettersToDigits(c.toString()).toInt();
+            val number = PhoneNumberUtils.convertKeypadLettersToDigits(c.toString()).toInt()
             if(number in 2..9) {
                 lang.letters[number - 2] += c.toString()
                 lang.charMap[c] = number
@@ -33,7 +33,7 @@ object DialpadT9 {
         languages[LOCALE_EN] = lang
     }
 
-    public var Initialized = false
+    var Initialized = false
 
     init {
         initLatinChars()
@@ -42,7 +42,7 @@ object DialpadT9 {
     /**
      * Read extra languages data from JSON
      */
-    public fun readFromJson(jsonText: String){
+    fun readFromJson(jsonText: String) {
         for (arrayElement in JsonParser.parseString(jsonText).asJsonArray) {
             val objectElement = arrayElement.asJsonObject
             val lang = objectElement["lang"].asString
@@ -50,22 +50,20 @@ object DialpadT9 {
                 continue
             }
             val language = T9Language()
-            var i = 0
-            for (lettersElement in objectElement["letters"].asJsonArray) {
+            for ((i, lettersElement) in objectElement["letters"].asJsonArray.withIndex()) {
                 val letters = lettersElement.asString
                 language.letters[i] = letters
                 for (c in letters) {
                     language.charMap[c] = i + 2
                 }
-                i++
             }
             languages[lang] = language
         }
 
-        Initialized = true;
+        Initialized = true
     }
 
-    public fun getLettersForNumber(number: Int, language: String): String {
+    fun getLettersForNumber(number: Int, language: String): String {
         val lang = languages[language]
         return if (lang == null || number < 2 || number > 9) {
             ""
@@ -74,7 +72,7 @@ object DialpadT9 {
         }
     }
 
-    public fun convertLettersToNumbers(letters: String, language: String): String {
+    fun convertLettersToNumbers(letters: String, language: String): String {
         var res = ""
         val lang = languages[language]
         val langEn = languages[LOCALE_EN]
@@ -82,8 +80,7 @@ object DialpadT9 {
         for (c in letters) {
             if (lang != null && lang.charMap.containsKey(c)) {
                 res += lang.charMap[c]
-            }
-            else if (langEn != null && langEn.charMap.containsKey(c)) {
+            } else if (langEn != null && langEn.charMap.containsKey(c)) {
                 res += langEn.charMap[c]
             }
         }
@@ -91,8 +88,8 @@ object DialpadT9 {
         return res
     }
 
-    public fun getSupportedSecondaryLanguages(): List<String> {
-        val res = MutableList<String>(0) {""}
+    fun getSupportedSecondaryLanguages(): List<String> {
+        val res = MutableList(0) {""}
         for (lang in languages.keys) {
             if (lang != LOCALE_EN)
                 res += lang

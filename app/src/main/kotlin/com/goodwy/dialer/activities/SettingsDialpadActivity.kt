@@ -3,6 +3,7 @@ package com.goodwy.dialer.activities
 import android.annotation.SuppressLint
 import android.database.Cursor
 import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -43,9 +44,10 @@ import java.util.*
 import kotlin.math.abs
 
 class SettingsDialpadActivity : SimpleActivity() {
+
     private val binding by viewBinding(ActivitySettingsDialpadBinding::inflate)
     private val purchaseHelper = PurchaseHelper(this)
-    private val ruStoreHelper = RuStoreHelper(this)
+    private var ruStoreHelper: RuStoreHelper? = null
     private val productIdX1 = BuildConfig.PRODUCT_ID_X1
     private val productIdX2 = BuildConfig.PRODUCT_ID_X2
     private val productIdX3 = BuildConfig.PRODUCT_ID_X3
@@ -130,6 +132,11 @@ class SettingsDialpadActivity : SimpleActivity() {
         (binding.dialpadClearWrapper.dialpadGridHolder.layoutParams as? CoordinatorLayout.LayoutParams)?.bottomMargin = navigationBarHeight
         (binding.dialpadRoundWrapper.dialpadIosHolder.layoutParams as? CoordinatorLayout.LayoutParams)?.bottomMargin = navigationBarHeight
         (binding.dialpadRectWrapper.dialpadGridHolder.layoutParams as? CoordinatorLayout.LayoutParams)?.bottomMargin = navigationBarHeight
+
+        if (isRuStoreInstalled()) {
+            //RuStore
+            ruStoreHelper = RuStoreHelper()
+        }
     }
 
     @SuppressLint("MissingSuperCall")
@@ -145,6 +152,9 @@ class SettingsDialpadActivity : SimpleActivity() {
         setupShowVoicemailIcon()
         setupHideDialpadLetters()
         setupDialpadSecondaryLanguage()
+        setupDialpadSecondaryTypeface()
+        setupDialpadHashtagLongClick()
+        setupClearDialpad()
         setupDialpadVibrations()
         setupDialpadBeeps()
         setupToneVolume()
@@ -233,10 +243,10 @@ class SettingsDialpadActivity : SimpleActivity() {
         }
         if (isRuStoreInstalled()) {
             //RuStore
-            ruStoreHelper.checkPurchasesAvailability()
+            ruStoreHelper!!.checkPurchasesAvailability(this@SettingsDialpadActivity)
 
             lifecycleScope.launch {
-                ruStoreHelper.eventStart
+                ruStoreHelper!!.eventStart
                     .flowWithLifecycle(lifecycle)
                     .collect { event ->
                         handleEventStart(event)
@@ -244,7 +254,7 @@ class SettingsDialpadActivity : SimpleActivity() {
             }
 
             lifecycleScope.launch {
-                ruStoreHelper.statePurchased
+                ruStoreHelper!!.statePurchased
                     .flowWithLifecycle(lifecycle)
                     .collect { state ->
                         //update of purchased
@@ -344,12 +354,16 @@ class SettingsDialpadActivity : SimpleActivity() {
                     it.beGone()
                 }
             } else {
-                dialpad1Letters.beInvisible()
+                dialpad1Letters.apply {
+                    beInvisible()
+                    setTypeface(null, config.dialpadSecondaryTypeface)
+                }
                 arrayOf(
                     dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters, dialpad6Letters,
                     dialpad7Letters, dialpad8Letters, dialpad9Letters
                 ).forEach {
                     it.beVisible()
+                    it.setTypeface(null, config.dialpadSecondaryTypeface)
                 }
 
                 if (!DialpadT9.Initialized) {
@@ -362,6 +376,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                 if (langPref!! != LANGUAGE_NONE && langPref != LANGUAGE_SYSTEM || isAutoLang) {
                     val lang = if (isAutoLang) langLocale else langPref
                     val fontSize = getTextSize() - 16f
+                    dialpad1Letters.text = DialpadT9.getLettersForNumber(2, lang) + "\nABC"
                     dialpad2Letters.text = DialpadT9.getLettersForNumber(2, lang) + "\nABC"
                     dialpad3Letters.text = DialpadT9.getLettersForNumber(3, lang) + "\nDEF"
                     dialpad4Letters.text = DialpadT9.getLettersForNumber(4, lang) + "\nGHI"
@@ -372,12 +387,13 @@ class SettingsDialpadActivity : SimpleActivity() {
                     dialpad9Letters.text = DialpadT9.getLettersForNumber(9, lang) + "\nWXYZ"
 
                     arrayOf(
-                        dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
+                        dialpad1Letters, dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
                         dialpad6Letters, dialpad7Letters, dialpad8Letters, dialpad9Letters
                     ).forEach {
                         it.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize)
                     }
                 } else {
+                    dialpad1Letters.text = "ABC"
                     dialpad2Letters.text = "ABC"
                     dialpad3Letters.text = "DEF"
                     dialpad4Letters.text = "GHI"
@@ -492,12 +508,16 @@ class SettingsDialpadActivity : SimpleActivity() {
                     it.beGone()
                 }
             } else {
-                dialpad1Letters.beInvisible()
+                dialpad1Letters.apply {
+                    beInvisible()
+                    setTypeface(null, config.dialpadSecondaryTypeface)
+                }
                 arrayOf(
                     dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
                     dialpad6Letters, dialpad7Letters, dialpad8Letters, dialpad9Letters
                 ).forEach {
                     it.beVisible()
+                    it.setTypeface(null, config.dialpadSecondaryTypeface)
                 }
 
                 if (!DialpadT9.Initialized) {
@@ -509,6 +529,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                 val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
                 if (langPref!! != LANGUAGE_NONE && langPref != LANGUAGE_SYSTEM || isAutoLang) {
                     val lang = if (isAutoLang) langLocale else langPref
+                    dialpad1Letters.text = DialpadT9.getLettersForNumber(2, lang) + "\nABC"
                     dialpad2Letters.text = DialpadT9.getLettersForNumber(2, lang) + "\nABC"
                     dialpad3Letters.text = DialpadT9.getLettersForNumber(3, lang) + "\nDEF"
                     dialpad4Letters.text = DialpadT9.getLettersForNumber(4, lang) + "\nGHI"
@@ -520,12 +541,13 @@ class SettingsDialpadActivity : SimpleActivity() {
 
                     val fontSizeRu = getTextSize() - 16f
                     arrayOf(
-                        dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
+                        dialpad1Letters, dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
                         dialpad6Letters, dialpad7Letters, dialpad8Letters, dialpad9Letters
                     ).forEach {
                         it.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizeRu)
                     }
                 } else {
+                    dialpad1Letters.text = "ABC"
                     dialpad2Letters.text = "ABC"
                     dialpad3Letters.text = "DEF"
                     dialpad4Letters.text = "GHI"
@@ -610,12 +632,16 @@ class SettingsDialpadActivity : SimpleActivity() {
                     it.beGone()
                 }
             } else {
-                dialpad1IosLetters.beInvisible()
+                dialpad1IosLetters.apply {
+                    beInvisible()
+                    setTypeface(null, config.dialpadSecondaryTypeface)
+                }
                 arrayOf(
                     dialpad2IosLetters, dialpad3IosLetters, dialpad4IosLetters, dialpad5IosLetters,
                     dialpad6IosLetters, dialpad7IosLetters, dialpad8IosLetters, dialpad9IosLetters
                 ).forEach {
                     it.beVisible()
+                    it.setTypeface(null, config.dialpadSecondaryTypeface)
                 }
 
 
@@ -628,6 +654,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                 val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
                 if (langPref!! != LANGUAGE_NONE && langPref != LANGUAGE_SYSTEM || isAutoLang) {
                     val lang = if (isAutoLang) langLocale else langPref
+                    dialpad1IosLetters.text = DialpadT9.getLettersForNumber(2, lang) + "\nABC"
                     dialpad2IosLetters.text = DialpadT9.getLettersForNumber(2, lang) + "\nABC"
                     dialpad3IosLetters.text = DialpadT9.getLettersForNumber(3, lang) + "\nDEF"
                     dialpad4IosLetters.text = DialpadT9.getLettersForNumber(4, lang) + "\nGHI"
@@ -639,12 +666,13 @@ class SettingsDialpadActivity : SimpleActivity() {
 
                     val fontSizeRu = getTextSize() - 16f
                     arrayOf(
-                        dialpad2IosLetters, dialpad3IosLetters, dialpad4IosLetters, dialpad5IosLetters,
+                        dialpad1IosLetters, dialpad2IosLetters, dialpad3IosLetters, dialpad4IosLetters, dialpad5IosLetters,
                         dialpad6IosLetters, dialpad7IosLetters, dialpad8IosLetters, dialpad9IosLetters
                     ).forEach {
                         it.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizeRu)
                     }
                 } else {
+                    dialpad1IosLetters.text = "ABC"
                     dialpad2IosLetters.text = "ABC"
                     dialpad3IosLetters.text = "DEF"
                     dialpad4IosLetters.text = "GHI"
@@ -1013,7 +1041,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                         addDefaultColorButton = true,
                         colorDefault = resources.getColor(R.color.ic_dialer),
                         title = resources.getString(R.string.color_sim_card_icons)
-                    ) { wasPositivePressed, color ->
+                    ) { wasPositivePressed, color, _ ->
                         if (wasPositivePressed) {
                             if (hasColorChanged(config.simIconsColors[1], color)) {
                                 addSimCardColor(1, color)
@@ -1031,7 +1059,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                         addDefaultColorButton = true,
                         colorDefault = resources.getColor(R.color.color_primary),
                         title = resources.getString(R.string.color_sim_card_icons)
-                    ) { wasPositivePressed, color ->
+                    ) { wasPositivePressed, color, _ ->
                         if (wasPositivePressed) {
                             if (hasColorChanged(config.simIconsColors[2], color)) {
                                 addSimCardColor(2, color)
@@ -1131,6 +1159,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                 settingsHideDialpadLetters.toggle()
                 config.hideDialpadLetters = settingsHideDialpadLetters.isChecked
                 binding.settingsDialpadSecondaryLanguageHolder.beGoneIf(config.hideDialpadLetters)
+                binding.settingsDialpadSecondaryTypefaceHolder.beGoneIf(config.hideDialpadLetters)
                 initStyle()
                 showDialpad()
             }
@@ -1175,6 +1204,69 @@ class SettingsDialpadActivity : SimpleActivity() {
                 binding.settingsDialpadSecondaryLanguage.text = getLanguageName(config.dialpadSecondaryLanguage)
                 initStyle()
                 showDialpad()
+                config.tabsChanged = true
+            }
+        }
+    }
+
+    private fun getTypefaceName(typeface: Int): String {
+        return when (typeface) {
+            Typeface.BOLD -> getString(R.string.typeface_bold)
+            Typeface.ITALIC -> getString(R.string.typeface_italic)
+            Typeface.BOLD_ITALIC -> getString(R.string.typeface_bold_italic)
+            else -> getString(R.string.typeface_normal)
+        }
+    }
+
+    private fun setupDialpadSecondaryTypeface() {
+        binding.settingsDialpadSecondaryTypefaceHolder.beGoneIf(config.hideDialpadLetters)
+        binding.settingsDialpadSecondaryTypeface.text = getTypefaceName(config.dialpadSecondaryTypeface)
+        binding.settingsDialpadSecondaryTypefaceHolder.setOnClickListener {
+            val items = arrayListOf(
+                RadioItem(Typeface.NORMAL, getString(R.string.typeface_normal)),
+                RadioItem(Typeface.BOLD, getString(R.string.typeface_bold)),
+                RadioItem(Typeface.ITALIC, getString(R.string.typeface_italic)),
+                RadioItem(Typeface.BOLD_ITALIC, getString(R.string.typeface_bold_italic)),
+            )
+
+            RadioGroupDialog(this@SettingsDialpadActivity, items, config.dialpadSecondaryTypeface) {
+                config.dialpadSecondaryTypeface = it as Int
+                binding.settingsDialpadSecondaryTypeface.text = getTypefaceName(config.dialpadSecondaryTypeface)
+                initStyle()
+                showDialpad()
+            }
+        }
+    }
+
+    private fun getHashtagLongClickName(hashtagLongClick: Int): String {
+        return when (hashtagLongClick) {
+            DIALPAD_LONG_CLICK_SETTINGS -> getString(R.string.dialpad_preferences)
+            else -> ";"
+        }
+    }
+
+    private fun setupDialpadHashtagLongClick() {
+        binding.settingsDialpadHashtagLongClickLabel.text = getString(R.string.long_click_g, " #")
+        binding.settingsDialpadHashtagLongClick.text = getHashtagLongClickName(config.dialpadHashtagLongClick)
+        binding.settingsDialpadHashtagLongClickHolder.setOnClickListener {
+            val items = arrayListOf(
+                RadioItem(DIALPAD_LONG_CLICK_SETTINGS, getString(R.string.dialpad_preferences)),
+                RadioItem(DIALPAD_LONG_CLICK_WAIT, "; (wait)"),
+            )
+
+            RadioGroupDialog(this@SettingsDialpadActivity, items, config.dialpadHashtagLongClick) {
+                config.dialpadHashtagLongClick = it as Int
+                binding.settingsDialpadHashtagLongClick.text = getHashtagLongClickName(config.dialpadHashtagLongClick)
+            }
+        }
+    }
+
+    private fun setupClearDialpad() {
+        binding.apply {
+            settingsClearDialpad.isChecked = config.dialpadClearWhenStartCall
+            settingsClearDialpadHolder.setOnClickListener {
+                settingsClearDialpad.toggle()
+                config.dialpadClearWhenStartCall = settingsClearDialpad.isChecked
             }
         }
     }
@@ -1284,7 +1376,7 @@ class SettingsDialpadActivity : SimpleActivity() {
 
     private fun updateProducts() {
         val productList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3, subscriptionIdX1, subscriptionIdX2, subscriptionIdX3)
-        ruStoreHelper.getProducts(productList)
+        ruStoreHelper!!.getProducts(productList)
     }
 
     private fun handleEventStart(event: StartPurchasesEvent) {

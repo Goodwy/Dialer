@@ -50,6 +50,7 @@
     <string name="answer_slider">Плъзгач</string>
     <string name="answer_slider_outline">Плъзгач за контур</string>
     <string name="answer_slider_vertical">Вертикален плъзгач</string>
+
     <string name="show_recent_calls">Показване на скорошни обаждания</string>
     <string name="open_dialpad_when_call_from_another_app">Когато се опитате да се обадите от друго приложение, отворете клавиатурата за набиране</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Това може да ви предпази от злонамерен софтуер, който провежда обаждания без ваше знание.</string>
@@ -57,8 +58,20 @@
     <string name="group_calls">Групиране на обаждания</string>
     <string name="group_all_calls">Групирайте всички повиквания, ще се покаже само последното обаждане</string>
     <string name="call_button_style">Стил на звънец</string>
+    <string name="call_notes">Бележки за обаждания</string>
     <string name="answer_end_other_call">Отговорете и прекратете текущото повикване</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Бързи отговори</string>
+    <string name="voicemail">Гласова поща</string>
+    <string name="show_voicemail_icon">Показване на иконата за гласова поща</string>
+    <string name="secondary_dialpad_language">Вторичен език на клавиатурата за набиране</string>
+    <string name="sim_card_selection_dialog_style">Стил на диалоговия прозорец за избор на SIM карта</string>
+    <string name="clear_dialpad_when_start_call">Изчистване на набрания номер при започване на разговор</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d пропуснато обаждане</item>
+        <item quantity="other">%d пропуснати обаждания</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Съобщение</string>
 </resources>

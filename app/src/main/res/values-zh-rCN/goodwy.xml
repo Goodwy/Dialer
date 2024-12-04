@@ -49,6 +49,7 @@
     <string name="answer_slider">滑块样式</string>
     <string name="answer_slider_outline">带大纲的滑块</string>
     <string name="answer_slider_vertical">垂直滑块</string>
+
     <string name="show_recent_calls">显示最近的通话</string>
     <string name="open_dialpad_when_call_from_another_app">当您尝试从其他应用拨打电话时，请打开拨号盘</string>
     <string name="open_dialpad_when_call_from_another_app_summary">这可以保护您免受恶意软件在您不知情的情况下拨打电话的侵害。</string>
@@ -56,8 +57,19 @@
     <string name="group_calls">呼叫分组</string>
     <string name="group_all_calls">对所有呼叫进行分组，仅显示最后一个呼叫</string>
     <string name="call_button_style">铃铛按钮样式</string>
+    <string name="call_notes">通话记录</string>
     <string name="answer_end_other_call">接听并结束当前通话</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">快速解答</string>
+    <string name="voicemail">语音信箱</string>
+    <string name="show_voicemail_icon">显示语音邮件图标</string>
+    <string name="secondary_dialpad_language">辅助拨号盘语言</string>
+    <string name="sim_card_selection_dialog_style">SIM Select 对话框样式</string>
+    <string name="clear_dialpad_when_start_call">开始通话时清除被叫号码</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="other">%d 个未接来电</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">消息</string>
 </resources>

@@ -50,6 +50,7 @@
     <string name="answer_slider">Schuiven</string>
     <string name="answer_slider_outline">Schuiven voor overzicht</string>
     <string name="answer_slider_vertical">Verticale schuifregelaar</string>
+
     <string name="show_recent_calls">Recente oproepen weergeven</string>
     <string name="open_dialpad_when_call_from_another_app">Wanneer u probeert te bellen vanuit een andere app, opent u het toetsenblok</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Dit kan u beschermen tegen malware die zonder uw medeweten belt.</string>
@@ -57,8 +58,20 @@
     <string name="group_calls">Oproep groeperen</string>
     <string name="group_all_calls">Groepeer alle oproepen, alleen de laatste oproep wordt weergegeven</string>
     <string name="call_button_style">De Stijl van de belknop</string>
+    <string name="call_notes">Notities bij het gesprek</string>
     <string name="answer_end_other_call">Beantwoord en beëindig het huidige gesprek</string>
-    <string name="quick_answers">Quick answers</string>
+    <string name="quick_answers">Snelle antwoorden</string>
     <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="show_voicemail_icon">Voicemailpictogram weergeven</string>
+    <string name="secondary_dialpad_language">Taal van het secundaire toetsenblok</string>
+    <string name="sim_card_selection_dialog_style">Stijl van het dialoogvenster voor SIM-selectie</string>
+    <string name="clear_dialpad_when_start_call">Wis het gekozen nummer bij het starten van een gesprek</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d gemiste oproep</item>
+        <item quantity="other">%d gemiste oproepen</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Bericht</string>
 </resources>

@@ -1,55 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="transparent_call_screen_g">Transparent Call Screen</string>
-    <string name="call_back_g">Call back</string>
-    <string name="call_back_person_g">Call back %s</string>
-    <string name="missed_call_g">Missed call</string>
-    <string name="missed_calls_g">Missed calls</string>
-    <string name="missed_call_notifications_g">Missed call notifications</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
-    <string name="call_start_end_vibration">Vibrate when your call is start and end</string>
+    <string name="transparent_call_screen_g">पारदर्शी कॉल स्क्रीन</string>
+    <string name="call_back_g">कॉल बैक</string>
+    <string name="call_back_person_g">कॉल बैक %s</string>
+    <string name="missed_call_g">छूटी कॉल</string>
+    <string name="missed_calls_g">छूटी कॉल</string>
+    <string name="missed_call_notifications_g">छूटी कॉल सूचनाएँ</string>
+    <string name="call_notification_channel_high_priority_g">कॉल सूचनाएँ उच्च प्राथमिकता</string>
+    <string name="call_notification_channel_g">कॉल सूचनाएँ</string>
+    <string name="call_start_end_vibration">आपकी कॉल शुरू और खत्म होने पर वाइब्रेट करें</string>
 
-    <string name="dialpad_preferences">Dialpad preferences</string>
-    <string name="show_contact_thumbnails_g">Show contact thumbnails</string>
-    <string name="hide_dialpad_letters_g">Hide dialpad letters</string>
-    <string name="show_caller_description_g">Show additional caller information</string>
-    <string name="nickname">Nickname</string>
-    <string name="company">Company</string>
-    <string name="call_anonymously">Call anonymously (with prefix #31#)</string>
+    <string name="dialpad_preferences">डायलपैड प्राथमिकताएँ</string>
+    <string name="show_contact_thumbnails_g">संपर्क थंबनेल दिखाएँ</string>
+    <string name="hide_dialpad_letters_g">डायलपैड अक्षर छिपाएँ</string>
+    <string name="show_caller_description_g">अतिरिक्त कॉलर जानकारी दिखाएँ</string>
+    <string name="nickname">उपनाम</string>
+    <string name="company">कंपनी</string>
+    <string name="call_anonymously">गुमनाम रूप से कॉल करें (उपसर्ग #31# के साथ)</string>
     <string name="call_anonymously_warning">
         <![CDATA[
-            <h4>Warning</h4>
-            The number will be called with the prefix #31# <br><br>
-                <h6"><i>  #31#%s</i></h6>
-            Make sure that your operator supports the number hiding service when using the #31# prefix. <br>
-            Your service provider may charge an additional fee for this service.
+            <h4>चेतावनी</h4>
+            नंबर को उपसर्ग #31# के साथ कॉल किया जाएगा <br><br>
+            <h6"><i> #31#%s</i></h6>
+            सुनिश्चित करें कि आपका ऑपरेटर #31# उपसर्ग का उपयोग करते समय नंबर छिपाने की सेवा का समर्थन करता है। <br>
+            आपका सेवा प्रदाता इस सेवा के लिए अतिरिक्त शुल्क ले सकता है।
         ]]>
     </string>
 
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">डिवाइस का इयरपीस</string>
+    <string name="open_speed_dial_manage">स्पीड डायल मैनेज खोलें?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">टाइमर</string>
+    <string name="timers_notification_msg">टाइमर चल रहे हैं</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d टाइमर चल रहा है</item>
+        <item quantity="other">%d टाइमर चल रहे हैं</item>
     </plurals>
 
     <!-- FAQ -->
-    <string name="faq_1_title_dialer_g">Why do I have to unlock my device to answer an incoming call?</string>
-    <string name="faq_1_text_dialer_g">Your operating system is blocking app access to the lock screen. You need to allow the app to access the lock screen. For example in MIUI you need to enable access in "Settings => Notifications => Lock screen notifications" and enable the "Open new windows while running in the background" permission.</string>
-    <string name="faq_2_title_dialer_g">How do I copy or paste a number on the dialing screen?</string>
-    <string name="faq_2_text_dialer_g">A long press on the call button will paste the clipboard contents. If you have already entered a number, long pressing the call button will copy the number to the clipboard.</string>
+    <string name="faq_1_title_dialer_g">इनकमिंग कॉल का जवाब देने के लिए मुझे अपने डिवाइस को अनलॉक क्यों करना होगा?</string>
+    <string name="faq_1_text_dialer_g">आपका ऑपरेटिंग सिस्टम लॉक स्क्रीन पर ऐप एक्सेस को ब्लॉक कर रहा है। आपको ऐप को लॉक स्क्रीन एक्सेस करने की अनुमति देनी होगी। उदाहरण के लिए MIUI में आपको "सेटिंग्स => नोटिफिकेशन => लॉक स्क्रीन नोटिफिकेशन" में एक्सेस को सक्षम करना होगा और "बैकग्राउंड में चलने के दौरान नई विंडो खोलें" अनुमति को सक्षम करना होगा।</string>
+    <string name="faq_2_title_dialer_g">मैं डायलिंग स्क्रीन पर नंबर को कैसे कॉपी या पेस्ट करूँ?</string>
+    <string name="faq_2_text_dialer_g">कॉल बटन पर लंबे समय तक प्रेस करने से क्लिपबोर्ड की सामग्री पेस्ट हो जाएगी। यदि आपने पहले से ही कोई नंबर दर्ज किया है, तो कॉल बटन को लंबे समय तक दबाने से नंबर क्लिपबोर्ड पर कॉपी हो जाएगा।</string>
 
     <!-- Answer style -->
-    <string name="answer_style">Answer style</string>
-    <string name="buttons">Buttons</string>
-    <string name="answer_slider">Slider</string>
-    <string name="answer_slider_outline">Outline slider</string>
-    <string name="answer_slider_vertical">Vertical slider</string>
+    <string name="answer_style">उत्तर शैली</string>
+    <string name="buttons">बटन</string>
+    <string name="answer_slider">स्लाइडर</string>
+    <string name="answer_slider_outline">आउटलाइन स्लाइडर</string>
+    <string name="answer_slider_vertical">वर्टिकल स्लाइडर</string>
+
     <string name="show_recent_calls">हाल के कॉल दिखाएं</string>
     <string name="open_dialpad_when_call_from_another_app">जब आप किसी अन्य अनुप्रयोग से कॉल करने का प्रयास करते हैं, तो डायल पैड खोलें</string>
     <string name="open_dialpad_when_call_from_another_app_summary">यह आपकी जानकारी के बिना कॉल करने वाले मैलवेयर से आपकी रक्षा कर सकता है।</string>
@@ -57,8 +58,20 @@
     <string name="group_calls">कॉल समूहीकरण</string>
     <string name="group_all_calls">सभी कॉल समूहीकृत करें, केवल अंतिम कॉल दिखाई जाएगी</string>
     <string name="call_button_style">बेल बटन स्टाइल</string>
+    <string name="call_notes">कॉल नोट्स</string>
     <string name="answer_end_other_call">वर्तमान कॉल का उत्तर दें और समाप्त करें</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">त्वरित उत्तर</string>
+    <string name="voicemail">वायसमेल</string>
+    <string name="show_voicemail_icon">वॉइसमेल दिखाएँ चिह्न</string>
+    <string name="secondary_dialpad_language">द्वितीयक डायलपैड भाषा</string>
+    <string name="sim_card_selection_dialog_style">SIM चयन संवाद शैली</string>
+    <string name="clear_dialpad_when_start_call">कॉल प्रारंभ करते समय डायल किया गया नंबर साफ़ करें</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">>%d मिस्ड कॉल</item>
+        <item quantity="other">%d मिस्ड कॉल</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">संदेश</string>
 </resources>

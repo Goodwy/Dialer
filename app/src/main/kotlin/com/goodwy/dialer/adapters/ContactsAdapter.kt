@@ -7,7 +7,10 @@ import android.content.res.Resources
 import android.graphics.drawable.Icon
 import android.net.Uri
 import android.telephony.PhoneNumberUtils
+import android.text.Spannable
+import android.text.SpannableString
 import android.text.TextUtils
+import android.text.style.ForegroundColorSpan
 import android.util.TypedValue
 import android.view.*
 import android.widget.FrameLayout
@@ -40,14 +43,13 @@ import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.databinding.ItemContactWithNumberGridSwipeBinding
 import com.goodwy.dialer.databinding.ItemContactWithNumberInfoSwipeBinding
 import com.goodwy.dialer.extensions.*
-import com.goodwy.dialer.helpers.SWIPE_ACTION_BLOCK
-import com.goodwy.dialer.helpers.SWIPE_ACTION_DELETE
-import com.goodwy.dialer.helpers.SWIPE_ACTION_MESSAGE
+import com.goodwy.dialer.helpers.*
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import me.thanel.swipeactionview.SwipeActionView
 import me.thanel.swipeactionview.SwipeDirection
 import me.thanel.swipeactionview.SwipeGestureListener
 import java.util.Collections
+import java.util.Locale
 
 class ContactsAdapter(
     activity: SimpleActivity,
@@ -142,10 +144,12 @@ class ContactsAdapter(
 
     override fun getItemKeyPosition(key: Int) = contacts.indexOfFirst { it.rawId == key }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onActionModeCreated() {
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onActionModeDestroyed() {
         notifyDataSetChanged()
     }
@@ -161,7 +165,7 @@ class ContactsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val contact = contacts[position]
-        holder.bindView(contact, true, allowLongClick) { itemView, layoutPosition ->
+        holder.bindView(contact, true, allowLongClick) { itemView, _ ->
             val viewType = getItemViewType(position)
             setupView(Binding.getByItemViewType(viewType, activity.config.useSwipeToAction).bind(itemView), contact, holder)
         }
@@ -233,6 +237,7 @@ class ContactsAdapter(
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateItems(newItems: List<Contact>, highlightText: String = "") {
         if (newItems.hashCode() != contacts.hashCode()) {
             contacts = ArrayList(newItems)
@@ -393,6 +398,27 @@ class ContactsAdapter(
         }
     }
 
+    private fun String.highlightTextFromNumbers(textToHighlight: String, primaryColor: Int, language: String): SpannableString {
+        val spannableString = SpannableString(this)
+        val digits = DialpadT9.convertLettersToNumbers(this.uppercase(), language)
+        if (digits.contains(textToHighlight)) {
+            //offsetting the characters to be extracted, by the number of first non-letter or non-numeric characters.
+            val lettersAndNumbers = Regex("[^A-Za-z0-9 ]")
+            val firstSymbol = lettersAndNumbers.replace(this, "").firstOrNull()
+            val offsetIndex = if (firstSymbol != null) this.indexOf(firstSymbol, 0, true) else 0
+
+            val startIndex = digits.indexOf(textToHighlight, 0, true) + offsetIndex
+            val endIndex = (startIndex + textToHighlight.length).coerceAtMost(length)
+            try {
+                spannableString.setSpan(ForegroundColorSpan(primaryColor), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
+            } catch (ignored: IndexOutOfBoundsException) {
+            }
+        }
+
+        return spannableString
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupView(binding: ItemViewBinding, contact: Contact, holder: ViewHolder) {
         binding.apply {
             root.setupViewBackground(activity)
@@ -420,7 +446,11 @@ class ContactsAdapter(
                             }
                         }
 
-                        name.highlightTextFromNumbers(spacedTextToHighlight, properPrimaryColor)
+                        val langPref = activity.config.dialpadSecondaryLanguage ?: ""
+                        val langLocale = Locale.getDefault().language
+                        val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
+                        val lang = if (isAutoLang) langLocale else langPref
+                        name.highlightTextFromNumbers(spacedTextToHighlight, properPrimaryColor, lang)
                     }
                 }
             }
@@ -435,7 +465,8 @@ class ContactsAdapter(
                     contact.phoneNumbers.firstOrNull { it.value.contains(textToHighlight) } ?: contact.phoneNumbers.firstOrNull()
                 }
                 val numberText = phoneNumberToUse?.value ?: ""
-                text = if (textToHighlight.isEmpty()) numberText else numberText.highlightTextPart(textToHighlight, properPrimaryColor,
+                text = if (textToHighlight.isEmpty()) numberText else numberText.highlightTextPart(
+                    textToHighlight, properPrimaryColor,
                     highlightAll = false,
                     ignoreCharsBetweenDigits = true
                 )
@@ -499,8 +530,10 @@ class ContactsAdapter(
                 swipeRightIcon!!.setColorFilter(properPrimaryColor.getContrastColor())
                 swipeRightIconHolder!!.setBackgroundColor(swipeActionColor(swipeRightAction))
 
-                itemContactSwipe!!.setRippleColor(SwipeDirection.Left, swipeActionColor(swipeLeftAction))
-                itemContactSwipe!!.setRippleColor(SwipeDirection.Right, swipeActionColor(swipeRightAction))
+                if (activity.config.swipeRipple) {
+                    itemContactSwipe!!.setRippleColor(SwipeDirection.Left, swipeActionColor(swipeLeftAction))
+                    itemContactSwipe!!.setRippleColor(SwipeDirection.Right, swipeActionColor(swipeRightAction))
+                }
 
                 val contactsGridColumnCount = activity.config.contactsGridColumnCount
                 if (viewType == VIEW_TYPE_GRID && contactsGridColumnCount > 1) {

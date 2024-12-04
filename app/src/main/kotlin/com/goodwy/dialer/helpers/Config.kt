@@ -2,6 +2,7 @@ package com.goodwy.dialer.helpers
 
 import android.content.ComponentName
 import android.content.Context
+import android.graphics.Typeface
 import android.media.RingtoneManager
 import android.telecom.PhoneAccountHandle
 import androidx.core.content.ContextCompat
@@ -12,6 +13,7 @@ import com.google.gson.reflect.TypeToken
 import com.goodwy.commons.helpers.BaseConfig
 import com.goodwy.dialer.extensions.getPhoneAccountHandleModel
 import com.goodwy.dialer.extensions.putPhoneAccountHandle
+import com.goodwy.dialer.models.CallerNote
 import com.goodwy.dialer.models.RecentCall
 import com.goodwy.dialer.models.SpeedDial
 
@@ -182,7 +184,7 @@ class Config(context: Context) : BaseConfig(context) {
 
     var recentCallsCache: String
         get() = prefs.getString(RECENT_CALL, "")!!
-        set(albumCovers) = prefs.edit().putString(RECENT_CALL, albumCovers).apply()
+        set(recentCallsCache) = prefs.edit().putString(RECENT_CALL, recentCallsCache).apply()
 
     fun parseRecentCallsCache(): ArrayList<RecentCall> {
         val listType = object : TypeToken<List<RecentCall>>() {}.type
@@ -219,6 +221,27 @@ class Config(context: Context) : BaseConfig(context) {
     var simDialogStyle: Int
         get() = prefs.getInt(SIM_DIALOG_STYLE, SIM_DIALOG_STYLE_LIST)
         set(simDialogStyle) = prefs.edit().putInt(SIM_DIALOG_STYLE, simDialogStyle).apply()
+
+    var dialpadSecondaryTypeface: Int
+        get() = prefs.getInt(DIALPAD_SECONDARY_TYPEFACE, Typeface.NORMAL)
+        set(dialpadSecondaryTypeface) = prefs.edit().putInt(DIALPAD_SECONDARY_TYPEFACE, dialpadSecondaryTypeface).apply()
+
+    var dialpadHashtagLongClick: Int
+        get() = prefs.getInt(DIALPAD_HASHTAG_LONG_CLICK, DIALPAD_LONG_CLICK_WAIT)
+        set(dialpadHashtagLongClick) = prefs.edit().putInt(DIALPAD_HASHTAG_LONG_CLICK, dialpadHashtagLongClick).apply()
+
+    var dialpadClearWhenStartCall: Boolean
+        get() = prefs.getBoolean(DIALPAD_CLEAR_WHEN_START_CALL, false)
+        set(dialpadClearWhenStartCall) = prefs.edit().putBoolean(DIALPAD_CLEAR_WHEN_START_CALL, dialpadClearWhenStartCall).apply()
+
+    var callerNotes: String
+        get() = prefs.getString(CALLER_NOTES, "")!!
+        set(callerNotes) = prefs.edit().putString(CALLER_NOTES, callerNotes).apply()
+
+    fun parseCallerNotes(): ArrayList<CallerNote> {
+        val notesType = object : TypeToken<List<CallerNote>>() {}.type
+        return Gson().fromJson<ArrayList<CallerNote>>(callerNotes, notesType) ?: ArrayList(1)
+    }
 
     //Timer
     var timerSeconds: Int
@@ -269,5 +292,9 @@ class Config(context: Context) : BaseConfig(context) {
     var swipeVibration: Boolean
         get() = prefs.getBoolean(SWIPE_VIBRATION, true)
         set(swipeVibration) = prefs.edit().putBoolean(SWIPE_VIBRATION, swipeVibration).apply()
+
+    var swipeRipple: Boolean
+        get() = prefs.getBoolean(SWIPE_RIPPLE, false)
+        set(swipeRipple) = prefs.edit().putBoolean(SWIPE_RIPPLE, swipeRipple).apply()
 }
 

@@ -10,7 +10,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.goodwy.commons.RightApp
-import com.goodwy.commons.extensions.checkUseEnglish
+import com.goodwy.commons.extensions.isRuStoreInstalled
 import com.goodwy.commons.extensions.showErrorToast
 import com.goodwy.commons.helpers.rustore.RuStoreModule
 import com.goodwy.dialer.extensions.*
@@ -30,8 +30,7 @@ class App : RightApp(), LifecycleObserver {
         super.onCreate()
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
         EventBus.getDefault().register(this)
-        checkUseEnglish()
-        RuStoreModule.install(this, "309929407") //TODO rustore
+        if (isRuStoreInstalled()) RuStoreModule.install(this, "309929407") //TODO rustore
     }
 
     override fun onTerminate() {

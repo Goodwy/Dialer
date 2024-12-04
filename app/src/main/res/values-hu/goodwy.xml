@@ -50,6 +50,7 @@
     <string name="answer_slider">Csúszka</string>
     <string name="answer_slider_outline">Körvonal csúszka</string>
     <string name="answer_slider_vertical">Függőleges csúszka</string>
+
     <string name="show_recent_calls">Legutóbbi hívások megjelenítése</string>
     <string name="open_dialpad_when_call_from_another_app">Amikor hívást próbál kezdeményezni egy másik alkalmazásból, nyissa meg a tárcsázót</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Ez megvédheti Önt a rosszindulatú programoktól, amelyek az Ön tudta nélkül hívásokat kezdeményeznek.</string>
@@ -57,8 +58,20 @@
     <string name="group_calls">Híváscsoportosítás</string>
     <string name="group_all_calls">Csoportosítsa az összes hívást, csak az utolsó hívás jelenik meg</string>
     <string name="call_button_style">Csengő gomb stílusa</string>
+    <string name="call_notes">Hívásjegyzetek</string>
     <string name="answer_end_other_call">Az aktuális hívás fogadása és befejezése</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Gyors válaszok</string>
+    <string name="voicemail">Hangposta</string>
+    <string name="show_voicemail_icon">Hangposta ikon megjelenítése</string>
+    <string name="secondary_dialpad_language">Másodlagos tárcsázó nyelve</string>
+    <string name="sim_card_selection_dialog_style">SIM-kártya kiválasztása párbeszédpanel stílusa</string>
+    <string name="clear_dialpad_when_start_call">Tárcsázott szám törlése hívásindításkor</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d nem fogadott hívás</item>
+        <item quantity="other">%d nem fogadott hívás</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Üzenet</string>
 </resources>

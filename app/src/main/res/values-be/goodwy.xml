@@ -10,6 +10,7 @@
     <string name="call_notification_channel_g">Апавяшчэнні аб выкліках</string>
     <string name="dialpad_preferences">Параметры кнопак набору</string>
     <string name="call_start_end_vibration">Вібрацыя пры пачатку і завяршэнні выкліку</string>
+    <string name="call_notes">Ноты для званкоў</string>
 
     <string name="show_contact_thumbnails_g">Паказаць мініяцюры кантактаў</string>
     <string name="hide_dialpad_letters_g">Схаваць літары панэлі набору</string>
@@ -52,6 +53,7 @@
     <string name="answer_slider">Слайдэр</string>
     <string name="answer_slider_outline">Слайдэр з контурам</string>
     <string name="answer_slider_vertical">Вертыкальны слайдэр</string>
+
     <string name="show_recent_calls">Паказваць нядаўнія званкі</string>
     <string name="open_dialpad_when_call_from_another_app">Пры спробе здзейсніць званок з іншага прыкладання адкрываць панэль набору нумара</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Гэта можа абараніць вас ад шкоднасных праграм, якія здзяйсняюць званкі без вашага ведама.</string>
@@ -65,4 +67,14 @@
     <string name="show_voicemail_icon">Паказваць значок галасавой пошты</string>
     <string name="secondary_dialpad_language">Дадатковая мова на клавіятуры</string>
     <string name="sim_card_selection_dialog_style">Стыль дыялогу выбару SIM карты</string>
+    <string name="clear_dialpad_when_start_call">Ачысціць набраны нумар пры пачатку выкліку</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d прапушчаны званок</item>
+        <item quantity="few">%d прапушчаныя званкі</item>
+        <item quantity="many">%d прапушчаных званкоў</item>
+    </plurals>
+    <string name="missed_call_from">Прапушчаны званок ад %s</string>
+    <string name="message">Паведамленне</string>
 </resources>

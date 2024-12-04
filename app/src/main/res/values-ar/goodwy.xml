@@ -54,6 +54,7 @@
     <string name="answer_slider">شريط التمرير</string>
     <string name="answer_slider_outline">شريط تمرير المخطط التفصيلي</string>
     <string name="answer_slider_vertical">شريط التمرير العمودي</string>
+
     <string name="show_recent_calls">إظهار المكالمات الأخيرة</string>
     <string name="open_dialpad_when_call_from_another_app">عند محاولة إجراء مكالمة من تطبيق آخر، افتح لوحة الطلب</string>
     <string name="open_dialpad_when_call_from_another_app_summary">يمكن أن يحميك هذا من البرامج الضارة التي تجري مكالمات دون علمك.</string>
@@ -61,8 +62,24 @@
     <string name="group_calls">تجميع المكالمات</string>
     <string name="group_all_calls">تجميع جميع المكالمات ، سيتم عرض المكالمة الأخيرة فقط</string>
     <string name="call_button_style">نمط زر الجرس</string>
+    <string name="call_notes">ملاحظات المكالمات</string>
     <string name="answer_end_other_call">الرد على المكالمة الحالية وإنهاؤها</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">إجابات سريعة</string>
+    <string name="voicemail">البريد الصوتي</string>
+    <string name="show_voicemail_icon">إظهار أيقونة البريد الصوتي</string>
+    <string name="secondary_dialpad_language">لغة لوحة الاتصال الثانوية</string>
+    <string name="sim_card_selection_dialog_style">نمط حوار تحديد بطاقة SIM</string>
+    <string name="clear_dialpad_when_start_call">مسح الرقم الذي تم الاتصال به عند بدء مكالمة</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="zero">%d مكالمات فائتة</item>
+        <item quantity="one">%d مكالمة فائتة</item>
+        <item quantity="two">%d المكالمات الفائتة</item>
+        <item quantity="few">%d مكالمات فائتة</item>
+        <item quantity="many">%d مكالمات فائتة</item>
+        <item quantity="other">%d مكالمة فائتة</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">رسالة</string>
 </resources>

@@ -13,10 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/ripple_all_corners"
-        android:paddingTop="@dimen/medium_margin"
-        android:paddingStart="@dimen/normal_margin"
-        android:paddingEnd="@dimen/normal_margin"
-        android:paddingBottom="@dimen/medium_margin">
+        android:padding="@dimen/medium_margin">
 
         <ImageView
             android:id="@+id/item_recents_sim_image"
@@ -45,18 +42,18 @@
             android:id="@+id/item_recents_date_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintHorizontal_weight="0.14"
+            app:layout_constraintHorizontal_weight="0.16"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/item_recents_sim_image"
             app:layout_constraintEnd_toStartOf="@+id/itemRecentsTypeName"
             android:alpha="0.8"
             android:gravity="center|start"
-            android:maxLines="1"
+            android:maxLines="2"
             android:paddingStart="@dimen/medium_margin"
             android:paddingEnd="@dimen/medium_margin"
             android:textSize="@dimen/normal_text_size"
-            tools:text="31.12" />
+            tools:text="31.12, 08:24" />
 
         <TextView
             android:id="@+id/itemRecentsTypeName"

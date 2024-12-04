@@ -50,6 +50,7 @@
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Konturreglage</string>
     <string name="answer_slider_vertical">Vertikal skjutreglage</string>
+
     <string name="show_recent_calls">Visa de senaste utlysningarna</string>
     <string name="open_dialpad_when_call_from_another_app">När du försöker ringa ett samtal från en annan app öppnar du knappsatsen</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Detta kan skydda dig från skadlig programvara som ringer samtal utan din vetskap.</string>
@@ -57,8 +58,20 @@
     <string name="group_calls">Gruppering av samtal</string>
     <string name="group_all_calls">Gruppera alla samtal, endast det senaste samtalet kommer att visas</string>
     <string name="call_button_style">Klockknapp stil</string>
+    <string name="call_notes">Anteckningar om samtal</string>
     <string name="answer_end_other_call">Besvara och avsluta det aktuella samtalet</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Snabba svar</string>
+    <string name="voicemail">Röstbrevlåda</string>
+    <string name="show_voicemail_icon">Visa ikon för röstbrevlåda</string>
+    <string name="secondary_dialpad_language">Sekundärt språk för knappsatsen</string>
+    <string name="sim_card_selection_dialog_style">SIM Välj dialogstil</string>
+    <string name="clear_dialpad_when_start_call">Rensa uppringt nummer när du startar ett samtal</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d missat samtal</item>
+        <item quantity="other">%d missade samtal</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Meddelande</string>
 </resources>

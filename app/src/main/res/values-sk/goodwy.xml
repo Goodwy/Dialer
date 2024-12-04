@@ -51,6 +51,7 @@
     <string name="answer_slider">Posúvač</string>
     <string name="answer_slider_outline">Posúvač obrysu</string>
     <string name="answer_slider_vertical">Vertikálny posúvač</string>
+
     <string name="show_recent_calls">Zobrazenie nedávnych hovorov</string>
     <string name="open_dialpad_when_call_from_another_app">Keď sa pokúšate uskutočniť hovor z inej aplikácie, otvorte klávesnicu na vytáčanie</string>
     <string name="open_dialpad_when_call_from_another_app_summary">To vás môže ochrániť pred škodlivým softvérom, ktorý uskutočňuje hovory bez vášho vedomia.</string>
@@ -58,8 +59,21 @@
     <string name="group_calls">Zoskupovanie hovorov</string>
     <string name="group_all_calls">Zoskupte všetky hovory, zobrazí sa iba posledný hovor</string>
     <string name="call_button_style">Štýl zvončeka</string>
+    <string name="call_notes">Poznámky k hovoru</string>
     <string name="answer_end_other_call">Prijmite a ukončite aktuálny hovor</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Rýchle odpovede</string>
+    <string name="voicemail">Hlasová schránka</string>
+    <string name="show_voicemail_icon">Zobraziť ikonu hlasovej schránky</string>
+    <string name="secondary_dialpad_language">Sekundárny jazyk číselnej klávesnice</string>
+    <string name="sim_card_selection_dialog_style">Štýl dialógového okna Výber SIM karty</string>
+    <string name="clear_dialpad_when_start_call">Vymazanie volaného čísla pri začatí hovoru</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d zmeškaný hovor</item>
+        <item quantity="few">%d zmeškané hovory</item>
+        <item quantity="many">%d zmeškaných hovorov</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Správa</string>
 </resources>

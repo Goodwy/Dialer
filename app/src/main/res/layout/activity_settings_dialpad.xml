@@ -257,6 +257,61 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/settingsDialpadSecondaryTypefaceHolder"
+                        style="@style/SettingsHolderStyle"
+                        android:paddingTop="@dimen/medium_margin">
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settingsDialpadSecondaryTypefaceLabel"
+                            style="@style/SettingsTextLabelStyle"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/settingsDialpadSecondaryTypeface"
+                            android:text="@string/typeface"/>
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settingsDialpadSecondaryTypeface"
+                            style="@style/SettingsTextValueStyle"
+                            android:maxWidth="@dimen/settings_value_width_long"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/settings_margin"
+                            tools:text="@string/typeface_normal"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/settingsDialpadHashtagLongClickHolder"
+                        style="@style/SettingsHolderStyle"
+                        android:paddingTop="@dimen/medium_margin">
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settingsDialpadHashtagLongClickLabel"
+                            style="@style/SettingsTextLabelStyle"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/settingsDialpadHashtagLongClick"
+                            android:text="@string/long_click_g"/>
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settingsDialpadHashtagLongClick"
+                            style="@style/SettingsTextValueStyle"
+                            android:maxWidth="@dimen/settings_value_width_long"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/settings_margin"
+                            tools:text="@string/dialpad_preferences"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/settingsClearDialpadHolder"
+                        style="@style/SettingsHolderSwitchStyle">
+
+                        <com.goodwy.commons.views.MyMaterialSwitch
+                            android:id="@+id/settingsClearDialpad"
+                            style="@style/SettingsSwitchStyle"
+                            android:text="@string/clear_dialpad_when_start_call"
+                            app:switchPadding="@dimen/bigger_margin"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:id="@+id/settings_dialpad_vibration_holder"
                         style="@style/SettingsHolderSwitchStyle">
 

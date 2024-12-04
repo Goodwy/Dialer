@@ -13,7 +13,6 @@ import android.graphics.drawable.RippleDrawable
 import android.media.AudioManager
 import android.net.Uri
 import android.os.*
-import android.provider.Settings
 import android.telecom.Call
 import android.telecom.CallAudioState
 import android.view.*
@@ -22,14 +21,15 @@ import android.widget.LinearLayout
 import android.widget.PopupMenu
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.os.postDelayed
 import androidx.core.view.children
+import androidx.core.view.isVisible
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.helpers.setWindowTransparency
 import com.goodwy.commons.models.SimpleListItem
 import com.goodwy.dialer.R
 import com.goodwy.dialer.databinding.ActivityCallBinding
+import com.goodwy.dialer.dialogs.ChangeTextDialog
 import com.goodwy.dialer.dialogs.DynamicBottomSheetChooserDialog
 import com.goodwy.dialer.extensions.*
 import com.goodwy.dialer.helpers.*
@@ -48,7 +48,7 @@ class CallActivity : SimpleActivity() {
         fun getStartIntent(context: Context, needSelectSIM: Boolean = false): Intent {
             val openAppIntent = Intent(context, CallActivity::class.java)
             openAppIntent.putExtra(NEED_SELECT_SIM, needSelectSIM)
-            openAppIntent.flags = Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            openAppIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_REORDER_TO_FRONT //Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT --removed it, it can cause a full screen ringing instead of notifications
             return openAppIntent
         }
     }
@@ -117,7 +117,7 @@ class CallActivity : SimpleActivity() {
 
             binding.apply {
                 arrayOf(
-                    callerNameLabel, callerDescription, callerNumber, callStatusLabel, callDeclineLabel, callAcceptLabel,
+                    callerNameLabel, callerDescription, callerNumber, callerNotes, callStatusLabel, callDeclineLabel, callAcceptLabel,
                     dialpadInclude.dialpad1, dialpadInclude.dialpad2, dialpadInclude.dialpad3, dialpadInclude.dialpad4,
                     dialpadInclude.dialpad5, dialpadInclude.dialpad6, dialpadInclude.dialpad7, dialpadInclude.dialpad8,
                     dialpadInclude.dialpad9, dialpadInclude.dialpad0, dialpadInclude.dialpadPlus, dialpadInput,
@@ -134,7 +134,7 @@ class CallActivity : SimpleActivity() {
 
                 arrayOf(
                     callToggleMicrophone, callToggleSpeaker, callDialpad, /*dialpadClose,*/ callSimImage, callDetails,
-                    callToggleHold, callAddContact, callAdd, callSwap, callMerge, callInfo, imageView,
+                    callToggleHold, callAddContact, callAdd, callSwap, callMerge, callInfo, addCallerNote, imageView,
                     dialpadInclude.dialpadAsterisk, dialpadInclude.dialpadHashtag
                 ).forEach {
                     it.applyColorFilter(Color.WHITE)
@@ -153,7 +153,7 @@ class CallActivity : SimpleActivity() {
             binding.apply {
                 arrayOf(
                     callToggleMicrophone, callToggleSpeaker, callDialpad, /*dialpadClose,*/ callSimImage, callDetails,
-                    callToggleHold, callAddContact, callAdd, callSwap, callMerge, callInfo, imageView,
+                    callToggleHold, callAddContact, callAdd, callSwap, callMerge, callInfo, addCallerNote, imageView,
                     dialpadInclude.dialpadAsterisk, dialpadInclude.dialpadHashtag, callMessage, callRemind
                 ).forEach {
                     it.applyColorFilter(properTextColor)
@@ -338,18 +338,16 @@ class CallActivity : SimpleActivity() {
         }
 
         callToggleMicrophone.setOnClickListener {
-            maybePerformDialpadHapticFeedback(it)
             toggleMicrophone()
+            maybePerformDialpadHapticFeedback(it)
         }
 
         callToggleSpeaker.setOnClickListener {
-            maybePerformDialpadHapticFeedback(it)
-            //toggleSpeaker()
             changeCallAudioRoute()
+            maybePerformDialpadHapticFeedback(it)
         }
 
         callToggleSpeaker.setOnLongClickListener {
-            maybePerformDialpadHapticFeedback(it)
 //            if (CallManager.getCallAudioRoute() == AudioRoute.BLUETOOTH) {
 //                openBluetoothSettings()
             val supportAudioRoutes = CallManager.getSupportedAudioRoutes()
@@ -359,50 +357,51 @@ class CallActivity : SimpleActivity() {
                 CallManager.setAudioRoute(newRoute)
             }
             else toast(callToggleSpeaker.contentDescription.toString())
+            maybePerformDialpadHapticFeedback(it)
             true
         }
 
         callDialpadHolder.setOnClickListener {
-            maybePerformDialpadHapticFeedback(it)
             toggleDialpadVisibility()
+            maybePerformDialpadHapticFeedback(it)
         }
 
         dialpadClose.setOnClickListener {
-            maybePerformDialpadHapticFeedback(it)
             hideDialpad()
+            maybePerformDialpadHapticFeedback(it)
         }
 
         callAddHolder.setOnClickListener {
-            maybePerformDialpadHapticFeedback(it)
             Intent(applicationContext, DialpadActivity::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                 startActivity(this)
             }
+            maybePerformDialpadHapticFeedback(it)
         }
 
         callSwapHolder.setOnClickListener {
-            maybePerformDialpadHapticFeedback(it)
             CallManager.swap()
+            maybePerformDialpadHapticFeedback(it)
         }
 
         callMergeHolder.setOnClickListener {
-            maybePerformDialpadHapticFeedback(it)
             CallManager.merge()
+            maybePerformDialpadHapticFeedback(it)
         }
 
         callInfo.setOnClickListener {
-            maybePerformDialpadHapticFeedback(it)
             startActivity(Intent(this@CallActivity, ConferenceActivity::class.java))
+            maybePerformDialpadHapticFeedback(it)
         }
 
         callToggleHold.setOnClickListener {
-            maybePerformDialpadHapticFeedback(it)
             toggleHold()
+            maybePerformDialpadHapticFeedback(it)
         }
 
         callAddContactHolder.setOnClickListener {
-            maybePerformDialpadHapticFeedback(it)
             addContact()
+            maybePerformDialpadHapticFeedback(it)
         }
 
         callEnd.setOnClickListener {
@@ -428,7 +427,7 @@ class CallActivity : SimpleActivity() {
 
         arrayOf(
             callToggleMicrophone, callDialpadHolder, callToggleHold,
-            callAddHolder, callSwapHolder, callMergeHolder, callInfo, callAddContactHolder
+            callAddHolder, callSwapHolder, callMergeHolder, callInfo, addCallerNote, callAddContactHolder
         ).forEach { imageView ->
             imageView.setOnLongClickListener {
                 if (!imageView.contentDescription.isNullOrEmpty()) {
@@ -845,9 +844,9 @@ class CallActivity : SimpleActivity() {
             dialpadWrapper.beVisible()
             dialpadClose.beVisible()
             arrayOf(
-                callerAvatar, callerNameLabel, callerDescription, callerNumber, callStatusLabel,
+                callerAvatar, callerNameLabel, callerDescription, callerNumber, callerNotes, callStatusLabel,
                 callSimImage, callSimId, callToggleMicrophone, callDialpadHolder,
-                callToggleSpeaker, callAddContactHolder, callInfo
+                callToggleSpeaker, callAddContactHolder, callInfo, addCallerNote
             ).forEach {
                 it.beGone()
             }
@@ -882,6 +881,7 @@ class CallActivity : SimpleActivity() {
                 }
                 callAddContactHolder.beVisibleIf(config.callButtonStyle == IOS16)
                 callerDescription.beVisibleIf(callerDescription.text.isNotEmpty())
+                callerNotes.beVisibleIf(callerNotes.text.isNotEmpty())
                 val accounts = telecomManager.callCapablePhoneAccounts
                 callSimImage.beVisibleIf(accounts.size > 1)
                 callSimId.beVisibleIf(accounts.size > 1)
@@ -942,6 +942,7 @@ class CallActivity : SimpleActivity() {
                     callerNumber.setOnClickListener {
                         if (callerNumber.text == numberLabelText) callerNumber.text = numberText
                         else callerNumber.text = numberLabelText
+                        maybePerformDialpadHapticFeedback(it)
                     }
                 } else {
                     callerNumber.text = numberText
@@ -1031,37 +1032,81 @@ class CallActivity : SimpleActivity() {
                 setOnLongClickListener { toast(R.string.send_sms); true; }
             }
 
-            callRemind.setOnClickListener {
-                this@CallActivity.handleNotificationPermission { permission ->
-                    if (permission) {
-                        val wrapper: Context = ContextThemeWrapper(this@CallActivity, getPopupMenuTheme())
-                        val popupMenu = PopupMenu(wrapper, callRemind, Gravity.START)
-                        popupMenu.menu.add(1, 1, 1, String.format(resources.getQuantityString(R.plurals.minutes, 10, 10)))
-                        popupMenu.menu.add(1, 2, 2, String.format(resources.getQuantityString(R.plurals.minutes, 30, 30)))
-                        popupMenu.menu.add(1, 3, 3, String.format(resources.getQuantityString(R.plurals.minutes, 60, 60)))
-                        popupMenu.setOnMenuItemClickListener { item ->
-                            when (item.itemId) {
-                                1 -> {
-                                    startTimer(600)
-                                    endCall()
-                                }
+            callRemind.apply {
+                setOnClickListener {
+                    this@CallActivity.handleNotificationPermission { permission ->
+                        if (permission) {
+                            val wrapper: Context = ContextThemeWrapper(this@CallActivity, getPopupMenuTheme())
+                            val popupMenu = PopupMenu(wrapper, callRemind, Gravity.START)
+                            popupMenu.menu.add(1, 1, 1, String.format(resources.getQuantityString(R.plurals.minutes, 10, 10)))
+                            popupMenu.menu.add(1, 2, 2, String.format(resources.getQuantityString(R.plurals.minutes, 30, 30)))
+                            popupMenu.menu.add(1, 3, 3, String.format(resources.getQuantityString(R.plurals.minutes, 60, 60)))
+                            popupMenu.setOnMenuItemClickListener { item ->
+                                when (item.itemId) {
+                                    1 -> {
+                                        startTimer(600)
+                                        endCall()
+                                    }
 
-                                2 -> {
-                                    startTimer(1800)
-                                    endCall()
-                                }
+                                    2 -> {
+                                        startTimer(1800)
+                                        endCall()
+                                    }
 
-                                else -> {
-                                    startTimer(3600)
-                                    endCall()
+                                    else -> {
+                                        startTimer(3600)
+                                        endCall()
+                                    }
                                 }
+                                true
                             }
-                            true
+                            popupMenu.show()
+                        } else {
+                            toast(R.string.allow_notifications_reminders)
                         }
-                        popupMenu.show()
-                    } else {
-                        toast(R.string.allow_notifications_reminders)
                     }
+                }
+                setOnLongClickListener { toast(R.string.remind_me); true; }
+            }
+
+            val callNote = callerNotesHelper.getCallerNotes(number)
+            callerNotes.apply {
+                beVisibleIf(callNote != null && !isConference)
+                if (callNote != null) {
+                    text = callNote.note
+                }
+                setOnClickListener {
+                    changeNoteDialog(number)
+                }
+            }
+
+            addCallerNote.apply {
+                setOnClickListener {
+                    changeNoteDialog(number)
+                }
+            }
+        }
+    }
+
+    private fun changeNoteDialog(number: String) {
+        val callerNote = callerNotesHelper.getCallerNotes(number)
+        ChangeTextDialog(
+            activity = this@CallActivity,
+            title = getString(R.string.add_notes) + " ($number)",
+            currentText = callerNote?.note,
+            maxLength = CALLER_NOTES_MAX_LENGTH,
+            showNeutralButton = true,
+            neutralTextRes = com.goodwy.commons.R.string.delete
+        ) {
+            if (it != "") {
+                callerNotesHelper.addCallerNotes(number, it, callerNote) {
+                    binding.callerNotes.text = it
+                    binding.callerNotes.beVisible()
+                }
+            } else {
+                callerNotesHelper.deleteCallerNotes(callerNote) {
+                    binding.callerNotes.text = it
+                    binding.callerNotes.beGone()
                 }
             }
         }
@@ -1156,6 +1201,7 @@ class CallActivity : SimpleActivity() {
             }
 
             callInfo.beVisibleIf(!isCallEnded && call.hasCapability(Call.Details.CAPABILITY_MANAGE_CONFERENCE))
+            addCallerNote.beVisibleIf(!callInfo.isVisible)
             if (dialpadWrapper.isGone()) {
                 setActionButtonEnabled(callSwapHolder, enabled = !isCallEnded && state == Call.STATE_ACTIVE)
                 setActionButtonEnabled(callMergeHolder, enabled = !isCallEnded && state == Call.STATE_ACTIVE)
@@ -1312,13 +1358,13 @@ class CallActivity : SimpleActivity() {
     }
 
     private fun callStarted() {
-        maybePerformCallHapticFeedback(binding.callerNameLabel)
         enableProximitySensor()
         binding.incomingCallHolder.beGone()
         binding.ongoingCallHolder.beVisible()
         binding.callEnd.beVisible()
         callDurationHandler.removeCallbacks(updateCallDurationTask)
         callDurationHandler.post(updateCallDurationTask)
+        maybePerformCallHapticFeedback(binding.callerNameLabel)
         if (config.flashForAlerts) MyCameraImpl.newInstance(this).toggleSOS()
     }
 
@@ -1332,7 +1378,6 @@ class CallActivity : SimpleActivity() {
 
     private fun endCall(rejectWithMessage: Boolean = false, textMessage: String? = null) {
         CallManager.reject(rejectWithMessage, textMessage)
-        maybePerformCallHapticFeedback(binding.callerNameLabel)
         disableProximitySensor()
         audioRouteChooserDialog?.dismissAllowingStateLoss()
 
@@ -1365,6 +1410,7 @@ class CallActivity : SimpleActivity() {
                 } else finish()
             }
         }
+        maybePerformCallHapticFeedback(binding.callerNameLabel)
     }
 
     private val callCallback = object : CallManagerListener {

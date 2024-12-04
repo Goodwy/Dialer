@@ -16,14 +16,16 @@
     <string name="group_calls">Группировка звонков</string>
     <string name="group_all_calls">Группировать все звонки, будет показан только последний звонок</string>
     <string name="call_button_style">Стиль кнопок звонка</string>
+    <string name="call_notes">Заметки о звонках</string>
 
     <string name="answer_end_other_call">Ответить и завершить текущий вызов</string>
     <string name="quick_answers">Быстрые ответы</string>
     <string name="voicemail">Голосовая почта</string>
     <string name="show_voicemail_icon">Показывать значок голосовой почты</string>
-    <string name="dialpad_preferences">Параметры кнопок набора</string>
     <string name="secondary_dialpad_language">Дополнительный язык на клавиатуре</string>
     <string name="sim_card_selection_dialog_style">Стиль диалога выбора SIM карты</string>
+    <string name="clear_dialpad_when_start_call">Очистить набранный номер при начале вызова</string>
+    <string name="dialpad_preferences">Параметры кнопок набора</string>
     <string name="show_contact_thumbnails_g">Показывать фото контакта</string>
     <string name="hide_dialpad_letters_g">Скрыть буквы набора номера</string>
     <string name="show_caller_description_g">Показать дополнительную информацию абонента</string>
@@ -50,7 +52,6 @@
         <item quantity="one">%d таймер запущен</item>
         <item quantity="few">%d таймера запущены</item>
         <item quantity="many">%d таймеров запущено</item>
-        <item quantity="other">%d таймеров запущено</item>
     </plurals>
 
     <!-- FAQ -->
@@ -65,4 +66,13 @@
     <string name="answer_slider">Слайдер</string>
     <string name="answer_slider_outline">Слайдер с контуром</string>
     <string name="answer_slider_vertical">Вертикальный слайдер</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d пропущенный звонок</item>
+        <item quantity="few">%d пропущенных звонка</item>
+        <item quantity="many">%d пропущенных звонков</item>
+    </plurals>
+    <string name="missed_call_from">Пропущенный звонок от %s</string>
+    <string name="message">Сообщение</string>
 </resources>

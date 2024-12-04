@@ -50,6 +50,7 @@
     <string name="answer_slider">സ്ലൈഡർ</string>
     <string name="answer_slider_outline">ഔട്ട്‌ലൈൻ സ്ലൈഡർ</string>
     <string name="answer_slider_vertical">ലംബ സ്ലൈഡർ</string>
+
     <string name="show_recent_calls">സമീപകാല കോളുകൾ കാണിക്കുക</string>
     <string name="open_dialpad_when_call_from_another_app">നിങ്ങൾ മറ്റൊരു ആപ്ലിക്കേഷനിൽ നിന്ന് ഒരു കോൾ ചെയ്യാൻ ശ്രമിക്കുമ്പോൾ, ഡയൽ പാഡ് തുറക്കുക</string>
     <string name="open_dialpad_when_call_from_another_app_summary">നിങ്ങളുടെ അറിവില്ലാതെ ക്ഷുദ്രവെയർ കോളുകൾ ചെയ്യുന്നതിൽ നിന്ന് ഇത് നിങ്ങളെ സംരക്ഷിക്കും.</string>
@@ -57,8 +58,20 @@
     <string name="group_calls">കോൾ ഗ്രൂപ്പിംഗ്</string>
     <string name="group_all_calls">എല്ലാ കോളുകളും ഗ്രൂപ്പുചെയ്യുക, അവസാന കോൾ മാത്രമേ കാണിക്കൂ</string>
     <string name="call_button_style">കോൾ ബട്ടൺ ശൈലി</string>
+    <string name="call_notes">കോൾ കുറിപ്പുകൾ</string>
     <string name="answer_end_other_call">നിലവിലെ കോളിന് ഉത്തരം നൽകി അവസാനിപ്പിക്കുക</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">ദ്രുത ഉത്തരങ്ങൾ</string>
+    <string name="voicemail">വോയ്സ്മെയിൽ</string>
+    <string name="show_voicemail_icon">വോയ്‌സ്‌മെയിൽ ഐക്കൺ കാണിക്കുക</string>
+    <string name="secondary_dialpad_language">സെക്കൻഡറി ഡയൽപാഡ് ഭാഷ</string>
+    <string name="sim_card_selection_dialog_style">സിം കാർഡ് തിരഞ്ഞെടുക്കൽ ഡയലോഗ് ശൈലി</string>
+    <string name="clear_dialpad_when_start_call">ഒരു കോൾ ആരംഭിക്കുമ്പോൾ ഡയൽ ചെയ്ത നമ്പർ മായ്‌ക്കുക</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d മിസ്‌ഡ് കോൾ</item>
+        <item quantity="other">%d മിസ്ഡ് കോളുകൾ</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">സന്ദേശം</string>
 </resources>

@@ -94,6 +94,21 @@
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/onHoldStatusHolder"
         app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/addCallerNote"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_margin="@dimen/big_margin"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/add_notes"
+        android:elevation="@dimen/medium_margin"
+        android:padding="@dimen/small_margin"
+        android:src="@drawable/ic_note"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/onHoldStatusHolder"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:visibility="visible"/>
 
     <com.goodwy.commons.views.MyTextView
@@ -124,6 +139,24 @@
         app:layout_constraintTop_toBottomOf="@+id/callerDescription"
         tools:text="*0912 345 678"/>
 
+    <com.goodwy.commons.views.MyTextView
+        android:id="@+id/callerNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:gravity="center_horizontal"
+        android:textSize="@dimen/call_status_text_size"
+        android:paddingHorizontal="@dimen/activity_margin"
+        android:background="@drawable/ripple_all_corners_11dp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/callerNumber"
+        tools:text="Caller notes"
+        tools:visibility="visible"/>
+
     <RelativeLayout
         android:id="@+id/call_status_holder"
         android:layout_width="wrap_content"
@@ -133,7 +166,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/callerNumber">
+        app:layout_constraintTop_toBottomOf="@+id/callerNotes">
 
         <ImageView
             android:id="@+id/callDetails"
@@ -207,7 +240,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/controlsSingleCall"
@@ -583,7 +616,7 @@
         android:visibility="gone"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <ImageView
             android:id="@+id/call_remind"

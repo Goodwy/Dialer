@@ -225,9 +225,20 @@ class RecentsHelper(private val context: Context) {
 //                    val filteredContacts = contacts.filter { context.baseConfig.ignoredContactSources.contains(it.source) }
                     contact = contacts.firstOrNull { it.doesContainPhoneNumber(number) }
                     // If the number in the contacts is written without + or 8 instead of +7
+                    // https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers
                     if (contact == null) contact = contacts.firstOrNull {
-                        it.doesContainPhoneNumber(number.replace("+", "")) ||
-                            it.doesContainPhoneNumber(number.replace("+7", "8"))
+                        it.doesContainPhoneNumber(number.replace("+", "")) || //All
+                            it.doesContainPhoneNumber(number.replace("+7", "8")) || //Russia
+                            it.doesContainPhoneNumber(number.replace("+31", "0")) || //Netherlands
+                            it.doesContainPhoneNumber(number.replace("+33", "0")) || //France
+                            it.doesContainPhoneNumber(number.replace("+34", "")) || //Spain
+                            it.doesContainPhoneNumber(number.replace("+39", "0")) || //Italy
+                            it.doesContainPhoneNumber(number.replace("+44", "0")) || //United Kingdom
+                            it.doesContainPhoneNumber(number.replace("+49", "0")) || //Germany
+                            it.doesContainPhoneNumber(number.replace("+91", "0")) || //India
+                            it.doesContainPhoneNumber(number.replace("+351", "")) || //Portugal
+                            it.doesContainPhoneNumber(number.replace("+375", "0")) || //Belarus
+                            it.doesContainPhoneNumber(number.replace("+380", "0")) //Ukraine
                     }
                 }
 

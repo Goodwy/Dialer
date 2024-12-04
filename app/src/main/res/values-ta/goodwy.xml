@@ -1,55 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="transparent_call_screen_g">Transparent Call Screen</string>
-    <string name="call_back_g">Call back</string>
-    <string name="call_back_person_g">Call back %s</string>
-    <string name="missed_call_g">Missed call</string>
-    <string name="missed_calls_g">Missed calls</string>
-    <string name="missed_call_notifications_g">Missed call notifications</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
-    <string name="call_start_end_vibration">Vibrate when your call is start and end</string>
+    <string name="transparent_call_screen_g">வெளிப்படையான அழைப்புத் திரை</string>
+    <string name="call_back_g">மீண்டும் அழை</string>
+    <string name="call_back_person_g">%sஐ திரும்ப அழைக்கவும்</string>
+    <string name="missed_call_g">தவறவிட்ட அழைப்பு</string>
+    <string name="missed_calls_g">தவறிய அழைப்புகள்</string>
+    <string name="missed_call_notifications_g">தவறவிட்ட அழைப்பு அறிவிப்புகள்</string>
+    <string name="call_notification_channel_high_priority_g">அழைப்பு அறிவிப்புகளுக்கு அதிக முன்னுரிமை</string>
+    <string name="call_notification_channel_g">அழைப்பு அறிவிப்புகள்</string>
+    <string name="call_start_end_vibration">உங்கள் அழைப்பு தொடங்கும் மற்றும் முடிவடையும் போது அதிர்வுறும்</string>
 
-    <string name="dialpad_preferences">Dialpad preferences</string>
-    <string name="show_contact_thumbnails_g">Show contact thumbnails</string>
-    <string name="hide_dialpad_letters_g">Hide dialpad letters</string>
-    <string name="show_caller_description_g">Show additional caller information</string>
-    <string name="nickname">Nickname</string>
-    <string name="company">Company</string>
-    <string name="call_anonymously">Call anonymously (with prefix #31#)</string>
+    <string name="dialpad_preferences">Dialpad விருப்பத்தேர்வுகள்</string>
+    <string name="show_contact_thumbnails_g">தொடர்பு சிறுபடங்களைக் காட்டு</string>
+    <string name="hide_dialpad_letters_g">டயல்பேட் எழுத்துக்களை மறை</string>
+    <string name="show_caller_description_g">கூடுதல் அழைப்பாளர் தகவலைக் காட்டு</string>
+    <string name="nickname">புனைப்பெயர்</string>
+    <string name="company">நிறுவனம்</string>
+    <string name="call_anonymously">அநாமதேயமாக அழைக்கவும் (#31# முன்னொட்டுடன்)</string>
     <string name="call_anonymously_warning">
         <![CDATA[
-            <h4>Warning</h4>
-            The number will be called with the prefix #31# <br><br>
-                <h6"><i>  #31#%s</i></h6>
-            Make sure that your operator supports the number hiding service when using the #31# prefix. <br>
-            Your service provider may charge an additional fee for this service.
+        <h4>எச்சரிக்கை</h4>
+        எண் #31# <br><br> என்ற முன்னொட்டுடன் அழைக்கப்படும்
+        <h6"><i> #31#%s</i></h6>
+        #31# முன்னொட்டைப் பயன்படுத்தும் போது, ​​எண் மறைக்கும் சேவையை உங்கள் ஆபரேட்டர் ஆதரிக்கிறதா என்பதை உறுதிசெய்யவும். <br>
+        இந்த சேவைக்கு உங்கள் சேவை வழங்குநர் கூடுதல் கட்டணம் வசூலிக்கலாம்.
         ]]>
     </string>
 
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">சாதனத்தின் இயர்பீஸ்</string>
+    <string name="open_speed_dial_manage">வேக டயலை நிர்வகிப்பதைத் திறக்கவா?</string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">டைமர்</string>
+    <string name="timers_notification_msg">டைமர்கள் இயங்குகின்றன</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="one">%d டைமர் இயங்குகிறது</item>
+        <item quantity="other">%d டைமர்கள் இயங்குகின்றன</item>
     </plurals>
 
     <!-- FAQ -->
-    <string name="faq_1_title_dialer_g">Why do I have to unlock my device to answer an incoming call?</string>
-    <string name="faq_1_text_dialer_g">Your operating system is blocking app access to the lock screen. You need to allow the app to access the lock screen. For example in MIUI you need to enable access in "Settings => Notifications => Lock screen notifications" and enable the "Open new windows while running in the background" permission.</string>
-    <string name="faq_2_title_dialer_g">How do I copy or paste a number on the dialing screen?</string>
-    <string name="faq_2_text_dialer_g">A long press on the call button will paste the clipboard contents. If you have already entered a number, long pressing the call button will copy the number to the clipboard.</string>
+    <string name="faq_1_title_dialer_g">உள்வரும் அழைப்பிற்கு பதிலளிக்க நான் ஏன் எனது சாதனத்தைத் திறக்க வேண்டும்?</string>
+    <string name="faq_1_text_dialer_g">உங்கள் இயக்க முறைமை பூட்டுத் திரைக்கான பயன்பாட்டு அணுகலைத் தடுக்கிறது. பூட்டுத் திரையை அணுக, ஆப்ஸை அனுமதிக்க வேண்டும். எடுத்துக்காட்டாக, MIUI இல் நீங்கள் "அமைப்புகள் => அறிவிப்புகள் => பூட்டுத் திரை அறிவிப்புகள்" என்பதில் அணுகலை இயக்க வேண்டும் மற்றும் "பின்னணியில் இயங்கும் போது புதிய சாளரங்களைத் திற" அனுமதியை இயக்கவும்.</string>
+    <string name="faq_2_title_dialer_g">நான் எப்படி டயலிங் திரையில் எண்ணை நகலெடுப்பது அல்லது ஒட்டுவது?</string>
+    <string name="faq_2_text_dialer_g">அழைப்பு பொத்தானை நீண்ட நேரம் அழுத்தினால், கிளிப்போர்டு உள்ளடக்கங்கள் ஒட்டப்படும். நீங்கள் ஏற்கனவே எண்ணை உள்ளிட்டிருந்தால், அழைப்பு பொத்தானை நீண்ட நேரம் அழுத்தினால், அந்த எண் கிளிப்போர்டுக்கு நகலெடுக்கப்படும்.</string>
 
     <!-- Answer style -->
-    <string name="answer_style">Answer style</string>
-    <string name="buttons">Buttons</string>
-    <string name="answer_slider">Slider</string>
-    <string name="answer_slider_outline">Outline slider</string>
-    <string name="answer_slider_vertical">Vertical slider</string>
+    <string name="answer_style">பதில் நடை</string>
+    <string name="buttons">பொத்தான்கள்</string>
+    <string name="answer_slider">ஸ்லைடர்</string>
+    <string name="answer_slider_outline">அவுட்லைன் ஸ்லைடர்</string>
+    <string name="answer_slider_vertical">செங்குத்து ஸ்லைடர்</string>
+
     <string name="show_recent_calls">சமீபத்திய அழைப்புகளைக் காட்டு</string>
     <string name="open_dialpad_when_call_from_another_app">வேறொரு பயன்பாட்டிலிருந்து அழைப்பை மேற்கொள்ள முயற்சிக்கும்போது, ​​டயல் பேடைத் திறக்கவும்</string>
     <string name="open_dialpad_when_call_from_another_app_summary">இது உங்களுக்குத் தெரியாமல் மால்வேர் அழைப்புகளில் இருந்து உங்களைப் பாதுகாக்கும்.</string>
@@ -57,8 +58,20 @@
     <string name="group_calls">அழைப்பு குழுவாக்கம்</string>
     <string name="group_all_calls">அனைத்து அழைப்புகளையும் குழுவாக்கவும், கடைசி அழைப்பு மட்டுமே காட்டப்படும்</string>
     <string name="call_button_style">அழைப்பு பொத்தான் நடை</string>
+    <string name="call_notes">அழைப்பு குறிப்புகள்</string>
     <string name="answer_end_other_call">தற்போதைய அழைப்பிற்கு பதிலளித்து முடிக்கவும்</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">விரைவான பதில்கள்</string>
+    <string name="voicemail">குரல் அஞ்சல்</string>
+    <string name="show_voicemail_icon">குரல் அஞ்சல் ஐகானைக் காட்டு</string>
+    <string name="secondary_dialpad_language">இரண்டாம் நிலை டயல்பேட் மொழி</string>
+    <string name="sim_card_selection_dialog_style">சிம் கார்டு தேர்வு உரையாடல் நடை</string>
+    <string name="clear_dialpad_when_start_call">அழைப்பைத் தொடங்கும்போது டயல் செய்யப்பட்ட எண்ணை அழிக்கவும்</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d தவறிய அழைப்பு</item>
+        <item quantity="other">%d தவறிய அழைப்புகள்</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">செய்தி</string>
 </resources>

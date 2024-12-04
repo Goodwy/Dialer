@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dialpadGridHolder"
@@ -10,6 +10,8 @@
     android:background="@color/theme_black_background_color"
     android:layoutDirection="ltr"
     android:orientation="vertical"
+    app:cardElevation="20dp"
+    app:cardCornerRadius="0dp"
     tools:ignore="HardcodedText">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -171,7 +173,6 @@
                     android:layout_below="@+id/dialpad_1"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="-3dp"
-                    android:layout_marginBottom="@dimen/small_margin"
                     android:gravity="center_horizontal"
                     android:text="ABC"
                     android:visibility="invisible"/>
@@ -222,7 +223,6 @@
                     android:layout_below="@+id/dialpad_2"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="-3dp"
-                    android:layout_marginBottom="@dimen/small_margin"
                     android:gravity="center_horizontal"
                     android:text="ABC"
                     android:alpha="0.5"/>
@@ -262,7 +262,6 @@
                     android:layout_below="@+id/dialpad_3"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="-3dp"
-                    android:layout_marginBottom="@dimen/small_margin"
                     android:gravity="center_horizontal"
                     android:text="DEF"
                     android:alpha="0.5"/>
@@ -302,7 +301,6 @@
                     android:layout_below="@+id/dialpad_4"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="-3dp"
-                    android:layout_marginBottom="@dimen/small_margin"
                     android:gravity="center_horizontal"
                     android:text="GHI"
                     android:alpha="0.5"/>
@@ -343,7 +341,6 @@
                     android:layout_below="@+id/dialpad_5"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="-3dp"
-                    android:layout_marginBottom="@dimen/small_margin"
                     android:gravity="center_horizontal"
                     android:text="JKL"
                     android:alpha="0.5"/>
@@ -383,7 +380,6 @@
                     android:layout_below="@+id/dialpad_6"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="-3dp"
-                    android:layout_marginBottom="@dimen/small_margin"
                     android:gravity="center_horizontal"
                     android:text="MNO"
                     android:alpha="0.5"/>
@@ -423,7 +419,6 @@
                     android:layout_below="@+id/dialpad_7"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="-3dp"
-                    android:layout_marginBottom="@dimen/small_margin"
                     android:gravity="center_horizontal"
                     android:text="PQRS"
                     android:alpha="0.5"/>
@@ -464,7 +459,6 @@
                     android:layout_below="@+id/dialpad_8"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="-3dp"
-                    android:layout_marginBottom="@dimen/small_margin"
                     android:gravity="center_horizontal"
                     android:text="TUV"
                     android:alpha="0.5"/>
@@ -504,7 +498,6 @@
                     android:layout_below="@+id/dialpad_9"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="-3dp"
-                    android:layout_marginBottom="@dimen/small_margin"
                     android:gravity="center_horizontal"
                     android:text="WXYZ"
                     android:alpha="0.5"/>
@@ -651,4 +644,4 @@
                 app:srcCompat="@drawable/ic_backspace_x" />
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+</androidx.cardview.widget.CardView>

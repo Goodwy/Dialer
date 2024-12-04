@@ -52,6 +52,7 @@
     <string name="answer_slider">Drsnik</string>
     <string name="answer_slider_outline">Orisni drsnik</string>
     <string name="answer_slider_vertical">Navpični drsnik</string>
+
     <string name="show_recent_calls">Prikaz nedavnih klicev</string>
     <string name="open_dialpad_when_call_from_another_app">Ko poskušate klicati iz druge aplikacije, odprite številčnico</string>
     <string name="open_dialpad_when_call_from_another_app_summary">To vas lahko zaščiti pred zlonamerno programsko opremo, ki kliče brez vaše vednosti.</string>
@@ -59,8 +60,21 @@
     <string name="group_calls">Združevanje klicev</string>
     <string name="group_all_calls">Združite vse klice, prikazan bo samo zadnji klic</string>
     <string name="call_button_style">Slog zvonca</string>
+    <string name="call_notes">Opombe o klicu</string>
     <string name="answer_end_other_call">Sprejemanje in končanje trenutnega klica</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Hitri odgovori</string>
+    <string name="voicemail">Glasovna pošta</string>
+    <string name="show_voicemail_icon">Pokaži ikono glasovne pošte</string>
+    <string name="secondary_dialpad_language">Jezik sekundarne številčne tipkovnice</string>
+    <string name="sim_card_selection_dialog_style">Slog pogovornega okna Izbira kartice SIM</string>
+    <string name="clear_dialpad_when_start_call">Počistite klicano številko ob začetku klica</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d neodgovorjeni klic</item>
+        <item quantity="two">%d zgrešena klica</item>
+        <item quantity="few">%d zamujenih klicev</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Sporočilo</string>
 </resources>

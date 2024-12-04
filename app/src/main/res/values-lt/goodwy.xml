@@ -52,6 +52,7 @@
     <string name="answer_slider">Slankiklis</string>
     <string name="answer_slider_outline">Kontūro slankiklis</string>
     <string name="answer_slider_vertical">Vertikalus slankiklis</string>
+
     <string name="show_recent_calls">Rodyti naujausius skambučius</string>
     <string name="open_dialpad_when_call_from_another_app">Kai bandote skambinti iš kitos programėlės, atidarykite numerio rinkiklį</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Tai gali apsaugoti jus nuo kenkėjiškų programų, skambinančių be jūsų žinios.</string>
@@ -59,8 +60,22 @@
     <string name="group_calls">Skambučių grupavimas</string>
     <string name="group_all_calls">Sugrupuokite visus skambučius, bus rodomas tik paskutinis skambutis</string>
     <string name="call_button_style">Varpo mygtuko stilius</string>
+    <string name="call_notes">Skambučių pastabos</string>
     <string name="answer_end_other_call">Atsiliepkite ir užbaikite dabartinį skambutį</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Greiti atsakymai</string>
+    <string name="voicemail">Balso paštas</string>
+    <string name="show_voicemail_icon">Rodyti balso pašto piktogramą</string>
+    <string name="secondary_dialpad_language">Antrinė numerio rinkiklio kalba</string>
+    <string name="sim_card_selection_dialog_style">SIM pasirinkimo dialogo stilius</string>
+    <string name="clear_dialpad_when_start_call">Išvalyti surinktą numerį pradedant skambutį</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d praleistas skambutis</item>
+        <item quantity="few">%d praleisti skambučiai</item>
+        <item quantity="many">%d praleistų skambučių</item>
+        <item quantity="other">%d praleistų skambučių</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Pranešimas</string>
 </resources>

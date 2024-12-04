@@ -50,6 +50,7 @@
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Outline slider</string>
     <string name="answer_slider_vertical">Vertical slider</string>
+
     <string name="show_recent_calls">Dangos galwadau diweddar</string>
     <string name="open_dialpad_when_call_from_another_app">Pan fyddwch chi\'n ceisio gwneud galwad o ap arall, agorwch y pad deialu</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Gall hyn eich amddiffyn rhag gwneud galwadau maleiswedd heb eich gwybodaeth.</string>
@@ -57,8 +58,23 @@
     <string name="group_calls">Grwpio galwadau</string>
     <string name="group_all_calls">Grŵp pob galwad, dim ond yr alwad olaf fydd yn cael ei dangos</string>
     <string name="call_button_style">Bell Button Arddull</string>
+    <string name="call_notes">Nodiadau galw</string>
     <string name="answer_end_other_call">Ateb a gorffen yr alwad bresennol</string>
-    <string name="quick_answers">Quick answers</string>
+    <string name="quick_answers">Atebion cyflym</string>
     <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="show_voicemail_icon">Dangos eicon voicemail</string>
+    <string name="secondary_dialpad_language">Iaith deialbad eilaidd</string>
+    <string name="sim_card_selection_dialog_style">SIM Dewis Arddull Deialog</string>
+    <string name="clear_dialpad_when_start_call">Rhif deialu clir wrth ddechrau galwad</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="zero">%d galwadau wedi\'u methu</item>
+        <item quantity="one">%d wedi colli galwad</item>
+        <item quantity="two">%d alwadau wedi\'u methu</item>
+        <item quantity="few">%d galwadau wedi\'u methu</item>
+        <item quantity="many">%d galwad wedi\'u methu</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Neges</string>
 </resources>

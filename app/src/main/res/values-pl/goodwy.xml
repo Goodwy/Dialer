@@ -52,6 +52,7 @@
     <string name="answer_slider">Suwak</string>
     <string name="answer_slider_outline">Suwak konspektu</string>
     <string name="answer_slider_vertical">Pionowy suwak</string>
+
     <string name="show_recent_calls">Pokaż ostatnie połączenia</string>
     <string name="open_dialpad_when_call_from_another_app">Podczas próby nawiązania połączenia z innej aplikacji otwórz konsolę wybierania numerów</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Może to uchronić Cię przed złośliwym oprogramowaniem wykonującym połączenia bez Twojej wiedzy.</string>
@@ -59,8 +60,21 @@
     <string name="group_calls">Grupowanie połączeń</string>
     <string name="group_all_calls">Grupuj wszystkie połączenia, zostanie wyświetlone tylko ostatnie połączenie</string>
     <string name="call_button_style">Styl przycisku dzwonka</string>
+    <string name="call_notes">Notatki z rozmów</string>
     <string name="answer_end_other_call">Odbieranie i kończenie bieżącego połączenia</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Szybkie odpowiedzi</string>
+    <string name="voicemail">Poczta głosowa</string>
+    <string name="show_voicemail_icon">Pokaż ikonę poczty głosowej</string>
+    <string name="secondary_dialpad_language">Dodatkowy język klawiatury numerycznej</string>
+    <string name="sim_card_selection_dialog_style">Styl okna dialogowego wyboru karty SIM</string>
+    <string name="clear_dialpad_when_start_call">Wyczyść wybrany numer podczas rozpoczynania połączenia</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d nieodebrane połączenie</item>
+        <item quantity="few">%d nieodebrane połączenia</item>
+        <item quantity="many">%d nieodebranych połączeń</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Komunikat</string>
 </resources>

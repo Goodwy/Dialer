@@ -51,6 +51,7 @@
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Slider avec contour</string>
     <string name="answer_slider_vertical">Slider vertical</string>
+
     <string name="show_recent_calls">Afficher les appels récents</string>
     <string name="open_dialpad_when_call_from_another_app">Lorsque vous essayez de passer un appel à partir d’une autre application, ouvrez le pavé numérique</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Cela peut vous protéger contre les logiciels malveillants qui passent des appels à votre insu.</string>
@@ -58,8 +59,21 @@
     <string name="group_calls">Regroupement d’appels</string>
     <string name="group_all_calls">Regroupez tous les appels, seul le dernier appel sera affiché</string>
     <string name="call_button_style">Style de bouton de cloche</string>
+    <string name="call_notes">Notes d’appel</string>
     <string name="answer_end_other_call">Répondre à l’appel en cours et y mettre fin</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Réponses rapides</string>
+    <string name="voicemail">Messagerie vocale</string>
+    <string name="show_voicemail_icon">Afficher l’icône de messagerie vocale</string>
+    <string name="secondary_dialpad_language">Langue secondaire du clavier</string>
+    <string name="sim_card_selection_dialog_style">Style de boîte de dialogue de sélection SIM</string>
+    <string name="clear_dialpad_when_start_call">Effacer le numéro composé lors du démarrage d’un appel</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d appel manqué</item>
+        <item quantity="many">%d appels manqués</item>
+        <item quantity="other">%d appels manqués</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Message</string>
 </resources>

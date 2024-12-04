@@ -50,6 +50,7 @@
     <string name="answer_slider">Botão deslizante</string>
     <string name="answer_slider_outline">Controle deslizante com contorno</string>
     <string name="answer_slider_vertical">Controle deslizante vertical</string>
+
     <string name="show_recent_calls">Mostrar chamadas recentes</string>
     <string name="open_dialpad_when_call_from_another_app">Ao tentar fazer uma chamada de outro aplicativo, abra o painel de discagem</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Isso pode protegê-lo contra malware que faz chamadas sem o seu conhecimento.</string>
@@ -57,8 +58,21 @@
     <string name="group_calls">Agrupamento de chamadas</string>
     <string name="group_all_calls">Agrupar todas as chamadas, apenas a última chamada será mostrada</string>
     <string name="call_button_style">Estilo de botão de anel</string>
+    <string name="call_notes">Notas de chamada</string>
     <string name="answer_end_other_call">Atender e encerrar a chamada atual</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Respostas rápidas</string>
+    <string name="voicemail">Correio de voz</string>
+    <string name="show_voicemail_icon">Mostrar ícone do correio de voz</string>
+    <string name="secondary_dialpad_language">Idioma do teclado de discagem secundário</string>
+    <string name="sim_card_selection_dialog_style">Estilo de diálogo de seleção do cartão SIM</string>
+    <string name="clear_dialpad_when_start_call">Limpar o número discado no início de uma chamada</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d chamada perdida</item>
+        <item quantity="many">%d chamadas perdidas</item>
+        <item quantity="other">%d chamadas perdidas</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Mensagem</string>
 </resources>

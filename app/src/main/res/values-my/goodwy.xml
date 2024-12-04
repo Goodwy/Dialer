@@ -34,7 +34,6 @@
     <string name="timer">Timer</string>
     <string name="timers_notification_msg">Timers are running</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
         <item quantity="other">%d timers are running</item>
     </plurals>
 

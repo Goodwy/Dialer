@@ -51,6 +51,7 @@
     <string name="answer_slider">Deslizador</string>
     <string name="answer_slider_outline">Deslizador con contorno</string>
     <string name="answer_slider_vertical">Deslizador vertical</string>
+
     <string name="show_recent_calls">Mostrar llamadas recientes</string>
     <string name="open_dialpad_when_call_from_another_app">Cuando intentes hacer una llamada desde otra app, abre el teclado de marcación</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Esto puede protegerlo del malware que realiza llamadas sin su conocimiento.</string>
@@ -58,8 +59,21 @@
     <string name="group_calls">Agrupación de llamadas</string>
     <string name="group_all_calls">Agrupar todas las llamadas, solo se mostrará la última llamada</string>
     <string name="call_button_style">Estilo de botón de campana</string>
+    <string name="call_notes">Notas de la convocatoria</string>
     <string name="answer_end_other_call">Responder y finalizar la llamada actual</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Respuestas rápidas</string>
+    <string name="voicemail">Mensaje de voz</string>
+    <string name="show_voicemail_icon">Mostrar icono de correo de voz</string>
+    <string name="secondary_dialpad_language">Idioma del teclado de marcación secundario</string>
+    <string name="sim_card_selection_dialog_style">Estilo de cuadro de diálogo de selección de SIM</string>
+    <string name="clear_dialpad_when_start_call">Borrar el número marcado al iniciar una llamada</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d llamada perdida</item>
+        <item quantity="many">%d llamadas perdidas</item>
+        <item quantity="other">%d llamadas perdidas</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Mensaje</string>
 </resources>

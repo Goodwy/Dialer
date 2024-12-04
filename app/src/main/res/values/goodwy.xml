@@ -16,6 +16,7 @@
     <string name="group_calls">Group calls</string>
     <string name="group_all_calls">Group all calls, only the last call will be shown</string>
     <string name="call_button_style">Call button style</string>
+    <string name="call_notes">Call notes</string>
 
     <string name="answer_end_other_call">Answer &amp; end other call</string>
     <string name="quick_answers">Quick answers</string>
@@ -24,6 +25,7 @@
     <string name="show_voicemail_icon">Show voicemail icon</string>
     <string name="secondary_dialpad_language">Secondary dialpad language</string>
     <string name="sim_card_selection_dialog_style">SIM card selection dialogue style</string>
+    <string name="clear_dialpad_when_start_call">Clear dialpad when starting a call</string>
     <string name="dialpad_preferences">Dialpad preferences</string>
     <string name="show_contact_thumbnails_g">Show contact thumbnails</string>
     <string name="hide_dialpad_letters_g">Hide dialpad letters</string>
@@ -66,13 +68,11 @@
     <string name="answer_slider_vertical">Vertical slider</string>
 
     <!-- Notifications -->
-    <string name="missed_call_channel">Missed calls</string>
     <plurals name="missed_calls">
         <item quantity="one">Missed call</item>
         <item quantity="few">%d missed calls</item>
         <item quantity="other">%d missed calls</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="call_back">Call back</string>
     <string name="message">Message</string>
 </resources>

@@ -51,6 +51,10 @@ const val QUICK_ANSWERS = "quick_answers"
 const val CALL_USING_SAME_SIM = "call_using_same_sim"
 const val SHOW_VOICEMAIL_ICON = "show_voicemail_icon"
 const val SIM_DIALOG_STYLE = "sim_dialog_style"
+const val DIALPAD_SECONDARY_TYPEFACE = "dialpad_secondary_typeface"
+const val DIALPAD_HASHTAG_LONG_CLICK = "dialpad_hashtag_long_click"
+const val DIALPAD_CLEAR_WHEN_START_CALL = "dialpad_clear_when_start_call"
+const val CALLER_NOTES = "caller_notes"
 
 const val ALL_TABS_MASK = TAB_CONTACTS or TAB_FAVORITES or TAB_CALL_HISTORY
 
@@ -66,6 +70,7 @@ const val MISSED_CALL_MESSAGE = PATH + "missed_call_message"
 const val MISSED_CALL_CANCEL = PATH + "missed_call_cancel"
 
 const val DIALPAD_TONE_LENGTH_MS = 150L // The length of DTMF tones in milliseconds
+const val CALLER_NOTES_MAX_LENGTH = 100
 
 const val WHATSAPP = "whatsapp"
 const val SIGNAL = "signal"
@@ -127,6 +132,7 @@ const val SWIPE_ACTION_EDIT = 7
 const val SWIPE_ACTION_SHARE = 8
 const val SWIPE_ACTION_OPEN = 9
 const val SWIPE_VIBRATION = "swipe_vibration"
+const val SWIPE_RIPPLE = "swipe_ripple"
 
 // Query limit recent
 const val QUERY_LIMIT_SMALL_VALUE = 500
@@ -154,3 +160,7 @@ const val LANGUAGE_SYSTEM = "system"
 const val SECONDARY_LANGUAGE_NONE_ID: Int = -1
 const val SECONDARY_LANGUAGE_SYSTEM_ID: Int = -2
 const val LOCALE_EN = "en"
+
+// Hashtag long click
+const val DIALPAD_LONG_CLICK_SETTINGS = 0
+const val DIALPAD_LONG_CLICK_WAIT = 1

@@ -50,6 +50,7 @@
     <string name="answer_slider">Liugur</string>
     <string name="answer_slider_outline">Liigendi liugur</string>
     <string name="answer_slider_vertical">Vertikaalne liugur</string>
+
     <string name="show_recent_calls">Näita hiljutisi kõnesid</string>
     <string name="open_dialpad_when_call_from_another_app">Kui proovite helistada mõnest muust rakendusest, avage valimisklahvistik</string>
     <string name="open_dialpad_when_call_from_another_app_summary">See võib kaitsta teid pahavara eest, mis helistab teie teadmata.</string>
@@ -57,8 +58,20 @@
     <string name="group_calls">Kõnede rühmitamine</string>
     <string name="group_all_calls">Rühmitage kõik kõned, kuvatakse ainult viimane kõne</string>
     <string name="call_button_style">Kellanupu stiil</string>
+    <string name="call_notes">Kõne märkmed</string>
     <string name="answer_end_other_call">Praegusele kõnele vastamine ja selle lõpetamine</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Kiired vastused</string>
+    <string name="voicemail">Kõnepost</string>
+    <string name="show_voicemail_icon">Kuva kõneposti ikoon</string>
+    <string name="secondary_dialpad_language">Teisene dialpadi keel</string>
+    <string name="sim_card_selection_dialog_style">SIM-kaardi valimise dialoogilaad</string>
+    <string name="clear_dialpad_when_start_call">Kõne alustamisel valitud numbri tühjendamine</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d vastamata kõne</item>
+        <item quantity="other">%d vastamata kõnet</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Sõnum</string>
 </resources>

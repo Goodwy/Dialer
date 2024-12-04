@@ -299,6 +299,7 @@
                             android:layout_marginStart="4dp"
                             android:layout_marginTop="2dp"
                             android:alpha="0.8"
+                            android:contentDescription="@null"
                             app:srcCompat="@drawable/ic_star_vector"
                             android:visibility="gone"
                             tools:visibility="visible"/>
@@ -400,6 +401,7 @@
                         android:layout_height="36dp"
                         android:alpha="0.8"
                         android:background="@drawable/circle_background"
+                        android:contentDescription="@string/select_sim"
                         android:paddingStart="6dp"
                         android:paddingTop="7dp"
                         android:paddingEnd="7dp"
@@ -418,7 +420,8 @@
                         android:gravity="center"
                         android:textColor="@color/md_grey_black"
                         android:textSize="@dimen/bigger_text_size"
-                        android:text="1"/>
+                        android:text="1"
+                        tools:ignore="HardcodedText" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -435,6 +438,7 @@
                         android:layout_height="36dp"
                         android:alpha="0.8"
                         android:background="@drawable/circle_background"
+                        android:contentDescription="@string/select_sim"
                         android:paddingStart="6dp"
                         android:paddingTop="7dp"
                         android:paddingEnd="7dp"
@@ -453,15 +457,60 @@
                         android:gravity="center"
                         android:textColor="@color/md_grey_black"
                         android:textSize="@dimen/bigger_text_size"
-                        android:text="2"/>
+                        android:text="2"
+                        tools:ignore="HardcodedText" />
                 </RelativeLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/callerNotesHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/defaultSimButtonContainer"
+                android:layout_marginStart="11dp"
+                android:layout_marginEnd="11dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/button_white_bg_10dp"
+                android:minHeight="48dp"
+                android:paddingTop="@dimen/contact_padding_top"
+                android:paddingBottom="@dimen/contact_padding_top"
+                android:paddingStart="@dimen/contact_padding_left"
+                android:paddingEnd="@dimen/contact_padding_left">
+
+                <com.goodwy.commons.views.MyTextView
+                    android:id="@+id/callerNotesTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/callerNotesIcon"
+                    android:gravity="start"
+                    android:text="@string/call_notes"
+                    android:textSize="@dimen/normal_text_size" />
+
+                <ImageView
+                    android:id="@+id/callerNotesIcon"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:alpha="0.8"
+                    android:layout_alignParentEnd="true"
+                    android:contentDescription="@null"
+                    app:srcCompat="@drawable/ic_note" />
+
+                <com.goodwy.commons.views.MyTextView
+                    android:id="@+id/callerNotes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="3"
+                    android:layout_below="@+id/callerNotesTitle"
+                    android:textSize="@dimen/bigger_text_size"
+                    tools:text="A short note about the caller. " />
             </RelativeLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/blockButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/defaultSimButtonContainer"
+                android:layout_below="@+id/callerNotesHolder"
                 android:layout_marginStart="11dp"
                 android:layout_marginEnd="11dp"
                 android:layout_marginBottom="56dp"

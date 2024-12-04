@@ -128,7 +128,7 @@ class MissedCallReceiver : BroadcastReceiver() {
                     callBackIntent
                 )
             } else {
-                setContentTitle(count.toString() + " " + context.getString(R.string.missed_calls_g).lowercase())
+                setContentTitle(context.resources.getQuantityString(R.plurals.missed_calls, count, count).lowercase())
             }
             color = context.getProperPrimaryColor()
             setSmallIcon(R.drawable.ic_call_missed_vector)

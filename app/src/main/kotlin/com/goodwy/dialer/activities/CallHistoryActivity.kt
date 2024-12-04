@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.DrawableCompat
 import com.goodwy.commons.dialogs.CallConfirmationDialog
+import com.goodwy.commons.dialogs.ConfirmationAdvancedDialog
 import com.goodwy.commons.dialogs.ConfirmationDialog
 import com.goodwy.commons.dialogs.RadioGroupDialog
 import com.goodwy.commons.extensions.*
@@ -31,6 +32,7 @@ import com.goodwy.dialer.databinding.ActivityCallHistoryBinding
 import com.goodwy.dialer.databinding.ItemViewEmailBinding
 import com.goodwy.dialer.databinding.ItemViewEventBinding
 import com.goodwy.dialer.databinding.ItemViewMessengersActionsBinding
+import com.goodwy.dialer.dialogs.ChangeTextDialog
 import com.goodwy.dialer.dialogs.ChooseSocialDialog
 import com.goodwy.dialer.extensions.*
 import com.goodwy.dialer.helpers.*
@@ -123,12 +125,13 @@ class CallHistoryActivity : SimpleActivity() {
         binding.callHistoryPlaceholderContainer.beGone()
         updateTextColors(binding.callHistoryHolder)
         buttonBg = if (baseConfig.backgroundColor == white || baseConfig.backgroundColor == gray) white else getBottomNavigationBackgroundColor()
-        updateBackgroundColors()
+        updateColors()
+        setupCallerNotes()
         refreshItems {}
         setupMenu()
     }
 
-    private fun updateBackgroundColors() {
+    private fun updateColors() {
         val red = resources.getColor(R.color.red_missed)
         val properPrimaryColor = getProperPrimaryColor()
         val properBackgroundColor = getProperBackgroundColor()
@@ -170,6 +173,7 @@ class CallHistoryActivity : SimpleActivity() {
                 contactMessengersActionsHolder,
                 contactEmailsHolder,
                 contactEventsHolder,
+                callerNotesHolder,
                 defaultSimButtonContainer,
                 blockButton
             ).forEach {
@@ -186,6 +190,54 @@ class CallHistoryActivity : SimpleActivity() {
         }
     }
 
+    private fun setupCallerNotes() {
+        val callerNote = callerNotesHelper.getCallerNotes(getCurrentPhoneNumber)
+        val note = callerNote?.note
+            binding.apply {
+            callerNotesIcon.setColorFilter(getProperTextColor())
+            callerNotesText(note)
+
+            callerNotesHolder.setOnClickListener {
+                changeNoteDialog(getCurrentPhoneNumber)
+            }
+            callerNotesHolder.setOnLongClickListener {
+                val text = callerNotesHelper.getCallerNotes(getCurrentPhoneNumber)?.note
+                text?.let { note -> copyToClipboard(note) }
+                true
+            }
+        }
+    }
+
+    private fun callerNotesText(note: String?) {
+        binding.apply {
+            val empty = note == null || note == ""
+            callerNotes.text = if (empty) getString(R.string.add_notes) else note
+                callerNotes.alpha = if (empty) 0.6f else 1f
+        }
+    }
+
+    private fun changeNoteDialog(number: String) {
+        val callerNote = callerNotesHelper.getCallerNotes(number)
+        ChangeTextDialog(
+            activity = this@CallHistoryActivity,
+            title = getString(R.string.add_notes) + " ($number)",
+            currentText = callerNote?.note,
+            maxLength = CALLER_NOTES_MAX_LENGTH,
+            showNeutralButton = true,
+            neutralTextRes = com.goodwy.commons.R.string.delete
+        ) {
+            if (it != "") {
+                callerNotesHelper.addCallerNotes(number, it, callerNote) {
+                    callerNotesText(it)
+                }
+            } else {
+                callerNotesHelper.deleteCallerNotes(callerNote) {
+                    callerNotesText(it)
+                }
+            }
+        }
+    }
+
     private fun setupMenu() {
         binding.callHistoryToolbar.menu.apply {
             updateMenuItemColors(this)
@@ -197,6 +249,32 @@ class CallHistoryActivity : SimpleActivity() {
 
             findItem(R.id.share).setOnMenuItemClickListener {
                 launchShare()
+                true
+            }
+
+            findItem(R.id.call_anonymously).setOnMenuItemClickListener {
+                if (currentRecentCall != null) {
+                    if (config.showWarningAnonymousCall) {
+                        val text = String.format(getString(R.string.call_anonymously_warning), getCurrentPhoneNumber)
+                        ConfirmationAdvancedDialog(
+                            this@CallHistoryActivity,
+                            text,
+                            R.string.call_anonymously_warning,
+                            com.goodwy.commons.R.string.ok,
+                            com.goodwy.commons.R.string.do_not_show_again,
+                            fromHtml = true
+                        ) {
+                            if (it) {
+                                makeCall(currentRecentCall!!, "#31#")
+                            } else {
+                                config.showWarningAnonymousCall = false
+                                makeCall(currentRecentCall!!, "#31#")
+                            }
+                        }
+                    } else {
+                        makeCall(currentRecentCall!!, "#31#")
+                    }
+                }
                 true
             }
         }
@@ -1200,13 +1278,14 @@ class CallHistoryActivity : SimpleActivity() {
         }
     }
 
-    private fun makeCall(call: RecentCall) {
+    private fun makeCall(call: RecentCall, prefix: String = "") {
+        val phoneNumber = call.phoneNumber
         if (config.showCallConfirmation) {
             CallConfirmationDialog(this as SimpleActivity, call.name) {
-                launchCallIntent(call.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
+                launchCallIntent("$prefix$phoneNumber", key = BuildConfig.RIGHT_APP_KEY)
             }
         } else {
-            launchCallIntent(call.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
+            launchCallIntent("$prefix$phoneNumber", key = BuildConfig.RIGHT_APP_KEY)
         }
     }
 
@@ -1269,6 +1348,9 @@ class CallHistoryActivity : SimpleActivity() {
         }
 
         RecentsHelper(this).removeRecentCalls(idsToRemove) {
+            val callerNote = callerNotesHelper.getCallerNotes(getCurrentPhoneNumber)
+            callerNotesHelper.deleteCallerNotes(callerNote)
+
             runOnUiThread {
                 onBackPressed()
             }

@@ -642,6 +642,17 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/settingsSwipeRippleHolder"
+                        style="@style/SettingsHolderSwitchStyle">
+
+                        <com.goodwy.commons.views.MyMaterialSwitch
+                            android:id="@+id/settingsSwipeRipple"
+                            style="@style/SettingsSwitchStyle"
+                            android:text="@string/ripple_g"
+                            app:switchPadding="@dimen/bigger_margin" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:id="@+id/settingsSwipeRightActionHolder"
                         style="@style/SettingsHolderSwitchStyle">
 
@@ -1459,12 +1470,12 @@
                         <com.goodwy.commons.views.MyTextView
                             android:id="@+id/settings_about_version"
                             style="@style/SettingsTextValueStyle"
-                            android:layout_toStartOf="@+id/settings_about_chevron"
+                            android:layout_toStartOf="@+id/settingsAboutChevron"
                             android:layout_centerVertical="true"
                             tools:text="Version: 1.0.0"/>
 
                         <ImageView
-                            android:id="@+id/settings_about_chevron"
+                            android:id="@+id/settingsAboutChevron"
                             style="@style/SettingsChevronStyle"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"

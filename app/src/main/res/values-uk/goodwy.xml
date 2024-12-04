@@ -8,9 +8,24 @@
     <string name="missed_call_notifications_g">Повідомлення про пропущені дзвінки</string>
     <string name="call_notification_channel_high_priority_g">Сповіщення про дзвінки з високим пріоритетом</string>
     <string name="call_notification_channel_g">Сповіщення про дзвінки</string>
-    <string name="dialpad_preferences">Параметри кнопок набору</string>
     <string name="call_start_end_vibration">Вібрація під час початку та завершення виклику</string>
+    <string name="show_recent_calls">Показати останні дзвінки</string>
+    <string name="open_dialpad_when_call_from_another_app">Коли ви намагаєтеся зателефонувати з іншої програми, відкрийте цифрову клавіатуру</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Це може захистити вас від зловмисного програмного забезпечення, яке здійснює дзвінки без вашого відома.</string>
+    <string name="number_of_recent_calls_displays">Відображувана кількість останніх дзвінків</string>
+    <string name="group_calls">Групування дзвінків</string>
+    <string name="group_all_calls">Згрупуйте всі дзвінки, буде показаний тільки останній дзвінок</string>
+    <string name="call_button_style">Стиль кнопки дзвінка</string>
+    <string name="call_notes">Нотатки про дзвінки</string>
 
+    <string name="answer_end_other_call">Відповідь на поточний дзвінок і його завершення</string>
+    <string name="quick_answers">Швидкі відповіді</string>
+    <string name="voicemail">Голосова пошта</string>
+    <string name="show_voicemail_icon">Показувати значок голосової пошти</string>
+    <string name="secondary_dialpad_language">Додаткова мова на клавіатурі</string>
+    <string name="sim_card_selection_dialog_style">Стиль діалогу вибору SIM карти</string>
+    <string name="clear_dialpad_when_start_call">Очистити набраний номер під час початку виклику</string>
+    <string name="dialpad_preferences">Параметри кнопок набору</string>
     <string name="show_contact_thumbnails_g">Показувати фото контакту</string>
     <string name="hide_dialpad_letters_g">Приховати літери цифрової клавіатури</string>
     <string name="show_caller_description_g">Показати додаткову інформацію про абонента</string>
@@ -37,7 +52,6 @@
         <item quantity="one">%d таймер працює</item>
         <item quantity="few">%d таймера працюють</item>
         <item quantity="many">%d таймерів працюють</item>
-        <item quantity="other">%d таймерів працюють</item>
     </plurals>
 
     <!-- FAQ -->
@@ -52,17 +66,13 @@
     <string name="answer_slider">Слайдер</string>
     <string name="answer_slider_outline">Слайдер з контуром</string>
     <string name="answer_slider_vertical">Вертикальний слайдер</string>
-    <string name="show_recent_calls">Показати останні дзвінки</string>
-    <string name="open_dialpad_when_call_from_another_app">Коли ви намагаєтеся зателефонувати з іншої програми, відкрийте цифрову клавіатуру</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">Це може захистити вас від зловмисного програмного забезпечення, яке здійснює дзвінки без вашого відома.</string>
-    <string name="number_of_recent_calls_displays">Відображувана кількість останніх дзвінків</string>
-    <string name="group_calls">Групування дзвінків</string>
-    <string name="group_all_calls">Згрупуйте всі дзвінки, буде показаний тільки останній дзвінок</string>
-    <string name="call_button_style">Стиль кнопки дзвінка</string>
-    <string name="answer_end_other_call">Відповідь на поточний дзвінок і його завершення</string>
-    <string name="quick_answers">Швидкі відповіді</string>
-    <string name="voicemail">Голосова пошта</string>
-    <string name="show_voicemail_icon">Показувати значок голосової пошти</string>
-    <string name="secondary_dialpad_language">Додаткова мова на клавіатурі</string>
-    <string name="sim_card_selection_dialog_style">Стиль діалогу вибору SIM карти</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d пропущений дзвінок</item>
+        <item quantity="few">%d пропущених дзвінка</item>
+        <item quantity="many">%d пропущених дзвінків</item>
+    </plurals>
+    <string name="missed_call_from">Пропущений дзвінок від %s</string>
+    <string name="message">Повідомлення</string>
 </resources>

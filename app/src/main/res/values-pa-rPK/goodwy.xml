@@ -50,6 +50,7 @@
     <string name="answer_slider">سلائیڈر</string>
     <string name="answer_slider_outline">آؤٹ لائن سلائیڈر</string>
     <string name="answer_slider_vertical">عمودی سلائیڈر</string>
+
     <string name="show_recent_calls">حالیہ کالیں دکھائیں۔</string>
     <string name="open_dialpad_when_call_from_another_app">جب آپ کسی دوسری ایپلیکیشن سے کال کرنے کی کوشش کریں تو ڈائل پیڈ کھولیں۔</string>
     <string name="open_dialpad_when_call_from_another_app_summary">یہ آپ کو آپ کے علم کے بغیر کال کرنے والے میلویئر سے بچا سکتا ہے۔</string>
@@ -57,8 +58,20 @@
     <string name="group_calls">کال گروپنگ</string>
     <string name="group_all_calls">تمام کالوں کو گروپ کریں، صرف آخری کال دکھائی جائے گی۔</string>
     <string name="call_button_style">کال بٹن کا انداز</string>
+    <string name="call_notes">کال نوٹ</string>
     <string name="answer_end_other_call">موجودہ کال کا جواب دیں اور ختم کریں۔</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">فوری جوابات</string>
+    <string name="voicemail">وائس میل</string>
+    <string name="show_voicemail_icon">وائس میل دا آئکن وکھاؤ</string>
+    <string name="secondary_dialpad_language">سیکنڈری ڈائل پیڈ بولی</string>
+    <string name="sim_card_selection_dialog_style">سم کارڈ سلیکشن ڈائیلاگ سٹائل</string>
+    <string name="clear_dialpad_when_start_call">کال شروع کردے ویلے ڈائل کیتا ہویا نمبر صاف کرو</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d مسڈ کال</item>
+        <item quantity="other">%d مسڈ کالز</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">سنیہہ</string>
 </resources>

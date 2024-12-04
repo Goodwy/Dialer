@@ -49,6 +49,7 @@
     <string name="answer_slider">Thanh trượt</string>
     <string name="answer_slider_outline">Thanh trượt phác thảo</string>
     <string name="answer_slider_vertical">Thanh trượt dọc</string>
+
     <string name="show_recent_calls">Hiển thị các cuộc gọi gần đây</string>
     <string name="open_dialpad_when_call_from_another_app">Khi bạn cố gắng thực hiện cuộc gọi từ một ứng dụng khác, hãy mở bàn phím số</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Điều này có thể bảo vệ bạn khỏi phần mềm độc hại thực hiện cuộc gọi mà bạn không biết.</string>
@@ -56,8 +57,19 @@
     <string name="group_calls">Nhóm cuộc gọi</string>
     <string name="group_all_calls">Nhóm tất cả các cuộc gọi, chỉ cuộc gọi cuối cùng sẽ được hiển thị</string>
     <string name="call_button_style">Kiểu nút chuông</string>
+    <string name="call_notes">Ghi chú cuộc gọi</string>
     <string name="answer_end_other_call">Trả lời và kết thúc cuộc gọi hiện tại</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Câu trả lời nhanh</string>
+    <string name="voicemail">Thư thoại</string>
+    <string name="show_voicemail_icon">Hiển thị biểu tượng thư thoại</string>
+    <string name="secondary_dialpad_language">Ngôn ngữ bàn phím số phụ</string>
+    <string name="sim_card_selection_dialog_style">Kiểu hộp thoại chọn SIM</string>
+    <string name="clear_dialpad_when_start_call">Xóa số đã quay khi bắt đầu cuộc gọi</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="other">%d cuộc gọi nhỡ</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Thông điệp</string>
 </resources>

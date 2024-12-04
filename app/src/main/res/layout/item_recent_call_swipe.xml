@@ -6,9 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
-    android:focusable="true"
-    app:sav_swipeLeftRippleColor="@color/activated_item_foreground"
-    app:sav_swipeRightRippleColor="@color/activated_item_foreground">
+    android:focusable="true">
 
     <RelativeLayout
         android:id="@+id/swipeRightIconHolder"

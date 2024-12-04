@@ -12,7 +12,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/default_background_color"
         app:menu="@menu/menu_dialpad"
-        app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle"/>
+        app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle"
+        tools:background="@color/md_grey_black"/>
 
     <com.goodwy.commons.views.MyEditText
         android:id="@+id/dialpadInput"

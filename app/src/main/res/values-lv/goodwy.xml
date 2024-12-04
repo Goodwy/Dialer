@@ -50,6 +50,7 @@
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Outline slider</string>
     <string name="answer_slider_vertical">Vertical slider</string>
+
     <string name="show_recent_calls">Rādīt nesenos zvanus</string>
     <string name="open_dialpad_when_call_from_another_app">Kad mēģināt veikt zvanu no citas programmas, atveriet numuru sastādīšanas tastatūru</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Tas var pasargāt jūs no ļaunprātīgas programmatūras, kas veic zvanus bez jūsu ziņas.</string>
@@ -57,8 +58,21 @@
     <string name="group_calls">Zvanu grupēšana</string>
     <string name="group_all_calls">Grupējiet visus zvanus, tiks parādīts tikai pēdējais zvans</string>
     <string name="call_button_style">Zvana pogas stils</string>
+    <string name="call_notes">Zvanu piezīmes</string>
     <string name="answer_end_other_call">Atbildiet uz pašreizējo zvanu un beidziet to</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Ātrās atbildes</string>
+    <string name="voicemail">Balss pasts</string>
+    <string name="show_voicemail_icon">Ikona Rādīt balss pastu</string>
+    <string name="secondary_dialpad_language">Sekundārā numuru sastādīšanas valoda</string>
+    <string name="sim_card_selection_dialog_style">SIM kartes dialoglodziņa stils</string>
+    <string name="clear_dialpad_when_start_call">Tālruņa numura notīrīšana, sākot zvanu</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="zero">%d praleistų skambučių</item>
+        <item quantity="one">%d praleistas skambutis</item>
+        <item quantity="other">%d praleistų skambučių</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Ziņa</string>
 </resources>

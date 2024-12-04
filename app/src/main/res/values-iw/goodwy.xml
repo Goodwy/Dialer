@@ -51,6 +51,7 @@
     <string name="answer_slider">מחוון</string>
     <string name="answer_slider_outline">מחוון מתאר</string>
     <string name="answer_slider_vertical">מחוון אנכי</string>
+
     <string name="show_recent_calls">הצגת שיחות אחרונות</string>
     <string name="open_dialpad_when_call_from_another_app">כאשר אתה מנסה לבצע שיחה מאפליקציה אחרת, פתח את לוח החיוג</string>
     <string name="open_dialpad_when_call_from_another_app_summary">זה יכול להגן עליך מפני תוכנות זדוניות שמבצעות שיחות ללא ידיעתך.</string>
@@ -58,8 +59,21 @@
     <string name="group_calls">קיבוץ שיחות</string>
     <string name="group_all_calls">קבץ את כל השיחות, רק השיחה האחרונה תוצג</string>
     <string name="call_button_style">סגנון לחצן פעמון</string>
+    <string name="call_notes">Notizen für Anrufe</string>
     <string name="answer_end_other_call">מענה לשיחה הנוכחית וסיום שלה</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">תשובות מהירות</string>
+    <string name="voicemail">תא קולי</string>
+    <string name="show_voicemail_icon">סמל \'הצג דואר קולי\'</string>
+    <string name="secondary_dialpad_language">שפת לוח חיוג משנית</string>
+    <string name="sim_card_selection_dialog_style">סגנון תיבת הדו-שיח לבחירת SIM</string>
+    <string name="clear_dialpad_when_start_call">נקה מספר בחיוג בעת התחלת שיחה</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">שיחה אחת שלא נענתה</item>
+        <item quantity="two">שיחות שלא נענו %d</item>
+        <item quantity="other">שיחות שלא נענו %d</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">הודעה</string>
 </resources>

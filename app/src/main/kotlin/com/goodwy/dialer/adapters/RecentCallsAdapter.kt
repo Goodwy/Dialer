@@ -222,12 +222,16 @@ class RecentCallsAdapter(
 
     private fun callContact(useSimOne: Boolean) {
         val phoneNumber = getSelectedPhoneNumber() ?: return
-        activity.callContactWithSim(phoneNumber, useSimOne)
+        val name = getSelectedName() ?: return
+
+        activity.callContactWithSimWithConfirmationCheck(phoneNumber, name, useSimOne)
     }
 
     private fun callContact(prefix: String = "") {
         val phoneNumber = getSelectedPhoneNumber() ?: return
-        (activity as SimpleActivity).startCallIntent("$prefix$phoneNumber")
+        val name = getSelectedName() ?: return
+
+        (activity as SimpleActivity).startCallWithConfirmationCheck("$prefix$phoneNumber", name)
     }
 
     private fun removeDefaultSIM() {
@@ -404,6 +408,8 @@ class RecentCallsAdapter(
     private fun getLastItem() = currentList.last()
 
     private fun getSelectedPhoneNumber() = getSelectedItems().firstOrNull()?.phoneNumber
+
+    private fun getSelectedName() = getSelectedItems().firstOrNull()?.name
 
     private fun showPopupMenu(view: View, call: RecentCall) {
         finishActMode()
@@ -845,8 +851,10 @@ class RecentCallsAdapter(
                     swipeLeftIconHolder.setWidth(halfScreenWidth)
                 }
 
-                itemRecentsHolder.setRippleColor(SwipeDirection.Left, swipeActionColor(call, swipeLeftAction))
-                itemRecentsHolder.setRippleColor(SwipeDirection.Right, swipeActionColor(call, swipeRightAction))
+                if (activity.config.swipeRipple) {
+                    itemRecentsHolder.setRippleColor(SwipeDirection.Left, swipeActionColor(call, swipeLeftAction))
+                    itemRecentsHolder.setRippleColor(SwipeDirection.Right, swipeActionColor(call, swipeRightAction))
+                }
 
                 itemRecentsHolder.useHapticFeedback = activity.config.swipeVibration
                 itemRecentsHolder.swipeGestureListener = object : SwipeGestureListener {

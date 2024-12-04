@@ -45,6 +45,7 @@ import com.mikhaellopez.rxanimation.shake
 import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import me.grantland.widget.AutofitHelper
 import java.io.InputStreamReader
+import java.text.Collator
 import java.util.Locale
 import kotlin.math.roundToInt
 
@@ -60,6 +61,7 @@ class DialpadActivity : SimpleActivity() {
     private val pressedKeys = mutableSetOf<Char>()
     private var hasBeenScrolled = false
     private var storedDialpadStyle = 0
+    private var storedBackgroundColor = 0
     private var storedToneVolume = 0
     private var allRecentCalls = listOf<RecentCall>()
     private var recentsAdapter: RecentCallsAdapter? = null
@@ -128,11 +130,11 @@ class DialpadActivity : SimpleActivity() {
 
         toneGeneratorHelper = ToneGeneratorHelper(this, DIALPAD_TONE_LENGTH_MS)
 
-        binding.apply {
-            dialpadInput.onTextChangeListener { dialpadValueChanged(it) }
-            dialpadInput.requestFocus()
-            AutofitHelper.create(dialpadInput)
-            dialpadInput.disableKeyboard()
+        binding.dialpadInput.apply {
+            onTextChangeListener { dialpadValueChanged(it) }
+            requestFocus()
+            AutofitHelper.create(this@apply)
+            disableKeyboard()
         }
 
         ContactsHelper(this).getContacts(showOnlyContactsWithNumbers = true) { allContacts ->
@@ -140,12 +142,13 @@ class DialpadActivity : SimpleActivity() {
         }
         storedDialpadStyle = config.dialpadStyle
         storedToneVolume = config.toneVolume
+        storedBackgroundColor = getProperBackgroundColor()
     }
 
-    @SuppressLint("MissingSuperCall")
+    @SuppressLint("MissingSuperCall", "UnsafeIntentLaunch")
     override fun onResume() {
         super.onResume()
-        if (storedDialpadStyle != config.dialpadStyle) {
+        if (storedDialpadStyle != config.dialpadStyle || config.tabsChanged ||storedBackgroundColor != getProperBackgroundColor()) {
             finish()
             startActivity(intent)
             return
@@ -224,17 +227,12 @@ class DialpadActivity : SimpleActivity() {
         binding.dialpadRecentsList.beVisibleIf(binding.dialpadInput.value.isEmpty() && config.showRecentCallsOnDialpad)
     }
 
-    @SuppressLint("MissingSuperCall")
-    override fun onDestroy() {
-        super.onDestroy()
-        storedDialpadStyle = config.dialpadStyle
-        storedToneVolume = config.toneVolume
-    }
-
     override fun onPause() {
         super.onPause()
         storedDialpadStyle = config.dialpadStyle
         storedToneVolume = config.toneVolume
+        storedBackgroundColor = getProperBackgroundColor()
+        config.tabsChanged = false
     }
 
     override fun onRestart() {
@@ -272,6 +270,12 @@ class DialpadActivity : SimpleActivity() {
                 binding.dialpadClearWrapper.apply {
                     dialpadGridHolder.beVisible()
                     dialpadGridHolder.setBackgroundColor(getProperBackgroundColor())
+                    if (isPiePlus()) {
+                        val textColor = getProperTextColor()
+                        dialpadGridHolder.outlineAmbientShadowColor = textColor
+                        dialpadGridHolder.outlineSpotShadowColor = textColor
+                    }
+
                     arrayOf(
                         dividerHorizontalZero, dividerHorizontalOne, dividerHorizontalTwo, dividerHorizontalThree,
                         dividerHorizontalFour, dividerVerticalOne, dividerVerticalTwo, dividerVerticalStart, dividerVerticalEnd
@@ -298,6 +302,12 @@ class DialpadActivity : SimpleActivity() {
 
             else -> {
                 binding.dialpadClearWrapper.apply {
+                    if (isPiePlus()) {
+                        val textColor = getProperTextColor()
+                        dialpadGridHolder.outlineAmbientShadowColor = textColor
+                        dialpadGridHolder.outlineSpotShadowColor = textColor
+                    }
+
                     arrayOf(
                         dividerHorizontalZero, dividerHorizontalOne, dividerHorizontalTwo, dividerHorizontalThree,
                         dividerHorizontalFour, dividerVerticalOne, dividerVerticalTwo, dividerVerticalStart, dividerVerticalEnd
@@ -333,12 +343,16 @@ class DialpadActivity : SimpleActivity() {
                     it.beGone()
                 }
             } else {
-                dialpad1Letters.beInvisible()
+                dialpad1Letters.apply {
+                    beInvisible()
+                    setTypeface(null, config.dialpadSecondaryTypeface)
+                }
                 arrayOf(
                     dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters, dialpad6Letters,
                     dialpad7Letters, dialpad8Letters, dialpad9Letters
                 ).forEach {
                     it.beVisible()
+                    it.setTypeface(null, config.dialpadSecondaryTypeface)
                 }
 
                 val langPref = config.dialpadSecondaryLanguage
@@ -346,6 +360,7 @@ class DialpadActivity : SimpleActivity() {
                 val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
                 if (langPref!! != LANGUAGE_NONE && langPref != LANGUAGE_SYSTEM || isAutoLang) {
                     val lang = if (isAutoLang) langLocale else langPref
+                    dialpad1Letters.text = DialpadT9.getLettersForNumber(2, lang) + "\nABC"
                     dialpad2Letters.text = DialpadT9.getLettersForNumber(2, lang) + "\nABC"
                     dialpad3Letters.text = DialpadT9.getLettersForNumber(3, lang) + "\nDEF"
                     dialpad4Letters.text = DialpadT9.getLettersForNumber(4, lang) + "\nGHI"
@@ -357,7 +372,7 @@ class DialpadActivity : SimpleActivity() {
 
                     val fontSizeRu = getTextSize() - 16f
                     arrayOf(
-                        dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
+                        dialpad1Letters, dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
                         dialpad6Letters, dialpad7Letters, dialpad8Letters, dialpad9Letters
                     ).forEach {
                         it.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizeRu)
@@ -443,8 +458,8 @@ class DialpadActivity : SimpleActivity() {
             dialpadDownHolder.apply {
                 background.applyColorFilter(simTwoColor)
                 setOnClickListener {
-                    maybePerformDialpadHapticFeedback(dialpadDownHolder)
                     if (areMultipleSIMsAvailable) {initCall(binding.dialpadInput.value, handleIndex = if (simOnePrimary) 1 else 0)} else dialpadHide()
+                    maybePerformDialpadHapticFeedback(dialpadDownHolder)
                 }
                 contentDescription = getString(
                     if (areMultipleSIMsAvailable) {
@@ -465,12 +480,16 @@ class DialpadActivity : SimpleActivity() {
             dialpadCallButtonHolder.apply {
                 background.applyColorFilter(simOneColor)
                 setOnClickListener {
-                    maybePerformDialpadHapticFeedback(this)
                     initCall(binding.dialpadInput.value, handleIndex = if (simOnePrimary || !areMultipleSIMsAvailable) 0 else 1)
+                    maybePerformDialpadHapticFeedback(this)
                 }
                 setOnLongClickListener {
                     if (binding.dialpadInput.value.isEmpty()) {
-                        binding.dialpadInput.setText(getTextFromClipboard())
+                        val text = getTextFromClipboard()
+                        binding.dialpadInput.setText(text)
+                        if (text != null) {
+                            binding.dialpadInput.setSelection(text.length)
+                        }
                         binding.dialpadInput.requestFocusFromTouch(); true
                     } else {
                         copyNumber(); true
@@ -526,12 +545,16 @@ class DialpadActivity : SimpleActivity() {
                     it.beGone()
                 }
             } else {
-                dialpad1IosLetters.beInvisible()
+                dialpad1IosLetters.apply {
+                    beInvisible()
+                    setTypeface(null, config.dialpadSecondaryTypeface)
+                }
                 arrayOf(
                     dialpad2IosLetters, dialpad3IosLetters, dialpad4IosLetters, dialpad5IosLetters,
                     dialpad6IosLetters, dialpad7IosLetters, dialpad8IosLetters, dialpad9IosLetters
                 ).forEach {
                     it.beVisible()
+                    it.setTypeface(null, config.dialpadSecondaryTypeface)
                 }
 
                 val langPref = config.dialpadSecondaryLanguage
@@ -539,6 +562,7 @@ class DialpadActivity : SimpleActivity() {
                 val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
                 if (langPref!! != LANGUAGE_NONE && langPref != LANGUAGE_SYSTEM || isAutoLang) {
                     val lang = if (isAutoLang) langLocale else langPref
+                    dialpad1IosLetters.text = DialpadT9.getLettersForNumber(2, lang) + "\nABC"
                     dialpad2IosLetters.text = DialpadT9.getLettersForNumber(2, lang) + "\nABC"
                     dialpad3IosLetters.text = DialpadT9.getLettersForNumber(3, lang) + "\nDEF"
                     dialpad4IosLetters.text = DialpadT9.getLettersForNumber(4, lang) + "\nGHI"
@@ -550,7 +574,7 @@ class DialpadActivity : SimpleActivity() {
 
                     val fontSizeRu = getTextSize() - 16f
                     arrayOf(
-                        dialpad2IosLetters, dialpad3IosLetters, dialpad4IosLetters, dialpad5IosLetters,
+                        dialpad1IosLetters, dialpad2IosLetters, dialpad3IosLetters, dialpad4IosLetters, dialpad5IosLetters,
                         dialpad6IosLetters, dialpad7IosLetters, dialpad8IosLetters, dialpad9IosLetters
                     ).forEach {
                         it.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizeRu)
@@ -573,16 +597,16 @@ class DialpadActivity : SimpleActivity() {
                 dialpadSimIos.applyColorFilter(getProperTextColor)
                 dialpadSimIosHolder.setOnClickListener {
                     if (config.currentSIMCardIndex == 0) config.currentSIMCardIndex = 1 else config.currentSIMCardIndex = 0
-                    maybePerformDialpadHapticFeedback(dialpadSimIosHolder)
                     updateCallButtonIos()
+                    maybePerformDialpadHapticFeedback(dialpadSimIosHolder)
                     RxAnimation.from(dialpadCallButtonIosHolder)
                         .shake()
                         .subscribe()
                 }
                 updateCallButtonIos()
                 dialpadCallButtonIosHolder.setOnClickListener {
-                    maybePerformDialpadHapticFeedback(dialpadCallButtonIosHolder)
                     initCall(binding.dialpadInput.value, config.currentSIMCardIndex)
+                    maybePerformDialpadHapticFeedback(dialpadCallButtonIosHolder)
                 }
                 dialpadCallButtonIosHolder.contentDescription = getString(if (config.currentSIMCardIndex == 0) R.string.call_from_sim_1 else R.string.call_from_sim_2 )
             } else {
@@ -592,15 +616,19 @@ class DialpadActivity : SimpleActivity() {
                 dialpadCallButtonIosIcon.setImageDrawable(callIcon)
                 dialpadCallButtonIosHolder.background.applyColorFilter(color)
                 dialpadCallButtonIosHolder.setOnClickListener {
-                    maybePerformDialpadHapticFeedback(dialpadCallButtonIosHolder)
                     initCall(binding.dialpadInput.value, 0)
+                    maybePerformDialpadHapticFeedback(dialpadCallButtonIosHolder)
                 }
                 dialpadCallButtonIosHolder.contentDescription = getString(R.string.call)
             }
 
             dialpadCallButtonIosHolder.setOnLongClickListener {
                 if (binding.dialpadInput.value.isEmpty()) {
-                    binding.dialpadInput.setText(getTextFromClipboard())
+                    val text = getTextFromClipboard()
+                    binding.dialpadInput.setText(text)
+                    if (text != null) {
+                        binding.dialpadInput.setSelection(text.length)
+                    }
                     binding.dialpadInput.requestFocusFromTouch(); true
                 } else {
                     copyNumber(); true
@@ -659,12 +687,16 @@ class DialpadActivity : SimpleActivity() {
                     it.beGone()
                 }
             } else {
-                dialpad1Letters.beInvisible()
+                dialpad1Letters.apply {
+                    beInvisible()
+                    setTypeface(null, config.dialpadSecondaryTypeface)
+                }
                 arrayOf(
                     dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
                     dialpad6Letters, dialpad7Letters, dialpad8Letters, dialpad9Letters
                 ).forEach {
                     it.beVisible()
+                    it.setTypeface(null, config.dialpadSecondaryTypeface)
                 }
 
                 val langPref = config.dialpadSecondaryLanguage
@@ -672,6 +704,7 @@ class DialpadActivity : SimpleActivity() {
                 val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
                 if (langPref!! != LANGUAGE_NONE && langPref != LANGUAGE_SYSTEM || isAutoLang) {
                     val lang = if (isAutoLang) langLocale else langPref
+                    dialpad1Letters.text = DialpadT9.getLettersForNumber(2, lang) + "\nABC"
                     dialpad2Letters.text = DialpadT9.getLettersForNumber(2, lang) + "\nABC"
                     dialpad3Letters.text = DialpadT9.getLettersForNumber(3, lang) + "\nDEF"
                     dialpad4Letters.text = DialpadT9.getLettersForNumber(4, lang) + "\nGHI"
@@ -683,7 +716,7 @@ class DialpadActivity : SimpleActivity() {
 
                     val fontSizeRu = getTextSize() - 16f
                     arrayOf(
-                        dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
+                        dialpad1Letters, dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
                         dialpad6Letters, dialpad7Letters, dialpad8Letters, dialpad9Letters
                     ).forEach {
                         it.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizeRu)
@@ -710,8 +743,8 @@ class DialpadActivity : SimpleActivity() {
                     background.applyColorFilter(simTwoColor)
                     beVisible()
                     setOnClickListener {
-                        maybePerformDialpadHapticFeedback(this)
                         initCall(binding.dialpadInput.value, handleIndex = if (simOnePrimary) 1 else 0)
+                        maybePerformDialpadHapticFeedback(this)
                     }
                     contentDescription = getString(if (simOnePrimary) R.string.call_from_sim_2 else R.string.call_from_sim_1 )
                 } else {
@@ -726,12 +759,16 @@ class DialpadActivity : SimpleActivity() {
                 setImageDrawable(callIcon)
                 background.applyColorFilter(simOneColor)
                 setOnClickListener {
-                    maybePerformDialpadHapticFeedback(this)
                     initCall(binding.dialpadInput.value, handleIndex = if (simOnePrimary || !areMultipleSIMsAvailable) 0 else 1)
+                    maybePerformDialpadHapticFeedback(this)
                 }
                 setOnLongClickListener {
                     if (binding.dialpadInput.value.isEmpty()) {
-                        binding.dialpadInput.setText(getTextFromClipboard())
+                        val text = getTextFromClipboard()
+                        binding.dialpadInput.setText(text)
+                        if (text != null) {
+                            binding.dialpadInput.setSelection(text.length)
+                        }
                         binding.dialpadInput.requestFocusFromTouch(); true
                     } else {
                         copyNumber(); true
@@ -821,7 +858,11 @@ class DialpadActivity : SimpleActivity() {
         binding.dialpadToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.paste_number -> {
-                    binding.dialpadInput.setText(getTextFromClipboard())
+                    val text = getTextFromClipboard()
+                    binding.dialpadInput.setText(text)
+                    if (text != null) {
+                        binding.dialpadInput.setSelection(text.length)
+                    }
                     binding.dialpadInput.requestFocusFromTouch()
                 }
                 R.id.copy_number -> copyNumber()
@@ -984,28 +1025,33 @@ class DialpadActivity : SimpleActivity() {
         (binding.dialpadList.adapter as? ContactsAdapter)?.finishActMode()
         (binding.dialpadRecentsList.adapter as? RecentCallsAdapter)?.finishActMode()
 
-        val filtered = allContacts.filter {
-            val dialpadSecondaryLanguage = config.dialpadSecondaryLanguage ?: ""
+        val collator = Collator.getInstance(sysLocale())
+        val filtered = allContacts.filter { contact ->
+            val langPref = config.dialpadSecondaryLanguage ?: ""
+            val langLocale = Locale.getDefault().language
+            val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
+            val lang = if (isAutoLang) langLocale else langPref
+
             val convertedName = DialpadT9.convertLettersToNumbers(
-                it.name.normalizeString().uppercase(), dialpadSecondaryLanguage)
+                contact.name.normalizeString().uppercase(), lang)
             val convertedNameWithoutSpaces = convertedName.filterNot { it.isWhitespace() }
             val convertedNickname = DialpadT9.convertLettersToNumbers(
-                it.nickname.normalizeString().uppercase(), dialpadSecondaryLanguage)
+                contact.nickname.normalizeString().uppercase(), lang)
             val convertedCompany = DialpadT9.convertLettersToNumbers(
-                it.organization.company.normalizeString().uppercase(), dialpadSecondaryLanguage)
+                contact.organization.company.normalizeString().uppercase(), lang)
             val convertedNameToDisplay = DialpadT9.convertLettersToNumbers(
-                it.getNameToDisplay().normalizeString().uppercase(), dialpadSecondaryLanguage)
+                contact.getNameToDisplay().normalizeString().uppercase(), lang)
             val convertedNameToDisplayWithoutSpaces = convertedNameToDisplay.filterNot { it.isWhitespace() }
 
-            it.doesContainPhoneNumber(text, convertLetters = true, search = true)
+            contact.doesContainPhoneNumber(text, convertLetters = true, search = true)
                 || (convertedName.contains(text, true))
                 || (convertedNameWithoutSpaces.contains(text, true))
                 || (convertedNameToDisplay.contains(text, true))
                 || (convertedNameToDisplayWithoutSpaces.contains(text, true))
                 || (convertedNickname.contains(text, true))
                 || (convertedCompany.contains(text, true))
-        }.sortedWith(compareBy {
-            !it.doesContainPhoneNumber(text, convertLetters = true, search = true)
+        }.sortedWith(compareBy(collator) {
+            it.getNameToDisplay()
         }).toMutableList() as ArrayList<Contact>
 
         binding.letterFastscroller.setupWithRecyclerView(binding.dialpadList, { position ->
@@ -1029,13 +1075,7 @@ class DialpadActivity : SimpleActivity() {
             allowLongClick = false
         ) {
             val contact = it as Contact
-            if (config.showCallConfirmation) {
-                CallConfirmationDialog(this@DialpadActivity, contact.getNameToDisplay()) {
-                    startCallIntent(contact.getPrimaryNumber() ?: return@CallConfirmationDialog)
-                }
-            } else {
-                startCallIntent(contact.getPrimaryNumber() ?: return@ContactsAdapter)
-            }
+            startCallWithConfirmationCheck(contact.getPrimaryNumber() ?: return@ContactsAdapter, contact.getNameToDisplay())
         }.apply {
             binding.dialpadList.adapter = this
         }
@@ -1066,20 +1106,26 @@ class DialpadActivity : SimpleActivity() {
         if (number.isNotEmpty()) {
             val nameToDisplay = if (displayName != "") displayName else number
             if (handleIndex != -1 && areMultipleSIMsAvailable()) {
+                //callContactWithSimWithConfirmationCheck(number, nameToDisplay, handleIndex == 0)
                 if (config.showCallConfirmation) {
                     CallConfirmationDialog(this, nameToDisplay) {
                         callContactWithSim(number, handleIndex == 0)
+                        if (config.dialpadClearWhenStartCall) binding.dialpadInput.setText("")
                     }
                 } else {
                     callContactWithSim(number, handleIndex == 0)
+                    if (config.dialpadClearWhenStartCall) binding.dialpadInput.setText("")
                 }
             } else {
+                //startCallWithConfirmationCheck(number, nameToDisplay)
                 if (config.showCallConfirmation) {
                     CallConfirmationDialog(this, nameToDisplay) {
                         startCallIntent(number)
+                        if (config.dialpadClearWhenStartCall) binding.dialpadInput.setText("")
                     }
                 } else {
                     startCallIntent(number)
+                    if (config.dialpadClearWhenStartCall) binding.dialpadInput.setText("")
                 }
             }
 
@@ -1092,6 +1138,7 @@ class DialpadActivity : SimpleActivity() {
                 if (!mostRecentNumber.isNullOrEmpty()) {
                     runOnUiThread {
                         binding.dialpadInput.setText(mostRecentNumber)
+                        binding.dialpadInput.setSelection(mostRecentNumber.length)
                     }
                 }
             }
@@ -1146,7 +1193,8 @@ class DialpadActivity : SimpleActivity() {
             dialpadPressed(',', view)
         } else if (char == '#') {
             clearChar(view)
-            dialpadPressed(';', view)
+            if (config.dialpadHashtagLongClick == DIALPAD_LONG_CLICK_WAIT) dialpadPressed(';', view)
+            else startActivity(Intent(applicationContext, SettingsDialpadActivity::class.java))
         } else {
             val result = speedDial(char.digitToInt())
             if (result) {

@@ -191,14 +191,14 @@ class CallHistoryAdapter(
                     val date = call.startTS.formatDateOrTime(context, hideTimeOnOtherDays = hideTimeAtOtherDays, false)
                     text = date
                     setTextColor(textColor)
-                    setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
+                    setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.7f)
                 }
 
                 itemRecentsDuration.apply {
                     text = call.duration.getFormattedDuration()
                     setTextColor(textColor)
                     beVisibleIf(call.type != Calls.MISSED_TYPE && call.type != Calls.REJECTED_TYPE && call.duration > 0)
-                    setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
+                    setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.7f)
                 }
 
                 itemRecentsSimImage.beVisibleIf(areMultipleSIMsAvailable)

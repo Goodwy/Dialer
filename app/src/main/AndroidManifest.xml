@@ -66,6 +66,11 @@
         <package android:name="com.goodwy.filemanager" />
         <package android:name="com.goodwy.audiobooklite" />
         <package android:name="com.goodwy.keyboard" />
+
+        <!-- Required for loading contact accounts -->
+        <intent>
+            <action android:name="android.accounts.AccountAuthenticator" />
+        </intent>
     </queries>
 
     <application

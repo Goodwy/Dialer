@@ -102,20 +102,6 @@ fun Context.updateUnreadCountBadge(count: Int) {//conversations: List<RecentCall
     }
 }
 
-fun Context.sysLocale(): Locale? {
-    val config = this.resources.configuration
-    return if (isNougatPlus()) {
-        getSystemLocale(config)
-    } else {
-        getSystemLocaleLegacy(config)
-    }
-}
-
-private fun getSystemLocaleLegacy(config: Configuration) = config.locale
-
-@TargetApi(Build.VERSION_CODES.N)
-private fun getSystemLocale(config: Configuration) = config.locales.get(0)
-
 @SuppressLint("UseCompatLoadingForDrawables")
 fun Context.getPackageDrawable(packageName: String): Drawable {
     return resources.getDrawable(
@@ -132,6 +118,7 @@ fun Context.getPackageDrawable(packageName: String): Drawable {
 //Timer
 val Context.timerDb: TimerDao get() = AppDatabase.getInstance(applicationContext).TimerDao()
 val Context.timerHelper: TimerHelper get() = TimerHelper(this)
+val Context.callerNotesHelper: CallerNotesHelper get() = CallerNotesHelper(this)
 
 fun Context.getOpenTimerTabIntent(timerId: Int): PendingIntent {
     val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)

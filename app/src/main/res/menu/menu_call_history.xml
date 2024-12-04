@@ -31,4 +31,8 @@
         android:title="@string/open_with"
         android:visible="false"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/call_anonymously"
+        android:title="@string/call_anonymously"
+        app:showAsAction="never" />
 </menu>

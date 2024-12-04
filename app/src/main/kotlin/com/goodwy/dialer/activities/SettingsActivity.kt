@@ -47,7 +47,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private val purchaseHelper = PurchaseHelper(this)
-    private val ruStoreHelper = RuStoreHelper(this)
+    private var ruStoreHelper: RuStoreHelper? = null
     private val productIdX1 = BuildConfig.PRODUCT_ID_X1
     private val productIdX2 = BuildConfig.PRODUCT_ID_X2
     private val productIdX3 = BuildConfig.PRODUCT_ID_X3
@@ -125,10 +125,12 @@ class SettingsActivity : SimpleActivity() {
         }
         if (isRuStoreInstalled()) {
             //RuStore
-            ruStoreHelper.checkPurchasesAvailability()
+            ruStoreHelper = RuStoreHelper()
+
+            ruStoreHelper!!.checkPurchasesAvailability(this@SettingsActivity)
 
             lifecycleScope.launch {
-                ruStoreHelper.eventStart
+                ruStoreHelper!!.eventStart
                     .flowWithLifecycle(lifecycle)
                     .collect { event ->
                         handleEventStart(event)
@@ -136,7 +138,7 @@ class SettingsActivity : SimpleActivity() {
             }
 
             lifecycleScope.launch {
-                ruStoreHelper.statePurchased
+                ruStoreHelper!!.statePurchased
                     .flowWithLifecycle(lifecycle)
                     .collect { state ->
                         //update of purchased
@@ -184,6 +186,7 @@ class SettingsActivity : SimpleActivity() {
 
         setupUseSwipeToAction()
         setupSwipeVibration()
+        setupSwipeRipple()
         setupSwipeRightAction()
         setupSwipeLeftAction()
         setupDeleteConfirmation()
@@ -364,6 +367,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     // support for device-wise blocking came on Android 7, rely only on that
+    @SuppressLint("SetTextI18n")
     @TargetApi(Build.VERSION_CODES.N)
     private fun setupManageBlockedNumbers() = binding.apply {
         settingsManageBlockedNumbersHolder.beVisibleIf(isNougatPlus())
@@ -839,7 +843,11 @@ class SettingsActivity : SimpleActivity() {
 
             settingsQuickAnswerOne.setOnClickListener {
                 val index = 0
-                ChangeTextDialog(this@SettingsActivity, config.quickAnswers[index]) {
+                ChangeTextDialog(
+                    this@SettingsActivity,
+                    currentText = config.quickAnswers[index],
+                    showNeutralButton = true
+                ) {
                     if (it == "") {
                         val text = getString(R.string.message_call_later)
                         addQuickAnswer(index, text)
@@ -851,7 +859,11 @@ class SettingsActivity : SimpleActivity() {
             }
             settingsQuickAnswerTwo.setOnClickListener {
                 val index = 1
-                ChangeTextDialog(this@SettingsActivity, config.quickAnswers[index]) {
+                ChangeTextDialog(
+                    this@SettingsActivity,
+                    currentText = config.quickAnswers[index],
+                    showNeutralButton = true
+                ) {
                     if (it == "") {
                         val text = getString(R.string.message_on_my_way)
                         addQuickAnswer(index, text)
@@ -863,7 +875,11 @@ class SettingsActivity : SimpleActivity() {
             }
             settingsQuickAnswerThree.setOnClickListener {
                 val index = 2
-                ChangeTextDialog(this@SettingsActivity, config.quickAnswers[index]) {
+                ChangeTextDialog(
+                    this@SettingsActivity,
+                    currentText = config.quickAnswers[index],
+                    showNeutralButton = true
+                ) {
                     if (it == "") {
                         val text = getString(R.string.message_cant_talk_right_now)
                         addQuickAnswer(index, text)
@@ -1200,7 +1216,7 @@ class SettingsActivity : SimpleActivity() {
                         addDefaultColorButton = true,
                         colorDefault = resources.getColor(R.color.ic_dialer),
                         title = resources.getString(R.string.color_sim_card_icons)
-                    ) { wasPositivePressed, color ->
+                    ) { wasPositivePressed, color, _ ->
                         if (wasPositivePressed) {
                             if (hasColorChanged(config.simIconsColors[1], color)) {
                                 addSimCardColor(1, color)
@@ -1216,7 +1232,7 @@ class SettingsActivity : SimpleActivity() {
                         addDefaultColorButton = true,
                         colorDefault = resources.getColor(R.color.color_primary),
                         title = resources.getString(R.string.color_sim_card_icons)
-                    ) { wasPositivePressed, color ->
+                    ) { wasPositivePressed, color, _ ->
                         if (wasPositivePressed) {
                             if (hasColorChanged(config.simIconsColors[2], color)) {
                                 addSimCardColor(2, color)
@@ -1328,6 +1344,7 @@ class SettingsActivity : SimpleActivity() {
     private fun updateSwipeToActionVisible() {
         binding.apply {
             settingsSwipeVibrationHolder.beVisibleIf(config.useSwipeToAction)
+            settingsSwipeRippleHolder.beVisibleIf(config.useSwipeToAction)
             settingsSwipeRightActionHolder.beVisibleIf(config.useSwipeToAction)
             settingsSwipeLeftActionHolder.beVisibleIf(config.useSwipeToAction)
             settingsSkipDeleteConfirmationHolder.beVisibleIf(config.useSwipeToAction &&(config.swipeLeftAction == SWIPE_ACTION_DELETE || config.swipeRightAction == SWIPE_ACTION_DELETE))
@@ -1340,6 +1357,18 @@ class SettingsActivity : SimpleActivity() {
             settingsSwipeVibrationHolder.setOnClickListener {
                 settingsSwipeVibration.toggle()
                 config.swipeVibration = settingsSwipeVibration.isChecked
+                config.tabsChanged = true
+            }
+        }
+    }
+
+    private fun setupSwipeRipple() {
+        binding.apply {
+            settingsSwipeRipple.isChecked = config.swipeRipple
+            settingsSwipeRippleHolder.setOnClickListener {
+                settingsSwipeRipple.toggle()
+                config.swipeRipple = settingsSwipeRipple.isChecked
+                config.tabsChanged = true
             }
         }
     }
@@ -1533,7 +1562,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 553 //TODO changelog
+        val id = 600 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1550,14 +1579,14 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_553)) //TODO changelog
+            add(Release(id, R.string.release_600)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }
 
     private fun updateProducts() {
         val productList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3, subscriptionIdX1, subscriptionIdX2, subscriptionIdX3, subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3)
-        ruStoreHelper.getProducts(productList)
+        ruStoreHelper!!.getProducts(productList)
     }
 
     private fun handleEventStart(event: StartPurchasesEvent) {

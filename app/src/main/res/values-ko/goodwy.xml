@@ -1,55 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="transparent_call_screen_g">Transparent Call Screen</string>
-    <string name="call_back_g">Call back</string>
-    <string name="call_back_person_g">Call back %s</string>
-    <string name="missed_call_g">Missed call</string>
-    <string name="missed_calls_g">Missed calls</string>
-    <string name="missed_call_notifications_g">Missed call notifications</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
-    <string name="call_start_end_vibration">Vibrate when your call is start and end</string>
+    <string name="transparent_call_screen_g">투명 통화 화면</string>
+    <string name="call_back_g">전화 다시 걸기</string>
+    <string name="call_back_person_g">%s에게 다시 전화</string>
+    <string name="missed_call_g">부재중 전화</string>
+    <string name="missed_calls_g">부재중 전화</string>
+    <string name="missed_call_notifications_g">부재중 전화 알림</string>
+    <string name="call_notification_channel_high_priority_g">통화 알림 우선 순위가 높음</string>
+    <string name="call_notification_channel_g">통화 알림</string>
+    <string name="call_start_end_vibration">통화가 시작 및 종료될 때 진동</string>
 
-    <string name="dialpad_preferences">Dialpad preferences</string>
-    <string name="show_contact_thumbnails_g">Show contact thumbnails</string>
-    <string name="hide_dialpad_letters_g">Hide dialpad letters</string>
-    <string name="show_caller_description_g">Show additional caller information</string>
-    <string name="nickname">Nickname</string>
-    <string name="company">Company</string>
-    <string name="call_anonymously">Call anonymously (with prefix #31#)</string>
+    <string name="dialpad_preferences">다이얼패드 기본 설정</string>
+    <string name="show_contact_thumbnails_g">연락처 썸네일 표시</string>
+    <string name="hide_dialpad_letters_g">다이얼패드 문자 숨기기</string>
+    <string name="show_caller_description_g">추가 발신자 정보 표시</string>
+    <string name="nickname">닉네임</string>
+    <string name="company">회사</string>
+    <string name="call_anonymously">익명으로 전화하기(접두사 #31# 사용)</string>
     <string name="call_anonymously_warning">
         <![CDATA[
-            <h4>Warning</h4>
-            The number will be called with the prefix #31# <br><br>
+            <h4>경고</h4>
+            번호는 접두사 #31#으로 호출됩니다. <br><br>
                 <h6"><i>  #31#%s</i></h6>
-            Make sure that your operator supports the number hiding service when using the #31# prefix. <br>
-            Your service provider may charge an additional fee for this service.
+            #31# 접두사를 사용할 때 통신사가 번호 숨기기 서비스를 지원하는지 확인하세요. <br>
+            서비스 제공업체에서 이 서비스에 대해 추가 요금을 부과할 수 있습니다.
         ]]>
     </string>
 
-    <string name="audio_route_earpiece_g">Device\'s earpiece</string>
-    <string name="open_speed_dial_manage">Open the speed dial manage?</string>
+    <string name="audio_route_earpiece_g">장치의 이어피스</string>
+    <string name="open_speed_dial_manage">단축 다이얼 관리를 열겠습니까? </string>
 
     <!-- Timer -->
-    <string name="timer">Timer</string>
-    <string name="timers_notification_msg">Timers are running</string>
+    <string name="timer">타이머</string>
+    <string name="timers_notification_msg">타이머가 실행 중입니다.</string>
     <plurals name="timer_notification_msg">
-        <item quantity="one">%d timer is running</item>
-        <item quantity="other">%d timers are running</item>
+        <item quantity="other">%d 타이머가 실행 중입니다</item>
     </plurals>
 
     <!-- FAQ -->
-    <string name="faq_1_title_dialer_g">Why do I have to unlock my device to answer an incoming call?</string>
-    <string name="faq_1_text_dialer_g">Your operating system is blocking app access to the lock screen. You need to allow the app to access the lock screen. For example in MIUI you need to enable access in "Settings => Notifications => Lock screen notifications" and enable the "Open new windows while running in the background" permission.</string>
-    <string name="faq_2_title_dialer_g">How do I copy or paste a number on the dialing screen?</string>
-    <string name="faq_2_text_dialer_g">A long press on the call button will paste the clipboard contents. If you have already entered a number, long pressing the call button will copy the number to the clipboard.</string>
+    <string name="faq_1_title_dialer_g">수신 전화를 받으려면 왜 디바이스의 잠금을 해제해야 하나요?</string>
+    <string name="faq_1_text_dialer_g">운영 체제에서 잠금 화면에 대한 앱 액세스를 차단하고 있습니다. 앱이 잠금 화면에 액세스할 수 있도록 허용해야 합니다. 예를 들어 MIUI의 경우 다음에서 액세스를 허용해야 합니다 Settings => Notifications => Lock screen notifications.</string>
+    <string name="faq_2_title_dialer_g">전화 걸기 화면에서 번호를 복사하거나 붙여넣으려면 어떻게 하나요? </string>
+    <string name="faq_2_text_dialer_g">통화 버튼을 길게 누르면 클립보드 내용을 붙여넣을 수 있습니다. 이미 번호를 입력한 경우 통화 버튼을 길게 누르면 해당 번호가 클립보드에 복사됩니다.</string>
 
     <!-- Answer style -->
-    <string name="answer_style">Answer style</string>
-    <string name="buttons">Buttons</string>
-    <string name="answer_slider">Slider</string>
-    <string name="answer_slider_outline">Outline slider</string>
-    <string name="answer_slider_vertical">Vertical slider</string>
+    <string name="answer_style">답변 스타일</string>
+    <string name="buttons">버튼</string>
+    <string name="answer_slider">슬라이더</string>
+    <string name="answer_slider_outline">아웃라인 슬라이더</string>
+    <string name="answer_slider_vertical">수직 슬라이더</string>
+
     <string name="show_recent_calls">최근 통화 표시</string>
     <string name="open_dialpad_when_call_from_another_app">다른 앱에서 전화를 걸려고 할 때 다이얼 패드를 엽니다</string>
     <string name="open_dialpad_when_call_from_another_app_summary">이렇게 하면 사용자 모르게 전화를 거는 맬웨어로부터 보호할 수 있습니다.</string>
@@ -57,8 +57,19 @@
     <string name="group_calls">통화 그룹화</string>
     <string name="group_all_calls">모든 통화를 그룹화하면 마지막 통화만 표시됩니다.</string>
     <string name="call_button_style">벨 버튼 스타일</string>
+    <string name="call_notes">통화 메모</string>
     <string name="answer_end_other_call">현재 전화 받기 및 종료</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">빠른 답변</string>
+    <string name="voicemail">음성 메일</string>
+    <string name="show_voicemail_icon">음성 메일 아이콘 표시</string>
+    <string name="secondary_dialpad_language">보조 다이얼패드 언어</string>
+    <string name="sim_card_selection_dialog_style">SIM 선택 대화 상자 스타일</string>
+    <string name="clear_dialpad_when_start_call">전화를 걸 때 전화를 건 번호 지우기</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="other">부재중 전화 %d통</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">메시지</string>
 </resources>

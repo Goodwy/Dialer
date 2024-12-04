@@ -50,6 +50,7 @@
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Slider με περίγραμμα</string>
     <string name="answer_slider_vertical">Κάθετο ρυθμιστικό</string>
+
     <string name="show_recent_calls">Εμφάνιση πρόσφατων κλήσεων</string>
     <string name="open_dialpad_when_call_from_another_app">Όταν προσπαθείτε να πραγματοποιήσετε μια κλήση από άλλη εφαρμογή, ανοίξτε το πληκτρολόγιο κλήσης</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Αυτό μπορεί να σας προστατεύσει από κακόβουλο λογισμικό που πραγματοποιεί κλήσεις χωρίς να το γνωρίζετε.</string>
@@ -57,8 +58,20 @@
     <string name="group_calls">Ομαδοποίηση κλήσεων</string>
     <string name="group_all_calls">Ομαδοποιήστε όλες τις κλήσεις, θα εμφανιστεί μόνο η τελευταία κλήση</string>
     <string name="call_button_style">Στυλ κουμπιού καμπάνας</string>
+    <string name="call_notes">Notizen für Anrufe</string>
     <string name="answer_end_other_call">Απαντήστε και τερματίστε την τρέχουσα κλήση</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Schnelle Antworten</string>
+    <string name="voicemail">Τηλεφωνητής</string>
+    <string name="show_voicemail_icon">Εμφάνιση εικονιδίου αυτόματου τηλεφωνητή</string>
+    <string name="secondary_dialpad_language">Δευτερεύουσα γλώσσα πληκτρολογίου κλήσης</string>
+    <string name="sim_card_selection_dialog_style">Στυλ διαλόγου επιλογής SIM</string>
+    <string name="clear_dialpad_when_start_call">Απαλοιφή αριθμού κλήσης κατά την έναρξη μιας κλήσης</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d αναπάντητη κλήση</item>
+        <item quantity="other">%d αναπάντητες κλήσεις</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Μήνυμα</string>
 </resources>

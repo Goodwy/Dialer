@@ -13,6 +13,7 @@ import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.res.ResourcesCompat
 import com.goodwy.commons.activities.BaseSimpleActivity
+import com.goodwy.commons.dialogs.CallConfirmationDialog
 import com.goodwy.commons.dialogs.NewAppDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
@@ -37,6 +38,16 @@ fun SimpleActivity.startCallIntent(recipient: String) {
     }
 }
 
+fun SimpleActivity.startCallWithConfirmationCheck(recipient: String, name: String) {
+    if (config.showCallConfirmation) {
+        CallConfirmationDialog(this, name) {
+            startCallIntent(recipient)
+        }
+    } else {
+        startCallIntent(recipient)
+    }
+}
+
 fun SimpleActivity.launchCreateNewContactIntent() {
     Intent().apply {
         action = Intent.ACTION_INSERT
@@ -50,6 +61,16 @@ fun BaseSimpleActivity.callContactWithSim(recipient: String, useMainSIM: Boolean
         val wantedSimIndex = if (useMainSIM) 0 else 1
         val handle = getAvailableSIMCardLabels().sortedBy { it.id }.getOrNull(wantedSimIndex)?.handle
         launchCallIntent(recipient, handle, BuildConfig.RIGHT_APP_KEY)
+    }
+}
+
+fun BaseSimpleActivity.callContactWithSimWithConfirmationCheck(recipient: String, name: String, useMainSIM: Boolean) {
+    if (config.showCallConfirmation) {
+        CallConfirmationDialog(this, name) {
+            callContactWithSim(recipient, useMainSIM)
+        }
+    } else {
+        callContactWithSim(recipient, useMainSIM)
     }
 }
 
@@ -179,7 +200,7 @@ fun SimpleActivity.launchAbout() {
         FAQItem(R.string.faq_1_title_dialer_g, R.string.faq_1_text_dialer_g),
         FAQItem(R.string.faq_2_title_dialer_g, R.string.faq_2_text_dialer_g),
         FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons_g),
-        //FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons),
+        FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons_g),
         FAQItem(R.string.faq_7_title_commons, R.string.faq_7_text_commons),
         FAQItem(R.string.faq_9_title_commons, R.string.faq_9_text_commons)
     )

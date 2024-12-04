@@ -61,4 +61,15 @@
     <string name="quick_answers">Quick answers</string>
     <string name="voicemail">Voicemail</string>
     <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="secondary_dialpad_language">Secondary dialpad language</string>
+    <string name="sim_card_selection_dialog_style">SIM card selection dialogue style</string>
+    <string name="clear_dialpad_when_start_call">Clear dialpad when starting a call</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d missed call</item>
+        <item quantity="other">%d missed calls</item>
+    </plurals>
+    <string name="missed_call_from">Missed call from %s</string>
+    <string name="message">Message</string>
 </resources>

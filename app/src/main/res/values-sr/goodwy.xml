@@ -10,6 +10,7 @@
     <string name="call_notification_channel_g">Обавештења о позивима</string>
     <string name="dialpad_preferences">Подешавања тастатуре</string>
     <string name="call_start_end_vibration">Вибрирајте када започнете и завршите позив</string>
+    <string name="call_notes">Белешке о позивима</string>
 
     <string name="show_contact_thumbnails_g">Прикажи сличице контаката</string>
     <string name="hide_dialpad_letters_g">Сакриј слова на тастатури</string>
@@ -59,7 +60,19 @@
     <string name="group_all_calls">Групишите све позиве, биће приказан само последњи позив</string>
     <string name="call_button_style">Стил дугмета за позив</string>
     <string name="answer_end_other_call">Одговорите и завршите тренутни позив</string>
-    <string name="quick_answers">Quick answers</string>
-    <string name="voicemail">Voicemail</string>
-    <string name="show_voicemail_icon">Show voicemail icon</string>
+    <string name="quick_answers">Брзи одговори</string>
+    <string name="voicemail">Говорна пошта</string>
+    <string name="show_voicemail_icon">Прикажи икону говорне поште</string>
+    <string name="secondary_dialpad_language">Секундарни језик тастатуре</string>
+    <string name="sim_card_selection_dialog_style">Стил дијалога за избор СИМ картице</string>
+    <string name="clear_dialpad_when_start_call">Обришите бирани број када започнете позив</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">%d пропуштен позив</item>
+        <item quantity="few">%d пропуштена позива</item>
+        <item quantity="other">%d пропуштених позива</item>
+    </plurals>
+    <string name="missed_call_from">Пропуштен позив од %s</string>
+    <string name="message">Порука</string>
 </resources>
