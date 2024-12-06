@@ -1092,7 +1092,7 @@ class CallActivity : SimpleActivity() {
         val callerNote = callerNotesHelper.getCallerNotes(number)
         ChangeTextDialog(
             activity = this@CallActivity,
-            title = getString(R.string.add_notes) + " ($number)",
+            title = number.normalizeString(),
             currentText = callerNote?.note,
             maxLength = CALLER_NOTES_MAX_LENGTH,
             showNeutralButton = true,

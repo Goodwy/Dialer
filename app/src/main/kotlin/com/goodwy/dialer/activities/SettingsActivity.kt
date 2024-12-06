@@ -126,7 +126,6 @@ class SettingsActivity : SimpleActivity() {
         if (isRuStoreInstalled()) {
             //RuStore
             ruStoreHelper = RuStoreHelper()
-
             ruStoreHelper!!.checkPurchasesAvailability(this@SettingsActivity)
 
             lifecycleScope.launch {
@@ -1562,7 +1561,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 600 //TODO changelog
+        val id = 601 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1579,7 +1578,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_600)) //TODO changelog
+            add(Release(id, R.string.release_601)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }

@@ -1,8 +1,6 @@
 package com.goodwy.dialer.extensions
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.telephony.TelephonyManager
 import android.text.BidiFormatter
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
@@ -28,3 +26,6 @@ fun getCountryByNumber(number: String): String {
 fun formatterUnicodeWrap(text: String): String {
     return BidiFormatter.getInstance().unicodeWrap(text)
 }
+
+// remove the pluses, spaces and hyphens.
+fun String.numberForNotes() = replace("\\s".toRegex(), "").replace("\\+".toRegex(), "").replace("-".toRegex(), "")

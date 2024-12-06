@@ -3,7 +3,7 @@
     <string name="app_name_g">Right Dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
-    <string name="release_600">
+    <string name="release_601">
         Changed theme logic\n
         Added ‘App icon color’ option\n
         Add dynamic shortcuts for starred contacts\n

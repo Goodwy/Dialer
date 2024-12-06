@@ -15,6 +15,7 @@ import com.goodwy.dialer.databinding.FragmentRecentsBinding
 import com.goodwy.dialer.extensions.callContactWithSim
 import com.goodwy.dialer.extensions.callerNotesHelper
 import com.goodwy.dialer.extensions.config
+import com.goodwy.dialer.extensions.numberForNotes
 import com.goodwy.dialer.helpers.RecentsHelper
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import com.goodwy.dialer.models.CallLogItem
@@ -204,7 +205,7 @@ class RecentsFragment(
 
             //Deleting notes if a call has already been deleted
             context.callerNotesHelper.removeCallerNotes(
-                recentCalls.map { recentCall -> recentCall.phoneNumber}
+                recentCalls.map { recentCall -> recentCall.phoneNumber.numberForNotes()}
             )
 
             callback?.invoke()
