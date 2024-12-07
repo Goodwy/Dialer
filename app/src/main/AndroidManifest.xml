@@ -66,6 +66,7 @@
         <package android:name="com.goodwy.filemanager" />
         <package android:name="com.goodwy.audiobooklite" />
         <package android:name="com.goodwy.keyboard" />
+        <package android:name="com.goodwy.calendar" />
 
         <!-- Required for loading contact accounts -->
         <intent>
