@@ -570,7 +570,7 @@ class RecentCallsAdapter(
                 var nameToShow = if (name == call.phoneNumber && formatPhoneNumbers) {
                     SpannableString(name.formatPhoneNumber())
                 } else {
-                    SpannableString(name)
+                    SpannableString(formatterUnicodeWrap(name))
                 }
 
                 if (call.groupedCalls != null) {
@@ -582,9 +582,15 @@ class RecentCallsAdapter(
                 }
 
                 itemRecentsName.apply {
-                    text = formatterUnicodeWrap(nameToShow.toString())
+                    text = nameToShow
                     setTextColor(if (call.type == Calls.MISSED_TYPE) missedCallColor else textColor)
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize)
+                }
+
+                var numberToShow =
+                    if (formatPhoneNumbers) SpannableString(call.phoneNumber.formatPhoneNumber()) else SpannableString(call.phoneNumber)
+                if (textToHighlight.isNotEmpty() && numberToShow.contains(textToHighlight, true)) {
+                    numberToShow = SpannableString(numberToShow.toString().highlightTextPart(textToHighlight, properPrimaryColor))
                 }
 
                 itemRecentsNumber.apply {
@@ -598,7 +604,7 @@ class RecentCallsAdapter(
                             if (formatPhoneNumbers) call.phoneNumber.formatPhoneNumber() else call.phoneNumber
                         }
                     }
-                    text = formatterUnicodeWrap(recentsNumber)
+                    text = if (name != call.phoneNumber && textToHighlight.isNotEmpty()) numberToShow else formatterUnicodeWrap(recentsNumber)
                 }
 
                 itemRecentsDateTime.apply {
@@ -713,7 +719,7 @@ class RecentCallsAdapter(
                 var nameToShow = if (name == call.phoneNumber && formatPhoneNumbers) {
                     SpannableString(name.formatPhoneNumber())
                 } else {
-                    SpannableString(name)
+                    SpannableString(formatterUnicodeWrap(name))
                 }
 
                 if (call.groupedCalls != null) {
@@ -725,9 +731,15 @@ class RecentCallsAdapter(
                 }
 
                 itemRecentsName.apply {
-                    text = formatterUnicodeWrap(nameToShow.toString())
+                    text = nameToShow
                     setTextColor(if (call.type == Calls.MISSED_TYPE) missedCallColor else textColor)
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize)
+                }
+
+                var numberToShow =
+                    if (formatPhoneNumbers) SpannableString(call.phoneNumber.formatPhoneNumber()) else SpannableString(call.phoneNumber)
+                if (textToHighlight.isNotEmpty() && numberToShow.contains(textToHighlight, true)) {
+                    numberToShow = SpannableString(numberToShow.toString().highlightTextPart(textToHighlight, properPrimaryColor))
                 }
 
                 itemRecentsNumber.apply {
@@ -741,7 +753,7 @@ class RecentCallsAdapter(
                             if (formatPhoneNumbers) call.phoneNumber.formatPhoneNumber() else call.phoneNumber
                         }
                     }
-                    text = formatterUnicodeWrap(recentsNumber)
+                    text = if (name != call.phoneNumber && textToHighlight.isNotEmpty()) numberToShow else formatterUnicodeWrap(recentsNumber)
                 }
 
                 itemRecentsDateTime.apply {
