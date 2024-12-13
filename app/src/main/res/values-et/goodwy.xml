@@ -59,6 +59,7 @@
     <string name="group_all_calls">Rühmitage kõik kõned, kuvatakse ainult viimane kõne</string>
     <string name="call_button_style">Kellanupu stiil</string>
     <string name="call_notes">Kõne märkmed</string>
+    <string name="call_using_same_sim">Kasutage sama SIM-kaarti, millele tehti eelmine (viimane) kõne</string>
     <string name="answer_end_other_call">Praegusele kõnele vastamine ja selle lõpetamine</string>
     <string name="quick_answers">Kiired vastused</string>
     <string name="voicemail">Kõnepost</string>

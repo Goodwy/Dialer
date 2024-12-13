@@ -59,6 +59,7 @@
     <string name="group_all_calls">Ryhmittele kaikki puhelut, vain viimeinen puhelu näytetään</string>
     <string name="call_button_style">Kellopainikkeen tyyli</string>
     <string name="call_notes">Puhelun muistiinpanot</string>
+    <string name="call_using_same_sim">Käytä samaa SIM-korttia, johon edellinen (viimeinen) puhelu soitettiin</string>
     <string name="answer_end_other_call">Nykyiseen puheluun vastaaminen ja sen lopettaminen</string>
     <string name="quick_answers">Nopeat vastaukset</string>
     <string name="voicemail">Vastaaja</string>

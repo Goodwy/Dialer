@@ -59,6 +59,7 @@
     <string name="group_all_calls">Bütün zəngləri qruplaşdırın, yalnız son zəng göstəriləcək</string>
     <string name="call_button_style">Zəng düyməsi tərzi</string>
     <string name="call_notes">Zəng qeydləri</string>
+    <string name="call_using_same_sim">Əvvəlki (son) zənginin edildiyi eyni SİM kartdan istifadə edin</string>
     <string name="answer_end_other_call">Cari zəngə cavab verin və bitirin</string>
     <string name="quick_answers">Sürətli cavablar</string>
     <string name="voicemail">Səsli poçt</string>

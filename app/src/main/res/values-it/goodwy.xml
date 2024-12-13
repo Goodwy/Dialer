@@ -60,6 +60,7 @@
     <string name="group_all_calls">Raggruppa tutte le chiamate, verrà mostrata solo l\'ultima chiamata</string>
     <string name="call_button_style">Stile pulsante campanello</string>
     <string name="call_notes">Note di chiamata</string>
+    <string name="call_using_same_sim">Utilizzare la stessa scheda SIM su cui è stata effettuata l\'ultima chiamata precedente</string>
     <string name="answer_end_other_call">Rispondi e termina la chiamata in corso</string>
     <string name="quick_answers">Risposte rapide</string>
     <string name="voicemail">Segreteria telefonica</string>

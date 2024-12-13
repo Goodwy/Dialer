@@ -60,6 +60,7 @@
     <string name="group_all_calls">Grupirajte sve pozive, prikazat će se samo zadnji poziv</string>
     <string name="call_button_style">Stil gumba zvona</string>
     <string name="call_notes">Bilješke o pozivima</string>
+    <string name="call_using_same_sim">Koristite istu SIM karticu na koju je upućen prethodni (posljednji) poziv</string>
     <string name="answer_end_other_call">Odgovaranje i završetak trenutnog poziva</string>
     <string name="quick_answers">Brzi odgovori</string>
     <string name="voicemail">Govorna pošta</string>

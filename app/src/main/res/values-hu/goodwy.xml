@@ -59,6 +59,7 @@
     <string name="group_all_calls">Csoportosítsa az összes hívást, csak az utolsó hívás jelenik meg</string>
     <string name="call_button_style">Csengő gomb stílusa</string>
     <string name="call_notes">Hívásjegyzetek</string>
+    <string name="call_using_same_sim">Használja ugyanazt a SIM-kártyát, amelyre az előző (utolsó) hívás történt</string>
     <string name="answer_end_other_call">Az aktuális hívás fogadása és befejezése</string>
     <string name="quick_answers">Gyors válaszok</string>
     <string name="voicemail">Hangposta</string>

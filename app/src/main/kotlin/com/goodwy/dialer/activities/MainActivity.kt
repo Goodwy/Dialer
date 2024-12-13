@@ -475,8 +475,8 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun createContactShortcuts() {
-        if (isRPlus() && shortcutManager.isRequestPinShortcutSupported) {
-            ensureBackgroundThread {
+        ensureBackgroundThread {
+            if (isRPlus() && shortcutManager.isRequestPinShortcutSupported) {
                 val starred = cachedFavorites.filter { it.phoneNumbers.isNotEmpty() }.take(3)
                 if (storedContactShortcuts != starred) {
                     val allShortcuts = shortcutManager.dynamicShortcuts.filter { it.id != "launch_dialpad" }.map { it.id }

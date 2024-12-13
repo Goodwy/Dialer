@@ -63,6 +63,7 @@
     <string name="group_all_calls">تجميع جميع المكالمات ، سيتم عرض المكالمة الأخيرة فقط</string>
     <string name="call_button_style">نمط زر الجرس</string>
     <string name="call_notes">ملاحظات المكالمات</string>
+    <string name="call_using_same_sim">استخدم نفس بطاقة SIM التي تم إجراء المكالمة السابقة (الأخيرة) إليها</string>
     <string name="answer_end_other_call">الرد على المكالمة الحالية وإنهاؤها</string>
     <string name="quick_answers">إجابات سريعة</string>
     <string name="voicemail">البريد الصوتي</string>

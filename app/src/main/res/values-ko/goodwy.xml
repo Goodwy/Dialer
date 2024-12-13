@@ -58,6 +58,7 @@
     <string name="group_all_calls">모든 통화를 그룹화하면 마지막 통화만 표시됩니다.</string>
     <string name="call_button_style">벨 버튼 스타일</string>
     <string name="call_notes">통화 메모</string>
+    <string name="call_using_same_sim">이전(마지막) 전화를 건 것과 동일한 SIM 카드를 사용합니다.</string>
     <string name="answer_end_other_call">현재 전화 받기 및 종료</string>
     <string name="quick_answers">빠른 답변</string>
     <string name="voicemail">음성 메일</string>

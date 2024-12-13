@@ -18,6 +18,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.PowerManager
 import android.telephony.SubscriptionManager
+import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
@@ -29,15 +30,13 @@ import com.goodwy.dialer.R
 import com.goodwy.dialer.models.SIMAccount
 import com.goodwy.commons.helpers.isOreoPlus
 import com.goodwy.dialer.BuildConfig
-import com.goodwy.dialer.activities.CallActivity
 import com.goodwy.dialer.activities.SplashActivity
 import com.goodwy.dialer.databases.AppDatabase
 import com.goodwy.dialer.helpers.*
 import com.goodwy.dialer.interfaces.TimerDao
-import com.goodwy.dialer.models.CallContact
 import com.goodwy.dialer.models.Timer
 import com.goodwy.dialer.models.TimerState
-import com.goodwy.dialer.receivers.HideTimerReceiver
+import com.goodwy.dialer.receivers.TimerReceiver
 import me.leolin.shortcutbadger.ShortcutBadger
 import java.util.*
 
@@ -122,8 +121,6 @@ val Context.callerNotesHelper: CallerNotesHelper get() = CallerNotesHelper(this)
 
 fun Context.getOpenTimerTabIntent(timerId: Int): PendingIntent {
     val intent = getLaunchIntent() ?: Intent(this, SplashActivity::class.java)
-    //intent.putExtra(OPEN_TAB, TAB_TIMER)
-    //intent.putExtra(TIMER_ID, timerId)
     return PendingIntent.getActivity(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }
 
@@ -141,7 +138,7 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
     }
 
     val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-    val channelId = timer.channelId ?: "simple_timer_channel_${soundUri}_${System.currentTimeMillis()}"
+    val channelId = timer.channelId ?: "right_dialer_timer_channel_${soundUri}_${System.currentTimeMillis()}"
     timerHelper.insertOrUpdateTimer(timer.copy(channelId = channelId))
 
     if (isOreoPlus()) {
@@ -173,18 +170,33 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         }
     }
 
+    val restart = Intent(this, TimerReceiver::class.java).apply {
+//        action = TIMER_RESTART
+        putExtra(TIMER_ID, timer.id!!)
+    }
+    val cancelIntent = PendingIntent.getBroadcast(
+        this, timer.id!!, restart, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+    )
+    val collapsedView = RemoteViews(this.packageName, R.layout.timer_notification).apply {
+        setText(R.id.timer_title, getString(R.string.remind_me))
+        setText(R.id.timer_content, String.format(getString(R.string.call_back_person_g), timer.title))
+        setOnClickPendingIntent(R.id.timer_repeat, cancelIntent)
+    }
+
     val reminderActivityIntent = getOpenTimerTabIntent(timer.id!!)
     val builder = NotificationCompat.Builder(this)
-        .setContentTitle(getString(R.string.remind_me))
-        .setContentText(String.format(this.getString(R.string.call_back_person_g), timer.title))
+//        .setContentTitle(getString(R.string.remind_me))
+//        .setContentText(String.format(getString(R.string.call_back_person_g), timer.title))
+        .setCategory(Notification.CATEGORY_REMINDER)
+        .setCustomContentView(collapsedView)
         .setSmallIcon(R.drawable.ic_remind_call)
         .setContentIntent(pendingIntent)
         .setPriority(NotificationCompat.PRIORITY_MAX)
         .setDefaults(Notification.DEFAULT_LIGHTS)
-        .setCategory(Notification.CATEGORY_EVENT)
         .setAutoCancel(true)
         .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
         .setChannelId(channelId)
+        .setStyle(NotificationCompat.DecoratedCustomViewStyle())
         .addAction(
             com.goodwy.commons.R.drawable.ic_cross_vector,
             getString(com.goodwy.commons.R.string.dismiss),
@@ -222,7 +234,8 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
 }
 
 fun Context.getHideTimerPendingIntent(timerId: Int): PendingIntent {
-    val intent = Intent(this, HideTimerReceiver::class.java)
+    val intent = Intent(this, TimerReceiver::class.java)
+    intent.action = TIMER_HIDE
     intent.putExtra(TIMER_ID, timerId)
     return PendingIntent.getBroadcast(this, timerId, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 }

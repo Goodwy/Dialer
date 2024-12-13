@@ -75,6 +75,7 @@ class CallActivity : SimpleActivity() {
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         showTransparentTop = true
+        updateNavigationBarColor = false
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
@@ -90,14 +91,22 @@ class CallActivity : SimpleActivity() {
         audioManager.mode = AudioManager.MODE_IN_CALL
         addLockScreenFlags()
         CallManager.addListener(callCallback)
-        updateCallContactInfo(CallManager.getPrimaryCall())
         updateTextColors(binding.callHolder)
 
         if (config.backgroundCallScreen == TRANSPARENT_BACKGROUND) checkPermission()
 
         val configBackgroundCallScreen = config.backgroundCallScreen
-        if (configBackgroundCallScreen == TRANSPARENT_BACKGROUND || configBackgroundCallScreen == BLUR_AVATAR || configBackgroundCallScreen == AVATAR || configBackgroundCallScreen == BLACK_BACKGROUND) {
-            binding.callHolder.setBackgroundColor(Color.BLACK)
+        if (configBackgroundCallScreen == TRANSPARENT_BACKGROUND || configBackgroundCallScreen == BLACK_BACKGROUND ||
+            configBackgroundCallScreen == BLUR_AVATAR || configBackgroundCallScreen == AVATAR) {
+            updateStatusbarColor(Color.BLACK)
+            updateNavigationBarColor(Color.BLACK)
+
+            if (configBackgroundCallScreen == BLACK_BACKGROUND) {
+                binding.callHolder.setBackgroundColor(Color.BLACK)
+            } else {
+                binding.callHolder.setBackgroundColor(resources.getColor(R.color.default_call_background))
+            }
+
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
                 if (configBackgroundCallScreen == TRANSPARENT_BACKGROUND && hasPermission(PERMISSION_READ_STORAGE)) {
                     val wallpaperManager = WallpaperManager.getInstance(this)
@@ -148,6 +157,7 @@ class CallActivity : SimpleActivity() {
             }
         } else {
             updateStatusbarColor(getProperBackgroundColor())
+            updateNavigationBarColor(getProperBackgroundColor())
 
             val properTextColor = getProperTextColor()
             binding.apply {
@@ -167,6 +177,7 @@ class CallActivity : SimpleActivity() {
                 }
             }
         }
+        updateCallContactInfo(CallManager.getPrimaryCall())
 
         binding.apply {
             arrayOf(
@@ -916,10 +927,11 @@ class CallActivity : SimpleActivity() {
 
     private fun addContact() {
         val number = callContact?.number?.ifEmpty { "" } ?: ""
+        val formatNumber = if (config.formatPhoneNumbers) number.formatPhoneNumber() else number
         Intent().apply {
             action = Intent.ACTION_INSERT_OR_EDIT
             type = "vnd.android.cursor.item/contact"
-            putExtra(KEY_PHONE, number)
+            putExtra(KEY_PHONE, formatNumber)
             launchActivityIntent(this)
         }
     }
@@ -1297,41 +1309,40 @@ class CallActivity : SimpleActivity() {
             }
             callContact = contact
 
+            val configBackgroundCallScreen = config.backgroundCallScreen
+            val isConference = call.isConference()
+
+            var drawable: Drawable? = null
+            if (configBackgroundCallScreen == BLUR_AVATAR || configBackgroundCallScreen == AVATAR) {
+                val avatar = if (!isConference) callContactAvatarHelper.getCallContactAvatar(contact.photoUri, false) else null
+                if (avatar != null) {
+                    val bg = when (configBackgroundCallScreen) {
+                        BLUR_AVATAR -> BlurFactory.fileToBlurBitmap(avatar, this, 0.6f, 5f)
+                        AVATAR -> avatar
+                        else -> null
+                    }
+                    val windowHeight = binding.callHolder.height //window.decorView.height
+                    val windowWidth = binding.callHolder.width //window.decorView.width
+                    if (bg != null && windowWidth != 0) {
+                        val aspectRatio = windowHeight / windowWidth
+                        val aspectRatioNotZero = if (aspectRatio == 0) 1 else aspectRatio
+                        drawable = BitmapDrawable(resources, bg.cropCenter(bg.width/aspectRatioNotZero, bg.height))
+                    }
+                } else {
+//                    val bg = BlurFactory.fileToBlurBitmap(resources.getDrawable(R.drawable.button_gray_bg, theme), this, 0.6f, 25f)
+//                    drawable = BitmapDrawable(resources, bg)
+                    binding.callHolder.setBackgroundColor(resources.getColor(R.color.default_call_background))
+                }
+            }
+
             runOnUiThread {
-                val configBackgroundCallScreen = config.backgroundCallScreen
-                val isConference = call.isConference()
-                if (configBackgroundCallScreen == BLUR_AVATAR || configBackgroundCallScreen == AVATAR) {
-                    val avatar = if (!isConference) callContactAvatarHelper.getCallContactAvatar(contact.photoUri, false) else null
-                    if (avatar != null) {
-                        val bg = when (configBackgroundCallScreen) {
-                            BLUR_AVATAR -> BlurFactory.fileToBlurBitmap(avatar, this, 0.6f, 5f)
-                            AVATAR -> avatar
-                            else -> null
-                        }
-                        val windowHeight = window.decorView.height
-                        val windowWidth = window.decorView.width
-                        if (bg != null && windowWidth != 0) {
-                            val aspectRatio = windowHeight / windowWidth
-                            val aspectRatioNotZero = if (aspectRatio == 0) 1 else aspectRatio
-                            val drawable: Drawable = BitmapDrawable(resources, bg.cropCenter(bg.width/aspectRatioNotZero, bg.height))
-                            binding.callHolder.background = drawable
-                            binding.callHolder.background.alpha = 60
-                            if (isQPlus()) {
-                                binding.callHolder.background.colorFilter = BlendModeColorFilter(Color.DKGRAY, BlendMode.SOFT_LIGHT)
-                            } else {
-                                binding.callHolder.background.setColorFilter(Color.DKGRAY, PorterDuff.Mode.DARKEN)
-                            }
-                        }
+                if (drawable != null) {
+                    binding.callHolder.background = drawable
+                    binding.callHolder.background.alpha = 60
+                    if (isQPlus()) {
+                        binding.callHolder.background.colorFilter = BlendModeColorFilter(Color.DKGRAY, BlendMode.SOFT_LIGHT)
                     } else {
-                        val bg = BlurFactory.fileToBlurBitmap(resources.getDrawable(R.drawable.button_gray_bg, theme), this, 0.6f, 25f)
-                        val drawable: Drawable = BitmapDrawable(resources, bg)
-                        binding.callHolder.background = drawable
-                        binding.callHolder.background.alpha = 60
-                        if (isQPlus()) {
-                            binding.callHolder.background.colorFilter = BlendModeColorFilter(Color.DKGRAY, BlendMode.SOFT_LIGHT)
-                        } else {
-                            binding.callHolder.background.setColorFilter(Color.DKGRAY, PorterDuff.Mode.DARKEN)
-                        }
+                        binding.callHolder.background.setColorFilter(Color.DKGRAY, PorterDuff.Mode.DARKEN)
                     }
                 }
 

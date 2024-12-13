@@ -12,6 +12,7 @@
     <string name="call_start_end_vibration">Вібрацыя пры пачатку і завяршэнні выкліку</string>
     <string name="call_notes">Ноты для званкоў</string>
 
+    <string name="call_using_same_sim">Выкарыстоўваць тую ж SIM-карту, на якую быў зроблены папярэдні (апошні) званок</string>
     <string name="show_contact_thumbnails_g">Паказаць мініяцюры кантактаў</string>
     <string name="hide_dialpad_letters_g">Схаваць літары панэлі набору</string>
     <string name="show_caller_description_g">Паказаць дадатковую інфармацыю аб абаненце</string>

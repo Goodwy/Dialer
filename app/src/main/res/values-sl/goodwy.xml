@@ -61,6 +61,7 @@
     <string name="group_all_calls">Združite vse klice, prikazan bo samo zadnji klic</string>
     <string name="call_button_style">Slog zvonca</string>
     <string name="call_notes">Opombe o klicu</string>
+    <string name="call_using_same_sim">Uporabite isto kartico SIM, na katero je bil opravljen prejšnji (zadnji) klic</string>
     <string name="answer_end_other_call">Sprejemanje in končanje trenutnega klica</string>
     <string name="quick_answers">Hitri odgovori</string>
     <string name="voicemail">Glasovna pošta</string>

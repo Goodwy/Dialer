@@ -59,6 +59,7 @@
     <string name="group_all_calls">تمام کالوں کو گروپ کریں، صرف آخری کال دکھائی جائے گی۔</string>
     <string name="call_button_style">کال بٹن کا انداز</string>
     <string name="call_notes">کال نوٹ</string>
+    <string name="call_using_same_sim">اوہی سم کارڈ ورتو جس تے پچھلی (آخری) کال کیتی گئی سی</string>
     <string name="answer_end_other_call">موجودہ کال کا جواب دیں اور ختم کریں۔</string>
     <string name="quick_answers">فوری جوابات</string>
     <string name="voicemail">وائس میل</string>

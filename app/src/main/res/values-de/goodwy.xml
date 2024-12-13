@@ -59,6 +59,7 @@
     <string name="group_all_calls">Gruppieren Sie alle Anrufe, es wird nur der letzte Anruf angezeigt</string>
     <string name="call_button_style">Klingelknopf-Stil</string>
     <string name="call_notes">Notizen für Anrufe</string>
+    <string name="call_using_same_sim">Verwenden Sie dieselbe SIM-Karte, auf die der vorherige (letzte) Anruf getätigt wurde</string>
     <string name="answer_end_other_call">Annehmen und Beenden des aktuellen Anrufs</string>
     <string name="quick_answers">Schnelle Antworten</string>
     <string name="voicemail">Voicemail</string>

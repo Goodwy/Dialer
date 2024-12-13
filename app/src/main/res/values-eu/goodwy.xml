@@ -59,6 +59,7 @@
     <string name="group_all_calls">Talde dei guztiak, azken deia bakarrik erakutsiko da</string>
     <string name="call_button_style">Deitzeko botoiaren estiloa</string>
     <string name="call_notes">Dei-oharrak</string>
+    <string name="call_using_same_sim">Erabili aurreko (azken) deia egin zitzaion SIM txartel bera</string>
     <string name="answer_end_other_call">Erantzun eta amaitu uneko deia</string>
     <string name="quick_answers">Erantzun azkarrak</string>
     <string name="voicemail">Ahots-posta</string>

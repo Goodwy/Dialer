@@ -13,6 +13,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Telephony.Sms.Intents.SECRET_CODE_ACTION
+import android.telephony.PhoneNumberFormattingTextWatcher
 import android.telephony.TelephonyManager
 import android.util.TypedValue
 import android.view.*
@@ -131,6 +132,7 @@ class DialpadActivity : SimpleActivity() {
         toneGeneratorHelper = ToneGeneratorHelper(this, DIALPAD_TONE_LENGTH_MS)
 
         binding.dialpadInput.apply {
+            if (config.formatPhoneNumbers) addTextChangedListener(PhoneNumberFormattingTextWatcher(Locale.getDefault().country))
             onTextChangeListener { dialpadValueChanged(it) }
             requestFocus()
             AutofitHelper.create(this@apply)
@@ -847,10 +849,12 @@ class DialpadActivity : SimpleActivity() {
     private fun refreshMenuItems() {
         binding.dialpadToolbar.menu.apply {
             findItem(R.id.copy_number).isVisible = binding.dialpadInput.value.isNotEmpty()
+            findItem(R.id.web_search).isVisible = binding.dialpadInput.value.isNotEmpty()
             findItem(R.id.cab_call_anonymously).isVisible = binding.dialpadInput.value.isNotEmpty()
             findItem(R.id.clear_call_history).isVisible = config.showRecentCallsOnDialpad
             findItem(R.id.show_blocked_numbers).isVisible = config.showRecentCallsOnDialpad
-            findItem(R.id.show_blocked_numbers).title = if (config.showBlockedNumbers) getString(R.string.hide_blocked_numbers) else getString(R.string.show_blocked_numbers)
+            findItem(R.id.show_blocked_numbers).title =
+                if (config.showBlockedNumbers) getString(R.string.hide_blocked_numbers) else getString(R.string.show_blocked_numbers)
         }
     }
 
@@ -861,11 +865,12 @@ class DialpadActivity : SimpleActivity() {
                     val text = getTextFromClipboard()
                     binding.dialpadInput.setText(text)
                     if (text != null) {
-                        binding.dialpadInput.setSelection(text.length)
+                        binding.dialpadInput.setSelection(text.lastIndex)
                     }
                     binding.dialpadInput.requestFocusFromTouch()
                 }
                 R.id.copy_number -> copyNumber()
+                R.id.web_search -> webSearch()
                 R.id.cab_call_anonymously -> initCallAnonymous()
                 R.id.show_blocked_numbers -> showBlockedNumbers()
                 R.id.clear_call_history -> clearCallHistory()
@@ -898,6 +903,11 @@ class DialpadActivity : SimpleActivity() {
     private fun copyNumber() {
         val clip = binding.dialpadInput.value
         copyToClipboard(clip)
+    }
+
+    private fun webSearch() {
+        val text = binding.dialpadInput.value
+        launchInternetSearch(text)
     }
 
     private fun checkDialIntent(): Boolean {

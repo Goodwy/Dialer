@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/timer_holder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/timer_title"
+        style="@style/TextAppearance.Compat.Notification.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/smaller_margin"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/timer_repeat"
+        android:textSize="@dimen/bigger_text_size"
+        android:textStyle="bold"
+        tools:text="Caller name"/>
+
+    <TextView
+        android:id="@+id/timer_content"
+        style="@style/TextAppearance.Compat.Notification.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/timer_title"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/timer_repeat"
+        android:layout_marginHorizontal="@dimen/smaller_margin"
+        android:alpha="0.8"
+        tools:text="123 456 789"/>
+
+    <ImageView
+        android:id="@+id/timer_repeat"
+        android:layout_width="@dimen/list_avatar_size"
+        android:layout_height="@dimen/list_avatar_size"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/normal_margin"
+        android:contentDescription="@string/snooze"
+        android:padding="@dimen/smaller_margin"
+        android:src="@drawable/ic_restart"/>
+</RelativeLayout>

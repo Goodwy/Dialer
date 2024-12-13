@@ -59,6 +59,7 @@
     <string name="group_all_calls">Grupigu ĉiujn vokojn, nur la lasta voko estos montrata</string>
     <string name="call_button_style">Voka butono stilo</string>
     <string name="call_notes">Vokaj notoj</string>
+    <string name="call_using_same_sim">Uzu la saman SIM-karton al kiu estis farita la antaŭa (lasta) voko</string>
     <string name="answer_end_other_call">Respondu kaj ĉesigu la nunan vokon</string>
     <string name="quick_answers">Rapidaj respondoj</string>
     <string name="voicemail">Voĉpoŝto</string>

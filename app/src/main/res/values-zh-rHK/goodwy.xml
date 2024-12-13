@@ -59,6 +59,7 @@
     <string name="group_all_calls">對所有呼叫進行分組，僅顯示最後一個呼叫</string>
     <string name="call_button_style">鈴鐺按鈕樣式</string>
     <string name="call_notes">通話記錄</string>
+    <string name="call_using_same_sim">使用上一次（最後一次）通話時使用的同一張 SIM 卡</string>
     <string name="answer_end_other_call">接聽並結束當前通話</string>
     <string name="quick_answers">快速解答</string>
     <string name="voicemail">語音信箱</string>

@@ -526,13 +526,18 @@ class CallHistoryActivity : SimpleActivity() {
         editMenu.icon = editIcon
         editMenu.setTitle(R.string.add_contact)
         editMenu.setOnMenuItemClickListener {
-            Intent().apply {
-                action = Intent.ACTION_INSERT_OR_EDIT
-                type = "vnd.android.cursor.item/contact"
-                putExtra(KEY_PHONE, getCurrentPhoneNumber)
-                launchActivityIntent(this)
-            }
+            addContact()
             true
+        }
+    }
+
+    private fun addContact() {
+        val phoneNumber = if (config.formatPhoneNumbers) getCurrentPhoneNumber.formatPhoneNumber() else getCurrentPhoneNumber
+        Intent().apply {
+            action = Intent.ACTION_INSERT_OR_EDIT
+            type = "vnd.android.cursor.item/contact"
+            putExtra(KEY_PHONE, phoneNumber)
+            launchActivityIntent(this)
         }
     }
 
@@ -1120,12 +1125,7 @@ class CallHistoryActivity : SimpleActivity() {
                     binding.topDetails.callHistoryImage, binding.topDetails.callHistoryName
                 ).forEach {
                     it.setOnClickListener {
-                        Intent().apply {
-                            action = Intent.ACTION_INSERT_OR_EDIT
-                            type = "vnd.android.cursor.item/contact"
-                            putExtra(KEY_PHONE, getCurrentPhoneNumber)
-                            launchActivityIntent(this)
-                        }
+                        addContact()
                     }
                 }
                 binding.topDetails.callHistoryImage.apply {

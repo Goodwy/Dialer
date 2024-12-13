@@ -18,6 +18,7 @@
     <string name="call_button_style">Стиль кнопки дзвінка</string>
     <string name="call_notes">Нотатки про дзвінки</string>
 
+    <string name="call_using_same_sim">Використовувати ту саму SIM-картку, на яку було зроблено попередній (останній) дзвінок</string>
     <string name="answer_end_other_call">Відповідь на поточний дзвінок і його завершення</string>
     <string name="quick_answers">Швидкі відповіді</string>
     <string name="voicemail">Голосова пошта</string>

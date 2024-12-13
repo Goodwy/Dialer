@@ -58,6 +58,7 @@
     <string name="group_all_calls">すべての通話をグループ化し、最後の通話のみが表示されます</string>
     <string name="call_button_style">ベルボタンスタイル</string>
     <string name="call_notes">通話メモ</string>
+    <string name="call_using_same_sim">前回(最後)の通話と同じSIMカードを使用してください</string>
     <string name="answer_end_other_call">現在の通話に応答して終了する</string>
     <string name="quick_answers">クイックアンサー</string>
     <string name="voicemail">ボイスメール</string>

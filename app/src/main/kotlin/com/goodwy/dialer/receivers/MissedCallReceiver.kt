@@ -19,7 +19,9 @@ import com.goodwy.commons.helpers.ensureBackgroundThread
 import com.goodwy.commons.helpers.isOreoPlus
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.NotificationActivity
+import com.goodwy.dialer.activities.SplashActivity
 import com.goodwy.dialer.extensions.getNotificationBitmap
+import com.goodwy.dialer.extensions.getOpenTimerTabIntent
 import com.goodwy.dialer.extensions.updateUnreadCountBadge
 import com.goodwy.dialer.helpers.*
 
@@ -64,20 +66,21 @@ class MissedCallReceiver : BroadcastReceiver() {
     }
 
     private fun launchIntent(context: Context): PendingIntent {
+        val intent = context.getLaunchIntent() ?: Intent(context, SplashActivity::class.java)
         return PendingIntent.getActivity(
-            context, 0, context.getLaunchIntent(), PendingIntent.FLAG_IMMUTABLE
+            context, 0, intent, PendingIntent.FLAG_IMMUTABLE
         )
     }
 
-    private fun getNotificationGroup(context: Context): Notification {
-        return NotificationCompat.Builder(context, "right_dialer_missed_call")
-            .setSmallIcon(R.drawable.ic_call_missed_vector)
-            .setAutoCancel(true)
-            .setGroupSummary(true)
-            .setGroup(MISSED_CALLS)
-            .setContentIntent(launchIntent(context))
-            .build()
-    }
+//    private fun getNotificationGroup(context: Context): Notification {
+//        return NotificationCompat.Builder(context, "right_dialer_missed_call")
+//            .setSmallIcon(R.drawable.ic_call_missed_vector)
+//            .setAutoCancel(true)
+//            .setGroupSummary(true)
+//            .setGroup(MISSED_CALLS)
+//            .setContentIntent(launchIntent(context))
+//            .build()
+//    }
 
     private fun buildNotification(context: Context, notificationId: Int, phoneNumber: String, count: Int): Notification {
         val helper = SimpleContactsHelper(context)

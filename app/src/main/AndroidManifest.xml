@@ -285,7 +285,7 @@
                 android:value="Used to notify the user that the call back reminder timer has started" />
         </service>
 
-        <receiver android:name=".receivers.HideTimerReceiver" />
+        <receiver android:name=".receivers.TimerReceiver" />
 
         <receiver
             android:name=".receivers.CallActionReceiver"

@@ -3,6 +3,12 @@
     <string name="app_name_g">Right Dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
+    <string name="release_604">
+        Accelerated the call screen\n
+        Added ‘Search the web’ menu item\n
+        Added the ability to restart a reminder to call you back\n
+        Bug fixes
+    </string>
     <string name="release_603">
         Changed theme logic\n
         Added ‘App icon color’ option\n

@@ -59,6 +59,7 @@
     <string name="group_all_calls">همه تماس ها را گروه بندی کنید، فقط آخرین تماس نشان داده می شود</string>
     <string name="call_button_style">سبک دکمه زنگ</string>
     <string name="call_notes">یادداشت های تماس</string>
+    <string name="call_using_same_sim">از همان سیم کارتی استفاده کنید که تماس قبلی (آخر) با آن برقرار شده است</string>
     <string name="answer_end_other_call">پاسخ دادن و پایان دادن به تماس فعلی</string>
     <string name="quick_answers">پاسخ های سریع</string>
     <string name="voicemail">صوتی</string>

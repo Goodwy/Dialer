@@ -59,6 +59,7 @@
     <string name="group_all_calls">Kumpulkan semua panggilan, hanya panggilan terakhir yang akan ditunjukkan</string>
     <string name="call_button_style">Gaya Butang Loceng</string>
     <string name="call_notes">Nota panggilan</string>
+    <string name="call_using_same_sim">Gunakan kad SIM yang sama dengan panggilan sebelumnya (terakhir) dibuat</string>
     <string name="answer_end_other_call">Jawab dan tamatkan panggilan semasa</string>
     <string name="quick_answers">Jawapan pantas</string>
     <string name="voicemail">Mel suara</string>

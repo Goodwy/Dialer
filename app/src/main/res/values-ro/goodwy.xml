@@ -61,6 +61,7 @@
     <string name="group_all_calls">Grupați toate apelurile, va fi afișat doar ultimul apel</string>
     <string name="call_button_style">Stil buton clopot</string>
     <string name="call_notes">Note de apel</string>
+    <string name="call_using_same_sim">Utilizați aceeași cartelă SIM către care a fost efectuat apelul anterior (ultimul)</string>
     <string name="answer_end_other_call">Răspundeți și încheiați apelul curent</string>
     <string name="quick_answers">Răspunsuri rapide</string>
     <string name="voicemail">Mesagerie vocală</string>

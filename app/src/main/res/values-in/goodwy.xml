@@ -58,6 +58,7 @@
     <string name="group_all_calls">Kelompokkan semua panggilan, hanya panggilan terakhir yang akan ditampilkan</string>
     <string name="call_button_style">Gaya tombol panggil</string>
     <string name="call_notes">Catatan panggilan</string>
+    <string name="call_using_same_sim">Gunakan kartu SIM yang sama dengan yang digunakan pada panggilan sebelumnya (terakhir).</string>
     <string name="answer_end_other_call">Jawab dan akhiri panggilan saat ini</string>
     <string name="quick_answers">Jawaban cepat</string>
     <string name="voicemail">Pesan suara</string>

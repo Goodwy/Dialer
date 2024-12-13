@@ -60,6 +60,7 @@
     <string name="group_all_calls">Agrupa totes les trucades, només es mostrarà l\'última trucada</string>
     <string name="call_button_style">Estil de campana</string>
     <string name="call_notes">Notes de la trucada</string>
+    <string name="call_using_same_sim">Utilitzeu la mateixa targeta SIM a la qual es va fer la trucada anterior (última)</string>
     <string name="answer_end_other_call">Respondre i finalitzar la trucada actual</string>
     <string name="quick_answers">Respostes ràpides</string>
     <string name="voicemail">Bústia de veu</string>

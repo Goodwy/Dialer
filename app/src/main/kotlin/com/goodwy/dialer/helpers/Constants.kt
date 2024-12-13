@@ -105,6 +105,8 @@ const val TIMER_RUNNING_NOTIF_ID = 10000
 const val INVALID_TIMER_ID = -1
 const val TIMER_MAX_REMINDER_SECS = "timer_max_reminder_secs"
 const val DEFAULT_MAX_TIMER_REMINDER_SECS = 60
+const val TIMER_RESTART = "timer_restart"
+const val TIMER_HIDE = "timer_hide"
 
 // Flashlight
 const val MIN_BRIGHTNESS_LEVEL = 1

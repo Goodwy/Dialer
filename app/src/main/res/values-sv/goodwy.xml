@@ -59,6 +59,7 @@
     <string name="group_all_calls">Gruppera alla samtal, endast det senaste samtalet kommer att visas</string>
     <string name="call_button_style">Klockknapp stil</string>
     <string name="call_notes">Anteckningar om samtal</string>
+    <string name="call_using_same_sim">Använd samma SIM-kort som det föregående (sista) samtalet gjordes till</string>
     <string name="answer_end_other_call">Besvara och avsluta det aktuella samtalet</string>
     <string name="quick_answers">Snabba svar</string>
     <string name="voicemail">Röstbrevlåda</string>

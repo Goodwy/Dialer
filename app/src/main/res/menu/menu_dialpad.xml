@@ -10,6 +10,10 @@
         android:title="@string/paste_g"
         app:showAsAction="never" />
     <item
+        android:id="@+id/web_search"
+        android:title="@string/search_the_web"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/cab_call_anonymously"
         android:icon="@drawable/ic_phone_vector"
         android:title="@string/call_anonymously" />

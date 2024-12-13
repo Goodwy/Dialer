@@ -21,6 +21,7 @@ import com.goodwy.dialer.services.startTimerService
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.util.concurrent.TimeUnit
 
 class App : RightApp(), LifecycleObserver {
 
@@ -64,6 +65,16 @@ class App : RightApp(), LifecycleObserver {
     fun onMessageEvent(event: TimerEvent.Reset) {
         updateTimerState(event.timerId, TimerState.Idle)
         countDownTimers[event.timerId]?.cancel()
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: TimerEvent.Restart) {
+        timerHelper.getTimer(event.timerId) { timer ->
+            val duration = TimeUnit.SECONDS.toMillis(timer.seconds.toLong())
+            updateTimerState(event.timerId, TimerState.Running(duration, duration))
+        }
+        countDownTimers[event.timerId]?.cancel()
+        countDownTimers[event.timerId]?.start()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

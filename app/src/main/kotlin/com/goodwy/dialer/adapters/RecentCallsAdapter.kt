@@ -94,6 +94,7 @@ class RecentCallsAdapter(
             findItem(R.id.cab_add_number).isVisible = isOneItemSelected
             findItem(R.id.cab_show_call_details).isVisible = isOneItemSelected
             findItem(R.id.cab_copy_number).isVisible = isOneItemSelected
+            findItem(R.id.web_search).isVisible = isOneItemSelected
             findItem(R.id.cab_view_details)?.isVisible = isOneItemSelected && findContactByCall(selectedItems.first()) != null
         }
     }
@@ -127,6 +128,7 @@ class RecentCallsAdapter(
             R.id.cab_send_sms -> sendSMS()
             R.id.cab_show_call_details -> showCallDetails()
             R.id.cab_copy_number -> copyNumber()
+            R.id.web_search -> webSearch()
             R.id.cab_remove -> askConfirmRemove()
             R.id.cab_select_all -> selectAll()
             R.id.cab_view_details -> {
@@ -319,10 +321,11 @@ class RecentCallsAdapter(
 
     private fun addNumberToContact() {
         val phoneNumber = getSelectedPhoneNumber() ?: return
+        val formatPhoneNumber = if (activity.config.formatPhoneNumbers) phoneNumber.formatPhoneNumber() else phoneNumber
         Intent().apply {
             action = Intent.ACTION_INSERT_OR_EDIT
             type = "vnd.android.cursor.item/contact"
-            putExtra(KEY_PHONE, phoneNumber)
+            putExtra(KEY_PHONE, formatPhoneNumber)
             activity.launchActivityIntent(this)
         }
     }
@@ -346,6 +349,12 @@ class RecentCallsAdapter(
         finishActMode()
     }
 
+    private fun webSearch() {
+        val recentCall = getSelectedItems().firstOrNull() ?: return
+        activity.launchInternetSearch(recentCall.phoneNumber)
+        finishActMode()
+    }
+
     private fun askConfirmRemove() {
         ConfirmationAdvancedDialog(activity, activity.getString(R.string.remove_confirmation), cancelOnTouchOutside = false) {
             if (it) {
@@ -361,7 +370,7 @@ class RecentCallsAdapter(
             return
         }
 
-        val callsToRemove = getSelectedItems() as ArrayList<RecentCall>
+        val callsToRemove = getSelectedItems()
         val idsToRemove = ArrayList<Int>()
         callsToRemove.forEach {
             idsToRemove.add(it.id)
@@ -429,6 +438,7 @@ class RecentCallsAdapter(
                 findItem(R.id.cab_view_details).isVisible = contact != null && !call.isUnknownNumber
                 findItem(R.id.cab_add_number).isVisible = !call.isUnknownNumber
                 findItem(R.id.cab_copy_number).isVisible = !call.isUnknownNumber
+                findItem(R.id.web_search).isVisible = !call.isUnknownNumber
                 findItem(R.id.cab_show_call_details).isVisible = !call.isUnknownNumber
                 findItem(R.id.cab_block_number).isVisible = isNougatPlus() && !call.isUnknownNumber && !activity.isNumberBlocked(call.phoneNumber, getBlockedNumbers)
                 findItem(R.id.cab_unblock_number).isVisible = isNougatPlus() && !call.isUnknownNumber && activity.isNumberBlocked(call.phoneNumber, getBlockedNumbers)
@@ -533,6 +543,12 @@ class RecentCallsAdapter(
                         }
                     }
 
+                    R.id.web_search -> {
+                        executeItemMenuOperation(callId) {
+                            webSearch()
+                        }
+                    }
+
                     R.id.cab_remove_default_sim -> {
                         executeItemMenuOperation(callId) {
                             removeDefaultSIM()
@@ -552,6 +568,7 @@ class RecentCallsAdapter(
     }
 
     private inner class RecentCallViewHolder(val binding: ItemRecentCallBinding) : ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(call: RecentCall) = bindView(
             item = call,
             allowSingleClick = (refreshItemsListener != null || isDialpad) && !call.isUnknownNumber,
@@ -699,6 +716,7 @@ class RecentCallsAdapter(
     }
 
     private inner class RecentCallSwipeViewHolder(val binding: ItemRecentCallSwipeBinding) : ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
         fun bind(call: RecentCall) = bindView(
             item = call,
             allowSingleClick = (refreshItemsListener != null || isDialpad) && !call.isUnknownNumber,

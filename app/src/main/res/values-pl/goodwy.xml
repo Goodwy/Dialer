@@ -61,6 +61,7 @@
     <string name="group_all_calls">Grupuj wszystkie połączenia, zostanie wyświetlone tylko ostatnie połączenie</string>
     <string name="call_button_style">Styl przycisku dzwonka</string>
     <string name="call_notes">Notatki z rozmów</string>
+    <string name="call_using_same_sim">Użyj tej samej karty SIM, na którą wykonano poprzednie (ostatnie) połączenie</string>
     <string name="answer_end_other_call">Odbieranie i kończenie bieżącego połączenia</string>
     <string name="quick_answers">Szybkie odpowiedzi</string>
     <string name="voicemail">Poczta głosowa</string>

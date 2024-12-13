@@ -59,6 +59,7 @@
     <string name="group_all_calls">Groepeer alle oproepen, alleen de laatste oproep wordt weergegeven</string>
     <string name="call_button_style">De Stijl van de belknop</string>
     <string name="call_notes">Notities bij het gesprek</string>
+    <string name="call_using_same_sim">Gebruik dezelfde simkaart als waarop de vorige (laatste) oproep is gedaan</string>
     <string name="answer_end_other_call">Beantwoord en beëindig het huidige gesprek</string>
     <string name="quick_answers">Snelle antwoorden</string>
     <string name="voicemail">Voicemail</string>

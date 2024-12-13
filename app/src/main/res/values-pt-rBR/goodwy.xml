@@ -59,6 +59,7 @@
     <string name="group_all_calls">Agrupar todas as chamadas, apenas a última chamada será mostrada</string>
     <string name="call_button_style">Estilo de botão de anel</string>
     <string name="call_notes">Notas de chamada</string>
+    <string name="call_using_same_sim">Use o mesmo cartão SIM para o qual a chamada anterior (última) foi feita</string>
     <string name="answer_end_other_call">Atender e encerrar a chamada atual</string>
     <string name="quick_answers">Respostas rápidas</string>
     <string name="voicemail">Correio de voz</string>
