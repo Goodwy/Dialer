@@ -1011,7 +1011,8 @@ class DialpadActivity : SimpleActivity() {
     }
 
     @TargetApi(Build.VERSION_CODES.O)
-    private fun dialpadValueChanged(text: String) {
+    private fun dialpadValueChanged(textFormat: String) {
+        val text = if (config.formatPhoneNumbers) textFormat.removeNumberFormatting() else textFormat
         val len = text.length
         val view = dialpadView()
         if (len == 0 && view.visibility == View.GONE) {

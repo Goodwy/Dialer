@@ -28,4 +28,13 @@ fun formatterUnicodeWrap(text: String): String {
 }
 
 // remove the pluses, spaces and hyphens.
-fun String.numberForNotes() = replace("\\s".toRegex(), "").replace("\\+".toRegex(), "").replace("-".toRegex(), "")
+fun String.numberForNotes() = replace("\\s".toRegex(), "")
+    .replace("\\+".toRegex(), "")
+    .replace("\\(".toRegex(), "")
+    .replace("\\)".toRegex(), "")
+    .replace("-".toRegex(), "")
+
+fun String.removeNumberFormatting() = replace("\\s".toRegex(), "")
+    .replace("\\(".toRegex(), "")
+    .replace("\\)".toRegex(), "")
+    .replace("-".toRegex(), "")
