@@ -22,7 +22,10 @@ object DialpadT9 {
      */
     private fun initLatinChars() {
         val lang = T9Language()
-        for (c in 'A'..'Z') {
+        val abc = 'A'..'Z'
+        val num = '0'..'9'
+        val abcNum = abc + num
+        for (c in abcNum) {
             val number = PhoneNumberUtils.convertKeypadLettersToDigits(c.toString()).toInt()
             if(number in 2..9) {
                 lang.letters[number - 2] += c.toString()
