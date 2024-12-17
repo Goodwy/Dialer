@@ -1561,7 +1561,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 606 //TODO changelog
+        val id = 607 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1578,7 +1578,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_606)) //TODO changelog
+            add(Release(id, R.string.release_607)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }

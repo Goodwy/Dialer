@@ -3,6 +3,9 @@
     <string name="app_name_g">Right Dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
+    <string name="release_607">
+        Fixed and sped up the call screen
+    </string>
     <string name="release_606">
         Bug fixes
     </string>
