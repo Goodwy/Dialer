@@ -72,4 +72,5 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="message">Message</string>
+    <string name="back_pressed_end_call">Back action ends the call</string>
 </resources>

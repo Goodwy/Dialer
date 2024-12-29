@@ -72,4 +72,5 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="message">메시지</string>
+    <string name="back_pressed_end_call">뒤로 동작은 통화를 종료합니다.</string>
 </resources>

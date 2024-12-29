@@ -59,6 +59,7 @@
     <string name="group_all_calls">Grupējiet visus zvanus, tiks parādīts tikai pēdējais zvans</string>
     <string name="call_button_style">Zvana pogas stils</string>
     <string name="call_notes">Zvanu piezīmes</string>
+    <string name="back_pressed_end_call">Darbība Atpakaļ beidz zvanu</string>
     <string name="call_using_same_sim">Izmantojiet to pašu SIM karti, uz kuru tika veikts iepriekšējais (pēdējais) zvans</string>
     <string name="answer_end_other_call">Atbildiet uz pašreizējo zvanu un beidziet to</string>
     <string name="quick_answers">Ātrās atbildes</string>

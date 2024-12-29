@@ -59,6 +59,7 @@
     <string name="group_all_calls">ਸਮੂਹ ਕਾਲਾਂ, ਸਿਰਫ਼ ਆਖਰੀ ਕਾਲ ਦਿਖਾਈ ਜਾਵੇਗੀ</string>
     <string name="call_button_style">ਕਾਲ ਬਟਨ ਸ਼ੈਲੀ</string>
     <string name="call_notes">ਕਾਲ ਨੋਟਸ</string>
+    <string name="back_pressed_end_call">ਬੈਕ ਐਕਸ਼ਨ ਕਾਲ ਨੂੰ ਖਤਮ ਕਰਦਾ ਹੈ</string>
     <string name="call_using_same_sim">ਉਹੀ ਸਿਮ ਕਾਰਡ ਵਰਤੋ ਜਿਸ \'ਤੇ ਪਿਛਲੀ (ਆਖਰੀ) ਕਾਲ ਕੀਤੀ ਗਈ ਸੀ</string>
     <string name="answer_end_other_call">ਮੌਜੂਦਾ ਕਾਲ ਦਾ ਜਵਾਬ ਦਿਓ ਅਤੇ ਸਮਾਪਤ ਕਰੋ</string>
     <string name="quick_answers">ਤੇਜ਼ ਜਵਾਬ</string>

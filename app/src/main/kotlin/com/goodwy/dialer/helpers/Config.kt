@@ -243,6 +243,10 @@ class Config(context: Context) : BaseConfig(context) {
         return Gson().fromJson<ArrayList<CallerNote>>(callerNotes, notesType) ?: ArrayList(1)
     }
 
+    var backPressedEndCall: Boolean
+        get() = prefs.getBoolean(BACK_PRESSED_END_CALL, false)
+        set(backPressedEndCall) = prefs.edit().putBoolean(BACK_PRESSED_END_CALL, backPressedEndCall).apply()
+
     //Timer
     var timerSeconds: Int
         get() = prefs.getInt(TIMER_SECONDS, 300)

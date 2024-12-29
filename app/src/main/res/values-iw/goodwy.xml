@@ -60,6 +60,7 @@
     <string name="group_all_calls">קבץ את כל השיחות, רק השיחה האחרונה תוצג</string>
     <string name="call_button_style">סגנון לחצן פעמון</string>
     <string name="call_notes">Notizen für Anrufe</string>
+    <string name="back_pressed_end_call">פעולת החזרה מסיימת את השיחה</string>
     <string name="call_using_same_sim">השתמש באותו כרטיס SIM שאליו בוצעה השיחה הקודמת (האחרונה)</string>
     <string name="answer_end_other_call">מענה לשיחה הנוכחית וסיום שלה</string>
     <string name="quick_answers">תשובות מהירות</string>

@@ -61,6 +61,7 @@
     <string name="group_all_calls">Sugrupuokite visus skambučius, bus rodomas tik paskutinis skambutis</string>
     <string name="call_button_style">Varpo mygtuko stilius</string>
     <string name="call_notes">Skambučių pastabos</string>
+    <string name="back_pressed_end_call">Atgalinis veiksmas užbaigia skambutį</string>
     <string name="call_using_same_sim">Naudokite tą pačią SIM kortelę, į kurią buvo skambinta ankstesniu (paskutiniu) skambučiu</string>
     <string name="answer_end_other_call">Atsiliepkite ir užbaikite dabartinį skambutį</string>
     <string name="quick_answers">Greiti atsakymai</string>

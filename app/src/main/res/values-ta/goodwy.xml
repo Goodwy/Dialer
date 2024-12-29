@@ -59,6 +59,7 @@
     <string name="group_all_calls">அனைத்து அழைப்புகளையும் குழுவாக்கவும், கடைசி அழைப்பு மட்டுமே காட்டப்படும்</string>
     <string name="call_button_style">அழைப்பு பொத்தான் நடை</string>
     <string name="call_notes">அழைப்பு குறிப்புகள்</string>
+    <string name="back_pressed_end_call">பின் நடவடிக்கை அழைப்பை முடிக்கிறது</string>
     <string name="call_using_same_sim">முந்தைய (கடைசி) அழைப்பு செய்யப்பட்ட அதே சிம் கார்டைப் பயன்படுத்தவும்</string>
     <string name="answer_end_other_call">தற்போதைய அழைப்பிற்கு பதிலளித்து முடிக்கவும்</string>
     <string name="quick_answers">விரைவான பதில்கள்</string>

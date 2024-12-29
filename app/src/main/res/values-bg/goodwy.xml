@@ -59,6 +59,7 @@
     <string name="group_all_calls">Групирайте всички повиквания, ще се покаже само последното обаждане</string>
     <string name="call_button_style">Стил на звънец</string>
     <string name="call_notes">Бележки за обаждания</string>
+    <string name="back_pressed_end_call">Действието \"Назад\" прекратява повикването</string>
     <string name="call_using_same_sim">Използвайте същата SIM карта, към която е направено предишното (последно) обаждане</string>
     <string name="answer_end_other_call">Отговорете и прекратете текущото повикване</string>
     <string name="quick_answers">Бързи отговори</string>

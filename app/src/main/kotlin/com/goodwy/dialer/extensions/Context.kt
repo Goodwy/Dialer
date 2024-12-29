@@ -1,21 +1,18 @@
 package com.goodwy.dialer.extensions
 
 import android.annotation.SuppressLint
-import android.annotation.TargetApi
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.media.AudioAttributes
 import android.media.AudioManager
 import android.net.Uri
-import android.os.Build
 import android.os.PowerManager
 import android.telephony.SubscriptionManager
 import android.widget.RemoteViews
@@ -38,7 +35,6 @@ import com.goodwy.dialer.models.Timer
 import com.goodwy.dialer.models.TimerState
 import com.goodwy.dialer.receivers.TimerReceiver
 import me.leolin.shortcutbadger.ShortcutBadger
-import java.util.*
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
 

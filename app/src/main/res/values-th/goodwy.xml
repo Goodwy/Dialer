@@ -58,6 +58,7 @@
     <string name="group_all_calls">จัดกลุ่มการโทรทั้งหมด จะแสดงเฉพาะการโทรครั้งสุดท้ายเท่านั้น</string>
     <string name="call_button_style">รูปแบบปุ่มกระดิ่ง</string>
     <string name="call_notes">บันทึกการโทร</string>
+    <string name="back_pressed_end_call">การดําเนินการย้อนกลับจะสิ้นสุดการโทร</string>
     <string name="call_using_same_sim">ใช้ซิมการ์ดเดียวกับที่โทรไปก่อนหน้า (ครั้งสุดท้าย)</string>
     <string name="answer_end_other_call">รับสายและวางสายปัจจุบัน</string>
     <string name="quick_answers">คําตอบด่วน</string>

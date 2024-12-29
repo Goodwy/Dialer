@@ -60,6 +60,7 @@
     <string name="group_all_calls">Grupper alle samtaler, bare den siste samtalen vises</string>
     <string name="call_button_style">Bell Button Stil</string>
     <string name="call_notes">Anrop notater</string>
+    <string name="back_pressed_end_call">Tilbake-handling avslutter samtalen</string>
     <string name="call_using_same_sim">Bruk det samme SIM-kortet som forrige (siste) anrop ble foretatt til</string>
     <string name="answer_end_other_call">Svar på og avslutt gjeldende samtale</string>
     <string name="quick_answers">Raske svar</string>

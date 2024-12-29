@@ -59,6 +59,7 @@
     <string name="group_all_calls">Tüm aramaları gruplandırın, yalnızca son arama gösterilecektir</string>
     <string name="call_button_style">Zil Düğmesi Stili</string>
     <string name="call_notes">Çağrı notları</string>
+    <string name="back_pressed_end_call">Geri eylemi çağrıyı sonlandırır</string>
     <string name="call_using_same_sim">Önceki (son) aramanın yapıldığı SIM kartı kullanın</string>
     <string name="answer_end_other_call">Mevcut aramayı cevaplayın ve sonlandırın</string>
     <string name="quick_answers">Hızlı yanıtlar</string>

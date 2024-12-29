@@ -17,6 +17,7 @@
     <string name="group_all_calls">Згрупуйте всі дзвінки, буде показаний тільки останній дзвінок</string>
     <string name="call_button_style">Стиль кнопки дзвінка</string>
     <string name="call_notes">Нотатки про дзвінки</string>
+    <string name="back_pressed_end_call">Дія назад завершує виклик</string>
 
     <string name="call_using_same_sim">Використовувати ту саму SIM-картку, на яку було зроблено попередній (останній) дзвінок</string>
     <string name="answer_end_other_call">Відповідь на поточний дзвінок і його завершення</string>

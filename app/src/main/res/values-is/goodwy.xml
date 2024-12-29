@@ -50,4 +50,5 @@
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Outline slider</string>
     <string name="answer_slider_vertical">Vertical slider</string>
+    <string name="back_pressed_end_call">Afturaðgerð lýkur símtalinu</string>
 </resources>

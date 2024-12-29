@@ -17,6 +17,7 @@
     <string name="group_all_calls">Group all calls, only the last call will be shown</string>
     <string name="call_button_style">Call button style</string>
     <string name="call_notes">Call notes</string>
+    <string name="back_pressed_end_call">Back action ends the call</string>
 
     <string name="call_using_same_sim">Prefer same SIM on which previous (last) call was made</string>
     <string name="answer_end_other_call">Answer &amp; end other call</string>

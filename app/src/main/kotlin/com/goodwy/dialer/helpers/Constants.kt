@@ -55,6 +55,7 @@ const val DIALPAD_SECONDARY_TYPEFACE = "dialpad_secondary_typeface"
 const val DIALPAD_HASHTAG_LONG_CLICK = "dialpad_hashtag_long_click"
 const val DIALPAD_CLEAR_WHEN_START_CALL = "dialpad_clear_when_start_call"
 const val CALLER_NOTES = "caller_notes"
+const val BACK_PRESSED_END_CALL = "back_pressed_end_call"
 
 const val ALL_TABS_MASK = TAB_CONTACTS or TAB_FAVORITES or TAB_CALL_HISTORY
 

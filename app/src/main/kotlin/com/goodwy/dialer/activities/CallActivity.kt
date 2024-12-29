@@ -296,14 +296,11 @@ class CallActivity : SimpleActivity() {
         if (binding.dialpadWrapper.isVisible()) {
             hideDialpad()
             return
+        } else if (config.backPressedEndCall) {
+            endCall()
         } else {
             super.onBackPressed()
         }
-
-//        val callState = CallManager.getState()
-//        if (callState == Call.STATE_CONNECTING || callState == Call.STATE_DIALING) {
-//            endCall()
-//        }
     }
 
     private fun initButtons() = binding.apply {

@@ -14,7 +14,7 @@ gradlePlugins-agp = "8.7.1"
 indicatorFastScroll = "e37b5b2ad6"
 autofitTextView = "0.2.1"
 #Goodwy
-right-commons = "a6d473bc2e"
+right-commons = "77e80ffb0b"
 badger = "1.1.22"
 libphonenumber = "8.13.26"
 geocoder = "2.185"
@@ -32,8 +32,8 @@ app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
 #versioning
 app-version-appId = "com.goodwy.dialer"
-app-version-versionCode = "607"
-app-version-versionName = "6.0.7"
+app-version-versionCode = "610"
+app-version-versionName = "6.1.0"
 [libraries]
 #EventBus
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }

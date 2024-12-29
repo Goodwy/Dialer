@@ -11,6 +11,7 @@
     <string name="dialpad_preferences">Подешавања тастатуре</string>
     <string name="call_start_end_vibration">Вибрирајте када започнете и завршите позив</string>
     <string name="call_notes">Белешке о позивима</string>
+    <string name="back_pressed_end_call">Радња назад завршава позив</string>
 
     <string name="call_using_same_sim">Користите исту СИМ картицу на коју је упућен претходни (последњи) позив</string>
     <string name="show_contact_thumbnails_g">Прикажи сличице контаката</string>

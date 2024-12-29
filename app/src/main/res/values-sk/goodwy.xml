@@ -60,6 +60,7 @@
     <string name="group_all_calls">Zoskupte všetky hovory, zobrazí sa iba posledný hovor</string>
     <string name="call_button_style">Štýl zvončeka</string>
     <string name="call_notes">Poznámky k hovoru</string>
+    <string name="back_pressed_end_call">Akcia Späť ukončí hovor</string>
     <string name="call_using_same_sim">Použite rovnakú SIM kartu, na ktorú sa uskutočnil predchádzajúci (posledný) hovor</string>
     <string name="answer_end_other_call">Prijmite a ukončite aktuálny hovor</string>
     <string name="quick_answers">Rýchle odpovede</string>

@@ -59,6 +59,7 @@
     <string name="group_all_calls">Grŵp pob galwad, dim ond yr alwad olaf fydd yn cael ei dangos</string>
     <string name="call_button_style">Bell Button Arddull</string>
     <string name="call_notes">Nodiadau galw</string>
+    <string name="back_pressed_end_call">Gweithredu cefn yn dod â\'r alwad i ben</string>
     <string name="call_using_same_sim">Defnyddiwch yr un cerdyn SIM y gwnaed yr alwad flaenorol (olaf) iddo</string>
     <string name="answer_end_other_call">Ateb a gorffen yr alwad bresennol</string>
     <string name="quick_answers">Atebion cyflym</string>

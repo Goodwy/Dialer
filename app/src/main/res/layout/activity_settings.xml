@@ -940,6 +940,17 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/settingsBackPressedEndCallHolder"
+                        style="@style/SettingsHolderSwitchStyle">
+
+                        <com.goodwy.commons.views.MyMaterialSwitch
+                            android:id="@+id/settingsBackPressedEndCall"
+                            style="@style/SettingsSwitchStyle"
+                            android:text="@string/back_pressed_end_call"
+                            app:switchPadding="@dimen/bigger_margin"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:id="@+id/settingsQuickAnswersHolder"
                         style="@style/SettingsHolderStyle"
                         android:padding="@dimen/smaller_margin">

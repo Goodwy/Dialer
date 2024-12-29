@@ -200,6 +200,7 @@ class SettingsActivity : SimpleActivity() {
         setupAnswerStyle()
         setupCallButtonStyle()
         setupAlwaysShowFullscreen()
+        setupBackPressedEndCall()
         setupQuickAnswers()
         setupCallerDescription()
         setupGroupCalls()
@@ -829,6 +830,16 @@ class SettingsActivity : SimpleActivity() {
             settingsAlwaysShowFullscreenHolder.setOnClickListener {
                 settingsAlwaysShowFullscreen.toggle()
                 config.showIncomingCallsFullScreen = settingsAlwaysShowFullscreen.isChecked
+            }
+        }
+    }
+
+    private fun setupBackPressedEndCall() {
+        binding.apply {
+            settingsBackPressedEndCall.isChecked = config.backPressedEndCall
+            settingsBackPressedEndCallHolder.setOnClickListener {
+                settingsBackPressedEndCall.toggle()
+                config.backPressedEndCall = settingsBackPressedEndCall.isChecked
             }
         }
     }
@@ -1561,7 +1572,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 607 //TODO changelog
+        val id = 610 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1578,7 +1589,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_607)) //TODO changelog
+            add(Release(id, R.string.release_610)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }

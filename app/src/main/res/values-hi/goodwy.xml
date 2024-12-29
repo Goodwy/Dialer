@@ -59,6 +59,7 @@
     <string name="group_all_calls">सभी कॉल समूहीकृत करें, केवल अंतिम कॉल दिखाई जाएगी</string>
     <string name="call_button_style">बेल बटन स्टाइल</string>
     <string name="call_notes">कॉल नोट्स</string>
+    <string name="back_pressed_end_call">वापस कार्रवाई कॉल समाप्त करती है</string>
     <string name="call_using_same_sim">उसी सिम कार्ड का उपयोग करें जिस पर पिछली (अंतिम) कॉल की गई थी</string>
     <string name="answer_end_other_call">वर्तमान कॉल का उत्तर दें और समाप्त करें</string>
     <string name="quick_answers">त्वरित उत्तर</string>

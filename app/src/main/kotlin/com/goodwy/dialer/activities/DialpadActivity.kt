@@ -1012,14 +1012,13 @@ class DialpadActivity : SimpleActivity() {
 
     @TargetApi(Build.VERSION_CODES.O)
     private fun dialpadValueChanged(textFormat: String) {
-        val text = if (config.formatPhoneNumbers) textFormat.removeNumberFormatting() else textFormat
-        val len = text.length
+        val len = textFormat.length
         val view = dialpadView()
         if (len == 0 && view.visibility == View.GONE) {
             slideUp(view)
         }
-        if (len > 8 && text.startsWith("*#*#") && text.endsWith("#*#*")) {
-            val secretCode = text.substring(4, text.length - 4)
+        if (textFormat.length > 8 && textFormat.startsWith("*#*#") && textFormat.endsWith("#*#*")) {
+            val secretCode = textFormat.substring(4, textFormat.length - 4)
             if (isOreoPlus()) {
                 if (isDefaultDialer()) {
                     getSystemService(TelephonyManager::class.java)?.sendDialerSpecialCode(secretCode)
@@ -1036,6 +1035,7 @@ class DialpadActivity : SimpleActivity() {
         (binding.dialpadList.adapter as? ContactsAdapter)?.finishActMode()
         (binding.dialpadRecentsList.adapter as? RecentCallsAdapter)?.finishActMode()
 
+        val text = if (config.formatPhoneNumbers) textFormat.removeNumberFormatting() else textFormat
         val collator = Collator.getInstance(sysLocale())
         val filtered = allContacts.filter { contact ->
             val langPref = config.dialpadSecondaryLanguage ?: ""

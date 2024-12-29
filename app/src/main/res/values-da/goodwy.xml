@@ -59,6 +59,7 @@
     <string name="group_all_calls">Gruppér alle opkald, kun det sidste opkald vises</string>
     <string name="call_button_style">Klokkeknap stil</string>
     <string name="call_notes">Opkaldsnoter</string>
+    <string name="back_pressed_end_call">Tilbage-handlingen afslutter opkaldet</string>
     <string name="call_using_same_sim">Brug det samme SIM-kort, som det forrige (sidste) opkald blev foretaget til</string>
     <string name="answer_end_other_call">Besvar og afslut det aktuelle opkald</string>
     <string name="quick_answers">Hurtige svar</string>
