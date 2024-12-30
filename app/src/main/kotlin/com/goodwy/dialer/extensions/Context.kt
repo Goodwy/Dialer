@@ -1,10 +1,7 @@
 package com.goodwy.dialer.extensions
 
 import android.annotation.SuppressLint
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
+import android.app.*
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -27,6 +24,8 @@ import com.goodwy.dialer.R
 import com.goodwy.dialer.models.SIMAccount
 import com.goodwy.commons.helpers.isOreoPlus
 import com.goodwy.dialer.BuildConfig
+import com.goodwy.dialer.activities.MainActivity
+import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.activities.SplashActivity
 import com.goodwy.dialer.databases.AppDatabase
 import com.goodwy.dialer.helpers.*
@@ -74,22 +73,20 @@ fun Context.areMultipleSIMsAvailable(): Boolean {
 
 @SuppressLint("MissingPermission")
 fun Context.clearMissedCalls() {
-    ensureBackgroundThread {
-        try {
-            // notification cancellation triggers MissedCallNotifier.clearMissedCalls() which, in turn,
-            // should update the database and reset the cached missed call count in MissedCallNotifier.java
-            // https://android.googlesource.com/platform/packages/services/Telecomm/+/master/src/com/android/server/telecom/ui/MissedCallNotifierImpl.java#170
-            telecomManager.cancelMissedCallsNotification()
+    try {
+        // notification cancellation triggers MissedCallNotifier.clearMissedCalls() which, in turn,
+        // should update the database and reset the cached missed call count in MissedCallNotifier.java
+        // https://android.googlesource.com/platform/packages/services/Telecomm/+/master/src/com/android/server/telecom/ui/MissedCallNotifierImpl.java#170
+        telecomManager.cancelMissedCallsNotification()
 
-            notificationManager.cancel(420)
-            updateUnreadCountBadge(0)
-        } catch (ignored: Exception) {
-        }
+        notificationManager.cancel(420)
+        updateUnreadCountBadge(0)
+        RecentsHelper(this).markMissedCallsAsRead()
+    } catch (ignored: Exception) {
     }
 }
 
-fun Context.updateUnreadCountBadge(count: Int) {//conversations: List<RecentCall>) {
-    //val unreadCount = conversations.count { it.type ==  CallLog.Calls.MISSED_TYPE }
+fun Context.updateUnreadCountBadge(count: Int) {
     if (count == 0) {
         ShortcutBadger.removeCount(this)
     } else {

@@ -20,6 +20,7 @@ import com.goodwy.commons.helpers.isOreoPlus
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.NotificationActivity
 import com.goodwy.dialer.activities.SplashActivity
+import com.goodwy.dialer.extensions.clearMissedCalls
 import com.goodwy.dialer.extensions.getNotificationBitmap
 import com.goodwy.dialer.extensions.getOpenTimerTabIntent
 import com.goodwy.dialer.extensions.updateUnreadCountBadge
@@ -50,7 +51,7 @@ class MissedCallReceiver : BroadcastReceiver() {
             }
 
             MISSED_CALL_CANCEL -> {
-                context.telecomManager.cancelMissedCallsNotification()
+                context.clearMissedCalls()
             }
         }
     }

@@ -407,4 +407,26 @@ class RecentsHelper(private val context: Context) {
             }
         }
     }
+
+    //https://android.googlesource.com/platform/packages/services/Telecomm/+/master/src/com/android/server/telecom/ui/MissedCallNotifierImpl.java#189
+    fun markMissedCallsAsRead() {
+        val values = ContentValues().apply {
+            put(Calls.NEW, 0)
+            put(Calls.IS_READ, 1)
+        }
+        val where = StringBuilder().apply {
+            append(Calls.NEW)
+            append(" = 1 AND ")
+            append(Calls.TYPE)
+            append(" = ?")
+        }
+
+        try {
+            context.contentResolver.update(
+                contentUri, values,
+                where.toString(), arrayOf(Calls.MISSED_TYPE.toString())
+            )
+        } catch (ignored: IllegalArgumentException) {
+        }
+    }
 }

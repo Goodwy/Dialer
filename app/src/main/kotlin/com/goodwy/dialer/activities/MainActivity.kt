@@ -621,9 +621,7 @@ class MainActivity : SimpleActivity() {
                 }
                 refreshMenuItems()
                 if (getCurrentFragment() == getRecentsFragment()) {
-                    ensureBackgroundThread {
-                        clearMissedCalls()
-                    }
+                    clearMissedCalls()
                 }
             }
         })
