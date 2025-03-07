@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.content.res.Configuration
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -171,6 +172,7 @@ class SettingsActivity : SimpleActivity() {
         setupManageBlockedNumbers()
         setupManageSpeedDial()
         setupChangeDateTimeFormat()
+        setupFormatPhoneNumbers()
         setupFontSize()
         setupUseEnglish()
         setupLanguage()
@@ -216,6 +218,7 @@ class SettingsActivity : SimpleActivity() {
         setupDisableSwipeToAnswer()
         setupShowCallConfirmation()
         setupCallUsingSameSim()
+        setupCallBlockButton()
 
         setupBlockCallFromAnotherApp()
 
@@ -223,7 +226,6 @@ class SettingsActivity : SimpleActivity() {
         setupShowContactThumbnails()
         setupContactThumbnailsSize()
         setupShowPhoneNumbers()
-        setupFormatPhoneNumbers()
         setupStartNameWithSurname()
         setupUseRelativeDate()
         setupChangeColourTopBar()
@@ -290,6 +292,12 @@ class SettingsActivity : SimpleActivity() {
     private fun updatePro(isPro: Boolean = checkPro()) {
         binding.apply {
             settingsPurchaseThankYouHolder.beGoneIf(isPro)
+            settingsTipJarHolder.beVisibleIf(isPro)
+
+            val stringId =
+                if (isRTLLayout) com.goodwy.strings.R.string.swipe_right_action
+                else com.goodwy.strings.R.string.swipe_left_action
+            settingsSwipeLeftActionLabel.text = addLockedLabelIfNeeded(stringId, isPro)
 
             arrayOf(
                 settingsSimCardColor1Holder,
@@ -298,8 +306,6 @@ class SettingsActivity : SimpleActivity() {
             ).forEach {
                 it.alpha = if (isPro) 1f else 0.4f
             }
-
-            settingsTipJarHolder.beVisibleIf(isPro)
         }
     }
 
@@ -356,13 +362,15 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun setupLanguage() {
-        binding.apply {
-            settingsLanguage.text = Locale.getDefault().displayLanguage
-            settingsLanguageHolder.beVisibleIf(isTiramisuPlus())
+    private fun setupLanguage() = binding.apply {
+        settingsLanguage.text = Locale.getDefault().displayLanguage
+        if (isTiramisuPlus()) {
+            settingsLanguageHolder.beVisible()
             settingsLanguageHolder.setOnClickListener {
-                if (isTiramisuPlus()) launchChangeAppLanguageIntent()
+                launchChangeAppLanguageIntent()
             }
+        } else {
+            settingsLanguageHolder.beGone()
         }
     }
 
@@ -466,6 +474,18 @@ class SettingsActivity : SimpleActivity() {
                 config.tabsChanged = true
                 binding.settingsNavigationBarStyle.text = getNavigationBarStyleText()
                 binding.settingsChangeColourTopBarHolder.beVisibleIf(config.bottomNavigationBar)
+            }
+        }
+    }
+
+    private fun setupChangeColourTopBar() {
+        binding.apply {
+            settingsChangeColourTopBarHolder.beVisibleIf(config.bottomNavigationBar)
+            settingsChangeColourTopBar.isChecked = config.changeColourTopBar
+            settingsChangeColourTopBarHolder.setOnClickListener {
+                settingsChangeColourTopBar.toggle()
+                config.changeColourTopBar = settingsChangeColourTopBar.isChecked
+                config.tabsChanged = true
             }
         }
     }
@@ -760,6 +780,9 @@ class SettingsActivity : SimpleActivity() {
     )
 
     private fun setupCallButtonStyle() {
+        val isSmallScreen =
+            resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK == Configuration.SCREENLAYOUT_SIZE_SMALL
+        binding.settingsCallButtonStyleHolder.beVisibleIf(!isSmallScreen)
         binding.settingsCallButtonStyle.text = getCallButtonStyleText()
         binding.settingsCallButtonStyleHolder.setOnClickListener {
             launchCallButtonStyleDialog()
@@ -1125,6 +1148,16 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupCallBlockButton() {
+        binding.apply {
+            settingsCallBlockButton.isChecked = config.callBlockButton
+            settingsCallBlockButtonHolder.setOnClickListener {
+                settingsCallBlockButton.toggle()
+                config.callBlockButton = settingsCallBlockButton.isChecked
+            }
+        }
+    }
+
     private fun setupSimDialogStyle() {
         binding.settingsSimDialogStyleHolder.beGoneIf(!areMultipleSIMsAvailable())
         binding.settingsSimDialogStyle.text = getSimDialogStyleText()
@@ -1434,7 +1467,9 @@ class SettingsActivity : SimpleActivity() {
                     config.swipeLeftAction = it as Int
                     config.tabsChanged = true
                     settingsSwipeLeftAction.text = getSwipeActionText(true)
-                    settingsSkipDeleteConfirmationHolder.beVisibleIf(config.swipeLeftAction == SWIPE_ACTION_DELETE || config.swipeRightAction == SWIPE_ACTION_DELETE)
+                    settingsSkipDeleteConfirmationHolder.beVisibleIf(
+                        config.swipeLeftAction == SWIPE_ACTION_DELETE || config.swipeRightAction == SWIPE_ACTION_DELETE
+                    )
                 }
             } else {
                 RxAnimation.from(settingsSwipeLeftActionHolder)
@@ -1559,20 +1594,8 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
-    private fun setupChangeColourTopBar() {
-        binding.apply {
-            settingsChangeColourTopBarHolder.beVisibleIf(config.bottomNavigationBar)
-            settingsChangeColourTopBar.isChecked = config.changeColourTopBar
-            settingsChangeColourTopBarHolder.setOnClickListener {
-                settingsChangeColourTopBar.toggle()
-                config.changeColourTopBar = settingsChangeColourTopBar.isChecked
-                config.tabsChanged = true
-            }
-        }
-    }
-
     private fun setupOptionsMenu() {
-        val id = 611 //TODO changelog
+        val id = 612 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1589,7 +1612,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_611)) //TODO changelog
+            add(Release(id, R.string.release_612)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }

@@ -15,9 +15,6 @@
     <dimen name="call_control_button_size">72dp</dimen>
     <dimen name="recyclerview_fab_padding">100dp</dimen>
 
-    <dimen name="caller_name_text_size">26sp</dimen>
-    <dimen name="call_status_text_size">18sp</dimen>
-
     <!-- keep these 2 values in dp to avoid scaling -->
     <dimen name="dialpad_text_size">36sp</dimen>
 

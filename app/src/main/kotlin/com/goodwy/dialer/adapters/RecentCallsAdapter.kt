@@ -3,6 +3,7 @@ package com.goodwy.dialer.adapters
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.LayerDrawable
 import android.os.Build
 import android.provider.CallLog.Calls
 import android.text.SpannableString
@@ -13,6 +14,8 @@ import android.view.*
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DiffUtil
 import com.behaviorule.arturdumchev.library.pixels
 import com.bumptech.glide.Glide
@@ -43,6 +46,7 @@ import me.thanel.swipeactionview.SwipeGestureListener
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.minutes
 import org.joda.time.DateTime
+import kotlin.math.abs
 
 class RecentCallsAdapter(
     activity: SimpleActivity,
@@ -79,6 +83,7 @@ class RecentCallsAdapter(
         val selectedItems = getSelectedItems()
         val isOneItemSelected = selectedItems.size == 1
         val selectedNumber = "tel:${getSelectedPhoneNumber()}".replace("+","%2B")
+        getBlockedNumbers = activity.getBlockedNumbers()
         val isAllBlockedNumbers = isAllBlockedNumbers()
         val isAllUnblockedNumbers = isAllUnblockedNumbers()
 
@@ -426,6 +431,7 @@ class RecentCallsAdapter(
         val contextTheme = ContextThemeWrapper(activity, theme)
         val contact = findContactByCall(call)
         val selectedNumber = "tel:${call.phoneNumber}".replace("+","%2B")
+        getBlockedNumbers = activity.getBlockedNumbers()
 
         PopupMenu(contextTheme, view, Gravity.END).apply {
             inflate(R.menu.menu_recent_item_options)
@@ -664,22 +670,32 @@ class RecentCallsAdapter(
                     itemRecentsSimImage.applyColorFilter(simColor)
                     itemRecentsSimImage.alpha = if (!colorSimIcons) 0.6f else 1f
                     itemRecentsSimId.setTextColor(simColor.getContrastColor())
-                    itemRecentsSimId.text = call.simID.toString()
+                    itemRecentsSimId.text = if (call.simID == -1) "?" else call.simID.toString()
                 }
 
                 val showContactThumbnails = activity.config.showContactThumbnails
                 itemRecentsImage.beVisibleIf(showContactThumbnails)
-                itemRecentsImageIcon.beVisibleIf(showContactThumbnails)
+//                itemRecentsImageIcon.beVisibleIf(showContactThumbnails)
                 if (showContactThumbnails) {
                     val size = (root.context.pixels(R.dimen.normal_icon_size) * contactThumbnailsSize).toInt()
                     itemRecentsImage.setHeightAndWidth(size)
-                    itemRecentsImageIcon.setHeightAndWidth(size)
-                    if (call.phoneNumber == call.name) {
-                        SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name, letter = false)
-                        itemRecentsImageIcon.beVisibleIf(call.photoUri == "")
+//                    itemRecentsImageIcon.setHeightAndWidth(size)
+                    if (call.phoneNumber == call.name || call.isABusinessCall() || call.isVoiceMail) {
+//                        SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name, letter = false)
+//                        itemRecentsImageIcon.beVisibleIf(call.photoUri == "")
+                        val drawable =
+                            if (call.isABusinessCall()) AppCompatResources.getDrawable(activity, R.drawable.placeholder_company)
+                            else if (call.isVoiceMail) AppCompatResources.getDrawable(activity, R.drawable.placeholder_voicemail)
+                            else AppCompatResources.getDrawable(activity, R.drawable.placeholder_contact)
+                        if (baseConfig.useColoredContacts) {
+                            val letterBackgroundColors = activity.getLetterBackgroundColors()
+                            val color = letterBackgroundColors[abs(call.name.hashCode()) % letterBackgroundColors.size].toInt()
+                            (drawable as LayerDrawable).findDrawableByLayerId(R.id.placeholder_contact_background).applyColorFilter(color)
+                        }
+                        itemRecentsImage.setImageDrawable(drawable)
                     } else {
                         SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name)
-                        itemRecentsImageIcon.beGone()
+//                            itemRecentsImageIcon.beGone()
                     }
                 }
 
@@ -814,22 +830,32 @@ class RecentCallsAdapter(
                     itemRecentsSimImage.applyColorFilter(simColor)
                     itemRecentsSimImage.alpha = if (!colorSimIcons) 0.6f else 1f
                     itemRecentsSimId.setTextColor(simColor.getContrastColor())
-                    itemRecentsSimId.text = call.simID.toString()
+                    itemRecentsSimId.text = if (call.simID == -1) "?" else call.simID.toString()
                 }
 
                 val showContactThumbnails = activity.config.showContactThumbnails
                 itemRecentsImage.beVisibleIf(showContactThumbnails)
-                itemRecentsImageIcon.beVisibleIf(showContactThumbnails)
+//                itemRecentsImageIcon.beVisibleIf(showContactThumbnails)
                 if (showContactThumbnails) {
                     val size = (root.context.pixels(R.dimen.normal_icon_size) * contactThumbnailsSize).toInt()
                     itemRecentsImage.setHeightAndWidth(size)
-                    itemRecentsImageIcon.setHeightAndWidth(size)
-                    if (call.phoneNumber == call.name) {
-                        SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name, letter = false)
-                        itemRecentsImageIcon.beVisibleIf(call.photoUri == "")
+//                    itemRecentsImageIcon.setHeightAndWidth(size)
+                    if (call.phoneNumber == call.name || call.isABusinessCall() || call.isVoiceMail) {
+//                        SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name, letter = false)
+//                        itemRecentsImageIcon.beVisibleIf(call.photoUri == "")
+                        val drawable =
+                            if (call.isABusinessCall()) AppCompatResources.getDrawable(activity, R.drawable.placeholder_company)
+                            else if (call.isVoiceMail) AppCompatResources.getDrawable(activity, R.drawable.placeholder_voicemail)
+                            else AppCompatResources.getDrawable(activity, R.drawable.placeholder_contact)
+                        if (baseConfig.useColoredContacts) {
+                            val letterBackgroundColors = activity.getLetterBackgroundColors()
+                            val color = letterBackgroundColors[abs(call.name.hashCode()) % letterBackgroundColors.size].toInt()
+                            (drawable as LayerDrawable).findDrawableByLayerId(R.id.placeholder_contact_background).applyColorFilter(color)
+                        }
+                        itemRecentsImage.setImageDrawable(drawable)
                     } else {
                         SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name)
-                        itemRecentsImageIcon.beGone()
+//                            itemRecentsImageIcon.beGone()
                     }
                 }
 

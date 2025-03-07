@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.content.res.Resources
 import android.graphics.drawable.Icon
+import android.graphics.drawable.LayerDrawable
 import android.net.Uri
 import android.telephony.PhoneNumberUtils
 import android.text.Spannable
@@ -18,6 +19,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
@@ -50,6 +52,7 @@ import me.thanel.swipeactionview.SwipeDirection
 import me.thanel.swipeactionview.SwipeGestureListener
 import java.util.Collections
 import java.util.Locale
+import kotlin.math.abs
 
 class ContactsAdapter(
     activity: SimpleActivity,
@@ -505,7 +508,17 @@ class ContactsAdapter(
                         val size = (root.context.pixels(R.dimen.normal_icon_size) * contactThumbnailsSize).toInt()
                         itemContactImage.setHeightAndWidth(size)
                     }
-                    SimpleContactsHelper(root.context).loadContactImage(contact.photoUri, itemContactImage, contact.getNameToDisplay())
+                    if (contact.isABusinessContact()) {
+                        val drawable = ResourcesCompat.getDrawable(resources, R.drawable.placeholder_company, activity.theme)
+                        if (baseConfig.useColoredContacts) {
+                            val letterBackgroundColors = activity.getLetterBackgroundColors()
+                            val color = letterBackgroundColors[abs(contact.getNameToDisplay().hashCode()) % letterBackgroundColors.size].toInt()
+                            (drawable as LayerDrawable).findDrawableByLayerId(R.id.placeholder_contact_background).applyColorFilter(color)
+                        }
+                        itemContactImage.setImageDrawable(drawable)
+                    } else {
+                        SimpleContactsHelper(root.context).loadContactImage(contact.photoUri, itemContactImage, contact.getNameToDisplay())
+                    }
                 }
             }
 

@@ -5,6 +5,7 @@ import android.app.KeyguardManager
 import android.app.WallpaperManager
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
@@ -15,6 +16,7 @@ import android.net.Uri
 import android.os.*
 import android.telecom.Call
 import android.telecom.CallAudioState
+import android.text.TextUtils
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -23,9 +25,9 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
 import androidx.core.view.isVisible
+import com.goodwy.commons.dialogs.ConfirmationAdvancedDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
-import com.goodwy.commons.helpers.setWindowTransparency
 import com.goodwy.commons.models.SimpleListItem
 import com.goodwy.dialer.R
 import com.goodwy.dialer.databinding.ActivityCallBinding
@@ -42,6 +44,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
+
 
 class CallActivity : SimpleActivity() {
     companion object {
@@ -74,7 +77,6 @@ class CallActivity : SimpleActivity() {
     @SuppressLint("MissingPermission")
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
-        addLockScreenFlags()
         showTransparentTop = true
         updateNavigationBarColor = false
         super.onCreate(savedInstanceState)
@@ -90,6 +92,7 @@ class CallActivity : SimpleActivity() {
 
         initButtons()
         audioManager.mode = AudioManager.MODE_IN_CALL
+        addLockScreenFlags()
         CallManager.addListener(callCallback)
         updateTextColors(binding.callHolder)
 
@@ -199,7 +202,9 @@ class CallActivity : SimpleActivity() {
             }
         }
 
-        if (config.callButtonStyle == IOS17) {
+        val isSmallScreen =
+            resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK == Configuration.SCREENLAYOUT_SIZE_SMALL
+        if (config.callButtonStyle == IOS17 || isSmallScreen) {
             binding.callEndLabel.beVisible()
             binding.callAddContactHolder.beGone()
 
@@ -230,13 +235,26 @@ class CallActivity : SimpleActivity() {
             callMergeHolderParams.marginStart = marginStartEnd
             binding.callMergeHolder.requestLayout()
 
-            val marginBottom = resources.getDimension(R.dimen.call_button_row_margin).toInt()
+            val marginBottom =
+                if (isSmallScreen) resources.getDimension(R.dimen.call_button_row_margin_small).toInt()
+                else resources.getDimension(R.dimen.call_button_row_margin).toInt()
             val callDialpadHolderParams = binding.callDialpadHolder.layoutParams as ConstraintLayout.LayoutParams
             callDialpadHolderParams.topToTop = -1
             callDialpadHolderParams.bottomToBottom = -1
             callDialpadHolderParams.bottomToTop = binding.callEnd.id
             callDialpadHolderParams.bottomMargin = marginBottom
             binding.callDialpadHolder.requestLayout()
+        }
+        if (isSmallScreen) {
+            binding.apply {
+                arrayOf(
+                    callDeclineLabel, callAcceptLabel, callMessageLabel, callRemindLabel,
+                    callToggleMicrophoneLabel, callDialpadLabel, callToggleSpeakerLabel, callAddLabel,
+                    callSwapLabel, callMergeLabel, callToggleLabel, callAddContactLabel, callEndLabel
+                ).forEach {
+                    it.beGone()
+                }
+            }
         }
     }
 
@@ -887,7 +905,9 @@ class CallActivity : SimpleActivity() {
                 ).forEach {
                     it.beVisible()
                 }
-                callAddContactHolder.beVisibleIf(config.callButtonStyle == IOS16)
+                val isSmallScreen =
+                    resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK == Configuration.SCREENLAYOUT_SIZE_SMALL
+                callAddContactHolder.beVisibleIf(config.callButtonStyle == IOS16 && !isSmallScreen)
                 callerDescription.beVisibleIf(callerDescription.text.isNotEmpty())
                 callerNotes.beVisibleIf(callerNotes.text.isNotEmpty())
                 val accounts = telecomManager.callCapablePhoneAccounts
@@ -940,7 +960,7 @@ class CallActivity : SimpleActivity() {
         }
 
         binding.apply {
-            val (name, _, number, numberLabel, description) = callContact!!
+            val (name, _, number, numberLabel, description, isABusinessCall, isVoiceMail) = callContact!!
             callerNameLabel.text =
                 formatterUnicodeWrap(name.ifEmpty { getString(R.string.unknown_caller) })
             if (number.isNotEmpty() && number != name) {
@@ -970,8 +990,11 @@ class CallActivity : SimpleActivity() {
             }
 
             callerAvatar.apply {
-                if (number == name || isDestroyed || isFinishing) {
-                    val drawable = AppCompatResources.getDrawable(this@CallActivity, R.drawable.placeholder_contact)
+                if (number == name || isABusinessCall || isVoiceMail || isDestroyed || isFinishing) {
+                    val drawable =
+                        if (isABusinessCall) AppCompatResources.getDrawable(this@CallActivity, R.drawable.placeholder_company)
+                        else if (isVoiceMail) AppCompatResources.getDrawable(this@CallActivity, R.drawable.placeholder_voicemail)
+                        else AppCompatResources.getDrawable(this@CallActivity, R.drawable.placeholder_contact)
                     if (baseConfig.useColoredContacts) {
                         val letterBackgroundColors = getLetterBackgroundColors()
                         val color = letterBackgroundColors[abs(name.hashCode()) % letterBackgroundColors.size].toInt()
@@ -1105,7 +1128,7 @@ class CallActivity : SimpleActivity() {
             currentText = callerNote?.note,
             maxLength = CALLER_NOTES_MAX_LENGTH,
             showNeutralButton = true,
-            neutralTextRes = com.goodwy.commons.R.string.delete
+            neutralTextRes = R.string.delete
         ) {
             if (it != "") {
                 callerNotesHelper.addCallerNotes(number, it, callerNote) {
@@ -1280,9 +1303,28 @@ class CallActivity : SimpleActivity() {
 
                     callAcceptAndDecline.apply {
                         beVisible()
+                        setText(R.string.answer_end_other_call)
                         setOnClickListener {
                             acceptCall()
                             callActive?.disconnect()
+                        }
+                    }
+                }
+            }
+        } else {
+            if (config.callBlockButton) binding.callAcceptAndDecline.apply {
+                beVisible()
+                setText(R.string.block_number)
+                setOnClickListener {
+                    if (callContact != null) {
+                        val number = callContact!!.number
+                        val baseString = R.string.block_confirmation
+                        val question = String.format(resources.getString(baseString), number)
+
+                        ConfirmationAdvancedDialog(this@CallActivity, question, cancelOnTouchOutside = false) {
+                            if (it) {
+                                blockNumbers(number.normalizePhoneNumber())
+                            }
                         }
                     }
                 }
@@ -1294,6 +1336,11 @@ class CallActivity : SimpleActivity() {
             controlsSingleCall.beVisibleIf(!hasCallOnHold && dialpadWrapper.isGone())
             controlsTwoCalls.beVisibleIf(hasCallOnHold && dialpadWrapper.isGone())
         }
+    }
+
+    private fun blockNumbers(number: String) {
+        config.tabsChanged = true
+        if (addBlockedNumber(number)) endCall()
     }
 
     @Suppress("DEPRECATION")
@@ -1457,10 +1504,11 @@ class CallActivity : SimpleActivity() {
         } else {
             window.addFlags(
                 WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-                    or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
                     or WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
-                    or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-                // or WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON
+            )
+            window.addFlags(
+                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                    or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
             )
         }
 

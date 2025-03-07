@@ -23,7 +23,8 @@
             android:layout_marginLeft='@dimen/big_margin'
             android:layout_alignParentLeft='true'
             android:layout_centerVertical='true'
-            android:src="@drawable/ic_messages"/>
+            android:src="@drawable/ic_messages"
+            android:contentDescription="@null"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -41,7 +42,8 @@
             android:layout_marginRight='@dimen/big_margin'
             android:layout_alignParentRight='true'
             android:layout_centerVertical='true'
-            android:src="@drawable/ic_delete_outline"/>
+            android:src="@drawable/ic_delete_outline"
+            android:contentDescription="@null"/>
     </RelativeLayout>
 
     <FrameLayout
@@ -69,22 +71,22 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_person"/>
+                tools:src="@drawable/placeholder_contact"/>
 
-            <ImageView
-                android:id="@+id/item_recents_image_icon"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:scaleType="centerCrop"
-                android:scaleX="1.2"
-                android:scaleY="1.2"
-                android:src="@drawable/ic_person"
-                android:visibility="gone"
-                android:contentDescription="@null"
-                app:layout_constraintStart_toStartOf="@+id/item_recents_image"
-                app:layout_constraintEnd_toEndOf="@+id/item_recents_image"
-                app:layout_constraintTop_toTopOf="@+id/item_recents_image"
-                app:layout_constraintBottom_toBottomOf="@+id/item_recents_image"/>
+<!--            <ImageView-->
+<!--                android:id="@+id/item_recents_image_icon"-->
+<!--                android:layout_width="48dp"-->
+<!--                android:layout_height="48dp"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                android:scaleX="1.2"-->
+<!--                android:scaleY="1.2"-->
+<!--                android:src="@drawable/ic_person"-->
+<!--                android:visibility="gone"-->
+<!--                android:contentDescription="@null"-->
+<!--                app:layout_constraintStart_toStartOf="@+id/item_recents_image"-->
+<!--                app:layout_constraintEnd_toEndOf="@+id/item_recents_image"-->
+<!--                app:layout_constraintTop_toTopOf="@+id/item_recents_image"-->
+<!--                app:layout_constraintBottom_toBottomOf="@+id/item_recents_image"/>-->
 
             <TextView
                 android:id="@+id/item_recents_name"

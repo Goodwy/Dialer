@@ -217,7 +217,7 @@ class CallHistoryAdapter(
                     itemRecentsSimImage.applyColorFilter(simColor)
                     itemRecentsSimImage.alpha = if (!colorSimIcons) 0.6f else 1f
                     itemRecentsSimId.setTextColor(simColor.getContrastColor())
-                    itemRecentsSimId.text = call.simID.toString()
+                    itemRecentsSimId.text = if (call.simID == -1) "?" else call.simID.toString()
                 }
 
                 val type = when (call.type) {

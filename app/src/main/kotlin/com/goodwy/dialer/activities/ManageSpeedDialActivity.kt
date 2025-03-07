@@ -86,8 +86,8 @@ class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
             }
 
             var readPhoneState = false
-            handlePermission(PERMISSION_READ_PHONE_STATE) {
-                readPhoneState = it
+            handlePermission(PERMISSION_READ_PHONE_STATE) { permission ->
+                readPhoneState = permission
             }
             val items =  if (readPhoneState) {
                 arrayListOf(

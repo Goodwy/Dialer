@@ -2,6 +2,7 @@ package com.goodwy.dialer.fragments
 
 import android.content.Context
 import android.util.AttributeSet
+import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import com.goodwy.commons.adapters.MyRecyclerViewAdapter
@@ -103,6 +104,13 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
             } else {
                 fragmentPlaceholder.beGone()
                 fragmentList.beVisible()
+
+                fragmentList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                        super.onScrollStateChanged(recyclerView, newState)
+                        activity?.hideKeyboard()
+                    }
+                })
 
                 updateListAdapter()
             }

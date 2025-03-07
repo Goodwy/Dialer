@@ -247,6 +247,10 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getBoolean(BACK_PRESSED_END_CALL, false)
         set(backPressedEndCall) = prefs.edit().putBoolean(BACK_PRESSED_END_CALL, backPressedEndCall).apply()
 
+    var callBlockButton: Boolean
+        get() = prefs.getBoolean(CALL_BLOCK_BUTTON, false)
+        set(callBlockButton) = prefs.edit().putBoolean(CALL_BLOCK_BUTTON, callBlockButton).apply()
+
     //Timer
     var timerSeconds: Int
         get() = prefs.getInt(TIMER_SECONDS, 300)

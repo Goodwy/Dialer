@@ -3,7 +3,7 @@
     <!--call button-->
     <dimen name="vertical_bias_avatar">0.05</dimen>
     <dimen name="vertical_bias_button">0.48</dimen>
-    <dimen name="vertical_bias_call_end">0.95</dimen>
+    <dimen name="vertical_bias_call_end">0.90</dimen>
     <dimen name="call_dialpad_height">400dp</dimen>
 
     <!--dialpad button-->

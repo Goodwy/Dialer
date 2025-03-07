@@ -2,6 +2,7 @@ package com.goodwy.dialer.fragments
 
 import android.content.Context
 import android.util.AttributeSet
+import androidx.recyclerview.widget.RecyclerView
 import com.goodwy.commons.dialogs.CallConfirmationDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
@@ -141,6 +142,13 @@ class RecentsFragment(
                 showOrHidePlaceholder(false)
                 recentsPlaceholder2.beGone()
                 recentsList.beVisible()
+
+                recentsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                        super.onScrollStateChanged(recyclerView, newState)
+                        activity?.hideKeyboard()
+                    }
+                })
             }
 
             if (binding.recentsList.adapter == null) {

@@ -3,6 +3,7 @@ package com.goodwy.dialer.helpers
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
+import android.net.Uri
 import android.os.Build
 import android.provider.CallLog.Calls
 import android.telephony.PhoneNumberUtils
@@ -14,11 +15,12 @@ import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.getAvailableSIMCardLabels
 import com.goodwy.dialer.models.RecentCall
+import com.goodwy.dialer.models.SIMAccount
 import java.util.Locale
 
 class RecentsHelper(private val context: Context) {
     companion object {
-        private const val COMPARABLE_PHONE_NUMBER_LENGTH = 9
+//        private const val COMPARABLE_PHONE_NUMBER_LENGTH = 9
         const val QUERY_LIMIT = 100
     }
 
@@ -237,6 +239,7 @@ class RecentsHelper(private val context: Context) {
                             it.doesContainPhoneNumber(number.replace("+49", "0")) || //Germany
                             it.doesContainPhoneNumber(number.replace("+91", "0")) || //India
                             it.doesContainPhoneNumber(number.replace("+351", "")) || //Portugal
+                            it.doesContainPhoneNumber(number.replace("+374", "0")) || //Armenia
                             it.doesContainPhoneNumber(number.replace("+375", "0")) || //Belarus
                             it.doesContainPhoneNumber(number.replace("+380", "0")) //Ukraine
                     }
@@ -248,8 +251,27 @@ class RecentsHelper(private val context: Context) {
                     if (contact != null) name = contact.getNameToDisplay()
                 }
 
-                if (name.isEmpty() || name == "-1") {
+                if (name!!.isEmpty() || name == "-1") {
                     name = context.getString(R.string.unknown)
+                }
+
+                var isVoiceMail = false
+                if (name == number) {
+                    @SuppressLint("MissingPermission")
+                    if (context.hasPermission(PERMISSION_READ_PHONE_STATE)) {
+                        try {
+                            val telecomManager = context.telecomManager
+                            telecomManager.callCapablePhoneAccounts.forEachIndexed { _, account ->
+                                val phoneAccount = telecomManager.getPhoneAccount(account)
+                                val voiceMailNumber = telecomManager.getVoiceMailNumber(phoneAccount.accountHandle)
+                                if (voiceMailNumber == number) {
+                                    name = context.getString(R.string.voicemail)
+                                    isVoiceMail = true
+                                }
+                            }
+                        } catch (ignored: Exception) {
+                        }
+                    }
                 }
 
                 var photoUri = cursor.getStringValue(Calls.CACHED_PHOTO_URI) ?: ""
@@ -335,7 +357,7 @@ class RecentsHelper(private val context: Context) {
                     RecentCall(
                         id = id,
                         phoneNumber = number.orEmpty(),
-                        name = name,
+                        name = name!!,
                         nickname = nickname,
                         company = company,
                         jobPosition = jobPosition,
@@ -348,7 +370,8 @@ class RecentsHelper(private val context: Context) {
                         specificType = specificType,
                         isUnknownNumber = isUnknownNumber,
                         contactID = contactID,
-                        features = features
+                        features = features,
+                        isVoiceMail = isVoiceMail
                     )
                 )
             } while (cursor.moveToNext() && recentCalls.size < queryLimit)

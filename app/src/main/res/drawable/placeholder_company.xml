@@ -7,7 +7,7 @@
 </item>
 
 <item
-    android:drawable="@drawable/ic_person"
+    android:drawable="@drawable/ic_company"
     android:height="@dimen/contact_photo_big_size"
     android:width="@dimen/contact_photo_big_size"
     android:bottom="-16.5dp"

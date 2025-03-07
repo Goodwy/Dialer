@@ -378,6 +378,17 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/settingsFormatPhoneNumbersHolder"
+                        style="@style/SettingsHolderSwitchStyle">
+
+                        <com.goodwy.commons.views.MyMaterialSwitch
+                            android:id="@+id/settingsFormatPhoneNumbers"
+                            style="@style/SettingsSwitchStyle"
+                            android:text="@string/format_phone_numbers"
+                            app:switchPadding="@dimen/bigger_margin"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:id="@+id/settings_font_size_holder"
                         style="@style/SettingsHolderStyle">
 
@@ -1124,6 +1135,17 @@
                             android:text="@string/call_using_same_sim"
                             app:switchPadding="@dimen/bigger_margin"/>
                     </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/settingsCallBlockButtonHolder"
+                        style="@style/SettingsHolderSwitchStyle">
+
+                        <com.goodwy.commons.views.MyMaterialSwitch
+                            android:id="@+id/settingsCallBlockButton"
+                            style="@style/SettingsSwitchStyle"
+                            android:text="@string/show_number_blocking_button"
+                            app:switchPadding="@dimen/bigger_margin"/>
+                    </RelativeLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -1303,17 +1325,6 @@
                             android:id="@+id/settings_show_phone_numbers"
                             style="@style/SettingsSwitchStyle"
                             android:text="@string/show_phone_numbers_g"
-                            app:switchPadding="@dimen/bigger_margin"/>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/settingsFormatPhoneNumbersHolder"
-                        style="@style/SettingsHolderSwitchStyle">
-
-                        <com.goodwy.commons.views.MyMaterialSwitch
-                            android:id="@+id/settingsFormatPhoneNumbers"
-                            style="@style/SettingsSwitchStyle"
-                            android:text="@string/format_phone_numbers"
                             app:switchPadding="@dimen/bigger_margin"/>
                     </RelativeLayout>
 

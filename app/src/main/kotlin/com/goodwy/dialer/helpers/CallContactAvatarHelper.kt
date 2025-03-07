@@ -1,6 +1,5 @@
 package com.goodwy.dialer.helpers
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.*
 import android.net.Uri
@@ -8,10 +7,8 @@ import android.provider.MediaStore
 import android.util.Size
 import com.goodwy.commons.helpers.isQPlus
 import com.goodwy.dialer.R
-import com.goodwy.dialer.models.CallContact
 
 class CallContactAvatarHelper(private val context: Context) {
-    @SuppressLint("NewApi")
     fun getCallContactAvatar(photoUri: String?, round: Boolean = true): Bitmap? {
         var bitmap: Bitmap? = null
         if (photoUri?.isNotEmpty() == true) {

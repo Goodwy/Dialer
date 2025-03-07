@@ -176,7 +176,7 @@ class CallNotificationManager(private val context: Context) {
             }
 
             val icon: Icon? = if (callContactAvatar == null) null
-                            else Icon.createWithAdaptiveBitmap(callContactAvatarHelper.getCircularBitmap(callContactAvatar))
+                            else Icon.createWithAdaptiveBitmap(callContactAvatar)
 
             val person: Person = Person.Builder()
                 .setName(callerName)

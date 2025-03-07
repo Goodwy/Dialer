@@ -56,6 +56,7 @@ const val DIALPAD_HASHTAG_LONG_CLICK = "dialpad_hashtag_long_click"
 const val DIALPAD_CLEAR_WHEN_START_CALL = "dialpad_clear_when_start_call"
 const val CALLER_NOTES = "caller_notes"
 const val BACK_PRESSED_END_CALL = "back_pressed_end_call"
+const val CALL_BLOCK_BUTTON = "call_block_button"
 
 const val ALL_TABS_MASK = TAB_CONTACTS or TAB_FAVORITES or TAB_CALL_HISTORY
 
@@ -131,9 +132,6 @@ const val SWIPE_ACTION_DELETE = 2
 const val SWIPE_ACTION_BLOCK = 4 //!! isNougatPlus()
 const val SWIPE_ACTION_CALL = 5
 const val SWIPE_ACTION_MESSAGE = 6
-const val SWIPE_ACTION_EDIT = 7
-const val SWIPE_ACTION_SHARE = 8
-const val SWIPE_ACTION_OPEN = 9
 const val SWIPE_VIBRATION = "swipe_vibration"
 const val SWIPE_RIPPLE = "swipe_ripple"
 

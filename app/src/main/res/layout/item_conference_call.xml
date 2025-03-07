@@ -18,23 +18,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_person" />
-
-    <ImageView
-        android:id="@+id/itemConferenceCallImageIcon"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:scaleType="centerCrop"
-        android:scaleX="1.2"
-        android:scaleY="1.2"
-        android:src="@drawable/ic_person"
-        android:visibility="gone"
-        android:padding="@dimen/tiny_margin"
-        android:contentDescription="@null"
-        app:layout_constraintStart_toStartOf="@+id/itemConferenceCallImage"
-        app:layout_constraintEnd_toEndOf="@+id/itemConferenceCallImage"
-        app:layout_constraintTop_toTopOf="@+id/itemConferenceCallImage"
-        app:layout_constraintBottom_toBottomOf="@+id/itemConferenceCallImage" />
+        tools:src="@drawable/placeholder_contact" />
 
     <com.goodwy.commons.views.MyTextView
         android:id="@+id/itemConferenceCallName"

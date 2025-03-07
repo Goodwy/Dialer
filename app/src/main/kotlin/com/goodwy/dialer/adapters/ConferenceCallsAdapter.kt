@@ -1,14 +1,13 @@
 package com.goodwy.dialer.adapters
 
+import android.graphics.drawable.LayerDrawable
 import android.telecom.Call
 import android.view.Menu
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import com.bumptech.glide.Glide
 import com.goodwy.commons.adapters.MyRecyclerViewAdapter
-import com.goodwy.commons.extensions.applyColorFilter
-import com.goodwy.commons.extensions.beGone
-import com.goodwy.commons.extensions.beVisibleIf
-import com.goodwy.commons.extensions.toast
+import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.LOWER_ALPHA
 import com.goodwy.commons.helpers.SimpleContactsHelper
 import com.goodwy.commons.views.MyRecyclerView
@@ -17,6 +16,7 @@ import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.databinding.ItemConferenceCallBinding
 import com.goodwy.dialer.extensions.hasCapability
 import com.goodwy.dialer.helpers.getCallContact
+import kotlin.math.abs
 
 class ConferenceCallsAdapter(
     activity: SimpleActivity, recyclerView: MyRecyclerView, val data: ArrayList<Call>, itemClick: (Any) -> Unit
@@ -53,21 +53,23 @@ class ConferenceCallsAdapter(
                 getCallContact(itemView.context, call) { callContact ->
                     root.post {
                         itemConferenceCallName.text = callContact.name.ifEmpty { itemView.context.getString(R.string.unknown_caller) }
-                        if (callContact.number == callContact.name) {
-                            SimpleContactsHelper(activity).loadContactImage(
-                                callContact.photoUri,
-                                itemConferenceCallImage,
-                                callContact.name,
-                                letter = false
-                            )
-                            itemConferenceCallImageIcon.beVisibleIf(callContact.photoUri == "")
+                        if (callContact.number == callContact.name || callContact.isABusinessCall || callContact.isVoiceMail) {
+                            val drawable =
+                                if (callContact.isABusinessCall) AppCompatResources.getDrawable(activity, R.drawable.placeholder_company)
+                                else if (callContact.isVoiceMail) AppCompatResources.getDrawable(activity, R.drawable.placeholder_voicemail)
+                                else AppCompatResources.getDrawable(activity, R.drawable.placeholder_contact)
+                            if (baseConfig.useColoredContacts) {
+                                val letterBackgroundColors = activity.getLetterBackgroundColors()
+                                val color = letterBackgroundColors[abs(callContact.name.hashCode()) % letterBackgroundColors.size].toInt()
+                                (drawable as LayerDrawable).findDrawableByLayerId(R.id.placeholder_contact_background).applyColorFilter(color)
+                            }
+                            itemConferenceCallImage.setImageDrawable(drawable)
                         } else {
                             SimpleContactsHelper(activity).loadContactImage(
                                 callContact.photoUri,
                                 itemConferenceCallImage,
                                 callContact.name
                             )
-                            itemConferenceCallImageIcon.beGone()
                         }
                     }
                 }

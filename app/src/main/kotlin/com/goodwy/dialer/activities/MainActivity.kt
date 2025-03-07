@@ -7,6 +7,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.content.res.Configuration
+import android.graphics.Color
+import android.graphics.PorterDuff
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.Icon
 import android.graphics.drawable.LayerDrawable
@@ -155,6 +157,8 @@ class MainActivity : SimpleActivity() {
             System.exit(0)
             return
         }
+
+        @SuppressLint("UnsafeIntentLaunch")
         if (config.tabsChanged || storedBackgroundColor != getProperBackgroundColor()) {
             config.lastUsedViewPagerPage = 0
             finish()
@@ -257,8 +261,8 @@ class MainActivity : SimpleActivity() {
             storedShowPhoneNumbers = showPhoneNumbers
             storedFontSize = fontSize
             tabsChanged = false
-            storedBackgroundColor = getProperBackgroundColor()
         }
+        storedBackgroundColor = getProperBackgroundColor()
     }
 
     @Deprecated("Deprecated in Java")
@@ -383,12 +387,27 @@ class MainActivity : SimpleActivity() {
         }
     }
 
-    @Suppress("DEPRECATION")
     private fun setupSearch(menu: Menu) {
         updateMenuItemColors(menu)
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         mSearchMenuItem = menu.findItem(R.id.search)
         (mSearchMenuItem!!.actionView as SearchView).apply {
+            val textColor = getProperTextColor()
+            findViewById<TextView>(androidx.appcompat.R.id.search_src_text).apply {
+                setTextColor(textColor)
+                setHintTextColor(textColor)
+            }
+            findViewById<ImageView>(androidx.appcompat.R.id.search_close_btn).apply {
+                setColorFilter(textColor)
+            }
+            findViewById<View>(androidx.appcompat.R.id.search_plate)?.apply { // search underline
+                background.setColorFilter(Color.TRANSPARENT, PorterDuff.Mode.MULTIPLY)
+            }
+            setIconifiedByDefault(false)
+            findViewById<ImageView>(androidx.appcompat.R.id.search_mag_icon).apply {
+                setColorFilter(textColor)
+            }
+
             setSearchableInfo(searchManager.getSearchableInfo(componentName))
             isSubmitButtonEnabled = false
             queryHint = getString(R.string.search)
@@ -405,6 +424,7 @@ class MainActivity : SimpleActivity() {
             })
         }
 
+        @Suppress("DEPRECATION")
         MenuItemCompat.setOnActionExpandListener(mSearchMenuItem, object : MenuItemCompat.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
                 isSearchOpen = true

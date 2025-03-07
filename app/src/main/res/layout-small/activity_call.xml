@@ -59,169 +59,178 @@
             app:layout_constraintTop_toTopOf="@+id/imageView"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/callerAvatar"
-        android:layout_width="@dimen/caller_avatar_max_size"
-        android:layout_height="@dimen/caller_avatar_max_size"
-        android:contentDescription="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="@dimen/vertical_bias_avatar"
-        tools:src="@drawable/placeholder_contact"/>
-
-    <com.goodwy.commons.views.MyTextView
-        android:id="@+id/callerNameLabel"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/callInfoHolder"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/normal_margin"
-        android:gravity="center_horizontal"
-        android:textSize="@dimen/caller_name_text_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/callerAvatar"
-        tools:text="Caller name"/>
-
-    <ImageView
-        android:id="@+id/callInfo"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_margin="@dimen/big_margin"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/conference_manage"
-        android:elevation="@dimen/medium_margin"
-        android:src="@drawable/ic_info"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/onHoldStatusHolder"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:visibility="gone"/>
-
-    <ImageView
-        android:id="@+id/addCallerNote"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_margin="@dimen/big_margin"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/add_notes"
-        android:elevation="@dimen/medium_margin"
-        android:padding="@dimen/small_margin"
-        android:src="@drawable/ic_note"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/onHoldStatusHolder"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:visibility="visible"/>
-
-    <com.goodwy.commons.views.MyTextView
-        android:id="@+id/callerDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_margin"
-        android:gravity="center_horizontal"
-        android:textSize="@dimen/call_status_text_size"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/callerNameLabel"
-        tools:text="Company (Job Position)"
-        tools:visibility="visible"/>
-
-    <com.goodwy.commons.views.MyTextView
-        android:id="@+id/callerNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_margin"
-        android:gravity="center_horizontal"
-        android:textSize="@dimen/call_status_text_size"
-        android:paddingHorizontal="@dimen/normal_margin"
-        android:background="@drawable/ripple_all_corners_11dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/callerDescription"
-        tools:text="*0912 345 678"/>
-
-    <com.goodwy.commons.views.MyTextView
-        android:id="@+id/callerNotes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_margin"
-        android:gravity="center_horizontal"
-        android:textSize="@dimen/call_status_text_size"
-        android:paddingHorizontal="@dimen/activity_margin"
-        android:background="@drawable/ripple_all_corners_11dp"
-        android:maxLines="2"
-        android:ellipsize="end"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/callerNumber"
-        tools:text="Caller notes"
-        tools:visibility="visible"/>
-
-    <RelativeLayout
-        android:id="@+id/call_status_holder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_margin"
         android:orientation="horizontal"
+        android:layout_marginTop="@dimen/normal_margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/callerNotes">
+        app:layout_constraintTop_toBottomOf="@+id/onHoldStatusHolder"
+        app:layout_goneMarginTop="32dp">
 
         <ImageView
-            android:id="@+id/callDetails"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:alpha="0.8"
-            android:contentDescription="HD"
-            android:src="@drawable/ic_hd"
-            android:visibility="gone"
-            tools:visibility="visible"
-            tools:ignore="HardcodedText" />
-
-        <ImageView
-            android:id="@+id/callSimImage"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:padding="@dimen/one_dp"
-            android:layout_toEndOf="@+id/callDetails"
-            android:alpha="0.8"
+            android:id="@+id/callerAvatar"
+            android:layout_width="@dimen/caller_avatar_max_size_small"
+            android:layout_height="@dimen/caller_avatar_max_size_small"
             android:contentDescription="@null"
-            android:src="@drawable/ic_sim_vector"
-            android:visibility="gone"
-            tools:visibility="visible"/>
+            android:layout_marginHorizontal="@dimen/about_margin"
+            android:layout_gravity="center_vertical"
+            tools:src="@drawable/placeholder_contact"/>
 
-        <TextView
-            android:id="@+id/callSimId"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_alignTop="@+id/callSimImage"
-            android:layout_alignBottom="@+id/callSimImage"
-            android:layout_alignStart="@+id/callSimImage"
-            android:layout_alignEnd="@+id/callSimImage"
-            android:alpha="0.8"
-            android:gravity="center"
-            android:textColor="@color/md_grey_black"
-            android:textSize="@dimen/bigger_text_size"
-            android:textStyle="bold"
-            android:visibility="gone"
-            tools:text="1"
-            tools:visibility="visible"/>
-
-        <com.goodwy.commons.views.MyTextView
-            android:id="@+id/callStatusLabel"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/callNameInfoHolder"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/one_dp"
-            android:layout_alignTop="@+id/callSimImage"
-            android:layout_alignBottom="@+id/callSimImage"
-            android:layout_toEndOf="@+id/callSimImage"
-            android:layout_marginStart="@dimen/small_margin"
-            android:alpha="0.8"
-            android:textSize="@dimen/call_status_text_size"
-            tools:text="Is Calling"/>
-    </RelativeLayout>
+            android:layout_marginEnd="@dimen/about_margin"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/callNameHolder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.goodwy.commons.views.MyTextView
+                    android:id="@+id/callerNameLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/caller_name_text_size_small"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/addCallerNote"
+                    app:layout_goneMarginEnd="26dp"
+                    tools:text="Caller name"/>
+
+                <ImageView
+                    android:id="@+id/callInfo"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/conference_manage"
+                    android:elevation="@dimen/medium_margin"
+                    android:src="@drawable/ic_info"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:visibility="gone"/>
+
+                <ImageView
+                    android:id="@+id/addCallerNote"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/add_notes"
+                    android:elevation="@dimen/medium_margin"
+                    android:padding="@dimen/small_margin"
+                    android:src="@drawable/ic_note"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:visibility="visible"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.goodwy.commons.views.MyTextView
+                android:id="@+id/callerDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:textSize="@dimen/call_status_text_size_small"
+                android:visibility="gone"
+                tools:text="Company (Job Position)"
+                tools:visibility="visible"/>
+
+            <com.goodwy.commons.views.MyTextView
+                android:id="@+id/callerNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:textSize="@dimen/call_status_text_size_small"
+                android:background="@drawable/ripple_all_corners_11dp"
+                tools:text="*0912 345 678"/>
+
+            <com.goodwy.commons.views.MyTextView
+                android:id="@+id/callerNotes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:textSize="@dimen/call_status_text_size_small"
+                android:background="@drawable/ripple_all_corners_11dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:visibility="gone"
+                tools:text="Caller notes"
+                tools:visibility="visible"/>
+
+            <RelativeLayout
+                android:id="@+id/call_status_holder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/callerNotes">
+
+                <ImageView
+                    android:id="@+id/callDetails"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:alpha="0.8"
+                    android:contentDescription="HD"
+                    android:src="@drawable/ic_hd"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    tools:ignore="HardcodedText" />
+
+                <ImageView
+                    android:id="@+id/callSimImage"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:padding="@dimen/one_dp"
+                    android:layout_toEndOf="@+id/callDetails"
+                    android:layout_marginEnd="@dimen/small_margin"
+                    android:alpha="0.8"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_sim_vector"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
+
+                <TextView
+                    android:id="@+id/callSimId"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_alignTop="@+id/callSimImage"
+                    android:layout_alignBottom="@+id/callSimImage"
+                    android:layout_alignStart="@+id/callSimImage"
+                    android:layout_alignEnd="@+id/callSimImage"
+                    android:alpha="0.8"
+                    android:gravity="center"
+                    android:textColor="@color/md_grey_black"
+                    android:textSize="@dimen/bigger_text_size"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    tools:text="1"
+                    tools:visibility="visible"/>
+
+                <com.goodwy.commons.views.MyTextView
+                    android:id="@+id/callStatusLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/one_dp"
+                    android:layout_alignTop="@+id/callSimImage"
+                    android:layout_alignBottom="@+id/callSimImage"
+                    android:layout_toEndOf="@+id/callSimImage"
+                    android:alpha="0.8"
+                    android:textSize="@dimen/call_status_text_size_small"
+                    tools:text="Is Calling"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/hold_status_label"
@@ -231,11 +240,11 @@
         android:alpha="0.8"
         android:text="@string/call_on_hold"
         android:textColor="@color/red_missed"
-        android:textSize="@dimen/call_status_text_size"
+        android:textSize="@dimen/call_status_text_size_small"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/call_status_holder"
+        app:layout_constraintTop_toBottomOf="@+id/callInfoHolder"
         tools:visibility="visible"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -243,7 +252,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        tools:visibility="gone">
+        tools:visibility="visible">
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/controlsSingleCall"
@@ -619,7 +628,7 @@
         android:visibility="gone"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <ImageView
             android:id="@+id/call_remind"

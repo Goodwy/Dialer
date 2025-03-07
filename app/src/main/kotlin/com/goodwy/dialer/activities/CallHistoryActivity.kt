@@ -1086,6 +1086,21 @@ class CallHistoryActivity : SimpleActivity() {
     private fun updateButton() {
         val call = currentRecentCall
         if (call != null) {
+            if (call.phoneNumber == call.name || call.isABusinessCall() || call.isVoiceMail || isDestroyed || isFinishing) {
+                val drawable =
+                    if (call.isABusinessCall()) AppCompatResources.getDrawable(this, R.drawable.placeholder_company)
+                    else if (call.isVoiceMail) AppCompatResources.getDrawable(this, R.drawable.placeholder_voicemail)
+                    else AppCompatResources.getDrawable(this, R.drawable.placeholder_contact)
+                if (baseConfig.useColoredContacts) {
+                    val letterBackgroundColors = getLetterBackgroundColors()
+                    val color = letterBackgroundColors[abs(call.name.hashCode()) % letterBackgroundColors.size].toInt()
+                    (drawable as LayerDrawable).findDrawableByLayerId(R.id.placeholder_contact_background).applyColorFilter(color)
+                }
+                binding.topDetails.callHistoryImage.setImageDrawable(drawable)
+            } else {
+                if (!isFinishing && !isDestroyed) SimpleContactsHelper(this.applicationContext).loadContactImage(call.photoUri, binding.topDetails.callHistoryImage, call.name)
+            }
+
             if (contact != null) {
                 val contactPhoneNumber = contact!!.phoneNumbers.firstOrNull { it.normalizedNumber == getCurrentPhoneNumber }
                 if (contactPhoneNumber != null) {
@@ -1132,18 +1147,6 @@ class CallHistoryActivity : SimpleActivity() {
                     setOnLongClickListener { toast(R.string.add_contact); true; }
                     contentDescription = getString(R.string.add_contact)
                 }
-            }
-
-            if (call.phoneNumber == call.name || isDestroyed || isFinishing) {
-                val drawable = AppCompatResources.getDrawable(this, R.drawable.placeholder_contact)
-                if (baseConfig.useColoredContacts) {
-                    val letterBackgroundColors = getLetterBackgroundColors()
-                    val color = letterBackgroundColors[abs(call.name.hashCode()) % letterBackgroundColors.size].toInt()
-                    (drawable as LayerDrawable).findDrawableByLayerId(R.id.placeholder_contact_background).applyColorFilter(color)
-                }
-                binding.topDetails.callHistoryImage.setImageDrawable(drawable)
-            } else {
-                if (!isFinishing && !isDestroyed) SimpleContactsHelper(this.applicationContext).loadContactImage(call.photoUri, binding.topDetails.callHistoryImage, call.name)
             }
 
             binding.callHistoryPlaceholderContainer.beGone()

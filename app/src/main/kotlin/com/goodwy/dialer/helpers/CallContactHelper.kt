@@ -1,13 +1,13 @@
 package com.goodwy.dialer.helpers
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.telecom.Call
-import com.goodwy.commons.extensions.formatPhoneNumber
-import com.goodwy.commons.extensions.getMyContactsCursor
-import com.goodwy.commons.extensions.getPhoneNumberTypeText
+import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.ContactsHelper
 import com.goodwy.commons.helpers.MyContactsContentProvider
+import com.goodwy.commons.helpers.PERMISSION_READ_PHONE_STATE
 import com.goodwy.commons.helpers.ensureBackgroundThread
 import com.goodwy.dialer.R
 import com.goodwy.dialer.extensions.config
@@ -38,6 +38,22 @@ fun getCallContact(context: Context, call: Call?, callback: (CallContact) -> Uni
         val uri = Uri.decode(handle)
         if (uri.startsWith("tel:")) {
             val number = uri.substringAfter("tel:")
+
+            @SuppressLint("MissingPermission")
+            if (context.hasPermission(PERMISSION_READ_PHONE_STATE)) {
+                try {
+                    val telecomManager = context.telecomManager
+                    telecomManager.callCapablePhoneAccounts.forEachIndexed { _, account ->
+                        val phoneAccount = telecomManager.getPhoneAccount(account)
+                        val voiceMailNumber = telecomManager.getVoiceMailNumber(phoneAccount.accountHandle)
+                        if (voiceMailNumber == number) {
+                            callContact.isVoiceMail = true
+                        }
+                    }
+                } catch (ignored: Exception) {
+                }
+            }
+
             ContactsHelper(context).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
                 val privateContacts = MyContactsContentProvider.getContacts(context, privateCursor)
                 if (privateContacts.isNotEmpty()) {
@@ -84,6 +100,8 @@ fun getCallContact(context: Context, call: Call?, callback: (CallContact) -> Uni
                             callContact.description = contact.nickname
                         }
                     }
+
+                    callContact.isABusinessCall = contact.organization.company.isNotEmpty() && contact.organization.company == contact.getNameToDisplay()
                 } else {
                     callContact.name = callContact.number
                 }

@@ -13,10 +13,11 @@
         android:layout_width="@dimen/contact_photo_size"
         android:layout_height="@dimen/contact_photo_size"
         android:layout_marginTop="36dp"
+        android:contentDescription="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_person" />
+        tools:src="@drawable/placeholder_contact" />
 
     <com.goodwy.commons.views.MyTextView
         android:id="@+id/callHistoryName"

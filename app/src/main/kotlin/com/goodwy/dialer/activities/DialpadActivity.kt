@@ -489,10 +489,10 @@ class DialpadActivity : SimpleActivity() {
                     if (binding.dialpadInput.value.isEmpty()) {
                         val text = getTextFromClipboard()
                         binding.dialpadInput.setText(text)
-                        if (text != null) {
+                        if (text != null && text != "") {
                             binding.dialpadInput.setSelection(text.length)
-                        }
-                        binding.dialpadInput.requestFocusFromTouch(); true
+                            binding.dialpadInput.requestFocusFromTouch()
+                        }; true
                     } else {
                         copyNumber(); true
                     }
@@ -628,10 +628,10 @@ class DialpadActivity : SimpleActivity() {
                 if (binding.dialpadInput.value.isEmpty()) {
                     val text = getTextFromClipboard()
                     binding.dialpadInput.setText(text)
-                    if (text != null) {
+                    if (text != null && text != "") {
                         binding.dialpadInput.setSelection(text.length)
-                    }
-                    binding.dialpadInput.requestFocusFromTouch(); true
+                        binding.dialpadInput.requestFocusFromTouch()
+                    }; true
                 } else {
                     copyNumber(); true
                 }
@@ -768,10 +768,10 @@ class DialpadActivity : SimpleActivity() {
                     if (binding.dialpadInput.value.isEmpty()) {
                         val text = getTextFromClipboard()
                         binding.dialpadInput.setText(text)
-                        if (text != null) {
+                        if (text != null && text != "") {
                             binding.dialpadInput.setSelection(text.length)
-                        }
-                        binding.dialpadInput.requestFocusFromTouch(); true
+                            binding.dialpadInput.requestFocusFromTouch()
+                        }; true
                     } else {
                         copyNumber(); true
                     }
@@ -864,10 +864,10 @@ class DialpadActivity : SimpleActivity() {
                 R.id.paste_number -> {
                     val text = getTextFromClipboard()
                     binding.dialpadInput.setText(text)
-                    if (text != null) {
-                        binding.dialpadInput.setSelection(text.lastIndex)
+                    if (text != null && text != "") {
+                        binding.dialpadInput.setSelection(text.length)
+                        binding.dialpadInput.requestFocusFromTouch()
                     }
-                    binding.dialpadInput.requestFocusFromTouch()
                 }
                 R.id.copy_number -> copyNumber()
                 R.id.web_search -> webSearch()
