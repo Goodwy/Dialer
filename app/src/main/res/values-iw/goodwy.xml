@@ -46,6 +46,7 @@
     <string name="faq_2_text_dialer_g">לחץ לחיצה ארוכה על לחצן ההתקשרות כדי להדביק את תוכן הלוח. אם המספר כבר הוזן, לחיצה ארוכה על לחצן ההתקשרות תעתיק אותו ללוח.</string>
 
     <!-- סגנון תשובה -->
+    <string name="faq_3_text_g">Right טלפון מציג רק אנשי קשר שיש להם מספר טלפון המשויך אליהם. אנשי קשר ללא מספר טלפון אינם מוצגים באפליקציה.</string>
     <string name="answer_style">סגנון כפתור תשובה</string>
     <string name="buttons">כפתורים</string>
     <string name="answer_slider">מחוון</string>

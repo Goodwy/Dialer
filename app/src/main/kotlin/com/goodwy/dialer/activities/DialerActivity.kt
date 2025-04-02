@@ -17,6 +17,7 @@ import com.goodwy.dialer.R
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.getHandleToUse
 import com.goodwy.dialer.helpers.SHOW_RECENT_CALLS_ON_DIALPAD
+import androidx.core.net.toUri
 
 class DialerActivity : SimpleActivity() {
     private var callNumber: Uri? = null
@@ -86,7 +87,7 @@ class DialerActivity : SimpleActivity() {
                 try {
                     hideKeyboard()
                     Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-                        data = Uri.parse("package:$packageName")
+                        data = "package:$packageName".toUri()
                         startActivity(this)
                     }
                     toast(R.string.default_phone_app_prompt, Toast.LENGTH_LONG)

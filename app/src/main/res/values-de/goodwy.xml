@@ -45,6 +45,7 @@
     <string name="faq_2_text_dialer_g">Ein langer Druck auf die Ruftaste fügt den Inhalt der Zwischenablage ein. Wenn die Nummer bereits eingegeben ist, wird sie durch einen langen Druck auf die Anruftaste in die Zwischenablage kopiert.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer zeigt nur Kontakte an, die mit einer Telefonnummer verknüpft sind. Kontakte ohne Telefonnummer werden in der App nicht angezeigt.</string>
     <string name="answer_style">Antworttaste Stil</string>
     <string name="buttons">Buttons</string>
     <string name="answer_slider">Schieberegler</string>

@@ -46,6 +46,7 @@
     <string name="faq_2_text_dialer_g">Une pression longue sur le bouton d’appel colle le contenu du presse-papiers. Si le numéro est déjà saisi, une pression longue sur le bouton d’appel le copie dans le presse-papiers.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer n\'affiche que les contacts auxquels un numéro de téléphone est associé. Les contacts sans numéro de téléphone ne sont pas affichés dans l\'application.</string>
     <string name="answer_style">Style de bouton de réponse</string>
     <string name="buttons">Boutons</string>
     <string name="answer_slider">Slider</string>

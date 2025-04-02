@@ -7,12 +7,13 @@ import android.provider.MediaStore
 import android.util.Size
 import com.goodwy.commons.helpers.isQPlus
 import com.goodwy.dialer.R
+import androidx.core.net.toUri
 
 class CallContactAvatarHelper(private val context: Context) {
     fun getCallContactAvatar(photoUri: String?, round: Boolean = true): Bitmap? {
         var bitmap: Bitmap? = null
         if (photoUri?.isNotEmpty() == true) {
-            val photoUriParse = Uri.parse(photoUri)
+            val photoUriParse = photoUri.toUri()
             try {
                 val contentResolver = context.contentResolver
                 bitmap = if (isQPlus()) {

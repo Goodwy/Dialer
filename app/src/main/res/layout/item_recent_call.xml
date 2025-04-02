@@ -115,7 +115,7 @@
             tools:text="00:10"/>
 
         <TextView
-            android:id="@+id/item_recents_number"
+            android:id="@+id/itemRecentsNumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:alpha="0.6"

@@ -45,6 +45,7 @@
     <string name="faq_2_text_dialer_g">Arama düğmesine uzun basıldığında panonun içeriği yapıştırılır. Numara zaten girilmişse, arama düğmesine uzun basıldığında numara panoya kopyalanır.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer yalnızca kendileriyle ilişkili bir telefon numarası olan kişileri görüntüler. Telefon numarası olmayan kişiler uygulamada gösterilmemiştir.</string>
     <string name="answer_style">Cevap düğmesi stili</string>
     <string name="buttons">Düğmeler</string>
     <string name="answer_slider">Slider</string>

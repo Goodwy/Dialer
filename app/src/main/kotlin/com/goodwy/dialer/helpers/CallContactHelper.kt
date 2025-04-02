@@ -54,7 +54,7 @@ fun getCallContact(context: Context, call: Call?, callback: (CallContact) -> Uni
                 }
             }
 
-            ContactsHelper(context).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
+            ContactsHelper(context).getContacts(getAll = true, showOnlyContactsWithNumbers = true) { contacts ->
                 val privateContacts = MyContactsContentProvider.getContacts(context, privateCursor)
                 if (privateContacts.isNotEmpty()) {
                     contacts.addAll(privateContacts)
@@ -101,7 +101,7 @@ fun getCallContact(context: Context, call: Call?, callback: (CallContact) -> Uni
                         }
                     }
 
-                    callContact.isABusinessCall = contact.organization.company.isNotEmpty() && contact.organization.company == contact.getNameToDisplay()
+                    callContact.isABusinessCall = contact.organization.company.isNotEmpty() &&  contact.getNameToDisplay().contains(contact.organization.company)
                 } else {
                     callContact.name = callContact.number
                 }

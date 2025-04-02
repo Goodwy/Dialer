@@ -34,6 +34,7 @@ import com.goodwy.dialer.models.Timer
 import com.goodwy.dialer.models.TimerState
 import com.goodwy.dialer.receivers.TimerReceiver
 import me.leolin.shortcutbadger.ShortcutBadger
+import androidx.core.net.toUri
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
@@ -152,7 +153,7 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
             setBypassDnd(true)
             enableLights(true)
             lightColor = getProperPrimaryColor()
-            setSound(Uri.parse(soundUri), audioAttributes)
+            setSound(soundUri.toUri(), audioAttributes)
 
             if (!timer.vibrate) {
                 vibrationPattern = longArrayOf(0L)
@@ -187,7 +188,7 @@ fun Context.getTimerNotification(timer: Timer, pendingIntent: PendingIntent, add
         .setPriority(NotificationCompat.PRIORITY_MAX)
         .setDefaults(Notification.DEFAULT_LIGHTS)
         .setAutoCancel(true)
-        .setSound(Uri.parse(soundUri), AudioManager.STREAM_ALARM)
+        .setSound(soundUri.toUri(), AudioManager.STREAM_ALARM)
         .setChannelId(channelId)
         .setStyle(NotificationCompat.DecoratedCustomViewStyle())
         .addAction(

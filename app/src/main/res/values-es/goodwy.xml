@@ -46,6 +46,7 @@
     <string name="faq_2_text_dialer_g">Una pulsación larga en el botón de llamada pega el contenido del portapapeles. Si el número ya está introducido, una pulsación larga del botón de llamada lo copia en el portapapeles.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">El Right Dialer sólo muestra los contactos que tienen un número de teléfono asociado. Los contactos sin número de teléfono no se muestran en la aplicación.</string>
     <string name="answer_style">Estilo del botón de respuesta</string>
     <string name="buttons">Botones</string>
     <string name="answer_slider">Deslizador</string>

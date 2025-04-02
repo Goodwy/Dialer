@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--TODO Edit-->
-    <string name="app_name">간단한 다이얼러</string>
     <string name="app_launcher_name">다이얼러</string>
     <string name="default_phone_app_prompt">이 앱을 기본 전화 앱으로 설정해 주세요</string>
     <string name="allow_displaying_over_other_apps">안정적인 동작을 위해 다른 앱 위에 표시를 허용하세요</string>

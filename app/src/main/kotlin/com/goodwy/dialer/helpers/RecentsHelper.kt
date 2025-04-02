@@ -3,10 +3,13 @@ package com.goodwy.dialer.helpers
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
+import android.database.sqlite.SQLiteFullException
 import android.net.Uri
 import android.os.Build
 import android.provider.CallLog.Calls
 import android.telephony.PhoneNumberUtils
+import android.text.TextUtils
+import android.util.Log
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.contacts.Contact
@@ -15,7 +18,6 @@ import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.getAvailableSIMCardLabels
 import com.goodwy.dialer.models.RecentCall
-import com.goodwy.dialer.models.SIMAccount
 import java.util.Locale
 
 class RecentsHelper(private val context: Context) {
@@ -31,6 +33,7 @@ class RecentsHelper(private val context: Context) {
         previousRecents: List<RecentCall> = ArrayList(),
         queryLimit: Int = QUERY_LIMIT,
         isDialpad: Boolean = false,
+        updateCallsCache: Boolean = false,
         callback: (List<RecentCall>) -> Unit,
     ) {
         val privateCursor = context.getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
@@ -39,7 +42,7 @@ class RecentsHelper(private val context: Context) {
             return
         }
 
-        ContactsHelper(context).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
+        ContactsHelper(context).getContacts(getAll = true, showOnlyContactsWithNumbers = true) { contacts ->
             ensureBackgroundThread {
                 val privateContacts = MyContactsContentProvider.getContacts(context, privateCursor)
                 if (privateContacts.isNotEmpty()) {
@@ -59,18 +62,20 @@ class RecentsHelper(private val context: Context) {
                     val newerRecents = getRecents(
                         contacts = contacts,
                         selection = "${Calls.DATE} > ?",
-                        selectionParams = arrayOf("${previousRecentCalls.first().startTS}")
+                        selectionParams = arrayOf("${previousRecentCalls.first().startTS}"),
+                        updateCallsCache = updateCallsCache
                     )
 
                     val olderRecents = getRecents(
                         contacts = contacts,
                         selection = "${Calls.DATE} < ?",
-                        selectionParams = arrayOf("${previousRecentCalls.last().startTS}")
+                        selectionParams = arrayOf("${previousRecentCalls.last().startTS}"),
+                        updateCallsCache = updateCallsCache
                     )
 
                     newerRecents + previousRecentCalls + olderRecents
                 } else {
-                    getRecents(contacts)
+                    getRecents(contacts, updateCallsCache = updateCallsCache)
                 }
 
                 callback(recentCalls)
@@ -132,11 +137,13 @@ class RecentsHelper(private val context: Context) {
         contacts: List<Contact>,
         selection: String? = null,
         selectionParams: Array<String>? = null,
+        updateCallsCache: Boolean,
     ): List<RecentCall> {
         val recentCalls = mutableListOf<RecentCall>()
         var previousStartTS = 0L
-        val contactsNumbersMap = HashMap<String, String>()
+//        val contactsNumbersMap = HashMap<String, String>()
         val contactPhotosMap = HashMap<String, String>()
+        val contactsMap = HashMap<String, Contact>()
 
         val projection = arrayOf(
             Calls._ID,
@@ -147,7 +154,8 @@ class RecentsHelper(private val context: Context) {
             Calls.DURATION,
             Calls.TYPE,
             Calls.PHONE_ACCOUNT_ID,
-            Calls.FEATURES
+            Calls.FEATURES,
+            Calls.COUNTRY_ISO
         )
 
         val accountIdToSimIDMap = HashMap<String, Int>()
@@ -224,24 +232,28 @@ class RecentsHelper(private val context: Context) {
 
                 var contact: Contact? = null
                 if (number != null) {
-//                    val filteredContacts = contacts.filter { context.baseConfig.ignoredContactSources.contains(it.source) }
-                    contact = contacts.firstOrNull { it.doesContainPhoneNumber(number) }
-                    // If the number in the contacts is written without + or 8 instead of +7
-                    // https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers
-                    if (contact == null) contact = contacts.firstOrNull {
-                        it.doesContainPhoneNumber(number.replace("+", "")) || //All
-                            it.doesContainPhoneNumber(number.replace("+7", "8")) || //Russia
-                            it.doesContainPhoneNumber(number.replace("+31", "0")) || //Netherlands
-                            it.doesContainPhoneNumber(number.replace("+33", "0")) || //France
-                            it.doesContainPhoneNumber(number.replace("+34", "")) || //Spain
-                            it.doesContainPhoneNumber(number.replace("+39", "0")) || //Italy
-                            it.doesContainPhoneNumber(number.replace("+44", "0")) || //United Kingdom
-                            it.doesContainPhoneNumber(number.replace("+49", "0")) || //Germany
-                            it.doesContainPhoneNumber(number.replace("+91", "0")) || //India
-                            it.doesContainPhoneNumber(number.replace("+351", "")) || //Portugal
-                            it.doesContainPhoneNumber(number.replace("+374", "0")) || //Armenia
-                            it.doesContainPhoneNumber(number.replace("+375", "0")) || //Belarus
-                            it.doesContainPhoneNumber(number.replace("+380", "0")) //Ukraine
+                    if (contactsMap.containsKey(number)) {
+                        contact = contactsMap[number]!!
+                    } else {
+                        contact = contacts.firstOrNull { it.doesContainPhoneNumber(number) }
+                        // If the number in the contacts is written without + or 8 instead of +7
+                        // https://en.wikipedia.org/wiki/National_conventions_for_writing_telephone_numbers
+                        if (contact == null) contact = contacts.firstOrNull {
+                            it.doesContainPhoneNumber(number.replace("+", "")) || //All
+                                it.doesContainPhoneNumber(number.replace("+7", "8")) || //Russia
+                                it.doesContainPhoneNumber(number.replace("+31", "0")) || //Netherlands
+                                it.doesContainPhoneNumber(number.replace("+33", "0")) || //France
+                                it.doesContainPhoneNumber(number.replace("+34", "")) || //Spain
+                                it.doesContainPhoneNumber(number.replace("+39", "0")) || //Italy
+                                it.doesContainPhoneNumber(number.replace("+44", "0")) || //United Kingdom
+                                it.doesContainPhoneNumber(number.replace("+49", "0")) || //Germany
+                                it.doesContainPhoneNumber(number.replace("+91", "0")) || //India
+                                it.doesContainPhoneNumber(number.replace("+351", "")) || //Portugal
+                                it.doesContainPhoneNumber(number.replace("+374", "0")) || //Armenia
+                                it.doesContainPhoneNumber(number.replace("+375", "0")) || //Belarus
+                                it.doesContainPhoneNumber(number.replace("+380", "0")) //Ukraine
+                        }
+                        if (contact != null) contactsMap[number] = contact
                     }
                 }
 
@@ -265,7 +277,7 @@ class RecentsHelper(private val context: Context) {
                                 val phoneAccount = telecomManager.getPhoneAccount(account)
                                 val voiceMailNumber = telecomManager.getVoiceMailNumber(phoneAccount.accountHandle)
                                 if (voiceMailNumber == number) {
-                                    name = context.getString(R.string.voicemail)
+//                                    name = context.getString(R.string.voicemail)
                                     isVoiceMail = true
                                 }
                             }
@@ -274,7 +286,7 @@ class RecentsHelper(private val context: Context) {
                     }
                 }
 
-                var photoUri = cursor.getStringValue(Calls.CACHED_PHOTO_URI) ?: ""
+                var photoUri = cursor.getStringValue(Calls.CACHED_PHOTO_URI).orEmpty()
                 if (photoUri.isEmpty() && !number.isNullOrEmpty()) {
                     if (contactPhotosMap.containsKey(number)) {
                         photoUri = contactPhotosMap[number]!!
@@ -357,7 +369,7 @@ class RecentsHelper(private val context: Context) {
                     RecentCall(
                         id = id,
                         phoneNumber = number.orEmpty(),
-                        name = name!!,
+                        name = name,
                         nickname = nickname,
                         company = company,
                         jobPosition = jobPosition,
@@ -374,6 +386,37 @@ class RecentsHelper(private val context: Context) {
                         isVoiceMail = isVoiceMail
                     )
                 )
+
+                if (updateCallsCache) {
+                    val callLogInfo =
+                        RecentCall(
+                            id = id,
+                            phoneNumber = cursor.getStringValueOrNull(Calls.NUMBER).orEmpty(),
+                            name = cursor.getStringValueOrNull(Calls.CACHED_NAME).orEmpty(),
+                            nickname = nickname,
+                            company = company,
+                            jobPosition = jobPosition,
+                            photoUri = cursor.getStringValue(Calls.CACHED_PHOTO_URI).orEmpty(),
+                            startTS = startTS,
+                            duration = duration,
+                            type = type,
+                            simID = simID,
+                            specificNumber = cursor.getIntValue(Calls.CACHED_NUMBER_TYPE).toString(),
+                            specificType = cursor.getStringValue(Calls.CACHED_NUMBER_LABEL),
+                            isUnknownNumber = isUnknownNumber,
+                            contactID = contactID,
+                            features = features,
+                            isVoiceMail = isVoiceMail
+                        )
+
+                    updateRecentCallsContactInfo(
+                        number.orEmpty(),
+                        name,
+                        cursor.getStringValueOrNull(Calls.CACHED_NAME).orEmpty(),
+                        photoUri,
+                        cursor.getStringValueOrNull(Calls.CACHED_PHOTO_URI)
+                    )
+                }
             } while (cursor.moveToNext() && recentCalls.size < queryLimit)
         }
 
@@ -450,6 +493,50 @@ class RecentsHelper(private val context: Context) {
                 where.toString(), arrayOf(Calls.MISSED_TYPE.toString())
             )
         } catch (ignored: IllegalArgumentException) {
+        }
+    }
+
+    private fun updateRecentCallsContactInfo(
+        number: String, updatedName: String, callLogName: String?, updatedPhotoUri: String, callLogPhotoUri: String?
+    ) {
+        val values = ContentValues()
+        var needsUpdate = false
+
+        if (callLogName != null) {
+            if (!TextUtils.equals(updatedName, callLogName)) {
+                values.put(Calls.CACHED_NAME, updatedName)
+                needsUpdate = true
+            }
+        } else {
+            values.put(Calls.CACHED_NAME, updatedName)
+            needsUpdate = true
+        }
+
+        if (callLogPhotoUri != null) {
+            val updatedPhotoUriContactsOnly: Uri = UriUtils.nullForNonContactsUri(UriUtils.parseUriOrNull(updatedPhotoUri))
+            if (!UriUtils.areEqual(updatedPhotoUriContactsOnly, UriUtils.parseUriOrNull(callLogPhotoUri))) {
+                values.put(Calls.CACHED_PHOTO_URI, UriUtils.uriToString(updatedPhotoUriContactsOnly))
+                needsUpdate = true
+            }
+        } else {
+            values.put(Calls.CACHED_PHOTO_URI, updatedPhotoUri)
+            needsUpdate = true
+        }
+
+        if (!needsUpdate) {
+            return
+        }
+
+        try {
+            context
+                .contentResolver
+                .update(
+                    Calls.CONTENT_URI,
+                    values,
+                    Calls.NUMBER + " = ? AND " + Calls.COUNTRY_ISO + " IS NULL",
+                    arrayOf(number)
+                )
+        } catch (_: SQLiteFullException) {
         }
     }
 }

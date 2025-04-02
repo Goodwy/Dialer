@@ -79,8 +79,8 @@ class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
 
     @SuppressLint("MissingPermission")
     private fun updateAdapter() {
-        SpeedDialAdapter(this, speedDialValues, this, binding.speedDialList) {
-            val clickedContact = it as SpeedDial
+        SpeedDialAdapter(this, speedDialValues, this, binding.speedDialList) { any ->
+            val clickedContact = any as SpeedDial
             if (allContacts.isEmpty()) {
                 showAddSpeedDialDialog(clickedContact)
             }
@@ -223,8 +223,7 @@ class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
     }
 
     override fun removeSpeedDial(ids: ArrayList<Int>) {
-        ids.forEach {
-            val dialId = it
+        ids.forEach { dialId ->
             speedDialValues.first { it.id == dialId }.apply {
                 displayName = ""
                 number = ""

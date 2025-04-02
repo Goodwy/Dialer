@@ -1,7 +1,7 @@
 [versions]
 #jetbrains
 kotlin = "1.9.25"
-kotlinxSerializationJson = "1.6.0"
+kotlinxSerializationJson = "1.6.3"
 #KSP
 ksp = "1.9.25-1.0.20"
 #Detekt
@@ -9,15 +9,15 @@ detekt = "1.23.3"
 #Eventbus
 eventbus = "3.3.1"
 #Gradle
-gradlePlugins-agp = "8.7.1"
+gradlePlugins-agp = "8.9.0"
 #Other
 indicatorFastScroll = "e37b5b2ad6"
 autofitTextView = "0.2.1"
+geocoderVersion = "3.1"
+libphonenumberVersion = "9.0.1"
 #Goodwy
-right-commons = "a7f55451bc"
+right-commons = "9848932516"
 badger = "1.1.22"
-libphonenumber = "8.13.26"
-geocoder = "2.185"
 androidx-lifecycle = "2.8.6"
 behavioRule = "1.0.1"
 rxAnimation = "2.1.1"
@@ -32,8 +32,8 @@ app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
 #versioning
 app-version-appId = "com.goodwy.dialer"
-app-version-versionCode = "612"
-app-version-versionName = "6.1.2"
+app-version-versionCode = "613"
+app-version-versionName = "6.1.3"
 [libraries]
 #EventBus
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
@@ -42,11 +42,11 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 #Other
 indicator-fast-scroll = { module = "com.github.goodwy:IndicatorFastScroll", version.ref = "indicatorFastScroll" }
 autofit-text-view = { module = "me.grantland:autofittextview", version.ref = "autofitTextView" }
+geocoder = { module = "com.googlecode.libphonenumber:geocoder", version.ref = "geocoderVersion" }
+libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "libphonenumberVersion" }
 #Goodwy
 goodwy-commons = { module = "com.github.Goodwy:Goodwy-Commons", version.ref = "right-commons" }
 shortcut-badger = { module = "me.leolin:ShortcutBadger", version.ref = "badger" }
-googlecode-libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "libphonenumber" }
-googlecode-geocoder = { module = "com.googlecode.libphonenumber:geocoder", version.ref = "geocoder" }
 androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "androidx-lifecycle" }

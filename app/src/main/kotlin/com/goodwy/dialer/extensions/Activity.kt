@@ -197,6 +197,8 @@ fun SimpleActivity.launchAbout() {
 
     val faqItems = arrayListOf(
         FAQItem(R.string.faq_1_title, R.string.faq_1_text),
+        FAQItem(R.string.faq_2_title, R.string.faq_2_text),
+        FAQItem(R.string.faq_3_title, R.string.faq_3_text_g),
         FAQItem(R.string.faq_1_title_dialer_g, R.string.faq_1_text_dialer_g),
         FAQItem(R.string.faq_2_title_dialer_g, R.string.faq_2_text_dialer_g),
         FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons_g),

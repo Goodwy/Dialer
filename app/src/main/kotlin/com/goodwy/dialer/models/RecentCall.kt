@@ -43,5 +43,5 @@ data class RecentCall(
 
     fun getDayCode() = startTS.toDayCode()
 
-    fun isABusinessCall() = name == company && company.isNotEmpty()
+    fun isABusinessCall() = name.contains(company) && company.isNotEmpty()
 }

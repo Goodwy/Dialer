@@ -45,6 +45,7 @@
     <string name="faq_2_text_dialer_g">Vajutage pikalt helistamisnuppu, et lõikelaua sisu kleepida. Kui number on juba sisestatud, kopeerib helistamisnupu pikk vajutus selle lõikepuhvrisse.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer näitab vaid kontakte, millega on seotud telefoninumber. Telefonikirjeta kontakte pole rakenduses näha.</string>
     <string name="answer_style">Vastusenupu stiil</string>
     <string name="buttons">Nupud</string>
     <string name="answer_slider">Liugur</string>

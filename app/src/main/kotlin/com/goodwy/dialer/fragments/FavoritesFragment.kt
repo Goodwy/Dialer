@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
-import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import com.goodwy.commons.adapters.MyRecyclerViewAdapter
 import com.goodwy.commons.dialogs.CallConfirmationDialog
 import com.goodwy.commons.extensions.*
@@ -20,9 +19,10 @@ import com.goodwy.dialer.adapters.ContactsAdapter
 import com.goodwy.dialer.databinding.FragmentFavoritesBinding
 import com.goodwy.dialer.databinding.FragmentLettersLayoutBinding
 import com.goodwy.dialer.extensions.config
+import com.goodwy.dialer.extensions.setupWithContacts
+import com.goodwy.dialer.extensions.startContactDetailsIntent
 import com.goodwy.dialer.helpers.Converters
 import com.goodwy.dialer.interfaces.RefreshItemsListener
-import java.util.Locale
 
 class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment<MyViewPagerFragment.LettersInnerBinding>(context, attributeSet),
     RefreshItemsListener {
@@ -66,12 +66,12 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
         }
     }
 
-    override fun refreshItems(callback: (() -> Unit)?) {
+    override fun refreshItems(invalidate: Boolean, callback: (() -> Unit)?) {
         ContactsHelper(context).getContacts { contacts ->
             allContacts = contacts
 
             if (SMT_PRIVATE !in context.baseConfig.ignoredContactSources) {
-                val privateCursor = context?.getMyContactsCursor(true, true)
+                val privateCursor = context?.getMyContactsCursor(favoritesOnly = true, withPhoneNumbersOnly = true)
                 val privateContacts = MyContactsContentProvider.getContacts(context, privateCursor).map {
                     it.copy(starred = 1)
                 }
@@ -131,20 +131,23 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
                 viewType = viewType,
                 showDeleteButton = false,
                 enableDrag = true,
-                showNumber = context.baseConfig.showPhoneNumbers
-            ) {
-                if (context.config.showCallConfirmation) {
-                    CallConfirmationDialog(activity as SimpleActivity, (it as Contact).getNameToDisplay()) {
+                showNumber = context.baseConfig.showPhoneNumbers,
+                itemClick = { it ->
+                    if (context.config.showCallConfirmation) {
+                        CallConfirmationDialog(activity as SimpleActivity, (it as Contact).getNameToDisplay()) {
+                            activity?.apply {
+                                initiateCall(it) { launchCallIntent(it, key = BuildConfig.RIGHT_APP_KEY) }
+                            }
+                        }
+                    } else {
                         activity?.apply {
-                            initiateCall(it) { launchCallIntent(it, key = BuildConfig.RIGHT_APP_KEY) }
+                            initiateCall(it as Contact) { launchCallIntent(it, key = BuildConfig.RIGHT_APP_KEY) }
                         }
                     }
-                } else {
-                    activity?.apply {
-                        initiateCall(it as Contact) { launchCallIntent(it, key = BuildConfig.RIGHT_APP_KEY) }
-                    }
-                }
-            }.apply {
+                },
+                profileIconClick = {
+                    activity?.startContactDetailsIntent(it as Contact)
+                }).apply {
                 binding.fragmentList.adapter = this
 
                 onDragEndListener = {
@@ -203,16 +206,7 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
     }
 
     private fun setupLetterFastScroller(contacts: List<Contact>) {
-        binding.letterFastscroller.setupWithRecyclerView(binding.fragmentList, { position ->
-            try {
-                val name = contacts[position].getNameToDisplay()
-                val emoji = name.take(2)
-                val character = if (emoji.isEmoji()) emoji else if (name.isNotEmpty()) name.substring(0, 1) else ""
-                FastScrollItemIndicator.Text(character.uppercase(Locale.getDefault()).normalizeString())
-            } catch (e: Exception) {
-                FastScrollItemIndicator.Text("")
-            }
-        })
+        binding.letterFastscroller.setupWithContacts(binding.fragmentList, contacts)
     }
 
     override fun onSearchClosed() {

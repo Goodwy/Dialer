@@ -45,6 +45,7 @@
     <string name="faq_2_text_dialer_g">Druk lang op de belknop om de inhoud van het klembord te plakken. Als het nummer al is ingevoerd, kopieert u het nummer door lang op de belknop te drukken naar het klembord.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer toont alleen contacten waaraan een telefoonnummer is gekoppeld. Contacten zonder telefoonnummer worden dus niet weergegeven in de app.</string>
     <string name="answer_style">Antwoordknopstijl</string>
     <string name="buttons">Bedingstoestsen</string>
     <string name="answer_slider">Schuiven</string>

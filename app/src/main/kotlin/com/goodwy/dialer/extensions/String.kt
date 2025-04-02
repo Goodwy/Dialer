@@ -1,17 +1,15 @@
 package com.goodwy.dialer.extensions
 
-import android.annotation.SuppressLint
 import android.text.BidiFormatter
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.geocoding.PhoneNumberOfflineGeocoder
 import java.util.*
 
-@SuppressLint("ConstantLocale")
-private val countryCode = Locale.getDefault().country
-
 fun getCountryByNumber(number: String): String {
     return try {
+        val locale = Locale.getDefault()
+        val countryCode = locale.country
         val phoneUtil = PhoneNumberUtil.getInstance()
         val geocoder = PhoneNumberOfflineGeocoder.getInstance()
         val numberParse = phoneUtil.parse(number, countryCode)

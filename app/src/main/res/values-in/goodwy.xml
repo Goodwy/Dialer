@@ -44,6 +44,7 @@
     <string name="faq_2_text_dialer_g">Tekan lama tombol panggil untuk menempelkan konten papan klip. Jika nomor sudah dimasukkan, menekan lama tombol panggil akan menyalinnya ke papan klip.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer hanya menampilkan kontak yang memiliki nomor telepon terkait. Kontak tanpa nomor telepon tidak akan ditampilkan di aplikasi.</string>
     <string name="answer_style">Gaya Tombol Jawab</string>
     <string name="buttons">Tombol</string>
     <string name="answer_slider">Penggeser</string>

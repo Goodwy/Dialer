@@ -4,13 +4,8 @@ import android.content.res.Configuration
 import android.graphics.Color
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
-import android.widget.ImageView
 import androidx.appcompat.app.AlertDialog
-import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import com.goodwy.commons.extensions.*
-import com.goodwy.commons.helpers.SORT_BY_FIRST_NAME
-import com.goodwy.commons.helpers.SORT_BY_MIDDLE_NAME
-import com.goodwy.commons.helpers.SORT_BY_SURNAME
 import com.goodwy.commons.helpers.getProperText
 import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MySearchMenu
@@ -18,7 +13,7 @@ import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.adapters.ContactsAdapter
 import com.goodwy.dialer.databinding.DialogSelectContactBinding
-import java.util.Locale
+import com.goodwy.dialer.extensions.setupWithContacts
 
 class SelectContactDialog(val activity: SimpleActivity, val contacts: List<Contact>, val callback: (selectedContact: Contact) -> Unit) {
     private val binding by activity.viewBinding(DialogSelectContactBinding::inflate)
@@ -35,10 +30,17 @@ class SelectContactDialog(val activity: SimpleActivity, val contacts: List<Conta
             setupLetterFastScroller(contacts)
             configureSearchView()
 
-            selectContactList.adapter = ContactsAdapter(activity, contacts.toMutableList(), selectContactList, showIcon = false, allowLongClick = false) {
-                callback(it as Contact)
-                dialog?.dismiss()
-            }
+            selectContactList.adapter = ContactsAdapter(
+                activity = activity,
+                contacts = contacts.toMutableList(),
+                recyclerView = selectContactList,
+                showIcon = false,
+                allowLongClick = false,
+                itemClick = {
+                    callback(it as Contact)
+                    dialog?.dismiss()
+                }
+            )
         }
 
         activity.getAlertDialogBuilder()
@@ -73,27 +75,7 @@ class SelectContactDialog(val activity: SimpleActivity, val contacts: List<Conta
             }
         } catch (_: Exception) { }
 
-        val sorting = activity.baseConfig.sorting
-        binding.letterFastscroller.beVisibleIf(contacts.size > 10)
-        binding.letterFastscroller.setupWithRecyclerView(binding.selectContactList, { position ->
-            try {
-                val contact = contacts[position]
-                val name = when {
-                    contact.isABusinessContact() -> contact.getFullCompany()
-                    sorting and SORT_BY_SURNAME != 0 && contact.surname.isNotEmpty() -> contact.surname
-                    sorting and SORT_BY_MIDDLE_NAME != 0 && contact.middleName.isNotEmpty() -> contact.middleName
-                    sorting and SORT_BY_FIRST_NAME != 0 && contact.firstName.isNotEmpty() -> contact.firstName
-                    activity.baseConfig.startNameWithSurname -> contact.surname
-                    else -> contact.getNameToDisplay()
-                }
-
-                val emoji = name.take(2)
-                val character = if (emoji.isEmoji()) emoji else if (name.isNotEmpty()) name.substring(0, 1) else ""
-                FastScrollItemIndicator.Text(character.uppercase(Locale.getDefault()))
-            } catch (e: Exception) {
-                FastScrollItemIndicator.Text("")
-            }
-        })
+        binding.letterFastscroller.setupWithContacts(binding.selectContactList, contacts)
     }
 
     private fun isHighScreenSize(): Boolean {

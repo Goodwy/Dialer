@@ -46,6 +46,7 @@
     <string name="faq_2_text_dialer_g">Dlouhým stisknutím tlačítka volání vložte obsah schránky. Pokud je číslo již zadáno, dlouhým stisknutím tlačítka volání jej zkopírujete do schránky.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer zobrazuje pouze kontakty, které mají telefonní číslo. Kontakty bez telefonního čísla nejsou v aplikaci zobrazeny.</string>
     <string name="answer_style">Styl tlačítka odpovědi</string>
     <string name="buttons">Tlačítka</string>
     <string name="answer_slider">Posuvník</string>

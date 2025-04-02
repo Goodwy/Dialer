@@ -1,6 +1,7 @@
 package com.goodwy.dialer.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.util.AttributeSet
 import androidx.recyclerview.widget.RecyclerView
 import com.goodwy.commons.dialogs.CallConfirmationDialog
@@ -10,13 +11,11 @@ import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MyRecyclerView
 import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
+import com.goodwy.dialer.activities.MainActivity
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.adapters.RecentCallsAdapter
 import com.goodwy.dialer.databinding.FragmentRecentsBinding
-import com.goodwy.dialer.extensions.callContactWithSim
-import com.goodwy.dialer.extensions.callerNotesHelper
-import com.goodwy.dialer.extensions.config
-import com.goodwy.dialer.extensions.numberForNotes
+import com.goodwy.dialer.extensions.*
 import com.goodwy.dialer.helpers.RecentsHelper
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import com.goodwy.dialer.models.CallLogItem
@@ -69,7 +68,11 @@ class RecentsFragment(
         }
     }
 
-    override fun refreshItems(callback: (() -> Unit)?) {
+    override fun refreshItems(invalidate: Boolean, callback: (() -> Unit)?) {
+        if (invalidate) {
+            allRecentCalls = emptyList()
+        }
+
         gotRecents()
         refreshCallLog(loadAll = true) {
 //            refreshCallLog(loadAll = true)
@@ -170,6 +173,14 @@ class RecentsFragment(
                         } else {
                             callRecentNumber(recentCall)
                         }
+                    },
+                    profileIconClick = {
+                        val contact = findContactByCall(it as RecentCall)
+                        if (contact != null) {
+                            activity?.startContactDetailsIntent(contact)
+                        } else {
+                            addContact(it as RecentCall)
+                        }
                     }
                 )
 
@@ -230,7 +241,7 @@ class RecentsFragment(
                     prepareCallLog(it, callback)
                 }
             } else {
-                getRecentCalls(existingRecentCalls, queryCount) { it ->
+                getRecentCalls(existingRecentCalls, queryCount, updateCallsCache = true) { it ->
                     val calls = if (context.config.groupAllCalls) it.distinctBy { it.phoneNumber } else it
                     prepareCallLog(calls, callback)
                 }
@@ -319,6 +330,20 @@ class RecentsFragment(
         }
 
         return callLog
+    }
+
+
+    private fun findContactByCall(recentCall: RecentCall): Contact? {
+        return (activity as MainActivity).cachedContacts.find { it.name == recentCall.name && it.doesHavePhoneNumber(recentCall.phoneNumber) }
+    }
+
+    private fun addContact(recentCall: RecentCall) {
+        Intent().apply {
+            action = Intent.ACTION_INSERT_OR_EDIT
+            type = "vnd.android.cursor.item/contact"
+            putExtra(KEY_PHONE, recentCall.phoneNumber)
+            context.launchActivityIntent(this)
+        }
     }
 
     override fun myRecyclerView() = binding.recentsList

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--TODO Edit-->
-    <string name='app_name'>सरल डायलर</string>
     <string name='app_launcher_name'>डायलर</string>
     <string name='default_phone_app_prompt'>कृपया इस ऐप को डिफ़ॉल्ट फ़ोन ऐप बनाएं</string>
     <string name='allow_displaying_over_other_apps'>कृपया विश्वसनीय व्यवहार के लिए अन्य ऐप्स पर प्रदर्शित करने की अनुमति दें</string>
@@ -33,8 +32,8 @@
     <string name='decline'>अस्वीकृत</string>
     <string name='decline_call'>कॉल अस्वीकार करें</string>
     <string name='unknown_caller'>अज्ञात कॉलर</string>
-    <string name='is_calling'>कॉल कर रहा है...</string>
-    <string name="dialing">डायल कर रहा हूँ...</string>
+    <string name='is_calling'>कॉल कर रहा है…</string>
+    <string name="dialing">डायल कर रहा हूँ…</string>
     <string name='call_ended'>कॉल समाप्त</string>
     <string name='call_ending'>कॉल समाप्त हो रहा है</string>
     <string name='ongoing_call'>चालू कॉल</string>

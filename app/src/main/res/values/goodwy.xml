@@ -60,6 +60,7 @@
     <string name="faq_1_text_dialer_g">Your operating system is blocking app access to the lock screen. You need to allow the app to access the lock screen. For example, in MIUI you need to enable access in "Settings => Notifications => Lock screen notifications" and enable the "Open new windows while running in the background" permission.</string>
     <string name="faq_2_title_dialer_g">How do I copy or paste a number on the dialing screen?</string>
     <string name="faq_2_text_dialer_g">A long press on the call button will paste the clipboard contents. If you have already entered a number, long pressing the call button will copy the number to the clipboard.</string>
+    <string name="faq_3_text_g">Right Dialer only displays contacts that have a phone number associated with them. Contacts without a phone number are not shown in the app.</string>
 
     <!-- Answer style -->
     <string name="answer_style">Answer style</string>

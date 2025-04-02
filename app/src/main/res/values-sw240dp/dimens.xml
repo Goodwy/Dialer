@@ -5,7 +5,6 @@
     <dimen name="caller_avatar_max_size">72dp</dimen>
 
     <!--collapsing toolbar-->
-    <dimen name="image_right_margin">23dp</dimen>
     <dimen name="name_right_margin">30dp</dimen>
 
     <!--call button-->

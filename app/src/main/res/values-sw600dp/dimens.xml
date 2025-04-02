@@ -2,7 +2,6 @@
 <resources>
     <!--collapsing toolbar-->
     <dimen name="image_right_margin">22dp</dimen>
-    <dimen name="name_right_margin">68dp</dimen>
 
     <!--dialpad style-->
     <dimen name="call_slider_margin">168dp</dimen>

@@ -3,12 +3,10 @@ package com.goodwy.dialer.activities
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.SuppressLint
-import android.annotation.TargetApi
 import android.content.Intent
 import android.database.Cursor
 import android.graphics.Color
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -43,12 +41,13 @@ import com.goodwy.dialer.models.SpeedDial
 import com.google.gson.Gson
 import com.mikhaellopez.rxanimation.RxAnimation
 import com.mikhaellopez.rxanimation.shake
-import com.reddit.indicatorfastscroll.FastScrollItemIndicator
 import me.grantland.widget.AutofitHelper
 import java.io.InputStreamReader
 import java.text.Collator
 import java.util.Locale
 import kotlin.math.roundToInt
+import androidx.core.view.isGone
+import androidx.core.net.toUri
 
 class DialpadActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityDialpadBinding::inflate)
@@ -209,11 +208,11 @@ class DialpadActivity : SimpleActivity() {
         binding.dialpadRoundWrapperUp.setOnClickListener { dialpadHide() }
         val view = dialpadView()
         binding.dialpadInput.setOnClickListener {
-            if (view.visibility == View.GONE) dialpadHide()
+            if (view.isGone) dialpadHide()
         }
         binding.dialpadInput.onFocusChangeListener = OnFocusChangeListener { _, hasFocus ->
             if (hasFocus) {
-                if (view.visibility == View.GONE) dialpadHide()
+                if (view.isGone) dialpadHide()
             }
         }
 
@@ -468,7 +467,7 @@ class DialpadActivity : SimpleActivity() {
                         if (simOnePrimary) R.string.call_from_sim_2 else R.string.call_from_sim_1
                     } else {
                         val view = dialpadView()
-                        if (view.visibility == View.VISIBLE) R.string.hide_dialpad else R.string.show_dialpad
+                        if (view.isVisible) R.string.hide_dialpad else R.string.show_dialpad
                     }
                 )
             }
@@ -937,7 +936,7 @@ class DialpadActivity : SimpleActivity() {
 
     private fun dialpadHide() {
         val view = dialpadView()
-        if (view.visibility == View.VISIBLE) {
+        if (view.isVisible) {
             slideDown(view)
         } else {
             slideUp(view)
@@ -957,7 +956,13 @@ class DialpadActivity : SimpleActivity() {
                 }
             })
         hasBeenScrolled = false
-        if ((view == binding.dialpadRoundWrapper.root || view == binding.dialpadClearWrapper.root || view == binding.dialpadRectWrapper.root) && binding.dialpadRoundWrapperUp.visibility == View.GONE) slideUp(binding.dialpadRoundWrapperUp)
+        if ((view == binding.dialpadRoundWrapper.root ||
+                view == binding.dialpadClearWrapper.root ||
+                view == binding.dialpadRectWrapper.root) &&
+            binding.dialpadRoundWrapperUp.isGone
+        ) slideUp(
+            binding.dialpadRoundWrapperUp
+        )
     }
 
     private fun slideUp(view: View) {
@@ -969,7 +974,10 @@ class DialpadActivity : SimpleActivity() {
             // wait till height is measured
             view.post { slideUpNow(view) }
         }
-        if (view == binding.dialpadRoundWrapper.root || view == binding.dialpadClearWrapper.root || view == binding.dialpadRectWrapper.root) slideDown(binding.dialpadRoundWrapperUp)
+        if (view == binding.dialpadRoundWrapper.root ||
+            view == binding.dialpadClearWrapper.root ||
+            view == binding.dialpadRectWrapper.root
+        ) slideDown(binding.dialpadRoundWrapperUp)
     }
 
     private fun slideUpNow(view: View) {
@@ -1010,11 +1018,10 @@ class DialpadActivity : SimpleActivity() {
         }
     }
 
-    @TargetApi(Build.VERSION_CODES.O)
     private fun dialpadValueChanged(textFormat: String) {
         val len = textFormat.length
         val view = dialpadView()
-        if (len == 0 && view.visibility == View.GONE) {
+        if (len == 0 && view.isGone) {
             slideUp(view)
         }
         if (textFormat.length > 8 && textFormat.startsWith("*#*#") && textFormat.endsWith("#*#*")) {
@@ -1026,7 +1033,7 @@ class DialpadActivity : SimpleActivity() {
                     launchSetDefaultDialerIntent()
                 }
             } else {
-                val intent = Intent(SECRET_CODE_ACTION, Uri.parse("android_secret_code://$secretCode"))
+                val intent = Intent(SECRET_CODE_ACTION, "android_secret_code://$secretCode".toUri())
                 sendBroadcast(intent)
             }
             return
@@ -1065,16 +1072,7 @@ class DialpadActivity : SimpleActivity() {
             it.getNameToDisplay()
         }).toMutableList() as ArrayList<Contact>
 
-        binding.letterFastscroller.setupWithRecyclerView(binding.dialpadList, { position ->
-            try {
-                val name = filtered[position].getNameToDisplay()
-                val emoji = name.take(2)
-                val character = if (emoji.isEmoji()) emoji else if (name.isNotEmpty()) name.substring(0, 1) else ""
-                FastScrollItemIndicator.Text(character.uppercase(Locale.getDefault()))
-            } catch (e: Exception) {
-                FastScrollItemIndicator.Text("")
-            }
-        })
+//        binding.letterFastscroller.setupWithContacts(binding.dialpadList, filtered)
 
         ContactsAdapter(
             activity = this,
@@ -1083,11 +1081,14 @@ class DialpadActivity : SimpleActivity() {
             highlightText = text,
             refreshItemsListener = null,
             showNumber = true,
-            allowLongClick = false
-        ) {
-            val contact = it as Contact
-            startCallWithConfirmationCheck(contact.getPrimaryNumber() ?: return@ContactsAdapter, contact.getNameToDisplay())
-        }.apply {
+            allowLongClick = false,
+            itemClick = {
+                val contact = it as Contact
+                startCallWithConfirmationCheck(contact.getPrimaryNumber() ?: return@ContactsAdapter, contact.getNameToDisplay())
+            },
+            profileIconClick = {
+                startContactDetailsIntent(it as Contact)
+            }).apply {
             binding.dialpadList.adapter = this
         }
 
@@ -1270,8 +1271,8 @@ class DialpadActivity : SimpleActivity() {
                 this,
                 text,
                 R.string.call_anonymously_warning,
-                com.goodwy.commons.R.string.ok,
-                com.goodwy.commons.R.string.do_not_show_again,
+                R.string.ok,
+                R.string.do_not_show_again,
                 fromHtml = true
             ) {
                 if (it) {
@@ -1313,7 +1314,7 @@ class DialpadActivity : SimpleActivity() {
                     prepareCallLog(it, callback)
                 }
             } else {
-                getRecentCalls(existingRecentCalls, queryCount, true) { it ->
+                getRecentCalls(existingRecentCalls, queryCount, isDialpad = true, updateCallsCache = true) { it ->
                     val calls = if (config.groupAllCalls) it.distinctBy { it.phoneNumber } else it
                     prepareCallLog(calls, callback)
                 }
@@ -1437,6 +1438,7 @@ class DialpadActivity : SimpleActivity() {
         val confirmationText = "${getString(R.string.clear_history_confirmation)}\n\n${getString(R.string.cannot_be_undone)}"
         ConfirmationDialog(this, confirmationText) {
             RecentsHelper(this).removeAllRecentCalls(this) {
+                allRecentCalls = emptyList()
                 runOnUiThread {
                     refreshItems {}
                 }

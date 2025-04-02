@@ -46,6 +46,7 @@
     <string name="faq_2_text_dialer_g">Premi a lungo il pulsante di chiamata per incollare il contenuto degli appunti. Se il numero è già stato inserito, una lunga pressione sul pulsante di chiamata lo copia negli appunti.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer mostra solo i contatti che hanno un numero di telefono associato. I contatti senza un numero di telefono non vengono mostrati nell\'app.</string>
     <string name="answer_style">Stile di risposta</string>
     <string name="buttons">Bottoni</string>
     <string name="answer_slider">Slider</string>

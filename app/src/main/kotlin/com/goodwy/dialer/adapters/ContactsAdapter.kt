@@ -66,7 +66,8 @@ class ContactsAdapter(
     private val allowLongClick: Boolean = true,
     private val showIcon: Boolean = true,
     private val showNumber: Boolean = false,
-    itemClick: (Any) -> Unit
+    itemClick: (Any) -> Unit,
+    val profileIconClick: ((Any) -> Unit)? = null
 ) : MyRecyclerViewAdapter(activity, recyclerView, itemClick),
     ItemTouchHelperContract, MyRecyclerView.MyZoomListener {
 
@@ -134,7 +135,7 @@ class ContactsAdapter(
             R.id.cab_delete -> askConfirmDelete()
             R.id.cab_send_sms -> sendSMS()
             R.id.cab_view_details -> viewContactDetails()
-            R.id.cab_create_shortcut -> tryCreateShortcut()
+            R.id.cab_create_shortcut -> createShortcut()
             R.id.cab_select_all -> selectAll()
         }
     }
@@ -356,15 +357,6 @@ class ContactsAdapter(
         return getSelectedItems().firstOrNull()?.getPrimaryNumber()
     }
 
-    private fun tryCreateShortcut() {
-        /*if (activity.isOrWasThankYouInstalled()) {
-            createShortcut()
-        } else {
-            FeatureLockedDialog(activity) { }
-        }*/
-        createShortcut()
-    }
-
     @SuppressLint("NewApi")
     private fun createShortcut() {
         val contact = contacts.firstOrNull { selectedKeys.contains(it.rawId) } ?: return
@@ -426,12 +418,31 @@ class ContactsAdapter(
         binding.apply {
             root.setupViewBackground(activity)
             itemContactFrame.isSelected = selectedKeys.contains(contact.rawId)
+
+            itemContactImage.apply {
+                if (profileIconClick != null) {
+                    setOnClickListener {
+                        if (!actModeCallback.isSelectable) {
+                            profileIconClick.invoke(contact)
+                        } else {
+                            holder.viewClicked(contact)
+                        }
+                    }
+                    setOnLongClickListener {
+                        holder.viewLongClicked()
+                        true
+                    }
+                }
+            }
+
             itemContactName.apply {
                 setTextColor(textColor)
                 setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize)
 
                 val name = contact.getNameToDisplay()
-                text = if (textToHighlight.isEmpty()) name else {
+                text = if (textToHighlight.isEmpty()) {
+                    name
+                } else {
                     if (name.contains(textToHighlight, true)) {
                         name.highlightTextPart(textToHighlight, properPrimaryColor)
                     } else {
@@ -566,14 +577,18 @@ class ContactsAdapter(
                 itemContactSwipe!!.useHapticFeedback = activity.config.swipeVibration
                 itemContactSwipe!!.swipeGestureListener = object : SwipeGestureListener {
                     override fun onSwipedLeft(swipeActionView: SwipeActionView): Boolean {
-                        val swipeLeftOrRightAction = if (activity.isRTLLayout) activity.config.swipeRightAction else activity.config.swipeLeftAction
+                        finishActMode()
+                        val swipeLeftOrRightAction =
+                            if (activity.isRTLLayout) activity.config.swipeRightAction else activity.config.swipeLeftAction
                         swipeAction(swipeLeftOrRightAction, contact)
                         slideLeftReturn(swipeLeftIcon!!, swipeLeftIconHolder!!)
                         return true
                     }
 
                     override fun onSwipedRight(swipeActionView: SwipeActionView): Boolean {
-                        val swipeRightOrLeftAction = if (activity.isRTLLayout) activity.config.swipeLeftAction else activity.config.swipeRightAction
+                        finishActMode()
+                        val swipeRightOrLeftAction =
+                            if (activity.isRTLLayout) activity.config.swipeLeftAction else activity.config.swipeRightAction
                         swipeAction(swipeRightOrLeftAction, contact)
                         slideRightReturn(swipeRightIcon!!, swipeRightIconHolder!!)
                         return true

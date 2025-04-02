@@ -39,6 +39,7 @@ import com.goodwy.dialer.helpers.*
 import com.goodwy.dialer.models.RecentCall
 import kotlin.collections.ArrayList
 import kotlin.math.abs
+import androidx.core.graphics.drawable.toDrawable
 
 class CallHistoryActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityCallHistoryBinding::inflate)
@@ -156,7 +157,7 @@ class CallHistoryActivity : SimpleActivity() {
 
             if (baseConfig.backgroundColor == white) {
                 val colorToWhite = 0xFFf2f2f6.toInt()
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(colorToWhite))
+                supportActionBar?.setBackgroundDrawable(colorToWhite.toDrawable())
                 window.decorView.setBackgroundColor(colorToWhite)
                 window.statusBarColor = colorToWhite
                 //window.navigationBarColor = colorToWhite
@@ -193,7 +194,7 @@ class CallHistoryActivity : SimpleActivity() {
     private fun setupCallerNotes() {
         val callerNote = callerNotesHelper.getCallerNotes(getCurrentPhoneNumber)
         val note = callerNote?.note
-            binding.apply {
+        binding.apply {
             callerNotesIcon.setColorFilter(getProperTextColor())
             callerNotesText(note)
 
@@ -224,7 +225,7 @@ class CallHistoryActivity : SimpleActivity() {
             currentText = callerNote?.note,
             maxLength = CALLER_NOTES_MAX_LENGTH,
             showNeutralButton = true,
-            neutralTextRes = com.goodwy.commons.R.string.delete
+            neutralTextRes = R.string.delete
         ) {
             if (it != "") {
                 callerNotesHelper.addCallerNotes(number, it, callerNote) {
@@ -260,8 +261,8 @@ class CallHistoryActivity : SimpleActivity() {
                             this@CallHistoryActivity,
                             text,
                             R.string.call_anonymously_warning,
-                            com.goodwy.commons.R.string.ok,
-                            com.goodwy.commons.R.string.do_not_show_again,
+                            R.string.ok,
+                            R.string.do_not_show_again,
                             fromHtml = true
                         ) {
                             if (it) {
@@ -283,7 +284,7 @@ class CallHistoryActivity : SimpleActivity() {
         val contrastColor = properBackgroundColor.getContrastColor()
         val itemColor = if (baseConfig.topAppBarColorIcon) getProperPrimaryColor() else contrastColor
         binding.callHistoryToolbar.apply {
-            overflowIcon = resources.getColoredDrawableWithColor(com.goodwy.commons.R.drawable.ic_three_dots_vector, itemColor)
+            overflowIcon = resources.getColoredDrawableWithColor(R.drawable.ic_three_dots_vector, itemColor)
             setNavigationIconTint(itemColor)
             setNavigationOnClickListener {
                 finish()
@@ -344,67 +345,68 @@ class CallHistoryActivity : SimpleActivity() {
 
         with(recentsHelper) {
             getRecentCalls(existingRecentCalls, queryCount) {
-                prepareCallLog(it, callback)
+//                prepareCallLog(it, callback)
+                callback(it)
             }
         }
     }
 
-    private fun prepareCallLog(calls: List<RecentCall>, callback: (List<RecentCall>) -> Unit) {
-        if (calls.isEmpty()) {
-            callback(emptyList())
-            return
-        }
-
-        ContactsHelper(this).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
-            ensureBackgroundThread {
-                val privateContacts = getPrivateContacts()
-                val updatedCalls = updateNamesIfEmpty(
-                    calls = maybeFilterPrivateCalls(calls, privateContacts),
-                    contacts = contacts,
-                    privateContacts = privateContacts
-                )
-
-                callback(
-                    updatedCalls
-                )
-            }
-        }
-    }
-
-    private fun getPrivateContacts(): ArrayList<Contact> {
-        val privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
-        return MyContactsContentProvider.getContacts(this, privateCursor)
-    }
-
-    private fun maybeFilterPrivateCalls(calls: List<RecentCall>, privateContacts: List<Contact>): List<RecentCall> {
-        val ignoredSources = baseConfig.ignoredContactSources
-        return if (SMT_PRIVATE in ignoredSources) {
-            val privateNumbers = privateContacts.flatMap { it.phoneNumbers }.map { it.value }
-            calls.filterNot { it.phoneNumber in privateNumbers }
-        } else {
-            calls
-        }
-    }
-
-    private fun updateNamesIfEmpty(calls: List<RecentCall>, contacts: List<Contact>, privateContacts: List<Contact>): List<RecentCall> {
-        if (calls.isEmpty()) return mutableListOf()
-
-        val contactsWithNumbers = contacts.filter { it.phoneNumbers.isNotEmpty() }
-        return calls.map { call ->
-            if (call.phoneNumber == call.name) {
-                val privateContact = privateContacts.firstOrNull { it.doesContainPhoneNumber(call.phoneNumber) }
-                val contact = contactsWithNumbers.firstOrNull { it.phoneNumbers.first().normalizedNumber == call.phoneNumber }
-
-                when {
-                    privateContact != null -> withUpdatedName(call = call, name = privateContact.getNameToDisplay())
-                    contact != null -> withUpdatedName(call = call, name = contact.getNameToDisplay())
-                    else -> call
-                }
-            } else {
-                call
-            }
-        }
-    }
+//    private fun prepareCallLog(calls: List<RecentCall>, callback: (List<RecentCall>) -> Unit) {
+//        if (calls.isEmpty()) {
+//            callback(emptyList())
+//            return
+//        }
+//
+//        ContactsHelper(this).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
+//            ensureBackgroundThread {
+//                val privateContacts = getPrivateContacts()
+//                val updatedCalls = updateNamesIfEmpty(
+//                    calls = maybeFilterPrivateCalls(calls, privateContacts),
+//                    contacts = contacts,
+//                    privateContacts = privateContacts
+//                )
+//
+//                callback(
+//                    updatedCalls
+//                )
+//            }
+//        }
+//    }
+//
+//    private fun getPrivateContacts(): ArrayList<Contact> {
+//        val privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
+//        return MyContactsContentProvider.getContacts(this, privateCursor)
+//    }
+//
+//    private fun maybeFilterPrivateCalls(calls: List<RecentCall>, privateContacts: List<Contact>): List<RecentCall> {
+//        val ignoredSources = baseConfig.ignoredContactSources
+//        return if (SMT_PRIVATE in ignoredSources) {
+//            val privateNumbers = privateContacts.flatMap { it.phoneNumbers }.map { it.value }
+//            calls.filterNot { it.phoneNumber in privateNumbers }
+//        } else {
+//            calls
+//        }
+//    }
+//
+//    private fun updateNamesIfEmpty(calls: List<RecentCall>, contacts: List<Contact>, privateContacts: List<Contact>): List<RecentCall> {
+//        if (calls.isEmpty()) return mutableListOf()
+//
+//        val contactsWithNumbers = contacts.filter { it.phoneNumbers.isNotEmpty() }
+//        return calls.map { call ->
+//            if (call.phoneNumber == call.name) {
+//                val privateContact = privateContacts.firstOrNull { it.doesContainPhoneNumber(call.phoneNumber) }
+//                val contact = contactsWithNumbers.firstOrNull { it.phoneNumbers.first().normalizedNumber == call.phoneNumber }
+//
+//                when {
+//                    privateContact != null -> withUpdatedName(call = call, name = privateContact.getNameToDisplay())
+//                    contact != null -> withUpdatedName(call = call, name = contact.getNameToDisplay())
+//                    else -> call
+//                }
+//            } else {
+//                call
+//            }
+//        }
+//    }
 
     private fun withUpdatedName(call: RecentCall, name: String): RecentCall {
         return call.copy(
@@ -480,7 +482,8 @@ class CallHistoryActivity : SimpleActivity() {
         }
 
         if (contactId != 0 && !wasLookupKeyUsed) {
-            if (permissionContact) contact = ContactsHelper(this).getContactWithId(contactId, intent.getBooleanExtra(IS_PRIVATE, false))
+            if (permissionContact) contact =
+                ContactsHelper(this).getContactWithId(contactId, intent.getBooleanExtra(IS_PRIVATE, false))
 
             if (contact != null) {
                 getDuplicateContacts {
@@ -522,7 +525,7 @@ class CallHistoryActivity : SimpleActivity() {
 
         val editMenu = binding.callHistoryToolbar.menu.findItem(R.id.edit)
         editMenu.isVisible = true
-        val editIcon = resources.getColoredDrawableWithColor(com.goodwy.commons.R.drawable.ic_add_person_vector, itemColor)
+        val editIcon = resources.getColoredDrawableWithColor(R.drawable.ic_add_person_vector, itemColor)
         editMenu.icon = editIcon
         editMenu.setTitle(R.string.add_contact)
         editMenu.setOnMenuItemClickListener {

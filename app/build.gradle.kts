@@ -133,12 +133,12 @@ dependencies {
     implementation(libs.autofit.text.view)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.eventbus)
+    implementation(libs.libphonenumber)
+    implementation(libs.geocoder)
 
     //Goodwy
     implementation(libs.goodwy.commons)
     implementation(libs.shortcut.badger)
-    implementation(libs.googlecode.libphonenumber)
-    implementation(libs.googlecode.geocoder)
     implementation(libs.behavio.rule)
     implementation(libs.rx.animation)
     implementation(libs.rx.java)

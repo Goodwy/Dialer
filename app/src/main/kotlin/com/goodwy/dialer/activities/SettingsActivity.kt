@@ -45,6 +45,13 @@ import kotlin.system.exitProcess
 class SettingsActivity : SimpleActivity() {
     companion object {
         private const val CALL_HISTORY_FILE_TYPE = "application/json"
+        private val IMPORT_CALL_HISTORY_FILE_TYPES = buildList {
+            add("application/json")
+            if (!isQPlus()) {
+                // Workaround for https://github.com/FossifyOrg/Messages/issues/88
+                add("application/octet-stream")
+            }
+        }
     }
 
     private val purchaseHelper = PurchaseHelper(this)
@@ -61,12 +68,13 @@ class SettingsActivity : SimpleActivity() {
     private var ruStoreIsConnected = false
 
     private val binding by viewBinding(ActivitySettingsBinding::inflate)
-    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        if (uri != null) {
-            toast(R.string.importing)
-            importCallHistory(uri)
+    private val getContent =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            if (uri != null) {
+                toast(R.string.importing)
+                importCallHistory(uri)
+            }
         }
-    }
 
     private val saveDocument = registerForActivityResult(ActivityResultContracts.CreateDocument(CALL_HISTORY_FILE_TYPE)) { uri ->
         if (uri != null) {
@@ -335,7 +343,7 @@ class SettingsActivity : SimpleActivity() {
     private fun setupCustomizeColors() {
         binding.settingsCustomizeColorsHolder.setOnClickListener {
             startCustomizationActivity(
-                showAccentColor = true,
+                showAccentColor = resources.getBoolean(R.bool.is_pro_app),
                 isCollection = isOrWasThankYouInstalled() || isCollection(),
                 productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
                 productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
@@ -937,14 +945,14 @@ class SettingsActivity : SimpleActivity() {
     private fun setupCallsExport() {
         binding.settingsExportCallsHolder.setOnClickListener {
             ExportCallHistoryDialog(this) { filename ->
-                saveDocument.launch(filename)
+                saveDocument.launch("$filename.json")
             }
         }
     }
 
     private fun setupCallsImport() {
         binding.settingsImportCallsHolder.setOnClickListener {
-            getContent.launch(CALL_HISTORY_FILE_TYPE)
+            getContent.launch(IMPORT_CALL_HISTORY_FILE_TYPES.toTypedArray())
         }
     }
 
@@ -1595,7 +1603,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 612 //TODO changelog
+        val id = 613 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1612,7 +1620,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_612)) //TODO changelog
+            add(Release(id, R.string.release_613)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }

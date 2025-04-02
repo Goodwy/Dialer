@@ -40,6 +40,8 @@ import com.goodwy.dialer.helpers.*
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import com.goodwy.dialer.models.CallLogItem
 import com.goodwy.dialer.models.RecentCall
+import com.google.i18n.phonenumbers.PhoneNumberUtil
+import com.google.i18n.phonenumbers.geocoding.PhoneNumberOfflineGeocoder
 import me.thanel.swipeactionview.SwipeActionView
 import me.thanel.swipeactionview.SwipeDirection
 import me.thanel.swipeactionview.SwipeGestureListener
@@ -57,6 +59,7 @@ class RecentCallsAdapter(
     private val isDialpad: Boolean = false,
     private val itemDelete: (List<RecentCall>) -> Unit = {},
     itemClick: (Any) -> Unit,
+    val profileIconClick: ((Any) -> Unit)? = null
 ) : MyRecyclerViewListAdapter<CallLogItem>(activity, recyclerView, RecentCallsDiffCallback(), itemClick) {
 
     private lateinit var outgoingCallIcon: Drawable
@@ -588,7 +591,8 @@ class RecentCallsAdapter(
                 divider.setBackgroundColor(textColor)
                 if (getLastItem() == call || !activity.config.useDividers) divider.visibility = View.INVISIBLE else divider.visibility = View.VISIBLE
 
-                val name = call.name //findContactByCall(call)?.getNameToDisplay() ?: call.name
+//                val matchingContact = findContactByCall(call)
+                val name = call.name //matchingContact?.getNameToDisplay() ?: call.name
                 val formatPhoneNumbers = activity.config.formatPhoneNumbers
                 var nameToShow = if (name == call.phoneNumber && formatPhoneNumbers) {
                     SpannableString(name.formatPhoneNumber())
@@ -647,7 +651,7 @@ class RecentCallsAdapter(
                 }
 
                 itemRecentsDuration.apply {
-                    text = call.duration.getFormattedDuration()
+                    text = context.formatSecondsToShortTimeString(call.duration)
                     setTextColor(textColor)
                     beVisibleIf(call.type != Calls.MISSED_TYPE && call.type != Calls.REJECTED_TYPE && call.duration > 0)
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
@@ -675,14 +679,10 @@ class RecentCallsAdapter(
 
                 val showContactThumbnails = activity.config.showContactThumbnails
                 itemRecentsImage.beVisibleIf(showContactThumbnails)
-//                itemRecentsImageIcon.beVisibleIf(showContactThumbnails)
                 if (showContactThumbnails) {
                     val size = (root.context.pixels(R.dimen.normal_icon_size) * contactThumbnailsSize).toInt()
                     itemRecentsImage.setHeightAndWidth(size)
-//                    itemRecentsImageIcon.setHeightAndWidth(size)
                     if (call.phoneNumber == call.name || call.isABusinessCall() || call.isVoiceMail) {
-//                        SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name, letter = false)
-//                        itemRecentsImageIcon.beVisibleIf(call.photoUri == "")
                         val drawable =
                             if (call.isABusinessCall()) AppCompatResources.getDrawable(activity, R.drawable.placeholder_company)
                             else if (call.isVoiceMail) AppCompatResources.getDrawable(activity, R.drawable.placeholder_voicemail)
@@ -695,7 +695,22 @@ class RecentCallsAdapter(
                         itemRecentsImage.setImageDrawable(drawable)
                     } else {
                         SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name)
-//                            itemRecentsImageIcon.beGone()
+                    }
+
+                    itemRecentsImage.apply {
+                        if (profileIconClick != null) {
+                            setOnClickListener {
+                                if (!actModeCallback.isSelectable) {
+                                    profileIconClick.invoke(call)
+                                } else {
+                                    viewClicked(call)
+                                }
+                            }
+                            setOnLongClickListener {
+                                viewLongClicked()
+                                true
+                            }
+                        }
                     }
                 }
 
@@ -748,7 +763,8 @@ class RecentCallsAdapter(
                 divider.setBackgroundColor(textColor)
                 if (getLastItem() == call || !activity.config.useDividers) divider.visibility = View.INVISIBLE else divider.visibility = View.VISIBLE
 
-                val name = call.name //findContactByCall(call)?.getNameToDisplay() ?: call.name
+//                val matchingContact = findContactByCall(call)
+                val name = call.name //matchingContact?.getNameToDisplay() ?: call.name
                 val formatPhoneNumbers = activity.config.formatPhoneNumbers
                 var nameToShow = if (name == call.phoneNumber && formatPhoneNumbers) {
                     SpannableString(name.formatPhoneNumber())
@@ -807,7 +823,7 @@ class RecentCallsAdapter(
                 }
 
                 itemRecentsDuration.apply {
-                    text = call.duration.getFormattedDuration()
+                    text = context.formatSecondsToShortTimeString(call.duration)
                     setTextColor(textColor)
                     beVisibleIf(call.type != Calls.MISSED_TYPE && call.type != Calls.REJECTED_TYPE && call.duration > 0)
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
@@ -835,14 +851,10 @@ class RecentCallsAdapter(
 
                 val showContactThumbnails = activity.config.showContactThumbnails
                 itemRecentsImage.beVisibleIf(showContactThumbnails)
-//                itemRecentsImageIcon.beVisibleIf(showContactThumbnails)
                 if (showContactThumbnails) {
                     val size = (root.context.pixels(R.dimen.normal_icon_size) * contactThumbnailsSize).toInt()
                     itemRecentsImage.setHeightAndWidth(size)
-//                    itemRecentsImageIcon.setHeightAndWidth(size)
                     if (call.phoneNumber == call.name || call.isABusinessCall() || call.isVoiceMail) {
-//                        SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name, letter = false)
-//                        itemRecentsImageIcon.beVisibleIf(call.photoUri == "")
                         val drawable =
                             if (call.isABusinessCall()) AppCompatResources.getDrawable(activity, R.drawable.placeholder_company)
                             else if (call.isVoiceMail) AppCompatResources.getDrawable(activity, R.drawable.placeholder_voicemail)
@@ -855,7 +867,22 @@ class RecentCallsAdapter(
                         itemRecentsImage.setImageDrawable(drawable)
                     } else {
                         SimpleContactsHelper(root.context.applicationContext).loadContactImage(call.photoUri, itemRecentsImage, call.name)
-//                            itemRecentsImageIcon.beGone()
+                    }
+
+                    itemRecentsImage.apply {
+                        if (profileIconClick != null) {
+                            setOnClickListener {
+                                if (!actModeCallback.isSelectable) {
+                                    profileIconClick.invoke(call)
+                                } else {
+                                    viewClicked(call)
+                                }
+                            }
+                            setOnLongClickListener {
+                                viewLongClicked()
+                                true
+                            }
+                        }
                     }
                 }
 
@@ -915,14 +942,18 @@ class RecentCallsAdapter(
                 itemRecentsHolder.useHapticFeedback = activity.config.swipeVibration
                 itemRecentsHolder.swipeGestureListener = object : SwipeGestureListener {
                     override fun onSwipedLeft(swipeActionView: SwipeActionView): Boolean {
-                        val swipeLeftOrRightAction = if (activity.isRTLLayout) activity.config.swipeRightAction else activity.config.swipeLeftAction
+                        finishActMode()
+                        val swipeLeftOrRightAction =
+                            if (activity.isRTLLayout) activity.config.swipeRightAction else activity.config.swipeLeftAction
                         swipeAction(swipeLeftOrRightAction, call)
                         slideLeftReturn(swipeLeftIcon, swipeLeftIconHolder)
                         return true
                     }
 
                     override fun onSwipedRight(swipeActionView: SwipeActionView): Boolean {
-                        val swipeRightOrLeftAction = if (activity.isRTLLayout) activity.config.swipeLeftAction else activity.config.swipeRightAction
+                        finishActMode()
+                        val swipeRightOrLeftAction =
+                            if (activity.isRTLLayout) activity.config.swipeLeftAction else activity.config.swipeRightAction
                         swipeAction(swipeRightOrLeftAction, call)
                         slideRightReturn(swipeRightIcon, swipeRightIconHolder)
                         return true

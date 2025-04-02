@@ -37,8 +37,6 @@ import com.goodwy.commons.dialogs.PermissionRequiredDialog
 import com.goodwy.commons.dialogs.RadioGroupDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
-import com.goodwy.commons.helpers.Converters
-import com.goodwy.commons.models.PhoneNumber
 import com.goodwy.commons.models.RadioItem
 import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MySearchMenu
@@ -314,6 +312,7 @@ class MainActivity : SimpleActivity() {
             findItem(R.id.search).isVisible = !config.bottomNavigationBar
             findItem(R.id.clear_call_history).isVisible = currentFragment == getRecentsFragment
             findItem(R.id.sort).isVisible = currentFragment != getRecentsFragment
+            findItem(R.id.filter).isVisible = currentFragment != getRecentsFragment
             findItem(R.id.create_new_contact).isVisible = currentFragment == getContactsFragment()
             findItem(R.id.change_view_type).isVisible = currentFragment == getFavoritesFragment
             findItem(R.id.column_count).isVisible = currentFragment == getFavoritesFragment && config.viewType == VIEW_TYPE_GRID
@@ -398,6 +397,7 @@ class MainActivity : SimpleActivity() {
                 setHintTextColor(textColor)
             }
             findViewById<ImageView>(androidx.appcompat.R.id.search_close_btn).apply {
+                setImageResource(com.goodwy.commons.R.drawable.ic_clear_round)
                 setColorFilter(textColor)
             }
             findViewById<View>(androidx.appcompat.R.id.search_plate)?.apply { // search underline
@@ -458,7 +458,7 @@ class MainActivity : SimpleActivity() {
         ConfirmationDialog(this, confirmationText) {
             RecentsHelper(this).removeAllRecentCalls(this) {
                 runOnUiThread {
-                    getRecentsFragment()?.refreshItems()
+                    getRecentsFragment()?.refreshItems(invalidate = true)
                 }
             }
         }
@@ -1031,11 +1031,22 @@ class MainActivity : SimpleActivity() {
         }
     }
 
-    fun cacheContacts(contacts: List<Contact>) {
-        try {
-            cachedContacts.clear()
-            cachedContacts.addAll(contacts)
-        } catch (_: Exception) {
+    fun cacheContacts() {
+        val privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
+        ContactsHelper(this).getContacts(getAll = true, showOnlyContactsWithNumbers = true) { contacts ->
+            if (SMT_PRIVATE !in config.ignoredContactSources) {
+                val privateContacts = MyContactsContentProvider.getContacts(this, privateCursor)
+                if (privateContacts.isNotEmpty()) {
+                    contacts.addAll(privateContacts)
+                    contacts.sort()
+                }
+            }
+
+            try {
+                cachedContacts.clear()
+                cachedContacts.addAll(contacts)
+            } catch (ignored: Exception) {
+            }
         }
     }
 

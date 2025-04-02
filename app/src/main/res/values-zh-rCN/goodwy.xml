@@ -44,6 +44,7 @@
     <string name="faq_2_text_dialer_g">长按呼叫按钮可粘贴剪贴板的内容。如果已输入号码，则长按呼叫按钮可将其复制到剪贴板。</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right 电话仅显示有电话号码的联系人。没有电话号码的联系人不会显示在应用中。</string>
     <string name="answer_style">接听按钮样式</string>
     <string name="buttons">按钮样式</string>
     <string name="answer_slider">滑块样式</string>

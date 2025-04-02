@@ -45,6 +45,7 @@
     <string name="faq_2_text_dialer_g"> Longpremu la vokbutonon por alglui la enhavon de la tondujo. Se la numero jam estas enigita, longa premo sur la vokobutono kopias ĝin al la tondujo.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer nur montras kontaktojn kun asociita telefonnumero. Kontaktoj sen telefonnumero ne aperas en la aplikaĵo.</string>
     <string name="answer_style">Stilo de Respondbutono</string>
     <string name="buttons">Butonoj</string>
     <string name="answer_slider">Slider</string>

@@ -63,6 +63,7 @@
     <string name="faq_2_text_dialer_g">Тривале натискання на кнопку виклику вставляє вміст буфера обміну. Якщо номер уже введено, тривале натискання на кнопку виклику копіює його в буфер обміну.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer показує лише ті контакти, з якими пов\'язаний номер телефону. Контакти без номера телефону не показується в застосунку.</string>
     <string name="answer_style">Стиль кнопок відповіді</string>
     <string name="buttons">Кнопки</string>
     <string name="answer_slider">Слайдер</string>

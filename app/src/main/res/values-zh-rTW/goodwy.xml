@@ -44,6 +44,7 @@
     <string name="faq_2_text_dialer_g">長按通話按鈕粘貼剪貼板的內容。 如果已經輸入號碼，長按通話按鈕會將其複製到剪貼板。</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer 只會顯示有電話號碼的聯絡人。沒有電話號碼的聯絡人不會顯示在應用程式中。</string>
     <string name="answer_style">應答按鈕樣式</string>
     <string name="buttons">按鈕</string>
     <string name="answer_slider">滑塊</string>

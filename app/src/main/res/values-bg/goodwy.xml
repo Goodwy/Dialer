@@ -45,6 +45,7 @@
     <string name="faq_2_text_dialer_g">Натиснете продължително бутона за повикване, за да поставите съдържанието на клипборда. Ако номерът вече е въведен, продължително натискане на бутона за повикване го копира в клипборда.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer показва само контактите с въведен телефонен номер. Тези с липсващ телефон не се показват.</string>
     <string name="answer_style">Стил на бутона за отговор</string>
     <string name="buttons">Бутони</string>
     <string name="answer_slider">Плъзгач</string>

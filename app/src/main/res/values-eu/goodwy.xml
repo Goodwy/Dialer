@@ -45,6 +45,7 @@
     <string name="faq_2_text_dialer_g">A long press on the call button will paste the clipboard contents. If you have already entered a number, long pressing the call button will copy the number to the clipboard.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer telefono zenbakiren bat duten kontaktuak bakarrik erakusten ditu. Telefono zenbakirik ez duten kontaktuak ez dira aplikazioan erakusten.</string>
     <string name="answer_style">Answer style</string>
     <string name="buttons">Buttons</string>
     <string name="answer_slider">Slider</string>

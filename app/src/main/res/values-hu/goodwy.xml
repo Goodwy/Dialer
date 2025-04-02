@@ -45,6 +45,7 @@
     <string name="faq_2_text_dialer_g">Nyomja le hosszan a hívás gombot a vágólap tartalmának beillesztéséhez. Ha a szám már be van írva, a hívás gomb hosszan tartó megnyomása a vágólapra másolja.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">A Right Dialer csak azokat a névjegyeket jeleníti meg, amelyekhez telefonszám is tartozik. A telefonszám nélküli névjegyek nem jelennek meg az alkalmazásban.</string>
     <string name="answer_style">Válasz gombstílus</string>
     <string name="buttons">Gombok</string>
     <string name="answer_slider">Csúszka</string>

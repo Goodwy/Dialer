@@ -16,7 +16,6 @@ import android.net.Uri
 import android.os.*
 import android.telecom.Call
 import android.telecom.CallAudioState
-import android.text.TextUtils
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -77,6 +76,7 @@ class CallActivity : SimpleActivity() {
     @SuppressLint("MissingPermission")
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
+        addLockScreenFlags()
         showTransparentTop = true
         updateNavigationBarColor = false
         super.onCreate(savedInstanceState)
@@ -92,7 +92,6 @@ class CallActivity : SimpleActivity() {
 
         initButtons()
         audioManager.mode = AudioManager.MODE_IN_CALL
-        addLockScreenFlags()
         CallManager.addListener(callCallback)
         updateTextColors(binding.callHolder)
 

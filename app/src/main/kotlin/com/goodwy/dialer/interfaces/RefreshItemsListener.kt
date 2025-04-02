@@ -1,5 +1,5 @@
 package com.goodwy.dialer.interfaces
 
 interface RefreshItemsListener {
-    fun refreshItems(callback: (() -> Unit)? = null)
+    fun refreshItems(invalidate: Boolean = false, callback: (() -> Unit)? = null)
 }
