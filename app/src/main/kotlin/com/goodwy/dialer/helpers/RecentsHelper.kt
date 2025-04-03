@@ -388,31 +388,10 @@ class RecentsHelper(private val context: Context) {
                 )
 
                 if (updateCallsCache) {
-                    val callLogInfo =
-                        RecentCall(
-                            id = id,
-                            phoneNumber = cursor.getStringValueOrNull(Calls.NUMBER).orEmpty(),
-                            name = cursor.getStringValueOrNull(Calls.CACHED_NAME).orEmpty(),
-                            nickname = nickname,
-                            company = company,
-                            jobPosition = jobPosition,
-                            photoUri = cursor.getStringValue(Calls.CACHED_PHOTO_URI).orEmpty(),
-                            startTS = startTS,
-                            duration = duration,
-                            type = type,
-                            simID = simID,
-                            specificNumber = cursor.getIntValue(Calls.CACHED_NUMBER_TYPE).toString(),
-                            specificType = cursor.getStringValue(Calls.CACHED_NUMBER_LABEL),
-                            isUnknownNumber = isUnknownNumber,
-                            contactID = contactID,
-                            features = features,
-                            isVoiceMail = isVoiceMail
-                        )
-
                     updateRecentCallsContactInfo(
                         number.orEmpty(),
                         name,
-                        cursor.getStringValueOrNull(Calls.CACHED_NAME).orEmpty(),
+                        cursor.getStringValueOrNull(Calls.CACHED_NAME),
                         photoUri,
                         cursor.getStringValueOrNull(Calls.CACHED_PHOTO_URI)
                     )
@@ -497,7 +476,7 @@ class RecentsHelper(private val context: Context) {
     }
 
     private fun updateRecentCallsContactInfo(
-        number: String, updatedName: String, callLogName: String?, updatedPhotoUri: String, callLogPhotoUri: String?
+        number: String, updatedName: String, callLogName: String?, updatedPhotoUri: String?, callLogPhotoUri: String?
     ) {
         val values = ContentValues()
         var needsUpdate = false
@@ -513,7 +492,7 @@ class RecentsHelper(private val context: Context) {
         }
 
         if (callLogPhotoUri != null) {
-            val updatedPhotoUriContactsOnly: Uri = UriUtils.nullForNonContactsUri(UriUtils.parseUriOrNull(updatedPhotoUri))
+            val updatedPhotoUriContactsOnly = UriUtils.nullForNonContactsUri(UriUtils.parseUriOrNull(updatedPhotoUri))
             if (!UriUtils.areEqual(updatedPhotoUriContactsOnly, UriUtils.parseUriOrNull(callLogPhotoUri))) {
                 values.put(Calls.CACHED_PHOTO_URI, UriUtils.uriToString(updatedPhotoUriContactsOnly))
                 needsUpdate = true

@@ -32,8 +32,8 @@ app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
 #versioning
 app-version-appId = "com.goodwy.dialer"
-app-version-versionCode = "613"
-app-version-versionName = "6.1.3"
+app-version-versionCode = "614"
+app-version-versionName = "6.1.4"
 [libraries]
 #EventBus
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }

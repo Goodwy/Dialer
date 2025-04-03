@@ -3,7 +3,7 @@
     <string name="app_name_g">Right Dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
-    <string name="release_613">
+    <string name="release_614">
         Added name caching in call logs\n
         Improved performance, bug fixes
     </string>

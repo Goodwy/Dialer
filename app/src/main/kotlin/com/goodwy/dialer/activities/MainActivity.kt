@@ -1064,15 +1064,6 @@ class MainActivity : SimpleActivity() {
             val reader = InputStreamReader(resources.openRawResource(R.raw.t9languages))
             DialpadT9.readFromJson(reader.readText())
         }
-
-//        if (config.dialpadSecondaryLanguage == "") {
-//            val currentLang = Locale.getDefault().language
-//            if (DialpadT9.getSupportedSecondaryLanguages().contains(currentLang)) {
-//                config.dialpadSecondaryLanguage = currentLang
-//            } else {
-//                config.dialpadSecondaryLanguage = LANGUAGE_NONE
-//            }
-//        }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
