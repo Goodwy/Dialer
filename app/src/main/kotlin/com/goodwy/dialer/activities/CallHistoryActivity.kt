@@ -5,7 +5,6 @@ import android.content.ActivityNotFoundException
 import android.content.ContentUris
 import android.content.Intent
 import android.graphics.PorterDuff
-import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import android.provider.ContactsContract
@@ -48,18 +47,16 @@ class CallHistoryActivity : SimpleActivity() {
     private var contact: Contact? = null
     private var duplicateContacts = ArrayList<Contact>()
     private var contactSources = ArrayList<ContactSource>()
+    private var recentsAdapter: CallHistoryAdapter? = null
+    private var currentRecentCall: RecentCall? = null
+    private var currentRecentCallList: List<RecentCall>? = null
+    private var recentsHelper = RecentsHelper(this)
+    private var showAll = false
+
     private val white = 0xFFFFFFFF.toInt()
     private val gray = 0xFFEBEBEB.toInt()
     private val black = 0xFF000000.toInt()
     private var buttonBg = white
-    private var recentsAdapter: CallHistoryAdapter? = null
-    private var currentRecentCall: RecentCall? = null
-    private var recentsHelper = RecentsHelper(this)
-    private var permissionContact = false
-
-    private var getCurrentPhoneNumber = ""
-    private var getCurrentRecentId = 0
-    //private fun getCurrentContactId() = intent.getIntExtra(CONTACT_ID, 0)
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,16 +67,34 @@ class CallHistoryActivity : SimpleActivity() {
 
         updateMaterialActivityViews(binding.callHistoryWrapper, binding.callHistoryHolder, useTransparentNavigation = true, useTopSearchMenu = false)
 
-        getCurrentPhoneNumber = intent.getStringExtra(CURRENT_PHONE_NUMBER) ?: ""
-        getCurrentRecentId = intent.getIntExtra(CURRENT_RECENT_CALL, CURRENT_RECENT_CALL_ID)
-        handlePermission(PERMISSION_READ_CONTACTS) {
-            permissionContact = it
+        currentRecentCall = intent.getSerializableExtra(CURRENT_RECENT_CALL) as? RecentCall
+        if (currentRecentCall == null) {
+            finish()
+            return
         }
-        initButton()
-        gotRecents()
+
+        initButtons()
+
+        currentRecentCallList = intent.getSerializableExtra(CURRENT_RECENT_CALL_LIST) as? List<RecentCall>
+        currentRecentCallList?.let { gotRecents(it) }
     }
 
-    private fun initButton() {
+    @SuppressLint("MissingSuperCall")
+    override fun onResume() {
+        super.onResume()
+        binding.callHistoryPlaceholderContainer.beGone()
+        updateTextColors(binding.callHistoryHolder)
+        buttonBg = if (baseConfig.backgroundColor == white || baseConfig.backgroundColor == gray) white else getBottomNavigationBackgroundColor()
+        updateButtons()
+        ensureBackgroundThread {
+            initContact()
+        }
+        refreshCallLog(false)
+        setupMenu()
+        setupCallerNotes()
+    }
+
+    private fun initButtons() {
         val properPrimaryColor = getProperPrimaryColor()
 
         var drawableSMS = AppCompatResources.getDrawable(this, R.drawable.ic_messages)
@@ -120,26 +135,54 @@ class CallHistoryActivity : SimpleActivity() {
         binding.fourButton.setTextColor(properPrimaryColor)
     }
 
-    @SuppressLint("MissingSuperCall")
-    override fun onResume() {
-        super.onResume()
-        binding.callHistoryPlaceholderContainer.beGone()
-        updateTextColors(binding.callHistoryHolder)
-        buttonBg = if (baseConfig.backgroundColor == white || baseConfig.backgroundColor == gray) white else getBottomNavigationBackgroundColor()
-        updateColors()
-        setupCallerNotes()
-        refreshItems {}
-        setupMenu()
+    private fun showAll() {
+        if (showAll) {
+            binding.callHistoryShowAll.beInvisible()
+            currentRecentCallList?.let {
+                gotRecents(it) {
+                    showAll = false
+                    binding.callHistoryShowAll.apply {
+                        text = getString(R.string.all_g)
+//                        val drawable = AppCompatResources.getDrawable(context, R.drawable.ic_chevron_down_vector)
+//                        drawable?.applyColorFilter(getProperPrimaryColor())
+//                        setDrawablesRelativeWithIntrinsicBounds(end = drawable)
+                        beVisible()
+                    }
+                }
+            }
+        } else {
+            binding.callHistoryShowAll.beInvisible()
+            refreshCallLog(true) {
+                showAll = true
+                runOnUiThread {
+                    binding.callHistoryShowAll.apply {
+                        text = getString(R.string.hide)
+//                        val drawable = AppCompatResources.getDrawable(context, R.drawable.ic_chevron_up_vector)
+//                        drawable?.applyColorFilter(getProperPrimaryColor())
+//                        setDrawablesRelativeWithIntrinsicBounds(end = drawable)
+                        beVisible()
+                    }
+                }
+            }
+        }
     }
 
-    private fun updateColors() {
+    private fun updateButtons() {
         val red = resources.getColor(R.color.red_missed)
         val properPrimaryColor = getProperPrimaryColor()
         val properBackgroundColor = getProperBackgroundColor()
 
-        val phoneNumber = if (config.formatPhoneNumbers) getCurrentPhoneNumber.formatPhoneNumber() else getCurrentPhoneNumber
+        val phoneNumber = if (config.formatPhoneNumbers) currentRecentCall!!.phoneNumber.formatPhoneNumber() else currentRecentCall!!.phoneNumber
 
         binding.apply {
+            callHistoryShowAll.apply {
+//                val drawable = AppCompatResources.getDrawable(context, R.drawable.ic_chevron_down_vector)
+//                drawable?.applyColorFilter(properPrimaryColor)
+//                setDrawablesRelativeWithIntrinsicBounds(end = drawable)
+                setTextColor(properPrimaryColor)
+                setOnClickListener { showAll() }
+            }
+
             callHistoryNumberType.beGone()
             callHistoryNumberType.setTextColor(getProperTextColor())
             callHistoryNumberContainer.setOnClickListener {
@@ -181,7 +224,7 @@ class CallHistoryActivity : SimpleActivity() {
                 it.background.setTint(buttonBg)
             }
 
-            if (isNumberBlocked(getCurrentPhoneNumber, getBlockedNumbers())) {
+            if (isNumberBlocked(currentRecentCall!!.phoneNumber, getBlockedNumbers())) {
                 blockButton.text = getString(R.string.unblock_number)
                 blockButton.setTextColor(properPrimaryColor)
             } else {
@@ -192,17 +235,17 @@ class CallHistoryActivity : SimpleActivity() {
     }
 
     private fun setupCallerNotes() {
-        val callerNote = callerNotesHelper.getCallerNotes(getCurrentPhoneNumber)
+        val callerNote = callerNotesHelper.getCallerNotes(currentRecentCall!!.phoneNumber)
         val note = callerNote?.note
         binding.apply {
             callerNotesIcon.setColorFilter(getProperTextColor())
             callerNotesText(note)
 
             callerNotesHolder.setOnClickListener {
-                changeNoteDialog(getCurrentPhoneNumber)
+                changeNoteDialog(currentRecentCall!!.phoneNumber)
             }
             callerNotesHolder.setOnLongClickListener {
-                val text = callerNotesHelper.getCallerNotes(getCurrentPhoneNumber)?.note
+                val text = callerNotesHelper.getCallerNotes(currentRecentCall!!.phoneNumber)?.note
                 text?.let { note -> copyToClipboard(note) }
                 true
             }
@@ -256,7 +299,7 @@ class CallHistoryActivity : SimpleActivity() {
             findItem(R.id.call_anonymously).setOnMenuItemClickListener {
                 if (currentRecentCall != null) {
                     if (config.showWarningAnonymousCall) {
-                        val text = String.format(getString(R.string.call_anonymously_warning), getCurrentPhoneNumber)
+                        val text = String.format(getString(R.string.call_anonymously_warning), currentRecentCall!!.phoneNumber)
                         ConfirmationAdvancedDialog(
                             this@CallHistoryActivity,
                             text,
@@ -298,27 +341,14 @@ class CallHistoryActivity : SimpleActivity() {
         binding.callHistoryList.background.setTint(buttonBg)
     }
 
-    private fun refreshItems(callback: (() -> Unit)?) {
-        ensureBackgroundThread {
-            initContact()
-        }
-
-        refreshCallLog(loadAll = true) {
-          //  refreshCallLog(loadAll = true)
-        }
-    }
-
-    private fun refreshCallLog(loadAll: Boolean = false, callback: (() -> Unit)? = null) {
-        getRecentCalls(loadAll) { recents ->
+    private fun refreshCallLog(load: Boolean, callback: (() -> Unit)? = null) {
+        getRecentCalls { recents ->
             allRecentCall = recents
-            currentRecentCall = recents.firstOrNull { it.id == getCurrentRecentId }
-            runOnUiThread {
-                updateButton()
-            }
+            val currentRecentCall = recents.filter { it.phoneNumber == currentRecentCall!!.phoneNumber}
 
-            val currentRecentCall = recents.filter { it.phoneNumber == getCurrentPhoneNumber}
-            runOnUiThread {
-                if (recents.isEmpty() || currentRecentCall.isEmpty()) {
+            if (load) {
+                runOnUiThread {
+                    if (recents.isEmpty() || currentRecentCall.isEmpty()) {
                         binding.apply {
                             callHistoryListContainer.beGone()
                             callHistoryPlaceholderContainer.beVisible()
@@ -334,91 +364,28 @@ class CallHistoryActivity : SimpleActivity() {
                         updateBackgroundHistory()
                     }
                 }
+            } else {
+                if (currentRecentCallList != null) {
+                    if (currentRecentCall.size > currentRecentCallList!!.size) runOnUiThread { binding.callHistoryShowAll.beVisible() }
+                }
+            }
 
             callback?.invoke()
         }
     }
 
-    private fun getRecentCalls(loadAll: Boolean, callback: (List<RecentCall>) -> Unit) {
-        val queryCount = if (loadAll) config.queryLimitRecent else RecentsHelper.QUERY_LIMIT
+    private fun getRecentCalls(callback: (List<RecentCall>) -> Unit) {
+        val queryCount = config.queryLimitRecent
         val existingRecentCalls = allRecentCall
 
         with(recentsHelper) {
             getRecentCalls(existingRecentCalls, queryCount) {
-//                prepareCallLog(it, callback)
                 callback(it)
             }
         }
     }
 
-//    private fun prepareCallLog(calls: List<RecentCall>, callback: (List<RecentCall>) -> Unit) {
-//        if (calls.isEmpty()) {
-//            callback(emptyList())
-//            return
-//        }
-//
-//        ContactsHelper(this).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
-//            ensureBackgroundThread {
-//                val privateContacts = getPrivateContacts()
-//                val updatedCalls = updateNamesIfEmpty(
-//                    calls = maybeFilterPrivateCalls(calls, privateContacts),
-//                    contacts = contacts,
-//                    privateContacts = privateContacts
-//                )
-//
-//                callback(
-//                    updatedCalls
-//                )
-//            }
-//        }
-//    }
-//
-//    private fun getPrivateContacts(): ArrayList<Contact> {
-//        val privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
-//        return MyContactsContentProvider.getContacts(this, privateCursor)
-//    }
-//
-//    private fun maybeFilterPrivateCalls(calls: List<RecentCall>, privateContacts: List<Contact>): List<RecentCall> {
-//        val ignoredSources = baseConfig.ignoredContactSources
-//        return if (SMT_PRIVATE in ignoredSources) {
-//            val privateNumbers = privateContacts.flatMap { it.phoneNumbers }.map { it.value }
-//            calls.filterNot { it.phoneNumber in privateNumbers }
-//        } else {
-//            calls
-//        }
-//    }
-//
-//    private fun updateNamesIfEmpty(calls: List<RecentCall>, contacts: List<Contact>, privateContacts: List<Contact>): List<RecentCall> {
-//        if (calls.isEmpty()) return mutableListOf()
-//
-//        val contactsWithNumbers = contacts.filter { it.phoneNumbers.isNotEmpty() }
-//        return calls.map { call ->
-//            if (call.phoneNumber == call.name) {
-//                val privateContact = privateContacts.firstOrNull { it.doesContainPhoneNumber(call.phoneNumber) }
-//                val contact = contactsWithNumbers.firstOrNull { it.phoneNumbers.first().normalizedNumber == call.phoneNumber }
-//
-//                when {
-//                    privateContact != null -> withUpdatedName(call = call, name = privateContact.getNameToDisplay())
-//                    contact != null -> withUpdatedName(call = call, name = contact.getNameToDisplay())
-//                    else -> call
-//                }
-//            } else {
-//                call
-//            }
-//        }
-//    }
-
-    private fun withUpdatedName(call: RecentCall, name: String): RecentCall {
-        return call.copy(
-            name = name,
-            groupedCalls = call.groupedCalls
-                ?.map { it.copy(name = name) }
-                ?.toMutableList()
-                ?.ifEmpty { null }
-        )
-    }
-
-    private fun gotRecents(recents: List<RecentCall> = config.parseRecentCallsCache().filter { it.phoneNumber == getCurrentPhoneNumber}) {
+    private fun gotRecents(recents: List<RecentCall>, callback: (() -> Unit)? = null) {
         val currAdapter = binding.callHistoryList.adapter
         if (currAdapter == null) {
             recentsAdapter = CallHistoryAdapter(
@@ -443,6 +410,8 @@ class CallHistoryActivity : SimpleActivity() {
             recentsAdapter?.updateItems(recents)
             setupCallHistoryListCount(recents.size)
         }
+
+        callback?.invoke()
     }
 
     private fun setupCallHistoryListCount(count: Int) {
@@ -482,10 +451,17 @@ class CallHistoryActivity : SimpleActivity() {
         }
 
         if (contactId != 0 && !wasLookupKeyUsed) {
-            if (permissionContact) contact =
-                ContactsHelper(this).getContactWithId(contactId, intent.getBooleanExtra(IS_PRIVATE, false))
 
-            if (contact != null) {
+            handlePermission(PERMISSION_READ_CONTACTS) {
+                if (it) contact =
+                    ContactsHelper(this).getContactWithId(contactId, true)
+            }
+
+            if (contact == null) {
+                runOnUiThread {
+                    updateButton()
+                }
+            } else {
                 getDuplicateContacts {
                     ContactsHelper(this).getContactSources {
                         contactSources = it
@@ -495,15 +471,16 @@ class CallHistoryActivity : SimpleActivity() {
                             setupMessengersActions()
                             setupEmails()
                             setupEvents()
+                            updateButton()
                         }
                     }
                 }
             }
         } else {
             if (contact == null) {
-              //  finish()
                 runOnUiThread {
                     setupMenuForNoContact()
+                    updateButton()
                 }
             } else {
                 getDuplicateContacts {
@@ -513,6 +490,7 @@ class CallHistoryActivity : SimpleActivity() {
                         setupMessengersActions()
                         setupEmails()
                         setupEvents()
+                        updateButton()
                     }
                 }
             }
@@ -535,7 +513,7 @@ class CallHistoryActivity : SimpleActivity() {
     }
 
     private fun addContact() {
-        val phoneNumber = if (config.formatPhoneNumbers) getCurrentPhoneNumber.formatPhoneNumber() else getCurrentPhoneNumber
+        val phoneNumber = if (config.formatPhoneNumbers) currentRecentCall!!.phoneNumber.formatPhoneNumber() else currentRecentCall!!.phoneNumber
         Intent().apply {
             action = Intent.ACTION_INSERT_OR_EDIT
             type = "vnd.android.cursor.item/contact"
@@ -1105,7 +1083,7 @@ class CallHistoryActivity : SimpleActivity() {
             }
 
             if (contact != null) {
-                val contactPhoneNumber = contact!!.phoneNumbers.firstOrNull { it.normalizedNumber == getCurrentPhoneNumber }
+                val contactPhoneNumber = contact!!.phoneNumbers.firstOrNull { it.normalizedNumber == currentRecentCall!!.phoneNumber }
                 if (contactPhoneNumber != null) {
                     binding.callHistoryNumberTypeContainer.beVisible()
                     binding.callHistoryNumberType.apply {
@@ -1130,7 +1108,7 @@ class CallHistoryActivity : SimpleActivity() {
                     contentDescription = getString(R.string.contact_details)
                 }
             } else {
-                val country = if (getCurrentPhoneNumber.startsWith("+")) getCountryByNumber(getCurrentPhoneNumber) else ""
+                val country = if (currentRecentCall!!.phoneNumber.startsWith("+")) getCountryByNumber(currentRecentCall!!.phoneNumber) else ""
                 if (country != "") {
                     binding.callHistoryNumberTypeContainer.beVisible()
                     binding.callHistoryNumberType.apply {
@@ -1296,16 +1274,16 @@ class CallHistoryActivity : SimpleActivity() {
     }
 
     private fun removeDefaultSIM() {
-        val phoneNumber = getCurrentPhoneNumber.replace("+","%2B")
+        val phoneNumber = currentRecentCall!!.phoneNumber.replace("+","%2B")
         config.removeCustomSIM("tel:$phoneNumber")
     }
 
     private fun askConfirmBlock() {
         if (isDefaultDialer()) {
-            val baseString = if (isNumberBlocked(getCurrentPhoneNumber, getBlockedNumbers())) {
+            val baseString = if (isNumberBlocked(currentRecentCall!!.phoneNumber, getBlockedNumbers())) {
                 R.string.unblock_confirmation
             } else { R.string.block_confirmation }
-            val question = String.format(resources.getString(baseString), getCurrentPhoneNumber)
+            val question = String.format(resources.getString(baseString), currentRecentCall!!.phoneNumber)
 
             ConfirmationDialog(this, question) {
                 blockNumbers()
@@ -1317,12 +1295,12 @@ class CallHistoryActivity : SimpleActivity() {
         config.needUpdateRecents = true
         val red = resources.getColor(R.color.red_missed)
         runOnUiThread {
-            if (isNumberBlocked(getCurrentPhoneNumber, getBlockedNumbers())) {
-                deleteBlockedNumber(getCurrentPhoneNumber)
+            if (isNumberBlocked(currentRecentCall!!.phoneNumber, getBlockedNumbers())) {
+                deleteBlockedNumber(currentRecentCall!!.phoneNumber)
                 binding.blockButton.text = getString(R.string.block_number)
                 binding.blockButton.setTextColor(red)
             } else {
-                addBlockedNumber(getCurrentPhoneNumber)
+                addBlockedNumber(currentRecentCall!!.phoneNumber)
                 binding.blockButton.text = getString(R.string.unblock_number)
                 binding.blockButton.setTextColor(getProperPrimaryColor())
             }
@@ -1330,9 +1308,9 @@ class CallHistoryActivity : SimpleActivity() {
     }
 
     private fun askConfirmRemove() {
-        val message = if (recentsAdapter?.getSelectedItems()!!.isEmpty()) {
-            getString(R.string.clear_history_confirmation)
-        } else getString(R.string.remove_confirmation)
+        val message =
+            if (showAll) getString(R.string.clear_history_confirmation)
+            else getString(R.string.remove_confirmation)
         ConfirmationDialog(this, message) {
             handlePermission(PERMISSION_WRITE_CALL_LOG) {
                 removeRecents()
@@ -1341,12 +1319,19 @@ class CallHistoryActivity : SimpleActivity() {
     }
 
     private fun removeRecents() {
-        if (getCurrentPhoneNumber.isEmpty()) {
+        if (currentRecentCall!!.phoneNumber.isEmpty()) {
             return
         }
         config.needUpdateRecents = true
 
-        val callsToRemove = allRecentCall.filter { getCurrentPhoneNumber.contains(it.phoneNumber) } as ArrayList<RecentCall>
+        val callsToRemove =
+            if (showAll) allRecentCall.filter { currentRecentCall!!.phoneNumber.contains(it.phoneNumber) } as ArrayList<RecentCall>
+            else currentRecentCallList
+
+        if (callsToRemove == null) {
+            return
+        }
+
         val idsToRemove = ArrayList<Int>()
         callsToRemove.forEach {
             idsToRemove.add(it.id)
@@ -1354,7 +1339,7 @@ class CallHistoryActivity : SimpleActivity() {
         }
 
         RecentsHelper(this).removeRecentCalls(idsToRemove) {
-            val callerNote = callerNotesHelper.getCallerNotes(getCurrentPhoneNumber)
+            val callerNote = callerNotesHelper.getCallerNotes(currentRecentCall!!.phoneNumber)
             callerNotesHelper.deleteCallerNotes(callerNote)
 
             runOnUiThread {
@@ -1372,10 +1357,10 @@ class CallHistoryActivity : SimpleActivity() {
     }
 
     private fun launchShare() {
-        val text = getCurrentPhoneNumber
+        val text = currentRecentCall!!.phoneNumber
         Intent().apply {
             action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_SUBJECT, getCurrentPhoneNumber)
+            putExtra(Intent.EXTRA_SUBJECT, text)
             putExtra(Intent.EXTRA_TEXT, text)
             type = "text/plain"
             startActivity(Intent.createChooser(this, getString(R.string.invite_via)))

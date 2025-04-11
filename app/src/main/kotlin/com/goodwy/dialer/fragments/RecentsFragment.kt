@@ -11,11 +11,14 @@ import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MyRecyclerView
 import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
+import com.goodwy.dialer.activities.CallHistoryActivity
 import com.goodwy.dialer.activities.MainActivity
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.adapters.RecentCallsAdapter
 import com.goodwy.dialer.databinding.FragmentRecentsBinding
 import com.goodwy.dialer.extensions.*
+import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL
+import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL_LIST
 import com.goodwy.dialer.helpers.RecentsHelper
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import com.goodwy.dialer.models.CallLogItem
@@ -125,7 +128,7 @@ class RecentsFragment(
     }
 
     private fun showOrHidePlaceholder(show: Boolean) {
-        if (show && !binding.progressIndicator.isVisible()) {
+        if (show /*&& !binding.progressIndicator.isVisible()*/) {
             binding.recentsPlaceholder.beVisible()
         } else {
             binding.recentsPlaceholder.beGone()
@@ -133,7 +136,7 @@ class RecentsFragment(
     }
 
     private fun gotRecents(recents: List<CallLogItem> = activity!!.config.parseRecentCallsCache()) {
-        binding.progressIndicator.hide()
+//        binding.progressIndicator.hide()
         if (recents.isEmpty()) {
             binding.apply {
                 showOrHidePlaceholder(true)
@@ -174,12 +177,25 @@ class RecentsFragment(
                             callRecentNumber(recentCall)
                         }
                     },
+                    profileInfoClick = {
+                        val recentCall = it as RecentCall
+//                        val recentCalls = recents
+//                            .filterIsInstance<RecentCall>()
+//                            .filter { recent -> recent.phoneNumber == recentCall.phoneNumber} as ArrayList<RecentCall>
+                        val recentCalls = recentCall.groupedCalls as ArrayList<RecentCall>? ?: arrayListOf(recentCall)
+                        Intent(activity, CallHistoryActivity::class.java).apply {
+                            putExtra(CURRENT_RECENT_CALL, recentCall)
+                            putExtra(CURRENT_RECENT_CALL_LIST, recentCalls)
+                            putExtra(CONTACT_ID, recentCall.contactID)
+                            activity?.launchActivityIntent(this)
+                        }
+                    },
                     profileIconClick = {
                         val contact = findContactByCall(it as RecentCall)
                         if (contact != null) {
                             activity?.startContactDetailsIntent(contact)
                         } else {
-                            addContact(it as RecentCall)
+                            addContact(it)
                         }
                     }
                 )

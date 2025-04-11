@@ -1,6 +1,8 @@
 package com.goodwy.dialer.models
 
-sealed class CallLogItem {
+import java.io.Serializable
+
+sealed class CallLogItem : Serializable {
     data class Date(
         val timestamp: Long,
         val dayCode: String,

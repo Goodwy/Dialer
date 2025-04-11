@@ -35,6 +35,7 @@ import com.goodwy.dialer.models.TimerState
 import com.goodwy.dialer.receivers.TimerReceiver
 import me.leolin.shortcutbadger.ShortcutBadger
 import androidx.core.net.toUri
+import androidx.core.graphics.drawable.toDrawable
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
@@ -295,7 +296,7 @@ fun Context.getNotificationBitmap(photoUri: String): Bitmap? {
 
 // You need to run it in ensureBackgroundThread {}
 fun Context.getShortcutImageNeedBackground(path: String, placeholderName: String, callback: (image: Bitmap) -> Unit) {
-    val placeholder = BitmapDrawable(resources, SimpleContactsHelper(this).getContactLetterIcon(placeholderName))
+    val placeholder = SimpleContactsHelper(this).getContactLetterIcon(placeholderName).toDrawable(resources)
     try {
         val options = RequestOptions()
             .format(DecodeFormat.PREFER_ARGB_8888)

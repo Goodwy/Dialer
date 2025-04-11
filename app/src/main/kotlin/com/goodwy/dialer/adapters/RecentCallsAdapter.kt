@@ -15,7 +15,6 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.DiffUtil
 import com.behaviorule.arturdumchev.library.pixels
 import com.bumptech.glide.Glide
@@ -40,8 +39,6 @@ import com.goodwy.dialer.helpers.*
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import com.goodwy.dialer.models.CallLogItem
 import com.goodwy.dialer.models.RecentCall
-import com.google.i18n.phonenumbers.PhoneNumberUtil
-import com.google.i18n.phonenumbers.geocoding.PhoneNumberOfflineGeocoder
 import me.thanel.swipeactionview.SwipeActionView
 import me.thanel.swipeactionview.SwipeDirection
 import me.thanel.swipeactionview.SwipeGestureListener
@@ -59,6 +56,7 @@ class RecentCallsAdapter(
     private val isDialpad: Boolean = false,
     private val itemDelete: (List<RecentCall>) -> Unit = {},
     itemClick: (Any) -> Unit,
+    val profileInfoClick: ((Any) -> Unit)? = null,
     val profileIconClick: ((Any) -> Unit)? = null
 ) : MyRecyclerViewListAdapter<CallLogItem>(activity, recyclerView, RecentCallsDiffCallback(), itemClick) {
 
@@ -724,8 +722,14 @@ class RecentCallsAdapter(
                 itemRecentsInfo.apply {
                     beVisibleIf(showOverflowMenu)
                     applyColorFilter(accentColor)
-                    setOnClickListener {
-                        showCallHistory(call)
+                    if (profileInfoClick != null) {
+                        setOnClickListener {
+                            if (!actModeCallback.isSelectable) {
+                                profileInfoClick.invoke(call)
+                            } else {
+                                viewClicked(call)
+                            }
+                        }
                     }
                     setOnLongClickListener {
                         showPopupMenu(overflowMenuAnchor, call)
@@ -734,8 +738,14 @@ class RecentCallsAdapter(
                 }
                 //In order not to miss the icon item_recents_info
                 itemRecentsInfoHolder.apply {
-                    setOnClickListener {
-                        showCallHistory(call)
+                    if (profileInfoClick != null) {
+                        setOnClickListener {
+                            if (!actModeCallback.isSelectable) {
+                                profileInfoClick.invoke(call)
+                            } else {
+                                viewClicked(call)
+                            }
+                        }
                     }
                     setOnLongClickListener {
                         showPopupMenu(overflowMenuAnchor, call)
@@ -896,8 +906,14 @@ class RecentCallsAdapter(
                 itemRecentsInfo.apply {
                     beVisibleIf(showOverflowMenu)
                     applyColorFilter(accentColor)
-                    setOnClickListener {
-                        showCallHistory(call)
+                    if (profileInfoClick != null) {
+                        setOnClickListener {
+                            if (!actModeCallback.isSelectable) {
+                                profileInfoClick.invoke(call)
+                            } else {
+                                viewClicked(call)
+                            }
+                        }
                     }
                     setOnLongClickListener {
                         showPopupMenu(overflowMenuAnchor, call)
@@ -906,8 +922,14 @@ class RecentCallsAdapter(
                 }
                 //In order not to miss the icon item_recents_info
                 itemRecentsInfoHolder.apply {
-                    setOnClickListener {
-                        showCallHistory(call)
+                    if (profileInfoClick != null) {
+                        setOnClickListener {
+                            if (!actModeCallback.isSelectable) {
+                                profileInfoClick.invoke(call)
+                            } else {
+                                viewClicked(call)
+                            }
+                        }
                     }
                     setOnLongClickListener {
                         showPopupMenu(overflowMenuAnchor, call)
@@ -1020,8 +1042,8 @@ class RecentCallsAdapter(
 //        for (i in getCallList(call)){ callIdList.add(i.id) } // add all the individual records
 //        for (n in getCallList(call)){ callIdList.addAll(n.neighbourIDs) } // add all grouped records
         Intent(activity, CallHistoryActivity::class.java).apply {
-            putExtra(CURRENT_PHONE_NUMBER, call.phoneNumber)
-            putExtra(CURRENT_RECENT_CALL, call.id)
+            putExtra(CURRENT_RECENT_CALL, call)
+            putExtra(CURRENT_RECENT_CALL_LIST, call.contactID)
             putExtra(CONTACT_ID, call.contactID)
             activity.launchActivityIntent(this)
         }

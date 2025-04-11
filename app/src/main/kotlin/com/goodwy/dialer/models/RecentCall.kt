@@ -3,12 +3,12 @@ package com.goodwy.dialer.models
 import android.telephony.PhoneNumberUtils
 import com.goodwy.commons.extensions.normalizePhoneNumber
 import com.goodwy.commons.extensions.toDayCode
+import java.io.Serializable
 
 /**
  * Used at displaying recent calls.
  * For contacts with multiple numbers specify the number and type
  */
-@kotlinx.serialization.Serializable
 data class RecentCall(
     var id: Int,
     var phoneNumber: String,
@@ -28,7 +28,7 @@ data class RecentCall(
     var contactID: Int? = null,
     var features: Int? = null,
     val isVoiceMail: Boolean,
-) : CallLogItem() {
+) : CallLogItem(), Serializable {
     fun doesContainPhoneNumber(text: String): Boolean {
         return if (text.toIntOrNull() != null) {
             val normalizedText = text.normalizePhoneNumber()

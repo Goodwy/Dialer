@@ -43,6 +43,8 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
+import androidx.core.graphics.drawable.toDrawable
+import androidx.core.view.get
 
 
 class CallActivity : SimpleActivity() {
@@ -114,7 +116,7 @@ class CallActivity : SimpleActivity() {
                     val wallpaperManager = WallpaperManager.getInstance(this)
                     val wallpaperBlur = BlurFactory.fileToBlurBitmap(wallpaperManager.drawable!!, this, 0.2f, 25f)
                     if (wallpaperBlur != null) {
-                        val drawable: Drawable = BitmapDrawable(resources, wallpaperBlur)
+                        val drawable: Drawable = wallpaperBlur.toDrawable(resources)
                         binding.callHolder.background = drawable
                         binding.callHolder.background.alpha = 60
                         if (isQPlus()) {
@@ -880,8 +882,8 @@ class CallActivity : SimpleActivity() {
 
             RxAnimation.together(
                 dialpadWrapper.scale(1f),
-                dialpadWrapper.fadeIn(),
-                dialpadClose.fadeIn()
+                dialpadWrapper.fadeIn(duration = 160),
+                dialpadClose.fadeIn(duration = 160)
             ).doAfterTerminate {
             }.subscribe()
         }
@@ -892,8 +894,8 @@ class CallActivity : SimpleActivity() {
         binding.apply {
             RxAnimation.together(
                 dialpadWrapper.scale(0.7f),
-                dialpadWrapper.fadeOut(),
-                dialpadClose.fadeOut()
+                dialpadWrapper.fadeOut(duration = 160),
+                dialpadClose.fadeOut(duration = 160)
             ).doAfterTerminate {
                 dialpadWrapper.beGone()
                 dialpadClose.beGone()
@@ -1046,7 +1048,7 @@ class CallActivity : SimpleActivity() {
                     // icon coloring
                     popupMenu.menu.apply {
                         for (index in 0 until this.size()) {
-                            val item = this.getItem(index)
+                            val item = this[index]
 
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                                 item.icon!!.colorFilter = BlendModeColorFilter(
@@ -1369,7 +1371,7 @@ class CallActivity : SimpleActivity() {
                     if (bg != null && windowWidth != 0) {
                         val aspectRatio = windowHeight / windowWidth
                         val aspectRatioNotZero = if (aspectRatio == 0) 1 else aspectRatio
-                        drawable = BitmapDrawable(resources, bg.cropCenter(bg.width/aspectRatioNotZero, bg.height))
+                        drawable = bg.cropCenter(bg.width / aspectRatioNotZero, bg.height)?.toDrawable(resources)
                     }
                 } else {
 //                    val bg = BlurFactory.fileToBlurBitmap(resources.getDrawable(R.drawable.button_gray_bg, theme), this, 0.6f, 25f)
