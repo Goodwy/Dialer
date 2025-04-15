@@ -519,7 +519,7 @@ class ContactsAdapter(
                         val size = (root.context.pixels(R.dimen.normal_icon_size) * contactThumbnailsSize).toInt()
                         itemContactImage.setHeightAndWidth(size)
                     }
-                    if (contact.isABusinessContact()) {
+                    if (contact.isABusinessContact() && contact.photoUri == "") {
                         val drawable = ResourcesCompat.getDrawable(resources, R.drawable.placeholder_company, activity.theme)
                         if (baseConfig.useColoredContacts) {
                             val letterBackgroundColors = activity.getLetterBackgroundColors()

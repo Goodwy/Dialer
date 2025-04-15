@@ -76,9 +76,20 @@ class RecentsFragment(
             allRecentCalls = emptyList()
         }
 
-        gotRecents()
-        refreshCallLog(loadAll = true) {
-//            refreshCallLog(loadAll = true)
+        var recents = emptyList<RecentCall>()
+        try {
+            recents = activity!!.config.parseRecentCallsCache()
+        } catch (_: Exception) {
+            activity!!.config.recentCallsCache = ""
+        }
+
+        if (recents.isNotEmpty()) {
+            gotRecents(recents)
+            refreshCallLog(loadAll = true)
+        } else {
+            refreshCallLog(loadAll = false) {
+                refreshCallLog(loadAll = true)
+            }
         }
     }
 
@@ -135,7 +146,7 @@ class RecentsFragment(
         }
     }
 
-    private fun gotRecents(recents: List<CallLogItem> = activity!!.config.parseRecentCallsCache()) {
+    private fun gotRecents(recents: List<CallLogItem>) {
 //        binding.progressIndicator.hide()
         if (recents.isEmpty()) {
             binding.apply {
@@ -177,16 +188,16 @@ class RecentsFragment(
                             callRecentNumber(recentCall)
                         }
                     },
-                    profileInfoClick = {
-                        val recentCall = it as RecentCall
-//                        val recentCalls = recents
-//                            .filterIsInstance<RecentCall>()
-//                            .filter { recent -> recent.phoneNumber == recentCall.phoneNumber} as ArrayList<RecentCall>
+                    profileInfoClick = { recentCall ->
                         val recentCalls = recentCall.groupedCalls as ArrayList<RecentCall>? ?: arrayListOf(recentCall)
+                        val contact = findContactByCall(recentCall)
                         Intent(activity, CallHistoryActivity::class.java).apply {
                             putExtra(CURRENT_RECENT_CALL, recentCall)
                             putExtra(CURRENT_RECENT_CALL_LIST, recentCalls)
                             putExtra(CONTACT_ID, recentCall.contactID)
+                            if (contact != null) {
+                                putExtra(IS_PRIVATE, contact.isPrivate())
+                            }
                             activity?.launchActivityIntent(this)
                         }
                     },
@@ -230,9 +241,8 @@ class RecentsFragment(
     private fun refreshCallLog(loadAll: Boolean = false, callback: (() -> Unit)? = null) {
         getRecentCalls(loadAll) {
             allRecentCalls = it
-            val recentCalls = it.filterIsInstance<RecentCall>()
-            context.config.recentCallsCache = Gson().toJson(recentCalls.take(300))
             if (searchQuery.isNullOrEmpty()) {
+                context.config.recentCallsCache = Gson().toJson(it.take(300))
                 activity?.runOnUiThread { gotRecents(it) }
             } else {
                 updateSearchResult()
@@ -240,14 +250,14 @@ class RecentsFragment(
 
             //Deleting notes if a call has already been deleted
             context.callerNotesHelper.removeCallerNotes(
-                recentCalls.map { recentCall -> recentCall.phoneNumber.numberForNotes()}
+                it.map { recentCall -> recentCall.phoneNumber.numberForNotes()}
             )
 
             callback?.invoke()
         }
     }
 
-    private fun getRecentCalls(loadAll: Boolean, callback: (List<CallLogItem>) -> Unit) {
+    private fun getRecentCalls(loadAll: Boolean, callback: (List<RecentCall>) -> Unit) {
         val queryCount = if (loadAll) context.config.queryLimitRecent else RecentsHelper.QUERY_LIMIT
         val existingRecentCalls = allRecentCalls.filterIsInstance<RecentCall>()
 
@@ -265,7 +275,7 @@ class RecentsFragment(
         }
     }
 
-    private fun prepareCallLog(calls: List<RecentCall>, callback: (List<CallLogItem>) -> Unit) {
+    private fun prepareCallLog(calls: List<RecentCall>, callback: (List<RecentCall>) -> Unit) {
         if (calls.isEmpty()) {
             callback(emptyList())
             return
@@ -348,9 +358,9 @@ class RecentsFragment(
         return callLog
     }
 
-
     private fun findContactByCall(recentCall: RecentCall): Contact? {
-        return (activity as MainActivity).cachedContacts.find { it.name == recentCall.name && it.doesHavePhoneNumber(recentCall.phoneNumber) }
+        return (activity as MainActivity).cachedContacts
+            .find { /*it.name == recentCall.name &&*/ it.doesHavePhoneNumber(recentCall.phoneNumber) }
     }
 
     private fun addContact(recentCall: RecentCall) {

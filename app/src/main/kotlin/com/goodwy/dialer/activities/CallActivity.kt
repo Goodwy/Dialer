@@ -991,7 +991,7 @@ class CallActivity : SimpleActivity() {
             }
 
             callerAvatar.apply {
-                if (number == name || isABusinessCall || isVoiceMail || isDestroyed || isFinishing) {
+                if (number == name || ((isABusinessCall || isVoiceMail) && avatarUri == "") || isDestroyed || isFinishing) {
                     val drawable =
                         if (isABusinessCall) AppCompatResources.getDrawable(this@CallActivity, R.drawable.placeholder_company)
                         else if (isVoiceMail) AppCompatResources.getDrawable(this@CallActivity, R.drawable.placeholder_voicemail)

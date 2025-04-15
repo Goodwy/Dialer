@@ -51,6 +51,7 @@ class CallHistoryActivity : SimpleActivity() {
     private var currentRecentCall: RecentCall? = null
     private var currentRecentCallList: List<RecentCall>? = null
     private var recentsHelper = RecentsHelper(this)
+    private var initShowAll = false
     private var showAll = false
 
     private val white = 0xFFFFFFFF.toInt()
@@ -76,7 +77,10 @@ class CallHistoryActivity : SimpleActivity() {
         initButtons()
 
         currentRecentCallList = intent.getSerializableExtra(CURRENT_RECENT_CALL_LIST) as? List<RecentCall>
-        currentRecentCallList?.let { gotRecents(it) }
+        currentRecentCallList?.let {
+            gotRecents(it)
+            initShowAll()
+        }
     }
 
     @SuppressLint("MissingSuperCall")
@@ -85,11 +89,11 @@ class CallHistoryActivity : SimpleActivity() {
         binding.callHistoryPlaceholderContainer.beGone()
         updateTextColors(binding.callHistoryHolder)
         buttonBg = if (baseConfig.backgroundColor == white || baseConfig.backgroundColor == gray) white else getBottomNavigationBackgroundColor()
-        updateButtons()
         ensureBackgroundThread {
             initContact()
         }
-        refreshCallLog(false)
+        if (!initShowAll) refreshCallLog(false)
+        updateButtons()
         setupMenu()
         setupCallerNotes()
     }
@@ -135,31 +139,41 @@ class CallHistoryActivity : SimpleActivity() {
         binding.fourButton.setTextColor(properPrimaryColor)
     }
 
+    private fun initShowAll() {
+        try {
+            val recents = config.parseRecentCallsCache()
+            val currentRecentCalls = recents.filter { it.phoneNumber == currentRecentCall!!.phoneNumber}
+
+            if (currentRecentCallList != null) {
+                if (currentRecentCalls.size > currentRecentCallList!!.size) {
+                    binding.callHistoryShowAll.beVisible()
+                    initShowAll = true
+                }
+            }
+        } catch (_: Exception) { }
+    }
+
     private fun showAll() {
         if (showAll) {
             binding.callHistoryShowAll.beInvisible()
+            binding.progressIndicator.show()
             currentRecentCallList?.let {
                 gotRecents(it) {
                     showAll = false
                     binding.callHistoryShowAll.apply {
                         text = getString(R.string.all_g)
-//                        val drawable = AppCompatResources.getDrawable(context, R.drawable.ic_chevron_down_vector)
-//                        drawable?.applyColorFilter(getProperPrimaryColor())
-//                        setDrawablesRelativeWithIntrinsicBounds(end = drawable)
                         beVisible()
                     }
                 }
             }
         } else {
             binding.callHistoryShowAll.beInvisible()
+            binding.progressIndicator.show()
             refreshCallLog(true) {
                 showAll = true
                 runOnUiThread {
                     binding.callHistoryShowAll.apply {
                         text = getString(R.string.hide)
-//                        val drawable = AppCompatResources.getDrawable(context, R.drawable.ic_chevron_up_vector)
-//                        drawable?.applyColorFilter(getProperPrimaryColor())
-//                        setDrawablesRelativeWithIntrinsicBounds(end = drawable)
                         beVisible()
                     }
                 }
@@ -344,11 +358,11 @@ class CallHistoryActivity : SimpleActivity() {
     private fun refreshCallLog(load: Boolean, callback: (() -> Unit)? = null) {
         getRecentCalls { recents ->
             allRecentCall = recents
-            val currentRecentCall = recents.filter { it.phoneNumber == currentRecentCall!!.phoneNumber}
+            val currentRecentCalls = recents.filter { it.phoneNumber == currentRecentCall!!.phoneNumber}
 
             if (load) {
                 runOnUiThread {
-                    if (recents.isEmpty() || currentRecentCall.isEmpty()) {
+                    if (recents.isEmpty() || currentRecentCalls.isEmpty()) {
                         binding.apply {
                             callHistoryListContainer.beGone()
                             callHistoryPlaceholderContainer.beVisible()
@@ -360,13 +374,15 @@ class CallHistoryActivity : SimpleActivity() {
                             callHistoryPlaceholderContainer.beGone()
                             callHistoryToolbar.menu.findItem(R.id.delete).isVisible = true
                         }
-                        gotRecents(currentRecentCall)
+                        gotRecents(currentRecentCalls)
                         updateBackgroundHistory()
                     }
                 }
             } else {
-                if (currentRecentCallList != null) {
-                    if (currentRecentCall.size > currentRecentCallList!!.size) runOnUiThread { binding.callHistoryShowAll.beVisible() }
+                if (!initShowAll) {
+                    if (currentRecentCallList != null) {
+                        if (currentRecentCalls.size > currentRecentCallList!!.size) runOnUiThread { binding.callHistoryShowAll.beVisible() }
+                    }
                 }
             }
 
@@ -403,12 +419,14 @@ class CallHistoryActivity : SimpleActivity() {
             recentsAdapter?.updateItems(recents)
             setupCallHistoryListCount(recents.size)
 
+            binding.progressIndicator.hide()
             if (this.areSystemAnimationsEnabled) {
                 binding.callHistoryList.scheduleLayoutAnimation()
             }
         } else {
             recentsAdapter?.updateItems(recents)
             setupCallHistoryListCount(recents.size)
+            binding.progressIndicator.hide()
         }
 
         callback?.invoke()
@@ -453,8 +471,17 @@ class CallHistoryActivity : SimpleActivity() {
         if (contactId != 0 && !wasLookupKeyUsed) {
 
             handlePermission(PERMISSION_READ_CONTACTS) {
+                val isPrivat = intent.getBooleanExtra(IS_PRIVATE, false)
                 if (it) contact =
-                    ContactsHelper(this).getContactWithId(contactId, true)
+                    ContactsHelper(this).getContactWithId(contactId, isPrivat)
+
+                if (contact == null && isPrivat) {
+                    ContactsHelper(this).getContacts(showOnlyContactsWithNumbers = true) { _ ->
+                        val privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
+                        val privateContacts = MyContactsContentProvider.getContacts(this, privateCursor)
+                        contact = privateContacts.firstOrNull { it.id == contactId }
+                    }
+                }
             }
 
             if (contact == null) {
@@ -1067,7 +1094,7 @@ class CallHistoryActivity : SimpleActivity() {
     private fun updateButton() {
         val call = currentRecentCall
         if (call != null) {
-            if (call.phoneNumber == call.name || call.isABusinessCall() || call.isVoiceMail || isDestroyed || isFinishing) {
+            if (call.phoneNumber == call.name || ((call.isABusinessCall() || call.isVoiceMail) && call.photoUri == "") || isDestroyed || isFinishing) {
                 val drawable =
                     if (call.isABusinessCall()) AppCompatResources.getDrawable(this, R.drawable.placeholder_company)
                     else if (call.isVoiceMail) AppCompatResources.getDrawable(this, R.drawable.placeholder_voicemail)
@@ -1150,7 +1177,7 @@ class CallHistoryActivity : SimpleActivity() {
 
             binding.topDetails.callHistoryCompany.apply {
                 val company = formatterUnicodeWrap(call.company)
-                beVisibleIf(company != "" && company != nameToShow.toString())
+                beVisibleIf(company != "" && !call.isABusinessCall())
                 text = company
                 setTextColor(getProperTextColor())
                 setOnLongClickListener {
@@ -1161,7 +1188,7 @@ class CallHistoryActivity : SimpleActivity() {
 
             binding.topDetails.callHistoryJobPosition.apply {
                 val jobPosition = formatterUnicodeWrap(call.jobPosition)
-                beVisibleIf(jobPosition != "")
+                beVisibleIf(jobPosition != "" && !call.isABusinessCall())
                 text = jobPosition
                 setTextColor(getProperTextColor())
                 setOnLongClickListener {

@@ -224,7 +224,7 @@ class DialpadActivity : SimpleActivity() {
 
         invalidateOptionsMenu()
 
-        if (config.showRecentCallsOnDialpad) refreshItems {}
+        if (config.showRecentCallsOnDialpad) refreshItems()
         binding.dialpadRecentsList.beVisibleIf(binding.dialpadInput.value.isEmpty() && config.showRecentCallsOnDialpad)
     }
 
@@ -1024,20 +1024,21 @@ class DialpadActivity : SimpleActivity() {
         if (len == 0 && view.isGone) {
             slideUp(view)
         }
-        if (textFormat.length > 8 && textFormat.startsWith("*#*#") && textFormat.endsWith("#*#*")) {
-            val secretCode = textFormat.substring(4, textFormat.length - 4)
-            if (isOreoPlus()) {
-                if (isDefaultDialer()) {
-                    getSystemService(TelephonyManager::class.java)?.sendDialerSpecialCode(secretCode)
-                } else {
-                    launchSetDefaultDialerIntent()
-                }
-            } else {
-                val intent = Intent(SECRET_CODE_ACTION, "android_secret_code://$secretCode".toUri())
-                sendBroadcast(intent)
-            }
-            return
-        }
+        //Only works for system apps, CALL_PRIVILEGED and MODIFY_PHONE_STATE permissions are required
+//        if (textFormat.length > 8 && textFormat.startsWith("*#*#") && textFormat.endsWith("#*#*")) {
+//            val secretCode = textFormat.substring(4, textFormat.length - 4)
+//            if (isOreoPlus()) {
+//                if (isDefaultDialer()) {
+//                    getSystemService(TelephonyManager::class.java)?.sendDialerSpecialCode(secretCode)
+//                } else {
+//                    launchSetDefaultDialerIntent()
+//                }
+//            } else {
+//                val intent = Intent(SECRET_CODE_ACTION, "android_secret_code://$secretCode".toUri())
+//                sendBroadcast(intent)
+//            }
+//            return
+//        }
 
         (binding.dialpadList.adapter as? ContactsAdapter)?.finishActMode()
         (binding.dialpadRecentsList.adapter as? RecentCallsAdapter)?.finishActMode()
@@ -1287,10 +1288,21 @@ class DialpadActivity : SimpleActivity() {
         }
     }
 
-    private fun refreshItems(callback: (() -> Unit)?) {
-        gotRecents()
-        refreshCallLog(loadAll = true) {
-//            refreshCallLog(loadAll = true)
+    private fun refreshItems() {
+        var recents = emptyList<RecentCall>()
+        try {
+            recents = config.parseRecentCallsCache()
+        } catch (_: Exception) {
+            config.recentCallsCache = ""
+        }
+
+        if (recents.isNotEmpty()) {
+            gotRecents(recents)
+            refreshCallLog(loadAll = true)
+        } else {
+            refreshCallLog(loadAll = false) {
+                refreshCallLog(loadAll = true)
+            }
         }
     }
 
@@ -1299,6 +1311,11 @@ class DialpadActivity : SimpleActivity() {
             allRecentCalls = it
             config.recentCallsCache = Gson().toJson(it.take(300))
             runOnUiThread { gotRecents(it) }
+
+            //Deleting notes if a call has already been deleted
+            callerNotesHelper.removeCallerNotes(
+                it.map { recentCall -> recentCall.phoneNumber.numberForNotes()}
+            )
 
             callback?.invoke()
         }
@@ -1389,7 +1406,7 @@ class DialpadActivity : SimpleActivity() {
         )
     }
 
-    private fun gotRecents(recents: List<RecentCall> = config.parseRecentCallsCache()) {
+    private fun gotRecents(recents: List<RecentCall>) {
         val currAdapter = binding.dialpadRecentsList.adapter
         if (currAdapter == null) {
             recentsAdapter = RecentCallsAdapter(
@@ -1411,6 +1428,27 @@ class DialpadActivity : SimpleActivity() {
                     } else {
                         launchCallIntent(recentCall.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
                     }
+                },
+                profileInfoClick = { recentCall ->
+                    val recentCalls = recentCall.groupedCalls as ArrayList<RecentCall>? ?: arrayListOf(recentCall)
+                    val contact = findContactByCall(recentCall)
+                    Intent(this@DialpadActivity, CallHistoryActivity::class.java).apply {
+                        putExtra(CURRENT_RECENT_CALL, recentCall)
+                        putExtra(CURRENT_RECENT_CALL_LIST, recentCalls)
+                        putExtra(CONTACT_ID, recentCall.contactID)
+                        if (contact != null) {
+                            putExtra(IS_PRIVATE, contact.isPrivate())
+                        }
+                        launchActivityIntent(this)
+                    }
+                },
+                profileIconClick = {
+                    val contact = findContactByCall(it as RecentCall)
+                    if (contact != null) {
+                        startContactDetailsIntent(contact)
+                    } else {
+                        addContact(it)
+                    }
                 }
             )
 
@@ -1430,7 +1468,7 @@ class DialpadActivity : SimpleActivity() {
         binding.dialpadToolbar.menu.findItem(R.id.show_blocked_numbers).title = if (config.showBlockedNumbers) getString(R.string.hide_blocked_numbers) else getString(R.string.show_blocked_numbers)
         config.needUpdateRecents = true
         runOnUiThread {
-            refreshItems {}
+            refreshItems()
         }
     }
 
@@ -1440,9 +1478,23 @@ class DialpadActivity : SimpleActivity() {
             RecentsHelper(this).removeAllRecentCalls(this) {
                 allRecentCalls = emptyList()
                 runOnUiThread {
-                    refreshItems {}
+                    refreshItems()
                 }
             }
+        }
+    }
+
+    private fun findContactByCall(recentCall: RecentCall): Contact? {
+        return allContacts
+            .find { /*it.name == recentCall.name &&*/ it.doesHavePhoneNumber(recentCall.phoneNumber) }
+    }
+
+    private fun addContact(recentCall: RecentCall) {
+        Intent().apply {
+            action = Intent.ACTION_INSERT_OR_EDIT
+            type = "vnd.android.cursor.item/contact"
+            putExtra(KEY_PHONE, recentCall.phoneNumber)
+            launchActivityIntent(this)
         }
     }
 }

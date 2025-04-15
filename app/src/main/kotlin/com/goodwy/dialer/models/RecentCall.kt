@@ -3,12 +3,14 @@ package com.goodwy.dialer.models
 import android.telephony.PhoneNumberUtils
 import com.goodwy.commons.extensions.normalizePhoneNumber
 import com.goodwy.commons.extensions.toDayCode
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 /**
  * Used at displaying recent calls.
  * For contacts with multiple numbers specify the number and type
  */
+@kotlinx.serialization.Serializable
 data class RecentCall(
     var id: Int,
     var phoneNumber: String,
@@ -24,7 +26,7 @@ data class RecentCall(
     var specificNumber: String,
     var specificType: String,
     val isUnknownNumber: Boolean,
-    val groupedCalls: MutableList<RecentCall>? = null,
+    @SerializedName("title") val groupedCalls: MutableList<RecentCall>? = null,
     var contactID: Int? = null,
     var features: Int? = null,
     val isVoiceMail: Boolean,

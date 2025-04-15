@@ -223,9 +223,6 @@ class MainActivity : SimpleActivity() {
             }
         }
 
-//        Handler().postDelayed({
-//            getRecentsFragment()?.refreshItems()
-//        }, 2000)
         invalidateOptionsMenu()
 
         //Screen slide animation

@@ -56,7 +56,7 @@ class RecentCallsAdapter(
     private val isDialpad: Boolean = false,
     private val itemDelete: (List<RecentCall>) -> Unit = {},
     itemClick: (Any) -> Unit,
-    val profileInfoClick: ((Any) -> Unit)? = null,
+    val profileInfoClick: ((RecentCall) -> Unit)? = null,
     val profileIconClick: ((Any) -> Unit)? = null
 ) : MyRecyclerViewListAdapter<CallLogItem>(activity, recyclerView, RecentCallsDiffCallback(), itemClick) {
 
@@ -395,8 +395,10 @@ class RecentCallsAdapter(
     }
 
     private fun findContactByCall(recentCall: RecentCall): Contact? {
-        return if (isDialpad) (activity as DialpadActivity).allContacts.find { it.name == recentCall.name && it.doesHavePhoneNumber(recentCall.phoneNumber) }
-        else (activity as MainActivity).cachedContacts.find { it.name == recentCall.name && it.doesHavePhoneNumber(recentCall.phoneNumber) }
+        return if (isDialpad) (activity as DialpadActivity).allContacts
+            .find { /*it.name == recentCall.name &&*/ it.doesHavePhoneNumber(recentCall.phoneNumber) }
+        else (activity as MainActivity).cachedContacts
+            .find { /*it.name == recentCall.name &&*/ it.doesHavePhoneNumber(recentCall.phoneNumber) }
     }
 
     private fun launchContactDetailsIntent(contact: Contact?) {
@@ -680,7 +682,7 @@ class RecentCallsAdapter(
                 if (showContactThumbnails) {
                     val size = (root.context.pixels(R.dimen.normal_icon_size) * contactThumbnailsSize).toInt()
                     itemRecentsImage.setHeightAndWidth(size)
-                    if (call.phoneNumber == call.name || call.isABusinessCall() || call.isVoiceMail) {
+                    if (call.phoneNumber == call.name || ((call.isABusinessCall() || call.isVoiceMail) && call.photoUri == "")) {
                         val drawable =
                             if (call.isABusinessCall()) AppCompatResources.getDrawable(activity, R.drawable.placeholder_company)
                             else if (call.isVoiceMail) AppCompatResources.getDrawable(activity, R.drawable.placeholder_voicemail)
@@ -864,7 +866,7 @@ class RecentCallsAdapter(
                 if (showContactThumbnails) {
                     val size = (root.context.pixels(R.dimen.normal_icon_size) * contactThumbnailsSize).toInt()
                     itemRecentsImage.setHeightAndWidth(size)
-                    if (call.phoneNumber == call.name || call.isABusinessCall() || call.isVoiceMail) {
+                    if (call.phoneNumber == call.name || ((call.isABusinessCall() || call.isVoiceMail) && call.photoUri == "")) {
                         val drawable =
                             if (call.isABusinessCall()) AppCompatResources.getDrawable(activity, R.drawable.placeholder_company)
                             else if (call.isVoiceMail) AppCompatResources.getDrawable(activity, R.drawable.placeholder_voicemail)
@@ -1041,10 +1043,15 @@ class RecentCallsAdapter(
 //        val callIdList : ArrayList<Int> = arrayListOf()
 //        for (i in getCallList(call)){ callIdList.add(i.id) } // add all the individual records
 //        for (n in getCallList(call)){ callIdList.addAll(n.neighbourIDs) } // add all grouped records
+        val recentCalls = call.groupedCalls as ArrayList<RecentCall>? ?: arrayListOf(call)
+        val matchingContact = findContactByCall(call)
         Intent(activity, CallHistoryActivity::class.java).apply {
             putExtra(CURRENT_RECENT_CALL, call)
-            putExtra(CURRENT_RECENT_CALL_LIST, call.contactID)
+            putExtra(CURRENT_RECENT_CALL_LIST, recentCalls)
             putExtra(CONTACT_ID, call.contactID)
+            if (matchingContact != null) {
+                putExtra(IS_PRIVATE, matchingContact.isPrivate())
+            }
             activity.launchActivityIntent(this)
         }
     }
