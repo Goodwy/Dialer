@@ -1,0 +1,1 @@
+The Dialer app is a built-in phone application, which manages your call history and contacts. It provides quick access to making calls and sending text messages through the application interface, including popular messengers.
