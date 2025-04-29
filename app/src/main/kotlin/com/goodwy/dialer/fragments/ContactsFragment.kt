@@ -122,7 +122,8 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
 
             try {
                 //Decrease the font size based on the number of letters in the letter scroller
-                val all = contacts.map { it.getNameToDisplay().substring(0, 1) }
+                val allNotEmpty = contacts.filter { it.getNameToDisplay().isNotEmpty() }
+                val all = allNotEmpty.map { it.getNameToDisplay().substring(0, 1) }
                 val unique: Set<String> = HashSet(all)
                 val sizeUnique = unique.size
                 if (isHighScreenSize()) {

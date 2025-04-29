@@ -1,8 +1,6 @@
 package com.goodwy.dialer.helpers
 
 import android.content.Context
-import com.goodwy.commons.extensions.copyToClipboard
-import com.goodwy.commons.extensions.toast
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.numberForNotes
 import com.goodwy.dialer.models.CallerNote

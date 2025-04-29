@@ -45,6 +45,7 @@ import kotlin.math.max
 import kotlin.math.min
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.get
+import androidx.core.view.size
 
 
 class CallActivity : SimpleActivity() {
@@ -1047,7 +1048,7 @@ class CallActivity : SimpleActivity() {
                     popupMenu.show()
                     // icon coloring
                     popupMenu.menu.apply {
-                        for (index in 0 until this.size()) {
+                        for (index in 0 until this.size) {
                             val item = this[index]
 
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {

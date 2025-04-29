@@ -1025,20 +1025,20 @@ class DialpadActivity : SimpleActivity() {
             slideUp(view)
         }
         //Only works for system apps, CALL_PRIVILEGED and MODIFY_PHONE_STATE permissions are required
-//        if (textFormat.length > 8 && textFormat.startsWith("*#*#") && textFormat.endsWith("#*#*")) {
-//            val secretCode = textFormat.substring(4, textFormat.length - 4)
-//            if (isOreoPlus()) {
-//                if (isDefaultDialer()) {
-//                    getSystemService(TelephonyManager::class.java)?.sendDialerSpecialCode(secretCode)
-//                } else {
-//                    launchSetDefaultDialerIntent()
-//                }
-//            } else {
-//                val intent = Intent(SECRET_CODE_ACTION, "android_secret_code://$secretCode".toUri())
-//                sendBroadcast(intent)
-//            }
-//            return
-//        }
+        if (textFormat.length > 8 && textFormat.startsWith("*#*#") && textFormat.endsWith("#*#*")) {
+            val secretCode = textFormat.substring(4, textFormat.length - 4)
+            if (isOreoPlus()) {
+                if (isDefaultDialer()) {
+                    getSystemService(TelephonyManager::class.java)?.sendDialerSpecialCode(secretCode)
+                } else {
+                    launchSetDefaultDialerIntent()
+                }
+            } else {
+                val intent = Intent(SECRET_CODE_ACTION, "android_secret_code://$secretCode".toUri())
+                sendBroadcast(intent)
+            }
+            return
+        }
 
         (binding.dialpadList.adapter as? ContactsAdapter)?.finishActMode()
         (binding.dialpadRecentsList.adapter as? RecentCallsAdapter)?.finishActMode()

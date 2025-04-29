@@ -16,7 +16,7 @@ autofitTextView = "0.2.1"
 geocoderVersion = "3.1"
 libphonenumberVersion = "9.0.1"
 #Goodwy
-right-commons = "24148344d7"
+right-commons = "5d903c6c31"
 badger = "1.1.22"
 androidx-lifecycle = "2.8.6"
 behavioRule = "1.0.1"
@@ -32,8 +32,8 @@ app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
 #versioning
 app-version-appId = "com.goodwy.dialer"
-app-version-versionCode = "616"
-app-version-versionName = "6.1.6"
+app-version-versionCode = "620"
+app-version-versionName = "6.2.0"
 [libraries]
 #EventBus
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }

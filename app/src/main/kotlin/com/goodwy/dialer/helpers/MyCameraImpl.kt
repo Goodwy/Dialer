@@ -1,12 +1,11 @@
 package com.goodwy.dialer.helpers
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Handler
 import com.goodwy.commons.extensions.showErrorToast
 import com.goodwy.commons.extensions.toast
 import com.goodwy.dialer.R
-import com.goodwy.dialer.extensions.config
-//import com.goodwy.dialer.extensions.updateWidgets
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -29,6 +28,7 @@ class MyCameraImpl private constructor(private val context: Context, private var
         private var shouldEnableSOS = false
         private var isStroboSOS = false     // are we sending SOS, or casual stroboscope?
 
+        @SuppressLint("StaticFieldLeak")
         private var cameraFlash: CameraFlash? = null
 
         @Volatile

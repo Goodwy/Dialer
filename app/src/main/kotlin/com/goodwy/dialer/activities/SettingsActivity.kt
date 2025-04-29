@@ -10,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.behaviorule.arturdumchev.library.pixels
@@ -384,7 +385,6 @@ class SettingsActivity : SimpleActivity() {
 
     // support for device-wise blocking came on Android 7, rely only on that
     @SuppressLint("SetTextI18n")
-    @TargetApi(Build.VERSION_CODES.N)
     private fun setupManageBlockedNumbers() = binding.apply {
         settingsManageBlockedNumbersHolder.beVisibleIf(isNougatPlus())
         settingsManageBlockedNumbersCount.text = getBlockedNumbers().size.toString()
@@ -1603,7 +1603,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 616 //TODO changelog
+        val id = 620 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
@@ -1620,7 +1620,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_616)) //TODO changelog
+            add(Release(id, R.string.release_620)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }
