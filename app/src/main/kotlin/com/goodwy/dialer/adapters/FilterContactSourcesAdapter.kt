@@ -20,7 +20,7 @@ class FilterContactSourcesAdapter(
     private val selectedKeys = HashSet<Int>()
 
     init {
-        contactSources.forEachIndexed { _, contactSource ->
+        contactSources.forEachIndexed { index, contactSource ->
             if (displayContactSources.contains(contactSource.name)) {
                 selectedKeys.add(contactSource.hashCode())
             }

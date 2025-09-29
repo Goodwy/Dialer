@@ -2,7 +2,7 @@ package com.goodwy.dialer.models
 
 import android.telephony.PhoneNumberUtils
 import com.goodwy.commons.extensions.normalizePhoneNumber
-import com.goodwy.dialer.extensions.getDayCode
+import com.goodwy.commons.extensions.toDayCode
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
@@ -23,7 +23,6 @@ data class RecentCall(
     var duration: Int,
     var type: Int,
     val simID: Int,
-    val simColor: Int,
     var specificNumber: String,
     var specificType: String,
     val isUnknownNumber: Boolean,
@@ -31,10 +30,7 @@ data class RecentCall(
     var contactID: Int? = null,
     var features: Int? = null,
     val isVoiceMail: Boolean,
-    var blockReason: Int? = 0,
 ) : CallLogItem(), Serializable {
-    val dayCode = startTS.getDayCode()
-
     fun doesContainPhoneNumber(text: String): Boolean {
         return if (text.toIntOrNull() != null) {
             val normalizedText = text.normalizePhoneNumber()
@@ -46,6 +42,8 @@ data class RecentCall(
             false
         }
     }
+
+    fun getDayCode() = startTS.toDayCode()
 
     fun isABusinessCall() = name.contains(company) && company.isNotEmpty()
 }

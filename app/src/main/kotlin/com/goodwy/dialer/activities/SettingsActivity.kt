@@ -1,6 +1,7 @@
 package com.goodwy.dialer.activities
 
 import android.annotation.SuppressLint
+import android.annotation.TargetApi
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.content.res.Configuration
@@ -9,6 +10,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.behaviorule.arturdumchev.library.pixels
@@ -30,11 +32,11 @@ import com.goodwy.dialer.extensions.*
 import com.goodwy.dialer.helpers.RecentsHelper
 import com.goodwy.dialer.models.RecentCall
 import com.goodwy.dialer.helpers.*
-import com.google.gson.Gson
 import com.mikhaellopez.rxanimation.RxAnimation
 import com.mikhaellopez.rxanimation.shake
 import kotlinx.coroutines.launch
 import kotlinx.serialization.SerializationException
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import ru.rustore.sdk.core.feature.model.FeatureAvailabilityResult
 import java.util.Locale
@@ -88,7 +90,6 @@ class SettingsActivity : SimpleActivity() {
         isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        setupOptionsMenu()
 
         binding.apply {
             updateMaterialActivityViews(settingsCoordinator, settingsHolder, useTransparentNavigation = true, useTopSearchMenu = false)
@@ -210,7 +211,6 @@ class SettingsActivity : SimpleActivity() {
         setupAnswerStyle()
         setupCallButtonStyle()
         setupAlwaysShowFullscreen()
-        setupKeepCallsInPopUp()
         setupBackPressedEndCall()
         setupQuickAnswers()
         setupCallerDescription()
@@ -244,6 +244,8 @@ class SettingsActivity : SimpleActivity() {
 
         setupTipJar()
         setupAbout()
+
+        setupOptionsMenu()
 
         updateTextColors(binding.settingsHolder)
 
@@ -321,43 +323,28 @@ class SettingsActivity : SimpleActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun setupOptionsMenu() {
-        val id = 640 //TODO changelog
-        binding.settingsToolbar.menu.apply {
-            findItem(R.id.calling_accounts).isVisible = canLaunchAccountsConfiguration()
-            findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
-        }
-        binding.settingsToolbar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.calling_accounts -> {
-                    launchAccountsConfiguration()
-                    true
-                }
-                R.id.whats_new -> {
-                    showWhatsNewDialog(id)
-                    true
-                }
-                else -> false
+    private fun setupPurchaseThankYou() {
+        binding.apply {
+            settingsPurchaseThankYouHolder.beGoneIf(checkPro(false))
+            settingsPurchaseThankYouHolder.setOnClickListener {
+                launchPurchase()
             }
+            moreButton.setOnClickListener {
+                launchPurchase()
+            }
+            val appDrawable = resources.getColoredDrawableWithColor(this@SettingsActivity, R.drawable.ic_plus_support, getProperPrimaryColor())
+            purchaseLogo.setImageDrawable(appDrawable)
+            val drawable = resources.getColoredDrawableWithColor(this@SettingsActivity, R.drawable.button_gray_bg, getProperPrimaryColor())
+            moreButton.background = drawable
+            moreButton.setTextColor(getProperBackgroundColor())
+            moreButton.setPadding(2, 2, 2, 2)
         }
-    }
-
-    private fun showWhatsNewDialog(id: Int) {
-        arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_640)) //TODO changelog
-            WhatsNewDialog(this@SettingsActivity, this)
-        }
-    }
-
-    private fun setupPurchaseThankYou() = binding.apply {
-        settingsPurchaseThankYouHolder.beGoneIf(checkPro(false))
-        settingsPurchaseThankYouHolder.onClick = { launchPurchase() }
     }
 
     private fun setupCustomizeColors() {
         binding.settingsCustomizeColorsHolder.setOnClickListener {
             startCustomizationActivity(
-                showAccentColor = true,
+                showAccentColor = resources.getBoolean(R.bool.is_pro_app),
                 isCollection = isOrWasThankYouInstalled() || isCollection(),
                 productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
                 productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
@@ -396,8 +383,10 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    // support for device-wise blocking came on Android 7, rely only on that
     @SuppressLint("SetTextI18n")
     private fun setupManageBlockedNumbers() = binding.apply {
+        settingsManageBlockedNumbersHolder.beVisibleIf(isNougatPlus())
         settingsManageBlockedNumbersCount.text = getBlockedNumbers().size.toString()
 
         val getProperTextColor = getProperTextColor()
@@ -666,7 +655,7 @@ class SettingsActivity : SimpleActivity() {
         val black = if (pro) getString(R.string.black) else getString(R.string.black_locked)
         binding.settingsBackgroundCallScreen.text = getBackgroundCallScreenText()
         binding.settingsBackgroundCallScreenHolder.setOnClickListener {
-            val items = if (isTiramisuPlus()) {
+            val items = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 arrayListOf(
                     RadioItem(THEME_BACKGROUND, getString(R.string.theme), icon = R.drawable.ic_theme),
                     RadioItem(BLUR_AVATAR, getString(R.string.blurry_contact_photo), icon = R.drawable.ic_contact_blur),
@@ -729,7 +718,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun setupTransparentCallScreen() {
         binding.apply {
-            if (isTiramisuPlus()) settingsTransparentCallScreenHolder.beGone()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) settingsTransparentCallScreenHolder.beGone()
             else {
                 if (hasPermission(PERMISSION_READ_STORAGE)) {
                     settingsTransparentCallScreen.isChecked = config.transparentCallScreen
@@ -872,22 +861,6 @@ class SettingsActivity : SimpleActivity() {
             settingsAlwaysShowFullscreenHolder.setOnClickListener {
                 settingsAlwaysShowFullscreen.toggle()
                 config.showIncomingCallsFullScreen = settingsAlwaysShowFullscreen.isChecked
-                settingsKeepCallsInPopUpHolder.beVisibleIf(!config.showIncomingCallsFullScreen)
-            }
-        }
-    }
-
-    private fun setupKeepCallsInPopUp() {
-        binding.apply {
-            settingsKeepCallsInPopUpHolder.beVisibleIf(!config.showIncomingCallsFullScreen)
-            settingsKeepCallsInPopUp.isChecked = config.keepCallsInPopUp
-            settingsKeepCallsInPopUpHolder.setOnClickListener {
-                settingsKeepCallsInPopUp.toggle()
-                config.keepCallsInPopUp = settingsKeepCallsInPopUp.isChecked
-            }
-            settingsKeepCallsInPopUpFaq.imageTintList = ColorStateList.valueOf(getProperTextColor())
-            settingsKeepCallsInPopUpFaq.setOnClickListener {
-                ConfirmationDialog(this@SettingsActivity, messageId = R.string.keep_calls_in_popup_summary, positive = com.goodwy.commons.R.string.ok, negative = 0) {}
             }
         }
     }
@@ -1290,12 +1263,12 @@ class SettingsActivity : SimpleActivity() {
                 settingsSimCardColor1Holder.setOnClickListener {
                     ColorPickerDialog(
                         this@SettingsActivity,
-                        color = config.simIconsColors[1],
+                        config.simIconsColors[1],
                         addDefaultColorButton = true,
                         colorDefault = resources.getColor(R.color.ic_dialer),
                         title = resources.getString(R.string.color_sim_card_icons)
-                    ) { wasPositivePressed, color, wasDefaultPressed ->
-                        if (wasPositivePressed || wasDefaultPressed) {
+                    ) { wasPositivePressed, color, _ ->
+                        if (wasPositivePressed) {
                             if (hasColorChanged(config.simIconsColors[1], color)) {
                                 addSimCardColor(1, color)
                                 initSimCardColor()
@@ -1306,12 +1279,12 @@ class SettingsActivity : SimpleActivity() {
                 settingsSimCardColor2Holder.setOnClickListener {
                     ColorPickerDialog(
                         this@SettingsActivity,
-                        color = config.simIconsColors[2],
+                        config.simIconsColors[2],
                         addDefaultColorButton = true,
                         colorDefault = resources.getColor(R.color.color_primary),
                         title = resources.getString(R.string.color_sim_card_icons)
-                    ) { wasPositivePressed, color, wasDefaultPressed ->
-                        if (wasPositivePressed || wasDefaultPressed) {
+                    ) { wasPositivePressed, color, _ ->
+                        if (wasPositivePressed) {
                             if (hasColorChanged(config.simIconsColors[2], color)) {
                                 addSimCardColor(2, color)
                                 initSimCardColor()
@@ -1365,20 +1338,7 @@ class SettingsActivity : SimpleActivity() {
         recentColors.removeAt(index)
         recentColors.add(index, color)
 
-        val needUpdate = baseConfig.simIconsColors != recentColors
         baseConfig.simIconsColors = recentColors
-
-        if (needUpdate) {
-            val recents = config.parseRecentCallsCache()
-            val recentsNew = mutableListOf<RecentCall>()
-            recents.forEach { recent ->
-                val recentNew = if (recent.simID == index) recent.copy(simColor = color) else recent
-                recentsNew.add(recentNew)
-            }
-            config.recentCallsCache = Gson().toJson(recentsNew.take(RECENT_CALL_CACHE_SIZE))
-            config.needUpdateRecents = true
-            config.tabsChanged = true
-        }
     }
 
     private fun hasColorChanged(old: Int, new: Int) = abs(old - new) > 1
@@ -1468,12 +1428,15 @@ class SettingsActivity : SimpleActivity() {
         if (isRTLLayout) settingsSwipeRightActionLabel.text = getString(R.string.swipe_left_action)
         settingsSwipeRightAction.text = getSwipeActionText(false)
         settingsSwipeRightActionHolder.setOnClickListener {
-            val items = arrayListOf(
+            val items = if (isNougatPlus()) arrayListOf(
                 RadioItem(SWIPE_ACTION_DELETE, getString(com.goodwy.commons.R.string.delete), icon = com.goodwy.commons.R.drawable.ic_delete_outline),
                 RadioItem(SWIPE_ACTION_BLOCK, getString(R.string.block_number), icon = R.drawable.ic_block_vector),
                 RadioItem(SWIPE_ACTION_CALL, getString(R.string.call), icon = R.drawable.ic_phone_vector),
                 RadioItem(SWIPE_ACTION_MESSAGE, getString(R.string.send_sms), icon = R.drawable.ic_messages),
-                RadioItem(SWIPE_ACTION_NONE, getString(com.goodwy.commons.R.string.nothing)),
+            ) else arrayListOf(
+                RadioItem(SWIPE_ACTION_DELETE, getString(com.goodwy.commons.R.string.delete), icon = com.goodwy.commons.R.drawable.ic_delete_outline),
+                RadioItem(SWIPE_ACTION_CALL, getString(R.string.call), icon = R.drawable.ic_phone_vector),
+                RadioItem(SWIPE_ACTION_MESSAGE, getString(R.string.send_sms), icon = R.drawable.ic_messages),
             )
 
             val title =
@@ -1495,12 +1458,15 @@ class SettingsActivity : SimpleActivity() {
         settingsSwipeLeftAction.text = getSwipeActionText(true)
         settingsSwipeLeftActionHolder.setOnClickListener {
             if (pro) {
-                val items = arrayListOf(
+                val items = if (isNougatPlus()) arrayListOf(
                     RadioItem(SWIPE_ACTION_DELETE, getString(com.goodwy.commons.R.string.delete), icon = com.goodwy.commons.R.drawable.ic_delete_outline),
                     RadioItem(SWIPE_ACTION_BLOCK, getString(R.string.block_number), icon = R.drawable.ic_block_vector),
                     RadioItem(SWIPE_ACTION_CALL, getString(R.string.call), icon = R.drawable.ic_phone_vector),
                     RadioItem(SWIPE_ACTION_MESSAGE, getString(R.string.send_sms), icon = R.drawable.ic_messages),
-                    RadioItem(SWIPE_ACTION_NONE, getString(com.goodwy.commons.R.string.nothing)),
+                ) else arrayListOf(
+                    RadioItem(SWIPE_ACTION_DELETE, getString(com.goodwy.commons.R.string.delete), icon = com.goodwy.commons.R.drawable.ic_delete_outline),
+                    RadioItem(SWIPE_ACTION_CALL, getString(R.string.call), icon = R.drawable.ic_phone_vector),
+                    RadioItem(SWIPE_ACTION_MESSAGE, getString(R.string.send_sms), icon = R.drawable.ic_messages),
                 )
 
                 val title =
@@ -1528,8 +1494,7 @@ class SettingsActivity : SimpleActivity() {
             SWIPE_ACTION_DELETE -> com.goodwy.commons.R.string.delete
             SWIPE_ACTION_BLOCK -> R.string.block_number
             SWIPE_ACTION_CALL -> R.string.call
-            SWIPE_ACTION_MESSAGE -> R.string.send_sms
-            else -> com.goodwy.commons.R.string.nothing
+            else -> R.string.send_sms
         }
     )
 
@@ -1637,6 +1602,29 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupOptionsMenu() {
+        val id = 620 //TODO changelog
+        binding.settingsToolbar.menu.apply {
+            findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
+        }
+        binding.settingsToolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.whats_new -> {
+                    showWhatsNewDialog(id)
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun showWhatsNewDialog(id: Int) {
+        arrayListOf<Release>().apply {
+            add(Release(id, R.string.release_620)) //TODO changelog
+            WhatsNewDialog(this@SettingsActivity, this)
+        }
+    }
+
     private fun updateProducts() {
         val productList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3, subscriptionIdX1, subscriptionIdX2, subscriptionIdX3, subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3)
         ruStoreHelper!!.getProducts(productList)
@@ -1655,6 +1643,8 @@ class SettingsActivity : SimpleActivity() {
                     is FeatureAvailabilityResult.Unavailable -> {
                         //toast(event.availability.cause.message ?: "Process purchases unavailable", Toast.LENGTH_LONG)
                     }
+
+                    else -> {}
                 }
             }
 

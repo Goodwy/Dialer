@@ -20,7 +20,6 @@ import com.goodwy.dialer.databinding.FragmentFavoritesBinding
 import com.goodwy.dialer.databinding.FragmentLettersLayoutBinding
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.setupWithContacts
-import com.goodwy.dialer.extensions.startCallWithConfirmationCheck
 import com.goodwy.dialer.extensions.startContactDetailsIntent
 import com.goodwy.dialer.helpers.Converters
 import com.goodwy.dialer.interfaces.RefreshItemsListener
@@ -67,7 +66,7 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
         }
     }
 
-    override fun refreshItems(invalidate: Boolean, needUpdate: Boolean, callback: (() -> Unit)?) {
+    override fun refreshItems(invalidate: Boolean, callback: (() -> Unit)?) {
         ContactsHelper(context).getContacts { contacts ->
             allContacts = contacts
 
@@ -133,8 +132,18 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
                 showDeleteButton = false,
                 enableDrag = true,
                 showNumber = context.baseConfig.showPhoneNumbers,
-                itemClick = {
-                    activity?.startCallWithConfirmationCheck(it as Contact)
+                itemClick = { it ->
+                    if (context.config.showCallConfirmation) {
+                        CallConfirmationDialog(activity as SimpleActivity, (it as Contact).getNameToDisplay()) {
+                            activity?.apply {
+                                initiateCall(it) { launchCallIntent(it, key = BuildConfig.RIGHT_APP_KEY) }
+                            }
+                        }
+                    } else {
+                        activity?.apply {
+                            initiateCall(it as Contact) { launchCallIntent(it, key = BuildConfig.RIGHT_APP_KEY) }
+                        }
+                    }
                 },
                 profileIconClick = {
                     activity?.startContactDetailsIntent(it as Contact)
@@ -209,19 +218,19 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
     override fun onSearchQueryChanged(text: String) {
         val fixedText = text.trim().replace("\\s+".toRegex(), " ")
         val shouldNormalize = fixedText.normalizeString() == fixedText
-        val contacts = allContacts.filter { contact ->
-            getProperText(contact.getNameToDisplay(), shouldNormalize).contains(fixedText, true) ||
-                getProperText(contact.nickname, shouldNormalize).contains(fixedText, true) ||
-                (fixedText.toIntOrNull() != null && contact.phoneNumbers.any {
+        val contacts = allContacts.filter {
+            getProperText(it.getNameToDisplay(), shouldNormalize).contains(fixedText, true) ||
+                getProperText(it.nickname, shouldNormalize).contains(fixedText, true) ||
+                (fixedText.toIntOrNull() != null && it.phoneNumbers.any {
                     fixedText.normalizePhoneNumber().isNotEmpty() && it.normalizedNumber.contains(fixedText.normalizePhoneNumber(), true)
                 }) ||
-                contact.emails.any { it.value.contains(fixedText, true) } ||
-                contact.addresses.any { getProperText(it.value, shouldNormalize).contains(fixedText, true) } ||
-                contact.IMs.any { it.value.contains(fixedText, true) } ||
-                getProperText(contact.notes, shouldNormalize).contains(fixedText, true) ||
-                getProperText(contact.organization.company, shouldNormalize).contains(fixedText, true) ||
-                getProperText(contact.organization.jobPosition, shouldNormalize).contains(fixedText, true) ||
-                contact.websites.any { it.contains(fixedText, true) }
+                it.emails.any { it.value.contains(fixedText, true) } ||
+                it.addresses.any { getProperText(it.value, shouldNormalize).contains(fixedText, true) } ||
+                it.IMs.any { it.value.contains(fixedText, true) } ||
+                getProperText(it.notes, shouldNormalize).contains(fixedText, true) ||
+                getProperText(it.organization.company, shouldNormalize).contains(fixedText, true) ||
+                getProperText(it.organization.jobPosition, shouldNormalize).contains(fixedText, true) ||
+                it.websites.any { it.contains(fixedText, true) }
         }.sortedByDescending {
             it.name.startsWith(fixedText, true)
         }.toMutableList() as ArrayList<Contact>

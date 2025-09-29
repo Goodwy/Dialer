@@ -33,11 +33,10 @@ class Converters {
     val gsonTimer: Gson = GsonBuilder().registerTypes(timerStates).create()
 
     @TypeConverter
-    fun jsonToTimerState(value: String?): TimerState {
-        if (value.isNullOrEmpty()) return TimerState.Idle
+    fun jsonToTimerState(value: String): TimerState {
         return try {
             gsonTimer.fromJson(value, StateWrapper::class.java).state
-        } catch (_: Exception) {
+        } catch (e: Exception) {
             TimerState.Idle
         }
     }

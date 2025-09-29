@@ -6,6 +6,8 @@
     <string name="missed_call_g">Missed call</string>
     <string name="missed_calls_g">Missed calls</string>
     <string name="missed_call_notifications_g">Missed call notifications</string>
+    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
+    <string name="call_notification_channel_g">Call notifications</string>
     <string name="dialpad_preferences">Dialpad preferences</string>
     <string name="call_start_end_vibration">Vibrate when your call is start and end</string>
 

@@ -28,16 +28,9 @@ import com.goodwy.dialer.dialogs.SelectSimButtonDialog
 import com.goodwy.dialer.helpers.SIM_DIALOG_STYLE_LIST
 import com.google.android.material.snackbar.Snackbar
 
-fun SimpleActivity.startCallIntent(
-    recipient: String,
-    forceSimSelector: Boolean = false
-) {
+fun SimpleActivity.startCallIntent(recipient: String) {
     if (isDefaultDialer()) {
-        getHandleToUse(
-            intent = null,
-            phoneNumber = recipient,
-            forceSimSelector = forceSimSelector
-        ) { handle ->
+        getHandleToUse(null, recipient) { handle ->
             launchCallIntent(recipient, handle, BuildConfig.RIGHT_APP_KEY)
         }
     } else {
@@ -45,30 +38,13 @@ fun SimpleActivity.startCallIntent(
     }
 }
 
-fun SimpleActivity.startCallWithConfirmationCheck(
-    recipient: String,
-    name: String,
-    forceSimSelector: Boolean = false
-) {
+fun SimpleActivity.startCallWithConfirmationCheck(recipient: String, name: String) {
     if (config.showCallConfirmation) {
         CallConfirmationDialog(this, name) {
-            startCallIntent(recipient, forceSimSelector)
+            startCallIntent(recipient)
         }
     } else {
-        startCallIntent(recipient, forceSimSelector)
-    }
-}
-
-fun SimpleActivity.startCallWithConfirmationCheck(contact: Contact) {
-    if (config.showCallConfirmation) {
-        CallConfirmationDialog(
-            activity = this,
-            callee = contact.getNameToDisplay()
-        ) {
-            initiateCall(contact) { launchCallIntent(it, key = BuildConfig.RIGHT_APP_KEY) }
-        }
-    } else {
-        initiateCall(contact) { launchCallIntent(it, key = BuildConfig.RIGHT_APP_KEY) }
+        startCallIntent(recipient)
     }
 }
 
@@ -80,30 +56,47 @@ fun SimpleActivity.launchCreateNewContactIntent() {
     }
 }
 
-fun BaseSimpleActivity.callContactWithSim(
-    recipient: String,
-    useMainSIM: Boolean
-) {
+fun BaseSimpleActivity.callContactWithSim(recipient: String, useMainSIM: Boolean) {
     handlePermission(PERMISSION_READ_PHONE_STATE) {
         val wantedSimIndex = if (useMainSIM) 0 else 1
-        val handle = getAvailableSIMCardLabels()
-            .sortedBy { it.id }
-            .getOrNull(wantedSimIndex)?.handle
+        val handle = getAvailableSIMCardLabels().sortedBy { it.id }.getOrNull(wantedSimIndex)?.handle
         launchCallIntent(recipient, handle, BuildConfig.RIGHT_APP_KEY)
     }
 }
 
-fun BaseSimpleActivity.callContactWithSimWithConfirmationCheck(
-    recipient: String,
-    name: String,
-    useMainSIM: Boolean
-) {
+fun BaseSimpleActivity.callContactWithSimWithConfirmationCheck(recipient: String, name: String, useMainSIM: Boolean) {
     if (config.showCallConfirmation) {
         CallConfirmationDialog(this, name) {
             callContactWithSim(recipient, useMainSIM)
         }
     } else {
         callContactWithSim(recipient, useMainSIM)
+    }
+}
+
+fun Activity.launchSendSMSIntentRecommendation(recipient: String) {
+    val simpleSmsMessenger = "com.goodwy.smsmessenger"
+    val simpleSmsMessengerDebug = "com.goodwy.smsmessenger.debug"
+    if ((0..config.appRecommendationDialogCount).random() == 2 && (!isPackageInstalled(simpleSmsMessenger) && !isPackageInstalled(simpleSmsMessengerDebug))) {
+        NewAppDialog(this, simpleSmsMessenger, getString(R.string.recommendation_dialog_messages_g), getString(R.string.right_sms_messenger),
+            AppCompatResources.getDrawable(this, R.drawable.ic_sms_messenger)) {
+            launchSendSMSIntent(recipient)
+        }
+    } else {
+        launchSendSMSIntent(recipient)
+    }
+}
+
+fun Activity.startContactDetailsIntentRecommendation(contact: Contact) {
+    val simpleContacts = "com.goodwy.contacts"
+    val simpleContactsDebug = "com.goodwy.contacts.debug"
+    if ((0..config.appRecommendationDialogCount).random() == 2 && (!isPackageInstalled(simpleContacts) && !isPackageInstalled(simpleContactsDebug))) {
+        NewAppDialog(this, simpleContacts, getString(R.string.recommendation_dialog_contacts_g), getString(R.string.right_contacts),
+            AppCompatResources.getDrawable(this, R.drawable.ic_contacts)) {
+            startContactDetailsIntent(contact)
+        }
+    } else {
+        startContactDetailsIntent(contact)
     }
 }
 
@@ -118,20 +111,14 @@ fun Activity.startContactDetailsIntent(contact: Contact) {
             action = Intent.ACTION_VIEW
             putExtra(CONTACT_ID, contact.rawId)
             putExtra(IS_PRIVATE, true)
-            `package` =
-                if (isPackageInstalled(simpleContacts)) simpleContacts else simpleContactsDebug
-            setDataAndType(
-                ContactsContract.Contacts.CONTENT_LOOKUP_URI,
-                "vnd.android.cursor.dir/person"
-            )
+            `package` = if (isPackageInstalled(simpleContacts)) simpleContacts else simpleContactsDebug
+            setDataAndType(ContactsContract.Contacts.CONTENT_LOOKUP_URI, "vnd.android.cursor.dir/person")
             launchActivityIntent(this)
         }
     } else {
         ensureBackgroundThread {
-            val lookupKey =
-                SimpleContactsHelper(this).getContactLookupKey((contact).rawId.toString())
-            val publicUri =
-                Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, lookupKey)
+            val lookupKey = SimpleContactsHelper(this).getContactLookupKey((contact).rawId.toString())
+            val publicUri = Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, lookupKey)
             runOnUiThread {
                 launchViewContactIntent(publicUri)
             }
@@ -141,57 +128,38 @@ fun Activity.startContactDetailsIntent(contact: Contact) {
 
 // used at devices with multiple SIM cards
 @SuppressLint("MissingPermission")
-fun SimpleActivity.getHandleToUse(
-    intent: Intent?,
-    phoneNumber: String,
-    forceSimSelector: Boolean = false,
-    callback: (handle: PhoneAccountHandle?) -> Unit
-) {
+fun SimpleActivity.getHandleToUse(intent: Intent?, phoneNumber: String, callback: (handle: PhoneAccountHandle?) -> Unit) {
     handlePermission(PERMISSION_READ_PHONE_STATE) {
         if (it) {
-            val defaultHandle =
-                telecomManager.getDefaultOutgoingPhoneAccount(PhoneAccount.SCHEME_TEL)
+            val defaultHandle = telecomManager.getDefaultOutgoingPhoneAccount(PhoneAccount.SCHEME_TEL)
             when {
-                forceSimSelector -> showSelectSimDialog(phoneNumber, callback)
-                intent?.hasExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE) == true -> {
-                    callback(intent.getParcelableExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE)!!)
-                }
-
-                config.getCustomSIM(phoneNumber) != null && areMultipleSIMsAvailable() -> {
-                    callback(config.getCustomSIM(phoneNumber))
-                }
-
+                intent?.hasExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE) == true -> callback(intent.getParcelableExtra(TelecomManager.EXTRA_PHONE_ACCOUNT_HANDLE)!!)
+                config.getCustomSIM(phoneNumber) != null && areMultipleSIMsAvailable() -> callback(config.getCustomSIM(phoneNumber))
                 defaultHandle != null -> callback(defaultHandle)
-                else -> showSelectSimDialog(phoneNumber, callback)
+                else -> {
+                    if (config.simDialogStyle == SIM_DIALOG_STYLE_LIST) {
+                        SelectSIMDialog(this, phoneNumber, onDismiss = {
+                            if (this is DialerActivity) {
+                                finish()
+                            }
+                        }) { handle, _ ->
+                            callback(handle)
+                        }
+                    } else {
+                        SelectSimButtonDialog(this, phoneNumber, onDismiss = {
+                            if (this is DialerActivity) {
+                                finish()
+                            }
+                        }) { handle, _ ->
+                            callback(handle)
+                        }
+                    }
+                }
             }
         }
     }
 }
 
-fun SimpleActivity.showSelectSimDialog(
-    phoneNumber: String,
-    callback: (handle: PhoneAccountHandle?) -> Unit
-) {
-    if (config.simDialogStyle == SIM_DIALOG_STYLE_LIST) {
-        SelectSIMDialog(this, phoneNumber, onDismiss = {
-            if (this is DialerActivity) {
-                finish()
-            }
-        }) { handle, _ ->
-            callback(handle)
-        }
-    } else {
-        SelectSimButtonDialog(this, phoneNumber, onDismiss = {
-            if (this is DialerActivity) {
-                finish()
-            }
-        }) { handle, _ ->
-            callback(handle)
-        }
-    }
-}
-
-//Goodwy
 fun Activity.startContactEdit(contact: Contact) {
     Intent().apply {
         action = Intent.ACTION_EDIT
@@ -282,40 +250,4 @@ fun SimpleActivity.showSnackbar(view: View) {
     snackbar.setTextColor(getProperTextColor())
     snackbar.setActionTextColor(getProperPrimaryColor())
     snackbar.show()
-}
-
-fun Activity.launchSendSMSIntentRecommendation(recipient: String) {
-    val simpleSmsMessenger = "com.goodwy.smsmessenger"
-    val simpleSmsMessengerDebug = "com.goodwy.smsmessenger.debug"
-    if ((0..config.appRecommendationDialogCount).random() == 2
-        && (!isPackageInstalled(simpleSmsMessenger)
-            && !isPackageInstalled(simpleSmsMessengerDebug))
-    ) {
-        NewAppDialog(
-            this, simpleSmsMessenger, getString(R.string.recommendation_dialog_messages_g), getString(R.string.right_sms_messenger),
-            AppCompatResources.getDrawable(this, R.drawable.ic_sms_messenger)
-        ) {
-            launchSendSMSIntent(recipient)
-        }
-    } else {
-        launchSendSMSIntent(recipient)
-    }
-}
-
-fun Activity.startContactDetailsIntentRecommendation(contact: Contact) {
-    val simpleContacts = "com.goodwy.contacts"
-    val simpleContactsDebug = "com.goodwy.contacts.debug"
-    if ((0..config.appRecommendationDialogCount).random() == 2
-        && (!isPackageInstalled(simpleContacts)
-            && !isPackageInstalled(simpleContactsDebug))
-    ) {
-        NewAppDialog(
-            this, simpleContacts, getString(R.string.recommendation_dialog_contacts_g), getString(R.string.right_contacts),
-            AppCompatResources.getDrawable(this, R.drawable.ic_contacts)
-        ) {
-            startContactDetailsIntent(contact)
-        }
-    } else {
-        startContactDetailsIntent(contact)
-    }
 }

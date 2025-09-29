@@ -6,6 +6,8 @@
     <string name="missed_call_g">Maltrafita voko</string>
     <string name="missed_calls_g">Maltrafitaj vokoj</string>
     <string name="missed_call_notifications_g">Sciigoj pri maltrafvoko</string>
+    <string name="call_notification_channel_high_priority_g">Alvokaj sciigoj alta prioritato</string>
+    <string name="call_notification_channel_g">Alvokaj sciigoj</string>
     <string name="dialpad_preferences">Dialpad-preferoj</string>
     <string name="call_start_end_vibration">Vibru kiam via voko komenciĝas kaj finiĝas</string>
 

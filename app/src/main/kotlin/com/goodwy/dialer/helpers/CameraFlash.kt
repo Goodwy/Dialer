@@ -6,6 +6,7 @@ import android.hardware.camera2.CameraManager
 import android.os.Handler
 import com.goodwy.commons.extensions.showErrorToast
 import com.goodwy.commons.helpers.isTiramisuPlus
+import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.models.Events
 import org.greenrobot.eventbus.EventBus
 

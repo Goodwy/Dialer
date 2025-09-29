@@ -6,6 +6,8 @@
     <string name="missed_call_g">Αναπάντητη κλήση</string>
     <string name="missed_calls_g">Αναπάντητες κλήσεις</string>
     <string name="missed_call_notifications_g">Ειδοποιήσεις αναπάντητης κλήσης</string>
+    <string name="call_notification_channel_high_priority_g">Ειδοποιήσεις κλήσεων υψηλής προτεραιότητας</string>
+    <string name="call_notification_channel_g">Ειδοποιήσεις κλήσεων</string>
     <string name="dialpad_preferences">Προτιμήσεις πληκτρολογίου κλήσης</string>
     <string name="call_start_end_vibration">Δόνηση κατά την έναρξη και τη λήξη της κλήσης σας</string>
 

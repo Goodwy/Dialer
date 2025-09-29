@@ -8,20 +8,25 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.telecom.TelecomManager
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.CURRENT_PHONE_NUMBER
 import com.goodwy.commons.helpers.SimpleContactsHelper
 import com.goodwy.commons.helpers.ensureBackgroundThread
+import com.goodwy.commons.helpers.isOreoPlus
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.NotificationActivity
 import com.goodwy.dialer.activities.SplashActivity
 import com.goodwy.dialer.extensions.clearMissedCalls
 import com.goodwy.dialer.extensions.getNotificationBitmap
+import com.goodwy.dialer.extensions.getOpenTimerTabIntent
 import com.goodwy.dialer.extensions.updateUnreadCountBadge
 import com.goodwy.dialer.helpers.*
 
+@RequiresApi(Build.VERSION_CODES.O)
 class MissedCallReceiver : BroadcastReceiver() {
     @SuppressLint("MissingPermission")
     override fun onReceive(context: Context, intent: Intent) {
@@ -34,7 +39,7 @@ class MissedCallReceiver : BroadcastReceiver() {
                 if (notificationCount != 0) {
                     val phoneNumber = extras.getString(TelecomManager.EXTRA_NOTIFICATION_PHONE_NUMBER) ?: context.getString(R.string.unknown_caller)
                     val notificationId = 420 //if you need to group = phoneNumber.hashCode()
-                    createNotificationChannel(context)
+                    if (isOreoPlus()) createNotificationChannel(context)
                     //notificationManager.notify(MISSED_CALLS.hashCode(), getNotificationGroup(context))
                     ensureBackgroundThread { //ensureBackgroundThread is needed to generate a round contact icon
                         notificationManager.notify(

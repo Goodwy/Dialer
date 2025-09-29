@@ -6,6 +6,8 @@
     <string name="missed_call_g">Buraxılmış zəng</string>
     <string name="missed_calls_g">Buraxılmış zənglər</string>
     <string name="missed_call_notifications_g">Buraxılmış zəng bildirişləri</string>
+    <string name="call_notification_channel_high_priority_g">Zəng bildirişləri yüksək prioritet</string>
+    <string name="call_notification_channel_g">Zəng bildirişləri</string>
     <string name="dialpad_preferences">Yığım paneli üstünlükləri</string>
     <string name="call_start_end_vibration">Zənginiz başlayanda və bitəndə titrəyin</string>
 

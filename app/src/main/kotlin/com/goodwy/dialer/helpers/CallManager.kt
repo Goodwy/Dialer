@@ -103,7 +103,7 @@ class CallManager {
         private fun getCallAudioState() = inCallService?.callAudioState
 
         fun getSupportedAudioRoutes(): Array<AudioRoute> {
-            return AudioRoute.entries.filter {
+            return AudioRoute.values().filter {
                 val supportedRouteMask = getCallAudioState()?.supportedRouteMask
                 if (supportedRouteMask != null) {
                     supportedRouteMask and it.route == it.route
@@ -221,7 +221,7 @@ interface CallManagerListener {
 }
 
 sealed class PhoneState
-data object NoCall : PhoneState()
+object NoCall : PhoneState()
 class SingleCall(val call: Call) : PhoneState()
 class TwoCalls(val active: Call, val onHold: Call) : PhoneState()
 

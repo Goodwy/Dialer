@@ -27,6 +27,10 @@
     <uses-permission android:name="com.android.vending.BILLING" />
 
     <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <uses-permission
         android:name="android.permission.USE_FINGERPRINT"
         tools:node="remove" />
 
@@ -36,7 +40,7 @@
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-feature
         android:name="android.hardware.camera.flash"
-        android:required="false" />
+        android:required="true" />
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
@@ -72,10 +76,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_launcher_name"
+        android:localeConfig="@xml/locale_config"
         android:roundIcon="@mipmap/ic_launcher"
         android:theme="@style/AppTheme"
-        tools:targetApi="tiramisu"
-        tools:replace="android:label">
+        tools:targetApi="tiramisu">
 
         <activity
             android:name=".activities.SplashActivity"
@@ -138,11 +142,7 @@
             android:label="@string/blocked_numbers"
             android:screenOrientation="nosensor"
             android:parentActivityName=".activities.SettingsActivity"
-            tools:replace="android:label" >
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
-            </intent-filter>
-        </activity>
+            tools:replace="android:label" />
 
         <activity
             android:name=".activities.ManageSpeedDialActivity"
@@ -292,23 +292,17 @@
                 android:value="Used to notify the user that the call back reminder timer has started" />
         </service>
 
-        <service
-            android:name=".services.MyTileService"
-            android:icon="@drawable/ic_no_accounts"
-            android:exported="true"
-            android:label="@string/block_unknown_calls"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
-            <intent-filter>
-                <action android:name="android.service.quicksettings.action.QS_TILE" />
-            </intent-filter>
-        </service>
-
         <receiver android:name=".receivers.TimerReceiver" />
 
         <receiver
             android:name=".receivers.CallActionReceiver"
             android:enabled="true"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.goodwy.dialer.action.ACCEPT_CALL" />
+                <action android:name="com.goodwy.dialer.action.DECLINE_CALL" />
+            </intent-filter>
+        </receiver>
 
         <receiver
             android:name=".receivers.MissedCallReceiver"

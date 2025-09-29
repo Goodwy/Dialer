@@ -6,6 +6,8 @@
     <string name="missed_call_g">Vastamata kõne</string>
     <string name="missed_calls_g">Vastamata kõned</string>
     <string name="missed_call_notifications_g">Vastamata kõne teatised</string>
+    <string name="call_notification_channel_high_priority_g">Kõrge prioriteediga kõnemärguanded</string>
+    <string name="call_notification_channel_g">Kõnemärguanded</string>
     <string name="dialpad_preferences">Valimisplaadi eelistused</string>
     <string name="call_start_end_vibration">Vibreerige, kui kõne algus ja lõpp on</string>
 

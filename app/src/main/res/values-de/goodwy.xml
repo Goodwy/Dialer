@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="transparent_call_screen_g">Transparenter Anrufbildschirm</string>
-    <string name="call_back_g">Anrufen</string>
+    <string name="call_back_g">Rufen</string>
     <string name="call_back_person_g">Rückruf %s</string>
     <string name="missed_call_g">Verpasster Anruf</string>
     <string name="missed_calls_g">Verpasste Anrufe</string>
     <string name="missed_call_notifications_g">Benachrichtigungen über verpasste Anrufe</string>
+    <string name="call_notification_channel_high_priority_g">Rufbenachrichtigungen hohe Priorität</string>
+    <string name="call_notification_channel_g">Rufbenachrichtigungen</string>
     <string name="dialpad_preferences">Dialpad-Einstellungen</string>
     <string name="call_start_end_vibration">Vibrieren, wenn Ihr Anruf beginnt und endet</string>
 

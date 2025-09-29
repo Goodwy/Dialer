@@ -6,6 +6,8 @@
     <string name="missed_call_g">Прапушчаны выклік</string>
     <string name="missed_calls_g">Прапушчаныя званкі</string>
     <string name="missed_call_notifications_g">Апавяшчэнні аб прапушчаных выкліках</string>
+    <string name="call_notification_channel_high_priority_g">Апавяшчэнні аб выкліках з высокім прыярытэтам</string>
+    <string name="call_notification_channel_g">Апавяшчэнні аб выкліках</string>
     <string name="dialpad_preferences">Параметры кнопак набору</string>
     <string name="call_start_end_vibration">Вібрацыя пры пачатку і завяршэнні выкліку</string>
     <string name="call_notes">Ноты для званкоў</string>

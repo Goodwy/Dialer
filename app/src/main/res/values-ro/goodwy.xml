@@ -6,6 +6,8 @@
     <string name="missed_call_g">Apel ratat</string>
     <string name="missed_calls_g">Apeluri pierdute</string>
     <string name="missed_call_notifications_g">Notificări privind apelurile pierdute</string>
+    <string name="call_notification_channel_high_priority_g">Noificări de apel cu prioritate ridicată</string>
+    <string name="call_notification_channel_g">Noificări apeluri</string>
     <string name="dialpad_preferences">Preferințe tastatură numerică</string>
     <string name="call_start_end_vibration">Vibrați atunci când apelul este început și sfârșit</string>
 

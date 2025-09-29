@@ -6,6 +6,8 @@
     <string name="missed_call_g">Chamada perdida</string>
     <string name="missed_calls_g">Chamadas perdidas</string>
     <string name="missed_call_notifications_g">Notificações de chamadas perdidas</string>
+    <string name="call_notification_channel_high_priority_g">Notificações de chamada de alta prioridade</string>
+    <string name="call_notification_channel_g">Notificações de chamadas</string>
     <string name="dialpad_preferences">Preferências do teclado de marcação</string>
     <string name="call_start_end_vibration">Vibrar quando a chamada começa e termina</string>
 

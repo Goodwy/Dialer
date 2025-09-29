@@ -6,6 +6,8 @@
     <string name='missed_call_g'>मिस्ड कॉल</string>
     <string name='missed_calls_g'>मिस्ड कॉल</string>
     <string name='missed_call_notifications_g'>मिस्ड कॉल सूचनाएं</string>
+    <string name='call_notification_channel_high_priority_g'>कॉल सूचनाएं उच्च प्राथमिकता</string>
+    <string name='call_notification_channel_g'>कॉल सूचनाएं</string>
     <string name='call_start_end_vibration'>जब आपकी कॉल शुरू और खत्म हो तो कंपन करें</string>
 
     <string name='dialpad_preferences'>डायलपैड प्राथमिकताएं</string>

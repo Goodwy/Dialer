@@ -2,17 +2,11 @@ package com.goodwy.dialer.activities
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import com.google.gson.Gson
 import com.goodwy.commons.dialogs.ConfirmationAdvancedDialog
+import com.google.gson.Gson
 import com.goodwy.commons.dialogs.RadioGroupDialog
 import com.goodwy.commons.dialogs.RadioGroupIconDialog
-import com.goodwy.commons.extensions.getMyContactsCursor
-import com.goodwy.commons.extensions.getPhoneNumberTypeText
-import com.goodwy.commons.extensions.hideKeyboard
-import com.goodwy.commons.extensions.telecomManager
-import com.goodwy.commons.extensions.toast
-import com.goodwy.commons.extensions.updateTextColors
-import com.goodwy.commons.extensions.viewBinding
+import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.ContactsHelper
 import com.goodwy.commons.helpers.MyContactsContentProvider
 import com.goodwy.commons.helpers.NavigationIcon
@@ -110,14 +104,14 @@ class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
                 )
             }
 
-            RadioGroupIconDialog(this, items, titleId = R.string.speed_dial) { newValue ->
-                when (newValue) {
+            RadioGroupIconDialog(this, items, titleId = R.string.speed_dial) {
+                when (it) {
                     1 -> { showAddSpeedDialDialog(clickedContact) }
                     2 -> {
                         SelectContactDialog(this, allContacts) { selectedContact ->
                             if (selectedContact.phoneNumbers.size > 1) {
                                 val radioItems = selectedContact.phoneNumbers.mapIndexed { index, item ->
-                                    RadioItem(index, "${item.value} (${getPhoneNumberTypeText(item.type, item.label)})", item)
+                                    RadioItem(index, item.normalizedNumber, item)
                                 }
                                 val userPhoneNumbersList = selectedContact.phoneNumbers.map { it.value }
                                 val checkedItemId = userPhoneNumbersList.indexOf(clickedContact.number)
@@ -125,20 +119,15 @@ class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
                                     val selectedNumber = selectedValue as PhoneNumber
                                     speedDialValues.first { it.id == clickedContact.id }.apply {
                                         displayName = selectedContact.getNameToDisplay()
-                                        number = selectedNumber.value
-                                        type = selectedNumber.type
-                                        label = selectedNumber.label
+                                        number = selectedNumber.normalizedNumber
                                     }
                                     updateAdapter()
                                     showHideVoicemailIcon(clickedContact.id, false)
                                 }
                             } else {
                                 speedDialValues.first { it.id == clickedContact.id }.apply {
-                                    val selectedNumber = selectedContact.phoneNumbers.first()
                                     displayName = selectedContact.getNameToDisplay()
-                                    number = selectedNumber.value
-                                    type = selectedNumber.type
-                                    label = selectedNumber.label
+                                    number = selectedContact.phoneNumbers.first().normalizedNumber
                                 }
                                 updateAdapter()
                                 showHideVoicemailIcon(clickedContact.id, false)
@@ -193,31 +182,6 @@ class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
         }
     }
 
-    override fun removeSpeedDial(ids: ArrayList<Int>) {
-        ids.forEach { dialId ->
-            speedDialValues.first { it.id == dialId }.apply {
-                displayName = ""
-                number = ""
-                type = null
-                label = null
-            }
-        }
-        updateAdapter()
-    }
-
-    private fun showAddSpeedDialDialog(clickedContact: SpeedDial) {
-        AddSpeedDialDialog(this, clickedContact) { newNumber ->
-            speedDialValues.first { it.id == clickedContact.id }.apply {
-                displayName = newNumber
-                number = newNumber
-                type = null
-                label = null
-            }
-            showHideVoicemailIcon(clickedContact.id, true)
-            updateAdapter()
-        }
-    }
-
     private fun showHideVoicemailIcon(id: Int, isVoicemail: Boolean) {
         if (id == 1) {
             if (isVoicemail) {
@@ -239,7 +203,32 @@ class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
             positive = com.goodwy.commons.R.string.yes,
             negative = com.goodwy.commons.R.string.no
         ) {
-            config.showVoicemailIcon = it
+            if (it) {
+                config.showVoicemailIcon = true
+            } else {
+                config.showVoicemailIcon = false
+            }
         }
+    }
+
+    private fun showAddSpeedDialDialog(clickedContact: SpeedDial) {
+        AddSpeedDialDialog(this, clickedContact) { newNumber ->
+            speedDialValues.first { it.id == clickedContact.id }.apply {
+                displayName = newNumber
+                number = newNumber
+            }
+            updateAdapter()
+            showHideVoicemailIcon(clickedContact.id, true)
+        }
+    }
+
+    override fun removeSpeedDial(ids: ArrayList<Int>) {
+        ids.forEach { dialId ->
+            speedDialValues.first { it.id == dialId }.apply {
+                displayName = ""
+                number = ""
+            }
+        }
+        updateAdapter()
     }
 }

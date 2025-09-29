@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "timers")
 @Keep
-@kotlinx.serialization.Serializable
 data class Timer(
     @PrimaryKey(autoGenerate = true) var id: Int?,
     var seconds: Int,

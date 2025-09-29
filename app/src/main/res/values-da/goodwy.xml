@@ -6,6 +6,8 @@
     <string name="missed_call_g">Ubesvaret opkald</string>
     <string name="missed_calls_g">Ubesvarede opkald</string>
     <string name="missed_call_notifications_g">Meddelelser om ubesvarede opkald</string>
+    <string name="call_notification_channel_high_priority_g">Opkaldsmeddelelser høj prioritet</string>
+    <string name="call_notification_channel_g">Opkaldsmeddelelser</string>
     <string name="dialpad_preferences">Indstillinger for tastatur</string>
     <string name="call_start_end_vibration">Vibrere, når dit opkald starter og slutter</string>
 

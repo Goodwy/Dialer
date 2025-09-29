@@ -21,6 +21,7 @@ const val ALWAYS_SHOW_FULLSCREEN = "always_show_fullscreen" // not used SHOW_INC
 //Goodwy
 const val SHOW_INCOMING_CALLS_FULL_SCREEN = "show_incoming_calls_full_screen"
 const val TRANSPARENT_CALL_SCREEN = "transparent_call_screen"
+const val NUMBER_MISSED_CALLS = "number_missed_calls"
 const val MISSED_CALL_NOTIFICATIONS = "missed_call_notifications"
 const val MISSED_CALL_NOTIFICATION_ID = "missed_call_notification_id"
 const val HIDE_DIALPAD_LETTERS = "hide_dialpad_letters"
@@ -34,6 +35,7 @@ const val ANSWER_STYLE = "answer_style"
 const val SHOW_CALLER_DESCRIPTION = "show_caller_description"
 const val CURRENT_RECENT_CALL = "current_recent_call"
 const val CURRENT_RECENT_CALL_LIST = "current_recent_call_list"
+const val CURRENT_CONTACT = "current_contact"
 const val SHOW_WARNING_ANONYMOUS_CALL = "show_warning_anonymous_call"
 const val CALL_VIBRATION = "call_vibration"
 const val CALL_START_END_VIBRATION = "call_start_end_vibration"
@@ -56,7 +58,6 @@ const val DIALPAD_CLEAR_WHEN_START_CALL = "dialpad_clear_when_start_call"
 const val CALLER_NOTES = "caller_notes"
 const val BACK_PRESSED_END_CALL = "back_pressed_end_call"
 const val CALL_BLOCK_BUTTON = "call_block_button"
-const val KEEP_CALLS_IN_POPUP = "keep_calls_in_popup"
 
 const val ALL_TABS_MASK = TAB_CONTACTS or TAB_FAVORITES or TAB_CALL_HISTORY
 
@@ -73,7 +74,6 @@ const val MISSED_CALL_CANCEL = PATH + "missed_call_cancel"
 
 const val DIALPAD_TONE_LENGTH_MS = 150L // The length of DTMF tones in milliseconds
 const val CALLER_NOTES_MAX_LENGTH = 100
-const val RECENT_CALL_CACHE_SIZE = 200
 
 const val WHATSAPP = "whatsapp"
 const val SIGNAL = "signal"
@@ -96,12 +96,15 @@ const val DIALPAD_CONCEPT = 3
 
 // Timer
 const val TIMER_ID = "timer_id"
+const val TIMER_SECONDS = "timer_seconds"
+const val TIMER_VIBRATE = "timer_vibrate"
 const val TIMER_SOUND_URI = "timer_sound_uri"
+const val TIMER_SOUND_TITLE = "timer_sound_title"
 const val TIMER_CHANNEL_ID = "timer_channel_id"
 const val TIMER_TITLE = "timer_title"
 const val TIMER_LABEL = "timer_label"
 const val TIMER_DESCRIPTION = "timer_description"
-const val TIMER_RUNNING_NOTIFICATION_ID = 10000
+const val TIMER_RUNNING_NOTIF_ID = 10000
 const val INVALID_TIMER_ID = -1
 const val TIMER_MAX_REMINDER_SECS = "timer_max_reminder_secs"
 const val DEFAULT_MAX_TIMER_REMINDER_SECS = 60
@@ -126,7 +129,6 @@ const val SHOW_CALLER_NICKNAME = 2
 // Swiped left action
 const val SWIPE_RIGHT_ACTION = "swipe_right_action"
 const val SWIPE_LEFT_ACTION = "swipe_left_action"
-const val SWIPE_ACTION_NONE = 0
 const val SWIPE_ACTION_DELETE = 2
 const val SWIPE_ACTION_BLOCK = 4 //!! isNougatPlus()
 const val SWIPE_ACTION_CALL = 5

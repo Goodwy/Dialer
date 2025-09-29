@@ -11,7 +11,7 @@ import com.goodwy.dialer.interfaces.RemoveSpeedDialListener
 import com.goodwy.dialer.models.SpeedDial
 
 class SpeedDialAdapter(
-    activity: SimpleActivity, private var speedDialValues: List<SpeedDial>, private val removeListener: RemoveSpeedDialListener,
+    activity: SimpleActivity, var speedDialValues: List<SpeedDial>, private val removeListener: RemoveSpeedDialListener,
     recyclerView: MyRecyclerView, itemClick: (Any) -> Unit
 ) : MyRecyclerViewAdapter(activity, recyclerView, itemClick) {
     init {
@@ -50,7 +50,7 @@ class SpeedDialAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val speedDial = speedDialValues[position]
-        holder.bindView(speedDial, allowSingleClick = true, allowLongClick = true) { itemView, _ ->
+        holder.bindView(speedDial, allowSingleClick = true, allowLongClick = true) { itemView, layoutPosition ->
             val binding = ItemSpeedDialBinding.bind(itemView)
             setupView(binding, speedDial)
         }
@@ -70,7 +70,7 @@ class SpeedDialAdapter(
     private fun setupView(binding: ItemSpeedDialBinding, speedDial: SpeedDial) {
         binding.apply {
             var displayName = "${speedDial.id}. "
-            displayName += if (speedDial.isValid()) speedDial.getName(activity) else ""
+            displayName += if (speedDial.isValid()) speedDial.displayName else ""
 
             speedDialLabel.apply {
                 text = displayName

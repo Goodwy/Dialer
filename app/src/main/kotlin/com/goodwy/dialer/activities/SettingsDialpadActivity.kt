@@ -34,9 +34,7 @@ import com.goodwy.dialer.R
 import com.goodwy.dialer.databinding.ActivitySettingsDialpadBinding
 import com.goodwy.dialer.extensions.*
 import com.goodwy.dialer.helpers.*
-import com.goodwy.dialer.models.RecentCall
 import com.goodwy.dialer.models.SpeedDial
-import com.google.gson.Gson
 import com.mikhaellopez.rxanimation.RxAnimation
 import com.mikhaellopez.rxanimation.shake
 import kotlinx.coroutines.launch
@@ -734,7 +732,9 @@ class SettingsDialpadActivity : SimpleActivity() {
             val textProgress = "$progress %"
             dialpadSizeValue.text = textProgress
 
-            dialpadSize.min = 50
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                dialpadSize.min = 50
+            }
 
             dialpadSizeMinus.setOnClickListener {
                 dialpadSize.progress -= 1
@@ -787,7 +787,6 @@ class SettingsDialpadActivity : SimpleActivity() {
                     it.alpha = 1f
                 }
                 buttonSizeLabel.setText(R.string.button_primary)
-                buttonSecondSizeLabel.setText(R.string.button_secondary)
                 buttonSizeEmpty.beGone()
             } else {
                 arrayOf(
@@ -797,8 +796,6 @@ class SettingsDialpadActivity : SimpleActivity() {
                 }
                 val lockText = addLockedLabelIfNeeded(R.string.button_primary)
                 buttonSizeLabel.text = lockText
-                val lockTextSecond = addLockedLabelIfNeeded(R.string.button_secondary)
-                buttonSecondSizeLabel.text = lockTextSecond
                 buttonSizeEmpty.beVisible()
                 buttonSizeEmpty.setOnClickListener {
                     shakePurchase()
@@ -816,7 +813,9 @@ class SettingsDialpadActivity : SimpleActivity() {
             val textProgress = "$progress %"
             buttonSizeValue.text = textProgress
 
-            buttonSize.min = 50
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                buttonSize.min = 50
+            }
 
             buttonSizeMinus.setOnClickListener {
                 buttonSize.progress -= 1
@@ -856,7 +855,9 @@ class SettingsDialpadActivity : SimpleActivity() {
                 val textProgressSecond = "$progressSecond %"
                 buttonSecondSizeValue.text = textProgressSecond
 
-                buttonSecondSize.min = 50
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    buttonSecondSize.min = 50
+                }
 
                 buttonSecondSizeMinus.setOnClickListener {
                     buttonSecondSize.progress -= 1
@@ -1040,8 +1041,8 @@ class SettingsDialpadActivity : SimpleActivity() {
                         addDefaultColorButton = true,
                         colorDefault = resources.getColor(R.color.ic_dialer),
                         title = resources.getString(R.string.color_sim_card_icons)
-                    ) { wasPositivePressed, color, wasDefaultPressed ->
-                        if (wasPositivePressed || wasDefaultPressed) {
+                    ) { wasPositivePressed, color, _ ->
+                        if (wasPositivePressed) {
                             if (hasColorChanged(config.simIconsColors[1], color)) {
                                 addSimCardColor(1, color)
                                 initSimCardColor()
@@ -1058,8 +1059,8 @@ class SettingsDialpadActivity : SimpleActivity() {
                         addDefaultColorButton = true,
                         colorDefault = resources.getColor(R.color.color_primary),
                         title = resources.getString(R.string.color_sim_card_icons)
-                    ) { wasPositivePressed, color, wasDefaultPressed ->
-                        if (wasPositivePressed || wasDefaultPressed) {
+                    ) { wasPositivePressed, color, _ ->
+                        if (wasPositivePressed) {
                             if (hasColorChanged(config.simIconsColors[2], color)) {
                                 addSimCardColor(2, color)
                                 initSimCardColor()
@@ -1113,20 +1114,7 @@ class SettingsDialpadActivity : SimpleActivity() {
         recentColors.removeAt(index)
         recentColors.add(index, color)
 
-        val needUpdate = baseConfig.simIconsColors != recentColors
         baseConfig.simIconsColors = recentColors
-
-        if (needUpdate) {
-            val recents = config.parseRecentCallsCache()
-            val recentsNew = mutableListOf<RecentCall>()
-            recents.forEach { recent ->
-                val recentNew = if (recent.simID == index) recent.copy(simColor = color) else recent
-                recentsNew.add(recentNew)
-            }
-            config.recentCallsCache = Gson().toJson(recentsNew.take(RECENT_CALL_CACHE_SIZE))
-            config.needUpdateRecents = true
-            config.tabsChanged = true
-        }
     }
 
     private fun hasColorChanged(old: Int, new: Int) = abs(old - new) > 1
@@ -1321,7 +1309,9 @@ class SettingsDialpadActivity : SimpleActivity() {
             val textProgress = "$progress %"
             toneVolumeValue.text = textProgress
 
-            toneVolumeSeekBar.min = 1
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                toneVolumeSeekBar.min = 1
+            }
 
             toneVolumeMinus.setOnClickListener {
                 toneVolumeSeekBar.progress -= 1
@@ -1348,8 +1338,21 @@ class SettingsDialpadActivity : SimpleActivity() {
     }
 
     private fun setupPurchaseThankYou() {
-        updatePro()
-        binding.dialpadPurchaseThankYouHolder.onClick = { launchPurchase() }
+        binding.apply {
+            updatePro()
+            dialpadPurchaseThankYouHolder.setOnClickListener {
+                launchPurchase()
+            }
+            moreButton.setOnClickListener {
+                launchPurchase()
+            }
+            val appDrawable = resources.getColoredDrawableWithColor(this@SettingsDialpadActivity, R.drawable.ic_plus_support, getProperPrimaryColor())
+            purchaseLogo.setImageDrawable(appDrawable)
+            val drawable = resources.getColoredDrawableWithColor(this@SettingsDialpadActivity, R.drawable.button_gray_bg, getProperPrimaryColor())
+            moreButton.background = drawable
+            moreButton.setTextColor(getProperBackgroundColor())
+            moreButton.setPadding(2, 2, 2, 2)
+        }
     }
 
     private fun updatePro(isPro: Boolean = checkPro()) {

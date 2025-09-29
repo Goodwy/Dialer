@@ -6,6 +6,8 @@
     <string name="missed_call_g">تماس از دست رفته</string>
     <string name="missed_calls_g">تماس های بی پاسخ</string>
     <string name="missed_call_notifications_g">اعلان‌های تماس بی‌پاسخ</string>
+    <string name="call_notification_channel_high_priority_g">اعلان‌های تماس با اولویت بالا</string>
+    <string name="call_notification_channel_g">اعلان‌های تماس</string>
     <string name="dialpad_preferences">تنظیمات صفحه شماره گیری</string>
     <string name="call_start_end_vibration">لرزش زمانی که تماس شما شروع و پایان است</string>
 

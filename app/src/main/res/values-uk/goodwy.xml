@@ -6,6 +6,8 @@
     <string name="missed_call_g">Пропущений дзвінок</string>
     <string name="missed_calls_g">Пропущених дзвінків</string>
     <string name="missed_call_notifications_g">Повідомлення про пропущені дзвінки</string>
+    <string name="call_notification_channel_high_priority_g">Сповіщення про дзвінки з високим пріоритетом</string>
+    <string name="call_notification_channel_g">Сповіщення про дзвінки</string>
     <string name="call_start_end_vibration">Вібрація під час початку та завершення виклику</string>
     <string name="show_recent_calls">Показати останні дзвінки</string>
     <string name="open_dialpad_when_call_from_another_app">Коли ви намагаєтеся зателефонувати з іншої програми, відкрийте цифрову клавіатуру</string>

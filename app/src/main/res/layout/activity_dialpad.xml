@@ -67,7 +67,7 @@
             android:paddingStart="@dimen/activity_margin"
             android:paddingTop="@dimen/section_margin"
             android:paddingEnd="@dimen/activity_margin"
-            android:text="@string/no_items_found"
+            android:text="@string/no_contacts_found"
             android:textSize="@dimen/normal_text_size"
             android:textStyle="italic"
             android:visibility="gone"

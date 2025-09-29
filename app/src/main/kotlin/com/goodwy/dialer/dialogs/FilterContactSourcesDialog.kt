@@ -24,7 +24,6 @@ class FilterContactSourcesDialog(val activity: SimpleActivity, private val callb
 
     init {
         val contactHelper = ContactsHelper(activity)
-        contactHelper.clearContactSourcesCache()
         contactHelper.getContactSources { contactSources ->
             contactSources.mapTo(this@FilterContactSourcesDialog.contactSources) { it.copy() }
             isContactSourcesReady = true
@@ -84,8 +83,6 @@ class FilterContactSourcesDialog(val activity: SimpleActivity, private val callb
 
         if (activity.getVisibleContactSources() != ignoredContactSources) {
             activity.config.ignoredContactSources = ignoredContactSources
-            val contactHelper = ContactsHelper(activity)
-            contactHelper.clearContactSourcesCache()
             callback()
         }
         dialog?.dismiss()

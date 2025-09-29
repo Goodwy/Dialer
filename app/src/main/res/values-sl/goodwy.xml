@@ -6,6 +6,8 @@
     <string name="missed_call_g">Zgrešeni klic</string>
     <string name="missed_calls_g">Odloženi klici</string>
     <string name="missed_call_notifications_g">Obvestila o zamujenih klicih</string>
+    <string name="call_notification_channel_high_priority_g">Obvestila o klicih z visoko prioriteto</string>
+    <string name="call_notification_channel_g">Obvestila o klicih</string>
     <string name="dialpad_preferences">Nastavitve klicne tablice</string>
     <string name="call_start_end_vibration">Vibriranje, ko se klic začne in konča</string>
 

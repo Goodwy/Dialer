@@ -6,6 +6,8 @@
     <string name="missed_call_g">Panggilan tidak terjawab</string>
     <string name="missed_calls_g">Panggilan tidak terjawab</string>
     <string name="missed_call_notifications_g">Notifikasi panggilan tak terjawab</string>
+    <string name="call_notification_channel_high_priority_g">Panggilan notifikasi prioritas tinggi</string>
+    <string name="call_notification_channel_g">Panggilan notifikasi</string>
     <string name="dialpad_preferences">Preferensi tombol nomor</string>
     <string name="call_start_end_vibration">Bergetar saat panggilan Anda dimulai dan diakhiri</string>
 

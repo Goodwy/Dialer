@@ -6,6 +6,8 @@
     <string name="missed_call_g">Zmeškaný hovor</string>
     <string name="missed_calls_g">Zmeškané hovory</string>
     <string name="missed_call_notifications_g">Oznámení o zmeškaných hovorech</string>
+    <string name="call_notification_channel_high_priority_g">Oznámení o hovorech s vysokou prioritou</string>
+    <string name="call_notification_channel_g">Oznámení o hovorech</string>
     <string name="dialpad_preferences">Předvolby číselníku</string>
     <string name="call_start_end_vibration">Vibrace při zahájení a ukončení hovoru</string>
 

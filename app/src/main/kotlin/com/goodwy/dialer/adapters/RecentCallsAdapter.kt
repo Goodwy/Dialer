@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
+import android.os.Build
 import android.provider.CallLog.Calls
 import android.text.SpannableString
 import android.text.TextUtils
@@ -12,6 +13,7 @@ import android.util.TypedValue
 import android.view.*
 import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DiffUtil
 import com.behaviorule.arturdumchev.library.pixels
@@ -61,19 +63,12 @@ class RecentCallsAdapter(
     private lateinit var outgoingCallIcon: Drawable
     private lateinit var incomingCallIcon: Drawable
     private lateinit var incomingMissedCallIcon: Drawable
-    private lateinit var blockedCallIcon: Drawable
     var fontSize: Float = activity.getTextSize()
     private val areMultipleSIMsAvailable = activity.areMultipleSIMsAvailable()
     private val missedCallColor = resources.getColor(R.color.red_missed)
     private var secondaryTextColor = textColor.adjustAlpha(0.6f)
     private var textToHighlight = ""
     private var getBlockedNumbers = activity.getBlockedNumbers()
-    private val cachedSimColors = HashMap<Int, Int>()
-
-    private val voiceMail = activity.getString(R.string.voicemail)
-    private val placeholderVoiceMail = AppCompatResources.getDrawable(activity, R.drawable.placeholder_voicemail)
-    private val placeholderCompany = AppCompatResources.getDrawable(activity, R.drawable.placeholder_company)
-    private val placeholderContact = AppCompatResources.getDrawable(activity, R.drawable.placeholder_contact)
 
     init {
         initDrawables()
@@ -99,9 +94,9 @@ class RecentCallsAdapter(
             findItem(R.id.cab_remove_default_sim).isVisible = isOneItemSelected && (activity.config.getCustomSIM(selectedNumber) ?: "") != ""
 
             findItem(R.id.cab_block_number).title = if (isOneItemSelected) activity.getString(R.string.block_number) else activity.getString(R.string.block_numbers)
-            findItem(R.id.cab_block_number).isVisible = isAllUnblockedNumbers && !isAllBlockedNumbers
+            findItem(R.id.cab_block_number).isVisible = isNougatPlus() && (isAllUnblockedNumbers && !isAllBlockedNumbers)
             findItem(R.id.cab_unblock_number).title = if (isOneItemSelected) activity.getString(R.string.unblock_number) else activity.getString(R.string.unblock_numbers)
-            findItem(R.id.cab_unblock_number).isVisible = isAllBlockedNumbers && !isAllUnblockedNumbers
+            findItem(R.id.cab_unblock_number).isVisible = isNougatPlus() && (isAllBlockedNumbers && !isAllUnblockedNumbers)
             findItem(R.id.cab_add_number).isVisible = isOneItemSelected
             findItem(R.id.cab_show_call_details).isVisible = isOneItemSelected
             findItem(R.id.cab_copy_number).isVisible = isOneItemSelected
@@ -153,7 +148,8 @@ class RecentCallsAdapter(
 
     override fun getSelectableItemCount() = currentList.filterIsInstance<RecentCall>().size
 
-    override fun getIsItemSelectable(position: Int) = currentList.getOrNull(position) is RecentCall
+    override fun getIsItemSelectable(position: Int) =
+        if (position < 0 || position >= currentList.size) false else currentList[position] is RecentCall
 
     override fun getItemSelectionKey(position: Int) = currentList.getOrNull(position)?.getItemId()
 
@@ -190,6 +186,7 @@ class RecentCallsAdapter(
         return viewHolder
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val callRecord = currentList[position]
         when (holder) {
@@ -229,7 +226,6 @@ class RecentCallsAdapter(
         outgoingCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_call_made_vector, newColor)
         incomingCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_call_received_vector, newColor)
         incomingMissedCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_call_missed_vector, newColor)
-        blockedCallIcon = resources.getColoredDrawableWithColor(R.drawable.ic_block_vector, newColor)
     }
 
     private fun callContact(useSimOne: Boolean) {
@@ -248,7 +244,7 @@ class RecentCallsAdapter(
 
     private fun removeDefaultSIM() {
         val phoneNumber = getSelectedPhoneNumber()?.replace("+","%2B") ?: return
-        activity.config.removeCustomSIM(phoneNumber)
+        activity.config.removeCustomSIM("tel:$phoneNumber")
         finishActMode()
     }
 
@@ -366,8 +362,8 @@ class RecentCallsAdapter(
     }
 
     private fun askConfirmRemove() {
-        ConfirmationAdvancedDialog(activity, activity.getString(R.string.remove_confirmation), cancelOnTouchOutside = false) { result ->
-            if (result) {
+        ConfirmationAdvancedDialog(activity, activity.getString(R.string.remove_confirmation), cancelOnTouchOutside = false) {
+            if (it) {
                 activity.handlePermission(PERMISSION_WRITE_CALL_LOG) {
                     if (it) removeRecents()
                 }
@@ -391,7 +387,7 @@ class RecentCallsAdapter(
             itemDelete(callsToRemove)
             val recentCalls = currentList.filterIsInstance<RecentCall>().toMutableList().also { it.removeAll(callsToRemove) }
             activity.runOnUiThread {
-                refreshItemsListener?.refreshItems(needUpdate = true)
+                refreshItemsListener?.refreshItems()
                 submitList(recentCalls)
                 finishActMode()
             }
@@ -453,8 +449,8 @@ class RecentCallsAdapter(
                 findItem(R.id.cab_copy_number).isVisible = !call.isUnknownNumber
                 findItem(R.id.web_search).isVisible = !call.isUnknownNumber
                 findItem(R.id.cab_show_call_details).isVisible = !call.isUnknownNumber
-                findItem(R.id.cab_block_number).isVisible = !call.isUnknownNumber && !activity.isNumberBlocked(call.phoneNumber, getBlockedNumbers)
-                findItem(R.id.cab_unblock_number).isVisible = !call.isUnknownNumber && activity.isNumberBlocked(call.phoneNumber, getBlockedNumbers)
+                findItem(R.id.cab_block_number).isVisible = isNougatPlus() && !call.isUnknownNumber && !activity.isNumberBlocked(call.phoneNumber, getBlockedNumbers)
+                findItem(R.id.cab_unblock_number).isVisible = isNougatPlus() && !call.isUnknownNumber && activity.isNumberBlocked(call.phoneNumber, getBlockedNumbers)
                 findItem(R.id.cab_remove_default_sim).isVisible = (activity.config.getCustomSIM(selectedNumber) ?: "") != "" && !call.isUnknownNumber
             }
             setOnMenuItemClickListener { item ->
@@ -628,7 +624,7 @@ class RecentCallsAdapter(
                     setTextColor(textColor)
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
                     val recentsNumber = if (call.phoneNumber == call.name) {
-                        if (call.isVoiceMail) voiceMail else call.phoneNumber.getCountryByNumber()
+                        if (call.phoneNumber.startsWith("+")) getCountryByNumber(call.phoneNumber) else ""
                     } else {
                         if (call.specificType.isNotEmpty() && call.specificNumber.isNotEmpty()) call.specificType
                         else {
@@ -666,7 +662,15 @@ class RecentCallsAdapter(
                 if (areMultipleSIMsAvailable) {
                     val colorSimIcons = activity.config.colorSimIcons
                     val simColor = if (!colorSimIcons) textColor
-                                else getAdjustedSimColor(call.simColor)
+                    else {
+                        when (call.simID) {
+                            1 -> activity.config.simIconsColors[1]
+                            2 -> activity.config.simIconsColors[2]
+                            3 -> activity.config.simIconsColors[3]
+                            4 -> activity.config.simIconsColors[4]
+                            else -> activity.config.simIconsColors[0]
+                        }
+                    }
                     itemRecentsSimImage.applyColorFilter(simColor)
                     itemRecentsSimImage.alpha = if (!colorSimIcons) 0.6f else 1f
                     itemRecentsSimId.setTextColor(simColor.getContrastColor())
@@ -680,9 +684,9 @@ class RecentCallsAdapter(
                     itemRecentsImage.setHeightAndWidth(size)
                     if (call.phoneNumber == call.name || ((call.isABusinessCall() || call.isVoiceMail) && call.photoUri == "")) {
                         val drawable =
-                            if (call.isABusinessCall()) placeholderCompany
-                            else if (call.isVoiceMail) placeholderVoiceMail
-                            else placeholderContact
+                            if (call.isABusinessCall()) AppCompatResources.getDrawable(activity, R.drawable.placeholder_company)
+                            else if (call.isVoiceMail) AppCompatResources.getDrawable(activity, R.drawable.placeholder_voicemail)
+                            else AppCompatResources.getDrawable(activity, R.drawable.placeholder_contact)
                         if (baseConfig.useColoredContacts) {
                             val letterBackgroundColors = activity.getLetterBackgroundColors()
                             val color = letterBackgroundColors[abs(call.name.hashCode()) % letterBackgroundColors.size].toInt()
@@ -710,10 +714,9 @@ class RecentCallsAdapter(
                     }
                 }
 
-                val drawable = when {
-                    call.blockReason != 0 -> blockedCallIcon
-                    call.type == Calls.OUTGOING_TYPE -> outgoingCallIcon
-                    call.type == Calls.MISSED_TYPE -> incomingMissedCallIcon
+                val drawable = when (call.type) {
+                    Calls.OUTGOING_TYPE -> outgoingCallIcon
+                    Calls.MISSED_TYPE -> incomingMissedCallIcon
                     else -> incomingCallIcon
                 }
                 itemRecentsType.setImageDrawable(drawable)
@@ -805,7 +808,7 @@ class RecentCallsAdapter(
                     setTextColor(textColor)
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
                     val recentsNumber = if (call.phoneNumber == call.name) {
-                        if (call.isVoiceMail) voiceMail else call.phoneNumber.getCountryByNumber()
+                        if (call.phoneNumber.startsWith("+")) getCountryByNumber(call.phoneNumber) else ""
                     } else {
                         if (call.specificType.isNotEmpty() && call.specificNumber.isNotEmpty()) call.specificType
                         else {
@@ -843,7 +846,15 @@ class RecentCallsAdapter(
                 if (areMultipleSIMsAvailable) {
                     val colorSimIcons = activity.config.colorSimIcons
                     val simColor = if (!colorSimIcons) textColor
-                                else getAdjustedSimColor(call.simColor)
+                    else {
+                        when (call.simID) {
+                            1 -> activity.config.simIconsColors[1]
+                            2 -> activity.config.simIconsColors[2]
+                            3 -> activity.config.simIconsColors[3]
+                            4 -> activity.config.simIconsColors[4]
+                            else -> activity.config.simIconsColors[0]
+                        }
+                    }
                     itemRecentsSimImage.applyColorFilter(simColor)
                     itemRecentsSimImage.alpha = if (!colorSimIcons) 0.6f else 1f
                     itemRecentsSimId.setTextColor(simColor.getContrastColor())
@@ -857,9 +868,9 @@ class RecentCallsAdapter(
                     itemRecentsImage.setHeightAndWidth(size)
                     if (call.phoneNumber == call.name || ((call.isABusinessCall() || call.isVoiceMail) && call.photoUri == "")) {
                         val drawable =
-                            if (call.isABusinessCall()) placeholderCompany
-                            else if (call.isVoiceMail) placeholderVoiceMail
-                            else placeholderContact
+                            if (call.isABusinessCall()) AppCompatResources.getDrawable(activity, R.drawable.placeholder_company)
+                            else if (call.isVoiceMail) AppCompatResources.getDrawable(activity, R.drawable.placeholder_voicemail)
+                            else AppCompatResources.getDrawable(activity, R.drawable.placeholder_contact)
                         if (baseConfig.useColoredContacts) {
                             val letterBackgroundColors = activity.getLetterBackgroundColors()
                             val color = letterBackgroundColors[abs(call.name.hashCode()) % letterBackgroundColors.size].toInt()
@@ -887,10 +898,9 @@ class RecentCallsAdapter(
                     }
                 }
 
-                val drawable = when {
-                    call.blockReason != 0 -> blockedCallIcon
-                    call.type == Calls.OUTGOING_TYPE -> outgoingCallIcon
-                    call.type == Calls.MISSED_TYPE -> incomingMissedCallIcon
+                val drawable = when (call.type) {
+                    Calls.OUTGOING_TYPE -> outgoingCallIcon
+                    Calls.MISSED_TYPE -> incomingMissedCallIcon
                     else -> incomingCallIcon
                 }
                 itemRecentsType.setImageDrawable(drawable)
@@ -941,9 +951,6 @@ class RecentCallsAdapter(
                 swipeRightIcon.setColorFilter(properPrimaryColor.getContrastColor())
                 swipeRightIconHolder.setBackgroundColor(swipeActionColor(call, swipeRightAction))
 
-                itemRecentsHolder.setDirectionEnabled(SwipeDirection.Left, swipeLeftAction != SWIPE_ACTION_NONE)
-                itemRecentsHolder.setDirectionEnabled(SwipeDirection.Right, swipeRightAction != SWIPE_ACTION_NONE)
-
                 val halfScreenWidth = activity.resources.displayMetrics.widthPixels / 2
                 val swipeWidth = activity.resources.getDimension(com.goodwy.commons.R.dimen.swipe_width)
                 if (swipeWidth > halfScreenWidth) {
@@ -990,12 +997,6 @@ class RecentCallsAdapter(
         }
     }
 
-    private fun getAdjustedSimColor(simColor: Int): Int {
-        return cachedSimColors.getOrPut(simColor) {
-            simColor
-        }
-    }
-
     private fun slideRight(view: View, parent: View) {
         view.animate()
             .x(parent.right - activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin) - view.width)
@@ -1024,13 +1025,9 @@ class RecentCallsAdapter(
 
                 val now = DateTime.now()
                 text = when (date.dayCode) {
-                    now.millis.getDayCode() -> activity.getString(R.string.today)
-                    now.minusDays(1).millis.getDayCode() -> activity.getString(R.string.yesterday)
-                    else -> date.timestamp.formatDateOrTime(
-                        context = activity,
-                        hideTimeOnOtherDays = true,
-                        showCurrentYear = false
-                    )
+                    now.millis.toDayCode() -> activity.getString(R.string.today)
+                    now.minusDays(1).millis.toDayCode() -> activity.getString(R.string.yesterday)
+                    else -> date.timestamp.formatDateOrTime(activity, hideTimeOnOtherDays = true, showCurrentYear = false)
                 }
             }
         }
@@ -1105,7 +1102,7 @@ class RecentCallsAdapter(
     }
 
     private fun swipedBlock(call: RecentCall) {
-        if (call.isUnknownNumber) return
+        if (!isNougatPlus() || call.isUnknownNumber) return
         selectedKeys.add(call.id)
         if (!activity.isNumberBlocked(call.phoneNumber, getBlockedNumbers)) askConfirmBlock() else askConfirmUnblock()
     }
@@ -1122,8 +1119,8 @@ class RecentCallsAdapter(
 
     private fun callRecentNumber(recentCall: RecentCall) {
         if (activity.config.callUsingSameSim && recentCall.simID > 0) {
-            val sim = recentCall.simID == 1
-            activity.callContactWithSim(recentCall.phoneNumber, sim)
+            val sim = recentCall.simID == 1;
+            activity.callContactWithSim(recentCall.phoneNumber, sim);
         }
         else {
             activity.launchCallIntent(recentCall.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)

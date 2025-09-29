@@ -7,5 +7,4 @@
     <color name="red_call">#FFEB5545</color>
     <color name="swipe_purple">#FF5E5CE6</color>
     <color name="default_call_background">#FF454545</color>
-    <color name="notification_icon">@color/dark_grey</color>
 </resources>

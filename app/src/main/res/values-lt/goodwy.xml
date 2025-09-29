@@ -6,6 +6,8 @@
     <string name="missed_call_g">Praleistas skambutis</string>
     <string name="missed_calls_g">Praleisti skambučiai</string>
     <string name="missed_call_notifications_g">Pranešimai apie praleistus skambučius</string>
+    <string name="call_notification_channel_high_priority_g">Pranešimai apie skambučius aukšto prioriteto</string>
+    <string name="call_notification_channel_g">Pranešimai apie skambučius</string>
     <string name="dialpad_preferences">Numerio rinkiklio nuostatos</string>
     <string name="call_start_end_vibration">Vibruokite, kai skambutis prasideda ir baigiasi</string>
 

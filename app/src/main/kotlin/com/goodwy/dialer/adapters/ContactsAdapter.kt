@@ -102,7 +102,7 @@ class ContactsAdapter(
     override fun prepareActionMode(menu: Menu) {
         val hasMultipleSIMs = activity.areMultipleSIMsAvailable()
         val isOneItemSelected = isOneItemSelected()
-        val selectedNumber = getSelectedPhoneNumber().orEmpty().replace("+","%2B")
+        val selectedNumber = "tel:${getSelectedPhoneNumber()}".replace("+","%2B")
 
         menu.apply {
             findItem(R.id.cab_call).isVisible = !hasMultipleSIMs && isOneItemSelected
@@ -112,9 +112,9 @@ class ContactsAdapter(
 
             findItem(R.id.cab_delete).isVisible = showDeleteButton
             findItem(R.id.cab_create_shortcut).title = activity.getString(R.string.create_shortcut)//activity.addLockedLabelIfNeeded(R.string.create_shortcut)
-            findItem(R.id.cab_create_shortcut).isVisible = isOneItemSelected
+            findItem(R.id.cab_create_shortcut).isVisible = isOneItemSelected && isOreoPlus()
             findItem(R.id.cab_view_details).isVisible = isOneItemSelected
-            findItem(R.id.cab_block_unblock_contact).isVisible = isOneItemSelected
+            findItem(R.id.cab_block_unblock_contact).isVisible = isOneItemSelected && isNougatPlus()
             getCabBlockContactTitle { title ->
                 findItem(R.id.cab_block_unblock_contact).title = title
             }
@@ -277,7 +277,7 @@ class ContactsAdapter(
 
     private fun removeDefaultSIM() {
         val phoneNumber = getSelectedPhoneNumber()?.replace("+","%2B") ?: return
-        activity.config.removeCustomSIM(phoneNumber)
+        activity.config.removeCustomSIM("tel:$phoneNumber")
         finishActMode()
     }
 
@@ -406,7 +406,7 @@ class ContactsAdapter(
             val endIndex = (startIndex + textToHighlight.length).coerceAtMost(length)
             try {
                 spannableString.setSpan(ForegroundColorSpan(primaryColor), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
-            } catch (_: IndexOutOfBoundsException) {
+            } catch (ignored: IndexOutOfBoundsException) {
             }
         }
 
@@ -420,7 +420,7 @@ class ContactsAdapter(
             itemContactFrame.isSelected = selectedKeys.contains(contact.rawId)
 
             itemContactImage.apply {
-                if (profileIconClick != null && viewType != VIEW_TYPE_GRID) {
+                if (profileIconClick != null) {
                     setOnClickListener {
                         if (!actModeCallback.isSelectable) {
                             profileIconClick.invoke(contact)
@@ -553,9 +553,6 @@ class ContactsAdapter(
                 swipeRightIcon!!.setImageResource(swipeActionImageResource(swipeRightAction))
                 swipeRightIcon!!.setColorFilter(properPrimaryColor.getContrastColor())
                 swipeRightIconHolder!!.setBackgroundColor(swipeActionColor(swipeRightAction))
-
-                itemContactSwipe!!.setDirectionEnabled(SwipeDirection.Left, swipeLeftAction != SWIPE_ACTION_NONE)
-                itemContactSwipe!!.setDirectionEnabled(SwipeDirection.Right, swipeRightAction != SWIPE_ACTION_NONE)
 
                 if (activity.config.swipeRipple) {
                     itemContactSwipe!!.setRippleColor(SwipeDirection.Left, swipeActionColor(swipeLeftAction))
@@ -874,6 +871,7 @@ class ContactsAdapter(
     }
 
     private fun swipedBlock(contact: Contact) {
+        if (!isNougatPlus()) return
         selectedKeys.add(contact.rawId)
         tryBlockingUnblocking(true)
     }

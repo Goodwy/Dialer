@@ -16,7 +16,6 @@ import com.goodwy.dialer.databinding.FragmentContactsBinding
 import com.goodwy.dialer.databinding.FragmentLettersLayoutBinding
 import com.goodwy.dialer.extensions.launchCreateNewContactIntent
 import com.goodwy.dialer.extensions.setupWithContacts
-import com.goodwy.dialer.extensions.startCallWithConfirmationCheck
 import com.goodwy.dialer.extensions.startContactDetailsIntentRecommendation
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 
@@ -78,7 +77,7 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         }
     }
 
-    override fun refreshItems(invalidate: Boolean, needUpdate: Boolean, callback: (() -> Unit)?) {
+    override fun refreshItems(invalidate: Boolean, callback: (() -> Unit)?) {
         val privateCursor = context?.getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
         ContactsHelper(context).getContacts(showOnlyContactsWithNumbers = true) { contacts ->
             allContacts = contacts
@@ -121,31 +120,6 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
                 })
             }
 
-            if (binding.fragmentList.adapter == null) {
-                ContactsAdapter(
-                    activity = activity as SimpleActivity,
-                    contacts = contacts,
-                    recyclerView = binding.fragmentList,
-                    refreshItemsListener = this,
-                    showIcon = false,
-                    showNumber = context.baseConfig.showPhoneNumbers,
-                    itemClick = {
-                        activity?.startCallWithConfirmationCheck(it as Contact)
-                    },
-                    profileIconClick = {
-                        activity?.startContactDetailsIntentRecommendation(it as Contact)
-                    }
-                ).apply {
-                    binding.fragmentList.adapter = this
-                }
-
-                if (context.areSystemAnimationsEnabled) {
-                    binding.fragmentList.scheduleLayoutAnimation()
-                }
-            } else {
-                (binding.fragmentList.adapter as ContactsAdapter).updateItems(contacts)
-            }
-
             try {
                 //Decrease the font size based on the number of letters in the letter scroller
                 val allNotEmpty = contacts.filter { it.getNameToDisplay().isNotEmpty() }
@@ -162,6 +136,27 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
                     else binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleSmall
                 }
             } catch (_: Exception) { }
+
+            if (binding.fragmentList.adapter == null) {
+                ContactsAdapter(
+                    activity = activity as SimpleActivity,
+                    contacts = contacts,
+                    recyclerView = binding.fragmentList,
+                    refreshItemsListener = this,
+                    showIcon = false,
+                    showNumber = context.baseConfig.showPhoneNumbers,
+                    itemClick = {
+                        activity?.startContactDetailsIntentRecommendation(it as Contact)
+                    }).apply {
+                    binding.fragmentList.adapter = this
+                }
+
+                if (context.areSystemAnimationsEnabled) {
+                    binding.fragmentList.scheduleLayoutAnimation()
+                }
+            } else {
+                (binding.fragmentList.adapter as ContactsAdapter).updateItems(contacts)
+            }
         }
     }
 
@@ -189,7 +184,9 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         val filtered = allContacts.filter { contact ->
             getProperText(contact.getNameToDisplay(), shouldNormalize).contains(fixedText, true) ||
                 getProperText(contact.nickname, shouldNormalize).contains(fixedText, true) ||
-                (fixedText.toIntOrNull() != null && contact.doesContainPhoneNumber(fixedText, true)) ||
+                (fixedText.toIntOrNull() != null && contact.phoneNumbers.any {
+                    fixedText.normalizePhoneNumber().isNotEmpty() && it.normalizedNumber.contains(fixedText.normalizePhoneNumber(), true)
+                }) ||
                 contact.emails.any { it.value.contains(fixedText, true) } ||
                 contact.relations.any { it.name.contains(fixedText, true) } ||
                 contact.addresses.any { getProperText(it.value, shouldNormalize).contains(fixedText, true) } ||
