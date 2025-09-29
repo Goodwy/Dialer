@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/call_holder"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/default_call_background">
 
     <!-- default = normal, small - for small screens -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,6 +42,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textSize="@dimen/call_status_text_size"
+            android:textDirection="firstStrongLtr"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/on_hold_label"
             app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -78,6 +80,7 @@
         android:layout_marginTop="@dimen/normal_margin"
         android:gravity="center_horizontal"
         android:textSize="@dimen/caller_name_text_size"
+        android:textDirection="firstStrongLtr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/callerAvatar"
@@ -120,6 +123,7 @@
         android:gravity="center_horizontal"
         android:textSize="@dimen/call_status_text_size"
         android:visibility="gone"
+        android:textDirection="firstStrongLtr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/callerNameLabel"
@@ -135,6 +139,7 @@
         android:textSize="@dimen/call_status_text_size"
         android:paddingHorizontal="@dimen/normal_margin"
         android:background="@drawable/ripple_all_corners_11dp"
+        android:textDirection="firstStrongLtr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/callerDescription"
@@ -152,6 +157,7 @@
         android:maxLines="2"
         android:ellipsize="end"
         android:visibility="gone"
+        android:textDirection="firstStrongLtr"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/callerNumber"

@@ -14,7 +14,6 @@ import com.goodwy.commons.extensions.*
 import com.goodwy.dialer.R
 import com.goodwy.dialer.models.TimerEvent
 import com.goodwy.dialer.models.TimerState
-import com.goodwy.commons.helpers.isOreoPlus
 import com.goodwy.dialer.extensions.*
 import com.goodwy.dialer.helpers.*
 import com.goodwy.dialer.receivers.TimerReceiver
@@ -38,7 +37,14 @@ class TimerService : Service() {
         super.onStartCommand(intent, flags, startId)
         isStopping = false
         updateNotification()
-        startForeground(TIMER_RUNNING_NOTIF_ID, notification(getString(R.string.app_launcher_name), getString(R.string.timers_notification_msg), INVALID_TIMER_ID))
+        startForeground(
+            TIMER_RUNNING_NOTIFICATION_ID,
+            notification(
+                title = getString(R.string.app_launcher_name),
+                contentText = getString(R.string.timers_notification_msg),
+                firstRunningTimerId = INVALID_TIMER_ID
+            )
+        )
         return START_NOT_STICKY
     }
 
@@ -47,15 +53,32 @@ class TimerService : Service() {
             val runningTimers = timers.filter { it.state is TimerState.Running }
             if (runningTimers.isNotEmpty()) {
                 val firstTimer = runningTimers.first()
-                val formattedDuration = (firstTimer.state as TimerState.Running).tick.getFormattedDuration()
+                val formattedDuration =
+                    (firstTimer.state as TimerState.Running).tick.getFormattedDuration()
                 val contextText = when {
-                    firstTimer.label.isNotEmpty() -> getString(R.string.call_back_person_g, firstTimer.title)
-                    else -> resources.getQuantityString(R.plurals.timer_notification_msg, runningTimers.size, runningTimers.size)
+                    firstTimer.label.isNotEmpty() -> getString(
+                        R.string.call_back_person_g,
+                        firstTimer.label
+                    )
+
+                    else -> resources.getQuantityString(
+                        R.plurals.timer_notification_msg,
+                        runningTimers.size,
+                        runningTimers.size
+                    )
                 }
 
                 Handler(Looper.getMainLooper()).post {
                     try {
-                        startForeground(TIMER_RUNNING_NOTIF_ID, notification(formattedDuration, contextText, firstTimer.id!!, firstTimer.label))
+                        startForeground(
+                            TIMER_RUNNING_NOTIFICATION_ID,
+                            notification(
+                                title = formattedDuration,
+                                contentText = contextText,
+                                firstRunningTimerId = firstTimer.id!!,
+                                number = firstTimer.label
+                            )
+                        )
                     } catch (e: Exception) {
                         showErrorToast(e)
                     }
@@ -80,11 +103,7 @@ class TimerService : Service() {
 
     private fun stopService() {
         isStopping = true
-        if (isOreoPlus()) {
-            stopForeground(true)
-        } else {
-            stopSelf()
-        }
+        stopForeground(STOP_FOREGROUND_REMOVE)
     }
 
     override fun onDestroy() {
@@ -92,16 +111,18 @@ class TimerService : Service() {
         bus.unregister(this)
     }
 
-    private fun notification(title: String, contentText: String, firstRunningTimerId: Int, number: String = ""): Notification {
+    private fun notification(
+        title: String,
+        contentText: String,
+        firstRunningTimerId: Int,
+        number: String = ""
+    ): Notification {
         val channelId = "right_dialer_alarm_timer"
         val label = getString(R.string.timer)
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        if (isOreoPlus()) {
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            NotificationChannel(channelId, label, importance).apply {
-                setSound(null, null)
-                notificationManager.createNotificationChannel(this)
-            }
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        NotificationChannel(channelId, label, importance).apply {
+            setSound(null, null)
+            notificationManager.createNotificationChannel(this)
         }
 
         val restart = Intent(this, TimerReceiver::class.java).apply {
@@ -117,7 +138,7 @@ class TimerService : Service() {
             setOnClickPendingIntent(R.id.timer_repeat, cancelIntent)
         }
 
-        val builder = NotificationCompat.Builder(this)
+        val builder = NotificationCompat.Builder(this, channelId)
 //            .setContentTitle(title)
 //            .setContentText(contentText)
             .setCategory(Notification.CATEGORY_REMINDER)
@@ -129,6 +150,7 @@ class TimerService : Service() {
             .setAutoCancel(true)
             .setChannelId(channelId)
             .setStyle(NotificationCompat.DecoratedCustomViewStyle())
+            .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
             .addAction(
                 R.drawable.ic_cross_vector,
                 getString(R.string.dismiss),

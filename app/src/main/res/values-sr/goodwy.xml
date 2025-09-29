@@ -6,8 +6,6 @@
     <string name="missed_call_g">Пропуштен позив</string>
     <string name="missed_calls_g">Пропуштени позиви</string>
     <string name="missed_call_notifications_g">Обавештења о пропуштеним позивима</string>
-    <string name="call_notification_channel_high_priority_g">Високи приоритет обавештења о позивима</string>
-    <string name="call_notification_channel_g">Обавештења о позивима</string>
     <string name="dialpad_preferences">Подешавања тастатуре</string>
     <string name="call_start_end_vibration">Вибрирајте када започнете и завршите позив</string>
     <string name="call_notes">Белешке о позивима</string>

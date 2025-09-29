@@ -6,8 +6,6 @@
     <string name="missed_call_g">Cevapsız çağrı</string>
     <string name="missed_calls_g">Cevapsız aramalar</string>
     <string name="missed_call_notifications_g">Cevapsız arama bildirimleri</string>
-    <string name="call_notification_channel_high_priority_g">Çağrı bildirimleri yüksek öncelikli</string>
-    <string name="call_notification_channel_g">Çağrı bildirimleri</string>
     <string name="dialpad_preferences">Tuş takımı tercihleri</string>
     <string name="call_start_end_vibration">Aramanız başladığında ve bittiğinde titredin</string>
 

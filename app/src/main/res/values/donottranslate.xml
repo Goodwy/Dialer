@@ -3,6 +3,27 @@
     <string name="app_name_g">Right Dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
+    <string name="release_641">
+        Optimized call history loading\n
+        Added ‘Blocking type’ option\n
+        Added quick settings tile ‘Block calls from unknown numbers’\n
+        Added the ability to disable one of the swipes\n
+        Added dialpad tone in TalkBack mode\n
+        The dialpad searches in contacts, and if it doesn\'t find anything, it searches in recent calls\n
+        A new call type has been added - Blocked Call\n
+        Fixed bugs, improved stability
+    </string>
+    <string name="release_630">
+        Added ‘Keep calls in notifications’ option\n
+        Added call status ‘Busy’\n
+        Improved translation\n
+        Fixed bugs, improved stability
+    </string>
+    <string name="release_621">
+        Added Arabic as a second language option for the T9 search functionality\n
+        Added option to use an accent color\n
+        Bug fixes
+    </string>
     <string name="release_620">
         Changed behavior of the search bar\n
         Fixed input of secret codes\n

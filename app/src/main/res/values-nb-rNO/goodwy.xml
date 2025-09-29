@@ -6,8 +6,7 @@
     <string name="missed_call_g">Tapte anrop</string>
     <string name="missed_calls_g">Tapte anrop</string>
     <string name="missed_call_notifications_g">Varsler om tapte anrop</string>
-    <string name="call_notification_channel_high_priority_g">Samtalevarsler med høy prioritet</string>.
-    <string name="call_notification_channel_g">Samtalevarsler</string>
+    .
     <string name="dialpad_preferences">Innstillinger for numerisk tastatur</string>
     <string name="call_start_end_vibration">Vibrer når samtalen er start og slutt</string>
 

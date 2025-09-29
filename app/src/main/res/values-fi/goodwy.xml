@@ -6,8 +6,6 @@
     <string name="missed_call_g">Vastaamaton puhelu</string>
     <string name="missed_calls_g">Vastaamattomat puhelut</string>
     <string name="missed_call_notifications_g">Vastaamattomien puhelujen ilmoitukset</string>
-    <string name="call_notification_channel_high_priority_g">Puheluilmoitusten korkea prioriteetti</string>
-    <string name="call_notification_channel_g">Puheluilmoitukset</string>
     <string name="dialpad_preferences">Dialpad-asetukset</string>
     <string name="call_start_end_vibration">Värinä, kun puhelu alkaa ja päättyy</string>
 

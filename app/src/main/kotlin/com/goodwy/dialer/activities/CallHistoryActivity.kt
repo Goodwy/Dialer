@@ -444,7 +444,7 @@ class CallHistoryActivity : SimpleActivity() {
         var contactId: Int
         try {
             contactId = intent.getIntExtra(CONTACT_ID, 0)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             return
         }
         if (contactId == 0 ) {
@@ -470,12 +470,12 @@ class CallHistoryActivity : SimpleActivity() {
 
         if (contactId != 0 && !wasLookupKeyUsed) {
 
-            handlePermission(PERMISSION_READ_CONTACTS) {
-                val isPrivat = intent.getBooleanExtra(IS_PRIVATE, false)
-                if (it) contact =
-                    ContactsHelper(this).getContactWithId(contactId, isPrivat)
+            handlePermission(PERMISSION_READ_CONTACTS) { granted ->
+                val isPrivate = intent.getBooleanExtra(IS_PRIVATE, false)
+                if (granted) contact =
+                    ContactsHelper(this).getContactWithId(contactId, isPrivate)
 
-                if (contact == null && isPrivat) {
+                if (contact == null && isPrivate) {
                     ContactsHelper(this).getContacts(showOnlyContactsWithNumbers = true) { _ ->
                         val privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
                         val privateContacts = MyContactsContentProvider.getContacts(this, privateCursor)
@@ -686,7 +686,7 @@ class CallHistoryActivity : SimpleActivity() {
                             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                             try {
                                 startActivity(this)
-                            } catch (e: SecurityException) {
+                            } catch (_: SecurityException) {
                                 handlePermission(PERMISSION_CALL_PHONE) { success ->
                                     if (success) {
                                         startActivity(this)
@@ -694,7 +694,7 @@ class CallHistoryActivity : SimpleActivity() {
                                         toast(R.string.no_phone_call_permission)
                                     }
                                 }
-                            } catch (e: ActivityNotFoundException) {
+                            } catch (_: ActivityNotFoundException) {
                                 toast(R.string.no_app_found)
                             } catch (e: Exception) {
                                 showErrorToast(e)
@@ -958,7 +958,7 @@ class CallHistoryActivity : SimpleActivity() {
                             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
                             try {
                                 startActivity(this)
-                            } catch (e: SecurityException) {
+                            } catch (_: SecurityException) {
                                 handlePermission(PERMISSION_CALL_PHONE) { success ->
                                     if (success) {
                                         startActivity(this)
@@ -966,7 +966,7 @@ class CallHistoryActivity : SimpleActivity() {
                                         toast(R.string.no_phone_call_permission)
                                     }
                                 }
-                            } catch (e: ActivityNotFoundException) {
+                            } catch (_: ActivityNotFoundException) {
                                 toast(R.string.no_app_found)
                             } catch (e: Exception) {
                                 showErrorToast(e)
@@ -1094,7 +1094,10 @@ class CallHistoryActivity : SimpleActivity() {
     private fun updateButton() {
         val call = currentRecentCall
         if (call != null) {
-            if (call.phoneNumber == call.name || ((call.isABusinessCall() || call.isVoiceMail) && call.photoUri == "") || isDestroyed || isFinishing) {
+            if (call.phoneNumber == call.name
+                || ((call.isABusinessCall() || call.isVoiceMail) && call.photoUri == "")
+                || isDestroyed || isFinishing
+            ) {
                 val drawable =
                     if (call.isABusinessCall()) AppCompatResources.getDrawable(this, R.drawable.placeholder_company)
                     else if (call.isVoiceMail) AppCompatResources.getDrawable(this, R.drawable.placeholder_voicemail)
@@ -1106,11 +1109,13 @@ class CallHistoryActivity : SimpleActivity() {
                 }
                 binding.topDetails.callHistoryImage.setImageDrawable(drawable)
             } else {
-                if (!isFinishing && !isDestroyed) SimpleContactsHelper(this.applicationContext).loadContactImage(call.photoUri, binding.topDetails.callHistoryImage, call.name)
+                if (!isFinishing && !isDestroyed) SimpleContactsHelper(this.applicationContext)
+                    .loadContactImage(call.photoUri, binding.topDetails.callHistoryImage, call.name)
             }
 
             if (contact != null) {
-                val contactPhoneNumber = contact!!.phoneNumbers.firstOrNull { it.normalizedNumber == currentRecentCall!!.phoneNumber }
+                val contactPhoneNumber = contact!!.phoneNumbers
+                    .firstOrNull { it.normalizedNumber == currentRecentCall!!.phoneNumber }
                 if (contactPhoneNumber != null) {
                     binding.callHistoryNumberTypeContainer.beVisible()
                     binding.callHistoryNumberType.apply {
@@ -1135,12 +1140,14 @@ class CallHistoryActivity : SimpleActivity() {
                     contentDescription = getString(R.string.contact_details)
                 }
             } else {
-                val country = if (currentRecentCall!!.phoneNumber.startsWith("+")) getCountryByNumber(currentRecentCall!!.phoneNumber) else ""
-                if (country != "") {
+                val countryOrVoiceMail =
+                    if (currentRecentCall!!.isVoiceMail) getString(R.string.voicemail)
+                    else currentRecentCall!!.phoneNumber.getCountryByNumber()
+                if (countryOrVoiceMail != "") {
                     binding.callHistoryNumberTypeContainer.beVisible()
                     binding.callHistoryNumberType.apply {
                         beVisible()
-                        text = country
+                        text = countryOrVoiceMail
                     }
                 }
 

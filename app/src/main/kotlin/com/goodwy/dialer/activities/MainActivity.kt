@@ -1,9 +1,7 @@
 package com.goodwy.dialer.activities
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.SearchManager
-import android.content.Context
 import android.content.Intent
 import android.content.pm.ShortcutInfo
 import android.content.res.Configuration
@@ -267,7 +265,7 @@ class MainActivity : SimpleActivity() {
         // we don't really care about the result, the app can work without being the default Dialer too
         if (requestCode == REQUEST_CODE_SET_DEFAULT_DIALER) {
             checkContactPermissions()
-        } else if (requestCode == REQUEST_CODE_SET_DEFAULT_CALLER_ID && resultCode != Activity.RESULT_OK) {
+        } else if (requestCode == REQUEST_CODE_SET_DEFAULT_CALLER_ID && resultCode != RESULT_OK) {
             toast(R.string.must_make_default_caller_id_app, length = Toast.LENGTH_LONG)
             baseConfig.blockUnknownNumbers = false
             baseConfig.blockHiddenNumbers = false
@@ -287,12 +285,18 @@ class MainActivity : SimpleActivity() {
     @Suppress("DEPRECATION")
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        if (binding.mainMenu.isSearchOpen) {
-            binding.mainMenu.closeSearch()
-        } else if (isSearchOpen && mSearchMenuItem != null) {
-            mSearchMenuItem!!.collapseActionView()
-        } else {
-            super.onBackPressed()
+        when {
+            binding.mainMenu.isSearchOpen -> {
+                binding.mainMenu.closeSearch()
+            }
+
+            isSearchOpen && mSearchMenuItem != null -> {
+                mSearchMenuItem!!.collapseActionView()
+            }
+
+            else -> {
+                super.onBackPressed()
+            }
         }
     }
 
@@ -314,7 +318,8 @@ class MainActivity : SimpleActivity() {
             findItem(R.id.change_view_type).isVisible = currentFragment == getFavoritesFragment
             findItem(R.id.column_count).isVisible = currentFragment == getFavoritesFragment && config.viewType == VIEW_TYPE_GRID
             findItem(R.id.show_blocked_numbers).isVisible = currentFragment == getRecentsFragment
-            findItem(R.id.show_blocked_numbers).title = if (config.showBlockedNumbers) getString(R.string.hide_blocked_numbers) else getString(R.string.show_blocked_numbers)
+            findItem(R.id.show_blocked_numbers).title =
+                if (config.showBlockedNumbers) getString(R.string.hide_blocked_numbers) else getString(R.string.show_blocked_numbers)
         }
     }
 
@@ -385,7 +390,7 @@ class MainActivity : SimpleActivity() {
 
     private fun setupSearch(menu: Menu) {
         updateMenuItemColors(menu)
-        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchManager = getSystemService(SEARCH_SERVICE) as SearchManager
         mSearchMenuItem = menu.findItem(R.id.search)
         (mSearchMenuItem!!.actionView as SearchView).apply {
             val textColor = getProperTextColor()
@@ -443,7 +448,8 @@ class MainActivity : SimpleActivity() {
 
     private fun showBlockedNumbers() {
         config.showBlockedNumbers = !config.showBlockedNumbers
-        binding.mainMenu.getToolbar().menu.findItem(R.id.show_blocked_numbers).title = if (config.showBlockedNumbers) getString(R.string.hide_blocked_numbers) else getString(R.string.show_blocked_numbers)
+        binding.mainMenu.getToolbar().menu.findItem(R.id.show_blocked_numbers).title =
+            if (config.showBlockedNumbers) getString(R.string.hide_blocked_numbers) else getString(R.string.show_blocked_numbers)
         config.needUpdateRecents = true
         runOnUiThread {
             getRecentsFragment()?.refreshItems()
@@ -464,13 +470,14 @@ class MainActivity : SimpleActivity() {
     @SuppressLint("NewApi")
     private fun checkShortcuts() {
         val iconColor = getProperPrimaryColor()
-        if (isNougatMR1Plus() && config.lastHandledShortcutColor != iconColor) {
+        if (config.lastHandledShortcutColor != iconColor) {
             val launchDialpad = getLaunchDialpadShortcut(iconColor)
 
             try {
                 shortcutManager.dynamicShortcuts = listOf(launchDialpad)
                 config.lastHandledShortcutColor = iconColor
-            } catch (ignored: Exception) { }
+            } catch (_: Exception) {
+            }
         }
     }
 
@@ -747,7 +754,8 @@ class MainActivity : SimpleActivity() {
             if (config.showTabs and value == 0) {
                 skippedTabs++
             } else {
-                val tab = if (config.useIconTabs) binding.mainTopTabsHolder.newTab().setIcon(getTabIcon(index)) else binding.mainTopTabsHolder.newTab().setText(getTabLabel(index))
+                val tab = if (config.useIconTabs) binding.mainTopTabsHolder.newTab().setIcon(getTabIcon(index)) else binding.mainTopTabsHolder.newTab()
+                    .setText(getTabLabel(index))
                 tab.contentDescription = getTabContentDescription(index)
                 val wasAlreadySelected = selectedTabIndex > -1 && selectedTabIndex == index - skippedTabs
                 val shouldSelect = !isAnySelected && wasAlreadySelected
@@ -755,8 +763,10 @@ class MainActivity : SimpleActivity() {
                     isAnySelected = true
                 }
                 binding.mainTopTabsHolder.addTab(tab, index - skippedTabs, shouldSelect)
-                binding.mainTopTabsHolder.setTabTextColors(properTextColor,
-                    properPrimaryColor)
+                binding.mainTopTabsHolder.setTabTextColors(
+                    properTextColor,
+                    properPrimaryColor
+                )
             }
         }
 
@@ -906,6 +916,7 @@ class MainActivity : SimpleActivity() {
     }
 
     fun refreshFragments() {
+        cacheContacts()
         getContactsFragment()?.refreshItems()
         getFavoritesFragment()?.refreshItems()
         getRecentsFragment()?.refreshItems()
@@ -1042,7 +1053,7 @@ class MainActivity : SimpleActivity() {
             try {
                 cachedContacts.clear()
                 cachedContacts.addAll(contacts)
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
             }
         }
     }
@@ -1065,7 +1076,8 @@ class MainActivity : SimpleActivity() {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun refreshCallLog(event: Events.RefreshCallLog) {
-        getRecentsFragment()?.refreshItems()
+        config.needUpdateRecents = true
+        getRecentsFragment()?.refreshItems(needUpdate = true)
     }
 
     private fun closeSearch() {

@@ -1,6 +1,8 @@
 package com.goodwy.dialer.models
 
 import java.io.Serializable
+import com.goodwy.commons.helpers.DAY_SECONDS
+
 
 @kotlinx.serialization.Serializable
 sealed class CallLogItem : Serializable {
@@ -11,7 +13,7 @@ sealed class CallLogItem : Serializable {
 
     fun getItemId(): Int {
         return when (this) {
-            is Date -> dayCode.hashCode()
+            is Date -> -(timestamp / (DAY_SECONDS * 1000L)).toInt()
             is RecentCall -> id
         }
     }

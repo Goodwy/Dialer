@@ -6,8 +6,6 @@
     <string name="missed_call_g">未接來電</string>
     <string name="missed_calls_g">未接來電</string>
     <string name="missed_call_notifications_g">未接來電通知</string>
-    <string name="call_notification_channel_high_priority_g">来电通知高优先级</string>
-    <string name="call_notification_channel_g">来电通知</string>
     <string name="dialpad_preferences">拨号盘偏好设置</string>
     <string name="call_start_end_vibration">通话开始和结束时振动</string>
 

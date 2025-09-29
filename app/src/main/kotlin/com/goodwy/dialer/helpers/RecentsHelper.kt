@@ -4,12 +4,10 @@ import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteFullException
-import android.net.Uri
 import android.os.Build
 import android.provider.CallLog.Calls
 import android.telephony.PhoneNumberUtils
 import android.text.TextUtils
-import android.util.Log
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.contacts.Contact
@@ -36,12 +34,12 @@ class RecentsHelper(private val context: Context) {
         updateCallsCache: Boolean = false,
         callback: (List<RecentCall>) -> Unit,
     ) {
-        val privateCursor = context.getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
         if (!context.hasPermission(PERMISSION_READ_CALL_LOG)) {
             callback(ArrayList())
             return
         }
 
+        val privateCursor = context.getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
         ContactsHelper(context).getContacts(getAll = true, showOnlyContactsWithNumbers = true) { contacts ->
             ensureBackgroundThread {
                 val privateContacts = MyContactsContentProvider.getContacts(context, privateCursor)
@@ -55,9 +53,9 @@ class RecentsHelper(private val context: Context) {
                 val previousRecentsOrEmpty = if (needUpdateRecents) ArrayList() else previousRecents
                 if (needUpdateRecents && !isDialpad) context.config.needUpdateRecents = false
                 val recentCalls = if (previousRecentsOrEmpty.isNotEmpty()) {
-                    val previousRecentCalls = previousRecentsOrEmpty.flatMap {
-                        it.groupedCalls ?: listOf(it)
-                    }
+                    val previousRecentCalls = previousRecentsOrEmpty
+                        .flatMap { it.groupedCalls ?: listOf(it) }
+                        .map { it.copy(groupedCalls = null) }
 
                     val newerRecents = getRecents(
                         contacts = contacts,
@@ -78,7 +76,11 @@ class RecentsHelper(private val context: Context) {
                     getRecents(contacts, updateCallsCache = updateCallsCache)
                 }
 
-                callback(recentCalls)
+                callback(
+                    recentCalls
+                        .sortedByDescending { it.startTS }
+                        .distinctBy { it.id }
+                )
             }
         }
     }
@@ -97,13 +99,14 @@ class RecentsHelper(private val context: Context) {
     }
 
     private fun shouldGroupCalls(callA: RecentCall, callB: RecentCall): Boolean {
-        if (
-            callA.simID != callB.simID
-            || (callA.name != callB.name && callA.name != callA.phoneNumber && callB.name != callB.phoneNumber)
-            || callA.getDayCode() != callB.getDayCode()
-        ) {
-            return false
-        }
+        val differentSim = callA.simID != callB.simID
+        val differentDay = callA.dayCode != callB.dayCode
+        val namesAreBothRealAndDifferent =
+            callA.name != callB.name &&
+                callA.name != callA.phoneNumber &&
+                callB.name != callB.phoneNumber
+
+        if (differentSim || differentDay || namesAreBothRealAndDifferent) return false
 
         @Suppress("DEPRECATION")
         return PhoneNumberUtils.compare(callA.phoneNumber, callB.phoneNumber)
@@ -132,7 +135,6 @@ class RecentsHelper(private val context: Context) {
         return result
     }
 
-    @SuppressLint("NewApi")
     private fun getRecents(
         contacts: List<Contact>,
         selection: String? = null,
@@ -145,47 +147,60 @@ class RecentsHelper(private val context: Context) {
         val contactPhotosMap = HashMap<String, String>()
         val contactsMap = HashMap<String, Contact>()
 
-        val projection = arrayOf(
-            Calls._ID,
-            Calls.NUMBER,
-            Calls.CACHED_NAME,
-            Calls.CACHED_PHOTO_URI,
-            Calls.DATE,
-            Calls.DURATION,
-            Calls.TYPE,
-            Calls.PHONE_ACCOUNT_ID,
-            Calls.FEATURES,
-            Calls.COUNTRY_ISO
-        )
-
         val accountIdToSimIDMap = HashMap<String, Int>()
         context.getAvailableSIMCardLabels().forEach {
             accountIdToSimIDMap[it.handle.id] = it.id
         }
-        val manufacturer = Build.MANUFACTURER.lowercase(Locale.getDefault())
-        val isHuawei = manufacturer.contains(Regex(pattern = "huawei|honor"))
-
-        val cursor = if (isNougatPlus()) {
-            // https://issuetracker.google.com/issues/175198972?pli=1#comment6
-            val limitedUri = contentUri.buildUpon()
-                .appendQueryParameter(Calls.LIMIT_PARAM_KEY, queryLimit.toString())
-                .build()
-            val sortOrder = "${Calls.DATE} DESC" //TODO Sort call
-            context.contentResolver.query(limitedUri, projection, selection, selectionParams, sortOrder)
-        } else {
-            val sortOrder = "${Calls.DATE} DESC LIMIT $queryLimit"
-            context.contentResolver.query(contentUri, projection, selection, selectionParams, sortOrder)
+        val accountIdToSimColorMap = HashMap<String, Int>()
+        context.getAvailableSIMCardLabels().forEach {
+            accountIdToSimColorMap[it.handle.id] = when (it.id) {
+                1 -> context.config.simIconsColors[1]
+                2 -> context.config.simIconsColors[2]
+                3 -> context.config.simIconsColors[3]
+                4 -> context.config.simIconsColors[4]
+                else -> context.config.simIconsColors[0]
+            }
         }
 
-        //not work
-//        val contactsWithMultipleNumbers = contacts.filter { it.phoneNumbers.size > 1 }
-//        val numbersToContactIDMap = HashMap<String, Int>()
-//        contactsWithMultipleNumbers.forEach { contact ->
-//            contact.phoneNumbers.forEach { phoneNumber ->
-//                numbersToContactIDMap[phoneNumber.value] = contact.contactId
-//                numbersToContactIDMap[phoneNumber.normalizedNumber] = contact.contactId
-//            }
-//        }
+        val manufacturer = Build.MANUFACTURER.lowercase(Locale.getDefault())
+        val isHuawei = manufacturer.contains(Regex(pattern = "huawei|honor"))
+        val voiceMailNumbers = loadVoiceMailNumbers()
+
+        val projection = if (isQPlus()) {
+            arrayOf(
+                Calls._ID,
+                Calls.NUMBER,
+                Calls.CACHED_NAME,
+                Calls.CACHED_PHOTO_URI,
+                Calls.DATE,
+                Calls.DURATION,
+                Calls.TYPE,
+                Calls.PHONE_ACCOUNT_ID,
+                Calls.FEATURES,
+                Calls.COUNTRY_ISO,
+                Calls.BLOCK_REASON
+            )
+        } else {
+            arrayOf(
+                Calls._ID,
+                Calls.NUMBER,
+                Calls.CACHED_NAME,
+                Calls.CACHED_PHOTO_URI,
+                Calls.DATE,
+                Calls.DURATION,
+                Calls.TYPE,
+                Calls.PHONE_ACCOUNT_ID,
+                Calls.FEATURES,
+                Calls.COUNTRY_ISO
+            )
+        }
+
+        // https://issuetracker.google.com/issues/175198972?pli=1#comment6
+        val limitedUri = contentUri.buildUpon()
+            .appendQueryParameter(Calls.LIMIT_PARAM_KEY, queryLimit.toString())
+            .build()
+        val sortOrder = "${Calls.DATE} DESC" //TODO Sort call
+        val cursor = context.contentResolver.query(limitedUri, projection, selection, selectionParams, sortOrder)
 
         cursor?.use {
             if (!cursor.moveToFirst()) {
@@ -205,37 +220,12 @@ class RecentsHelper(private val context: Context) {
                     name = number.orEmpty()
                 }
 
-//                if (name == number && !isUnknownNumber) {
-//                    if (contactsNumbersMap.containsKey(number)) {
-//                        name = contactsNumbersMap[number]!!
-//                    } else {
-//                        val normalizedNumber = number.normalizePhoneNumber()
-//                        if (normalizedNumber!!.length >= COMPARABLE_PHONE_NUMBER_LENGTH) {
-//                            name = contacts.filter { it.phoneNumbers.isNotEmpty() }.firstOrNull { contact ->
-//                                val curNumber = contact.phoneNumbers.first().normalizedNumber
-//                                if (curNumber != "") {
-//                                    if (curNumber.length >= COMPARABLE_PHONE_NUMBER_LENGTH) {
-//                                        if (curNumber.substring(curNumber.length - COMPARABLE_PHONE_NUMBER_LENGTH) == normalizedNumber.substring(
-//                                                normalizedNumber.length - COMPARABLE_PHONE_NUMBER_LENGTH
-//                                            )
-//                                        ) {
-//                                            contactsNumbersMap[number] = contact.getNameToDisplay()
-//                                            return@firstOrNull true
-//                                        }
-//                                    }
-//                                }
-//                                false
-//                            }?.name ?: number
-//                        }
-//                    }
-//                }
-
                 var contact: Contact? = null
                 if (number != null) {
                     if (contactsMap.containsKey(number)) {
                         contact = contactsMap[number]!!
                     } else {
-                        contact = contacts.firstOrNull { it.doesContainPhoneNumber(number) }
+                        contact = contacts.firstOrNull { it.doesContainPhoneNumber(number) } //contacts.firstOrNull { it.doesHavePhoneNumber(number) }
                         if (contact != null) contactsMap[number] = contact
                     }
                 }
@@ -246,28 +236,11 @@ class RecentsHelper(private val context: Context) {
                     if (contact != null) name = contact.getNameToDisplay()
                 }
 
-                if (name!!.isEmpty() || name == "-1") {
+                if (name.isEmpty() || name == "-1") {
                     name = context.getString(R.string.unknown)
                 }
 
-                var isVoiceMail = false
-                if (name == number) {
-                    @SuppressLint("MissingPermission")
-                    if (context.hasPermission(PERMISSION_READ_PHONE_STATE)) {
-                        try {
-                            val telecomManager = context.telecomManager
-                            telecomManager.callCapablePhoneAccounts.forEachIndexed { _, account ->
-                                val phoneAccount = telecomManager.getPhoneAccount(account)
-                                val voiceMailNumber = telecomManager.getVoiceMailNumber(phoneAccount.accountHandle)
-                                if (voiceMailNumber == number) {
-//                                    name = context.getString(R.string.voicemail)
-                                    isVoiceMail = true
-                                }
-                            }
-                        } catch (ignored: Exception) {
-                        }
-                    }
-                }
+                val isVoiceMail = if (name == number)  voiceMailNumbers.contains(number) else false
 
                 var photoUri = cursor.getStringValue(Calls.CACHED_PHOTO_URI).orEmpty()
                 if (photoUri.isEmpty() && !number.isNullOrEmpty()) {
@@ -316,6 +289,7 @@ class RecentsHelper(private val context: Context) {
                         }
                     }
                 }
+                val simColor = accountIdToSimColorMap[accountId] ?: context.config.simIconsColors[0]
 
                 var specificNumber = ""
                 var specificType = ""
@@ -348,6 +322,8 @@ class RecentsHelper(private val context: Context) {
                     contactID = contact.id
                 }
 
+                val blockReason = if (isQPlus()) cursor.getIntValueOrNull(Calls.BLOCK_REASON) ?: 0 else 0
+
                 recentCalls.add(
                     RecentCall(
                         id = id,
@@ -361,12 +337,14 @@ class RecentsHelper(private val context: Context) {
                         duration = duration,
                         type = type,
                         simID = simID,
+                        simColor = simColor,
                         specificNumber = specificNumber,
                         specificType = specificType,
                         isUnknownNumber = isUnknownNumber,
                         contactID = contactID,
                         features = features,
-                        isVoiceMail = isVoiceMail
+                        isVoiceMail = isVoiceMail,
+                        blockReason = blockReason
                     )
                 )
 
@@ -382,10 +360,28 @@ class RecentsHelper(private val context: Context) {
             } while (cursor.moveToNext() && recentCalls.size < queryLimit)
         }
 
-        val blockedNumbers = context.getBlockedNumbers()
-
-        return if (context.config.showBlockedNumbers) recentCalls else
+        return if (context.config.showBlockedNumbers) recentCalls
+        else {
+            val blockedNumbers = context.getBlockedNumbers()
             recentCalls.filter { !context.isNumberBlocked(it.phoneNumber, blockedNumbers) }
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun loadVoiceMailNumbers(): List<String> {
+        return if (context.hasPermission(PERMISSION_READ_PHONE_STATE)) {
+            try {
+                context.telecomManager.callCapablePhoneAccounts.mapNotNull { account ->
+                    context.telecomManager.getVoiceMailNumber(
+                        context.telecomManager.getPhoneAccount(account).accountHandle
+                    )
+                }
+            } catch (_: Exception) {
+                emptyList()
+            }
+        } else {
+            emptyList()
+        }
     }
 
     fun removeRecentCalls(ids: List<Int>, callback: () -> Unit) {
@@ -454,7 +450,7 @@ class RecentsHelper(private val context: Context) {
                 contentUri, values,
                 where.toString(), arrayOf(Calls.MISSED_TYPE.toString())
             )
-        } catch (ignored: IllegalArgumentException) {
+        } catch (_: IllegalArgumentException) {
         }
     }
 

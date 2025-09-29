@@ -29,69 +29,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/settings_purchase_thank_you_holder"
+            <com.goodwy.commons.views.PurchaseThankYouItem
+                android:id="@+id/settingsPurchaseThankYouHolder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/medium_margin"
-                android:background="?attr/selectableItemBackground"
-                android:paddingEnd="@dimen/normal_margin">
-
-                <ImageView
-                    android:id="@+id/purchase_logo"
-                    android:layout_width="@dimen/app_logo"
-                    android:layout_height="@dimen/app_logo"
-                    android:layout_marginStart="@dimen/section_margin"
-                    android:layout_marginTop="@dimen/normal_margin"
-                    android:layout_marginBottom="@dimen/normal_margin"
-                    android:background="@drawable/button_white_bg"
-                    android:elevation="8dp"
-                    android:padding="10dp"
-                    android:src="@drawable/ic_plus_support"
-                    android:tint="@color/color_primary"
-                    android:contentDescription="@string/donate"
-                    tools:ignore="UseAppTint"/>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/section_margin"
-                    android:layout_toEndOf="@+id/purchase_logo"
-                    android:layout_centerVertical="true">
-
-                    <com.goodwy.commons.views.MyTextView
-                        android:id="@+id/settings_purchase_thank_you"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/action_support_project"/>
-
-                    <com.goodwy.commons.views.MyTextView
-                        android:id="@+id/about_app_version"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/settings_purchase_thank_you"
-                        android:layout_marginTop="@dimen/tiny_margin"
-                        android:alpha="0.6"
-                        android:text="@string/pref_pay_summary"
-                        android:textSize="12sp"/>
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/moreButton"
-                        style="@style/AppTheme.Button.Chip"
-                        android:layout_width="wrap_content"
-                        android:layout_height="20dp"
-                        android:layout_below="@+id/about_app_version"
-                        android:layout_marginTop="@dimen/medium_margin"
-                        android:alpha="0.4"
-                        android:background="@drawable/button_gray_bg"
-                        android:saveEnabled="false"
-                        android:text="@string/learn_more"
-                        android:textSize="10sp"
-                        android:textAllCaps="true"
-                        android:textColor="@color/default_text_color"
-                        tools:ignore="SmallSp"/>
-                </RelativeLayout>
-            </RelativeLayout>
+                android:layout_marginTop="@dimen/medium_margin"/>
 
             <TextView
                 android:id="@+id/settings_appearance_label"
@@ -948,6 +890,41 @@
                             style="@style/SettingsSwitchStyle"
                             android:text="@string/show_incoming_calls_full_screen"
                             app:switchPadding="@dimen/bigger_margin"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/settingsKeepCallsInPopUpHolder"
+                        style="@style/SettingsHolderSwitchStyle">
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settingsKeepCallsInPopUpLabel"
+                            style="@style/SettingsTextLabelStyle"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/settingsKeepCallsInPopUpFaq"
+                            android:text="@string/keep_calls_in_popup" />
+
+                        <ImageView
+                            android:id="@+id/settingsKeepCallsInPopUpFaq"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:padding="4dp"
+                            android:layout_marginLeft="@dimen/small_margin"
+                            android:layout_marginRight="@dimen/small_margin"
+                            android:layout_centerVertical="true"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:layout_toStartOf="@+id/settingsKeepCallsInPopUp"
+                            android:src="@drawable/ic_question_round"
+                            android:contentDescription="@string/keep_calls_in_popup" />
+
+                        <com.goodwy.commons.views.MyMaterialSwitch
+                            android:id="@+id/settingsKeepCallsInPopUp"
+                            style="@style/SettingsSwitchStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            app:switchPadding="@dimen/bigger_margin" />
                     </RelativeLayout>
 
                     <RelativeLayout

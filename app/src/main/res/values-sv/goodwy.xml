@@ -6,8 +6,6 @@
     <string name="missed_call_g">Missat samtal</string>
     <string name="missed_calls_g">Missade samtal</string>
     <string name="missed_call_notifications_g">Aviseringar om missade samtal</string>
-    <string name="call_notification_channel_high_priority_g">Aviseringar om samtal med hög prioritet</string>
-    <string name="call_notification_channel_g">Samtalsaviseringar</string>
     <string name="dialpad_preferences">Inställningar för knappsats</string>
     <string name="call_start_end_vibration">Vibrera när samtalet börjar och slutar</string>
 

@@ -1,40 +1,39 @@
 [versions]
 #jetbrains
-kotlin = "1.9.25"
-kotlinxSerializationJson = "1.6.3"
+geocoderVersion = "3.14"
+kotlin = "2.2.20"
+kotlinxSerializationJson = "1.9.0"
 #KSP
-ksp = "1.9.25-1.0.20"
+ksp = "2.2.10-2.0.2"
 #Detekt
-detekt = "1.23.3"
+detekt = "1.23.8"
+detektCompose = "0.4.27"
 #Eventbus
 eventbus = "3.3.1"
 #Gradle
-gradlePlugins-agp = "8.9.0"
+gradlePlugins-agp = "8.11.1"
 #Other
-indicatorFastScroll = "e37b5b2ad6"
+indicatorFastScroll = "fe6ddbc316"
 autofitTextView = "0.2.1"
-geocoderVersion = "3.1"
-libphonenumberVersion = "9.0.1"
+libphonenumberVersion = "9.0.14"
 #Goodwy
-right-commons = "5d903c6c31"
+right-commons = "0ffff5dd21"
 badger = "1.1.22"
-androidx-lifecycle = "2.8.6"
+androidx-lifecycle = "2.8.7"
 behavioRule = "1.0.1"
 rxAnimation = "2.1.1"
 rxJava3 = "3.1.5"
-room = "2.6.1"
+room = "2.7.2"
 swipeToActionLayout = "bd1eb3c8a3"
 #build
 app-build-compileSDKVersion = "34"
 app-build-targetSDK = "34"
-app-build-minimumSDK = "23"
+app-build-minimumSDK = "26"
 app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
-#versioning
-app-version-appId = "com.goodwy.dialer"
-app-version-versionCode = "620"
-app-version-versionName = "6.2.0"
 [libraries]
+#Compose
+compose-detekt = { module = "io.nlopez.compose.rules:detekt", version.ref = "detektCompose" }
 #EventBus
 eventbus = { module = "org.greenrobot:eventbus", version.ref = "eventbus" }
 #Kotlin

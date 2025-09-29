@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.graphics.*
-import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
 import android.graphics.drawable.RippleDrawable
@@ -108,8 +107,6 @@ class CallActivity : SimpleActivity() {
 
             if (configBackgroundCallScreen == BLACK_BACKGROUND) {
                 binding.callHolder.setBackgroundColor(Color.BLACK)
-            } else {
-                binding.callHolder.setBackgroundColor(resources.getColor(R.color.default_call_background))
             }
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
@@ -985,9 +982,9 @@ class CallActivity : SimpleActivity() {
                 } else callerDescription.beGone()
             } else {
                 callerDescription.beGone()
-                val country = if (number.startsWith("+")) getCountryByNumber(number) else ""
+                val country = number.getCountryByNumber()
                 if (country != "") {
-                    callerNumber.text = formatterUnicodeWrap(country)//country
+                    callerNumber.text = formatterUnicodeWrap(country)
                 } else callerNumber.beGone()
             }
 
@@ -1042,7 +1039,7 @@ class CallActivity : SimpleActivity() {
                         }
                         true
                     }
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    if (isQPlus()) {
                         popupMenu.setForceShowIcon(true)
                     }
                     popupMenu.show()
@@ -1051,7 +1048,7 @@ class CallActivity : SimpleActivity() {
                         for (index in 0 until this.size) {
                             val item = this[index]
 
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            if (isQPlus()) {
                                 item.icon!!.colorFilter = BlendModeColorFilter(
                                     getProperTextColor(), BlendMode.SRC_IN
                                 )
@@ -1157,7 +1154,6 @@ class CallActivity : SimpleActivity() {
             newTimer.title = callContact!!.name
             newTimer.label = callContact!!.number
             newTimer.seconds = duration
-            newTimer.vibrate = true
             timerHelper.insertOrUpdateTimer(newTimer)
             EventBus.getDefault().post(TimerEvent.Start(1, duration.secondsToMillis))
         }
@@ -1184,15 +1180,17 @@ class CallActivity : SimpleActivity() {
     @SuppressLint("MissingPermission")
     private fun checkCalledSIMCard() {
         try {
-            val accounts = telecomManager.callCapablePhoneAccounts
-            if (accounts.size > 1) {
-                accounts.forEachIndexed { index, account ->
-                    if (account == CallManager.getPrimaryCall()?.details?.accountHandle) {
+            val simLabels = getAvailableSIMCardLabels()
+            if (simLabels.size > 1) {
+                simLabels.forEachIndexed { index, sim ->
+                    if (sim.handle == CallManager.getPrimaryCall()?.details?.accountHandle) {
                         binding.apply {
-                            val simId = "${index + 1}"
-                            callSimId.text = simId
+                            callSimId.text = sim.id.toString()
                             callSimId.beVisible()
                             callSimImage.beVisible()
+                            val simColor = sim.color
+                            callSimId.setTextColor(simColor.getContrastColor())
+                            callSimImage.applyColorFilter(simColor)
                         }
 
                         val acceptDrawableId = when (index) {
@@ -1209,16 +1207,20 @@ class CallActivity : SimpleActivity() {
                     }
                 }
             }
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
     }
 
     private fun updateCallState(call: Call) {
+        val callDetails = call.details
+        val connectTimeMillis: Long = callDetails.connectTimeMillis
+        val isBusy = connectTimeMillis.toInt() == 0
+
         val state = call.getStateCompat()
         when (state) {
             Call.STATE_RINGING -> callRinging()
             Call.STATE_ACTIVE -> callStarted()
-            Call.STATE_DISCONNECTED -> endCall()
+            Call.STATE_DISCONNECTED -> endCall(isBusy = isBusy)
             Call.STATE_CONNECTING, Call.STATE_DIALING -> initOutgoingCallUI()
             Call.STATE_SELECT_PHONE_ACCOUNT -> showPhoneAccountPicker()
         }
@@ -1226,6 +1228,7 @@ class CallActivity : SimpleActivity() {
         val statusTextId = when (state) {
             Call.STATE_RINGING -> R.string.is_calling
             Call.STATE_CONNECTING, Call.STATE_DIALING -> R.string.dialing
+            Call.STATE_DISCONNECTED -> if (isBusy) R.string.busy else 0
             else -> 0
         }
 
@@ -1278,7 +1281,7 @@ class CallActivity : SimpleActivity() {
             }
 
             // A second call has been received but not yet accepted
-            if (call!!.getStateCompat() == Call.REJECT_REASON_UNWANTED) {
+            if (call.getStateCompat() == Call.REJECT_REASON_UNWANTED) {
                 binding.apply {
                     ongoingCallHolder.beGone()
                     incomingCallHolder.beVisible()
@@ -1360,7 +1363,8 @@ class CallActivity : SimpleActivity() {
 
             var drawable: Drawable? = null
             if (configBackgroundCallScreen == BLUR_AVATAR || configBackgroundCallScreen == AVATAR) {
-                val avatar = if (!isConference) callContactAvatarHelper.getCallContactAvatar(contact.photoUri, false) else null
+                val avatar =
+                    if (!isConference) callContactAvatarHelper.getCallContactAvatar(contact.photoUri, false) else null
                 if (avatar != null) {
                     val bg = when (configBackgroundCallScreen) {
                         BLUR_AVATAR -> BlurFactory.fileToBlurBitmap(avatar, this, 0.6f, 5f)
@@ -1374,10 +1378,6 @@ class CallActivity : SimpleActivity() {
                         val aspectRatioNotZero = if (aspectRatio == 0) 1 else aspectRatio
                         drawable = bg.cropCenter(bg.width / aspectRatioNotZero, bg.height)?.toDrawable(resources)
                     }
-                } else {
-//                    val bg = BlurFactory.fileToBlurBitmap(resources.getDrawable(R.drawable.button_gray_bg, theme), this, 0.6f, 25f)
-//                    drawable = BitmapDrawable(resources, bg)
-                    binding.callHolder.setBackgroundColor(resources.getColor(R.color.default_call_background))
                 }
             }
 
@@ -1422,7 +1422,7 @@ class CallActivity : SimpleActivity() {
         callDurationHandler.removeCallbacks(updateCallDurationTask)
         callDurationHandler.post(updateCallDurationTask)
         maybePerformCallHapticFeedback(binding.callerNameLabel)
-        if (config.flashForAlerts) MyCameraImpl.newInstance(this).toggleSOS()
+//        if (config.flashForAlerts) MyCameraImpl.newInstance(this).toggleSOS()
     }
 
     private fun showPhoneAccountPicker() {
@@ -1433,19 +1433,20 @@ class CallActivity : SimpleActivity() {
         }
     }
 
-    private fun endCall(rejectWithMessage: Boolean = false, textMessage: String? = null) {
+    private fun endCall(rejectWithMessage: Boolean = false, textMessage: String? = null, isBusy: Boolean = false) {
         CallManager.reject(rejectWithMessage, textMessage)
-        disableProximitySensor()
         audioRouteChooserDialog?.dismissAllowingStateLoss()
 
+        if (isBusy) toast(R.string.busy)
+
         if (isCallEnded) {
-            finishAndRemoveTask()
+            safeFinishAndRemoveTask()
             return
         }
 
         try {
             audioManager.mode = AudioManager.MODE_NORMAL
-        } catch (ignored: Exception) {
+        } catch (_: Exception) {
         }
 
         isCallEnded = true
@@ -1456,18 +1457,31 @@ class CallActivity : SimpleActivity() {
                 @SuppressLint("SetTextI18n")
                 val label = "${callDuration.getFormattedDuration()} (${getString(R.string.call_ended)})"
                 binding.callStatusLabel.text = label
-                finishAndRemoveTask()
+                safeFinishAndRemoveTask()
                 if (phoneState is TwoCalls) startActivity(Intent(this, CallActivity::class.java))
             } else {
                 disableAllActionButtons()
                 binding.callStatusLabel.text = getString(R.string.call_ended)
                 if (phoneState is TwoCalls) {
-                    finishAndRemoveTask()
+                    safeFinishAndRemoveTask()
                     startActivity(Intent(this, CallActivity::class.java))
                 } else finish()
             }
+            if (phoneState is SingleCall) disableProximitySensor()
         }
         maybePerformCallHapticFeedback(binding.callerNameLabel)
+    }
+
+    private fun safeFinishAndRemoveTask() {
+        try {
+            if (intent != null) {
+                finishAndRemoveTask()
+            } else {
+                finish()
+            }
+        } catch (_: Exception) {
+            finish()
+        }
     }
 
     private val callCallback = object : CallManagerListener {
@@ -1514,14 +1528,10 @@ class CallActivity : SimpleActivity() {
             )
         }
 
-        if (isOreoPlus()) {
-            (getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager).requestDismissKeyguard(this, null)
-        } else {
-            window.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD)
-        }
+        (getSystemService(KEYGUARD_SERVICE) as KeyguardManager).requestDismissKeyguard(this, null)
 
         try {
-            val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+            val powerManager = getSystemService(POWER_SERVICE) as PowerManager
             screenOnWakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "com.goodwy.dialer:full_wake_lock")
             screenOnWakeLock!!.acquire(5 * 1000L)
         } catch (_: Exception) {
@@ -1530,7 +1540,7 @@ class CallActivity : SimpleActivity() {
 
     private fun enableProximitySensor() {
         if (!config.disableProximitySensor && (proximityWakeLock == null || proximityWakeLock?.isHeld == false)) {
-            val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+            val powerManager = getSystemService(POWER_SERVICE) as PowerManager
             proximityWakeLock = powerManager.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, "com.goodwy.dialer:wake_lock")
             proximityWakeLock!!.acquire(60 * MINUTE_SECONDS * 1000L)
         }

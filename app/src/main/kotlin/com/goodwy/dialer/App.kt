@@ -1,7 +1,5 @@
 package com.goodwy.dialer
 
-import android.app.NotificationManager
-import android.content.Context
 import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
@@ -11,6 +9,7 @@ import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.goodwy.commons.RightApp
 import com.goodwy.commons.extensions.isRuStoreInstalled
+import com.goodwy.commons.extensions.notificationManager
 import com.goodwy.commons.extensions.showErrorToast
 import com.goodwy.commons.helpers.rustore.RuStoreModule
 import com.goodwy.dialer.extensions.*
@@ -55,7 +54,12 @@ class App : RightApp(), LifecycleObserver {
             val runningTimers = timers.filter { it.state is TimerState.Running }
             runningTimers.forEach { timer ->
                 if (countDownTimers[timer.id] == null) {
-                    EventBus.getDefault().post(TimerEvent.Start(timer.id!!, (timer.state as TimerState.Running).tick))
+                    EventBus.getDefault().post(
+                        TimerEvent.Start(
+                            timerId = timer.id!!,
+                            duration = (timer.state as TimerState.Running).tick
+                        )
+                    )
                 }
             }
         }
@@ -104,8 +108,7 @@ class App : RightApp(), LifecycleObserver {
     fun onMessageEvent(event: TimerEvent.Finish) {
         timerHelper.getTimer(event.timerId) { timer ->
             val pendingIntent = getOpenTimerTabIntent(event.timerId)
-            val notification = getTimerNotification(timer, pendingIntent, false)
-            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            val notification = getTimerNotification(timer, pendingIntent)
 
             try {
                 notificationManager.notify(event.timerId, notification)
@@ -123,7 +126,10 @@ class App : RightApp(), LifecycleObserver {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: TimerEvent.Pause) {
         timerHelper.getTimer(event.timerId) { timer ->
-            updateTimerState(event.timerId, TimerState.Paused(event.duration, (timer.state as TimerState.Running).tick))
+            updateTimerState(
+                event.timerId,
+                TimerState.Paused(event.duration, (timer.state as TimerState.Running).tick)
+            )
             countDownTimers[event.timerId]?.cancel()
         }
     }

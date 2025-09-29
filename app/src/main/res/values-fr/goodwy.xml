@@ -6,8 +6,6 @@
     <string name="missed_call_g">Appel manqué</string>
     <string name="missed_calls_g">Appels manqués</string>
     <string name="missed_call_notifications_g">Notifications d’appels manqués</string>
-    <string name="call_notification_channel_high_priority_g">Notifications d’appel haute priorité</string>
-    <string name="call_notification_channel_g">Notifications d’appel</string>
     <string name="dialpad_preferences">Préférences du pavé numérique</string>
     <string name="call_start_end_vibration">Vibreur lorsque votre appel est en début et en fin</string>
 

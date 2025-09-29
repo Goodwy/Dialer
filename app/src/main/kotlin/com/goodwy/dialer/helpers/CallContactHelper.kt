@@ -11,7 +11,6 @@ import com.goodwy.commons.helpers.PERMISSION_READ_PHONE_STATE
 import com.goodwy.commons.helpers.ensureBackgroundThread
 import com.goodwy.dialer.R
 import com.goodwy.dialer.extensions.config
-import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.isConference
 import com.goodwy.dialer.models.CallContact
 
