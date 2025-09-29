@@ -1,12 +1,10 @@
 package com.goodwy.dialer.adapters
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.provider.CallLog.Calls
 import android.util.TypedValue
 import android.view.*
 import android.widget.PopupMenu
-import androidx.annotation.RequiresApi
 import com.goodwy.commons.adapters.MyRecyclerViewListAdapter
 import com.goodwy.commons.dialogs.ConfirmationDialog
 import com.goodwy.commons.extensions.*
@@ -33,12 +31,13 @@ class CallHistoryAdapter(
     private lateinit var outgoingCallText: String
     private lateinit var incomingCallText: String
     private lateinit var incomingMissedCallText: String
+    private lateinit var blockedCallText: String
     private var fontSize: Float = activity.getTextSize()
     private val areMultipleSIMsAvailable = activity.areMultipleSIMsAvailable()
     private val missedCallColor = resources.getColor(R.color.red_missed)
 
     private val colorSimIcons = activity.config.colorSimIcons
-    private val simIconsColors = activity.config.simIconsColors
+    private val cachedSimColors = HashMap<Int, Int>()
 
     init {
         initString()
@@ -61,7 +60,7 @@ class CallHistoryAdapter(
 
     override fun getSelectableItemCount() = currentList.filterIsInstance<RecentCall>().size
 
-    override fun getIsItemSelectable(position: Int) = currentList[position] is RecentCall
+    override fun getIsItemSelectable(position: Int) = currentList.getOrNull(position) is RecentCall
 
     override fun getItemSelectionKey(position: Int) = currentList.getOrNull(position)?.getItemId()
 
@@ -87,7 +86,6 @@ class CallHistoryAdapter(
         return viewHolder
     }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val callRecord = currentList[position]
         if (holder is RecentCallViewHolder)  holder.bind(callRecord as RecentCall)
@@ -103,6 +101,7 @@ class CallHistoryAdapter(
         outgoingCallText = resources.getString(R.string.outgoing_call)
         incomingCallText = resources.getString(R.string.incoming_call)
         incomingMissedCallText = resources.getString(R.string.missed_call)
+        blockedCallText = resources.getString(R.string.blocked_call)
     }
 
     private fun askConfirmRemove() {
@@ -142,7 +141,7 @@ class CallHistoryAdapter(
         submitList(newItems)
     }
 
-    fun getSelectedItems() = currentList.filterIsInstance<RecentCall>()
+    private fun getSelectedItems() = currentList.filterIsInstance<RecentCall>()
         .filter { selectedKeys.contains(it.getItemId()) }
 
     private fun showPopupMenu(view: View, call: RecentCall) {
@@ -205,15 +204,7 @@ class CallHistoryAdapter(
                 itemRecentsSimId.beVisibleIf(areMultipleSIMsAvailable)
                 if (areMultipleSIMsAvailable) {
                     val simColor = if (!colorSimIcons) textColor
-                    else {
-                        when (call.simID) {
-                            1 -> simIconsColors[1]
-                            2 -> simIconsColors[2]
-                            3 -> simIconsColors[3]
-                            4 -> simIconsColors[4]
-                            else -> simIconsColors[0]
-                        }
-                    }
+                                else getAdjustedSimColor(call.simColor)
                     itemRecentsSimImage.applyColorFilter(simColor)
                     itemRecentsSimImage.alpha = if (!colorSimIcons) 0.6f else 1f
                     itemRecentsSimId.setTextColor(simColor.getContrastColor())
@@ -234,8 +225,10 @@ class CallHistoryAdapter(
                     Calls.FEATURES_WIFI -> " (Wi-Fi)"
                     else -> ""
                 }
+                val isBlockedCall = call.blockReason != 0
                 itemRecentsTypeName.apply {
-                    text = type + features
+                    @SuppressLint("SetTextI18n")
+                    text = if (isBlockedCall) blockedCallText else type + features
                     setTextColor(if (call.type == Calls.MISSED_TYPE) missedCallColor else textColor)
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
                 }
@@ -244,6 +237,12 @@ class CallHistoryAdapter(
                     showPopupMenu(overflowMenuAnchor, call)
                 }
             }
+        }
+    }
+
+    private fun getAdjustedSimColor(simColor: Int): Int {
+        return cachedSimColors.getOrPut(simColor) {
+            simColor
         }
     }
 

@@ -8,3 +8,5 @@
 /captures
 keystore.jks
 keystore.properties
+fastlane/report.xml
+.kotlin/

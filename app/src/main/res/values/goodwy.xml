@@ -6,8 +6,6 @@
     <string name="missed_call_g">Missed call</string>
     <string name="missed_calls_g">Missed calls</string>
     <string name="missed_call_notifications_g">Missed call notifications</string>
-    <string name="call_notification_channel_high_priority_g">Call notifications high priority</string>
-    <string name="call_notification_channel_g">Call notifications</string>
     <string name="call_start_end_vibration">Vibrate when your call starts and ends</string>
     <string name="show_recent_calls">Show recent calls</string>
     <string name="open_dialpad_when_call_from_another_app">Open the dialpad when you try to make a call from another app</string>
@@ -18,6 +16,9 @@
     <string name="call_button_style">Call button style</string>
     <string name="call_notes">Call notes</string>
     <string name="back_pressed_end_call">Back action ends the call</string>
+    <string name="keep_calls_in_popup">Keep calls in notifications</string>
+    <string name="keep_calls_in_popup_summary">After calls are answered, keep them in the notifications and are not displayed in full screen</string>
+    <string name="busy">Busy</string>
 
     <string name="call_using_same_sim">Prefer same SIM on which previous (last) call was made</string>
     <string name="answer_end_other_call">Answer &amp; end other call</string>

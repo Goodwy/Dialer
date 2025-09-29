@@ -20,17 +20,17 @@ class TimerHelper(val context: Context) {
         }
     }
 
-    fun tryGetTimer(timerId: Int, callback: (timer: Timer?) -> Unit) {
-        ensureBackgroundThread {
-            callback.invoke(timerDao.getTimer(timerId))
-        }
-    }
-
-    fun findTimers(seconds: Int, label: String, callback: (timers: List<Timer>) -> Unit) {
-        ensureBackgroundThread {
-            callback.invoke(timerDao.findTimers(seconds, label))
-        }
-    }
+//    fun tryGetTimer(timerId: Int, callback: (timer: Timer?) -> Unit) {
+//        ensureBackgroundThread {
+//            callback.invoke(timerDao.getTimer(timerId))
+//        }
+//    }
+//
+//    fun findTimers(seconds: Int, label: String, callback: (timers: List<Timer>) -> Unit) {
+//        ensureBackgroundThread {
+//            callback.invoke(timerDao.findTimers(seconds, label))
+//        }
+//    }
 
     fun insertOrUpdateTimer(timer: Timer, callback: (id: Long) -> Unit = {}) {
         ensureBackgroundThread {
@@ -46,10 +46,10 @@ class TimerHelper(val context: Context) {
         }
     }
 
-    fun deleteTimers(timers: List<Timer>, callback: () -> Unit = {}) {
-        ensureBackgroundThread {
-            timerDao.deleteTimers(timers)
-            callback.invoke()
-        }
-    }
+//    fun deleteTimers(timers: List<Timer>, callback: () -> Unit = {}) {
+//        ensureBackgroundThread {
+//            timerDao.deleteTimers(timers)
+//            callback.invoke()
+//        }
+//    }
 }

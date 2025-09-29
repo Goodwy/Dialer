@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="transparent_call_screen_g">شاشة مكالمة شفافة</string>
-    <string name="call_back_g">دعا</string>
+    <string name="call_back_g">إعادة الاتصال</string>
     <string name="call_back_person_g">اتصل مرة أخرى %s</string>
     <string name="missed_call_g">مكالمة فائتة</string>
     <string name="missed_calls_g">مكالمات</string>
     <string name="missed_call_notifications_g">إشعارات المكالمات الفائتة</string>
-    <string name="call_notification_channel_high_priority_g">أولوية عالية لإشعارات المكالمات</string>
-    <string name="call_notification_channel_g">إشعارات المكالمات</string>
     <string name="dialpad_preferences">تفضيلات لوحة الطلب</string>
     <string name="call_start_end_vibration">الاهتزاز عند بدء المكالمة وانتهائها</string>
 
@@ -82,6 +80,6 @@
         <item quantity="many">%d مكالمات فائتة</item>
         <item quantity="other">%d مكالمة فائتة</item>
     </plurals>
-    <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">رسالة</string>
+    <string name="missed_call_from">مكالمة فائتة من %s</string>
+    <string name="message">إرسال رسالة</string>
 </resources>

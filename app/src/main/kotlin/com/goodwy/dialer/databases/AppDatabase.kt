@@ -49,11 +49,11 @@ abstract class AppDatabase : RoomDatabase() {
                 db!!.TimerDao().insertOrUpdateTimer(
                     Timer(
                         id = null,
-                        seconds = config.timerSeconds,
+                        seconds = 600,
                         state = TimerState.Idle,
-                        vibrate = config.timerVibrate,
+                        vibrate = config.callVibration,
                         soundUri = config.timerSoundUri,
-                        soundTitle = config.timerSoundTitle,
+                        soundTitle = "",
                         title = config.timerTitle ?: "",
                         label = config.timerLabel ?: "",
                         description = config.timerDescription ?: "",

@@ -48,6 +48,14 @@ import java.util.Locale
 import kotlin.math.roundToInt
 import androidx.core.view.isGone
 import androidx.core.net.toUri
+import androidx.lifecycle.lifecycleScope
+import com.goodwy.commons.views.MyRecyclerView
+import com.goodwy.dialer.models.Events
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class DialpadActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityDialpadBinding::inflate)
@@ -67,16 +75,24 @@ class DialpadActivity : SimpleActivity() {
     private var recentsAdapter: RecentCallsAdapter? = null
     private var recentsHelper = RecentsHelper(this)
     private var isTalkBackOn = false
+    private var initSearch = true
 
     @SuppressLint("MissingSuperCall", "SetTextI18n")
+    @Suppress("LongMethod")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         binding.apply {
-            updateMaterialActivityViews(dialpadCoordinator, dialpadHolder, useTransparentNavigation = true, useTopSearchMenu = false)
+            updateMaterialActivityViews(
+                mainCoordinatorLayout = dialpadCoordinator,
+                nestedView = dialpadHolder,
+                useTransparentNavigation = true,
+                useTopSearchMenu = false
+            )
         }
         updateNavigationBarColor(getProperBackgroundColor())
+        EventBus.getDefault().register(this)
 
         if (checkAppSideloading()) {
             return
@@ -131,7 +147,9 @@ class DialpadActivity : SimpleActivity() {
         toneGeneratorHelper = ToneGeneratorHelper(this, DIALPAD_TONE_LENGTH_MS)
 
         binding.dialpadInput.apply {
-            if (config.formatPhoneNumbers) addTextChangedListener(PhoneNumberFormattingTextWatcher(Locale.getDefault().country))
+            if (config.formatPhoneNumbers) {
+                addTextChangedListener(PhoneNumberFormattingTextWatcher(Locale.getDefault().country))
+            }
             onTextChangeListener { dialpadValueChanged(it) }
             requestFocus()
             AutofitHelper.create(this@apply)
@@ -225,7 +243,12 @@ class DialpadActivity : SimpleActivity() {
         invalidateOptionsMenu()
 
         if (config.showRecentCallsOnDialpad) refreshItems()
-        binding.dialpadRecentsList.beVisibleIf(binding.dialpadInput.value.isEmpty() && config.showRecentCallsOnDialpad)
+
+        if (binding.dialpadInput.value.isEmpty()) {
+            binding.dialpadRecentsList.beVisibleIf(
+                binding.dialpadInput.value.isEmpty() && config.showRecentCallsOnDialpad
+            )
+        }
     }
 
     override fun onPause() {
@@ -899,6 +922,11 @@ class DialpadActivity : SimpleActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
+    }
+
     private fun copyNumber() {
         val clip = binding.dialpadInput.value
         copyToClipboard(clip)
@@ -910,7 +938,10 @@ class DialpadActivity : SimpleActivity() {
     }
 
     private fun checkDialIntent(): Boolean {
-        return if ((intent.action == Intent.ACTION_DIAL || intent.action == Intent.ACTION_VIEW) && intent.data != null && intent.dataString?.contains("tel:") == true) {
+        return if (
+            (intent.action == Intent.ACTION_DIAL || intent.action == Intent.ACTION_VIEW)
+            && intent.data != null && intent.dataString?.contains("tel:") == true
+        ) {
             val number = Uri.decode(intent.dataString).substringAfter("tel:")
             binding.dialpadInput.setText(number)
             binding.dialpadInput.setSelection(number.length)
@@ -1002,6 +1033,13 @@ class DialpadActivity : SimpleActivity() {
         binding.dialpadInput.setText("")
     }
 
+    private fun clearInputWithDelay() {
+        lifecycleScope.launch {
+            delay(1000)
+            clearInput()
+        }
+    }
+
     private fun gotContacts(newContacts: ArrayList<Contact>) {
         allContacts = newContacts
 
@@ -1025,17 +1063,12 @@ class DialpadActivity : SimpleActivity() {
             slideUp(view)
         }
         //Only works for system apps, CALL_PRIVILEGED and MODIFY_PHONE_STATE permissions are required
-        if (textFormat.length > 8 && textFormat.startsWith("*#*#") && textFormat.endsWith("#*#*")) {
+        if (len > 8 && textFormat.startsWith("*#*#") && textFormat.endsWith("#*#*")) {
             val secretCode = textFormat.substring(4, textFormat.length - 4)
-            if (isOreoPlus()) {
-                if (isDefaultDialer()) {
-                    getSystemService(TelephonyManager::class.java)?.sendDialerSpecialCode(secretCode)
-                } else {
-                    launchSetDefaultDialerIntent()
-                }
+            if (isDefaultDialer()) {
+                getSystemService(TelephonyManager::class.java)?.sendDialerSpecialCode(secretCode)
             } else {
-                val intent = Intent(SECRET_CODE_ACTION, "android_secret_code://$secretCode".toUri())
-                sendBroadcast(intent)
+                launchSetDefaultDialerIntent()
             }
             return
         }
@@ -1084,8 +1117,8 @@ class DialpadActivity : SimpleActivity() {
             showNumber = true,
             allowLongClick = false,
             itemClick = {
-                val contact = it as Contact
-                startCallWithConfirmationCheck(contact.getPrimaryNumber() ?: return@ContactsAdapter, contact.getNameToDisplay())
+                startCallWithConfirmationCheck(it as Contact)
+                if (config.showCallConfirmation) clearInputWithDelay()
             },
             profileIconClick = {
                 startContactDetailsIntent(it as Contact)
@@ -1093,17 +1126,38 @@ class DialpadActivity : SimpleActivity() {
             binding.dialpadList.adapter = this
         }
 
+        val filteredRecents = allRecentCalls
+            .filter {
+                it.name.contains(text, true) ||
+                    it.doesContainPhoneNumber(text) ||
+                    it.nickname.contains(text, true) ||
+                    it.company.contains(text, true) ||
+                    it.jobPosition.contains(text, true)
+            }
+            .sortedWith(
+                compareByDescending<RecentCall> { it.dayCode }
+                    .thenByDescending { it.name.startsWith(text, true) }
+                    .thenByDescending { it.startTS }
+            )
+
+        if (!initSearch) { //So that there is no adapter update on first launch
+            recentsAdapter?.updateItems(filteredRecents)
+        }
+        initSearch = false
+
         binding.dialpadAddNumber.beVisibleIf(binding.dialpadInput.value.isNotEmpty())
         binding.dialpadAddNumber.setTextColor(getProperPrimaryColor())
         binding.dialpadPlaceholder.beVisibleIf(filtered.isEmpty())
-        binding.dialpadList.beVisibleIf(filtered.isNotEmpty())
+        binding.dialpadList.beVisibleIf(filtered.isNotEmpty() && binding.dialpadInput.value.isNotEmpty())
         val areMultipleSIMsAvailable = areMultipleSIMsAvailable()
         binding.dialpadClearWrapper.dialpadClearCharHolder.beVisibleIf((binding.dialpadInput.value.isNotEmpty() && config.dialpadStyle != DIALPAD_IOS && config.dialpadStyle != DIALPAD_CONCEPT) || areMultipleSIMsAvailable)
         binding.dialpadRectWrapper.dialpadClearCharHolder.beVisibleIf(config.dialpadStyle == DIALPAD_CONCEPT)
         binding.dialpadRoundWrapper.dialpadClearCharIosHolder.beVisibleIf((binding.dialpadInput.value.isNotEmpty() && config.dialpadStyle == DIALPAD_IOS) || areMultipleSIMsAvailable)
         binding.dialpadInput.beVisibleIf(binding.dialpadInput.value.isNotEmpty())
-        binding.dialpadList.beVisibleIf(binding.dialpadInput.value.isNotEmpty())
-        binding.dialpadRecentsList.beVisibleIf(binding.dialpadInput.value.isEmpty() && config.showRecentCallsOnDialpad)
+        binding.dialpadRecentsList.beVisibleIf(
+            (binding.dialpadInput.value.isEmpty() && config.showRecentCallsOnDialpad)
+                || (binding.dialpadInput.value.isNotEmpty() && filteredRecents.isNotEmpty() && filtered.isEmpty())
+        )
         refreshMenuItems()
     }
 
@@ -1115,36 +1169,15 @@ class DialpadActivity : SimpleActivity() {
         }
     }
 
-    private fun initCall(number: String = binding.dialpadInput.value, handleIndex: Int, displayName: String = "") {
+    private fun initCall(number: String = binding.dialpadInput.value, handleIndex: Int, displayName: String? = null) {
         if (number.isNotEmpty()) {
-            val nameToDisplay = if (displayName != "") displayName else number
+            val nameToDisplay = displayName ?: number
             if (handleIndex != -1 && areMultipleSIMsAvailable()) {
-                //callContactWithSimWithConfirmationCheck(number, nameToDisplay, handleIndex == 0)
-                if (config.showCallConfirmation) {
-                    CallConfirmationDialog(this, nameToDisplay) {
-                        callContactWithSim(number, handleIndex == 0)
-                        if (config.dialpadClearWhenStartCall) binding.dialpadInput.setText("")
-                    }
-                } else {
-                    callContactWithSim(number, handleIndex == 0)
-                    if (config.dialpadClearWhenStartCall) binding.dialpadInput.setText("")
-                }
+                callContactWithSimWithConfirmationCheck(number, nameToDisplay, handleIndex == 0)
             } else {
-                //startCallWithConfirmationCheck(number, nameToDisplay)
-                if (config.showCallConfirmation) {
-                    CallConfirmationDialog(this, nameToDisplay) {
-                        startCallIntent(number)
-                        if (config.dialpadClearWhenStartCall) binding.dialpadInput.setText("")
-                    }
-                } else {
-                    startCallIntent(number)
-                    if (config.dialpadClearWhenStartCall) binding.dialpadInput.setText("")
-                }
+                startCallWithConfirmationCheck(number, nameToDisplay)
             }
-
-//            Handler().postDelayed({
-//                binding.dialpadInput.setText("")
-//            }, 1000)
+            if (config.dialpadClearWhenStartCall) clearInputWithDelay()
         } else {
             RecentsHelper(this).getRecentCalls(queryLimit = 1) {
                 val mostRecentNumber = it.firstOrNull()?.phoneNumber
@@ -1162,7 +1195,7 @@ class DialpadActivity : SimpleActivity() {
         if (binding.dialpadInput.value.length == 1) {
             val speedDial = speedDialValues.firstOrNull { it.id == id }
             if (speedDial?.isValid() == true) {
-                initCall(speedDial.number, -1, speedDial.displayName)
+                initCall(speedDial.number, -1, speedDial.getName(this))
                 return true
             } else {
                 ConfirmationDialog(this, getString(R.string.open_speed_dial_manage)) {
@@ -1222,7 +1255,11 @@ class DialpadActivity : SimpleActivity() {
         view.isClickable = true
         view.isLongClickable = true
         if (isTalkBackOn) {
-            view.setOnClickListener { dialpadPressed(char, view) }
+            view.setOnClickListener {
+                startDialpadTone(char)
+                dialpadPressed(char, view)
+                stopDialpadTone(char)
+            }
             view.setOnLongClickListener { performLongClick(view, char); true}
         }
         else view.setOnTouchListener { _, event ->
@@ -1288,20 +1325,36 @@ class DialpadActivity : SimpleActivity() {
         }
     }
 
-    private fun refreshItems() {
-        var recents = emptyList<RecentCall>()
-        try {
-            recents = config.parseRecentCallsCache()
-        } catch (_: Exception) {
+    private fun refreshItems(invalidate: Boolean = false, needUpdate: Boolean = false) {
+        if (invalidate) {
+            allRecentCalls = emptyList()
             config.recentCallsCache = ""
         }
 
-        if (recents.isNotEmpty()) {
-            gotRecents(recents)
-            refreshCallLog(loadAll = true)
-        } else {
+        if (binding.dialpadInput.value.isNotEmpty()) {
+            dialpadValueChanged(binding.dialpadInput.value)
+        } else if (needUpdate || config.needUpdateRecents) {
             refreshCallLog(loadAll = false) {
                 refreshCallLog(loadAll = true)
+            }
+        } else {
+            var recents = emptyList<RecentCall>()
+            if (!invalidate) {
+                try {
+                    recents = config.parseRecentCallsCache()
+                } catch (_: Exception) {
+                    config.recentCallsCache = ""
+                }
+            }
+
+            if (recents.isNotEmpty()) {
+                refreshCallLogFromCache(recents) {
+                    refreshCallLog(loadAll = true)
+                }
+            } else {
+                refreshCallLog(loadAll = false) {
+                    refreshCallLog(loadAll = true)
+                }
             }
         }
     }
@@ -1309,16 +1362,21 @@ class DialpadActivity : SimpleActivity() {
     private fun refreshCallLog(loadAll: Boolean = false, callback: (() -> Unit)? = null) {
         getRecentCalls(loadAll) {
             allRecentCalls = it
-            config.recentCallsCache = Gson().toJson(it.take(300))
             runOnUiThread { gotRecents(it) }
+            callback?.invoke()
+
+            config.recentCallsCache = Gson().toJson(it.take(RECENT_CALL_CACHE_SIZE))
 
             //Deleting notes if a call has already been deleted
             callerNotesHelper.removeCallerNotes(
                 it.map { recentCall -> recentCall.phoneNumber.numberForNotes()}
             )
-
-            callback?.invoke()
         }
+    }
+
+    private fun refreshCallLogFromCache(cache: List<RecentCall>, callback: (() -> Unit)? = null) {
+        gotRecents(cache)
+        callback?.invoke()
     }
 
     private fun getRecentCalls(loadAll: Boolean, callback: (List<RecentCall>) -> Unit) {
@@ -1423,10 +1481,10 @@ class DialpadActivity : SimpleActivity() {
                     val recentCall = it as RecentCall
                     if (config.showCallConfirmation) {
                         CallConfirmationDialog(this, recentCall.name) {
-                            launchCallIntent(recentCall.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
+                            callRecentNumber(recentCall)
                         }
                     } else {
-                        launchCallIntent(recentCall.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
+                        callRecentNumber(recentCall)
                     }
                 },
                 profileInfoClick = { recentCall ->
@@ -1458,8 +1516,23 @@ class DialpadActivity : SimpleActivity() {
             if (this.areSystemAnimationsEnabled) {
                 binding.dialpadRecentsList.scheduleLayoutAnimation()
             }
+
+            binding.dialpadRecentsList.endlessScrollListener = object : MyRecyclerView.EndlessScrollListener {
+                override fun updateTop() = Unit
+                override fun updateBottom() = refreshCallLog()
+            }
         } else {
             recentsAdapter?.updateItems(recents)
+        }
+    }
+
+    private fun callRecentNumber(recentCall: RecentCall) {
+        if (config.callUsingSameSim && recentCall.simID > 0) {
+            val sim = recentCall.simID == 1
+            callContactWithSim(recentCall.phoneNumber, sim)
+        }
+        else {
+            launchCallIntent(recentCall.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
         }
     }
 
@@ -1478,7 +1551,7 @@ class DialpadActivity : SimpleActivity() {
             RecentsHelper(this).removeAllRecentCalls(this) {
                 allRecentCalls = emptyList()
                 runOnUiThread {
-                    refreshItems()
+                    refreshItems(invalidate = true)
                 }
             }
         }
@@ -1496,5 +1569,11 @@ class DialpadActivity : SimpleActivity() {
             putExtra(KEY_PHONE, recentCall.phoneNumber)
             launchActivityIntent(this)
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun refreshCallLog(event: Events.RefreshCallLog) {
+        config.needUpdateRecents = true
+        refreshItems(needUpdate = true)
     }
 }

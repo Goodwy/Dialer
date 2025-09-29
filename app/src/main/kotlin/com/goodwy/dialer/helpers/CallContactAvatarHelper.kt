@@ -2,12 +2,12 @@ package com.goodwy.dialer.helpers
 
 import android.content.Context
 import android.graphics.*
-import android.net.Uri
 import android.provider.MediaStore
 import android.util.Size
 import com.goodwy.commons.helpers.isQPlus
 import com.goodwy.dialer.R
 import androidx.core.net.toUri
+import androidx.core.graphics.createBitmap
 
 class CallContactAvatarHelper(private val context: Context) {
     fun getCallContactAvatar(photoUri: String?, round: Boolean = true): Bitmap? {
@@ -31,7 +31,7 @@ class CallContactAvatarHelper(private val context: Context) {
     }
 
     fun getCircularBitmap(bitmap: Bitmap): Bitmap {
-        val output = Bitmap.createBitmap(bitmap.width, bitmap.width, Bitmap.Config.ARGB_8888)
+        val output = createBitmap(bitmap.width, bitmap.width)
         val canvas = Canvas(output)
         val paint = Paint()
         val rect = Rect(0, 0, bitmap.width, bitmap.height)

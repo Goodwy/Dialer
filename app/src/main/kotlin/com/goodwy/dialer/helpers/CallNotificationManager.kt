@@ -10,7 +10,6 @@ import android.view.View.VISIBLE
 import android.widget.RemoteViews
 import androidx.core.app.NotificationCompat
 import com.goodwy.commons.extensions.*
-import com.goodwy.commons.helpers.isOreoPlus
 import com.goodwy.commons.helpers.isSPlus
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.CallActivity
@@ -37,16 +36,17 @@ class CallNotificationManager(private val context: Context) {
             val callState = CallManager.getState()
             val isHighPriority = context.powerManager.isInteractive && callState == Call.STATE_RINGING && !forceLowPriority
             val channelId = if (isHighPriority) "right_dialer_call_high_priority" else "right_dialer_call"
-            if (isOreoPlus()) {
-                val importance = if (isHighPriority) NotificationManager.IMPORTANCE_HIGH else NotificationManager.IMPORTANCE_DEFAULT
-                val name = if (isHighPriority) context.getString(R.string.call_notification_channel_high_priority_g)
-                                else context.getString(R.string.call_notification_channel_g)
+            val importance = if (isHighPriority) NotificationManager.IMPORTANCE_HIGH else NotificationManager.IMPORTANCE_DEFAULT
+            val name = if (isHighPriority) {
+                context.getString(R.string.call_notification_channel_high_priority)
+            } else {
+                context.getString(R.string.call_notification_channel)
+            }
 
-                NotificationChannel(channelId, name, importance).apply {
-                    lockscreenVisibility = Notification.VISIBILITY_PUBLIC
-                    setSound(null, null)
-                    notificationManager.createNotificationChannel(this)
-                }
+            NotificationChannel(channelId, name, importance).apply {
+                lockscreenVisibility = Notification.VISIBILITY_PUBLIC
+                setSound(null, null)
+                notificationManager.createNotificationChannel(this)
             }
 
             val openAppIntent = CallActivity.getStartIntent(context)
@@ -73,11 +73,9 @@ class CallNotificationManager(private val context: Context) {
                 callerName += " - ${callContact.numberLabel}"
             }
 
-            var callerNumberType = ""
-            if (callContact.name == callContact.number) {
-                val country = if (callContact.number.startsWith("+")) getCountryByNumber(callContact.number) else ""
-                if (country != "") callerNumberType = country
-            } else callerNumberType = callContact.numberLabel
+            val callerNumberType = if (callContact.name == callContact.number) {
+                callContact.number.getCountryByNumber()
+            } else callContact.numberLabel
 
             val contentTextId = when (callState) {
                 Call.STATE_RINGING -> R.string.is_calling
@@ -144,16 +142,17 @@ class CallNotificationManager(private val context: Context) {
             val callState = CallManager.getState()
             val isHighPriority = context.powerManager.isInteractive && callState == Call.STATE_RINGING && !forceLowPriority
             val channelId = if (isHighPriority) "right_dialer_call_high_priority" else "right_dialer_call"
-            if (isOreoPlus()) {
-                val importance = if (isHighPriority) NotificationManager.IMPORTANCE_HIGH else NotificationManager.IMPORTANCE_DEFAULT
-                val name = if (isHighPriority) context.getString(R.string.call_notification_channel_high_priority_g)
-                else context.getString(R.string.call_notification_channel_g)
+            val importance = if (isHighPriority) NotificationManager.IMPORTANCE_HIGH else NotificationManager.IMPORTANCE_DEFAULT
+            val name = if (isHighPriority) {
+                context.getString(R.string.call_notification_channel_high_priority)
+            } else {
+                context.getString(R.string.call_notification_channel)
+            }
 
-                NotificationChannel(channelId, name, importance).apply {
-                    lockscreenVisibility = Notification.VISIBILITY_PUBLIC
-                    setSound(null, null)
-                    notificationManager.createNotificationChannel(this)
-                }
+            NotificationChannel(channelId, name, importance).apply {
+                lockscreenVisibility = Notification.VISIBILITY_PUBLIC
+                setSound(null, null)
+                notificationManager.createNotificationChannel(this)
             }
 
             val openAppIntent = CallActivity.getStartIntent(context)

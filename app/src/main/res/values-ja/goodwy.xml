@@ -6,8 +6,6 @@
     <string name="missed_call_g">不在着信</string>
     <string name="missed_calls_g">不在着信</string>
     <string name="missed_call_notifications_g">不在着信通知</string>
-    <string name="call_notification_channel_high_priority_g">通話通知の優先順位が高い</string>
-    <string name="call_notification_channel_g">コール通知</string>
     <string name="dialpad_preferences">ダイヤルパッドの環境設定</string>
     <string name="call_start_end_vibration">通話の開始時と終了時にバイブレーションする</string>
 

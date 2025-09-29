@@ -6,8 +6,6 @@
     <string name="missed_call_g">Chiamata persa</string>
     <string name="missed_calls_g">Chiamate perse</string>
     <string name="missed_call_notifications_g">Notifiche di chiamata senza risposta</string>
-    <string name="call_notification_channel_high_priority_g">Notifiche di chiamata ad alta priorità</string>
-    <string name="call_notification_channel_g">Notifiche di chiamata</string>
     <string name="dialpad_preferences">Preferenze della tastiera</string>
     <string name="call_start_end_vibration">Vibra all\'inizio e alla fine della chiamata</string>
 

@@ -6,8 +6,6 @@
     <string name="missed_call_g">മിസ്ഡ് കോൾ</string>
     <string name="missed_calls_g">മിസ്സഡ് കോള്</string>
     <string name="missed_call_notifications_g">മിസ്ഡ് കോൾ അറിയിപ്പുകൾ</string>
-    <string name="call_notification_channel_high_priority_g">കോൾ അറിയിപ്പുകൾ ഉയർന്ന മുൻഗണന</string>
-    <string name="call_notification_channel_g">കോൾ അറിയിപ്പുകൾ</string>
     <string name="dialpad_preferences">ഡയൽപാഡ് മുൻഗണനകൾ</string>
     <string name="call_start_end_vibration">നിങ്ങളുടെ കോൾ ആരംഭിക്കുമ്പോഴും അവസാനിക്കുമ്പോഴും വൈബ്രേറ്റ് ചെയ്യുക</string>
 

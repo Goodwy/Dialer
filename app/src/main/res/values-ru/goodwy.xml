@@ -6,8 +6,6 @@
     <string name="missed_call_g">Пропущенный звонок</string>
     <string name="missed_calls_g">Пропущенных звонков</string>
     <string name="missed_call_notifications_g">Уведомления о пропущенных звонках</string>
-    <string name="call_notification_channel_high_priority_g">Уведомления о звонках с высоким приоритетом</string>
-    <string name="call_notification_channel_g">Уведомления о звонках</string>
     <string name="call_start_end_vibration">Вибрация при начале и завершении звонка</string>
     <string name="show_recent_calls">Показывать недавние звонки</string>
     <string name="open_dialpad_when_call_from_another_app">При попытке совершить звонок из другого приложения открывать панель набора номера</string>
@@ -18,6 +16,9 @@
     <string name="call_button_style">Стиль кнопок звонка</string>
     <string name="call_notes">Заметки о звонках</string>
     <string name="back_pressed_end_call">Действие назад завершает вызов</string>
+    <string name="keep_calls_in_popup">Оставлять звонки в уведомлениях</string>
+    <string name="keep_calls_in_popup_summary">После ответа на звонки они остаются в уведомлениях и не отображаются в полноэкранном режиме</string>
+    <string name="busy">Занято</string>
 
     <string name="call_using_same_sim">Использовать ту же SIM-карту, на которую был сделан предыдущий (последний) звонок</string>
     <string name="answer_end_other_call">Ответить и завершить текущий вызов</string>

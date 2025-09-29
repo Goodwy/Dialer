@@ -6,8 +6,6 @@
     <string name="missed_call_g">Cuộc gọi nhỡ</string>
     <string name="missed_calls_g">Cuộc gọi nhỡ</string>
     <string name="missed_call_notifications_g">Thông báo cuộc gọi nhỡ</string>
-    <string name="call_notification_channel_high_priority_g">Thông báo cuộc gọi có mức độ ưu tiên cao</string>
-    <string name="call_notification_channel_g">Thông báo cuộc gọi</string>
     <string name="dialpad_preferences">Tùy chọn bàn phím số</string>
     <string name="call_start_end_vibration">Rung khi cuộc gọi của bạn bắt đầu và kết thúc</string>
 

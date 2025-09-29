@@ -17,8 +17,10 @@ import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.adapters.RecentCallsAdapter
 import com.goodwy.dialer.databinding.FragmentRecentsBinding
 import com.goodwy.dialer.extensions.*
+import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL_LIST
+import com.goodwy.dialer.helpers.RECENT_CALL_CACHE_SIZE
 import com.goodwy.dialer.helpers.RecentsHelper
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import com.goodwy.dialer.models.CallLogItem
@@ -71,24 +73,34 @@ class RecentsFragment(
         }
     }
 
-    override fun refreshItems(invalidate: Boolean, callback: (() -> Unit)?) {
+    override fun refreshItems(invalidate: Boolean, needUpdate: Boolean, callback: (() -> Unit)?) {
         if (invalidate) {
             allRecentCalls = emptyList()
-        }
-
-        var recents = emptyList<RecentCall>()
-        try {
-            recents = activity!!.config.parseRecentCallsCache()
-        } catch (_: Exception) {
             activity!!.config.recentCallsCache = ""
         }
 
-        if (recents.isNotEmpty()) {
-            gotRecents(recents)
-            refreshCallLog(loadAll = true)
-        } else {
+        if (needUpdate || !searchQuery.isNullOrEmpty() || activity!!.config.needUpdateRecents) {
             refreshCallLog(loadAll = false) {
                 refreshCallLog(loadAll = true)
+            }
+        } else {
+            var recents = emptyList<RecentCall>()
+            if (!invalidate) {
+                try {
+                    recents = activity!!.config.parseRecentCallsCache()
+                } catch (_: Exception) {
+                    activity!!.config.recentCallsCache = ""
+                }
+            }
+
+            if (recents.isNotEmpty()) {
+                refreshCallLogFromCache(recents) {
+                    refreshCallLog(loadAll = true)
+                }
+            } else {
+                refreshCallLog(loadAll = false) {
+                    refreshCallLog(loadAll = true)
+                }
             }
         }
     }
@@ -109,15 +121,19 @@ class RecentsFragment(
         ensureBackgroundThread {
             val fixedText = searchQuery!!.trim().replace("\\s+".toRegex(), " ")
             val recentCalls = allRecentCalls
+                .filterIsInstance<RecentCall>()
                 .filter {
-                    it is RecentCall && (it.name.contains(fixedText, true) ||
+                    it.name.contains(fixedText, true) ||
                         it.doesContainPhoneNumber(fixedText) ||
                         it.nickname.contains(fixedText, true) ||
                         it.company.contains(fixedText, true) ||
-                        it.jobPosition.contains(fixedText, true))
-                }.sortedByDescending {
-                    it is RecentCall && it.name.startsWith(fixedText, true)
-                } as List<RecentCall>
+                        it.jobPosition.contains(fixedText, true)
+                }
+                .sortedWith(
+                    compareByDescending<RecentCall> { it.dayCode }
+                        .thenByDescending { it.name.startsWith(fixedText, true) }
+                        .thenByDescending { it.startTS }
+                )
 
             prepareCallLog(recentCalls) {
                 activity?.runOnUiThread {
@@ -230,8 +246,8 @@ class RecentsFragment(
 
     private fun callRecentNumber(recentCall: RecentCall) {
         if (context.config.callUsingSameSim && recentCall.simID > 0) {
-            val sim = recentCall.simID == 1;
-            activity?.callContactWithSim(recentCall.phoneNumber, sim);
+            val sim = recentCall.simID == 1
+            activity?.callContactWithSim(recentCall.phoneNumber, sim)
         }
         else {
             activity?.launchCallIntent(recentCall.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
@@ -242,19 +258,25 @@ class RecentsFragment(
         getRecentCalls(loadAll) {
             allRecentCalls = it
             if (searchQuery.isNullOrEmpty()) {
-                context.config.recentCallsCache = Gson().toJson(it.take(300))
                 activity?.runOnUiThread { gotRecents(it) }
+                callback?.invoke()
+
+                context.config.recentCallsCache = Gson().toJson(it.take(RECENT_CALL_CACHE_SIZE))
             } else {
                 updateSearchResult()
+                callback?.invoke()
             }
 
             //Deleting notes if a call has already been deleted
             context.callerNotesHelper.removeCallerNotes(
                 it.map { recentCall -> recentCall.phoneNumber.numberForNotes()}
             )
-
-            callback?.invoke()
         }
+    }
+
+    private fun refreshCallLogFromCache(cache: List<RecentCall>, callback: (() -> Unit)? = null) {
+        gotRecents(cache)
+        callback?.invoke()
     }
 
     private fun getRecentCalls(loadAll: Boolean, callback: (List<RecentCall>) -> Unit) {
@@ -342,21 +364,21 @@ class RecentsFragment(
         )
     }
 
-    private fun groupCallsByDate(recentCalls: List<RecentCall>): MutableList<CallLogItem> {
-        val callLog = mutableListOf<CallLogItem>()
-        var lastDayCode = ""
-        for (call in recentCalls) {
-            val currentDayCode = call.getDayCode()
-            if (currentDayCode != lastDayCode) {
-                callLog += CallLogItem.Date(timestamp = call.startTS, dayCode = currentDayCode)
-                lastDayCode = currentDayCode
-            }
-
-            callLog += call
-        }
-
-        return callLog
-    }
+//    private fun groupCallsByDate(recentCalls: List<RecentCall>): MutableList<CallLogItem> {
+//        val callLog = mutableListOf<CallLogItem>()
+//        var lastDayCode = ""
+//        for (call in recentCalls) {
+//            val currentDayCode = call.dayCode
+//            if (currentDayCode != lastDayCode) {
+//                callLog += CallLogItem.Date(timestamp = call.startTS, dayCode = currentDayCode)
+//                lastDayCode = currentDayCode
+//            }
+//
+//            callLog += call
+//        }
+//
+//        return callLog
+//    }
 
     private fun findContactByCall(recentCall: RecentCall): Contact? {
         return (activity as MainActivity).cachedContacts

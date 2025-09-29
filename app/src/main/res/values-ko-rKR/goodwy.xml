@@ -6,8 +6,6 @@
     <string name="missed_call_g">부재중 전화</string>
     <string name="missed_calls_g">부재중 전화</string>
     <string name="missed_call_notifications_g">부재중 전화 알림</string>
-    <string name="call_notification_channel_high_priority_g">통화 알림 우선 순위가 높음</string>
-    <string name="call_notification_channel_g">통화 알림</string>
     <string name="call_start_end_vibration">통화가 시작 및 종료될 때 진동</string>
 
     <string name="dialpad_preferences">다이얼패드 기본 설정</string>

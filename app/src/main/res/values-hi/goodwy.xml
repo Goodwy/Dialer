@@ -6,8 +6,6 @@
     <string name="missed_call_g">छूटी कॉल</string>
     <string name="missed_calls_g">छूटी कॉल</string>
     <string name="missed_call_notifications_g">छूटी कॉल सूचनाएँ</string>
-    <string name="call_notification_channel_high_priority_g">कॉल सूचनाएँ उच्च प्राथमिकता</string>
-    <string name="call_notification_channel_g">कॉल सूचनाएँ</string>
     <string name="call_start_end_vibration">आपकी कॉल शुरू और खत्म होने पर वाइब्रेट करें</string>
 
     <string name="dialpad_preferences">डायलपैड प्राथमिकताएँ</string>

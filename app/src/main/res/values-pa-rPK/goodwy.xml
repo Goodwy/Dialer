@@ -6,8 +6,6 @@
     <string name="missed_call_g">مسڈ کال</string>
     <string name="missed_calls_g">مسڈ کالز</string>
     <string name="missed_call_notifications_g">مسڈ کال کی اطلاعات</string>
-    <string name="call_notification_channel_high_priority_g">کال کی اطلاعات اعلی ترجیح</string>
-    <string name="call_notification_channel_g">کال اطلاعات</string>
     <string name="dialpad_preferences">ڈائل پیڈ کی ترجیحات</string>
     <string name="call_start_end_vibration">آپ کی کال شروع اور ختم ہونے پر وائبریٹ کریں۔</string>
 
