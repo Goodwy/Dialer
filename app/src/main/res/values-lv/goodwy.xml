@@ -8,7 +8,7 @@
     <string name="missed_call_notifications_g">Missed call notifications</string>
     <string name="call_start_end_vibration">Vibrate when your call is start and end</string>
 
-    <string name="dialpad_preferences">Dialpad preferences</string>
+    <string name="dialpad_preferences">Zvanīšanas ekrāna iestatījumi</string>
     <string name="show_contact_thumbnails_g">Show contact thumbnails</string>
     <string name="hide_dialpad_letters_g">Hide dialpad letters</string>
     <string name="show_caller_description_g">Show additional caller information</string>
@@ -43,21 +43,25 @@
     <string name="faq_2_text_dialer_g">A long press on the call button will paste the clipboard contents. If you have already entered a number, long pressing the call button will copy the number to the clipboard.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Labais numura sastādītājs parāda tikai tās kontaktpersonas, kurām ir piesaistīts tālruņa numurs. Kontaktpersonas bez tālruņa numura lietotnē netiek rādītas.</string>
     <string name="answer_style">Answer style</string>
     <string name="buttons">Buttons</string>
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Outline slider</string>
     <string name="answer_slider_vertical">Vertical slider</string>
 
-    <string name="show_recent_calls">Rādīt nesenos zvanus</string>
-    <string name="open_dialpad_when_call_from_another_app">Kad mēģināt veikt zvanu no citas programmas, atveriet numuru sastādīšanas tastatūru</string>
+    <string name="show_recent_calls">Rādīt pēdējos zvanus</string>
+    <string name="open_dialpad_when_call_from_another_app">Mēģinot veikt zvanu no citas lietojumprogrammas, atveriet numura sastādīšanas tastatūru</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Tas var pasargāt jūs no ļaunprātīgas programmatūras, kas veic zvanus bez jūsu ziņas.</string>
-    <string name="number_of_recent_calls_displays">Parādītais pēdējo zvanu skaits</string>
+    <string name="number_of_recent_calls_displays">Parādīts pēdējo zvanu skaits</string>
     <string name="group_calls">Zvanu grupēšana</string>
     <string name="group_all_calls">Grupējiet visus zvanus, tiks parādīts tikai pēdējais zvans</string>
     <string name="call_button_style">Zvana pogas stils</string>
     <string name="call_notes">Zvanu piezīmes</string>
     <string name="back_pressed_end_call">Darbība Atpakaļ beidz zvanu</string>
+    <string name="keep_calls_in_popup_summary">Kad uz zvaniem tiek atbildēts, tie paliek jūsu paziņojumos un netiek rādīti pilnekrāna režīmā. Tas tiek darīts, lai izvairītos no citu lietotņu pārtraukšanas, piemēram, spēlējot spēli.</string>
+    <string name="busy">Aizņemts</string>
+    <string name="block_calls">Bloķēt zvanus</string>
     <string name="call_using_same_sim">Izmantojiet to pašu SIM karti, uz kuru tika veikts iepriekšējais (pēdējais) zvans</string>
     <string name="answer_end_other_call">Atbildiet uz pašreizējo zvanu un beidziet to</string>
     <string name="quick_answers">Ātrās atbildes</string>
@@ -74,5 +78,5 @@
         <item quantity="other">%d praleistų skambučių</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Ziņa</string>
+    <string name="keep_calls_in_popup">Atstājiet zvanus paziņojumos</string>
 </resources>

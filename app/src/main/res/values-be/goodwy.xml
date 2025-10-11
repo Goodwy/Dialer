@@ -6,11 +6,14 @@
     <string name="missed_call_g">Прапушчаны выклік</string>
     <string name="missed_calls_g">Прапушчаныя званкі</string>
     <string name="missed_call_notifications_g">Апавяшчэнні аб прапушчаных выкліках</string>
-    <string name="dialpad_preferences">Параметры кнопак набору</string>
+    <string name="dialpad_preferences">Настройкі экрана набору нумара</string>
     <string name="call_start_end_vibration">Вібрацыя пры пачатку і завяршэнні выкліку</string>
     <string name="call_notes">Ноты для званкоў</string>
     <string name="back_pressed_end_call">Дзеянне таму завяршае выклік</string>
 
+    <string name="keep_calls_in_popup_summary">Пасля адказу на выклікі яны застаюцца ў апавяшчэннях і не адлюстроўваюцца на ўвесь экран. Гэта зроблена для таго, каб не перарываць працу іншых прыкладанняў, напрыклад падчас гульні.</string>
+    <string name="busy">Занята</string>
+    <string name="block_calls">Блакіраваць званкі</string>
     <string name="call_using_same_sim">Выкарыстоўваць тую ж SIM-карту, на якую быў зроблены папярэдні (апошні) званок</string>
     <string name="show_contact_thumbnails_g">Паказаць мініяцюры кантактаў</string>
     <string name="hide_dialpad_letters_g">Схаваць літары панэлі набору</string>
@@ -77,5 +80,5 @@
         <item quantity="many">%d прапушчаных званкоў</item>
     </plurals>
     <string name="missed_call_from">Прапушчаны званок ад %s</string>
-    <string name="message">Паведамленне</string>
+    <string name="keep_calls_in_popup">Пакідаць званкі ў апавяшчэннях</string>
 </resources>

@@ -6,7 +6,7 @@
     <string name="missed_call_g">Missat samtal</string>
     <string name="missed_calls_g">Missade samtal</string>
     <string name="missed_call_notifications_g">Aviseringar om missade samtal</string>
-    <string name="dialpad_preferences">Inställningar för knappsats</string>
+    <string name="dialpad_preferences">Uppringningsskärminställningar</string>
     <string name="call_start_end_vibration">Vibrera när samtalet börjar och slutar</string>
 
     <string name="show_contact_thumbnails_g">Visa kontaktminiatyrer</string>
@@ -43,21 +43,25 @@
     <string name="faq_2_text_dialer_g">Långt tryck på samtalsknappen för att klistra in innehållet i urklipp. Om numret redan är inmatat kopierar ett långt tryck på samtalsknappen det till urklippet.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Höger uppringare visar bara kontakter som har ett telefonnummer kopplat till dem. Kontakter utan telefonnummer visas inte i appen.</string>
     <string name="answer_style">Svarsknappstil</string>
     <string name="buttons">Knappar</string>
     <string name="answer_slider">Slider</string>
     <string name="answer_slider_outline">Konturreglage</string>
     <string name="answer_slider_vertical">Vertikal skjutreglage</string>
 
-    <string name="show_recent_calls">Visa de senaste utlysningarna</string>
-    <string name="open_dialpad_when_call_from_another_app">När du försöker ringa ett samtal från en annan app öppnar du knappsatsen</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">Detta kan skydda dig från skadlig programvara som ringer samtal utan din vetskap.</string>
-    <string name="number_of_recent_calls_displays">Visat antal senaste samtal</string>
-    <string name="group_calls">Gruppering av samtal</string>
-    <string name="group_all_calls">Gruppera alla samtal, endast det senaste samtalet kommer att visas</string>
+    <string name="show_recent_calls">Visa senaste samtal</string>
+    <string name="open_dialpad_when_call_from_another_app">Öppna knappsatsen när du försöker ringa ett samtal från ett annat program</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Detta kan skydda dig från skadlig programvara som ringer utan din vetskap.</string>
+    <string name="number_of_recent_calls_displays">Antalet senaste samtal visas</string>
+    <string name="group_calls">Samtalsgruppering</string>
+    <string name="group_all_calls">Gruppera alla samtal, endast det senaste samtalet visas</string>
     <string name="call_button_style">Klockknapp stil</string>
     <string name="call_notes">Anteckningar om samtal</string>
     <string name="back_pressed_end_call">Bakåtåtgärd avslutar samtalet</string>
+    <string name="keep_calls_in_popup_summary">När samtal har besvarats finns de kvar i dina aviseringar och visas inte i helskärm. Detta görs för att undvika att störa andra appar, till exempel när du spelar ett spel.</string>
+    <string name="busy">Upptagen</string>
+    <string name="block_calls">Blockera samtal</string>
     <string name="call_using_same_sim">Använd samma SIM-kort som det föregående (sista) samtalet gjordes till</string>
     <string name="answer_end_other_call">Besvara och avsluta det aktuella samtalet</string>
     <string name="quick_answers">Snabba svar</string>
@@ -73,5 +77,5 @@
         <item quantity="other">%d missade samtal</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Meddelande</string>
+    <string name="keep_calls_in_popup">Lämna samtal i aviseringar</string>
 </resources>

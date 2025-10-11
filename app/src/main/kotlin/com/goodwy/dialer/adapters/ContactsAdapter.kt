@@ -541,7 +541,10 @@ class ContactsAdapter(
             //swipe
             if (activity.config.useSwipeToAction && itemContactSwipe != null) {
                 itemContactFrameSelect?.setupViewBackground(activity)
-                itemContactFrame.setBackgroundColor(backgroundColor)
+
+                if (activity.isDynamicTheme() && !activity.isSystemInDarkMode()) {
+                    itemContactFrame.setBackgroundColor(surfaceColor)
+                } else itemContactFrame.setBackgroundColor(backgroundColor)
 
                 val isRTL = activity.isRTLLayout
                 val swipeLeftAction = if (isRTL) activity.config.swipeRightAction else activity.config.swipeLeftAction

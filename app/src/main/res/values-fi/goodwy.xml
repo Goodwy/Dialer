@@ -6,7 +6,7 @@
     <string name="missed_call_g">Vastaamaton puhelu</string>
     <string name="missed_calls_g">Vastaamattomat puhelut</string>
     <string name="missed_call_notifications_g">Vastaamattomien puhelujen ilmoitukset</string>
-    <string name="dialpad_preferences">Dialpad-asetukset</string>
+    <string name="dialpad_preferences">Valitse näytön asetukset</string>
     <string name="call_start_end_vibration">Värinä, kun puhelu alkaa ja päättyy</string>
 
     <string name="show_contact_thumbnails_g">Yhteystietojen pikkukuvien näyttäminen</string>
@@ -43,6 +43,7 @@
     <string name="faq_2_text_dialer_g">Soittonäppäimen pitkä painallus liittää leikepöydän sisällön. Jos numero on jo syötetty, soittopainikkeen pitkä painallus kopioi sen leikepöydälle.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Oikea valinta näyttää vain yhteystiedot, joihin on liitetty puhelinnumero. Yhteystiedot, joissa ei ole puhelinnumeroa, eivät näy sovelluksessa.</string>
     <string name="answer_style">Vastauspainikkeen tyyli</string>
     <string name="buttons">Painikkeet</string>
     <string name="answer_slider">Slider</string>
@@ -50,14 +51,17 @@
     <string name="answer_slider_vertical">Pystysuora liukusäädin</string>
 
     <string name="show_recent_calls">Näytä viimeisimmät puhelut</string>
-    <string name="open_dialpad_when_call_from_another_app">Kun yrität soittaa puhelun toisesta sovelluksesta, avaa valintapaneeli</string>
+    <string name="open_dialpad_when_call_from_another_app">Kun yrität soittaa puhelua toisesta sovelluksesta, avaa valintanäppäimet</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Tämä voi suojata sinua haittaohjelmilta, jotka soittavat tietämättäsi.</string>
-    <string name="number_of_recent_calls_displays">Näytettyjen viimeaikaisten puheluiden määrä</string>
+    <string name="number_of_recent_calls_displays">Näytetään viimeaikaisten puheluiden määrä</string>
     <string name="group_calls">Puhelujen ryhmittely</string>
     <string name="group_all_calls">Ryhmittele kaikki puhelut, vain viimeinen puhelu näytetään</string>
     <string name="call_button_style">Kellopainikkeen tyyli</string>
     <string name="call_notes">Puhelun muistiinpanot</string>
     <string name="back_pressed_end_call">Back-toiminto lopettaa puhelun</string>
+    <string name="keep_calls_in_popup_summary">Kun puheluihin on vastattu, ne pysyvät ilmoituksissasi eivätkä näy koko näytön kokoisina. Tämä tehdään muiden sovellusten keskeyttämisen välttämiseksi, esimerkiksi pelin pelaamisen aikana.</string>
+    <string name="busy">Kiireinen</string>
+    <string name="block_calls">Estä puhelut</string>
     <string name="call_using_same_sim">Käytä samaa SIM-korttia, johon edellinen (viimeinen) puhelu soitettiin</string>
     <string name="answer_end_other_call">Nykyiseen puheluun vastaaminen ja sen lopettaminen</string>
     <string name="quick_answers">Nopeat vastaukset</string>
@@ -73,5 +77,5 @@
         <item quantity="other">%d vastaamatonta puhelua</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Viesti</string>
+    <string name="keep_calls_in_popup">Jätä puhelut ilmoituksiin</string>
 </resources>

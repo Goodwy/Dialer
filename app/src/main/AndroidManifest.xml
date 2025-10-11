@@ -85,7 +85,7 @@
 
         <activity
             android:name=".activities.MainActivity"
-            android:configChanges="orientation|screenSize|uiMode"
+            android:configChanges="orientation|screenSize"
             android:exported="true"
             android:screenOrientation="nosensor"
             tools:ignore="AppLinkUrlError">
@@ -110,7 +110,7 @@
 
         <activity
             android:name="com.goodwy.commons.activities.PurchaseActivity"
-            android:configChanges="orientation|uiMode"
+            android:configChanges="orientation"
             android:exported="false"
             android:label=""
             android:screenOrientation="nosensor"
@@ -118,7 +118,7 @@
 
         <activity
             android:name="com.goodwy.commons.activities.AboutActivity"
-            android:configChanges="orientation|uiMode"
+            android:configChanges="orientation"
             android:exported="false"
             android:label="@string/about"
             android:screenOrientation="nosensor"
@@ -126,14 +126,14 @@
 
         <activity
             android:name="com.goodwy.commons.activities.CustomizationActivity"
-            android:configChanges="orientation|uiMode"
+            android:configChanges="orientation"
             android:exported="false"
             android:label="@string/customize_colors"
             android:parentActivityName=".activities.SettingsActivity" />
 
         <activity
             android:name="com.goodwy.commons.activities.ManageBlockedNumbersActivity"
-            android:configChanges="orientation|uiMode"
+            android:configChanges="orientation"
             android:exported="false"
             android:label="@string/blocked_numbers"
             android:screenOrientation="nosensor"
@@ -146,7 +146,7 @@
 
         <activity
             android:name=".activities.ManageSpeedDialActivity"
-            android:configChanges="orientation|uiMode"
+            android:configChanges="orientation"
             android:exported="false"
             android:label="@string/speed_dial"
             android:screenOrientation="nosensor"
@@ -154,7 +154,7 @@
 
         <activity
             android:name=".activities.ConferenceActivity"
-            android:configChanges="orientation|uiMode"
+            android:configChanges="orientation"
             android:exported="false"
             android:label="@string/conference"
             android:screenOrientation="nosensor"
@@ -162,7 +162,7 @@
 
         <activity
             android:name=".activities.SettingsActivity"
-            android:configChanges="orientation|uiMode"
+            android:configChanges="orientation"
             android:exported="true"
             android:label="@string/settings"
             android:parentActivityName=".activities.MainActivity">
@@ -175,7 +175,7 @@
 
         <activity
             android:name=".activities.SettingsDialpadActivity"
-            android:configChanges="orientation|uiMode"
+            android:configChanges="orientation"
             android:exported="true"
             android:label="@string/dialpad_preferences"
             android:screenOrientation="nosensor"
@@ -191,6 +191,7 @@
         <activity
             android:name=".activities.CallActivity"
             android:excludeFromRecents="true"
+            android:configChanges="uiMode"
             android:exported="false"
             android:label="@string/ongoing_call"
             android:launchMode="singleTask"
@@ -199,7 +200,7 @@
 
         <activity
             android:name=".activities.CallHistoryActivity"
-            android:configChanges="orientation|uiMode"
+            android:configChanges="orientation"
             android:exported="false"
             android:label="@string/recents"
             android:screenOrientation="nosensor"
@@ -208,7 +209,7 @@
 
         <activity
             android:name=".activities.DialpadActivity"
-            android:configChanges="orientation|uiMode"
+            android:configChanges="orientation"
             android:exported="true"
             android:screenOrientation="nosensor"
             android:parentActivityName=".activities.MainActivity"
@@ -294,9 +295,9 @@
 
         <service
             android:name=".services.MyTileService"
-            android:icon="@drawable/ic_no_accounts"
+            android:icon="@drawable/ic_call_missed_vector"
             android:exported="true"
-            android:label="@string/block_unknown_calls"
+            android:label="@string/block_calls"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />

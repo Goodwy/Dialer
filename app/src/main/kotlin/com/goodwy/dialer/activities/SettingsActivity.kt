@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.content.res.Configuration
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import androidx.activity.result.contract.ActivityResultContracts
@@ -37,6 +36,7 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 import ru.rustore.sdk.core.feature.model.FeatureAvailabilityResult
+import java.util.Calendar
 import java.util.Locale
 import kotlin.math.abs
 import kotlin.system.exitProcess
@@ -170,15 +170,15 @@ class SettingsActivity : SimpleActivity() {
 
         setupCustomizeColors()
         setupDialPadOpen()
-        setupMaterialDesign3()
         setupOverflowIcon()
+        setupFloatingButtonStyle()
         setupUseColoredContacts()
         setupContactsColorList()
         setupColorSimIcons()
         setupSimCardColorList()
 
         setupManageBlockedNumbers()
-        setupManageSpeedDial()
+        setupUseSpeechToText()
         setupChangeDateTimeFormat()
         setupFormatPhoneNumbers()
         setupFontSize()
@@ -200,6 +200,7 @@ class SettingsActivity : SimpleActivity() {
         setupSwipeLeftAction()
         setupDeleteConfirmation()
 
+        setupManageSpeedDial()
         setupDialpadStyle()
         setupShowRecentCallsOnDialpad()
 
@@ -248,6 +249,10 @@ class SettingsActivity : SimpleActivity() {
         updateTextColors(binding.settingsHolder)
 
         binding.apply {
+            val properTextColor = getProperTextColor()
+            val properPrimaryColor = getProperPrimaryColor()
+            val surfaceColor = getSurfaceColor()
+
             arrayOf(
                 settingsAppearanceLabel,
                 settingsGeneralLabel,
@@ -260,7 +265,7 @@ class SettingsActivity : SimpleActivity() {
                 settingsListViewLabel,
                 settingsBackupsLabel,
                 settingsOtherLabel).forEach {
-                it.setTextColor(getProperPrimaryColor())
+                it.setTextColor(properPrimaryColor)
             }
 
             arrayOf(
@@ -276,7 +281,7 @@ class SettingsActivity : SimpleActivity() {
                 settingsBackupsHolder,
                 settingsOtherHolder
             ).forEach {
-                it.setCardBackgroundColor(getBottomNavigationBackgroundColor())
+                it.setCardBackgroundColor(surfaceColor)
             }
 
             arrayOf(
@@ -286,12 +291,11 @@ class SettingsActivity : SimpleActivity() {
                 settingsImportCallsChevron,
                 settingsManageBlockedNumbersChevron,
                 settingsManageSpeedDialChevron,
-                settingsChangeDateTimeFormatChevron,
                 settingsTipJarChevron,
                 settingsAboutChevron,
                 settingsDialpadStyleChevron
             ).forEach {
-                it.applyColorFilter(getProperTextColor())
+                it.applyColorFilter(properTextColor)
             }
         }
     }
@@ -344,7 +348,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_641)) //TODO changelog
+            add(Release(id, R.string.release_690)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }
@@ -398,13 +402,16 @@ class SettingsActivity : SimpleActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun setupManageBlockedNumbers() = binding.apply {
-        settingsManageBlockedNumbersCount.text = getBlockedNumbers().size.toString()
+        settingsManageBlockedNumbersCount.text =
+            if (baseConfig.blockingEnabled) getBlockedNumbers().size.toString()
+            else getString(R.string.off)
 
         val getProperTextColor = getProperTextColor()
         val red = resources.getColor(R.color.red_missed)
         val colorUnknown = if (baseConfig.blockUnknownNumbers) red else getProperTextColor
         val alphaUnknown = if (baseConfig.blockUnknownNumbers) 1f else 0.6f
         settingsManageBlockedNumbersIconUnknown.apply {
+            beGoneIf(!baseConfig.blockingEnabled)
             applyColorFilter(colorUnknown)
             alpha = alphaUnknown
         }
@@ -412,6 +419,7 @@ class SettingsActivity : SimpleActivity() {
         val colorHidden = if (baseConfig.blockHiddenNumbers) red else getProperTextColor
         val alphaHidden = if (baseConfig.blockHiddenNumbers) 1f else 0.6f
         settingsManageBlockedNumbersIconHidden.apply {
+            beGoneIf(!baseConfig.blockingEnabled)
             applyColorFilter(colorHidden)
             alpha = alphaHidden
         }
@@ -420,6 +428,15 @@ class SettingsActivity : SimpleActivity() {
             Intent(this@SettingsActivity, ManageBlockedNumbersActivity::class.java).apply {
                 startActivity(this)
             }
+        }
+    }
+
+    private fun setupUseSpeechToText() = binding.apply {
+        settingsUseSpeechToText.isChecked = config.useSpeechToText
+        settingsUseSpeechToTextHolder.setOnClickListener {
+            settingsUseSpeechToText.toggle()
+            config.useSpeechToText = settingsUseSpeechToText.isChecked
+            config.tabsChanged = true
         }
     }
 
@@ -432,9 +449,19 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupChangeDateTimeFormat() {
+        updateDateTimeFormat()
         binding.settingsChangeDateTimeFormatHolder.setOnClickListener {
-            ChangeDateTimeFormatDialog(this) {}
+            ChangeDateTimeFormatDialog(this, true) {
+                updateDateTimeFormat()
+                config.tabsChanged = true
+            }
         }
+    }
+
+    private fun updateDateTimeFormat() {
+        val cal = Calendar.getInstance(Locale.ENGLISH).timeInMillis
+        val formatDate = cal.formatDate(this@SettingsActivity)
+        binding.settingsChangeDateTimeFormat.text = formatDate
     }
 
     private fun setupFontSize() = binding.apply {
@@ -1215,17 +1242,6 @@ class SettingsActivity : SimpleActivity() {
         }
     )
 
-    private fun setupMaterialDesign3() {
-        binding.apply {
-            settingsMaterialDesign3.isChecked = config.materialDesign3
-            settingsMaterialDesign3Holder.setOnClickListener {
-                settingsMaterialDesign3.toggle()
-                config.materialDesign3 = settingsMaterialDesign3.isChecked
-                config.tabsChanged = true
-            }
-        }
-    }
-
     private fun setupOverflowIcon() {
         binding.apply {
             settingsOverflowIcon.applyColorFilter(getProperTextColor())
@@ -1251,6 +1267,41 @@ class SettingsActivity : SimpleActivity() {
                             baseConfig.overflowIcon = newValue - 1
                             settingsOverflowIcon.setImageResource(getOverflowIcon(baseConfig.overflowIcon))
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setupFloatingButtonStyle() {
+        binding.apply {
+            settingsFloatingButtonStyle.applyColorFilter(getProperTextColor())
+            settingsFloatingButtonStyle.setImageResource(
+                if (baseConfig.materialDesign3) R.drawable.squircle_bg else R.drawable.ic_circle_filled
+            )
+            settingsFloatingButtonStyleHolder.setOnClickListener {
+                val items = arrayListOf(
+                    R.drawable.ic_circle_filled,
+                    R.drawable.squircle_bg
+                )
+
+                IconListDialog(
+                    activity = this@SettingsActivity,
+                    items = items,
+                    checkedItemId = if (baseConfig.materialDesign3) 2 else 1,
+                    defaultItemId = 1,
+                    titleId = com.goodwy.strings.R.string.floating_button_style,
+                    size = pixels(com.goodwy.commons.R.dimen.normal_icon_size).toInt(),
+                    color = getProperTextColor()
+                ) { wasPositivePressed, newValue ->
+                    if (wasPositivePressed) {
+                        if (newValue != if (baseConfig.materialDesign3) 2 else 1) {
+                        }
+                        baseConfig.materialDesign3 = newValue == 2
+                        settingsFloatingButtonStyle.setImageResource(
+                            if (newValue == 2) R.drawable.squircle_bg else R.drawable.ic_circle_filled
+                        )
+                        config.tabsChanged = true
                     }
                 }
             }

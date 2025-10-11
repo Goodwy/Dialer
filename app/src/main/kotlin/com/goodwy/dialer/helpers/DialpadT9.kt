@@ -81,11 +81,11 @@ object DialpadT9 {
         val langEn = languages[LOCALE_EN]
 
         for (c in letters) {
-            if (lang != null && lang.charMap.containsKey(c)) {
-                res += lang.charMap[c]
+            res += if (lang != null && lang.charMap.containsKey(c)) {
+                lang.charMap[c]
             } else if (langEn != null && langEn.charMap.containsKey(c)) {
-                res += langEn.charMap[c]
-            }
+                langEn.charMap[c]
+            } else c
         }
 
         return res

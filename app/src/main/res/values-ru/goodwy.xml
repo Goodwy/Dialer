@@ -17,9 +17,10 @@
     <string name="call_notes">Заметки о звонках</string>
     <string name="back_pressed_end_call">Действие назад завершает вызов</string>
     <string name="keep_calls_in_popup">Оставлять звонки в уведомлениях</string>
-    <string name="keep_calls_in_popup_summary">После ответа на звонки они остаются в уведомлениях и не отображаются в полноэкранном режиме</string>
+    <string name="keep_calls_in_popup_summary">После ответа на вызовы они остаются в уведомлениях и не отображаются на весь экран. Это сделано для того, чтобы не прерывать работу других приложений, например, во время игры.</string>
     <string name="busy">Занято</string>
 
+    <string name="block_calls">Блокировать звонки</string>
     <string name="call_using_same_sim">Использовать ту же SIM-карту, на которую был сделан предыдущий (последний) звонок</string>
     <string name="answer_end_other_call">Ответить и завершить текущий вызов</string>
     <string name="quick_answers">Быстрые ответы</string>
@@ -28,7 +29,7 @@
     <string name="secondary_dialpad_language">Дополнительный язык на клавиатуре</string>
     <string name="sim_card_selection_dialog_style">Стиль диалога выбора SIM карты</string>
     <string name="clear_dialpad_when_start_call">Очистить набранный номер при начале вызова</string>
-    <string name="dialpad_preferences">Параметры кнопок набора</string>
+    <string name="dialpad_preferences">Настройки экрана набора номера</string>
     <string name="show_contact_thumbnails_g">Показывать фото контакта</string>
     <string name="hide_dialpad_letters_g">Скрыть буквы набора номера</string>
     <string name="show_caller_description_g">Показать дополнительную информацию абонента</string>
@@ -78,5 +79,4 @@
         <item quantity="many">%d пропущенных звонков</item>
     </plurals>
     <string name="missed_call_from">Пропущенный звонок от %s</string>
-    <string name="message">Сообщение</string>
 </resources>

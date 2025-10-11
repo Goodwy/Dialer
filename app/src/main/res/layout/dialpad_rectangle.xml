@@ -644,4 +644,10 @@
                 android:src="@drawable/ic_backspace" />
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/dialpadBottomMargin"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/theme_black_background_color"/>
 </LinearLayout>

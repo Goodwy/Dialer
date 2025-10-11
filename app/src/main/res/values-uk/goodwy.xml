@@ -7,16 +7,19 @@
     <string name="missed_calls_g">Пропущених дзвінків</string>
     <string name="missed_call_notifications_g">Повідомлення про пропущені дзвінки</string>
     <string name="call_start_end_vibration">Вібрація під час початку та завершення виклику</string>
-    <string name="show_recent_calls">Показати останні дзвінки</string>
-    <string name="open_dialpad_when_call_from_another_app">Коли ви намагаєтеся зателефонувати з іншої програми, відкрийте цифрову клавіатуру</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">Це може захистити вас від зловмисного програмного забезпечення, яке здійснює дзвінки без вашого відома.</string>
-    <string name="number_of_recent_calls_displays">Відображувана кількість останніх дзвінків</string>
-    <string name="group_calls">Групування дзвінків</string>
-    <string name="group_all_calls">Згрупуйте всі дзвінки, буде показаний тільки останній дзвінок</string>
+    <string name="show_recent_calls">Показувати недавні дзвінки</string>
+    <string name="open_dialpad_when_call_from_another_app">При спробі здійснити дзвінок з іншої програми відкривати панель набору номера</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Це може захистити вас від шкідливих програм, які здійснюють дзвінки без вашого відома.</string>
+    <string name="number_of_recent_calls_displays">Кількість недавніх дзвінків, що відображається</string>
+    <string name="group_calls">Угруповання дзвінків</string>
+    <string name="group_all_calls">Групувати всі дзвінки, буде показано лише останній дзвінок</string>
     <string name="call_button_style">Стиль кнопки дзвінка</string>
     <string name="call_notes">Нотатки про дзвінки</string>
     <string name="back_pressed_end_call">Дія назад завершує виклик</string>
 
+    <string name="keep_calls_in_popup_summary">Після відповіді на дзвінки вони залишаються в сповіщеннях та не відображаються на весь екран. Це зроблено для того, щоб не переривати роботу інших програм, наприклад, під час гри.</string>
+    <string name="busy">Зайнято</string>
+    <string name="block_calls">Блокувати дзвінки</string>
     <string name="call_using_same_sim">Використовувати ту саму SIM-картку, на яку було зроблено попередній (останній) дзвінок</string>
     <string name="answer_end_other_call">Відповідь на поточний дзвінок і його завершення</string>
     <string name="quick_answers">Швидкі відповіді</string>
@@ -25,7 +28,7 @@
     <string name="secondary_dialpad_language">Додаткова мова на клавіатурі</string>
     <string name="sim_card_selection_dialog_style">Стиль діалогу вибору SIM карти</string>
     <string name="clear_dialpad_when_start_call">Очистити набраний номер під час початку виклику</string>
-    <string name="dialpad_preferences">Параметри кнопок набору</string>
+    <string name="dialpad_preferences">Налаштування екрана набору номера</string>
     <string name="show_contact_thumbnails_g">Показувати фото контакту</string>
     <string name="hide_dialpad_letters_g">Приховати літери цифрової клавіатури</string>
     <string name="show_caller_description_g">Показати додаткову інформацію про абонента</string>
@@ -59,7 +62,7 @@
     <string name="faq_1_text_dialer_g">Операційна система блокує доступ додатків до екрана блокування. Необхідно дозволити застосунку доступ до екрана блокування. Наприклад, у MIUI необхідно дозволити доступ у \"Налаштування => Сповіщення => Сповіщення на екрані блокування\" та увімкнути дозвіл \"Відображати спливаючі вікна, коли запущено у фоновому режимі\".</string>
     <string name="faq_2_title_dialer_g">Як скопіювати або вставити номер на екрані набору номера?</string>
     <string name="faq_2_text_dialer_g">Тривале натискання на кнопку виклику вставляє вміст буфера обміну. Якщо номер уже введено, тривале натискання на кнопку виклику копіює його в буфер обміну.</string>
-    <string name="faq_3_text_g">Right Dialer показує лише ті контакти, з якими пов\'язаний номер телефону. Контакти без номера телефону не показується в застосунку.</string>
+    <string name="faq_3_text_g">Right Dialer показує лише контакти, до яких прив\'язаний телефонний номер. Контакти без телефонного номера не відображаються у програмі.</string>
 
     <!-- Answer style -->
     <string name="answer_style">Стиль кнопок відповіді</string>
@@ -75,5 +78,5 @@
         <item quantity="many">%d пропущених дзвінків</item>
     </plurals>
     <string name="missed_call_from">Пропущений дзвінок від %s</string>
-    <string name="message">Повідомлення</string>
+    <string name="keep_calls_in_popup">Залишати дзвінки в повідомленнях</string>
 </resources>

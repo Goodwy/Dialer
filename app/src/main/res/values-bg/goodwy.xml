@@ -6,7 +6,7 @@
     <string name="missed_call_g">Пропуснато обаждане</string>
     <string name="missed_calls_g">Пропуснати обаждания</string>
     <string name="missed_call_notifications_g">Известия за пропуснати повиквания</string>
-    <string name="dialpad_preferences">Предпочитания за клавиатурата за набиране</string>
+    <string name="dialpad_preferences">Настройки на екрана за набиране</string>
     <string name="call_start_end_vibration">Вибриране при започване и приключване на повикване</string>
 
     <string name="show_contact_thumbnails_g">Показване на миниатюри за контакт</string>
@@ -43,22 +43,25 @@
     <string name="faq_2_text_dialer_g">Натиснете продължително бутона за повикване, за да поставите съдържанието на клипборда. Ако номерът вече е въведен, продължително натискане на бутона за повикване го копира в клипборда.</string>
 
     <!-- Answer style -->
-    <string name="faq_3_text_g">Right Dialer показва само контактите с въведен телефонен номер. Тези с липсващ телефон не се показват.</string>
+    <string name="faq_3_text_g">Right Dialer показва само контакти, които имат свързан с тях телефонен номер. Контакти без телефонен номер не се показват в приложението.</string>
     <string name="answer_style">Стил на бутона за отговор</string>
     <string name="buttons">Бутони</string>
     <string name="answer_slider">Плъзгач</string>
     <string name="answer_slider_outline">Плъзгач за контур</string>
     <string name="answer_slider_vertical">Вертикален плъзгач</string>
 
-    <string name="show_recent_calls">Показване на скорошни обаждания</string>
-    <string name="open_dialpad_when_call_from_another_app">Когато се опитате да се обадите от друго приложение, отворете клавиатурата за набиране</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">Това може да ви предпази от злонамерен софтуер, който провежда обаждания без ваше знание.</string>
+    <string name="show_recent_calls">Показване на последните обаждания</string>
+    <string name="open_dialpad_when_call_from_another_app">Когато се опитвате да осъществите повикване от друго приложение, отворете клавиатурата за набиране</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Това може да ви предпази от зловреден софтуер, който извършва обаждания без ваше знание.</string>
     <string name="number_of_recent_calls_displays">Показан брой скорошни обаждания</string>
     <string name="group_calls">Групиране на обаждания</string>
-    <string name="group_all_calls">Групирайте всички повиквания, ще се покаже само последното обаждане</string>
+    <string name="group_all_calls">Групирайте всички повиквания, ще се покаже само последното повикване</string>
     <string name="call_button_style">Стил на звънец</string>
     <string name="call_notes">Бележки за обаждания</string>
     <string name="back_pressed_end_call">Действието \"Назад\" прекратява повикването</string>
+    <string name="keep_calls_in_popup_summary">След като обажданията бъдат отговорени, те остават във вашите известия и не се показват на цял екран. Това се прави, за да се избегне прекъсването на други приложения, като например докато играете игра.</string>
+    <string name="busy">зает</string>
+    <string name="block_calls">Блокиране на повиквания</string>
     <string name="call_using_same_sim">Използвайте същата SIM карта, към която е направено предишното (последно) обаждане</string>
     <string name="answer_end_other_call">Отговорете и прекратете текущото повикване</string>
     <string name="quick_answers">Бързи отговори</string>
@@ -74,5 +77,5 @@
         <item quantity="other">%d пропуснати обаждания</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Съобщение</string>
+    <string name="keep_calls_in_popup">Оставете обажданията в известията</string>
 </resources>

@@ -6,7 +6,7 @@
     <string name="missed_call_g">Zmeškaný hovor</string>
     <string name="missed_calls_g">Zmeškané hovory</string>
     <string name="missed_call_notifications_g">Upozornenia na zmeškané hovory</string>
-    <string name="dialpad_preferences">Predvoľby číselnej klávesnice</string>
+    <string name="dialpad_preferences">Vytočiť nastavenia obrazovky</string>
     <string name="call_start_end_vibration">Vibrovanie pri začiatku a ukončení hovoru</string>
 
     <string name="show_contact_thumbnails_g">Zobrazenie miniatúr kontaktov</string>
@@ -44,21 +44,25 @@
     <string name="faq_2_text_dialer_g">Dlhým stlačením tlačidla hovoru prilepíte obsah schránky. Ak je číslo už zadané, dlhým stlačením tlačidla hovoru ho skopírujete do schránky.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Pravé vytáčanie zobrazuje iba kontakty, ktoré majú priradené telefónne číslo. Kontakty bez telefónneho čísla sa v aplikácii nezobrazujú.</string>
     <string name="answer_style">Štýl tlačidla odpovede</string>
     <string name="buttons">Tlačidlá</string>
     <string name="answer_slider">Posúvač</string>
     <string name="answer_slider_outline">Posúvač obrysu</string>
     <string name="answer_slider_vertical">Vertikálny posúvač</string>
 
-    <string name="show_recent_calls">Zobrazenie nedávnych hovorov</string>
-    <string name="open_dialpad_when_call_from_another_app">Keď sa pokúšate uskutočniť hovor z inej aplikácie, otvorte klávesnicu na vytáčanie</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">To vás môže ochrániť pred škodlivým softvérom, ktorý uskutočňuje hovory bez vášho vedomia.</string>
+    <string name="show_recent_calls">Zobraziť posledné hovory</string>
+    <string name="open_dialpad_when_call_from_another_app">Pri pokuse o uskutočnenie hovoru z inej aplikácie otvorte číselnú klávesnicu</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">To vás môže chrániť pred škodlivým softvérom, ktorý uskutočňuje hovory bez vášho vedomia.</string>
     <string name="number_of_recent_calls_displays">Zobrazený počet posledných hovorov</string>
     <string name="group_calls">Zoskupovanie hovorov</string>
     <string name="group_all_calls">Zoskupte všetky hovory, zobrazí sa iba posledný hovor</string>
     <string name="call_button_style">Štýl zvončeka</string>
     <string name="call_notes">Poznámky k hovoru</string>
     <string name="back_pressed_end_call">Akcia Späť ukončí hovor</string>
+    <string name="keep_calls_in_popup_summary">Po prijatí hovorov zostanú vo vašich upozorneniach a nezobrazia sa na celej obrazovke. Deje sa tak, aby sa zabránilo prerušeniu iných aplikácií, napríklad pri hraní hry.</string>
+    <string name="busy">Zaneprázdnený</string>
+    <string name="block_calls">Blokovať hovory</string>
     <string name="call_using_same_sim">Použite rovnakú SIM kartu, na ktorú sa uskutočnil predchádzajúci (posledný) hovor</string>
     <string name="answer_end_other_call">Prijmite a ukončite aktuálny hovor</string>
     <string name="quick_answers">Rýchle odpovede</string>
@@ -75,5 +79,5 @@
         <item quantity="many">%d zmeškaných hovorov</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Správa</string>
+    <string name="keep_calls_in_popup">Nechajte hovory v upozorneniach</string>
 </resources>

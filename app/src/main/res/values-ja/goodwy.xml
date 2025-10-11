@@ -6,7 +6,7 @@
     <string name="missed_call_g">不在着信</string>
     <string name="missed_calls_g">不在着信</string>
     <string name="missed_call_notifications_g">不在着信通知</string>
-    <string name="dialpad_preferences">ダイヤルパッドの環境設定</string>
+    <string name="dialpad_preferences">ダイヤル画面の設定</string>
     <string name="call_start_end_vibration">通話の開始時と終了時にバイブレーションする</string>
 
     <string name="show_contact_thumbnails_g">連絡先のサムネイルを表示する</string>
@@ -42,6 +42,7 @@
     <string name="faq_2_text_dialer_g">通話ボタンを長押しして、クリップボードの内容を貼り付けます。 番号がすでに入力されている場合は、通話ボタンを長押しすると番号がクリップボードにコピーされます。</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer は、電話番号が関連付けられている連絡先のみを表示します。電話番号が関連付けられていない連絡先はアプリに表示されません。</string>
     <string name="answer_style">回答ボタンのスタイル</string>
     <string name="buttons">ボタン</string>
     <string name="answer_slider">スライダー</string>
@@ -49,14 +50,17 @@
     <string name="answer_slider_vertical">垂直スライダー</string>
 
     <string name="show_recent_calls">最近の通話を表示</string>
-    <string name="open_dialpad_when_call_from_another_app">別のアプリから電話をかけようとするときは、ダイヤルパッドを開きます</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">これにより、知らないうちに電話をかけるマルウェアから保護できます。</string>
-    <string name="number_of_recent_calls_displays">表示された最近の通話数</string>
+    <string name="open_dialpad_when_call_from_another_app">他のアプリケーションから電話をかける場合は、ダイヤルパッドを開きます</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">これにより、知らないうちに電話をかけてくるマルウェアから保護されます。</string>
+    <string name="number_of_recent_calls_displays">最近の通話回数の表示</string>
     <string name="group_calls">通話のグループ化</string>
-    <string name="group_all_calls">すべての通話をグループ化し、最後の通話のみが表示されます</string>
+    <string name="group_all_calls">すべての通話をグループ化すると、最後の通話のみが表示されます</string>
     <string name="call_button_style">ベルボタンスタイル</string>
     <string name="call_notes">通話メモ</string>
     <string name="back_pressed_end_call">戻るアクションは通話を終了します</string>
+    <string name="keep_calls_in_popup_summary">通話が終わると、通知は画面全体に表示されずに残ります。これは、ゲーム中など他のアプリの動作を中断させないためです。</string>
+    <string name="busy">忙しい</string>
+    <string name="block_calls">通話をブロックする</string>
     <string name="call_using_same_sim">前回(最後)の通話と同じSIMカードを使用してください</string>
     <string name="answer_end_other_call">現在の通話に応答して終了する</string>
     <string name="quick_answers">クイックアンサー</string>
@@ -71,5 +75,5 @@
         <item quantity="other">%d件の不在着信</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">メッセージ</string>
+    <string name="keep_calls_in_popup">通知に通話を残す</string>
 </resources>

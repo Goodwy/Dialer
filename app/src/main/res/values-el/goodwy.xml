@@ -6,7 +6,7 @@
     <string name="missed_call_g">Αναπάντητη κλήση</string>
     <string name="missed_calls_g">Αναπάντητες κλήσεις</string>
     <string name="missed_call_notifications_g">Ειδοποιήσεις αναπάντητης κλήσης</string>
-    <string name="dialpad_preferences">Προτιμήσεις πληκτρολογίου κλήσης</string>
+    <string name="dialpad_preferences">Ρυθμίσεις οθόνης κλήσης</string>
     <string name="call_start_end_vibration">Δόνηση κατά την έναρξη και τη λήξη της κλήσης σας</string>
 
     <string name="show_contact_thumbnails_g">Εμφάνιση μικρογραφιών επαφών</string>
@@ -43,6 +43,7 @@
     <string name="faq_2_text_dialer_g">Με ένα παρατεταμένο πάτημα του κουμπιού κλήσης επικολλάται το περιεχόμενο του πρόχειρου. Εάν ο αριθμός έχει ήδη εισαχθεί, ένα παρατεταμένο πάτημα του κουμπιού κλήσης τον αντιγράφει στο πρόχειρο.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Το Right Dialer εμφανίζει μόνο τις επαφές που έχουν έναν αριθμό τηλεφώνου που σχετίζεται με αυτές. Οι επαφές χωρίς αριθμό τηλεφώνου δεν εμφανίζονται στην εφαρμογή.</string>
     <string name="answer_style">Στυλ κουμπιού απάντησης</string>
     <string name="buttons">Μπουτόν</string>
     <string name="answer_slider">Slider</string>
@@ -51,13 +52,16 @@
 
     <string name="show_recent_calls">Εμφάνιση πρόσφατων κλήσεων</string>
     <string name="open_dialpad_when_call_from_another_app">Όταν προσπαθείτε να πραγματοποιήσετε μια κλήση από άλλη εφαρμογή, ανοίξτε το πληκτρολόγιο κλήσης</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">Αυτό μπορεί να σας προστατεύσει από κακόβουλο λογισμικό που πραγματοποιεί κλήσεις χωρίς να το γνωρίζετε.</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Αυτό μπορεί να σας προστατεύσει από κακόβουλο λογισμικό που πραγματοποιεί κλήσεις εν αγνοία σας.</string>
     <string name="number_of_recent_calls_displays">Εμφανιζόμενος αριθμός πρόσφατων κλήσεων</string>
     <string name="group_calls">Ομαδοποίηση κλήσεων</string>
     <string name="group_all_calls">Ομαδοποιήστε όλες τις κλήσεις, θα εμφανιστεί μόνο η τελευταία κλήση</string>
     <string name="call_button_style">Στυλ κουμπιού καμπάνας</string>
     <string name="call_notes">Notizen für Anrufe</string>
     <string name="back_pressed_end_call">Η ενέργεια επιστροφής τερματίζει την κλήση</string>
+    <string name="keep_calls_in_popup_summary">Αφού απαντηθούν οι κλήσεις, παραμένουν στις ειδοποιήσεις σας και δεν εμφανίζονται σε πλήρη οθόνη. Αυτό γίνεται για να αποφευχθεί η διακοπή άλλων εφαρμογών, όπως κατά την αναπαραγωγή ενός παιχνιδιού.</string>
+    <string name="busy">Απασχολημένος</string>
+    <string name="block_calls">Αποκλεισμός κλήσεων</string>
     <string name="call_using_same_sim">Χρησιμοποιήστε την ίδια κάρτα SIM στην οποία πραγματοποιήθηκε η προηγούμενη (τελευταία) κλήση</string>
     <string name="answer_end_other_call">Απαντήστε και τερματίστε την τρέχουσα κλήση</string>
     <string name="quick_answers">Schnelle Antworten</string>
@@ -73,5 +77,5 @@
         <item quantity="other">%d αναπάντητες κλήσεις</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Μήνυμα</string>
+    <string name="keep_calls_in_popup">Αφήστε τις κλήσεις στις ειδοποιήσεις</string>
 </resources>

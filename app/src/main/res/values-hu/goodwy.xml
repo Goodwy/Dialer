@@ -6,7 +6,7 @@
     <string name="missed_call_g">Nem fogadott hívás</string>
     <string name="missed_calls_g">Nem fogadott hívások</string>
     <string name="missed_call_notifications_g">Nem fogadott hívásokról szóló értesítések</string>
-    <string name="dialpad_preferences">Tárcsázóprogram beállításai</string>
+    <string name="dialpad_preferences">Tárcsázó képernyő beállításai</string>
     <string name="call_start_end_vibration">Rezgés a hívás kezdetekor és végén</string>
 
     <string name="show_contact_thumbnails_g">Névjegy miniatűrök megjelenítése</string>
@@ -43,7 +43,7 @@
     <string name="faq_2_text_dialer_g">Nyomja le hosszan a hívás gombot a vágólap tartalmának beillesztéséhez. Ha a szám már be van írva, a hívás gomb hosszan tartó megnyomása a vágólapra másolja.</string>
 
     <!-- Answer style -->
-    <string name="faq_3_text_g">A Right Dialer csak azokat a névjegyeket jeleníti meg, amelyekhez telefonszám is tartozik. A telefonszám nélküli névjegyek nem jelennek meg az alkalmazásban.</string>
+    <string name="faq_3_text_g">A Jobb oldali tárcsázó csak azokat a névjegyeket jeleníti meg, amelyekhez telefonszám van társítva. A telefonszám nélküli névjegyek nem jelennek meg az alkalmazásban.</string>
     <string name="answer_style">Válasz gombstílus</string>
     <string name="buttons">Gombok</string>
     <string name="answer_slider">Csúszka</string>
@@ -51,14 +51,17 @@
     <string name="answer_slider_vertical">Függőleges csúszka</string>
 
     <string name="show_recent_calls">Legutóbbi hívások megjelenítése</string>
-    <string name="open_dialpad_when_call_from_another_app">Amikor hívást próbál kezdeményezni egy másik alkalmazásból, nyissa meg a tárcsázót</string>
+    <string name="open_dialpad_when_call_from_another_app">Ha másik alkalmazásból próbál hívást kezdeményezni, nyissa ki a tárcsázót</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Ez megvédheti Önt a rosszindulatú programoktól, amelyek az Ön tudta nélkül hívásokat kezdeményeznek.</string>
-    <string name="number_of_recent_calls_displays">A legutóbbi hívások megjelenített száma</string>
+    <string name="number_of_recent_calls_displays">Megjelenített legutóbbi hívások száma</string>
     <string name="group_calls">Híváscsoportosítás</string>
     <string name="group_all_calls">Csoportosítsa az összes hívást, csak az utolsó hívás jelenik meg</string>
     <string name="call_button_style">Csengő gomb stílusa</string>
     <string name="call_notes">Hívásjegyzetek</string>
     <string name="back_pressed_end_call">A visszalépés befejezi a hívást</string>
+    <string name="keep_calls_in_popup_summary">A hívások fogadása után azok az értesítésekben maradnak, és nem jelennek meg teljes képernyőn. Ezzel elkerülhető a többi alkalmazás megszakítása, például játék közben.</string>
+    <string name="busy">Elfoglalt</string>
+    <string name="block_calls">Hívások blokkolása</string>
     <string name="call_using_same_sim">Használja ugyanazt a SIM-kártyát, amelyre az előző (utolsó) hívás történt</string>
     <string name="answer_end_other_call">Az aktuális hívás fogadása és befejezése</string>
     <string name="quick_answers">Gyors válaszok</string>
@@ -74,5 +77,5 @@
         <item quantity="other">%d nem fogadott hívás</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Üzenet</string>
+    <string name="keep_calls_in_popup">Hagyja a hívásokat az értesítésekben</string>
 </resources>

@@ -6,7 +6,7 @@
     <string name="missed_call_g">Praleistas skambutis</string>
     <string name="missed_calls_g">Praleisti skambučiai</string>
     <string name="missed_call_notifications_g">Pranešimai apie praleistus skambučius</string>
-    <string name="dialpad_preferences">Numerio rinkiklio nuostatos</string>
+    <string name="dialpad_preferences">Rinkimo ekrano nustatymai</string>
     <string name="call_start_end_vibration">Vibruokite, kai skambutis prasideda ir baigiasi</string>
 
     <string name="show_contact_thumbnails_g">Kontaktų miniatiūrų rodymas</string>
@@ -45,21 +45,25 @@
     <string name="faq_2_text_dialer_g">Ilgai paspauskite skambinimo mygtuką, kad įklijuotumėte iškarpinės turinį. Jei numeris jau įvestas, ilgai paspaudus skambinimo mygtuką, jis nukopijuojamas į mainų sritį.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Dešinysis rinkiklis rodo tik tuos kontaktus, kurie turi susietą telefono numerį. Kontaktai be telefono numerio programoje nerodomi.</string>
     <string name="answer_style">Atsakymo mygtuko stilius</string>
     <string name="buttons">Mygtukai</string>
     <string name="answer_slider">Slankiklis</string>
     <string name="answer_slider_outline">Kontūro slankiklis</string>
     <string name="answer_slider_vertical">Vertikalus slankiklis</string>
 
-    <string name="show_recent_calls">Rodyti naujausius skambučius</string>
-    <string name="open_dialpad_when_call_from_another_app">Kai bandote skambinti iš kitos programėlės, atidarykite numerio rinkiklį</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">Tai gali apsaugoti jus nuo kenkėjiškų programų, skambinančių be jūsų žinios.</string>
+    <string name="show_recent_calls">Rodyti paskutinius skambučius</string>
+    <string name="open_dialpad_when_call_from_another_app">Bandydami skambinti iš kitos programos, atidarykite rinkimo klaviatūrą</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Tai gali apsaugoti jus nuo kenkėjiškų programų, kurios skambina jums nežinant.</string>
     <string name="number_of_recent_calls_displays">Rodomas paskutinių skambučių skaičius</string>
     <string name="group_calls">Skambučių grupavimas</string>
-    <string name="group_all_calls">Sugrupuokite visus skambučius, bus rodomas tik paskutinis skambutis</string>
+    <string name="group_all_calls">Grupuokite visus skambučius, bus rodomas tik paskutinis skambutis</string>
     <string name="call_button_style">Varpo mygtuko stilius</string>
     <string name="call_notes">Skambučių pastabos</string>
     <string name="back_pressed_end_call">Atgalinis veiksmas užbaigia skambutį</string>
+    <string name="keep_calls_in_popup_summary">Kai į skambučius atsiliepiama, jie lieka jūsų pranešimuose ir nerodomi viso ekrano režimu. Tai daroma siekiant nepertraukti kitų programų, pvz., žaidžiant žaidimą.</string>
+    <string name="busy">Užimtas</string>
+    <string name="block_calls">Blokuoti skambučius</string>
     <string name="call_using_same_sim">Naudokite tą pačią SIM kortelę, į kurią buvo skambinta ankstesniu (paskutiniu) skambučiu</string>
     <string name="answer_end_other_call">Atsiliepkite ir užbaikite dabartinį skambutį</string>
     <string name="quick_answers">Greiti atsakymai</string>
@@ -77,5 +81,5 @@
         <item quantity="other">%d praleistų skambučių</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Pranešimas</string>
+    <string name="keep_calls_in_popup">Palikite skambučius pranešimuose</string>
 </resources>

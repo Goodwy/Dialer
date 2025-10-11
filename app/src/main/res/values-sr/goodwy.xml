@@ -6,11 +6,14 @@
     <string name="missed_call_g">Пропуштен позив</string>
     <string name="missed_calls_g">Пропуштени позиви</string>
     <string name="missed_call_notifications_g">Обавештења о пропуштеним позивима</string>
-    <string name="dialpad_preferences">Подешавања тастатуре</string>
+    <string name="dialpad_preferences">Подешавања екрана за бирање</string>
     <string name="call_start_end_vibration">Вибрирајте када започнете и завршите позив</string>
     <string name="call_notes">Белешке о позивима</string>
     <string name="back_pressed_end_call">Радња назад завршава позив</string>
 
+    <string name="keep_calls_in_popup_summary">Након што се на позиве одговори, они остају у вашим обавештењима и не приказују се на целом екрану. Ово се ради како би се избегло ометање других апликација, на пример док играте игру.</string>
+    <string name="busy">Заузето</string>
+    <string name="block_calls">Блокирајте позиве</string>
     <string name="call_using_same_sim">Користите исту СИМ картицу на коју је упућен претходни (последњи) позив</string>
     <string name="show_contact_thumbnails_g">Прикажи сличице контаката</string>
     <string name="hide_dialpad_letters_g">Сакриј слова на тастатури</string>
@@ -47,14 +50,15 @@
     <string name="faq_2_text_dialer_g">Дуго притисните дугме за позив да бисте налепили садржај међуспремника. Ако је број већ унет, дуги притисак на дугме за позив копира га у међуспремник.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Десни бирач приказује само контакте са којима је придружен телефонски број. Контакти без телефонског броја се не приказују у апликацији.</string>
     <string name="answer_style">Стил дугмета за одговор</string>
     <string name="buttons">Дугмад</string>
     <string name="answer_slider">Клизач</string>
     <string name="answer_slider_outline">Оквирни клизач</string>
     <string name="answer_slider_vertical">Вертикални клизач</string>
     <string name="show_recent_calls">Прикажи недавне позиве</string>
-    <string name="open_dialpad_when_call_from_another_app">Када покушате да упутите позив из друге апликације, отворите тастатуру за бирање бројева</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">Ово може да вас заштити од позивања малвера без вашег знања.</string>
+    <string name="open_dialpad_when_call_from_another_app">Када покушавате да упутите позив из друге апликације, отворите тастатуру за бирање бројева</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Ово може да вас заштити од малвера који упућује позиве без вашег знања.</string>
     <string name="number_of_recent_calls_displays">Приказан број недавних позива</string>
     <string name="group_calls">Груписање позива</string>
     <string name="group_all_calls">Групишите све позиве, биће приказан само последњи позив</string>
@@ -74,5 +78,5 @@
         <item quantity="other">%d пропуштених позива</item>
     </plurals>
     <string name="missed_call_from">Пропуштен позив од %s</string>
-    <string name="message">Порука</string>
+    <string name="keep_calls_in_popup">Оставите позиве у обавештењима</string>
 </resources>

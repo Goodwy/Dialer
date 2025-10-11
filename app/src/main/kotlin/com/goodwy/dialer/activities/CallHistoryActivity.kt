@@ -88,7 +88,7 @@ class CallHistoryActivity : SimpleActivity() {
         super.onResume()
         binding.callHistoryPlaceholderContainer.beGone()
         updateTextColors(binding.callHistoryHolder)
-        buttonBg = if (baseConfig.backgroundColor == white || baseConfig.backgroundColor == gray) white else getBottomNavigationBackgroundColor()
+        buttonBg = if (baseConfig.backgroundColor == white || baseConfig.backgroundColor == gray) white else getSurfaceColor()
         ensureBackgroundThread {
             initContact()
         }
@@ -155,6 +155,7 @@ class CallHistoryActivity : SimpleActivity() {
 
     private fun showAll() {
         if (showAll) {
+            // Action hide
             binding.callHistoryShowAll.beInvisible()
             binding.progressIndicator.show()
             currentRecentCallList?.let {
@@ -167,14 +168,17 @@ class CallHistoryActivity : SimpleActivity() {
                 }
             }
         } else {
+            // Action show all
             binding.callHistoryShowAll.beInvisible()
             binding.progressIndicator.show()
-            refreshCallLog(true) {
-                showAll = true
-                runOnUiThread {
-                    binding.callHistoryShowAll.apply {
-                        text = getString(R.string.hide)
-                        beVisible()
+            refreshCallLog(load = true, loadAll = false) {
+                refreshCallLog(load = true, loadAll = true) {
+                    runOnUiThread {
+                        showAll = true
+                        binding.callHistoryShowAll.apply {
+                            text = getString(R.string.hide)
+                            beVisible()
+                        }
                     }
                 }
             }
@@ -355,7 +359,7 @@ class CallHistoryActivity : SimpleActivity() {
         binding.callHistoryList.background.setTint(buttonBg)
     }
 
-    private fun refreshCallLog(load: Boolean, callback: (() -> Unit)? = null) {
+    private fun refreshCallLog(load: Boolean, loadAll: Boolean = false, callback: (() -> Unit)? = null) {
         getRecentCalls { recents ->
             allRecentCall = recents
             val currentRecentCalls = recents.filter { it.phoneNumber == currentRecentCall!!.phoneNumber}

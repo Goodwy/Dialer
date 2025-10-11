@@ -6,7 +6,7 @@
     <string name="missed_call_g">മിസ്ഡ് കോൾ</string>
     <string name="missed_calls_g">മിസ്സഡ് കോള്</string>
     <string name="missed_call_notifications_g">മിസ്ഡ് കോൾ അറിയിപ്പുകൾ</string>
-    <string name="dialpad_preferences">ഡയൽപാഡ് മുൻഗണനകൾ</string>
+    <string name="dialpad_preferences">ഡയൽ സ്ക്രീൻ ക്രമീകരണങ്ങൾ</string>
     <string name="call_start_end_vibration">നിങ്ങളുടെ കോൾ ആരംഭിക്കുമ്പോഴും അവസാനിക്കുമ്പോഴും വൈബ്രേറ്റ് ചെയ്യുക</string>
 
     <string name="show_contact_thumbnails_g">കോൺടാക്റ്റ് ലഘുചിത്രങ്ങൾ കാണിക്കുക</string>
@@ -43,6 +43,7 @@
     <string name="faq_2_text_dialer_g">ക്ലിപ്പ്ബോർഡിലെ ഉള്ളടക്കങ്ങൾ ഒട്ടിക്കാൻ കോൾ ബട്ടൺ ദീർഘനേരം അമർത്തുക. നമ്പർ ഇതിനകം നൽകിയിട്ടുണ്ടെങ്കിൽ, കോൾ ബട്ടണിൽ ദീർഘനേരം അമർത്തിയാൽ അത് ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തുന്നു.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">റൈറ്റ് ഡയലർ, അവരുമായി ബന്ധപ്പെട്ട ഒരു ഫോൺ നമ്പറുള്ള കോൺടാക്റ്റുകൾ മാത്രമേ പ്രദർശിപ്പിക്കൂ. ഫോൺ നമ്പർ ഇല്ലാത്ത കോൺടാക്റ്റുകൾ ആപ്പിൽ പ്രദർശിപ്പിക്കില്ല.</string>
     <string name="answer_style">ഉത്തര ബട്ടൺ ശൈലി</string>
     <string name="buttons">ബട്ടണുകൾ</string>
     <string name="answer_slider">സ്ലൈഡർ</string>
@@ -50,14 +51,17 @@
     <string name="answer_slider_vertical">ലംബ സ്ലൈഡർ</string>
 
     <string name="show_recent_calls">സമീപകാല കോളുകൾ കാണിക്കുക</string>
-    <string name="open_dialpad_when_call_from_another_app">നിങ്ങൾ മറ്റൊരു ആപ്ലിക്കേഷനിൽ നിന്ന് ഒരു കോൾ ചെയ്യാൻ ശ്രമിക്കുമ്പോൾ, ഡയൽ പാഡ് തുറക്കുക</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">നിങ്ങളുടെ അറിവില്ലാതെ ക്ഷുദ്രവെയർ കോളുകൾ ചെയ്യുന്നതിൽ നിന്ന് ഇത് നിങ്ങളെ സംരക്ഷിക്കും.</string>
+    <string name="open_dialpad_when_call_from_another_app">മറ്റൊരു ആപ്ലിക്കേഷനിൽ നിന്ന് കോൾ ചെയ്യാൻ ശ്രമിക്കുമ്പോൾ, ഡയൽ പാഡ് തുറക്കുക</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">നിങ്ങളുടെ അറിവില്ലാതെ കോളുകൾ ചെയ്യുന്ന ക്ഷുദ്രവെയറിൽ നിന്ന് ഇത് നിങ്ങളെ സംരക്ഷിക്കും.</string>
     <string name="number_of_recent_calls_displays">സമീപകാല കോളുകളുടെ എണ്ണം പ്രദർശിപ്പിച്ചു</string>
     <string name="group_calls">കോൾ ഗ്രൂപ്പിംഗ്</string>
     <string name="group_all_calls">എല്ലാ കോളുകളും ഗ്രൂപ്പുചെയ്യുക, അവസാന കോൾ മാത്രമേ കാണിക്കൂ</string>
     <string name="call_button_style">കോൾ ബട്ടൺ ശൈലി</string>
     <string name="call_notes">കോൾ കുറിപ്പുകൾ</string>
     <string name="back_pressed_end_call">ബാക്ക് ആക്ഷൻ കോൾ അവസാനിപ്പിക്കുന്നു</string>
+    <string name="keep_calls_in_popup_summary">കോളുകൾക്ക് ഉത്തരം ലഭിച്ചതിന് ശേഷം, അവ നിങ്ങളുടെ അറിയിപ്പുകളിൽ നിലനിൽക്കും, പൂർണ്ണ സ്‌ക്രീനിൽ ദൃശ്യമാകില്ല. ഗെയിം കളിക്കുന്നത് പോലെയുള്ള മറ്റ് ആപ്പുകളെ തടസ്സപ്പെടുത്തുന്നത് ഒഴിവാക്കാനാണ് ഇത് ചെയ്യുന്നത്.</string>
+    <string name="busy">തിരക്ക്</string>
+    <string name="block_calls">കോളുകൾ തടയുക</string>
     <string name="call_using_same_sim">മുമ്പത്തെ (അവസാനം) കോൾ ചെയ്ത അതേ സിം കാർഡ് ഉപയോഗിക്കുക</string>
     <string name="answer_end_other_call">നിലവിലെ കോളിന് ഉത്തരം നൽകി അവസാനിപ്പിക്കുക</string>
     <string name="quick_answers">ദ്രുത ഉത്തരങ്ങൾ</string>
@@ -73,5 +77,5 @@
         <item quantity="other">%d മിസ്ഡ് കോളുകൾ</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">സന്ദേശം</string>
+    <string name="keep_calls_in_popup">അറിയിപ്പുകളിൽ കോളുകൾ വിടുക</string>
 </resources>

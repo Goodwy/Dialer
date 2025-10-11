@@ -37,7 +37,10 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
     }
 
     override fun setupFragment() {
-        binding.root.setBackgroundColor(context.getProperBackgroundColor())
+        val useSurfaceColor = context.isDynamicTheme() && !context.isSystemInDarkMode()
+        val backgroundColor = if (useSurfaceColor) context.getSurfaceColor() else context.getProperBackgroundColor()
+        binding.root.setBackgroundColor(backgroundColor)
+
         val placeholderResId = if (context.hasPermission(PERMISSION_READ_CONTACTS)) {
             R.string.no_contacts_found
         } else {

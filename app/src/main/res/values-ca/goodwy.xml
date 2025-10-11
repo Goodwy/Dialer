@@ -6,7 +6,7 @@
     <string name="missed_call_g">Trucada perduda</string>
     <string name="missed_calls_g">Trucades perdudes</string>
     <string name="missed_call_notifications_g">Notificacions de trucades perdudes</string>
-    <string name="dialpad_preferences">Preferències del teclat</string>
+    <string name="dialpad_preferences">Configuració de la pantalla de marcatge</string>
     <string name="call_start_end_vibration">Vibrar quan s\'inicia i finalitza la trucada</string>
 
     <string name="show_contact_thumbnails_g">Mostra les miniatures de contacte</string>
@@ -44,7 +44,7 @@
     <string name="faq_2_text_dialer_g">Premeu llargament el botó de trucada per enganxar el contingut del porta-retalls. Si el número ja està introduït, una pressió llarga sobre el botó de trucada el copiarà al porta-retalls.</string>
 
     <!-- Answer style -->
-    <string name="faq_3_text_g">El Right Dialer només mostra els contactes que tenen un número de telèfon associat a ells. Els contactes sense número de telèfon no es mostren a l\'aplicació.</string>
+    <string name="faq_3_text_g">El marcador dret només mostra els contactes que tenen un número de telèfon associat. Els contactes sense número de telèfon no es mostren a l\'aplicació.</string>
     <string name="answer_style">Estil del botó de resposta</string>
     <string name="buttons">Botons</string>
     <string name="answer_slider">Lliscant</string>
@@ -52,14 +52,17 @@
     <string name="answer_slider_vertical">Lliscant vertical</string>
 
     <string name="show_recent_calls">Mostra les trucades recents</string>
-    <string name="open_dialpad_when_call_from_another_app">Quan provis de fer una trucada des d\'una altra aplicació, obre el teclat de marcatge</string>
+    <string name="open_dialpad_when_call_from_another_app">Quan intenteu fer una trucada des d\'una altra aplicació, obriu el teclat de marcatge</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Això us pot protegir del programari maliciós que fa trucades sense el vostre coneixement.</string>
-    <string name="number_of_recent_calls_displays">S\'ha mostrat el nombre de trucades recents</string>
+    <string name="number_of_recent_calls_displays">Es mostra el nombre de trucades recents</string>
     <string name="group_calls">Agrupació de trucades</string>
-    <string name="group_all_calls">Agrupa totes les trucades, només es mostrarà l\'última trucada</string>
+    <string name="group_all_calls">Agrupa totes les trucades, només es mostrarà la darrera trucada</string>
     <string name="call_button_style">Estil de campana</string>
     <string name="call_notes">Notes de la trucada</string>
     <string name="back_pressed_end_call">L\'acció de retrocés finalitza la trucada</string>
+    <string name="keep_calls_in_popup_summary">Un cop s\'han contestat les trucades, es mantenen a les vostres notificacions i no apareixen a pantalla completa. Això es fa per evitar interrompre altres aplicacions, com ara mentre es juga un joc.</string>
+    <string name="busy">Ocupat</string>
+    <string name="block_calls">Bloquejar trucades</string>
     <string name="call_using_same_sim">Utilitzeu la mateixa targeta SIM a la qual es va fer la trucada anterior (última)</string>
     <string name="answer_end_other_call">Respondre i finalitzar la trucada actual</string>
     <string name="quick_answers">Respostes ràpides</string>
@@ -76,5 +79,5 @@
         <item quantity="other">%d trucades perdudes</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Missatge</string>
+    <string name="keep_calls_in_popup">Deixa les trucades a les notificacions</string>
 </resources>

@@ -764,7 +764,10 @@ class RecentCallsAdapter(
         ) { _, _ ->
             binding.apply {
                 itemRecentsFrameSelect.setupViewBackground(activity)
-                itemRecentsFrame.setBackgroundColor(backgroundColor)
+
+                if (activity.isDynamicTheme() && !activity.isSystemInDarkMode()) {
+                    itemRecentsFrame.setBackgroundColor(surfaceColor)
+                } else itemRecentsFrame.setBackgroundColor(backgroundColor)
 
                 val currentFontSize = fontSize
                 itemRecentsHolder.isSelected = selectedKeys.contains(call.id)

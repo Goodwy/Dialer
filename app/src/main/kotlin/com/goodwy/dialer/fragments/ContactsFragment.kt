@@ -32,7 +32,11 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
     }
 
     override fun setupFragment() {
+        val useSurfaceColor = context.isDynamicTheme() && !context.isSystemInDarkMode()
+        val backgroundColor = if (useSurfaceColor) context.getSurfaceColor() else context.getProperBackgroundColor()
+        binding.root.setBackgroundColor(backgroundColor)
         //binding.contactsFragment.setBackgroundColor(context.getProperBackgroundColor())
+
         val placeholderResId = if (context.hasPermission(PERMISSION_READ_CONTACTS)) {
             R.string.no_contacts_found
         } else {
@@ -153,13 +157,13 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
                 val unique: Set<String> = HashSet(all)
                 val sizeUnique = unique.size
                 if (isHighScreenSize()) {
-                    if (sizeUnique > 48) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTooTiny
-                    else if (sizeUnique > 37) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTiny
-                    else binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleSmall
+                    if (sizeUnique > 48) binding.letterFastscroller.textAppearanceRes = R.style.LetterFastscrollerStyleTooTiny
+                    else if (sizeUnique > 37) binding.letterFastscroller.textAppearanceRes = R.style.LetterFastscrollerStyleTiny
+                    else binding.letterFastscroller.textAppearanceRes = R.style.LetterFastscrollerStyleSmall
                 } else {
-                    if (sizeUnique > 36) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTooTiny
-                    else if (sizeUnique > 30) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTiny
-                    else binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleSmall
+                    if (sizeUnique > 36) binding.letterFastscroller.textAppearanceRes = R.style.LetterFastscrollerStyleTooTiny
+                    else if (sizeUnique > 30) binding.letterFastscroller.textAppearanceRes = R.style.LetterFastscrollerStyleTiny
+                    else binding.letterFastscroller.textAppearanceRes = R.style.LetterFastscrollerStyleSmall
                 }
             } catch (_: Exception) { }
         }

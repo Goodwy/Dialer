@@ -6,7 +6,7 @@
     <string name="missed_call_g">未接來電</string>
     <string name="missed_calls_g">未接來電</string>
     <string name="missed_call_notifications_g">未接來電通知</string>
-    <string name="dialpad_preferences">拨号盘偏好设置</string>
+    <string name="dialpad_preferences">拨号屏幕设置</string>
     <string name="call_start_end_vibration">通话开始和结束时振动</string>
 
     <string name="show_contact_thumbnails_g">顯示聯繫人縮圖</string>
@@ -42,22 +42,25 @@
     <string name="faq_2_text_dialer_g">长按呼叫按钮可粘贴剪贴板的内容。如果已输入号码，则长按呼叫按钮可将其复制到剪贴板。</string>
 
     <!-- Answer style -->
-    <string name="faq_3_text_g">Right 电话仅显示有电话号码的联系人。没有电话号码的联系人不会显示在应用中。</string>
+    <string name="faq_3_text_g">右侧拨号器仅显示已关联电话号码的联系人。没有电话号码的联系人不会显示在应用中。</string>
     <string name="answer_style">接听按钮样式</string>
     <string name="buttons">按钮样式</string>
     <string name="answer_slider">滑块样式</string>
     <string name="answer_slider_outline">带大纲的滑块</string>
     <string name="answer_slider_vertical">垂直滑块</string>
 
-    <string name="show_recent_calls">显示最近的通话</string>
-    <string name="open_dialpad_when_call_from_another_app">当您尝试从其他应用拨打电话时，请打开拨号盘</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">这可以保护您免受恶意软件在您不知情的情况下拨打电话的侵害。</string>
-    <string name="number_of_recent_calls_displays">显示最近通话的数量</string>
+    <string name="show_recent_calls">显示最近通话</string>
+    <string name="open_dialpad_when_call_from_another_app">尝试从其他应用程序拨打电话时，打开拨号盘</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">这可以保护您免受在您不知情的情况下拨打电话的恶意软件的侵害。</string>
+    <string name="number_of_recent_calls_displays">显示最近通话次数</string>
     <string name="group_calls">呼叫分组</string>
-    <string name="group_all_calls">对所有呼叫进行分组，仅显示最后一个呼叫</string>
+    <string name="group_all_calls">将所有通话分组，仅显示最后一个通话</string>
     <string name="call_button_style">铃铛按钮样式</string>
     <string name="call_notes">通话记录</string>
     <string name="back_pressed_end_call">Back 操作结束调用</string>
+    <string name="keep_calls_in_popup_summary">接听电话后，电话会保留在通知中，不会全屏显示。这样做是为了避免打扰其他应用，例如在玩游戏时。</string>
+    <string name="busy">忙碌的</string>
+    <string name="block_calls">拦截来电</string>
     <string name="call_using_same_sim">使用上一次（最后一次）通话时使用的同一张 SIM 卡</string>
     <string name="answer_end_other_call">接听并结束当前通话</string>
     <string name="quick_answers">快速解答</string>
@@ -72,5 +75,5 @@
         <item quantity="other">%d 个未接来电</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">消息</string>
+    <string name="keep_calls_in_popup">在通知中留下通话</string>
 </resources>

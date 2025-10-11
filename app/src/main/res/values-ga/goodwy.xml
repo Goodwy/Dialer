@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="transparent_call_screen_g">Scáileán Glaonna Trédhearcach</string>
+    <string name="call_back_g">Glaoigh ar ais</string>
+    <string name="call_back_person_g">Glaoigh ar ais %s</string>
+    <string name="missed_call_g">Glao caillte</string>
+    <string name="missed_calls_g">Glaonna caillte</string>
+    <string name="missed_call_notifications_g">Fógraí glaonna caillte</string>
+    <string name="call_start_end_vibration">Creathaigh nuair a thosaíonn agus a chríochnaíonn do ghlao</string>
+    <string name="show_recent_calls">Taispeáin glaonna le déanaí</string>
+    <string name="open_dialpad_when_call_from_another_app">Agus tú ag iarraidh glao a dhéanamh ó fheidhmchlár eile, oscail an eochaircheap diailithe</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Is féidir leis seo tú a chosaint ó malware a dhéanann glaonna gan do chuid eolais.</string>
+    <string name="number_of_recent_calls_displays">Taispeánadh líon na nglaonna le déanaí</string>
+    <string name="group_calls">Grúpáil glaonna</string>
+    <string name="group_all_calls">Déan gach glao a ghrúpáil, ní thaispeánfar ach an glao deiridh</string>
+    <string name="call_button_style">Stíl cnaipe glaonna</string>
+    <string name="call_notes">Nótaí glaonna</string>
+    <string name="back_pressed_end_call">Críochnaíonn an gníomh Ar Ais an glao</string>
+    <string name="keep_calls_in_popup">Fág glaonna i bhfógraí</string>
+    <string name="keep_calls_in_popup_summary">Tar éis glaonna a fhreagairt, fanann siad i d\'fhógraí agus ní bhíonn siad le feiceáil ar scáileán iomlán. Déantar é seo chun cur isteach ar apps eile a sheachaint, mar shampla agus cluiche á imirt.</string>
+    <string name="busy">Gnóthach</string>
+
+    <string name="block_calls">Cuir bac ar ghlaonna</string>
+    <string name="call_using_same_sim">Is fearr an SIM céanna ar a ndearnadh an glao roimhe seo (an ceann deireanach)</string>
+    <string name="answer_end_other_call">Freagair &amp; deireadh a chur le glao eile</string>
+    <string name="quick_answers">Freagraí tapa</string>
+    <string name="voicemail">Glórphost</string>
+    <string name="show_voicemail_icon">Taispeáin deilbhín glórphoist</string>
+    <string name="secondary_dialpad_language">Teanga thánaisteach an eochaircheap dhiailithe</string>
+    <string name="sim_card_selection_dialog_style">Stíl idirphlé roghnúcháin cárta SIM</string>
+    <string name="clear_dialpad_when_start_call">Glan an eochaircheap dhiailithe agus glao á thosú</string>
+    <string name="dialpad_preferences">Diailigh Socruithe Scáileáin</string>
+    <string name="show_contact_thumbnails_g">Taispeáin mionsamhlacha teagmhála</string>
+    <string name="hide_dialpad_letters_g">Folaigh litreacha an eochaircheap dhiailithe</string>
+    <string name="show_caller_description_g">Taispeáin faisnéis bhreise faoin nglaoiteoir</string>
+    <string name="nickname">Leasainm</string>
+    <string name="company">Cuideachta</string>
+    <string name="call_anonymously">Glaoigh go gan ainm (leis an réimír #31#)</string>
+    <string name="call_anonymously_warning">
+        <![CDATA[
+            <h4>Rabhadh</h4>
+            Glaofar ar an uimhir leis an réimír #31# <br><br>
+                <h6"><i> #31#%s</i></h6>
+            Cinntigh go dtacaíonn d\'oibreoir leis an tseirbhís cheilt uimhreacha agus an réimír #31# in úsáid agat. <br>
+            Féadfaidh do sholáthraí seirbhíse táille bhreise a ghearradh as an tseirbhís seo.
+        ]]>
+    </string>
+
+    <string name="audio_route_earpiece_g">Cluasán an ghléis</string>
+    <string name="open_speed_dial_manage">An bainisteoir luasghéaraithe a oscailt?</string>
+
+    <!-- Timer -->
+    <string name="timer">Uaineadóir</string>
+    <string name="timers_notification_msg">Tá na huaineadóirí ag rith</string>
+    <plurals name="timer_notification_msg">
+        <item quantity="one">Tá an lasc ama ag rith</item>
+        <item quantity="two">Tá %d lasc ama ag rith</item>
+        <item quantity="few">Tá %d lasc ama ag rith</item>
+        <item quantity="many">Tá an lasc ama %d ag rith</item>
+    </plurals>
+
+    <!-- FAQ -->
+    <string name="faq_1_title_dialer_g">Cén fáth a gcaithfidh mé mo ghléas a dhíghlasáil chun glao isteach a fhreagairt?</string>
+    <string name="faq_1_text_dialer_g">Tá do chóras oibriúcháin ag blocáil rochtain aip ar an scáileán glasála. Ní mór duit ligean don aip rochtain a fháil ar an scáileán glasála. Mar shampla, i MIUI ní mór duit rochtain a chumasú i "Socruithe => Fógraí => Fógraí scáileáin glasála" agus an cead "Oscail fuinneoga nua agus tú ag rith sa chúlra" a chumasú.</string>
+    <string name="faq_2_title_dialer_g">Conas is féidir liom uimhir a chóipeáil nó a ghreamú ar an scáileán diailiú?</string>
+    <string name="faq_2_text_dialer_g">Greamóidh brú fada ar an gcnaipe glaonna ábhar an ghearrthaisce. Má tá uimhir curtha isteach agat cheana féin, cóipeálfaidh brú fada ar an gcnaipe glaonna an uimhir chuig an ghearrthaisce.</string>
+    <string name="faq_3_text_g">Ní thaispeánann Dialóir Ceart ach teagmhálaithe a bhfuil uimhir theileafóin bainteach leo. Ní thaispeántar teagmhálacha gan uimhir theileafóin san aip.</string>
+
+    <!-- Answer style -->
+    <string name="answer_style">Stíl freagra</string>
+    <string name="buttons">Cnaipí</string>
+    <string name="answer_slider">Sleamhnán</string>
+    <string name="answer_slider_outline">Sleamhnán imlíne</string>
+    <string name="answer_slider_vertical">Sleamhnán ingearach</string>
+
+    <!-- Notifications -->
+    <plurals name="missed_calls">
+        <item quantity="one">Glao caillte</item>
+        <item quantity="two">%d ghlao caillte</item>
+        <item quantity="few">%d ghlao caillte</item>
+        <item quantity="many">%d nglao caillte</item>
+    </plurals>
+    <string name="missed_call_from">Glao caillte ó %s</string>
+</resources>

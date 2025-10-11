@@ -19,11 +19,11 @@ class SimpleCallScreeningService : CallScreeningService() {
     override fun onScreenCall(callDetails: Call.Details) {
         val number = callDetails.handle?.schemeSpecificPart
         when {
-            number != null && isNumberBlocked(number.normalizePhoneNumber()) -> {
+            number != null && isNumberBlocked(number.normalizePhoneNumber()) && baseConfig.blockingEnabled -> {
                 respondToCall(callDetails, isBlocked = true)
             }
 
-            number != null && baseConfig.blockUnknownNumbers -> {
+            number != null && baseConfig.blockUnknownNumbers && baseConfig.blockingEnabled -> {
                 val simpleContactsHelper = SimpleContactsHelper(this)
                 val privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
                 simpleContactsHelper.exists(number, privateCursor) { exists ->
@@ -31,7 +31,7 @@ class SimpleCallScreeningService : CallScreeningService() {
                 }
             }
 
-            number == null && baseConfig.blockHiddenNumbers -> {
+            number == null && baseConfig.blockHiddenNumbers && baseConfig.blockingEnabled -> {
                 respondToCall(callDetails, isBlocked = true)
             }
 

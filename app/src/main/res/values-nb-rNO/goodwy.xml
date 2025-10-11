@@ -7,7 +7,7 @@
     <string name="missed_calls_g">Tapte anrop</string>
     <string name="missed_call_notifications_g">Varsler om tapte anrop</string>
     .
-    <string name="dialpad_preferences">Innstillinger for numerisk tastatur</string>
+    <string name="dialpad_preferences">Oppringingsskjerminnstillinger</string>
     <string name="call_start_end_vibration">Vibrer når samtalen er start og slutt</string>
 
     <string name="show_contact_thumbnails_g">Vis miniatyrbilder for kontakter</string>
@@ -45,6 +45,7 @@
     <string name="faq_2_text_dialer_g">Trykk lenge på ringeknappen for å lime inn innholdet på utklippstavlen. Hvis nummeret allerede er oppgitt, kopierer et langt trykk på ringeknappen det til utklippstavlen.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Høyre oppringer viser bare kontakter som har et telefonnummer knyttet til seg. Kontakter uten telefonnummer vises ikke i appen.</string>
     <string name="answer_style">Svarstil</string>
     <string name="buttons">Knapper</string>
     <string name="answer_slider">Glidebryter</string>
@@ -52,14 +53,17 @@
     <string name="answer_slider_vertical">Vertikal glidebryter</string>
 
     <string name="show_recent_calls">Vis nylige anrop</string>
-    <string name="open_dialpad_when_call_from_another_app">Når du prøver å ringe fra en annen app, åpner du det numeriske tastaturet</string>
+    <string name="open_dialpad_when_call_from_another_app">Når du prøver å ringe fra et annet program, åpne talltastaturet</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Dette kan beskytte deg mot skadelig programvare som ringer uten at du vet det.</string>
     <string name="number_of_recent_calls_displays">Vist antall nylige anrop</string>
-    <string name="group_calls">Gruppering av anrop</string>
-    <string name="group_all_calls">Grupper alle samtaler, bare den siste samtalen vises</string>
+    <string name="group_calls">Samtalegruppering</string>
+    <string name="group_all_calls">Grupper alle anrop, kun det siste anropet vises</string>
     <string name="call_button_style">Bell Button Stil</string>
     <string name="call_notes">Anrop notater</string>
     <string name="back_pressed_end_call">Tilbake-handling avslutter samtalen</string>
+    <string name="keep_calls_in_popup_summary">Etter at anrop er besvart, forblir de i varslene dine og vises ikke i fullskjerm. Dette gjøres for å unngå å forstyrre andre apper, for eksempel mens du spiller et spill.</string>
+    <string name="busy">Travel</string>
+    <string name="block_calls">Blokker samtaler</string>
     <string name="call_using_same_sim">Bruk det samme SIM-kortet som forrige (siste) anrop ble foretatt til</string>
     <string name="answer_end_other_call">Svar på og avslutt gjeldende samtale</string>
     <string name="quick_answers">Raske svar</string>
@@ -75,5 +79,5 @@
         <item quantity="other">%d ubesvarte anrop</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Budskap</string>
+    <string name="keep_calls_in_popup">Legg igjen anrop i varsler</string>
 </resources>

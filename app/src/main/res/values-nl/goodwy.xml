@@ -6,7 +6,7 @@
     <string name="missed_call_g">Gemiste oproep</string>
     <string name="missed_calls_g">Gemiste oproepen</string>
     <string name="missed_call_notifications_g">Meldingen voor gemiste oproepen</string>
-    <string name="dialpad_preferences">Voorkeuren voor Toetsenblok</string>
+    <string name="dialpad_preferences">Instellingen voor het kiesscherm</string>
     <string name="call_start_end_vibration">Trillen wanneer uw gesprek begint en eindigt</string>
 
     <string name="show_contact_thumbnails_g">Miniaturen van contactpersonen weergeven</string>
@@ -43,7 +43,7 @@
     <string name="faq_2_text_dialer_g">Druk lang op de belknop om de inhoud van het klembord te plakken. Als het nummer al is ingevoerd, kopieert u het nummer door lang op de belknop te drukken naar het klembord.</string>
 
     <!-- Answer style -->
-    <string name="faq_3_text_g">Right Dialer toont alleen contacten waaraan een telefoonnummer is gekoppeld. Contacten zonder telefoonnummer worden dus niet weergegeven in de app.</string>
+    <string name="faq_3_text_g">Rechterkiezer toont alleen contacten met een telefoonnummer. Contacten zonder telefoonnummer worden niet weergegeven in de app.</string>
     <string name="answer_style">Antwoordknopstijl</string>
     <string name="buttons">Bedingstoestsen</string>
     <string name="answer_slider">Schuiven</string>
@@ -51,14 +51,17 @@
     <string name="answer_slider_vertical">Verticale schuifregelaar</string>
 
     <string name="show_recent_calls">Recente oproepen weergeven</string>
-    <string name="open_dialpad_when_call_from_another_app">Wanneer u probeert te bellen vanuit een andere app, opent u het toetsenblok</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">Dit kan u beschermen tegen malware die zonder uw medeweten belt.</string>
+    <string name="open_dialpad_when_call_from_another_app">Wanneer u probeert te bellen vanuit een andere toepassing, opent u het toetsenblok</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Hiermee wordt u beschermd tegen malware die zonder uw medeweten telefoongesprekken voert.</string>
     <string name="number_of_recent_calls_displays">Weergegeven aantal recente oproepen</string>
-    <string name="group_calls">Oproep groeperen</string>
+    <string name="group_calls">Oproepgroepering</string>
     <string name="group_all_calls">Groepeer alle oproepen, alleen de laatste oproep wordt weergegeven</string>
     <string name="call_button_style">De Stijl van de belknop</string>
     <string name="call_notes">Notities bij het gesprek</string>
     <string name="back_pressed_end_call">Actie Terug beëindigt het gesprek</string>
+    <string name="keep_calls_in_popup_summary">Nadat oproepen zijn beantwoord, blijven ze in je meldingen staan ​​en worden ze niet op volledig scherm weergegeven. Dit wordt gedaan om te voorkomen dat andere apps worden onderbroken, bijvoorbeeld tijdens het spelen van een game.</string>
+    <string name="busy">Druk bezig</string>
+    <string name="block_calls">Gesprekken blokkeren</string>
     <string name="call_using_same_sim">Gebruik dezelfde simkaart als waarop de vorige (laatste) oproep is gedaan</string>
     <string name="answer_end_other_call">Beantwoord en beëindig het huidige gesprek</string>
     <string name="quick_answers">Snelle antwoorden</string>
@@ -74,5 +77,5 @@
         <item quantity="other">%d gemiste oproepen</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Bericht</string>
+    <string name="keep_calls_in_popup">Gesprekken in meldingen achterlaten</string>
 </resources>

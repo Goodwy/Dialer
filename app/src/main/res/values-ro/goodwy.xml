@@ -6,7 +6,7 @@
     <string name="missed_call_g">Apel ratat</string>
     <string name="missed_calls_g">Apeluri pierdute</string>
     <string name="missed_call_notifications_g">Notificări privind apelurile pierdute</string>
-    <string name="dialpad_preferences">Preferințe tastatură numerică</string>
+    <string name="dialpad_preferences">Apelează Setări ecran</string>
     <string name="call_start_end_vibration">Vibrați atunci când apelul este început și sfârșit</string>
 
     <string name="show_contact_thumbnails_g">Afișarea miniaturilor persoanelor de contact</string>
@@ -45,14 +45,15 @@
     <string name="faq_2_text_dialer_g">O apăsare lungă pe butonul de apelare lipește conținutul clipboard-ului. Dacă numărul este deja introdus, o apăsare lungă pe butonul de apelare îl copiază în clipboard.</string>.
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer afișează numai contactele care au asociat un număr de telefon. Contactele fără număr de telefon nu sunt afișate în aplicație.</string>
     <string name="answer_style">Stilul butonului de răspuns</string>.
     <string name="buttons">Butoni</string>.
     <string name="answer_slider">Slider</string>.
     <string name="answer_slider_outline">Slider cu contur</string>
     <string name="answer_slider_vertical">Slider vertical</string>
 
-    <string name="show_recent_calls">Afișarea apelurilor recente</string>
-    <string name="open_dialpad_when_call_from_another_app">Când încercați să efectuați un apel din altă aplicație, deschideți tastatura telefonică</string>
+    <string name="show_recent_calls">Afișați apelurile recente</string>
+    <string name="open_dialpad_when_call_from_another_app">Când încercați să efectuați un apel dintr-o altă aplicație, deschideți tastatura de apelare</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Acest lucru vă poate proteja de programele malware care efectuează apeluri fără știrea dvs.</string>
     <string name="number_of_recent_calls_displays">Numărul afișat de apeluri recente</string>
     <string name="group_calls">Gruparea apelurilor</string>
@@ -60,6 +61,9 @@
     <string name="call_button_style">Stil buton clopot</string>
     <string name="call_notes">Note de apel</string>
     <string name="back_pressed_end_call">Acțiunea de întoarcere încheie apelul</string>
+    <string name="keep_calls_in_popup_summary">După ce se răspunde la apeluri, acestea rămân în notificări și nu apar pe ecran complet. Acest lucru se face pentru a evita întreruperea altor aplicații, cum ar fi în timpul jocului.</string>
+    <string name="busy">Ocupat</string>
+    <string name="block_calls">Blocați apelurile</string>
     <string name="call_using_same_sim">Utilizați aceeași cartelă SIM către care a fost efectuat apelul anterior (ultimul)</string>
     <string name="answer_end_other_call">Răspundeți și încheiați apelul curent</string>
     <string name="quick_answers">Răspunsuri rapide</string>
@@ -76,5 +80,5 @@
         <item quantity="other">%d apeluri ratate</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Message</string>
+    <string name="keep_calls_in_popup">Lăsați apelurile în notificări</string>
 </resources>

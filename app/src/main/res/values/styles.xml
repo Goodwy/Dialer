@@ -12,17 +12,17 @@
         <item name="android:alpha">0.8</item>
     </style>
 
-    <style name="DialpadLetterStyleSmall">
+    <style name="LetterFastscrollerStyleSmall">
         <item name="android:textSize">@dimen/small_text_size</item>
         <item name="android:alpha">0.8</item>
     </style>
 
-    <style name="DialpadLetterStyleTiny">
+    <style name="LetterFastscrollerStyleTiny">
         <item name="android:textSize">@dimen/tiny_text_size</item>
         <item name="android:alpha">0.8</item>
     </style>
 
-    <style name="DialpadLetterStyleTooTiny">
+    <style name="LetterFastscrollerStyleTooTiny">
         <item name="android:textSize">@dimen/too_tiny_text_size</item>
         <item name="android:alpha">0.8</item>
     </style>

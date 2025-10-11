@@ -6,7 +6,7 @@
     <string name="missed_call_g">Chamada perdida</string>
     <string name="missed_calls_g">Chamadas perdidas</string>
     <string name="missed_call_notifications_g">Notificações de chamadas perdidas</string>
-    <string name="dialpad_preferences">Preferências do teclado de discagem</string>
+    <string name="dialpad_preferences">Configurações da tela de discagem</string>
     <string name="call_start_end_vibration">Vibrar quando a chamada inicia ou é encerrada</string>
 
     <string name="show_contact_thumbnails_g">Exibir miniaturas de contato</string>
@@ -43,6 +43,7 @@
     <string name="faq_2_text_dialer_g">Um toque longo no botão de chamada cola o conteúdo da área de transferência. Se o número já tiver sido inserido, um toque longo no botão de chamada o copiará para a área de transferência.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">O Discador Direito exibe apenas contatos que tenham um número de telefone associado. Contatos sem número de telefone não são exibidos no aplicativo.</string>
     <string name="answer_style">Estilo da resposta</string>
     <string name="buttons">Botões</string>
     <string name="answer_slider">Botão deslizante</string>
@@ -50,14 +51,17 @@
     <string name="answer_slider_vertical">Controle deslizante vertical</string>
 
     <string name="show_recent_calls">Mostrar chamadas recentes</string>
-    <string name="open_dialpad_when_call_from_another_app">Ao tentar fazer uma chamada de outro aplicativo, abra o painel de discagem</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">Isso pode protegê-lo contra malware que faz chamadas sem o seu conhecimento.</string>
+    <string name="open_dialpad_when_call_from_another_app">Ao tentar fazer uma chamada de outro aplicativo, abra o teclado de discagem</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Isso pode protegê-lo de malware que faz chamadas sem o seu conhecimento.</string>
     <string name="number_of_recent_calls_displays">Número exibido de chamadas recentes</string>
     <string name="group_calls">Agrupamento de chamadas</string>
-    <string name="group_all_calls">Agrupar todas as chamadas, apenas a última chamada será mostrada</string>
+    <string name="group_all_calls">Agrupe todas as chamadas, apenas a última chamada será mostrada</string>
     <string name="call_button_style">Estilo de botão de anel</string>
     <string name="call_notes">Notas de chamada</string>
     <string name="back_pressed_end_call">A ação Voltar encerra a chamada</string>
+    <string name="keep_calls_in_popup_summary">Após o atendimento, as chamadas permanecem nas notificações e não aparecem em tela cheia. Isso evita a interrupção de outros aplicativos, como durante um jogo.</string>
+    <string name="busy">Ocupado</string>
+    <string name="block_calls">Bloquear chamadas</string>
     <string name="call_using_same_sim">Use o mesmo cartão SIM para o qual a chamada anterior (última) foi feita</string>
     <string name="answer_end_other_call">Atender e encerrar a chamada atual</string>
     <string name="quick_answers">Respostas rápidas</string>
@@ -74,5 +78,5 @@
         <item quantity="other">%d chamadas perdidas</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Mensagem</string>
+    <string name="keep_calls_in_popup">Deixar chamadas nas notificações</string>
 </resources>

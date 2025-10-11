@@ -6,7 +6,7 @@
     <string name="missed_call_g">مكالمة فائتة</string>
     <string name="missed_calls_g">مكالمات</string>
     <string name="missed_call_notifications_g">إشعارات المكالمات الفائتة</string>
-    <string name="dialpad_preferences">تفضيلات لوحة الطلب</string>
+    <string name="dialpad_preferences">إعدادات شاشة الاتصال</string>
     <string name="call_start_end_vibration">الاهتزاز عند بدء المكالمة وانتهائها</string>
 
     <string name="show_contact_thumbnails_g">إظهار الصور المصغرة لجهات الاتصال</string>
@@ -47,6 +47,7 @@
     <string name="faq_2_text_dialer_g">سيؤدي الضغط لفترة طويلة على زر الاتصال إلى لصق محتويات الحافظة. إذا كنت قد أدخلت بالفعل رقمًا ، فسيؤدي الضغط مع الاستمرار على زر الاتصال إلى نسخ الرقم إلى الحافظة.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">يعرض تطبيق Right Dialer جهات الاتصال المرتبطة برقم هاتف فقط. لا تُعرض جهات الاتصال التي لا تحتوي على رقم هاتف في التطبيق.</string>
     <string name="answer_style">نمط زر الإجابة</string>
     <string name="buttons">الأزرار</string>
     <string name="answer_slider">شريط التمرير</string>
@@ -54,14 +55,17 @@
     <string name="answer_slider_vertical">شريط التمرير العمودي</string>
 
     <string name="show_recent_calls">إظهار المكالمات الأخيرة</string>
-    <string name="open_dialpad_when_call_from_another_app">عند محاولة إجراء مكالمة من تطبيق آخر، افتح لوحة الطلب</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">يمكن أن يحميك هذا من البرامج الضارة التي تجري مكالمات دون علمك.</string>
-    <string name="number_of_recent_calls_displays">عدد المكالمات الأخيرة المعروضة</string>
+    <string name="open_dialpad_when_call_from_another_app">عند محاولة إجراء مكالمة من تطبيق آخر، افتح لوحة الاتصال</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">يمكن أن يحميك هذا من البرامج الضارة التي تقوم بإجراء مكالمات دون علمك.</string>
+    <string name="number_of_recent_calls_displays">عرض عدد المكالمات الأخيرة</string>
     <string name="group_calls">تجميع المكالمات</string>
-    <string name="group_all_calls">تجميع جميع المكالمات ، سيتم عرض المكالمة الأخيرة فقط</string>
+    <string name="group_all_calls">تجميع جميع المكالمات، وسيتم عرض المكالمة الأخيرة فقط</string>
     <string name="call_button_style">نمط زر الجرس</string>
     <string name="call_notes">ملاحظات المكالمات</string>
     <string name="back_pressed_end_call">الإجراء الخلفي ينهي المكالمة</string>
+    <string name="keep_calls_in_popup_summary">بعد الرد على المكالمات، تبقى في إشعاراتك ولا تظهر على الشاشة الكاملة. هذا لتجنب مقاطعة التطبيقات الأخرى، مثل أثناء لعب الألعاب.</string>
+    <string name="busy">مشغول</string>
+    <string name="block_calls">حظر المكالمات</string>
     <string name="call_using_same_sim">استخدم نفس بطاقة SIM التي تم إجراء المكالمة السابقة (الأخيرة) إليها</string>
     <string name="answer_end_other_call">الرد على المكالمة الحالية وإنهاؤها</string>
     <string name="quick_answers">إجابات سريعة</string>
@@ -81,5 +85,5 @@
         <item quantity="other">%d مكالمة فائتة</item>
     </plurals>
     <string name="missed_call_from">مكالمة فائتة من %s</string>
-    <string name="message">إرسال رسالة</string>
+    <string name="keep_calls_in_popup">ترك المكالمات في الإشعارات</string>
 </resources>

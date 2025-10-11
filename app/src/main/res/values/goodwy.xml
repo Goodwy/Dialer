@@ -17,8 +17,9 @@
     <string name="call_notes">Call notes</string>
     <string name="back_pressed_end_call">Back action ends the call</string>
     <string name="keep_calls_in_popup">Keep calls in notifications</string>
-    <string name="keep_calls_in_popup_summary">After calls are answered, keep them in the notifications and are not displayed in full screen</string>
+    <string name="keep_calls_in_popup_summary">After calls are answered, they remain in your notifications and don\'t appear full-screen. This is done to avoid interrupting other apps, such as while playing a game.</string>
     <string name="busy">Busy</string>
+    <string name="block_calls">Block calls</string>
 
     <string name="call_using_same_sim">Prefer same SIM on which previous (last) call was made</string>
     <string name="answer_end_other_call">Answer &amp; end other call</string>
@@ -28,7 +29,7 @@
     <string name="secondary_dialpad_language">Secondary dialpad language</string>
     <string name="sim_card_selection_dialog_style">SIM card selection dialogue style</string>
     <string name="clear_dialpad_when_start_call">Clear dialpad when starting a call</string>
-    <string name="dialpad_preferences">Dialpad preferences</string>
+    <string name="dialpad_preferences">Dialpad settings</string>
     <string name="show_contact_thumbnails_g">Show contact thumbnails</string>
     <string name="hide_dialpad_letters_g">Hide dialpad letters</string>
     <string name="show_caller_description_g">Show additional caller information</string>
@@ -77,5 +78,4 @@
         <item quantity="other">%d missed calls</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Message</string>
 </resources>

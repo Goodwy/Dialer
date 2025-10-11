@@ -457,6 +457,10 @@ class RecentsHelper(private val context: Context) {
     private fun updateRecentCallsContactInfo(
         number: String, updatedName: String, callLogName: String?, updatedPhotoUri: String?, callLogPhotoUri: String?
     ) {
+        if (!context.hasPermission(PERMISSION_WRITE_CALL_LOG)) {
+            return
+        }
+
         val values = ContentValues()
         var needsUpdate = false
 
@@ -470,14 +474,10 @@ class RecentsHelper(private val context: Context) {
             needsUpdate = true
         }
 
-        if (callLogPhotoUri != null) {
-            val updatedPhotoUriContactsOnly = UriUtils.nullForNonContactsUri(UriUtils.parseUriOrNull(updatedPhotoUri))
-            if (!UriUtils.areEqual(updatedPhotoUriContactsOnly, UriUtils.parseUriOrNull(callLogPhotoUri))) {
-                values.put(Calls.CACHED_PHOTO_URI, UriUtils.uriToString(updatedPhotoUriContactsOnly))
-                needsUpdate = true
-            }
-        } else {
-            values.put(Calls.CACHED_PHOTO_URI, updatedPhotoUri)
+        val updatedPhotoUriContactsOnly = UriUtils.nullForNonContactsUri(UriUtils.parseUriOrNull(updatedPhotoUri))
+        val currentPhotoUri = UriUtils.parseUriOrNull(callLogPhotoUri)
+        if (!UriUtils.areEqual(updatedPhotoUriContactsOnly, currentPhotoUri)) {
+            values.put(Calls.CACHED_PHOTO_URI, UriUtils.uriToString(updatedPhotoUriContactsOnly))
             needsUpdate = true
         }
 
@@ -494,6 +494,8 @@ class RecentsHelper(private val context: Context) {
                     Calls.NUMBER + " = ? AND " + Calls.COUNTRY_ISO + " IS NULL",
                     arrayOf(number)
                 )
+        } catch (e: SecurityException) {
+            e.printStackTrace()
         } catch (_: SQLiteFullException) {
         }
     }

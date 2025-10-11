@@ -8,7 +8,7 @@
     <string name="missed_call_notifications_g">Missed call notifications</string>
     <string name="call_start_end_vibration">Vibrate when your call is start and end</string>
 
-    <string name="dialpad_preferences">Dialpad preferences</string>
+    <string name="dialpad_preferences">Gosodiadau Sgrin Deialu</string>
     <string name="show_contact_thumbnails_g">Show contact thumbnails</string>
     <string name="hide_dialpad_letters_g">Hide dialpad letters</string>
     <string name="show_caller_description_g">Show additional caller information</string>
@@ -43,6 +43,7 @@
     <string name="faq_2_text_dialer_g">A long press on the call button will paste the clipboard contents. If you have already entered a number, long pressing the call button will copy the number to the clipboard.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Dim ond cysylltiadau sydd â rhif ffôn sy\'n gysylltiedig â nhw y mae Right Dialer yn eu dangos. Nid yw cysylltiadau heb rif ffôn yn cael eu harddangos yn yr app.</string>
     <string name="answer_style">Answer style</string>
     <string name="buttons">Buttons</string>
     <string name="answer_slider">Slider</string>
@@ -50,14 +51,17 @@
     <string name="answer_slider_vertical">Vertical slider</string>
 
     <string name="show_recent_calls">Dangos galwadau diweddar</string>
-    <string name="open_dialpad_when_call_from_another_app">Pan fyddwch chi\'n ceisio gwneud galwad o ap arall, agorwch y pad deialu</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">Gall hyn eich amddiffyn rhag gwneud galwadau maleiswedd heb eich gwybodaeth.</string>
-    <string name="number_of_recent_calls_displays">Dangoswch nifer y galwadau diweddar</string>
+    <string name="open_dialpad_when_call_from_another_app">Wrth geisio gwneud galwad o raglen arall, agorwch y pad deialu</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Gall hyn eich amddiffyn rhag malware sy\'n gwneud galwadau heb yn wybod ichi.</string>
+    <string name="number_of_recent_calls_displays">Wedi dangos nifer y galwadau diweddar</string>
     <string name="group_calls">Grwpio galwadau</string>
-    <string name="group_all_calls">Grŵp pob galwad, dim ond yr alwad olaf fydd yn cael ei dangos</string>
+    <string name="group_all_calls">Grwpiwch bob galwad, dim ond yr alwad olaf fydd yn cael ei dangos</string>
     <string name="call_button_style">Bell Button Arddull</string>
     <string name="call_notes">Nodiadau galw</string>
     <string name="back_pressed_end_call">Gweithredu cefn yn dod â\'r alwad i ben</string>
+    <string name="keep_calls_in_popup_summary">Ar ôl i alwadau gael eu hateb, maent yn aros yn eich hysbysiadau ac nid ydynt yn ymddangos ar sgrin lawn. Gwneir hyn i osgoi torri ar draws apps eraill, megis wrth chwarae gêm.</string>
+    <string name="busy">Prysur</string>
+    <string name="block_calls">Rhwystro galwadau</string>
     <string name="call_using_same_sim">Defnyddiwch yr un cerdyn SIM y gwnaed yr alwad flaenorol (olaf) iddo</string>
     <string name="answer_end_other_call">Ateb a gorffen yr alwad bresennol</string>
     <string name="quick_answers">Atebion cyflym</string>
@@ -76,5 +80,5 @@
         <item quantity="many">%d galwad wedi\'u methu</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Neges</string>
+    <string name="keep_calls_in_popup">Gadael galwadau mewn hysbysiadau</string>
 </resources>

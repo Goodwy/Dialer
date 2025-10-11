@@ -6,7 +6,7 @@
     <string name="missed_call_g">Propušteni poziv</string>
     <string name="missed_calls_g">Propušteni pozivi</string>
     <string name="missed_call_notifications_g">Obavijesti o propuštenim pozivima</string>
-    <string name="dialpad_preferences">Preference tipkovnice</string>
+    <string name="dialpad_preferences">Postavke zaslona biranja</string>
     <string name="call_start_end_vibration">Vibrirajte kada je poziv započeo i završio</string>
 
     <string name="show_contact_thumbnails_g">Pokaži minijature kontakata</string>
@@ -44,22 +44,25 @@
     <string name="faq_2_text_dialer_g">Dugo pritisnite gumb za pozivanje da zalijepite sadržaj međuspremnika. Ako je broj već unesen, dugi pritisak na tipku za pozivanje kopira ga u međuspremnik.</string>
 
     <!-- Answer style -->
-    <string name="faq_3_text_g">Right Dialer prikazuje samo kontakte koji sadrže telefonski broj. Kontakti bez telefonskog broja ne prikazuju se u aplikaciji.</string>
+    <string name="faq_3_text_g">Desni birač prikazuje samo kontakte koji imaju pridružen telefonski broj. Kontakti bez telefonskog broja ne prikazuju se u aplikaciji.</string>
     <string name="answer_style">Stil gumba za odgovor</string>
     <string name="buttons">Gumbi</string>
     <string name="answer_slider">Klizač</string>
     <string name="answer_slider_outline">Klizač obrisa</string>
     <string name="answer_slider_vertical">Okomiti klizač</string>
 
-    <string name="show_recent_calls">Prikaz nedavnih poziva</string>
-    <string name="open_dialpad_when_call_from_another_app">Kada pokušate uputiti poziv iz druge aplikacije, otvorite tipkovnicu za biranje brojeva</string>
+    <string name="show_recent_calls">Prikaži nedavne pozive</string>
+    <string name="open_dialpad_when_call_from_another_app">Kada pokušavate uputiti poziv iz druge aplikacije, otvorite brojčanik</string>
     <string name="open_dialpad_when_call_from_another_app_summary">To vas može zaštititi od zlonamjernog softvera koji upućuje pozive bez vašeg znanja.</string>
     <string name="number_of_recent_calls_displays">Prikazani broj nedavnih poziva</string>
     <string name="group_calls">Grupiranje poziva</string>
-    <string name="group_all_calls">Grupirajte sve pozive, prikazat će se samo zadnji poziv</string>
+    <string name="group_all_calls">Grupirajte sve pozive, bit će prikazan samo posljednji poziv</string>
     <string name="call_button_style">Stil gumba zvona</string>
     <string name="call_notes">Bilješke o pozivima</string>
     <string name="back_pressed_end_call">Akcija Natrag završava poziv</string>
+    <string name="keep_calls_in_popup_summary">Nakon što odgovorite na pozive, oni ostaju u vašim obavijestima i ne prikazuju se preko cijelog zaslona. To se radi kako bi se izbjeglo ometanje drugih aplikacija, primjerice tijekom igranja igrica.</string>
+    <string name="busy">Zauzet</string>
+    <string name="block_calls">Blokiraj pozive</string>
     <string name="call_using_same_sim">Koristite istu SIM karticu na koju je upućen prethodni (posljednji) poziv</string>
     <string name="answer_end_other_call">Odgovaranje i završetak trenutnog poziva</string>
     <string name="quick_answers">Brzi odgovori</string>
@@ -76,5 +79,5 @@
         <item quantity="other">%d propuštenih poziva</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Poruka</string>
+    <string name="keep_calls_in_popup">Ostavite pozive u obavijestima</string>
 </resources>

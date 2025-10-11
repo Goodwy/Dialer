@@ -6,7 +6,7 @@
     <string name="missed_call_g">Buraxılmış zəng</string>
     <string name="missed_calls_g">Buraxılmış zənglər</string>
     <string name="missed_call_notifications_g">Buraxılmış zəng bildirişləri</string>
-    <string name="dialpad_preferences">Yığım paneli üstünlükləri</string>
+    <string name="dialpad_preferences">Yığma Ekranı Parametrləri</string>
     <string name="call_start_end_vibration">Zənginiz başlayanda və bitəndə titrəyin</string>
 
     <string name="show_contact_thumbnails_g">Kontakt miniatürlərini göstərin</string>
@@ -43,6 +43,7 @@
     <string name="faq_2_text_dialer_g">Buferin məzmununu yapışdırmaq üçün zəng düyməsini uzun müddət basın. Əgər nömrə artıq daxil edilibsə, zəng düyməsini uzun basmaq onu mübadilə buferinə kopyalayır.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer yalnız onlarla əlaqəli telefon nömrəsi olan kontaktları göstərir. Telefon nömrəsi olmayan kontaktlar proqramda göstərilmir.</string>
     <string name="answer_style">Cavab Düyməsi Üslubu</string>
     <string name="buttons">Düymələr</string>
     <string name="answer_slider">Slayder</string>
@@ -50,14 +51,17 @@
     <string name="answer_slider_vertical">Şaquli Sürgü</string>
 
     <string name="show_recent_calls">Son zəngləri göstərin</string>
-    <string name="open_dialpad_when_call_from_another_app">Başqa proqramdan zəng etməyə çalışdığınız zaman yığım panelini açın</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">Bu, sizi məlumatınız olmadan zənglər edən zərərli proqramlardan qoruya bilər.</string>
+    <string name="open_dialpad_when_call_from_another_app">Başqa proqramdan zəng etməyə çalışarkən yığım panelini açın</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Bu, sizi xəbəriniz olmadan zənglər edən zərərli proqramlardan qoruya bilər.</string>
     <string name="number_of_recent_calls_displays">Son zənglərin sayı göstərilir</string>
     <string name="group_calls">Zəng qruplaşdırılması</string>
     <string name="group_all_calls">Bütün zəngləri qruplaşdırın, yalnız son zəng göstəriləcək</string>
     <string name="call_button_style">Zəng düyməsi tərzi</string>
     <string name="call_notes">Zəng qeydləri</string>
     <string name="back_pressed_end_call">Geri hərəkət zəngi bitirir</string>
+    <string name="keep_calls_in_popup_summary">Zənglərə cavab verildikdən sonra onlar sizin bildirişlərinizdə qalır və tam ekranda görünmür. Bu, digər proqramların, məsələn, oyun oynayarkən müdaxilə etməmək üçün edilir.</string>
+    <string name="busy">Məşğul</string>
+    <string name="block_calls">Zəngləri bloklayın</string>
     <string name="call_using_same_sim">Əvvəlki (son) zənginin edildiyi eyni SİM kartdan istifadə edin</string>
     <string name="answer_end_other_call">Cari zəngə cavab verin və bitirin</string>
     <string name="quick_answers">Sürətli cavablar</string>
@@ -73,5 +77,5 @@
         <item quantity="other">%d buraxılmış zəng</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Mesaj</string>
+    <string name="keep_calls_in_popup">Zəngləri bildirişlərdə buraxın</string>
 </resources>

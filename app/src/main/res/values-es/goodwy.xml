@@ -6,7 +6,7 @@
     <string name="missed_call_g">Llamada perdida</string>
     <string name="missed_calls_g">Llamadas perdidas</string>
     <string name="missed_call_notifications_g">Notificaciones de llamadas perdidas</string>
-    <string name="dialpad_preferences">Preferencias del teclado de marcación</string>
+    <string name="dialpad_preferences">Configuración de la pantalla de marcación</string>
     <string name="call_start_end_vibration">Vibrar cuando la llamada comienza y termina</string>
 
     <string name="show_contact_thumbnails_g">Mostrar miniaturas de contactos</string>
@@ -44,7 +44,7 @@
     <string name="faq_2_text_dialer_g">Una pulsación larga en el botón de llamada pega el contenido del portapapeles. Si el número ya está introducido, una pulsación larga del botón de llamada lo copia en el portapapeles.</string>
 
     <!-- Answer style -->
-    <string name="faq_3_text_g">El Right Dialer sólo muestra los contactos que tienen un número de teléfono asociado. Los contactos sin número de teléfono no se muestran en la aplicación.</string>
+    <string name="faq_3_text_g">Right Dialer solo muestra los contactos que tienen un número de teléfono asociado. Los contactos sin número de teléfono no se muestran en la aplicación.</string>
     <string name="answer_style">Estilo del botón de respuesta</string>
     <string name="buttons">Botones</string>
     <string name="answer_slider">Deslizador</string>
@@ -52,14 +52,17 @@
     <string name="answer_slider_vertical">Deslizador vertical</string>
 
     <string name="show_recent_calls">Mostrar llamadas recientes</string>
-    <string name="open_dialpad_when_call_from_another_app">Cuando intentes hacer una llamada desde otra app, abre el teclado de marcación</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">Esto puede protegerlo del malware que realiza llamadas sin su conocimiento.</string>
-    <string name="number_of_recent_calls_displays">Se muestra el número de llamadas recientes</string>
+    <string name="open_dialpad_when_call_from_another_app">Al intentar realizar una llamada desde otra aplicación, abra el teclado de marcación</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Esto puede protegerle contra malware que realiza llamadas sin su conocimiento.</string>
+    <string name="number_of_recent_calls_displays">Número mostrado de llamadas recientes</string>
     <string name="group_calls">Agrupación de llamadas</string>
     <string name="group_all_calls">Agrupar todas las llamadas, solo se mostrará la última llamada</string>
     <string name="call_button_style">Estilo de botón de campana</string>
     <string name="call_notes">Notas de la convocatoria</string>
     <string name="back_pressed_end_call">La acción de retroceso finaliza la llamada</string>
+    <string name="keep_calls_in_popup_summary">Después de responder las llamadas, estas permanecen en tus notificaciones y no aparecen en pantalla completa. Esto se hace para evitar interrumpir otras aplicaciones, como cuando juegas.</string>
+    <string name="busy">Ocupado</string>
+    <string name="block_calls">Bloquear llamadas</string>
     <string name="call_using_same_sim">Utilice la misma tarjeta SIM a la que se realizó la (última) llamada anterior</string>
     <string name="answer_end_other_call">Responder y finalizar la llamada actual</string>
     <string name="quick_answers">Respuestas rápidas</string>
@@ -76,5 +79,5 @@
         <item quantity="other">%d llamadas perdidas</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Mensaje</string>
+    <string name="keep_calls_in_popup">Dejar llamadas en notificaciones</string>
 </resources>

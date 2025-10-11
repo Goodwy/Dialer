@@ -28,6 +28,7 @@ const val BACKGROUND_CALL_SCREEN = "background_call_screen"
 const val SHOW_ALL_RECENT_IN_HISTORY = "show_all_recent_in_history"
 const val DIALPAD_STYLE = "dialpad_style"
 const val DIALPAD_SIZE = "dialpad_size"
+const val DIALPAD_BOTTOM_MARGIN = "dialpad_bottom_margin"
 const val CALL_BUTTON_PRIMARY_SIZE = "call_button_primary_size"
 const val CALL_BUTTON_SECONDARY_SIZE = "call_button_secondary_size"
 const val ANSWER_STYLE = "answer_style"
@@ -57,6 +58,7 @@ const val CALLER_NOTES = "caller_notes"
 const val BACK_PRESSED_END_CALL = "back_pressed_end_call"
 const val CALL_BLOCK_BUTTON = "call_block_button"
 const val KEEP_CALLS_IN_POPUP = "keep_calls_in_popup"
+const val INIT_CALL_BLOCKING_SETUP = "init_call_blocking_setup"
 
 const val ALL_TABS_MASK = TAB_CONTACTS or TAB_FAVORITES or TAB_CALL_HISTORY
 
@@ -162,5 +164,6 @@ const val SECONDARY_LANGUAGE_SYSTEM_ID: Int = -2
 const val LOCALE_EN = "en"
 
 // Hashtag long click
-const val DIALPAD_LONG_CLICK_SETTINGS = 0
+const val DIALPAD_LONG_CLICK_SETTINGS_DIALPAD = 0
 const val DIALPAD_LONG_CLICK_WAIT = 1
+const val DIALPAD_LONG_CLICK_SETTINGS = 2

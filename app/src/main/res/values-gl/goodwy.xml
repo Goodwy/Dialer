@@ -6,7 +6,7 @@
     <string name="missed_call_g">Chamada perdida</string>
     <string name="missed_calls_g">Chamadas perdidas</string>
     <string name="missed_call_notifications_g">Notificacións de chamadas perdidas</string>
-    <string name="dialpad_preferences">Preferencias do teclado</string>
+    <string name="dialpad_preferences">Configuración da pantalla de marcación</string>
     <string name="call_start_end_vibration">Vibra cando comeza e remata a túa chamada</string>
 
     <string name="show_contact_thumbnails_g">Mostrar miniaturas dos contactos</string>
@@ -43,6 +43,7 @@
     <string name="faq_2_text_dialer_g">Preme longamente o botón de chamada para pegar o contido do portapapeis. Se o número xa está introducido, unha pulsación longa no botón de chamada cópiao no portapapeis.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">O marcador dereito só mostra os contactos que teñen un número de teléfono asociado a eles. Os contactos sen número de teléfono non se amosan na aplicación.</string>
     <string name="answer_style">Estilo do botón de resposta</string>
     <string name="buttons">Botóns</string>
     <string name="answer_slider">Control deslizante</string>
@@ -51,13 +52,16 @@
 
     <string name="show_recent_calls">Mostrar chamadas recentes</string>
     <string name="open_dialpad_when_call_from_another_app">Cando intente facer unha chamada desde outra aplicación, abra o teclado de marcación</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">Isto pode protexelo de que o software malicioso faga chamadas sen o teu coñecemento.</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">Isto pode protexelo do malware que fai chamadas sen o teu coñecemento.</string>
     <string name="number_of_recent_calls_displays">Mostra o número de chamadas recentes</string>
     <string name="group_calls">Agrupación de chamadas</string>
     <string name="group_all_calls">Agrupa todas as chamadas, só se mostrará a última chamada</string>
     <string name="call_button_style">Estilo do botón de chamada</string>
     <string name="call_notes">Notas de chamada</string>
     <string name="back_pressed_end_call">A acción de atrás finaliza a chamada</string>
+    <string name="keep_calls_in_popup_summary">Despois de responder as chamadas, permanecen nas túas notificacións e non aparecen en pantalla completa. Isto faise para evitar interromper outras aplicacións, como mentres xogas a un xogo.</string>
+    <string name="busy">Ocupado</string>
+    <string name="block_calls">Bloquear chamadas</string>
     <string name="call_using_same_sim">Use a mesma tarxeta SIM á que se fixo a (última) chamada anterior</string>
     <string name="answer_end_other_call">Responde e finaliza a chamada actual</string>
     <string name="quick_answers">Respostas rápidas</string>
@@ -73,5 +77,5 @@
         <item quantity="other">%d chamadas perdidas</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Mensaxe</string>
+    <string name="keep_calls_in_popup">Deixa as chamadas nas notificacións</string>
 </resources>

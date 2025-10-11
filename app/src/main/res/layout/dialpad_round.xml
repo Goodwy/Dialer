@@ -574,10 +574,9 @@
         </RelativeLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/dialpad_round_wrapper_margin"
+    <FrameLayout
+        android:id="@+id/dialpadBottomMargin"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dialpad_margin_bottom_ios"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="MissingConstraints,Orientation" />
+        android:background="@color/theme_black_background_color"/>
 </LinearLayout>

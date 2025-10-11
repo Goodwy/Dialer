@@ -6,7 +6,7 @@
     <string name="missed_call_g">Cevapsız çağrı</string>
     <string name="missed_calls_g">Cevapsız aramalar</string>
     <string name="missed_call_notifications_g">Cevapsız arama bildirimleri</string>
-    <string name="dialpad_preferences">Tuş takımı tercihleri</string>
+    <string name="dialpad_preferences">Arama Ekranı Ayarları</string>
     <string name="call_start_end_vibration">Aramanız başladığında ve bittiğinde titredin</string>
 
     <string name="show_contact_thumbnails_g">Kişi küçük resimlerini göster</string>
@@ -43,7 +43,7 @@
     <string name="faq_2_text_dialer_g">Arama düğmesine uzun basıldığında panonun içeriği yapıştırılır. Numara zaten girilmişse, arama düğmesine uzun basıldığında numara panoya kopyalanır.</string>
 
     <!-- Answer style -->
-    <string name="faq_3_text_g">Right Dialer yalnızca kendileriyle ilişkili bir telefon numarası olan kişileri görüntüler. Telefon numarası olmayan kişiler uygulamada gösterilmemiştir.</string>
+    <string name="faq_3_text_g">Sağ Çevirici yalnızca telefon numarasıyla ilişkilendirilmiş kişileri görüntüler. Telefon numarası olmayan kişiler uygulamada görüntülenmez.</string>
     <string name="answer_style">Cevap düğmesi stili</string>
     <string name="buttons">Düğmeler</string>
     <string name="answer_slider">Slider</string>
@@ -51,14 +51,17 @@
     <string name="answer_slider_vertical">Dikey kaydırıcı</string>
 
     <string name="show_recent_calls">Son aramaları göster</string>
-    <string name="open_dialpad_when_call_from_another_app">Başka bir uygulamadan arama yapmaya çalıştığınızda, tuş takımını açın</string>
+    <string name="open_dialpad_when_call_from_another_app">Başka bir uygulamadan arama yapmaya çalıştığınızda, arama tuşlarını açın</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Bu, bilginiz olmadan arama yapan kötü amaçlı yazılımlardan sizi koruyabilir.</string>
-    <string name="number_of_recent_calls_displays">Görüntülenen son aramaların sayısı</string>
-    <string name="group_calls">Çağrı gruplandırma</string>
+    <string name="number_of_recent_calls_displays">Son aramaların görüntülenen sayısı</string>
+    <string name="group_calls">Çağrı gruplaması</string>
     <string name="group_all_calls">Tüm aramaları gruplandırın, yalnızca son arama gösterilecektir</string>
     <string name="call_button_style">Zil Düğmesi Stili</string>
     <string name="call_notes">Çağrı notları</string>
     <string name="back_pressed_end_call">Geri eylemi çağrıyı sonlandırır</string>
+    <string name="keep_calls_in_popup_summary">Aramalar yanıtlandıktan sonra bildirimlerinizde kalır ve tam ekran görüntülenmez. Bu, oyun oynarken olduğu gibi diğer uygulamaların kesintiye uğramasını önlemek içindir.</string>
+    <string name="busy">Meşgul</string>
+    <string name="block_calls">Çağrıları engelle</string>
     <string name="call_using_same_sim">Önceki (son) aramanın yapıldığı SIM kartı kullanın</string>
     <string name="answer_end_other_call">Mevcut aramayı cevaplayın ve sonlandırın</string>
     <string name="quick_answers">Hızlı yanıtlar</string>
@@ -74,5 +77,5 @@
         <item quantity="other">%d cevapsız çağrı</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">İleti</string>
+    <string name="keep_calls_in_popup">Çağrıları bildirimlerde bırakın</string>
 </resources>

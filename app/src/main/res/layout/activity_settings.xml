@@ -73,28 +73,6 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:id="@+id/settings_open_dialpad_at_launch_holder"
-                        style="@style/SettingsHolderSwitchStyle">
-
-                        <com.goodwy.commons.views.MyMaterialSwitch
-                            android:id="@+id/settings_open_dialpad_at_launch"
-                            style="@style/SettingsSwitchStyle"
-                            android:text="@string/open_dialpad_by_default"
-                            app:switchPadding="@dimen/bigger_margin"/>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/settings_material_design_3_holder"
-                        style="@style/SettingsHolderSwitchStyle">
-
-                        <com.goodwy.commons.views.MyMaterialSwitch
-                            android:id="@+id/settings_material_design_3"
-                            style="@style/SettingsSwitchStyle"
-                            android:text="@string/material_design_3"
-                            app:switchPadding="@dimen/bigger_margin"/>
-                    </RelativeLayout>
-
-                    <RelativeLayout
                         android:id="@+id/settingsOverflowIconHolder"
                         style="@style/SettingsHolderStyle">
 
@@ -117,6 +95,31 @@
                             android:clickable="false"
                             android:contentDescription="@string/settings_icon"
                             android:src="@drawable/ic_more_horiz" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/settingsFloatingButtonStyleHolder"
+                        style="@style/SettingsHolderStyle">
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settingsFloatingButtonStyleLabel"
+                            style="@style/SettingsTextLabelStyle"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/settingsFloatingButtonStyle"
+                            android:layout_marginEnd="@dimen/normal_margin"
+                            android:text="@string/floating_button_style" />
+
+                        <ImageView
+                            android:id="@+id/settingsFloatingButtonStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/settings_margin"
+                            android:clickable="false"
+                            android:contentDescription="@string/floating_button_style"
+                            android:src="@drawable/ic_circle_filled" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -296,6 +299,18 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/settingsUseSpeechToTextHolder"
+                        style="@style/SettingsHolderSwitchStyle">
+
+                        <com.goodwy.commons.views.MyMaterialSwitch
+                            android:id="@+id/settingsUseSpeechToText"
+                            style="@style/SettingsSwitchStyle"
+                            android:text="@string/voice_input"
+                            app:switchPadding="@dimen/bigger_margin" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:id="@+id/settings_hide_dialpad_letters_holder"
                         style="@style/SettingsHolderSwitchStyle"
                         android:visibility="gone">
@@ -355,18 +370,22 @@
                         style="@style/SettingsHolderStyle">
 
                         <com.goodwy.commons.views.MyTextView
-                            android:id="@+id/settings_change_date_time_format"
+                            android:id="@+id/settings_change_date_time_format_label"
                             style="@style/SettingsTextLabelStyle"
+                            android:layout_alignParentStart="true"
                             android:layout_centerVertical="true"
-                            android:layout_marginEnd="68dp"
-                            android:text="@string/change_date_and_time_format"/>
+                            android:layout_toStartOf="@+id/settings_change_date_time_format"
+                            android:text="@string/change_date_and_time_format" />
 
-                        <ImageView
-                            android:id="@+id/settings_change_date_time_format_chevron"
-                            style="@style/SettingsChevronStyle"
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settings_change_date_time_format"
+                            style="@style/SettingsTextValueStyle"
+                            android:maxWidth="@dimen/settings_value_width_long"
+                            android:layout_marginStart="@dimen/settings_margin"
                             android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:contentDescription="@string/change_date_and_time_format"/>
+                            android:layout_marginEnd="@dimen/settings_margin"
+                            tools:text="01.01.2025 08:30" />
+
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -438,6 +457,17 @@
                             android:layout_alignParentEnd="true"
                             android:layout_marginEnd="@dimen/settings_margin"
                             tools:text="Last used one"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/settings_open_dialpad_at_launch_holder"
+                        style="@style/SettingsHolderSwitchStyle">
+
+                        <com.goodwy.commons.views.MyMaterialSwitch
+                            android:id="@+id/settings_open_dialpad_at_launch"
+                            style="@style/SettingsSwitchStyle"
+                            android:text="@string/open_dialpad_by_default"
+                            app:switchPadding="@dimen/bigger_margin"/>
                     </RelativeLayout>
 
                     <RelativeLayout

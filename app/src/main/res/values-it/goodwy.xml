@@ -6,7 +6,7 @@
     <string name="missed_call_g">Chiamata persa</string>
     <string name="missed_calls_g">Chiamate perse</string>
     <string name="missed_call_notifications_g">Notifiche di chiamata senza risposta</string>
-    <string name="dialpad_preferences">Preferenze della tastiera</string>
+    <string name="dialpad_preferences">Impostazioni dello schermo di selezione</string>
     <string name="call_start_end_vibration">Vibra all\'inizio e alla fine della chiamata</string>
 
     <string name="show_contact_thumbnails_g">Mostra miniature dei contatti</string>
@@ -44,7 +44,7 @@
     <string name="faq_2_text_dialer_g">Premi a lungo il pulsante di chiamata per incollare il contenuto degli appunti. Se il numero è già stato inserito, una lunga pressione sul pulsante di chiamata lo copia negli appunti.</string>
 
     <!-- Answer style -->
-    <string name="faq_3_text_g">Right Dialer mostra solo i contatti che hanno un numero di telefono associato. I contatti senza un numero di telefono non vengono mostrati nell\'app.</string>
+    <string name="faq_3_text_g">Right Dialer mostra solo i contatti a cui è associato un numero di telefono. I contatti senza numero di telefono non vengono visualizzati nell\'app.</string>
     <string name="answer_style">Stile di risposta</string>
     <string name="buttons">Bottoni</string>
     <string name="answer_slider">Slider</string>
@@ -52,14 +52,17 @@
     <string name="answer_slider_vertical">Slider verticale</string>
 
     <string name="show_recent_calls">Mostra le chiamate recenti</string>
-    <string name="open_dialpad_when_call_from_another_app">Quando provi a effettuare una chiamata da un\'altra app, apri la tastiera</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">Questo può proteggerti dal malware che effettua chiamate a tua insaputa.</string>
+    <string name="open_dialpad_when_call_from_another_app">Quando si tenta di effettuare una chiamata da un\'altra applicazione, aprire il tastierino numerico</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">In questo modo puoi proteggerti dai malware che effettuano chiamate senza che tu ne sia a conoscenza.</string>
     <string name="number_of_recent_calls_displays">Numero visualizzato di chiamate recenti</string>
     <string name="group_calls">Raggruppamento delle chiamate</string>
     <string name="group_all_calls">Raggruppa tutte le chiamate, verrà mostrata solo l\'ultima chiamata</string>
     <string name="call_button_style">Stile pulsante campanello</string>
     <string name="call_notes">Note di chiamata</string>
     <string name="back_pressed_end_call">L\'azione all\'indietro termina la chiamata</string>
+    <string name="keep_calls_in_popup_summary">Una volta ricevute risposte, le chiamate rimangono nelle notifiche e non vengono visualizzate a schermo intero. Questo per evitare di interrompere altre app, ad esempio durante un gioco.</string>
+    <string name="busy">Occupato</string>
+    <string name="block_calls">Blocca le chiamate</string>
     <string name="call_using_same_sim">Utilizzare la stessa scheda SIM su cui è stata effettuata l\'ultima chiamata precedente</string>
     <string name="answer_end_other_call">Rispondi e termina la chiamata in corso</string>
     <string name="quick_answers">Risposte rapide</string>
@@ -76,5 +79,5 @@
         <item quantity="other">%d chiamate perse</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Messaggio</string>
+    <string name="keep_calls_in_popup">Lascia le chiamate nelle notifiche</string>
 </resources>

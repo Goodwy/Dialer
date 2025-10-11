@@ -14,6 +14,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
+import android.speech.RecognizerIntent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -36,6 +37,7 @@ import com.goodwy.commons.dialogs.RadioGroupDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.RadioItem
+import com.goodwy.commons.models.Release
 import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MySearchMenu
 import com.goodwy.dialer.BuildConfig
@@ -56,6 +58,8 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import me.grantland.widget.AutofitHelper
 import java.io.InputStreamReader
+import java.util.Locale
+import java.util.Objects
 
 class MainActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityMainBinding::inflate)
@@ -73,6 +77,7 @@ class MainActivity : SimpleActivity() {
     var cachedContacts = ArrayList<Contact>()
     private var cachedFavorites = ArrayList<Contact>()
     private var storedContactShortcuts = ArrayList<Contact>()
+    private var isSpeechToTextAvailable = false
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,6 +117,8 @@ class MainActivity : SimpleActivity() {
             handleNotificationPermission { granted ->
                 if (!granted) {
                     PermissionRequiredDialog(this, R.string.allow_notifications_incoming_calls, { openNotificationSettings() })
+                } else {
+                    checkWhatsNewDialog()
                 }
             }
         } else {
@@ -145,6 +152,14 @@ class MainActivity : SimpleActivity() {
         binding.mainTopTabsContainer.beGoneIf(binding.mainTopTabsHolder.tabCount == 1 || useBottomNavigationBar)
 
         setupSecondaryLanguage()
+
+        // At the first launch, enable the general blocking if at least one blocking was enabled
+        if (config.initCallBlockingSetup) {
+            if (getBlockedNumbers().isNotEmpty() || baseConfig.blockUnknownNumbers || baseConfig.blockHiddenNumbers) {
+                baseConfig.blockingEnabled = true
+            }
+            config.initCallBlockingSetup = false
+        }
     }
 
     override fun onResume() {
@@ -166,6 +181,7 @@ class MainActivity : SimpleActivity() {
         val properPrimaryColor = getProperPrimaryColor()
         val dialpadIcon = resources.getColoredDrawableWithColor(this, R.drawable.ic_dialpad_vector, properPrimaryColor.getContrastColor())
         binding.mainDialpadButton.setImageDrawable(dialpadIcon)
+        if (isDynamicTheme() && !isSystemInDarkMode()) binding.mainHolder.setBackgroundColor(getSurfaceColor())
 
         updateTextColors(binding.mainHolder)
         setupTabColors()
@@ -232,9 +248,10 @@ class MainActivity : SimpleActivity() {
         binding.viewPager.setPageTransformer(true, animation)
         binding.viewPager.setPagingEnabled(!config.useSwipeToAction)
 
-        val properBackgroundColor = getProperBackgroundColor()
+        val useSurfaceColor = isDynamicTheme() && !isSystemInDarkMode()
+        val backgroundColor = if (useSurfaceColor) getSurfaceColor() else getProperBackgroundColor()
         getAllFragments().forEach {
-            it?.setBackgroundColor(properBackgroundColor)
+            it?.setBackgroundColor(backgroundColor)
         }
         if (getCurrentFragment() is RecentsFragment) clearMissedCalls()
 
@@ -269,6 +286,16 @@ class MainActivity : SimpleActivity() {
             toast(R.string.must_make_default_caller_id_app, length = Toast.LENGTH_LONG)
             baseConfig.blockUnknownNumbers = false
             baseConfig.blockHiddenNumbers = false
+        } else if (requestCode == REQUEST_CODE_SPEECH_INPUT && resultCode == RESULT_OK) {
+            if (resultData != null) {
+                val res: ArrayList<String> =
+                    resultData.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS) as ArrayList<String>
+
+                val speechToText =  Objects.requireNonNull(res)[0]
+                if (speechToText.isNotEmpty()) {
+                    binding.mainMenu.setText(speechToText)
+                }
+            }
         }
     }
 
@@ -328,7 +355,16 @@ class MainActivity : SimpleActivity() {
             getToolbar().inflateMenu(R.menu.menu)
             toggleHideOnScroll(false)
             if (config.bottomNavigationBar) {
+                if (baseConfig.useSpeechToText) {
+                    isSpeechToTextAvailable = isSpeechToTextAvailable()
+                    showSpeechToText = isSpeechToTextAvailable
+                }
+
                 setupMenu()
+
+                onSpeechToTextClickListener = {
+                    speechToText()
+                }
 
                 onSearchClosedListener = {
                     getAllFragments().forEach {
@@ -699,41 +735,48 @@ class MainActivity : SimpleActivity() {
     private fun scrollChange() {
         val myRecyclerView = getCurrentFragment()?.myRecyclerView()
         scrollingView = myRecyclerView
+
         val scrollingViewOffset = scrollingView?.computeVerticalScrollOffset() ?: 0
         currentOldScrollY = scrollingViewOffset
-        binding.mainMenu.updateColors(getStartRequiredStatusBarColor(), scrollingViewOffset)
-        setupSearchMenuScrollListenerNew(myRecyclerView, binding.mainMenu)
+
+        val useSurfaceColor = isDynamicTheme() && !isSystemInDarkMode()
+        val backgroundColor = if (useSurfaceColor) getSurfaceColor() else getProperBackgroundColor()
+        val statusBarColor = if (config.changeColourTopBar) getRequiredStatusBarColor(useSurfaceColor) else backgroundColor
+
+        binding.mainMenu.updateColors(statusBarColor, scrollingViewOffset)
+        setupSearchMenuScrollListenerNew(myRecyclerView, binding.mainMenu, useSurfaceColor)
     }
 
-    private fun setupSearchMenuScrollListenerNew(scrollingView: ScrollingView?, searchMenu: MySearchMenu) {
+    private fun setupSearchMenuScrollListenerNew(scrollingView: ScrollingView?, searchMenu: MySearchMenu, surfaceColor: Boolean) {
         this.scrollingView = scrollingView
         this.mySearchMenu = searchMenu
         if (scrollingView is RecyclerView) {
             scrollingView.setOnScrollChangeListener { _, _, _, _, _ ->
                 val newScrollY = scrollingView.computeVerticalScrollOffset()
-                if (newScrollY == 0 || currentOldScrollY == 0) scrollingChanged(newScrollY)
+                if (newScrollY == 0 || currentOldScrollY == 0) scrollingChanged(newScrollY, surfaceColor)
                 currentScrollY = newScrollY
                 currentOldScrollY = currentScrollY
             }
         }
     }
 
-    private fun scrollingChanged(newScrollY: Int) {
+    private fun scrollingChanged(newScrollY: Int, surfaceColor: Boolean) {
         if (newScrollY > 0 && currentOldScrollY == 0) {
-            val colorFrom = window.statusBarColor
+            val colorFrom = if (surfaceColor) getSurfaceColor() else getProperBackgroundColor()
             val colorTo = getColoredMaterialStatusBarColor()
             animateMySearchMenuColors(colorFrom, colorTo)
         } else if (newScrollY == 0 && currentOldScrollY > 0) {
-            val colorFrom = window.statusBarColor
-            val colorTo = getRequiredStatusBarColor()
+            val colorFrom = if (surfaceColor) getSurfaceColor() else getProperBackgroundColor()
+            val colorTo = getRequiredStatusBarColor(surfaceColor)
             animateMySearchMenuColors(colorFrom, colorTo)
         }
     }
 
     private fun getStartRequiredStatusBarColor(): Int {
+        val useSurfaceColor = isDynamicTheme() && !isSystemInDarkMode()
         val scrollingViewOffset = scrollingView?.computeVerticalScrollOffset() ?: 0
         return if (scrollingViewOffset == 0) {
-            getProperBackgroundColor()
+            if (useSurfaceColor) getSurfaceColor() else getProperBackgroundColor()
         } else {
             getColoredMaterialStatusBarColor()
         }
@@ -1086,6 +1129,13 @@ class MainActivity : SimpleActivity() {
                 it?.onSearchQueryChanged("")
             }
             mSearchMenuItem?.collapseActionView()
+        }
+    }
+
+    private fun checkWhatsNewDialog() {
+        arrayListOf<Release>().apply {
+            add(Release(690, R.string.release_690))
+            checkWhatsNew(this, BuildConfig.VERSION_CODE)
         }
     }
 }

@@ -66,13 +66,13 @@ class SelectContactDialog(val activity: SimpleActivity, val contacts: List<Conta
             val unique: Set<String> = HashSet(all)
             val sizeUnique = unique.size
             if (isHighScreenSize()) {
-                if (sizeUnique > 48) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTooTiny
-                else if (sizeUnique > 37) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTiny
-                else binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleSmall
+                if (sizeUnique > 48) binding.letterFastscroller.textAppearanceRes = R.style.LetterFastscrollerStyleTooTiny
+                else if (sizeUnique > 37) binding.letterFastscroller.textAppearanceRes = R.style.LetterFastscrollerStyleTiny
+                else binding.letterFastscroller.textAppearanceRes = R.style.LetterFastscrollerStyleSmall
             } else {
-                if (sizeUnique > 36) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTooTiny
-                else if (sizeUnique > 30) binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleTiny
-                else binding.letterFastscroller.textAppearanceRes = R.style.DialpadLetterStyleSmall
+                if (sizeUnique > 36) binding.letterFastscroller.textAppearanceRes = R.style.LetterFastscrollerStyleTooTiny
+                else if (sizeUnique > 30) binding.letterFastscroller.textAppearanceRes = R.style.LetterFastscrollerStyleTiny
+                else binding.letterFastscroller.textAppearanceRes = R.style.LetterFastscrollerStyleSmall
             }
         } catch (_: Exception) { }
 

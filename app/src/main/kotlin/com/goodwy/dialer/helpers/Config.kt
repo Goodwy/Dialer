@@ -9,7 +9,6 @@ import android.telephony.PhoneNumberUtils
 import android.telephony.TelephonyManager
 import androidx.core.content.ContextCompat
 import com.goodwy.commons.extensions.getDefaultAlarmSound
-import com.goodwy.commons.extensions.getDefaultAlarmTitle
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.goodwy.commons.helpers.BaseConfig
@@ -18,7 +17,6 @@ import com.goodwy.dialer.extensions.putPhoneAccountHandle
 import com.goodwy.dialer.models.CallerNote
 import com.goodwy.dialer.models.RecentCall
 import com.goodwy.dialer.models.SpeedDial
-import androidx.core.content.edit
 import androidx.core.content.edit
 import java.util.Locale
 
@@ -171,17 +169,17 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getInt(BACKGROUND_CALL_SCREEN, BLUR_AVATAR)
         set(backgroundCallScreen) = prefs.edit { putInt(BACKGROUND_CALL_SCREEN, backgroundCallScreen) }
 
-    var showAllRecentInHistory: Boolean
-        get() = prefs.getBoolean(SHOW_ALL_RECENT_IN_HISTORY, true)
-        set(showAllRecentInHistory) = prefs.edit { putBoolean(SHOW_ALL_RECENT_IN_HISTORY, showAllRecentInHistory) }
-
     var dialpadStyle: Int
         get() = prefs.getInt(DIALPAD_STYLE, DIALPAD_ORIGINAL)
         set(dialpadStyle) = prefs.edit { putInt(DIALPAD_STYLE, dialpadStyle) }
 
     var dialpadSize: Int
         get() = prefs.getInt(DIALPAD_SIZE, 100)
-        set(dialpadStyle) = prefs.edit { putInt(DIALPAD_SIZE, dialpadStyle) }
+        set(dialpadSize) = prefs.edit { putInt(DIALPAD_SIZE, dialpadSize) }
+
+    var dialpadBottomMargin: Int
+        get() = prefs.getInt(DIALPAD_BOTTOM_MARGIN, 100)
+        set(dialpadBottomMargin) = prefs.edit { putInt(DIALPAD_BOTTOM_MARGIN, dialpadBottomMargin) }
 
     var callButtonPrimarySize: Int
         get() = prefs.getInt(CALL_BUTTON_PRIMARY_SIZE, 100)
@@ -197,7 +195,7 @@ class Config(context: Context) : BaseConfig(context) {
 
     var showCallerDescription: Int
         get() = prefs.getInt(SHOW_CALLER_DESCRIPTION, SHOW_CALLER_COMPANY)
-        set(answerStyle) = prefs.edit { putInt(SHOW_CALLER_DESCRIPTION, answerStyle) }
+        set(showCallerDescription) = prefs.edit { putInt(SHOW_CALLER_DESCRIPTION, showCallerDescription) }
 
     var showWarningAnonymousCall: Boolean
         get() = prefs.getBoolean(SHOW_WARNING_ANONYMOUS_CALL, true)
@@ -303,6 +301,10 @@ class Config(context: Context) : BaseConfig(context) {
     var keepCallsInPopUp: Boolean
         get() = prefs.getBoolean(KEEP_CALLS_IN_POPUP, false)
         set(keepCallsInPopUp) = prefs.edit { putBoolean(KEEP_CALLS_IN_POPUP, keepCallsInPopUp) }
+
+    var initCallBlockingSetup: Boolean
+        get() = prefs.getBoolean(INIT_CALL_BLOCKING_SETUP, true)
+        set(initCallBlockingSetup) = prefs.edit { putBoolean(INIT_CALL_BLOCKING_SETUP, initCallBlockingSetup) }
 
     //Timer
     var timerSoundUri: String

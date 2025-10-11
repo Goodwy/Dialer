@@ -3,14 +3,20 @@
     <string name="app_name_g">Right Dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
-    <string name="release_641">
+    <string name="release_690">
+        Changed the color scheme of the system theme\n
         Optimized call history loading\n
+        Added voice input for search\n
+        Added bottom padding setting for dialpad\n
+        Added ‘Block Calls’ setting and quick settings tile\n
         Added ‘Blocking type’ option\n
-        Added quick settings tile ‘Block calls from unknown numbers’\n
         Added the ability to disable one of the swipes\n
         Added dialpad tone in TalkBack mode\n
         The dialpad searches in contacts, and if it doesn\'t find anything, it searches in recent calls\n
         A new call type has been added - Blocked Call\n
+        Added date format YYYY.MM.DD\n
+        Persian calendar added\n
+        Dialpad search has been fixed\n
         Fixed bugs, improved stability
     </string>
     <string name="release_630">

@@ -6,7 +6,7 @@
     <string name="missed_call_g">Panggilan tidak terjawab</string>
     <string name="missed_calls_g">Panggilan tidak terjawab</string>
     <string name="missed_call_notifications_g">Notifikasi panggilan tak terjawab</string>
-    <string name="dialpad_preferences">Preferensi tombol nomor</string>
+    <string name="dialpad_preferences">Pengaturan Layar Panggilan</string>
     <string name="call_start_end_vibration">Bergetar saat panggilan Anda dimulai dan diakhiri</string>
 
     <string name="show_contact_thumbnails_g">Tampilkan gambar mini kontak</string>
@@ -49,15 +49,18 @@
     <string name="answer_slider_outline">Penggeser garis luar</string>
     <string name="answer_slider_vertical">Penggeser Vertikal</string>
 
-    <string name="show_recent_calls">Tampilkan panggilan terakhir</string>
-    <string name="open_dialpad_when_call_from_another_app">Saat Anda mencoba melakukan panggilan dari aplikasi lain, buka papan tombol</string>
+    <string name="show_recent_calls">Tampilkan panggilan terbaru</string>
+    <string name="open_dialpad_when_call_from_another_app">Saat mencoba melakukan panggilan dari aplikasi lain, buka papan tombol</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Ini dapat melindungi Anda dari malware yang melakukan panggilan tanpa sepengetahuan Anda.</string>
-    <string name="number_of_recent_calls_displays">Menampilkan jumlah panggilan terakhir</string>
+    <string name="number_of_recent_calls_displays">Menampilkan jumlah panggilan terbaru</string>
     <string name="group_calls">Pengelompokan panggilan</string>
     <string name="group_all_calls">Kelompokkan semua panggilan, hanya panggilan terakhir yang akan ditampilkan</string>
     <string name="call_button_style">Gaya tombol panggil</string>
     <string name="call_notes">Catatan panggilan</string>
     <string name="back_pressed_end_call">Aksi kembali mengakhiri panggilan</string>
+    <string name="keep_calls_in_popup_summary">Setelah panggilan dijawab, panggilan tersebut tetap ada di notifikasi Anda dan tidak ditampilkan di layar penuh. Hal ini dilakukan untuk menghindari gangguan pada aplikasi lain, misalnya saat bermain game.</string>
+    <string name="busy">Sibuk</string>
+    <string name="block_calls">Blokir panggilan</string>
     <string name="call_using_same_sim">Gunakan kartu SIM yang sama dengan yang digunakan pada panggilan sebelumnya (terakhir).</string>
     <string name="answer_end_other_call">Jawab dan akhiri panggilan saat ini</string>
     <string name="quick_answers">Jawaban cepat</string>
@@ -72,5 +75,5 @@
         <item quantity="other">%d panggilan tidak terjawab</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Pesan</string>
+    <string name="keep_calls_in_popup">Biarkan panggilan di notifikasi</string>
 </resources>

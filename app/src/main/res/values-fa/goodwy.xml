@@ -43,6 +43,7 @@
     <string name="faq_2_text_dialer_g">با فشار طولانی دکمه تماس، محتویات کلیپ‌بورد جای‌گذاری می‌شود. اگر قبلاً شماره‌ای را وارد کرده‌اید، با فشار طولانی دکمه تماس، شماره در کلیپ‌بورد کپی می‌شود.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Right Dialer فقط مخاطبینی را نمایش می دهد که شماره تلفن مرتبط با آنها دارند. مخاطبین بدون شماره تلفن در برنامه نمایش داده نمی شوند.</string>
     <string name="answer_style">سبک پاسخ</string>
     <string name="buttons">دکمه‌ها</string>
     <string name="answer_slider">لغزنده</string>
@@ -50,14 +51,17 @@
     <string name="answer_slider_vertical">لغزنده عمودی</string>
 
     <string name="show_recent_calls">نمایش تماس های اخیر</string>
-    <string name="open_dialpad_when_call_from_another_app">وقتی می خواهید از برنامه دیگری تماس برقرار کنید، صفحه شماره گیری را باز کنید</string>
-    <string name="open_dialpad_when_call_from_another_app_summary">این می تواند از شما در برابر بدافزارهایی که بدون اطلاع شما تماس می گیرند محافظت کند.</string>
-    <string name="number_of_recent_calls_displays">نمایش داده شده تعداد تماس های اخیر</string>
-    <string name="group_calls">گروه بندی تماس</string>
+    <string name="open_dialpad_when_call_from_another_app">هنگام تلاش برای برقراری تماس از یک برنامه دیگر، صفحه شماره گیری را باز کنید</string>
+    <string name="open_dialpad_when_call_from_another_app_summary">این می تواند از شما در برابر بدافزارهایی که بدون اطلاع شما تماس برقرار می کنند محافظت کند.</string>
+    <string name="number_of_recent_calls_displays">نمایش تعداد تماس های اخیر</string>
+    <string name="group_calls">گروه بندی تماس ها</string>
     <string name="group_all_calls">همه تماس ها را گروه بندی کنید، فقط آخرین تماس نشان داده می شود</string>
     <string name="call_button_style">سبک دکمه زنگ</string>
     <string name="call_notes">یادداشت های تماس</string>
     <string name="back_pressed_end_call">اقدام برگشت تماس را به پایان می رساند</string>
+    <string name="keep_calls_in_popup_summary">پس از پاسخ به تماس‌ها، در اعلان‌های شما باقی می‌مانند و به صورت تمام صفحه نشان داده نمی‌شوند. این کار برای جلوگیری از وقفه در برنامه های دیگر، مانند هنگام بازی، انجام می شود.</string>
+    <string name="busy">مشغول</string>
+    <string name="block_calls">مسدود کردن تماس ها</string>
     <string name="call_using_same_sim">از همان سیم کارتی استفاده کنید که تماس قبلی (آخر) با آن برقرار شده است</string>
     <string name="answer_end_other_call">پاسخ دادن و پایان دادن به تماس فعلی</string>
     <string name="quick_answers">پاسخ های سریع</string>
@@ -73,5 +77,5 @@
         <item quantity="other">تماس از دست رفته %d</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">پیام</string>
+    <string name="keep_calls_in_popup">تماس ها را در اعلان ها بگذارید</string>
 </resources>

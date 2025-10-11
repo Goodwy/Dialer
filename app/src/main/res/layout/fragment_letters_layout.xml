@@ -52,7 +52,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:paddingStart="@dimen/normal_margin"
-            android:textAppearance="@style/DialpadLetterStyle" />
+            android:textAppearance="@style/LetterFastscrollerStyleSmall" />
 
         <com.reddit.indicatorfastscroll.FastScrollerThumbView
             android:id="@+id/letter_fastscroller_thumb"

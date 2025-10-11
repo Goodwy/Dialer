@@ -6,7 +6,7 @@
     <string name="missed_call_g">Verpasster Anruf</string>
     <string name="missed_calls_g">Verpasste Anrufe</string>
     <string name="missed_call_notifications_g">Benachrichtigungen über verpasste Anrufe</string>
-    <string name="dialpad_preferences">Dialpad-Einstellungen</string>
+    <string name="dialpad_preferences">Wählbildschirmeinstellungen</string>
     <string name="call_start_end_vibration">Vibrieren, wenn Ihr Anruf beginnt und endet</string>
 
     <string name="show_contact_thumbnails_g">Kontakt-Miniaturansichten anzeigen</string>
@@ -43,7 +43,7 @@
     <string name="faq_2_text_dialer_g">Ein langer Druck auf die Ruftaste fügt den Inhalt der Zwischenablage ein. Wenn die Nummer bereits eingegeben ist, wird sie durch einen langen Druck auf die Anruftaste in die Zwischenablage kopiert.</string>
 
     <!-- Answer style -->
-    <string name="faq_3_text_g">Right Dialer zeigt nur Kontakte an, die mit einer Telefonnummer verknüpft sind. Kontakte ohne Telefonnummer werden in der App nicht angezeigt.</string>
+    <string name="faq_3_text_g">Right Dialer zeigt nur Kontakte an, denen eine Telefonnummer zugeordnet ist. Kontakte ohne Telefonnummer werden in der App nicht angezeigt.</string>
     <string name="answer_style">Antworttaste Stil</string>
     <string name="buttons">Buttons</string>
     <string name="answer_slider">Schieberegler</string>
@@ -51,14 +51,17 @@
     <string name="answer_slider_vertical">Vertikaler Schieberegler</string>
 
     <string name="show_recent_calls">Letzte Anrufe anzeigen</string>
-    <string name="open_dialpad_when_call_from_another_app">Wenn Sie versuchen, einen Anruf über eine andere App zu tätigen, öffnen Sie die Wähltastatur</string>
+    <string name="open_dialpad_when_call_from_another_app">Wenn Sie versuchen, einen Anruf aus einer anderen Anwendung zu tätigen, öffnen Sie die Wähltastatur</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Dies kann Sie vor Malware schützen, die ohne Ihr Wissen Anrufe tätigt.</string>
     <string name="number_of_recent_calls_displays">Angezeigte Anzahl der letzten Anrufe</string>
-    <string name="group_calls">Gruppierung von Anrufen</string>
-    <string name="group_all_calls">Gruppieren Sie alle Anrufe, es wird nur der letzte Anruf angezeigt</string>
+    <string name="group_calls">Anrufgruppierung</string>
+    <string name="group_all_calls">Alle Anrufe gruppieren, nur der letzte Anruf wird angezeigt</string>
     <string name="call_button_style">Klingelknopf-Stil</string>
     <string name="call_notes">Notizen für Anrufe</string>
     <string name="back_pressed_end_call">Die Zurück-Aktion beendet den Anruf</string>
+    <string name="keep_calls_in_popup_summary">Nachdem Anrufe angenommen wurden, bleiben sie in Ihren Benachrichtigungen und werden nicht im Vollbildmodus angezeigt. Dadurch wird vermieden, dass andere Apps unterbrochen werden, beispielsweise beim Spielen.</string>
+    <string name="busy">Beschäftigt</string>
+    <string name="block_calls">Anrufe blockieren</string>
     <string name="call_using_same_sim">Verwenden Sie dieselbe SIM-Karte, auf die der vorherige (letzte) Anruf getätigt wurde</string>
     <string name="answer_end_other_call">Annehmen und Beenden des aktuellen Anrufs</string>
     <string name="quick_answers">Schnelle Antworten</string>
@@ -74,5 +77,5 @@
         <item quantity="other">%d verpasste Anrufe</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Nachricht</string>
+    <string name="keep_calls_in_popup">Anrufe in Benachrichtigungen hinterlassen</string>
 </resources>

@@ -45,7 +45,10 @@ class RecentsFragment(
     }
 
     override fun setupFragment() {
-        binding.recentsFragment.setBackgroundColor(context.getProperBackgroundColor())
+        val useSurfaceColor = context.isDynamicTheme() && !context.isSystemInDarkMode()
+        val backgroundColor = if (useSurfaceColor) context.getSurfaceColor() else context.getProperBackgroundColor()
+        binding.recentsFragment.setBackgroundColor(backgroundColor)
+
         val placeholderResId = if (context.hasPermission(PERMISSION_READ_CALL_LOG)) {
             R.string.no_previous_calls
         } else {

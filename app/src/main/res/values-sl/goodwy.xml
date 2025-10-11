@@ -6,7 +6,7 @@
     <string name="missed_call_g">Zgrešeni klic</string>
     <string name="missed_calls_g">Odloženi klici</string>
     <string name="missed_call_notifications_g">Obvestila o zamujenih klicih</string>
-    <string name="dialpad_preferences">Nastavitve klicne tablice</string>
+    <string name="dialpad_preferences">Nastavitve zaslona klicanja</string>
     <string name="call_start_end_vibration">Vibriranje, ko se klic začne in konča</string>
 
     <string name="show_contact_thumbnails_g">Predstavi sličice stikov</string>
@@ -45,21 +45,25 @@
     <string name="faq_2_text_dialer_g">Dolgo pritisnite gumb za klic, da prilepite vsebino odložišča. Če je številka že vnesena, jo dolg pritisk na klicni gumb kopira v odložišče.</string>
 
     <!-- Answer style -->
+    <string name="faq_3_text_g">Desni klicalnik prikaže samo stike, ki imajo povezano telefonsko številko. Stiki brez telefonske številke niso prikazani v aplikaciji.</string>
     <string name="answer_style">Slog gumba za odgovor</string>
     <string name="buttons">Gumbi</string>
     <string name="answer_slider">Drsnik</string>
     <string name="answer_slider_outline">Orisni drsnik</string>
     <string name="answer_slider_vertical">Navpični drsnik</string>
 
-    <string name="show_recent_calls">Prikaz nedavnih klicev</string>
+    <string name="show_recent_calls">Prikaži nedavne klice</string>
     <string name="open_dialpad_when_call_from_another_app">Ko poskušate klicati iz druge aplikacije, odprite številčnico</string>
     <string name="open_dialpad_when_call_from_another_app_summary">To vas lahko zaščiti pred zlonamerno programsko opremo, ki kliče brez vaše vednosti.</string>
-    <string name="number_of_recent_calls_displays">Prikazano število nedavnih klicev</string>
-    <string name="group_calls">Združevanje klicev</string>
-    <string name="group_all_calls">Združite vse klice, prikazan bo samo zadnji klic</string>
+    <string name="number_of_recent_calls_displays">Prikazano število zadnjih klicev</string>
+    <string name="group_calls">Združevanje klicev v skupine</string>
+    <string name="group_all_calls">Združi vse klice, prikazan bo samo zadnji klic</string>
     <string name="call_button_style">Slog zvonca</string>
     <string name="call_notes">Opombe o klicu</string>
     <string name="back_pressed_end_call">Dejanje nazaj konča klic</string>
+    <string name="keep_calls_in_popup_summary">Ko klice sprejmete, ostanejo v vaših obvestilih in niso prikazani na celotnem zaslonu. To storite tako, da preprečite prekinitev drugih aplikacij, na primer med igranjem igre.</string>
+    <string name="busy">zaseden</string>
+    <string name="block_calls">Blokiraj klice</string>
     <string name="call_using_same_sim">Uporabite isto kartico SIM, na katero je bil opravljen prejšnji (zadnji) klic</string>
     <string name="answer_end_other_call">Sprejemanje in končanje trenutnega klica</string>
     <string name="quick_answers">Hitri odgovori</string>
@@ -76,5 +80,5 @@
         <item quantity="few">%d zamujenih klicev</item>
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
-    <string name="message">Sporočilo</string>
+    <string name="keep_calls_in_popup">Pustite klice v obvestilih</string>
 </resources>
