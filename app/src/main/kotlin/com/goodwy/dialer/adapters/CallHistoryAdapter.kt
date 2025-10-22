@@ -34,7 +34,7 @@ class CallHistoryAdapter(
     private lateinit var blockedCallText: String
     private var fontSize: Float = activity.getTextSize()
     private val areMultipleSIMsAvailable = activity.areMultipleSIMsAvailable()
-    private val missedCallColor = resources.getColor(R.color.red_missed)
+    private val missedCallColor = resources.getColor(R.color.red_missed, activity.theme)
 
     private val colorSimIcons = activity.config.colorSimIcons
     private val cachedSimColors = HashMap<Int, Int>()

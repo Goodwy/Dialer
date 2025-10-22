@@ -1344,7 +1344,7 @@ class CallActivity : SimpleActivity() {
     }
 
     private fun blockNumbers(number: String) {
-        config.tabsChanged = true
+        config.needRestart = true
         if (addBlockedNumber(number)) endCall()
     }
 

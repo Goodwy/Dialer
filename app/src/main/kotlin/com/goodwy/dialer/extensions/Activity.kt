@@ -225,7 +225,7 @@ fun SimpleActivity.launchPurchase() {
 }
 
 fun SimpleActivity.launchAbout() {
-    val licenses = LICENSE_GLIDE or LICENSE_INDICATOR_FAST_SCROLL
+    val licenses = LICENSE_GLIDE or LICENSE_INDICATOR_FAST_SCROLL or LICENSE_AUTOFITTEXTVIEW or LICENSE_EVENT_BUS
 
     val faqItems = arrayListOf(
         FAQItem(R.string.faq_1_title, R.string.faq_1_text),
@@ -277,7 +277,7 @@ fun SimpleActivity.showSnackbar(view: View) {
     val bgDrawable = ResourcesCompat.getDrawable(view.resources, R.drawable.button_background_16dp, null)
     snackbar.view.background = bgDrawable
     val properBackgroundColor = getProperBackgroundColor()
-    val backgroundColor = if (properBackgroundColor == Color.BLACK) getBottomNavigationBackgroundColor().lightenColor(6) else getBottomNavigationBackgroundColor().darkenColor(6)
+    val backgroundColor = if (properBackgroundColor == Color.BLACK) getSurfaceColor().lightenColor(6) else getSurfaceColor().darkenColor(6)
     snackbar.setBackgroundTint(backgroundColor)
     snackbar.setTextColor(getProperTextColor())
     snackbar.setActionTextColor(getProperPrimaryColor())

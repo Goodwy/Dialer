@@ -53,7 +53,7 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
         binding.letterFastscroller.beGone()
     }
 
-    override fun setupColors(textColor: Int, primaryColor: Int, properPrimaryColor: Int) {
+    override fun setupColors(textColor: Int, primaryColor: Int, accentColor: Int) {
         binding.apply {
             fragmentPlaceholder.setTextColor(textColor)
             (fragmentList.adapter as? MyRecyclerViewAdapter)?.apply {
@@ -63,10 +63,10 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
             }
 
             letterFastscroller.textColor = textColor.getColorStateList()
-            letterFastscroller.pressedTextColor = properPrimaryColor
+            letterFastscroller.pressedTextColor = accentColor
             letterFastscrollerThumb.setupWithFastScroller(letterFastscroller)
-            letterFastscrollerThumb.textColor = properPrimaryColor.getContrastColor()
-            letterFastscrollerThumb.thumbColor = properPrimaryColor.getColorStateList()
+            letterFastscrollerThumb.textColor = accentColor.getContrastColor()
+            letterFastscrollerThumb.thumbColor = accentColor.getColorStateList()
         }
     }
 

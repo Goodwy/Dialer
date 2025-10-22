@@ -37,7 +37,7 @@ class CallService : InCallService() {
                 try {
                     startActivity(CallActivity.getStartIntent(this))
                     callNotificationManager.setupNotification(true)
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     // seems like startActivity can throw AndroidRuntimeException and ActivityNotFoundException, not yet sure when and why, lets show a notification
                     callNotificationManager.setupNotification()
                 }
@@ -46,7 +46,7 @@ class CallService : InCallService() {
                 try {
                     startActivity(CallActivity.getStartIntent(this, needSelectSIM = call.details.accountHandle == null))
                     callNotificationManager.setupNotification(true)
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     // seems like startActivity can throw AndroidRuntimeException and ActivityNotFoundException, not yet sure when and why, lets show a notification
                     callNotificationManager.setupNotification()
                 }
@@ -55,7 +55,7 @@ class CallService : InCallService() {
                 try {
                     startActivity(CallActivity.getStartIntent(this))
                     callNotificationManager.setupNotification(true)
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                     // seems like startActivity can throw AndroidRuntimeException and ActivityNotFoundException, not yet sure when and why, lets show a notification
                     callNotificationManager.setupNotification()
                 }

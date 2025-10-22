@@ -11,7 +11,7 @@ fun FastScrollerView.setupWithContacts(
 ) = setupWithRecyclerView(recyclerView, { position ->
     val initialLetter = try {
         contacts[position].getFirstLetter()
-    } catch (e: IndexOutOfBoundsException) {
+    } catch (_: IndexOutOfBoundsException) {
         ""
     }
 

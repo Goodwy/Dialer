@@ -58,7 +58,6 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import me.grantland.widget.AutofitHelper
 import java.io.InputStreamReader
-import java.util.Locale
 import java.util.Objects
 
 class MainActivity : SimpleActivity() {
@@ -90,7 +89,12 @@ class MainActivity : SimpleActivity() {
         refreshMenuItems()
         storeStateVariables()
         val useBottomNavigationBar = config.bottomNavigationBar
-        updateMaterialActivityViews(binding.mainCoordinator, binding.mainHolder, useTransparentNavigation = false, useTopSearchMenu = useBottomNavigationBar)
+        updateMaterialActivityViews(
+            binding.mainCoordinator,
+            binding.mainHolder,
+            useTransparentNavigation = false,
+            useTopSearchMenu = useBottomNavigationBar
+        )
 
         EventBus.getDefault().register(this)
         launchedDialer = savedInstanceState?.getBoolean(OPEN_DIAL_PAD_AT_LAUNCH) ?: false
@@ -170,7 +174,7 @@ class MainActivity : SimpleActivity() {
         }
 
         @SuppressLint("UnsafeIntentLaunch")
-        if (config.tabsChanged || storedBackgroundColor != getProperBackgroundColor()) {
+        if (config.needRestart || storedBackgroundColor != getProperBackgroundColor()) {
             config.lastUsedViewPagerPage = 0
             finish()
             startActivity(intent)
@@ -181,11 +185,13 @@ class MainActivity : SimpleActivity() {
         val properPrimaryColor = getProperPrimaryColor()
         val dialpadIcon = resources.getColoredDrawableWithColor(this, R.drawable.ic_dialpad_vector, properPrimaryColor.getContrastColor())
         binding.mainDialpadButton.setImageDrawable(dialpadIcon)
-        if (isDynamicTheme() && !isSystemInDarkMode()) binding.mainHolder.setBackgroundColor(getSurfaceColor())
 
         updateTextColors(binding.mainHolder)
         setupTabColors()
-        binding.mainMenu.updateColors(getStartRequiredStatusBarColor(), scrollingView?.computeVerticalScrollOffset() ?: 0)
+        binding.mainMenu.updateColors(
+            background = getStartRequiredStatusBarColor(),
+            scrollOffset = scrollingView?.computeVerticalScrollOffset() ?: 0
+        )
 
         val configStartNameWithSurname = config.startNameWithSurname
         if (storedStartNameWithSurname != configStartNameWithSurname) {
@@ -198,9 +204,11 @@ class MainActivity : SimpleActivity() {
             refreshItems(true)
         }
 
+        if (isDynamicTheme() && !isSystemInDarkMode()) binding.mainHolder.setBackgroundColor(getSurfaceColor())
+
         if (binding.viewPager.adapter != null && !config.bottomNavigationBar) {
 
-            if (config.tabsChanged) {
+            if (config.needRestart) {
                 if (config.useIconTabs) {
                     binding.mainTopTabsHolder.getTabAt(0)?.text = null
                     binding.mainTopTabsHolder.getTabAt(1)?.text = null
@@ -221,12 +229,12 @@ class MainActivity : SimpleActivity() {
             binding.mainTopTabsHolder.getTabAt(binding.viewPager.currentItem)?.icon?.applyColorFilter(properPrimaryColor)
             binding.mainTopTabsHolder.getTabAt(binding.viewPager.currentItem)?.icon?.alpha = 220 // max 255
             getAllFragments().forEach {
-                it?.setupColors(properTextColor, properPrimaryColor, properPrimaryColor)
+                it?.setupColors(properTextColor, properPrimaryColor, getProperAccentColor())
                 binding.mainTopTabsHolder.setTabTextColors(properTextColor, properPrimaryColor)
             }
         } else if (binding.viewPager.adapter != null && config.bottomNavigationBar) {
             getAllFragments().forEach {
-                it?.setupColors(properTextColor, properPrimaryColor, properPrimaryColor)
+                it?.setupColors(properTextColor, properPrimaryColor, getProperAccentColor())
             }
         }
 
@@ -270,7 +278,7 @@ class MainActivity : SimpleActivity() {
             storedStartNameWithSurname = startNameWithSurname
             storedShowPhoneNumbers = showPhoneNumbers
             storedFontSize = fontSize
-            tabsChanged = false
+            needRestart = false
         }
         storedBackgroundColor = getProperBackgroundColor()
     }
@@ -591,7 +599,9 @@ class MainActivity : SimpleActivity() {
                 updateBottomTabItemColors(inactiveView, false, getDeselectedTabDrawableIds()[index])
             }
 
-            val bottomBarColor = getBottomNavigationBackgroundColor()
+            val bottomBarColor =
+                if (isDynamicTheme() && !isSystemInDarkMode()) getColoredMaterialStatusBarColor()
+                else getSurfaceColor()
             binding.mainTabsHolder.setBackgroundColor(bottomBarColor)
             if (binding.mainTabsHolder.tabCount != 1) updateNavigationBarColor(bottomBarColor)
             else {
@@ -668,12 +678,13 @@ class MainActivity : SimpleActivity() {
         binding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {}
 
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                if (config.bottomNavigationBar && config.changeColourTopBar) scrollChange()
+            }
 
             override fun onPageSelected(position: Int) {
                 if (config.bottomNavigationBar) {
                     binding.mainTabsHolder.getTabAt(position)?.select()
-                    if (config.changeColourTopBar) scrollChange()
                 } else binding.mainTopTabsHolder.getTabAt(position)?.select()
 
                 getAllFragments().forEach {
@@ -848,7 +859,7 @@ class MainActivity : SimpleActivity() {
             binding.mainTopTabsHolder.selectTab(binding.mainTopTabsHolder.getTabAt(getDefaultTab()))
         }
         storedShowTabs = config.showTabs
-        config.tabsChanged = false
+        config.needRestart = false
     }
 
     private fun setupTabs() {
@@ -1134,7 +1145,7 @@ class MainActivity : SimpleActivity() {
 
     private fun checkWhatsNewDialog() {
         arrayListOf<Release>().apply {
-            add(Release(690, R.string.release_690))
+            add(Release(700, R.string.release_700))
             checkWhatsNew(this, BuildConfig.VERSION_CODE)
         }
     }

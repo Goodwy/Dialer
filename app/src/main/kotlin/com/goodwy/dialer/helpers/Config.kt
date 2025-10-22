@@ -279,7 +279,9 @@ class Config(context: Context) : BaseConfig(context) {
 
     var dialpadClearWhenStartCall: Boolean
         get() = prefs.getBoolean(DIALPAD_CLEAR_WHEN_START_CALL, false)
-        set(dialpadClearWhenStartCall) = prefs.edit { putBoolean(DIALPAD_CLEAR_WHEN_START_CALL, dialpadClearWhenStartCall) }
+        set(dialpadClearWhenStartCall) = prefs.edit {
+            putBoolean(DIALPAD_CLEAR_WHEN_START_CALL, dialpadClearWhenStartCall)
+        }
 
     var callerNotes: String
         get() = prefs.getString(CALLER_NOTES, "")!!
@@ -305,6 +307,12 @@ class Config(context: Context) : BaseConfig(context) {
     var initCallBlockingSetup: Boolean
         get() = prefs.getBoolean(INIT_CALL_BLOCKING_SETUP, true)
         set(initCallBlockingSetup) = prefs.edit { putBoolean(INIT_CALL_BLOCKING_SETUP, initCallBlockingSetup) }
+
+    var recentOutgoingNumbers: MutableSet<String>
+        get() = prefs.getStringSet(RECENT_OUTGOING_NUMBERS, hashSetOf(".")) as HashSet
+        set(recentOutgoingNumbers) = prefs.edit {
+            remove(RECENT_OUTGOING_NUMBERS).putStringSet(RECENT_OUTGOING_NUMBERS, recentOutgoingNumbers)
+        }
 
     //Timer
     var timerSoundUri: String

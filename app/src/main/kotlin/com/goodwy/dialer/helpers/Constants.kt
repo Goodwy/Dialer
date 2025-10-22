@@ -59,6 +59,7 @@ const val BACK_PRESSED_END_CALL = "back_pressed_end_call"
 const val CALL_BLOCK_BUTTON = "call_block_button"
 const val KEEP_CALLS_IN_POPUP = "keep_calls_in_popup"
 const val INIT_CALL_BLOCKING_SETUP = "init_call_blocking_setup"
+const val RECENT_OUTGOING_NUMBERS = "recent_outgoing_numbers"
 
 const val ALL_TABS_MASK = TAB_CONTACTS or TAB_FAVORITES or TAB_CALL_HISTORY
 
@@ -130,7 +131,7 @@ const val SWIPE_RIGHT_ACTION = "swipe_right_action"
 const val SWIPE_LEFT_ACTION = "swipe_left_action"
 const val SWIPE_ACTION_NONE = 0
 const val SWIPE_ACTION_DELETE = 2
-const val SWIPE_ACTION_BLOCK = 4 //!! isNougatPlus()
+const val SWIPE_ACTION_BLOCK = 4
 const val SWIPE_ACTION_CALL = 5
 const val SWIPE_ACTION_MESSAGE = 6
 const val SWIPE_VIBRATION = "swipe_vibration"

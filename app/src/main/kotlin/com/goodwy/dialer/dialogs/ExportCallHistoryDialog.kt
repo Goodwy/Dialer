@@ -10,7 +10,7 @@ class ExportCallHistoryDialog(val activity: SimpleActivity, callback: (filename:
 
     init {
         val binding = DialogExportCallHistoryBinding.inflate(activity.layoutInflater).apply {
-            exportCallHistoryFilename.setText("call_history_${activity.getCurrentFormattedDateTime()}")
+            exportCallHistoryFilename.setText("call_history_${getCurrentFormattedDateTime()}")
         }
 
         activity.getAlertDialogBuilder().setPositiveButton(R.string.ok, null).setNegativeButton(R.string.cancel, null).apply {

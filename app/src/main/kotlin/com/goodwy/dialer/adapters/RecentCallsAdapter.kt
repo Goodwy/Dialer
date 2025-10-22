@@ -64,7 +64,7 @@ class RecentCallsAdapter(
     private lateinit var blockedCallIcon: Drawable
     var fontSize: Float = activity.getTextSize()
     private val areMultipleSIMsAvailable = activity.areMultipleSIMsAvailable()
-    private val missedCallColor = resources.getColor(R.color.red_missed)
+    private val missedCallColor = resources.getColor(R.color.red_missed, activity.theme)
     private var secondaryTextColor = textColor.adjustAlpha(0.6f)
     private var textToHighlight = ""
     private var getBlockedNumbers = activity.getBlockedNumbers()

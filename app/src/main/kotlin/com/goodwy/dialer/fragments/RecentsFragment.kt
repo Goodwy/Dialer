@@ -2,6 +2,7 @@ package com.goodwy.dialer.fragments
 
 import android.content.Context
 import android.content.Intent
+import android.provider.CallLog.Calls
 import android.util.AttributeSet
 import androidx.recyclerview.widget.RecyclerView
 import com.goodwy.commons.dialogs.CallConfirmationDialog
@@ -64,9 +65,9 @@ class RecentsFragment(
         }
     }
 
-    override fun setupColors(textColor: Int, primaryColor: Int, properPrimaryColor: Int) {
+    override fun setupColors(textColor: Int, primaryColor: Int, accentColor: Int) {
         binding.recentsPlaceholder.setTextColor(textColor)
-        binding.recentsPlaceholder2.setTextColor(properPrimaryColor)
+        binding.recentsPlaceholder2.setTextColor(primaryColor)
 
         recentsAdapter?.apply {
             updatePrimaryColor()
@@ -274,6 +275,21 @@ class RecentsFragment(
             context.callerNotesHelper.removeCallerNotes(
                 it.map { recentCall -> recentCall.phoneNumber.numberForNotes()}
             )
+        }
+
+        if (loadAll) {
+            with(recentsHelper) {
+                val queryCount = context.config.queryLimitRecent
+                getRecentCalls(queryLimit = queryCount, updateCallsCache = false) { it ->
+                    ensureBackgroundThread {
+                        val recentOutgoingNumbers = it
+                            .filter { it.type == Calls.OUTGOING_TYPE }
+                            .map { recentCall -> recentCall.phoneNumber }
+
+                        context.config.recentOutgoingNumbers = recentOutgoingNumbers.toMutableSet()
+                    }
+                }
+            }
         }
     }
 

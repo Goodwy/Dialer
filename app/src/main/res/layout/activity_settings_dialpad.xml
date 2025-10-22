@@ -409,6 +409,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/dialpadSizeCardHolder"
                 style="@style/SettingsSectionHolder"
+                android:layout_marginBottom="@dimen/secondary_fab_bottom_margin"
                 app:cardCornerRadius="@dimen/activity_margin"
                 app:cardElevation="0dp">
 

@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.widget.RelativeLayout
 import com.goodwy.commons.adapters.MyRecyclerViewAdapter
 import com.goodwy.commons.adapters.MyRecyclerViewListAdapter
+import com.goodwy.commons.extensions.getProperAccentColor
 import com.goodwy.commons.extensions.getProperPrimaryColor
 import com.goodwy.commons.extensions.getProperTextColor
 import com.goodwy.commons.extensions.getTextSize
@@ -33,7 +34,11 @@ abstract class MyViewPagerFragment<BINDING : MyViewPagerFragment.InnerBinding>(c
             this.activity = activity
 
             setupFragment()
-            setupColors(activity.getProperTextColor(), activity.getProperPrimaryColor(), activity.getProperPrimaryColor())
+            setupColors(
+                textColor = activity.getProperTextColor(),
+                primaryColor = activity.getProperPrimaryColor(),
+                accentColor = activity.getProperAccentColor()
+            )
         }
     }
 
@@ -68,7 +73,7 @@ abstract class MyViewPagerFragment<BINDING : MyViewPagerFragment.InnerBinding>(c
 
     abstract fun setupFragment()
 
-    abstract fun setupColors(textColor: Int, primaryColor: Int, properPrimaryColor: Int)
+    abstract fun setupColors(textColor: Int, primaryColor: Int, accentColor: Int)
 
     abstract fun onSearchClosed()
 

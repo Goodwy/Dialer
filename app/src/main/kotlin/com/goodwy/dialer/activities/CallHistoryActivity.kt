@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.ContentUris
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.PorterDuff
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
@@ -54,10 +55,7 @@ class CallHistoryActivity : SimpleActivity() {
     private var initShowAll = false
     private var showAll = false
 
-    private val white = 0xFFFFFFFF.toInt()
-    private val gray = 0xFFEBEBEB.toInt()
-    private val black = 0xFF000000.toInt()
-    private var buttonBg = white
+    private var buttonBg = Color.WHITE
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,7 +64,12 @@ class CallHistoryActivity : SimpleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        updateMaterialActivityViews(binding.callHistoryWrapper, binding.callHistoryHolder, useTransparentNavigation = true, useTopSearchMenu = false)
+        updateMaterialActivityViews(
+            binding.callHistoryWrapper,
+            binding.callHistoryHolder,
+            useTransparentNavigation = true,
+            useTopSearchMenu = false
+        )
 
         currentRecentCall = intent.getSerializableExtra(CURRENT_RECENT_CALL) as? RecentCall
         if (currentRecentCall == null) {
@@ -88,7 +91,7 @@ class CallHistoryActivity : SimpleActivity() {
         super.onResume()
         binding.callHistoryPlaceholderContainer.beGone()
         updateTextColors(binding.callHistoryHolder)
-        buttonBg = if (baseConfig.backgroundColor == white || baseConfig.backgroundColor == gray) white else getSurfaceColor()
+        buttonBg = if ((isLightTheme() || isGrayTheme()) && !isDynamicTheme()) Color.WHITE else getSurfaceColor()
         ensureBackgroundThread {
             initContact()
         }
@@ -186,9 +189,8 @@ class CallHistoryActivity : SimpleActivity() {
     }
 
     private fun updateButtons() {
-        val red = resources.getColor(R.color.red_missed)
+        val red = resources.getColor(R.color.red_missed, theme)
         val properPrimaryColor = getProperPrimaryColor()
-        val properBackgroundColor = getProperBackgroundColor()
 
         val phoneNumber = if (config.formatPhoneNumbers) currentRecentCall!!.phoneNumber.formatPhoneNumber() else currentRecentCall!!.phoneNumber
 
@@ -216,14 +218,15 @@ class CallHistoryActivity : SimpleActivity() {
             callHistoryNumber.text = formatterUnicodeWrap(phoneNumber)
             callHistoryNumber.setTextColor(properPrimaryColor)
 
-            if (baseConfig.backgroundColor == white) {
-                val colorToWhite = 0xFFf2f2f6.toInt()
+            if (isLightTheme() && !isDynamicTheme()) {
+                val colorToWhite = getSurfaceColor()
                 supportActionBar?.setBackgroundDrawable(colorToWhite.toDrawable())
                 window.decorView.setBackgroundColor(colorToWhite)
                 window.statusBarColor = colorToWhite
                 //window.navigationBarColor = colorToWhite
                 callHistoryAppbar.setBackgroundColor(colorToWhite)
             } else {
+                val properBackgroundColor = getProperBackgroundColor()
                 window.decorView.setBackgroundColor(properBackgroundColor)
                 callHistoryAppbar.setBackgroundColor(properBackgroundColor)
             }
@@ -1275,25 +1278,25 @@ class CallHistoryActivity : SimpleActivity() {
             defaultSim1Icon.background.setTint(background)
             defaultSim1Icon.background.alpha = 40
             defaultSim1Icon.setColorFilter(background.adjustAlpha(0.60f))
-            defaultSim1Id.setTextColor(black)
+            defaultSim1Id.setTextColor(Color.BLACK)
 
             defaultSim2Icon.background.setTint(background)
             defaultSim2Icon.background.alpha = 40
             defaultSim2Icon.setColorFilter(background.adjustAlpha(0.60f))
-            defaultSim2Id.setTextColor(black)
+            defaultSim2Id.setTextColor(Color.BLACK)
 
             if (simList.size > 1) {
                 if ((config.getCustomSIM("tel:$phoneNumber") ?: "") == simList[0].handle && !call.isUnknownNumber) {
                     defaultSim1Icon.background.setTint(sim1)
                     defaultSim1Icon.background.alpha = 255
-                    defaultSim1Icon.setColorFilter(white)
+                    defaultSim1Icon.setColorFilter(Color.WHITE)
                     defaultSim1Id.setTextColor(sim1)
                 }
 
                 if ((config.getCustomSIM("tel:$phoneNumber") ?: "") == simList[1].handle && !call.isUnknownNumber) {
                     defaultSim2Icon.background.setTint(sim2)
                     defaultSim2Icon.background.alpha = 255
-                    defaultSim2Icon.setColorFilter(white)
+                    defaultSim2Icon.setColorFilter(Color.WHITE)
                     defaultSim2Id.setTextColor(sim2)
                 }
             }
@@ -1331,7 +1334,7 @@ class CallHistoryActivity : SimpleActivity() {
 
     private fun blockNumbers() {
         config.needUpdateRecents = true
-        val red = resources.getColor(R.color.red_missed)
+        val red = resources.getColor(R.color.red_missed, theme)
         runOnUiThread {
             if (isNumberBlocked(currentRecentCall!!.phoneNumber, getBlockedNumbers())) {
                 deleteBlockedNumber(currentRecentCall!!.phoneNumber)

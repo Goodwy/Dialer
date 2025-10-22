@@ -385,7 +385,6 @@
                             android:layout_alignParentEnd="true"
                             android:layout_marginEnd="@dimen/settings_margin"
                             tools:text="01.01.2025 08:30" />
-
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -1344,6 +1343,17 @@
                             style="@style/SettingsSwitchStyle"
                             android:text="@string/start_name_with_surname"
                             app:switchPadding="@dimen/bigger_margin"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/settingsShowNicknameInsteadNamesHolder"
+                        style="@style/SettingsHolderSwitchStyle">
+
+                        <com.goodwy.commons.views.MyMaterialSwitch
+                            android:id="@+id/settingsShowNicknameInsteadNames"
+                            style="@style/SettingsSwitchStyle"
+                            android:text="@string/show_nicknames_instead_of_names"
+                            app:switchPadding="@dimen/bigger_margin" />
                     </RelativeLayout>
 
                     <RelativeLayout

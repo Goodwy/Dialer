@@ -1144,7 +1144,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                         this@SettingsDialpadActivity,
                         config.simIconsColors[1],
                         addDefaultColorButton = true,
-                        colorDefault = resources.getColor(R.color.ic_dialer),
+                        colorDefault = resources.getColor(R.color.ic_dialer, theme),
                         title = resources.getString(R.string.color_sim_card_icons)
                     ) { wasPositivePressed, color, wasDefaultPressed ->
                         if (wasPositivePressed || wasDefaultPressed) {
@@ -1162,7 +1162,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                         this@SettingsDialpadActivity,
                         config.simIconsColors[2],
                         addDefaultColorButton = true,
-                        colorDefault = resources.getColor(R.color.color_primary),
+                        colorDefault = resources.getColor(R.color.color_primary, theme),
                         title = resources.getString(R.string.color_sim_card_icons)
                     ) { wasPositivePressed, color, wasDefaultPressed ->
                         if (wasPositivePressed || wasDefaultPressed) {
@@ -1231,7 +1231,7 @@ class SettingsDialpadActivity : SimpleActivity() {
             }
             config.recentCallsCache = Gson().toJson(recentsNew.take(RECENT_CALL_CACHE_SIZE))
             config.needUpdateRecents = true
-            config.tabsChanged = true
+            config.needRestart = true
         }
     }
 
@@ -1322,7 +1322,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                 binding.settingsDialpadSecondaryLanguage.text = getLanguageName(config.dialpadSecondaryLanguage)
                 initStyle()
                 showDialpad()
-                config.tabsChanged = true
+                config.needRestart = true
             }
         }
     }
@@ -1424,8 +1424,7 @@ class SettingsDialpadActivity : SimpleActivity() {
     }
 
     private fun updateWrapperToneVolume() {
-        val getBottomNavigationBackgroundColor = getBottomNavigationBackgroundColor()
-        val wrapperColor = if (config.dialpadBeeps) getBottomNavigationBackgroundColor.lightenColor(4) else getSurfaceColor()
+        val wrapperColor = if (config.dialpadBeeps) getColoredMaterialStatusBarColor() else getSurfaceColor()
         binding.settingsDialpadBeepsWrapper.background.applyColorFilter(wrapperColor)
     }
 

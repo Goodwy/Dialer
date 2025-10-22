@@ -237,6 +237,7 @@ class SettingsActivity : SimpleActivity() {
         setupContactThumbnailsSize()
         setupShowPhoneNumbers()
         setupStartNameWithSurname()
+        setupShowNicknameInsteadNames()
         setupUseRelativeDate()
         setupChangeColourTopBar()
 
@@ -326,7 +327,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 641 //TODO changelog
+        val id = 700 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.calling_accounts).isVisible = canLaunchAccountsConfiguration()
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
@@ -348,7 +349,7 @@ class SettingsActivity : SimpleActivity() {
 
     private fun showWhatsNewDialog(id: Int) {
         arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_690)) //TODO changelog
+            add(Release(id, R.string.release_700)) //TODO changelog
             WhatsNewDialog(this@SettingsActivity, this)
         }
     }
@@ -407,7 +408,7 @@ class SettingsActivity : SimpleActivity() {
             else getString(R.string.off)
 
         val getProperTextColor = getProperTextColor()
-        val red = resources.getColor(R.color.red_missed)
+        val red = resources.getColor(R.color.red_missed, theme)
         val colorUnknown = if (baseConfig.blockUnknownNumbers) red else getProperTextColor
         val alphaUnknown = if (baseConfig.blockUnknownNumbers) 1f else 0.6f
         settingsManageBlockedNumbersIconUnknown.apply {
@@ -436,7 +437,7 @@ class SettingsActivity : SimpleActivity() {
         settingsUseSpeechToTextHolder.setOnClickListener {
             settingsUseSpeechToText.toggle()
             config.useSpeechToText = settingsUseSpeechToText.isChecked
-            config.tabsChanged = true
+            config.needRestart = true
         }
     }
 
@@ -453,7 +454,7 @@ class SettingsActivity : SimpleActivity() {
         binding.settingsChangeDateTimeFormatHolder.setOnClickListener {
             ChangeDateTimeFormatDialog(this, true) {
                 updateDateTimeFormat()
-                config.tabsChanged = true
+                config.needRestart = true
             }
         }
     }
@@ -476,7 +477,7 @@ class SettingsActivity : SimpleActivity() {
             RadioGroupDialog(this@SettingsActivity, items, config.fontSize, R.string.font_size) {
                 config.fontSize = it as Int
                 settingsFontSize.text = getFontSizeText()
-                config.tabsChanged = true
+                config.needRestart = true
             }
         }
     }
@@ -517,7 +518,7 @@ class SettingsActivity : SimpleActivity() {
             val checkedItemId = if (config.bottomNavigationBar) 1 else 0
             RadioGroupIconDialog(this@SettingsActivity, items, checkedItemId, R.string.tab_navigation) {
                 config.bottomNavigationBar = it == 1
-                config.tabsChanged = true
+                config.needRestart = true
                 binding.settingsNavigationBarStyle.text = getNavigationBarStyleText()
                 binding.settingsChangeColourTopBarHolder.beVisibleIf(config.bottomNavigationBar)
             }
@@ -531,7 +532,7 @@ class SettingsActivity : SimpleActivity() {
             settingsChangeColourTopBarHolder.setOnClickListener {
                 settingsChangeColourTopBar.toggle()
                 config.changeColourTopBar = settingsChangeColourTopBar.isChecked
-                config.tabsChanged = true
+                config.needRestart = true
             }
         }
     }
@@ -542,7 +543,7 @@ class SettingsActivity : SimpleActivity() {
             settingsUseIconTabsHolder.setOnClickListener {
                 settingsUseIconTabs.toggle()
                 config.useIconTabs = settingsUseIconTabs.isChecked
-                config.tabsChanged = true
+                config.needRestart = true
             }
         }
     }
@@ -564,7 +565,7 @@ class SettingsActivity : SimpleActivity() {
 
             RadioGroupIconDialog(this@SettingsActivity, items, config.screenSlideAnimation, R.string.screen_slide_animation) {
                 config.screenSlideAnimation = it as Int
-                config.tabsChanged = true
+                config.needRestart = true
                 binding.settingsScreenSlideAnimation.text = getScreenSlideAnimationText()
             }
         }
@@ -585,7 +586,7 @@ class SettingsActivity : SimpleActivity() {
         settingsShowDividersHolder.setOnClickListener {
             settingsShowDividers.toggle()
             config.useDividers = settingsShowDividers.isChecked
-            config.tabsChanged = true
+            config.needRestart = true
         }
     }
 
@@ -618,7 +619,7 @@ class SettingsActivity : SimpleActivity() {
                 RadioGroupDialog(this@SettingsActivity, items, config.contactThumbnailsSize, R.string.contact_thumbnails_size) {
                     config.contactThumbnailsSize = it as Int
                     settingsContactThumbnailsSize.text = getContactThumbnailsSizeText()
-                    config.tabsChanged = true
+                    config.needRestart = true
                 }
             } else {
                 RxAnimation.from(settingsContactThumbnailsSizeHolder)
@@ -655,7 +656,7 @@ class SettingsActivity : SimpleActivity() {
             settingsColoredContacts.toggle()
             config.useColoredContacts = settingsColoredContacts.isChecked
             settingsContactColorListHolder.beVisibleIf(config.useColoredContacts)
-            config.tabsChanged = true
+            config.needRestart = true
         }
     }
 
@@ -681,7 +682,7 @@ class SettingsActivity : SimpleActivity() {
                     if (config.contactColorList != newValue) {
                         config.contactColorList = newValue
                         settingsContactColorListIcon.setImageResource(getContactsColorListIcon(config.contactColorList))
-                        config.tabsChanged = true
+                        config.needRestart = true
                     }
                 }
             }
@@ -1180,12 +1181,23 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupShowNicknameInsteadNames() {
+        binding.apply {
+            settingsShowNicknameInsteadNames.isChecked = config.showNicknameInsteadNames
+            settingsShowNicknameInsteadNamesHolder.setOnClickListener {
+                settingsShowNicknameInsteadNames.toggle()
+                config.showNicknameInsteadNames = settingsShowNicknameInsteadNames.isChecked
+                config.needRestart = true
+            }
+        }
+    }
+
     private fun setupFormatPhoneNumbers() {
         binding.settingsFormatPhoneNumbers.isChecked = config.formatPhoneNumbers
         binding.settingsFormatPhoneNumbersHolder.setOnClickListener {
             binding.settingsFormatPhoneNumbers.toggle()
             config.formatPhoneNumbers = binding.settingsFormatPhoneNumbers.isChecked
-            config.tabsChanged = true
+            config.needRestart = true
         }
     }
 
@@ -1296,12 +1308,12 @@ class SettingsActivity : SimpleActivity() {
                 ) { wasPositivePressed, newValue ->
                     if (wasPositivePressed) {
                         if (newValue != if (baseConfig.materialDesign3) 2 else 1) {
+                            baseConfig.materialDesign3 = newValue == 2
+                            settingsFloatingButtonStyle.setImageResource(
+                                if (newValue == 2) R.drawable.squircle_bg else R.drawable.ic_circle_filled
+                            )
+                            config.needRestart = true
                         }
-                        baseConfig.materialDesign3 = newValue == 2
-                        settingsFloatingButtonStyle.setImageResource(
-                            if (newValue == 2) R.drawable.squircle_bg else R.drawable.ic_circle_filled
-                        )
-                        config.tabsChanged = true
                     }
                 }
             }
@@ -1343,7 +1355,7 @@ class SettingsActivity : SimpleActivity() {
                         this@SettingsActivity,
                         color = config.simIconsColors[1],
                         addDefaultColorButton = true,
-                        colorDefault = resources.getColor(R.color.ic_dialer),
+                        colorDefault = resources.getColor(R.color.ic_dialer, theme),
                         title = resources.getString(R.string.color_sim_card_icons)
                     ) { wasPositivePressed, color, wasDefaultPressed ->
                         if (wasPositivePressed || wasDefaultPressed) {
@@ -1359,7 +1371,7 @@ class SettingsActivity : SimpleActivity() {
                         this@SettingsActivity,
                         color = config.simIconsColors[2],
                         addDefaultColorButton = true,
-                        colorDefault = resources.getColor(R.color.color_primary),
+                        colorDefault = resources.getColor(R.color.color_primary, theme),
                         title = resources.getString(R.string.color_sim_card_icons)
                     ) { wasPositivePressed, color, wasDefaultPressed ->
                         if (wasPositivePressed || wasDefaultPressed) {
@@ -1428,7 +1440,7 @@ class SettingsActivity : SimpleActivity() {
             }
             config.recentCallsCache = Gson().toJson(recentsNew.take(RECENT_CALL_CACHE_SIZE))
             config.needUpdateRecents = true
-            config.tabsChanged = true
+            config.needRestart = true
         }
     }
 
@@ -1477,7 +1489,7 @@ class SettingsActivity : SimpleActivity() {
             settingsUseSwipeToActionHolder.setOnClickListener {
                 settingsUseSwipeToAction.toggle()
                 config.useSwipeToAction = settingsUseSwipeToAction.isChecked
-                config.tabsChanged = true
+                config.needRestart = true
                 updateSwipeToActionVisible()
             }
         }
@@ -1499,7 +1511,7 @@ class SettingsActivity : SimpleActivity() {
             settingsSwipeVibrationHolder.setOnClickListener {
                 settingsSwipeVibration.toggle()
                 config.swipeVibration = settingsSwipeVibration.isChecked
-                config.tabsChanged = true
+                config.needRestart = true
             }
         }
     }
@@ -1510,7 +1522,7 @@ class SettingsActivity : SimpleActivity() {
             settingsSwipeRippleHolder.setOnClickListener {
                 settingsSwipeRipple.toggle()
                 config.swipeRipple = settingsSwipeRipple.isChecked
-                config.tabsChanged = true
+                config.needRestart = true
             }
         }
     }
@@ -1531,7 +1543,7 @@ class SettingsActivity : SimpleActivity() {
                 if (isRTLLayout) R.string.swipe_left_action else R.string.swipe_right_action
             RadioGroupIconDialog(this@SettingsActivity, items, config.swipeRightAction, title) {
                 config.swipeRightAction = it as Int
-                config.tabsChanged = true
+                config.needRestart = true
                 settingsSwipeRightAction.text = getSwipeActionText(false)
                 settingsSkipDeleteConfirmationHolder.beVisibleIf(config.swipeLeftAction == SWIPE_ACTION_DELETE || config.swipeRightAction == SWIPE_ACTION_DELETE)
             }
@@ -1558,7 +1570,7 @@ class SettingsActivity : SimpleActivity() {
                     if (isRTLLayout) R.string.swipe_right_action else R.string.swipe_left_action
                 RadioGroupIconDialog(this@SettingsActivity, items, config.swipeLeftAction, title) {
                     config.swipeLeftAction = it as Int
-                    config.tabsChanged = true
+                    config.needRestart = true
                     settingsSwipeLeftAction.text = getSwipeActionText(true)
                     settingsSkipDeleteConfirmationHolder.beVisibleIf(
                         config.swipeLeftAction == SWIPE_ACTION_DELETE || config.swipeRightAction == SWIPE_ACTION_DELETE
@@ -1598,7 +1610,7 @@ class SettingsActivity : SimpleActivity() {
     private fun setupTipJar() = binding.apply {
         settingsTipJarHolder.apply {
             beVisibleIf(checkPro(false))
-            background.applyColorFilter(getBottomNavigationBackgroundColor().lightenColor(4))
+            background.applyColorFilter(getColoredMaterialStatusBarColor())
             setOnClickListener {
                 launchPurchase()
             }
@@ -1683,7 +1695,7 @@ class SettingsActivity : SimpleActivity() {
             settingsRelativeDateHolder.setOnClickListener {
                 settingsRelativeDate.toggle()
                 config.useRelativeDate = settingsRelativeDate.isChecked
-                config.tabsChanged = true
+                config.needRestart = true
             }
         }
     }

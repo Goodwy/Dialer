@@ -4,13 +4,16 @@ import android.os.Build
 import android.telecom.Call
 import android.telecom.CallScreeningService
 import com.goodwy.commons.extensions.baseConfig
+import com.goodwy.commons.extensions.copyToClipboard
 import com.goodwy.commons.extensions.getMyContactsCursor
 import com.goodwy.commons.extensions.isNumberBlocked
 import com.goodwy.commons.extensions.normalizePhoneNumber
+import com.goodwy.commons.extensions.toast
 import com.goodwy.commons.helpers.BLOCKING_TYPE_REJECT
 import com.goodwy.commons.helpers.BLOCKING_TYPE_SILENCE
 import com.goodwy.commons.helpers.SimpleContactsHelper
 import com.goodwy.commons.helpers.isQPlus
+import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.models.Events
 import org.greenrobot.eventbus.EventBus
 
@@ -27,7 +30,8 @@ class SimpleCallScreeningService : CallScreeningService() {
                 val simpleContactsHelper = SimpleContactsHelper(this)
                 val privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
                 simpleContactsHelper.exists(number, privateCursor) { exists ->
-                    respondToCall(callDetails, isBlocked = !exists)
+                    if (number in config.recentOutgoingNumbers) respondToCall(callDetails, isBlocked = false)
+                    else respondToCall(callDetails, isBlocked = !exists)
                 }
             }
 

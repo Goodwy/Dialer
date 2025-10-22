@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.CallLog.Calls
 import android.provider.Telephony.Sms.Intents.SECRET_CODE_ACTION
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.telephony.TelephonyManager
@@ -168,7 +169,7 @@ class DialpadActivity : SimpleActivity() {
     @SuppressLint("MissingSuperCall", "UnsafeIntentLaunch")
     override fun onResume() {
         super.onResume()
-        if (storedDialpadStyle != config.dialpadStyle || config.tabsChanged ||storedBackgroundColor != getProperBackgroundColor()) {
+        if (storedDialpadStyle != config.dialpadStyle || config.needRestart ||storedBackgroundColor != getProperBackgroundColor()) {
             finish()
             startActivity(intent)
             return
@@ -179,6 +180,8 @@ class DialpadActivity : SimpleActivity() {
         }
         isTalkBackOn = isTalkBackOn()
 
+
+        if (isDynamicTheme() && !isSystemInDarkMode()) binding.dialpadHolder.setBackgroundColor(getSurfaceColor())
         speedDialValues = config.getSpeedDialValues()
         initStyle()
         updateDialpadSize()
@@ -253,7 +256,7 @@ class DialpadActivity : SimpleActivity() {
         storedDialpadStyle = config.dialpadStyle
         storedToneVolume = config.toneVolume
         storedBackgroundColor = getProperBackgroundColor()
-        config.tabsChanged = false
+        config.needRestart = false
     }
 
     override fun onRestart() {
@@ -1451,6 +1454,21 @@ class DialpadActivity : SimpleActivity() {
             callerNotesHelper.removeCallerNotes(
                 it.map { recentCall -> recentCall.phoneNumber.numberForNotes()}
             )
+        }
+
+        if (loadAll) {
+            with(recentsHelper) {
+                val queryCount = config.queryLimitRecent
+                getRecentCalls(queryLimit = queryCount, updateCallsCache = false) { it ->
+                    ensureBackgroundThread {
+                        val recentOutgoingNumbers = it
+                            .filter { it.type == Calls.OUTGOING_TYPE }
+                            .map { recentCall -> recentCall.phoneNumber }
+
+                        config.recentOutgoingNumbers = recentOutgoingNumbers.toMutableSet()
+                    }
+                }
+            }
         }
     }
 
