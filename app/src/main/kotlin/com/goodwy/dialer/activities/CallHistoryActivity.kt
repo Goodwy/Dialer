@@ -40,6 +40,7 @@ import com.goodwy.dialer.models.RecentCall
 import kotlin.collections.ArrayList
 import kotlin.math.abs
 import androidx.core.graphics.drawable.toDrawable
+import com.goodwy.commons.extensions.setBackgroundColor
 
 class CallHistoryActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityCallHistoryBinding::inflate)
@@ -225,10 +226,13 @@ class CallHistoryActivity : SimpleActivity() {
                 window.statusBarColor = colorToWhite
                 //window.navigationBarColor = colorToWhite
                 callHistoryAppbar.setBackgroundColor(colorToWhite)
+                contactActionsHolder.setBackgroundColor(colorToWhite)
+                collapsingToolbar.setBackgroundColor(colorToWhite)
             } else {
                 val properBackgroundColor = getProperBackgroundColor()
                 window.decorView.setBackgroundColor(properBackgroundColor)
-                callHistoryAppbar.setBackgroundColor(properBackgroundColor)
+                contactActionsHolder.setBackgroundColor(properBackgroundColor)
+                collapsingToolbar.setBackgroundColor(properBackgroundColor)
             }
 
             arrayOf(
