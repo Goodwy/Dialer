@@ -225,7 +225,6 @@ class CallHistoryActivity : SimpleActivity() {
                 window.decorView.setBackgroundColor(colorToWhite)
                 window.statusBarColor = colorToWhite
                 //window.navigationBarColor = colorToWhite
-                callHistoryAppbar.setBackgroundColor(colorToWhite)
                 contactActionsHolder.setBackgroundColor(colorToWhite)
                 collapsingToolbar.setBackgroundColor(colorToWhite)
             } else {
