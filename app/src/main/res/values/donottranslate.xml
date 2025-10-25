@@ -3,6 +3,11 @@
     <string name="app_name_g">Right Dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
+    <string name="release_701">
+        Fixed the call screen background\n
+        Fixed the colors for recent calls\n
+        Fixed bugs, improved stability
+    </string>
     <string name="release_700">
         Changed color schemes and theme behavior\n
         Added an auto dark/light theme\n

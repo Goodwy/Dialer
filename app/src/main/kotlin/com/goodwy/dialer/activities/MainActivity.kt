@@ -1146,6 +1146,7 @@ class MainActivity : SimpleActivity() {
     private fun checkWhatsNewDialog() {
         arrayListOf<Release>().apply {
             add(Release(700, R.string.release_700))
+            add(Release(701, R.string.release_701))
             checkWhatsNew(this, BuildConfig.VERSION_CODE)
         }
     }

@@ -100,8 +100,8 @@ class CallActivity : SimpleActivity() {
         if (config.backgroundCallScreen == TRANSPARENT_BACKGROUND) checkPermission()
 
         val configBackgroundCallScreen = config.backgroundCallScreen
-        if (configBackgroundCallScreen == TRANSPARENT_BACKGROUND || configBackgroundCallScreen == BLACK_BACKGROUND ||
-            configBackgroundCallScreen == BLUR_AVATAR || configBackgroundCallScreen == AVATAR) {
+        if (configBackgroundCallScreen != THEME_BACKGROUND ) {
+            //TRANSPARENT_BACKGROUND || BLACK_BACKGROUND || BLUR_AVATAR || AVATAR
             updateStatusbarColor(Color.BLACK)
             updateNavigationBarColor(Color.BLACK)
 
@@ -158,8 +158,11 @@ class CallActivity : SimpleActivity() {
                 }
             }
         } else {
-            updateStatusbarColor(getProperBackgroundColor())
-            updateNavigationBarColor(getProperBackgroundColor())
+            //THEME_BACKGROUND
+            val backgroundColor = getProperBackgroundColor()
+            binding.callHolder.setBackgroundColor(backgroundColor)
+            updateStatusbarColor(backgroundColor)
+            updateNavigationBarColor(backgroundColor)
 
             val properTextColor = getProperTextColor()
             binding.apply {
@@ -989,29 +992,40 @@ class CallActivity : SimpleActivity() {
             }
 
             callerAvatar.apply {
-                if (number == name || ((isABusinessCall || isVoiceMail) && avatarUri == "") || isDestroyed || isFinishing) {
-                    val drawable =
-                        if (isABusinessCall) AppCompatResources.getDrawable(this@CallActivity, R.drawable.placeholder_company)
-                        else if (isVoiceMail) AppCompatResources.getDrawable(this@CallActivity, R.drawable.placeholder_voicemail)
-                        else AppCompatResources.getDrawable(this@CallActivity, R.drawable.placeholder_contact)
-                    if (baseConfig.useColoredContacts) {
-                        val letterBackgroundColors = getLetterBackgroundColors()
-                        val color = letterBackgroundColors[abs(name.hashCode()) % letterBackgroundColors.size].toInt()
-                        (drawable as LayerDrawable).findDrawableByLayerId(R.id.placeholder_contact_background).applyColorFilter(color)
+                try {
+                    if (number == name || ((isABusinessCall || isVoiceMail) && avatarUri == "") || isDestroyed || isFinishing) {
+                        val drawable = when {
+                            isVoiceMail -> {
+                                @SuppressLint("UseCompatLoadingForDrawables")
+                                val drawableVoicemail = resources.getDrawable( R.drawable.placeholder_voicemail, theme)
+                                if (baseConfig.useColoredContacts) {
+                                    val letterBackgroundColors = getLetterBackgroundColors()
+                                    val color = letterBackgroundColors[abs(name.hashCode()) % letterBackgroundColors.size].toInt()
+                                    (drawableVoicemail as LayerDrawable).findDrawableByLayerId(R.id.placeholder_contact_background).applyColorFilter(color)
+                                }
+                                drawableVoicemail
+                            }
+                            isABusinessCall -> SimpleContactsHelper(this@CallActivity).getColoredCompanyIcon(name)
+                            else -> SimpleContactsHelper(this@CallActivity).getColoredContactIcon(name)
+                        }
+                        setImageDrawable(drawable)
+                    } else {
+                        if (!isFinishing && !isDestroyed) {
+                            val placeholder = if (isConference) {
+                                SimpleContactsHelper(this@CallActivity).getColoredGroupIcon(name)
+                            } else null
+                            SimpleContactsHelper(this@CallActivity.applicationContext).loadContactImage(
+                                avatarUri,
+                                this,
+                                name,
+                                placeholder
+                            )
+                        }
                     }
+                } catch (_: Exception) {
+                    @SuppressLint("UseCompatLoadingForDrawables")
+                    val drawable = resources.getDrawable( R.drawable.placeholder_contact, theme)
                     setImageDrawable(drawable)
-                } else {
-                    if (!isFinishing && !isDestroyed) {
-                        val placeholder = if (isConference) {
-                            SimpleContactsHelper(this@CallActivity).getColoredGroupIcon(name)
-                        } else null
-                        SimpleContactsHelper(this@CallActivity.applicationContext).loadContactImage(
-                            avatarUri,
-                            this,
-                            name,
-                            placeholder
-                        )
-                    }
                 }
             }
 

@@ -362,7 +362,11 @@ class ContactsAdapter(
         val contact = contacts.firstOrNull { selectedKeys.contains(it.rawId) } ?: return
         val manager = activity.shortcutManager
         if (manager.isRequestPinShortcutSupported) {
-            SimpleContactsHelper(activity).getShortcutImage(contact.photoUri, contact.getNameToDisplay()) { image ->
+            SimpleContactsHelper(activity).getShortcutImage(
+                path = contact.photoUri,
+                placeholderName = contact.getNameToDisplay(),
+                isCompany = contact.isABusinessContact()
+            ) { image ->
                 activity.runOnUiThread {
                     activity.handlePermission(PERMISSION_CALL_PHONE) { hasPermission ->
                         val action = if (hasPermission) Intent.ACTION_CALL else Intent.ACTION_DIAL
@@ -524,7 +528,7 @@ class ContactsAdapter(
                         if (baseConfig.useColoredContacts) {
                             val letterBackgroundColors = activity.getLetterBackgroundColors()
                             val color = letterBackgroundColors[abs(contact.getNameToDisplay().hashCode()) % letterBackgroundColors.size].toInt()
-                            (drawable as LayerDrawable).findDrawableByLayerId(R.id.placeholder_contact_background).applyColorFilter(color)
+                            (drawable as LayerDrawable).findDrawableByLayerId(R.id.placeholder_company_background).applyColorFilter(color)
                         }
                         itemContactImage.setImageDrawable(drawable)
                     } else {

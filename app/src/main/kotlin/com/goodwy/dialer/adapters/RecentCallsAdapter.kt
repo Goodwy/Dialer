@@ -71,9 +71,13 @@ class RecentCallsAdapter(
     private val cachedSimColors = HashMap<Int, Int>()
 
     private val voiceMail = activity.getString(R.string.voicemail)
-    private val placeholderVoiceMail = AppCompatResources.getDrawable(activity, R.drawable.placeholder_voicemail)
-    private val placeholderCompany = AppCompatResources.getDrawable(activity, R.drawable.placeholder_company)
-    private val placeholderContact = AppCompatResources.getDrawable(activity, R.drawable.placeholder_contact)
+    private val colorCache = mutableMapOf<String, Int>()
+
+    companion object {
+        private const val VIEW_TYPE_DATE = 0
+        private const val VIEW_TYPE_CALL = 1
+        private const val VIEW_TYPE_CALL_SWIPE = 2
+    }
 
     init {
         initDrawables()
@@ -679,14 +683,24 @@ class RecentCallsAdapter(
                     val size = (root.context.pixels(R.dimen.normal_icon_size) * contactThumbnailsSize).toInt()
                     itemRecentsImage.setHeightAndWidth(size)
                     if (call.phoneNumber == call.name || ((call.isABusinessCall() || call.isVoiceMail) && call.photoUri == "")) {
-                        val drawable =
-                            if (call.isABusinessCall()) placeholderCompany
-                            else if (call.isVoiceMail) placeholderVoiceMail
-                            else placeholderContact
-                        if (baseConfig.useColoredContacts) {
-                            val letterBackgroundColors = activity.getLetterBackgroundColors()
-                            val color = letterBackgroundColors[abs(call.name.hashCode()) % letterBackgroundColors.size].toInt()
-                            (drawable as LayerDrawable).findDrawableByLayerId(R.id.placeholder_contact_background).applyColorFilter(color)
+                        val placeholderRes = when {
+                            call.isABusinessCall() -> R.drawable.placeholder_company
+                            call.isVoiceMail -> R.drawable.placeholder_voicemail
+                            else -> R.drawable.placeholder_contact
+                        }
+
+                        val drawable = AppCompatResources.getDrawable(activity, placeholderRes)?.mutate()
+                        if (baseConfig.useColoredContacts && drawable is LayerDrawable) {
+                            val color = getCachedColorForName(call.name)
+                            val backgroundId = when {
+                                call.isABusinessCall() -> R.id.placeholder_company_background
+                                call.isVoiceMail -> R.id.placeholder_contact_background
+                                else -> R.id.placeholder_contact_background
+                            }
+
+                            // Use mutate() to create a separate copy, otherwise the colors might get mixed up
+                            val backgroundDrawable = drawable.findDrawableByLayerId(backgroundId)?.mutate()
+                            backgroundDrawable?.applyColorFilter(color)
                         }
                         itemRecentsImage.setImageDrawable(drawable)
                     } else {
@@ -859,14 +873,24 @@ class RecentCallsAdapter(
                     val size = (root.context.pixels(R.dimen.normal_icon_size) * contactThumbnailsSize).toInt()
                     itemRecentsImage.setHeightAndWidth(size)
                     if (call.phoneNumber == call.name || ((call.isABusinessCall() || call.isVoiceMail) && call.photoUri == "")) {
-                        val drawable =
-                            if (call.isABusinessCall()) placeholderCompany
-                            else if (call.isVoiceMail) placeholderVoiceMail
-                            else placeholderContact
-                        if (baseConfig.useColoredContacts) {
-                            val letterBackgroundColors = activity.getLetterBackgroundColors()
-                            val color = letterBackgroundColors[abs(call.name.hashCode()) % letterBackgroundColors.size].toInt()
-                            (drawable as LayerDrawable).findDrawableByLayerId(R.id.placeholder_contact_background).applyColorFilter(color)
+                        val placeholderRes = when {
+                            call.isABusinessCall() -> R.drawable.placeholder_company
+                            call.isVoiceMail -> R.drawable.placeholder_voicemail
+                            else -> R.drawable.placeholder_contact
+                        }
+
+                        val drawable = AppCompatResources.getDrawable(activity, placeholderRes)?.mutate()
+                        if (baseConfig.useColoredContacts && drawable is LayerDrawable) {
+                            val color = getCachedColorForName(call.name)
+                            val backgroundId = when {
+                                call.isABusinessCall() -> R.id.placeholder_company_background
+                                call.isVoiceMail -> R.id.placeholder_contact_background
+                                else -> R.id.placeholder_contact_background
+                            }
+
+                            // Use mutate() to create a separate copy, otherwise the colors might get mixed up
+                            val backgroundDrawable = drawable.findDrawableByLayerId(backgroundId)?.mutate()
+                            backgroundDrawable?.applyColorFilter(color)
                         }
                         itemRecentsImage.setImageDrawable(drawable)
                     } else {
@@ -1039,12 +1063,6 @@ class RecentCallsAdapter(
         }
     }
 
-    companion object {
-        private const val VIEW_TYPE_DATE = 0
-        private const val VIEW_TYPE_CALL = 1
-        private const val VIEW_TYPE_CALL_SWIPE = 2
-    }
-
     private fun showCallHistory(call: RecentCall) {
 //        val callIdList : ArrayList<Int> = arrayListOf()
 //        for (i in getCallList(call)){ callIdList.add(i.id) } // add all the individual records
@@ -1075,7 +1093,7 @@ class RecentCallsAdapter(
         val defaultSim = if (activity.config.currentSIMCardIndex == 0) 1 else 2
         // if we're calling with the same SIM that was used to call us then highlight using that SIMs color
         // but only if we have the sim ID
-        val simIndex: Int = if (call.simID > 0 && activity.config.callUsingSameSim) call.simID else defaultSim
+        val simIndex: Int = if (call.simID > 0 && call.simID < 5 && activity.config.callUsingSameSim) call.simID else defaultSim
         val simColor = activity.config.simIconsColors[simIndex]
         return when (swipeAction) {
             SWIPE_ACTION_DELETE -> resources.getColor(R.color.red_call, activity.theme)
@@ -1131,6 +1149,17 @@ class RecentCallsAdapter(
         else {
             activity.launchCallIntent(recentCall.phoneNumber, key = BuildConfig.RIGHT_APP_KEY)
         }
+    }
+
+    private fun getCachedColorForName(name: String): Int {
+        return colorCache.getOrPut(name) {
+            val letterBackgroundColors = activity.getLetterBackgroundColors()
+            letterBackgroundColors[abs(name.hashCode()) % letterBackgroundColors.size].toInt()
+        }
+    }
+
+    fun clearColorCache() {
+        colorCache.clear()
     }
 }
 

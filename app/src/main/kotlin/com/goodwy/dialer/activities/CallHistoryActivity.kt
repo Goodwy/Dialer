@@ -1105,14 +1105,19 @@ class CallHistoryActivity : SimpleActivity() {
                 || ((call.isABusinessCall() || call.isVoiceMail) && call.photoUri == "")
                 || isDestroyed || isFinishing
             ) {
-                val drawable =
-                    if (call.isABusinessCall()) AppCompatResources.getDrawable(this, R.drawable.placeholder_company)
-                    else if (call.isVoiceMail) AppCompatResources.getDrawable(this, R.drawable.placeholder_voicemail)
-                    else AppCompatResources.getDrawable(this, R.drawable.placeholder_contact)
-                if (baseConfig.useColoredContacts) {
-                    val letterBackgroundColors = getLetterBackgroundColors()
-                    val color = letterBackgroundColors[abs(call.name.hashCode()) % letterBackgroundColors.size].toInt()
-                    (drawable as LayerDrawable).findDrawableByLayerId(R.id.placeholder_contact_background).applyColorFilter(color)
+                val drawable = when {
+                    call.isVoiceMail -> {
+                        @SuppressLint("UseCompatLoadingForDrawables")
+                        val drawableVoicemail = resources.getDrawable( R.drawable.placeholder_voicemail, theme)
+                        if (baseConfig.useColoredContacts) {
+                            val letterBackgroundColors = getLetterBackgroundColors()
+                            val color = letterBackgroundColors[abs(call.name.hashCode()) % letterBackgroundColors.size].toInt()
+                            (drawableVoicemail as LayerDrawable).findDrawableByLayerId(R.id.placeholder_contact_background).applyColorFilter(color)
+                        }
+                        drawableVoicemail
+                    }
+                    call.isABusinessCall() -> SimpleContactsHelper(this@CallHistoryActivity).getColoredCompanyIcon(call.name)
+                    else -> SimpleContactsHelper(this@CallHistoryActivity).getColoredContactIcon(call.name)
                 }
                 binding.topDetails.callHistoryImage.setImageDrawable(drawable)
             } else {
