@@ -109,12 +109,16 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
                 fragmentPlaceholder.beGone()
                 fragmentList.beVisible()
 
-                fragmentList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                        super.onScrollStateChanged(recyclerView, newState)
-                        activity?.hideKeyboard()
-                    }
-                })
+//                fragmentList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//                    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//                        super.onScrollStateChanged(recyclerView, newState)
+//                        activity?.hideKeyboard()
+//                    }
+//                })
+                fragmentList.setOnTouchListener { _, _ ->
+                    activity?.hideKeyboard()
+                    false
+                }
 
                 updateListAdapter()
             }

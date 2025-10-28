@@ -180,12 +180,16 @@ class RecentsFragment(
                 recentsPlaceholder2.beGone()
                 recentsList.beVisible()
 
-                recentsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                        super.onScrollStateChanged(recyclerView, newState)
-                        activity?.hideKeyboard()
-                    }
-                })
+//                recentsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//                    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//                        super.onScrollStateChanged(recyclerView, newState)
+//                        activity?.hideKeyboard()
+//                    }
+//                })
+                recentsList.setOnTouchListener { _, _ ->
+                    activity?.hideKeyboard()
+                    false
+                }
             }
 
             if (binding.recentsList.adapter == null) {

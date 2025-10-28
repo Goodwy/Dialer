@@ -16,6 +16,9 @@ import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.getAvailableSIMCardLabels
 import com.goodwy.dialer.models.RecentCall
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.Locale
 
 class RecentsHelper(private val context: Context) {
@@ -434,23 +437,28 @@ class RecentsHelper(private val context: Context) {
 
     //https://android.googlesource.com/platform/packages/services/Telecomm/+/master/src/com/android/server/telecom/ui/MissedCallNotifierImpl.java#189
     fun markMissedCallsAsRead() {
-        val values = ContentValues().apply {
-            put(Calls.NEW, 0)
-            put(Calls.IS_READ, 1)
-        }
-        val where = StringBuilder().apply {
-            append(Calls.NEW)
-            append(" = 1 AND ")
-            append(Calls.TYPE)
-            append(" = ?")
-        }
+        CoroutineScope(Dispatchers.IO).launch {
+            val values = ContentValues().apply {
+                put(Calls.NEW, 0)
+                put(Calls.IS_READ, 1)
+            }
+//        val where = StringBuilder().apply {
+//            append(Calls.NEW)
+//            append(" = 1 AND ")
+//            append(Calls.TYPE)
+//            append(" = ?")
+//        }
+            val where = "${Calls.NEW} = 1 AND ${Calls.TYPE} = ?"
 
-        try {
-            context.contentResolver.update(
-                contentUri, values,
-                where.toString(), arrayOf(Calls.MISSED_TYPE.toString())
-            )
-        } catch (_: IllegalArgumentException) {
+            try {
+                context.contentResolver.update(
+                    contentUri, values,
+                    where, arrayOf(Calls.MISSED_TYPE.toString())
+                )
+            } catch (_: IllegalArgumentException) {
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
     }
 

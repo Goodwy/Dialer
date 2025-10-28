@@ -117,12 +117,16 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
                 fragmentPlaceholder2.beGone()
                 fragmentList.beVisible()
 
-                fragmentList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-                    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                        super.onScrollStateChanged(recyclerView, newState)
-                        activity?.hideKeyboard()
-                    }
-                })
+//                fragmentList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//                    override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//                        super.onScrollStateChanged(recyclerView, newState)
+//                        activity?.hideKeyboard()
+//                    }
+//                })
+                fragmentList.setOnTouchListener { _, _ ->
+                    activity?.hideKeyboard()
+                    false
+                }
             }
 
             if (binding.fragmentList.adapter == null) {

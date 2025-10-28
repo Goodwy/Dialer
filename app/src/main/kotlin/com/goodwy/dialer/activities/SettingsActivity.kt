@@ -327,7 +327,7 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 701 //TODO changelog
+        val id = 703 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.calling_accounts).isVisible = canLaunchAccountsConfiguration()
             findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
