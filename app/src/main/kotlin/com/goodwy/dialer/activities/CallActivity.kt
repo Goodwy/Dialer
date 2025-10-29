@@ -202,6 +202,23 @@ class CallActivity : SimpleActivity() {
                 it.foreground.applyColorFilter(Color.GRAY)
                 it.foreground.alpha = 60
             }
+
+
+            if (config.hideDialpadLetters) {
+                arrayOf(
+                    dialpadInclude.dialpad1Letters,
+                    dialpadInclude.dialpad2Letters,
+                    dialpadInclude.dialpad3Letters,
+                    dialpadInclude.dialpad4Letters,
+                    dialpadInclude.dialpad5Letters,
+                    dialpadInclude.dialpad6Letters,
+                    dialpadInclude.dialpad7Letters,
+                    dialpadInclude.dialpad8Letters,
+                    dialpadInclude.dialpad9Letters
+                ).forEach {
+                    it.beGone()
+                }
+            }
         }
 
         val isSmallScreen =
