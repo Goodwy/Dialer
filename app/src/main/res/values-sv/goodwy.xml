@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">Öppna knappsatsen när du försöker ringa ett samtal från ett annat program</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Detta kan skydda dig från skadlig programvara som ringer utan din vetskap.</string>
     <string name="number_of_recent_calls_displays">Antalet senaste samtal visas</string>
+    <string name="number_of_recent_calls_displays_summary">தொகுத்தல் காரணமாக, காட்டப்படும் வரிசைகளின் எண்ணிக்கை குறைவாக இருக்கலாம்.</string>
     <string name="group_calls">Samtalsgruppering</string>
     <string name="group_all_calls">Gruppera alla samtal, endast det senaste samtalet visas</string>
     <string name="call_button_style">Klockknapp stil</string>
     <string name="call_notes">Anteckningar om samtal</string>
     <string name="back_pressed_end_call">Bakåtåtgärd avslutar samtalet</string>
-    <string name="keep_calls_in_popup_summary">När samtal har besvarats finns de kvar i dina aviseringar och visas inte i helskärm. Detta görs för att undvika att störa andra appar, till exempel när du spelar ett spel.</string>
+    <string name="keep_calls_in_popup_summary">När ett samtal besvaras finns det kvar i dina aviseringar och fyller inte hela skärmen. Detta görs för att undvika att störa andra appar, till exempel när du spelar ett spel.\nOm ett headset inte är anslutet kommer högtalaren att vara påslagen.</string>
     <string name="busy">Upptagen</string>
     <string name="block_calls">Blockera samtal</string>
+    <string name="edit_number_before_call">Redigera nummer före samtal</string>
+    <string name="on_favorite_click">När du klickar på en favorit</string>
     <string name="call_using_same_sim">Använd samma SIM-kort som det föregående (sista) samtalet gjordes till</string>
     <string name="answer_end_other_call">Besvara och avsluta det aktuella samtalet</string>
     <string name="quick_answers">Snabba svar</string>
@@ -78,4 +81,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Lämna samtal i aviseringar</string>
+    <string name="on_contact_click">När du klickar på en kontakt</string>
+    <string name="on_recent_click">När du klickar på ett nyligen samtal</string>
 </resources>

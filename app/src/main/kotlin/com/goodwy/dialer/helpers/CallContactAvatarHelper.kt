@@ -23,7 +23,7 @@ class CallContactAvatarHelper(private val context: Context) {
                     MediaStore.Images.Media.getBitmap(contentResolver, photoUriParse)
                 }
                 bitmap = if (round) getCircularBitmap(bitmap!!) else bitmap
-            } catch (ignored: Exception) {
+            } catch (_: Exception) {
                 return null
             }
         }

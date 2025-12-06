@@ -8,17 +8,12 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import com.behaviorule.arturdumchev.library.pixels
 import com.goodwy.commons.activities.ManageBlockedNumbersActivity
 import com.goodwy.commons.dialogs.*
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
-import com.goodwy.commons.helpers.rustore.RuStoreHelper
-import com.goodwy.commons.helpers.rustore.model.StartPurchasesEvent
 import com.goodwy.commons.models.RadioItem
-import com.goodwy.commons.models.Release
 import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
 import com.goodwy.dialer.databinding.ActivitySettingsBinding
@@ -32,10 +27,8 @@ import com.goodwy.dialer.helpers.*
 import com.google.gson.Gson
 import com.mikhaellopez.rxanimation.RxAnimation
 import com.mikhaellopez.rxanimation.shake
-import kotlinx.coroutines.launch
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
-import ru.rustore.sdk.core.feature.model.FeatureAvailabilityResult
 import java.util.Calendar
 import java.util.Locale
 import kotlin.math.abs
@@ -52,19 +45,6 @@ class SettingsActivity : SimpleActivity() {
             }
         }
     }
-
-    private val purchaseHelper = PurchaseHelper(this)
-    private var ruStoreHelper: RuStoreHelper? = null
-    private val productIdX1 = BuildConfig.PRODUCT_ID_X1
-    private val productIdX2 = BuildConfig.PRODUCT_ID_X2
-    private val productIdX3 = BuildConfig.PRODUCT_ID_X3
-    private val subscriptionIdX1 = BuildConfig.SUBSCRIPTION_ID_X1
-    private val subscriptionIdX2 = BuildConfig.SUBSCRIPTION_ID_X2
-    private val subscriptionIdX3 = BuildConfig.SUBSCRIPTION_ID_X3
-    private val subscriptionYearIdX1 = BuildConfig.SUBSCRIPTION_YEAR_ID_X1
-    private val subscriptionYearIdX2 = BuildConfig.SUBSCRIPTION_YEAR_ID_X2
-    private val subscriptionYearIdX3 = BuildConfig.SUBSCRIPTION_YEAR_ID_X3
-    private var ruStoreIsConnected = false
 
     private val binding by viewBinding(ActivitySettingsBinding::inflate)
     private val getContent =
@@ -84,87 +64,53 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private val productIdX1 = BuildConfig.PRODUCT_ID_X1
+    private val productIdX2 = BuildConfig.PRODUCT_ID_X2
+    private val productIdX3 = BuildConfig.PRODUCT_ID_X3
+    private val subscriptionIdX1 = BuildConfig.SUBSCRIPTION_ID_X1
+    private val subscriptionIdX2 = BuildConfig.SUBSCRIPTION_ID_X2
+    private val subscriptionIdX3 = BuildConfig.SUBSCRIPTION_ID_X3
+    private val subscriptionYearIdX1 = BuildConfig.SUBSCRIPTION_YEAR_ID_X1
+    private val subscriptionYearIdX2 = BuildConfig.SUBSCRIPTION_YEAR_ID_X2
+    private val subscriptionYearIdX3 = BuildConfig.SUBSCRIPTION_YEAR_ID_X3
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        isMaterialActivity = true
+        useOverflowIcon = false
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setupOptionsMenu()
 
         binding.apply {
-            updateMaterialActivityViews(settingsCoordinator, settingsHolder, useTransparentNavigation = true, useTopSearchMenu = false)
-            setupMaterialScrollListener(settingsNestedScrollview, settingsToolbar)
+//            setupEdgeToEdge(padBottomSystem = listOf(settingsNestedScrollview))
+            setupMaterialScrollListener(binding.settingsNestedScrollview, binding.settingsAppbar)
         }
 
-        if (isPlayStoreInstalled()) {
-            //PlayStore
-            purchaseHelper.initBillingClient()
-            val iapList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3)
-            val subList: ArrayList<String> = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3, subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3)
-            purchaseHelper.retrieveDonation(iapList, subList)
-
-            purchaseHelper.isIapPurchased.observe(this) {
-                when (it) {
-                    is Tipping.Succeeded -> {
-                        config.isPro = true
-                        updatePro()
-                    }
-                    is Tipping.NoTips -> {
-                        config.isPro = false
-                        updatePro()
-                    }
-                    is Tipping.FailedToLoad -> {
-                    }
-                }
-            }
-
-            purchaseHelper.isSupPurchased.observe(this) {
-                when (it) {
-                    is Tipping.Succeeded -> {
-                        config.isProSubs = true
-                        updatePro()
-                    }
-                    is Tipping.NoTips -> {
-                        config.isProSubs = false
-                        updatePro()
-                    }
-                    is Tipping.FailedToLoad -> {
-                    }
-                }
-            }
+        val iapList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3)
+        val subList: ArrayList<String> =
+            arrayListOf(
+                subscriptionIdX1, subscriptionIdX2, subscriptionIdX3,
+                subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3
+            )
+        val ruStoreList: ArrayList<String> =
+            arrayListOf(
+                productIdX1, productIdX2, productIdX3,
+                subscriptionIdX1, subscriptionIdX2, subscriptionIdX3,
+                subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3
+            )
+        PurchaseHelper().checkPurchase(
+            this@SettingsActivity,
+            iapList = iapList,
+            subList = subList,
+            ruStoreList = ruStoreList
+        ) { updatePro ->
+            if (updatePro) updatePro()
         }
-        if (isRuStoreInstalled()) {
-            //RuStore
-            ruStoreHelper = RuStoreHelper()
-            ruStoreHelper!!.checkPurchasesAvailability(this@SettingsActivity)
-
-            lifecycleScope.launch {
-                ruStoreHelper!!.eventStart
-                    .flowWithLifecycle(lifecycle)
-                    .collect { event ->
-                        handleEventStart(event)
-                    }
-            }
-
-            lifecycleScope.launch {
-                ruStoreHelper!!.statePurchased
-                    .flowWithLifecycle(lifecycle)
-                    .collect { state ->
-                        //update of purchased
-                        if (!state.isLoading && ruStoreIsConnected) {
-                            baseConfig.isProRuStore = state.purchases.firstOrNull() != null
-                            updatePro()
-                        }
-                    }
-            }
-        }
-
-//        checkWhatsNewDialog()
     }
 
     @SuppressLint("MissingSuperCall")
     override fun onResume() {
         super.onResume()
-        setupToolbar(binding.settingsToolbar, NavigationIcon.Arrow)
+        setupTopAppBar(binding.settingsAppbar, NavigationIcon.Arrow)
 
         setupPurchaseThankYou()
 
@@ -193,6 +139,9 @@ class SettingsActivity : SimpleActivity() {
         setupOpenSearch()
         setupEndSearch()
 
+        setupOnFavoriteClick()
+        setupOnRecentClick()
+        setupOnContactClick()
         setupUseSwipeToAction()
         setupSwipeVibration()
         setupSwipeRipple()
@@ -215,9 +164,6 @@ class SettingsActivity : SimpleActivity() {
         setupBackPressedEndCall()
         setupQuickAnswers()
         setupCallerDescription()
-        setupGroupCalls()
-        setupGroupSubsequentCalls()
-        setupQueryLimitRecent()
         setupSimDialogStyle()
         setupHideDialpadLetters()
         setupDialpadNumbers()
@@ -232,6 +178,9 @@ class SettingsActivity : SimpleActivity() {
 
         setupBlockCallFromAnotherApp()
 
+        setupGroupCalls()
+        setupGroupSubsequentCalls()
+        setupQueryLimitRecent()
         setupShowDividers()
         setupShowContactThumbnails()
         setupContactThumbnailsSize()
@@ -327,10 +276,8 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun setupOptionsMenu() {
-        val id = 704 //TODO changelog
         binding.settingsToolbar.menu.apply {
             findItem(R.id.calling_accounts).isVisible = canLaunchAccountsConfiguration()
-            findItem(R.id.whats_new).isVisible = BuildConfig.VERSION_CODE == id
         }
         binding.settingsToolbar.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
@@ -339,18 +286,11 @@ class SettingsActivity : SimpleActivity() {
                     true
                 }
                 R.id.whats_new -> {
-                    showWhatsNewDialog(id)
+                    WhatsNewDialog(this@SettingsActivity, whatsNewList())
                     true
                 }
                 else -> false
             }
-        }
-    }
-
-    private fun showWhatsNewDialog(id: Int) {
-        arrayListOf<Release>().apply {
-            add(Release(id, R.string.release_700)) //TODO changelog
-            WhatsNewDialog(this@SettingsActivity, this)
         }
     }
 
@@ -370,8 +310,6 @@ class SettingsActivity : SimpleActivity() {
                 subscriptionIdListRu = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
                 subscriptionYearIdList = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
                 subscriptionYearIdListRu = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
-                playStoreInstalled = isPlayStoreInstalled(),
-                ruStoreInstalled = isRuStoreInstalled(),
                 showAppIconColor = true
             )
         }
@@ -474,7 +412,13 @@ class SettingsActivity : SimpleActivity() {
                 RadioItem(FONT_SIZE_LARGE, getString(R.string.large)),
                 RadioItem(FONT_SIZE_EXTRA_LARGE, getString(R.string.extra_large)))
 
-            RadioGroupDialog(this@SettingsActivity, items, config.fontSize, R.string.font_size) {
+            RadioGroupDialog(
+                this@SettingsActivity,
+                items,
+                config.fontSize,
+                R.string.font_size,
+                defaultItemId = FONT_SIZE_MEDIUM
+            ) {
                 config.fontSize = it as Int
                 settingsFontSize.text = getFontSizeText()
                 config.needRestart = true
@@ -491,7 +435,13 @@ class SettingsActivity : SimpleActivity() {
                 RadioItem(TAB_CALL_HISTORY, getString(R.string.recents), icon = R.drawable.ic_clock_filled_scaled),
                 RadioItem(TAB_CONTACTS, getString(R.string.contacts_tab), icon = R.drawable.ic_person_rounded_scaled))
 
-            RadioGroupIconDialog(this@SettingsActivity, items, config.defaultTab, R.string.default_tab) {
+            RadioGroupIconDialog(
+                this@SettingsActivity,
+                items,
+                config.defaultTab,
+                R.string.default_tab,
+                defaultItemId = TAB_LAST_USED
+            ) {
                 config.defaultTab = it as Int
                 binding.settingsDefaultTab.text = getDefaultTabText()
             }
@@ -508,10 +458,12 @@ class SettingsActivity : SimpleActivity() {
     )
 
     private fun setupNavigationBarStyle() {
+        binding.settingsNavigationBarStyleLabel.text = formatWithDeprecatedBadge(R.string.tab_navigation)
         binding.settingsNavigationBarStyle.text = getNavigationBarStyleText()
         binding.settingsNavigationBarStyleHolder.setOnClickListener {
+            val top = formatWithDeprecatedBadge(R.string.top)
             val items = arrayListOf(
-                RadioItem(0, getString(R.string.top), icon = R.drawable.ic_tab_top),
+                RadioItem(0, top, icon = R.drawable.ic_tab_top),
                 RadioItem(1, getString(R.string.bottom), icon = R.drawable.ic_tab_bottom),
             )
 
@@ -563,7 +515,13 @@ class SettingsActivity : SimpleActivity() {
                 RadioItem(2, getString(R.string.screen_slide_animation_depth), icon = R.drawable.ic_playing_cards),
             )
 
-            RadioGroupIconDialog(this@SettingsActivity, items, config.screenSlideAnimation, R.string.screen_slide_animation) {
+            RadioGroupIconDialog(
+                this@SettingsActivity,
+                items,
+                config.screenSlideAnimation,
+                R.string.screen_slide_animation,
+                defaultItemId = 1
+            ) {
                 config.screenSlideAnimation = it as Int
                 config.needRestart = true
                 binding.settingsScreenSlideAnimation.text = getScreenSlideAnimationText()
@@ -610,13 +568,19 @@ class SettingsActivity : SimpleActivity() {
         settingsContactThumbnailsSizeHolder.setOnClickListener {
             if (pro) {
                 val items = arrayListOf(
-                    RadioItem(FONT_SIZE_SMALL, getString(R.string.small), CONTACT_THUMBNAILS_SIZE_SMALL),
-                    RadioItem(FONT_SIZE_MEDIUM, getString(R.string.medium), CONTACT_THUMBNAILS_SIZE_MEDIUM),
-                    RadioItem(FONT_SIZE_LARGE, getString(R.string.large), CONTACT_THUMBNAILS_SIZE_LARGE),
-                    RadioItem(FONT_SIZE_EXTRA_LARGE, getString(R.string.extra_large), CONTACT_THUMBNAILS_SIZE_EXTRA_LARGE)
+                    RadioItem(CONTACT_THUMBNAILS_SIZE_SMALL, getString(R.string.small), CONTACT_THUMBNAILS_SIZE_SMALL),
+                    RadioItem(CONTACT_THUMBNAILS_SIZE_MEDIUM, getString(R.string.medium), CONTACT_THUMBNAILS_SIZE_MEDIUM),
+                    RadioItem(CONTACT_THUMBNAILS_SIZE_LARGE, getString(R.string.large), CONTACT_THUMBNAILS_SIZE_LARGE),
+                    RadioItem(CONTACT_THUMBNAILS_SIZE_EXTRA_LARGE, getString(R.string.extra_large), CONTACT_THUMBNAILS_SIZE_EXTRA_LARGE)
                 )
 
-                RadioGroupDialog(this@SettingsActivity, items, config.contactThumbnailsSize, R.string.contact_thumbnails_size) {
+                RadioGroupDialog(
+                    this@SettingsActivity,
+                    items,
+                    config.contactThumbnailsSize,
+                    R.string.contact_thumbnails_size,
+                    defaultItemId = CONTACT_THUMBNAILS_SIZE_MEDIUM
+                ) {
                     config.contactThumbnailsSize = it as Int
                     settingsContactThumbnailsSize.text = getContactThumbnailsSizeText()
                     config.needRestart = true
@@ -711,7 +675,13 @@ class SettingsActivity : SimpleActivity() {
                 )
             }
 
-            RadioGroupIconDialog(this@SettingsActivity, items, config.backgroundCallScreen, R.string.call_screen_background) {
+            RadioGroupIconDialog(
+                this@SettingsActivity,
+                items,
+                config.backgroundCallScreen,
+                R.string.call_screen_background,
+                defaultItemId = BLUR_AVATAR
+            ) {
                 if (it as Int == TRANSPARENT_BACKGROUND) {
                     if (hasPermission(PERMISSION_READ_STORAGE)) {
                         config.backgroundCallScreen = it
@@ -797,7 +767,13 @@ class SettingsActivity : SimpleActivity() {
             RadioItem(ANSWER_SLIDER_VERTICAL, sliderVertical, icon = R.drawable.ic_slider_vertical),
         )
 
-        RadioGroupIconDialog(this@SettingsActivity, items, config.answerStyle, R.string.answer_style) {
+        RadioGroupIconDialog(
+            this@SettingsActivity,
+            items,
+            config.answerStyle,
+            R.string.answer_style,
+            defaultItemId = ANSWER_BUTTON
+        ) {
             if (it as Int == ANSWER_SLIDER_OUTLINE || it == ANSWER_SLIDER_VERTICAL) {
                 if (pro) {
                     config.answerStyle = it
@@ -879,7 +855,13 @@ class SettingsActivity : SimpleActivity() {
                 RadioItem(SHOW_CALLER_COMPANY, getString(R.string.company)),
                 RadioItem(SHOW_CALLER_NICKNAME, getString(R.string.nickname)))
 
-            RadioGroupDialog(this@SettingsActivity, items, config.showCallerDescription, R.string.show_caller_description_g) {
+            RadioGroupDialog(
+                this@SettingsActivity,
+                items,
+                config.showCallerDescription,
+                R.string.show_caller_description_g,
+                defaultItemId = SHOW_CALLER_COMPANY
+            ) {
                 config.showCallerDescription = it as Int
                 binding.settingsShowCallerDescription.text = getCallerDescriptionText()
             }
@@ -1093,7 +1075,13 @@ class SettingsActivity : SimpleActivity() {
                 RadioItem(GROUP_CALLS_ALL, getString(R.string.group_all_calls))
             )
 
-            RadioGroupDialog(this@SettingsActivity, items, getGroupCallsCheckedItemId(), R.string.group_calls) {
+            RadioGroupDialog(
+                this@SettingsActivity,
+                items,
+                getGroupCallsCheckedItemId(),
+                R.string.group_calls,
+                defaultItemId = GROUP_CALLS_SUBSEQUENT
+            ) {
                 when(it) {
                     GROUP_CALLS_SUBSEQUENT -> {
                         config.groupSubsequentCalls = true
@@ -1154,16 +1142,28 @@ class SettingsActivity : SimpleActivity() {
         binding.settingsQueryLimitRecent.text = getQueryLimitRecentText()
         binding.settingsQueryLimitRecentHolder.setOnClickListener {
             val items = arrayListOf(
+                RadioItem(QUERY_LIMIT_TINY_VALUE, QUERY_LIMIT_TINY_VALUE.toString()),
                 RadioItem(QUERY_LIMIT_SMALL_VALUE, QUERY_LIMIT_SMALL_VALUE.toString()),
                 RadioItem(QUERY_LIMIT_MEDIUM_VALUE, QUERY_LIMIT_MEDIUM_VALUE.toString()),
                 RadioItem(QUERY_LIMIT_NORMAL_VALUE, QUERY_LIMIT_NORMAL_VALUE.toString()),
                 RadioItem(QUERY_LIMIT_BIG_VALUE, QUERY_LIMIT_BIG_VALUE.toString()),
                 RadioItem(QUERY_LIMIT_MAX_VALUE, "MAX"))
 
-            RadioGroupDialog(this@SettingsActivity, items, config.queryLimitRecent, R.string.number_of_recent_calls_displays) {
+            RadioGroupDialog(
+                this@SettingsActivity,
+                items,
+                config.queryLimitRecent,
+                R.string.number_of_recent_calls_displays,
+                defaultItemId = QUERY_LIMIT_MEDIUM_VALUE
+            ) {
                 config.queryLimitRecent = it as Int
                 binding.settingsQueryLimitRecent.text = getQueryLimitRecentText()
             }
+        }
+
+        binding.settingsQueryLimitRecentFaq.imageTintList = ColorStateList.valueOf(getProperTextColor())
+        binding.settingsQueryLimitRecentFaq.setOnClickListener {
+            ConfirmationDialog(this@SettingsActivity, messageId = R.string.number_of_recent_calls_displays_summary, positive = com.goodwy.commons.R.string.ok, negative = 0) {}
         }
     }
 
@@ -1482,6 +1482,90 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupOnFavoriteClick() = binding.apply {
+        settingsOnFavoriteClick.text = getOnRecentOrContactClickText(config.onFavoriteClick, true)
+        settingsOnFavoriteClickHolder.setOnClickListener {
+            val items = arrayListOf(
+                RadioItem(SWIPE_ACTION_CALL, getString(R.string.call), icon = R.drawable.ic_phone_vector),
+                RadioItem(SWIPE_ACTION_MESSAGE, getString(R.string.send_sms), icon = R.drawable.ic_messages),
+                RadioItem(SWIPE_ACTION_OPEN, getString(R.string.view_contact_details), icon = R.drawable.ic_info),
+                RadioItem(SWIPE_ACTION_EDIT, getString(R.string.edit), icon = com.goodwy.commons.R.drawable.ic_edit_vector),
+                RadioItem(SWIPE_ACTION_NONE, getString(com.goodwy.commons.R.string.nothing)),
+            )
+
+            RadioGroupIconDialog(
+                this@SettingsActivity,
+                items,
+                config.onFavoriteClick,
+                R.string.on_favorite_click,
+                defaultItemId = SWIPE_ACTION_CALL
+            ) {
+                config.onFavoriteClick = it as Int
+                config.needRestart = true
+                settingsOnFavoriteClick.text = getOnRecentOrContactClickText(config.onFavoriteClick, true)
+            }
+        }
+    }
+
+    private fun setupOnRecentClick() = binding.apply {
+        settingsOnRecentClick.text = getOnRecentOrContactClickText(config.onRecentClick, false)
+        settingsOnRecentClickHolder.setOnClickListener {
+            val items = arrayListOf(
+                RadioItem(SWIPE_ACTION_CALL, getString(R.string.call), icon = R.drawable.ic_phone_vector),
+                RadioItem(SWIPE_ACTION_MESSAGE, getString(R.string.send_sms), icon = R.drawable.ic_messages),
+                RadioItem(SWIPE_ACTION_OPEN, getString(R.string.show_call_details), icon = R.drawable.ic_info),
+                RadioItem(SWIPE_ACTION_NONE, getString(com.goodwy.commons.R.string.nothing)),
+            )
+
+            RadioGroupIconDialog(
+                this@SettingsActivity,
+                items,
+                config.onRecentClick,
+                R.string.on_recent_click,
+                defaultItemId = SWIPE_ACTION_CALL
+            ) {
+                config.onRecentClick = it as Int
+                config.needRestart = true
+                settingsOnRecentClick.text = getOnRecentOrContactClickText(config.onRecentClick, false)
+            }
+        }
+    }
+
+    private fun setupOnContactClick() = binding.apply {
+        settingsOnContactClick.text = getOnRecentOrContactClickText(config.onContactClick, true)
+        settingsOnContactClickHolder.setOnClickListener {
+            val items = arrayListOf(
+                RadioItem(SWIPE_ACTION_CALL, getString(R.string.call), icon = R.drawable.ic_phone_vector),
+                RadioItem(SWIPE_ACTION_MESSAGE, getString(R.string.send_sms), icon = R.drawable.ic_messages),
+                RadioItem(SWIPE_ACTION_OPEN, getString(R.string.view_contact_details), icon = R.drawable.ic_info),
+                RadioItem(SWIPE_ACTION_EDIT, getString(R.string.edit), icon = com.goodwy.commons.R.drawable.ic_edit_vector),
+                RadioItem(SWIPE_ACTION_NONE, getString(com.goodwy.commons.R.string.nothing)),
+            )
+
+            RadioGroupIconDialog(
+                this@SettingsActivity,
+                items,
+                config.onContactClick,
+                R.string.on_contact_click,
+                defaultItemId = SWIPE_ACTION_CALL
+            ) {
+                config.onContactClick = it as Int
+                config.needRestart = true
+                settingsOnContactClick.text = getOnRecentOrContactClickText(config.onContactClick, true)
+            }
+        }
+    }
+
+    private fun getOnRecentOrContactClickText(currentConfig: Int, isContact: Boolean) = getString(
+        when (currentConfig) {
+            SWIPE_ACTION_CALL -> R.string.call
+            SWIPE_ACTION_MESSAGE -> R.string.send_sms
+            SWIPE_ACTION_OPEN -> if (isContact) R.string.view_contact_details else R.string.show_call_details
+            SWIPE_ACTION_EDIT -> R.string.edit
+            else -> com.goodwy.commons.R.string.nothing
+        }
+    )
+
     private fun setupUseSwipeToAction() {
         updateSwipeToActionVisible()
         binding.apply {
@@ -1541,7 +1625,13 @@ class SettingsActivity : SimpleActivity() {
 
             val title =
                 if (isRTLLayout) R.string.swipe_left_action else R.string.swipe_right_action
-            RadioGroupIconDialog(this@SettingsActivity, items, config.swipeRightAction, title) {
+            RadioGroupIconDialog(
+                this@SettingsActivity,
+                items,
+                config.swipeRightAction,
+                title,
+                defaultItemId = SWIPE_ACTION_MESSAGE
+            ) {
                 config.swipeRightAction = it as Int
                 config.needRestart = true
                 settingsSwipeRightAction.text = getSwipeActionText(false)
@@ -1568,7 +1658,13 @@ class SettingsActivity : SimpleActivity() {
 
                 val title =
                     if (isRTLLayout) R.string.swipe_right_action else R.string.swipe_left_action
-                RadioGroupIconDialog(this@SettingsActivity, items, config.swipeLeftAction, title) {
+                RadioGroupIconDialog(
+                    this@SettingsActivity,
+                    items,
+                    config.swipeLeftAction,
+                    title,
+                    defaultItemId = SWIPE_ACTION_DELETE
+                ) {
                     config.swipeLeftAction = it as Int
                     config.needRestart = true
                     settingsSwipeLeftAction.text = getSwipeActionText(true)
@@ -1696,33 +1792,6 @@ class SettingsActivity : SimpleActivity() {
                 settingsRelativeDate.toggle()
                 config.useRelativeDate = settingsRelativeDate.isChecked
                 config.needRestart = true
-            }
-        }
-    }
-
-    private fun updateProducts() {
-        val productList: ArrayList<String> = arrayListOf(productIdX1, productIdX2, productIdX3, subscriptionIdX1, subscriptionIdX2, subscriptionIdX3, subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3)
-        ruStoreHelper!!.getProducts(productList)
-    }
-
-    private fun handleEventStart(event: StartPurchasesEvent) {
-        when (event) {
-            is StartPurchasesEvent.PurchasesAvailability -> {
-                when (event.availability) {
-                    is FeatureAvailabilityResult.Available -> {
-                        //Process purchases available
-                        updateProducts()
-                        ruStoreIsConnected = true
-                    }
-
-                    is FeatureAvailabilityResult.Unavailable -> {
-                        //toast(event.availability.cause.message ?: "Process purchases unavailable", Toast.LENGTH_LONG)
-                    }
-                }
-            }
-
-            is StartPurchasesEvent.Error -> {
-                //toast(event.throwable.message ?: "Process unknown error", Toast.LENGTH_LONG)
             }
         }
     }

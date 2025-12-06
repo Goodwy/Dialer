@@ -3,22 +3,30 @@ package com.goodwy.dialer.fragments
 import android.content.Context
 import android.content.res.Configuration
 import android.util.AttributeSet
-import androidx.recyclerview.widget.RecyclerView
 import com.goodwy.commons.adapters.MyRecyclerViewAdapter
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.contacts.Contact
+import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.MainActivity
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.adapters.ContactsAdapter
 import com.goodwy.dialer.databinding.FragmentContactsBinding
 import com.goodwy.dialer.databinding.FragmentLettersLayoutBinding
+import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.launchCreateNewContactIntent
+import com.goodwy.dialer.extensions.launchSendSMSIntentRecommendation
 import com.goodwy.dialer.extensions.setupWithContacts
 import com.goodwy.dialer.extensions.startCallWithConfirmationCheck
 import com.goodwy.dialer.extensions.startContactDetailsIntentRecommendation
+import com.goodwy.dialer.extensions.startContactEdit
+import com.goodwy.dialer.helpers.SWIPE_ACTION_CALL
+import com.goodwy.dialer.helpers.SWIPE_ACTION_EDIT
+import com.goodwy.dialer.helpers.SWIPE_ACTION_MESSAGE
+import com.goodwy.dialer.helpers.SWIPE_ACTION_OPEN
 import com.goodwy.dialer.interfaces.RefreshItemsListener
+import com.goodwy.dialer.models.RecentCall
 
 class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment<MyViewPagerFragment.LettersInnerBinding>(context, attributeSet),
     RefreshItemsListener {
@@ -135,10 +143,10 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
                     contacts = contacts,
                     recyclerView = binding.fragmentList,
                     refreshItemsListener = this,
-                    showIcon = false,
+                    showIcon = context.config.onContactClick != SWIPE_ACTION_OPEN,
                     showNumber = context.baseConfig.showPhoneNumbers,
                     itemClick = {
-                        activity?.startCallWithConfirmationCheck(it as Contact)
+                        itemClickAction(context.config.onContactClick, it as Contact)
                     },
                     profileIconClick = {
                         activity?.startContactDetailsIntentRecommendation(it as Contact)
@@ -197,7 +205,7 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
         val filtered = allContacts.filter { contact ->
             getProperText(contact.getNameToDisplay(), shouldNormalize).contains(fixedText, true) ||
                 getProperText(contact.nickname, shouldNormalize).contains(fixedText, true) ||
-                (fixedText.toIntOrNull() != null && contact.doesContainPhoneNumber(fixedText, true)) ||
+                (fixedText.toLongOrNull() != null && contact.doesContainPhoneNumber(fixedText, true)) ||
                 contact.emails.any { it.value.contains(fixedText, true) } ||
                 contact.relations.any { it.name.contains(fixedText, true) } ||
                 contact.addresses.any { getProperText(it.value, shouldNormalize).contains(fixedText, true) } ||
@@ -233,4 +241,26 @@ class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPag
     }
 
     override fun myRecyclerView() = binding.fragmentList
+
+    private fun itemClickAction(action: Int, contact: Contact) {
+        when (action) {
+            SWIPE_ACTION_MESSAGE -> actionSMS(contact)
+            SWIPE_ACTION_CALL -> actionCall(contact)
+            SWIPE_ACTION_OPEN -> actionOpen(contact)
+            SWIPE_ACTION_EDIT -> activity?.startContactEdit(contact)
+            else -> {}
+        }
+    }
+
+    private fun actionCall(contact: Contact) {
+        activity?.startCallWithConfirmationCheck(contact)
+    }
+
+    private fun actionSMS(contact: Contact) {
+        activity?.initiateCall(contact) { activity?.launchSendSMSIntentRecommendation(it) }
+    }
+
+    private fun actionOpen(contact: Contact) {
+        activity?.startContactDetailsIntentRecommendation(contact)
+    }
 }

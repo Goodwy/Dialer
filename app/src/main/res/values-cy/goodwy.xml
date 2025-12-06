@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">Wrth geisio gwneud galwad o raglen arall, agorwch y pad deialu</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Gall hyn eich amddiffyn rhag malware sy\'n gwneud galwadau heb yn wybod ichi.</string>
     <string name="number_of_recent_calls_displays">Wedi dangos nifer y galwadau diweddar</string>
+    <string name="number_of_recent_calls_displays_summary">Oherwydd grwpio, efallai y bydd nifer y rhesi a ddangosir yn llai.</string>
     <string name="group_calls">Grwpio galwadau</string>
     <string name="group_all_calls">Grwpiwch bob galwad, dim ond yr alwad olaf fydd yn cael ei dangos</string>
     <string name="call_button_style">Bell Button Arddull</string>
     <string name="call_notes">Nodiadau galw</string>
     <string name="back_pressed_end_call">Gweithredu cefn yn dod â\'r alwad i ben</string>
-    <string name="keep_calls_in_popup_summary">Ar ôl i alwadau gael eu hateb, maent yn aros yn eich hysbysiadau ac nid ydynt yn ymddangos ar sgrin lawn. Gwneir hyn i osgoi torri ar draws apps eraill, megis wrth chwarae gêm.</string>
+    <string name="keep_calls_in_popup_summary">Ar ôl ateb galwad, mae\'n aros yn eich hysbysiadau ac nid yw\'n llenwi\'r sgrin gyfan. Gwneir hyn i osgoi ymyrryd ag apiau eraill, fel wrth chwarae gêm.\nOs nad yw clustffon wedi\'i gysylltu, bydd y siaradwr yn cael ei droi ymlaen.</string>
     <string name="busy">Prysur</string>
     <string name="block_calls">Rhwystro galwadau</string>
+    <string name="edit_number_before_call">Golygu rhif cyn galw</string>
+    <string name="on_favorite_click">Pan gliciwch ar ffefryn</string>
     <string name="call_using_same_sim">Defnyddiwch yr un cerdyn SIM y gwnaed yr alwad flaenorol (olaf) iddo</string>
     <string name="answer_end_other_call">Ateb a gorffen yr alwad bresennol</string>
     <string name="quick_answers">Atebion cyflym</string>
@@ -81,4 +84,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Gadael galwadau mewn hysbysiadau</string>
+    <string name="on_contact_click">Pan gliciwch ar gyswllt</string>
+    <string name="on_recent_click">Pan gliciwch ar alwad ddiweddar</string>
 </resources>

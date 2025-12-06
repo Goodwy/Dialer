@@ -54,13 +54,16 @@
     <string name="open_dialpad_when_call_from_another_app">Beste aplikazio batetik dei bat egiten saiatzen zarenean, ireki teklatua</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Horrek zuk jakin gabe deiak egiten dituen malwaretik babestu zaitu.</string>
     <string name="number_of_recent_calls_displays">Bistaratu diren azken deien kopurua</string>
+    <string name="number_of_recent_calls_displays_summary">Taldekatzea dela eta, bistaratutako errenkada kopurua txikiagoa izan daiteke.</string>
     <string name="group_calls">Deiak taldekatzea</string>
     <string name="group_all_calls">Talde dei guztiak, azken deia bakarrik erakutsiko da</string>
     <string name="call_button_style">Deitzeko botoiaren estiloa</string>
     <string name="call_notes">Dei-oharrak</string>
-    <string name="keep_calls_in_popup_summary">Deiak erantzun ondoren, zure jakinarazpenetan geratzen dira eta ez dira pantaila osoan agertzen. Hau beste aplikazioak eteteko saihesteko egiten da, adibidez, joko batean jolasten ari zaren bitartean.</string>
+    <string name="keep_calls_in_popup_summary">Deiari erantzun ondoren, jakinarazpenetan geratzen da eta ez du pantaila osoa betetzen. Hori beste aplikazio batzuk etetea saihesteko egiten da, adibidez, joko bat jolasten ari zaren bitartean.\n\nAurikularrak konektatuta ez badaude, bozgorailua piztuta egongo da.</string>
     <string name="busy">Lanpetuta</string>
     <string name="block_calls">Blokeatu deiak</string>
+    <string name="edit_number_before_call">Editatu zenbakia deitu aurretik</string>
+    <string name="on_favorite_click">Gogoko batean klik egiten duzunean</string>
     <string name="call_using_same_sim">Erabili aurreko (azken) deia egin zitzaion SIM txartel bera</string>
     <string name="answer_end_other_call">Erantzun eta amaitu uneko deia</string>
     <string name="quick_answers">Erantzun azkarrak</string>
@@ -78,4 +81,6 @@
     <string name="missed_call_from">Missed call from %s</string>
     <string name="back_pressed_end_call">Atzera ekintzak deia amaitzen du</string>
     <string name="keep_calls_in_popup">Utzi deiak jakinarazpenetan</string>
+    <string name="on_contact_click">Kontaktu batean klik egiten duzunean</string>
+    <string name="on_recent_click">Azken dei batean klik egiten duzunean</string>
 </resources>

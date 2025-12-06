@@ -281,7 +281,7 @@ class ContactsAdapter(
         finishActMode()
     }
 
-    private fun sendSMS(isSwipe: Boolean = false) {
+    private fun sendSMS() {
         val numbers = ArrayList<String>()
         getSelectedItems().map { simpleContact ->
             val contactNumbers = simpleContact.phoneNumbers
@@ -295,7 +295,6 @@ class ContactsAdapter(
 
         val recipient = TextUtils.join(";", numbers)
         activity.launchSendSMSIntentRecommendation(recipient)
-        if (isSwipe) selectedKeys.clear()
     }
 
     private fun viewContactDetails() {
@@ -591,7 +590,7 @@ class ContactsAdapter(
                         val swipeLeftOrRightAction =
                             if (activity.isRTLLayout) activity.config.swipeRightAction else activity.config.swipeLeftAction
                         swipeAction(swipeLeftOrRightAction, contact)
-                        slideLeftReturn(swipeLeftIcon!!, swipeLeftIconHolder!!)
+                        swipeLeftIcon!!.slideLeftReturn(swipeLeftIconHolder!!)
                         return true
                     }
 
@@ -600,46 +599,26 @@ class ContactsAdapter(
                         val swipeRightOrLeftAction =
                             if (activity.isRTLLayout) activity.config.swipeLeftAction else activity.config.swipeRightAction
                         swipeAction(swipeRightOrLeftAction, contact)
-                        slideRightReturn(swipeRightIcon!!, swipeRightIconHolder!!)
+                        swipeRightIcon!!.slideRightReturn(swipeRightIconHolder!!)
                         return true
                     }
 
                     override fun onSwipedActivated(swipedRight: Boolean) {
                         if (viewType != VIEW_TYPE_GRID) {
-                            if (swipedRight) slideRight(swipeRightIcon!!, swipeRightIconHolder!!)
-                            else slideLeft(swipeLeftIcon!!)
+                            if (swipedRight) swipeRightIcon!!.slideRight(swipeRightIconHolder!!)
+                            else swipeLeftIcon!!.slideLeft()
                         }
                     }
 
                     override fun onSwipedDeactivated(swipedRight: Boolean) {
                         if (viewType != VIEW_TYPE_GRID) {
-                            if (swipedRight) slideRightReturn(swipeRightIcon!!, swipeRightIconHolder!!)
-                            else slideLeftReturn(swipeLeftIcon!!, swipeLeftIconHolder!!)
+                            if (swipedRight) swipeRightIcon!!.slideRightReturn(swipeRightIconHolder!!)
+                            else swipeLeftIcon!!.slideLeftReturn(swipeLeftIconHolder!!)
                         }
                     }
                 }
             }
         }
-    }
-
-    private fun slideRight(view: View, parent: View) {
-        view.animate()
-            .x(parent.right - activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin) - view.width)
-    }
-
-    private fun slideLeft(view: View) {
-        view.animate()
-            .x(activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin))
-    }
-
-    private fun slideRightReturn(view: View, parent: View) {
-        view.animate()
-            .x(parent.left + activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin))
-    }
-
-    private fun slideLeftReturn(view: View, parent: View) {
-        view.animate()
-            .x(parent.width - activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin) - view.width)
     }
 
     override fun onRowMoved(fromPosition: Int, toPosition: Int) {
@@ -876,8 +855,7 @@ class ContactsAdapter(
     }
 
     private fun swipedSMS(contact: Contact) {
-        selectedKeys.add(contact.rawId)
-        sendSMS(true)
+        activity.initiateCall(contact) { activity.launchSendSMSIntentRecommendation(it) }
     }
 
     private fun swipedBlock(contact: Contact) {

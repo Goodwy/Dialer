@@ -53,14 +53,17 @@
     <string name="open_dialpad_when_call_from_another_app">Khi cố gắng thực hiện cuộc gọi từ một ứng dụng khác, hãy mở bàn phím quay số</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Tính năng này có thể bảo vệ bạn khỏi phần mềm độc hại thực hiện cuộc gọi mà bạn không hề hay biết.</string>
     <string name="number_of_recent_calls_displays">Hiển thị số cuộc gọi gần đây</string>
+    <string name="number_of_recent_calls_displays_summary">Do nhóm, số lượng hàng hiển thị có thể ít hơn.</string>
     <string name="group_calls">Nhóm cuộc gọi</string>
     <string name="group_all_calls">Nhóm tất cả các cuộc gọi, chỉ cuộc gọi cuối cùng sẽ được hiển thị</string>
     <string name="call_button_style">Kiểu nút chuông</string>
     <string name="call_notes">Ghi chú cuộc gọi</string>
     <string name="back_pressed_end_call">Hành động quay lại kết thúc cuộc gọi</string>
-    <string name="keep_calls_in_popup_summary">Sau khi trả lời cuộc gọi, chúng sẽ vẫn nằm trong phần thông báo chứ không hiển thị toàn màn hình. Điều này nhằm tránh làm gián đoạn các ứng dụng khác, chẳng hạn như khi đang chơi game.</string>
+    <string name="keep_calls_in_popup_summary">Sau khi trả lời cuộc gọi, thông báo sẽ vẫn hiển thị trong phần thông báo chứ không chiếm toàn bộ màn hình. Điều này nhằm tránh làm gián đoạn các ứng dụng khác, chẳng hạn như khi đang chơi game.\nNếu tai nghe không được kết nối, loa ngoài sẽ được bật.</string>
     <string name="busy">Bận</string>
     <string name="block_calls">Chặn cuộc gọi</string>
+    <string name="edit_number_before_call">Chỉnh sửa số trước khi gọi</string>
+    <string name="on_favorite_click">Khi bạn nhấp vào mục yêu thích</string>
     <string name="call_using_same_sim">Sử dụng cùng một thẻ SIM mà cuộc gọi trước đó (cuối cùng) đã được thực hiện</string>
     <string name="answer_end_other_call">Trả lời và kết thúc cuộc gọi hiện tại</string>
     <string name="quick_answers">Câu trả lời nhanh</string>
@@ -76,4 +79,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Để lại cuộc gọi trong thông báo</string>
+    <string name="on_contact_click">Khi bạn nhấp vào một liên hệ</string>
+    <string name="on_recent_click">Khi bạn nhấp vào cuộc gọi gần đây</string>
 </resources>

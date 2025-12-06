@@ -4,23 +4,67 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
+import android.net.Uri
 import android.provider.CallLog.Calls
 import android.text.SpannableString
 import android.text.TextUtils
 import android.text.format.DateUtils
 import android.util.TypedValue
-import android.view.*
+import android.view.ContextThemeWrapper
+import android.view.Gravity
+import android.view.Menu
+import android.view.View
+import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.behaviorule.arturdumchev.library.pixels
 import com.bumptech.glide.Glide
 import com.goodwy.commons.adapters.MyRecyclerViewListAdapter
 import com.goodwy.commons.dialogs.CallConfirmationDialog
 import com.goodwy.commons.dialogs.ConfirmationAdvancedDialog
-import com.goodwy.commons.extensions.*
-import com.goodwy.commons.helpers.*
+import com.goodwy.commons.extensions.addBlockedNumber
+import com.goodwy.commons.extensions.adjustAlpha
+import com.goodwy.commons.extensions.applyColorFilter
+import com.goodwy.commons.extensions.beVisibleIf
+import com.goodwy.commons.extensions.copyToClipboard
+import com.goodwy.commons.extensions.deleteBlockedNumber
+import com.goodwy.commons.extensions.formatDateOrTime
+import com.goodwy.commons.extensions.formatPhoneNumber
+import com.goodwy.commons.extensions.formatSecondsToShortTimeString
+import com.goodwy.commons.extensions.formatterUnicodeWrap
+import com.goodwy.commons.extensions.getBlockedNumbers
+import com.goodwy.commons.extensions.getColoredDrawableWithColor
+import com.goodwy.commons.extensions.getContrastColor
+import com.goodwy.commons.extensions.getLetterBackgroundColors
+import com.goodwy.commons.extensions.getPopupMenuTheme
+import com.goodwy.commons.extensions.getTextSize
+import com.goodwy.commons.extensions.highlightTextPart
+import com.goodwy.commons.extensions.isDefaultDialer
+import com.goodwy.commons.extensions.isDynamicTheme
+import com.goodwy.commons.extensions.isNumberBlocked
+import com.goodwy.commons.extensions.isRTLLayout
+import com.goodwy.commons.extensions.isSystemInDarkMode
+import com.goodwy.commons.extensions.launchActivityIntent
+import com.goodwy.commons.extensions.launchCallIntent
+import com.goodwy.commons.extensions.launchInternetSearch
+import com.goodwy.commons.extensions.setHeightAndWidth
+import com.goodwy.commons.extensions.setupViewBackground
+import com.goodwy.commons.extensions.slideLeft
+import com.goodwy.commons.extensions.slideLeftReturn
+import com.goodwy.commons.extensions.slideRight
+import com.goodwy.commons.extensions.slideRightReturn
+import com.goodwy.commons.extensions.toast
+import com.goodwy.commons.extensions.updateMarginWithBase
+import com.goodwy.commons.helpers.CONTACT_ID
+import com.goodwy.commons.helpers.IS_PRIVATE
+import com.goodwy.commons.helpers.IS_RIGHT_APP
+import com.goodwy.commons.helpers.PERMISSION_WRITE_CALL_LOG
+import com.goodwy.commons.helpers.SimpleContactsHelper
+import com.goodwy.commons.helpers.ensureBackgroundThread
 import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MyRecyclerView
 import com.goodwy.dialer.BuildConfig
@@ -32,8 +76,24 @@ import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.databinding.ItemRecentCallBinding
 import com.goodwy.dialer.databinding.ItemRecentCallSwipeBinding
 import com.goodwy.dialer.databinding.ItemRecentsDateBinding
-import com.goodwy.dialer.extensions.*
-import com.goodwy.dialer.helpers.*
+import com.goodwy.dialer.extensions.areMultipleSIMsAvailable
+import com.goodwy.dialer.extensions.callContactWithSim
+import com.goodwy.dialer.extensions.callContactWithSimWithConfirmationCheck
+import com.goodwy.dialer.extensions.config
+import com.goodwy.dialer.extensions.getCountryByNumber
+import com.goodwy.dialer.extensions.getDayCode
+import com.goodwy.dialer.extensions.launchSendSMSIntentRecommendation
+import com.goodwy.dialer.extensions.setWidth
+import com.goodwy.dialer.extensions.startAddContactIntent
+import com.goodwy.dialer.extensions.startCallWithConfirmationCheck
+import com.goodwy.dialer.extensions.startContactDetailsIntentRecommendation
+import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL
+import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL_LIST
+import com.goodwy.dialer.helpers.RecentsHelper
+import com.goodwy.dialer.helpers.SWIPE_ACTION_BLOCK
+import com.goodwy.dialer.helpers.SWIPE_ACTION_DELETE
+import com.goodwy.dialer.helpers.SWIPE_ACTION_MESSAGE
+import com.goodwy.dialer.helpers.SWIPE_ACTION_NONE
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import com.goodwy.dialer.models.CallLogItem
 import com.goodwy.dialer.models.RecentCall
@@ -50,6 +110,7 @@ class RecentCallsAdapter(
     recyclerView: MyRecyclerView,
     private val refreshItemsListener: RefreshItemsListener?,
     private val showOverflowMenu: Boolean = false,
+    private val showCallIcon: Boolean = false,
     private val hideTimeAtOtherDays: Boolean = false,
     private val isDialpad: Boolean = false,
     private val itemDelete: (List<RecentCall>) -> Unit = {},
@@ -69,8 +130,10 @@ class RecentCallsAdapter(
     private var textToHighlight = ""
     private var getBlockedNumbers = activity.getBlockedNumbers()
     private val cachedSimColors = HashMap<Int, Int>()
+    private val marginNormal = resources.getDimension(com.goodwy.commons.R.dimen.normal_margin).toInt()
+    private val marginTen = resources.getDimension(com.goodwy.commons.R.dimen.ten_dpi).toInt()
 
-    private val voiceMail = activity.getString(R.string.voicemail)
+    private val voiceMail = resources.getString(R.string.voicemail)
     private val colorCache = mutableMapOf<String, Int>()
 
     companion object {
@@ -83,7 +146,7 @@ class RecentCallsAdapter(
         initDrawables()
         setupDragListener(true)
         setHasStableIds(true)
-        recyclerView.itemAnimator?.changeDuration = 0
+        (recyclerView.itemAnimator as? SimpleItemAnimator)?.supportsChangeAnimations = false
     }
 
     override fun getActionMenuId() = R.menu.cab_recent_calls
@@ -102,9 +165,9 @@ class RecentCallsAdapter(
             findItem(R.id.cab_call_sim_2).isVisible = hasMultipleSIMs && isOneItemSelected
             findItem(R.id.cab_remove_default_sim).isVisible = isOneItemSelected && (activity.config.getCustomSIM(selectedNumber) ?: "") != ""
 
-            findItem(R.id.cab_block_number).title = if (isOneItemSelected) activity.getString(R.string.block_number) else activity.getString(R.string.block_numbers)
+            findItem(R.id.cab_block_number).title = if (isOneItemSelected) resources.getString(R.string.block_number) else resources.getString(R.string.block_numbers)
             findItem(R.id.cab_block_number).isVisible = isAllUnblockedNumbers && !isAllBlockedNumbers
-            findItem(R.id.cab_unblock_number).title = if (isOneItemSelected) activity.getString(R.string.unblock_number) else activity.getString(R.string.unblock_numbers)
+            findItem(R.id.cab_unblock_number).title = if (isOneItemSelected) resources.getString(R.string.unblock_number) else resources.getString(R.string.unblock_numbers)
             findItem(R.id.cab_unblock_number).isVisible = isAllBlockedNumbers && !isAllUnblockedNumbers
             findItem(R.id.cab_add_number).isVisible = isOneItemSelected
             findItem(R.id.cab_show_call_details).isVisible = isOneItemSelected
@@ -195,6 +258,18 @@ class RecentCallsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        //Add a bottom margin for the last element so that it does not block the floating button
+        if (position == currentList.lastIndex){
+            val params = holder.itemView.layoutParams as RecyclerView.LayoutParams
+            val margin = activity.resources.getDimension(com.goodwy.commons.R.dimen.shortcut_size).toInt()
+            params.bottomMargin = margin
+            holder.itemView.layoutParams = params
+        } else {
+            val params = holder.itemView.layoutParams as RecyclerView.LayoutParams
+            params.bottomMargin = 0
+            holder.itemView.layoutParams = params
+        }
+
         val callRecord = currentList[position]
         when (holder) {
             is RecentCallDateViewHolder -> holder.bind(callRecord as CallLogItem.Date)
@@ -336,12 +411,7 @@ class RecentCallsAdapter(
     private fun addNumberToContact() {
         val phoneNumber = getSelectedPhoneNumber() ?: return
         val formatPhoneNumber = if (activity.config.formatPhoneNumbers) phoneNumber.formatPhoneNumber() else phoneNumber
-        Intent().apply {
-            action = Intent.ACTION_INSERT_OR_EDIT
-            type = "vnd.android.cursor.item/contact"
-            putExtra(KEY_PHONE, formatPhoneNumber)
-            activity.launchActivityIntent(this)
-        }
+        activity.startAddContactIntent(formatPhoneNumber)
     }
 
     private fun sendSMS() {
@@ -363,6 +433,16 @@ class RecentCallsAdapter(
         finishActMode()
     }
 
+    private fun editNumberBeforeCall() {
+        val recentCall = getSelectedItems().firstOrNull() ?: return
+        Intent(Intent.ACTION_DIAL).apply {
+            data = Uri.fromParts("tel", recentCall.phoneNumber, null)
+            putExtra(IS_RIGHT_APP, BuildConfig.RIGHT_APP_KEY)
+            activity.launchActivityIntent(this)
+        }
+        finishActMode()
+    }
+
     private fun webSearch() {
         val recentCall = getSelectedItems().firstOrNull() ?: return
         activity.launchInternetSearch(recentCall.phoneNumber)
@@ -370,7 +450,7 @@ class RecentCallsAdapter(
     }
 
     private fun askConfirmRemove() {
-        ConfirmationAdvancedDialog(activity, activity.getString(R.string.remove_confirmation), cancelOnTouchOutside = false) { result ->
+        ConfirmationAdvancedDialog(activity, resources.getString(R.string.remove_confirmation), cancelOnTouchOutside = false) { result ->
             if (result) {
                 activity.handlePermission(PERMISSION_WRITE_CALL_LOG) {
                     if (it) removeRecents()
@@ -455,6 +535,7 @@ class RecentCallsAdapter(
                 findItem(R.id.cab_view_details).isVisible = contact != null && !call.isUnknownNumber
                 findItem(R.id.cab_add_number).isVisible = !call.isUnknownNumber
                 findItem(R.id.cab_copy_number).isVisible = !call.isUnknownNumber
+                findItem(R.id.cab_edit_number_before_call).isVisible = !call.isUnknownNumber
                 findItem(R.id.web_search).isVisible = !call.isUnknownNumber
                 findItem(R.id.cab_show_call_details).isVisible = !call.isUnknownNumber
                 findItem(R.id.cab_block_number).isVisible = !call.isUnknownNumber && !activity.isNumberBlocked(call.phoneNumber, getBlockedNumbers)
@@ -476,7 +557,7 @@ class RecentCallsAdapter(
                             executeItemMenuOperation(callId) {
                                 phoneNumber = getSelectedPhoneNumber() ?: "+1 234 567 8910"
                             }
-                            val text = String.format(activity.getString(R.string.call_anonymously_warning), phoneNumber)
+                            val text = String.format(resources.getString(R.string.call_anonymously_warning), phoneNumber)
                             ConfirmationAdvancedDialog(
                                 activity,
                                 text,
@@ -557,6 +638,12 @@ class RecentCallsAdapter(
                     R.id.cab_copy_number -> {
                         executeItemMenuOperation(callId) {
                             copyNumber()
+                        }
+                    }
+
+                    R.id.cab_edit_number_before_call -> {
+                        executeItemMenuOperation(callId) {
+                            editNumberBeforeCall()
                         }
                     }
 
@@ -656,6 +743,7 @@ class RecentCallsAdapter(
                     }
                     setTextColor(textColor)
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
+                    if (showCallIcon) updateMarginWithBase(marginNormal,0,marginNormal,0)
                 }
 
                 itemRecentsDuration.apply {
@@ -734,16 +822,36 @@ class RecentCallsAdapter(
 
                 itemRecentsInfo.apply {
                     beVisibleIf(showOverflowMenu)
-                    applyColorFilter(accentColor)
-                    if (profileInfoClick != null) {
-                        setOnClickListener {
-                            if (!actModeCallback.isSelectable) {
-                                profileInfoClick.invoke(call)
-                            } else {
-                                viewClicked(call)
+                    if (showCallIcon) {
+                        setImageResource(R.drawable.ic_phone_vector)
+                        setBackgroundResource(R.drawable.circle_background)
+                        if (activity.isDynamicTheme() && !activity.isSystemInDarkMode()) {
+                            background.setTint(backgroundColor)
+                        } else background.setTint(surfaceColor)
+                        updateMarginWithBase(marginTen,0,marginTen,0)
+
+                        if (profileInfoClick != null) {
+                            setOnClickListener {
+                                if (!actModeCallback.isSelectable) {
+                                    swipedCall(call)
+                                } else {
+                                    viewClicked(call)
+                                }
+                            }
+                        }
+                        contentDescription = resources.getString(R.string.call)
+                    } else {
+                        if (profileInfoClick != null) {
+                            setOnClickListener {
+                                if (!actModeCallback.isSelectable) {
+                                    profileInfoClick.invoke(call)
+                                } else {
+                                    viewClicked(call)
+                                }
                             }
                         }
                     }
+                    applyColorFilter(accentColor)
                     setOnLongClickListener {
                         showPopupMenu(overflowMenuAnchor, call)
                         true
@@ -751,12 +859,24 @@ class RecentCallsAdapter(
                 }
                 //In order not to miss the icon item_recents_info
                 itemRecentsInfoHolder.apply {
-                    if (profileInfoClick != null) {
-                        setOnClickListener {
-                            if (!actModeCallback.isSelectable) {
-                                profileInfoClick.invoke(call)
-                            } else {
-                                viewClicked(call)
+                    if (showCallIcon) {
+                        if (profileInfoClick != null) {
+                            setOnClickListener {
+                                if (!actModeCallback.isSelectable) {
+                                    swipedCall(call)
+                                } else {
+                                    viewClicked(call)
+                                }
+                            }
+                        }
+                    } else {
+                        if (profileInfoClick != null) {
+                            setOnClickListener {
+                                if (!actModeCallback.isSelectable) {
+                                    profileInfoClick.invoke(call)
+                                } else {
+                                    viewClicked(call)
+                                }
                             }
                         }
                     }
@@ -846,6 +966,7 @@ class RecentCallsAdapter(
                     }
                     setTextColor(textColor)
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize * 0.8f)
+                    if (showCallIcon) updateMarginWithBase(marginNormal,0,marginNormal,0)
                 }
 
                 itemRecentsDuration.apply {
@@ -924,16 +1045,36 @@ class RecentCallsAdapter(
 
                 itemRecentsInfo.apply {
                     beVisibleIf(showOverflowMenu)
-                    applyColorFilter(accentColor)
-                    if (profileInfoClick != null) {
-                        setOnClickListener {
-                            if (!actModeCallback.isSelectable) {
-                                profileInfoClick.invoke(call)
-                            } else {
-                                viewClicked(call)
+                    if (showCallIcon) {
+                        setImageResource(R.drawable.ic_phone_vector)
+                        setBackgroundResource(R.drawable.circle_background)
+                        if (activity.isDynamicTheme() && !activity.isSystemInDarkMode()) {
+                            background.setTint(backgroundColor)
+                        } else background.setTint(surfaceColor)
+                        updateMarginWithBase(marginTen,0,marginTen,0)
+
+                        if (profileInfoClick != null) {
+                            setOnClickListener {
+                                if (!actModeCallback.isSelectable) {
+                                    swipedCall(call)
+                                } else {
+                                    viewClicked(call)
+                                }
+                            }
+                        }
+                        contentDescription = resources.getString(R.string.call)
+                    } else {
+                        if (profileInfoClick != null) {
+                            setOnClickListener {
+                                if (!actModeCallback.isSelectable) {
+                                    profileInfoClick.invoke(call)
+                                } else {
+                                    viewClicked(call)
+                                }
                             }
                         }
                     }
+                    applyColorFilter(accentColor)
                     setOnLongClickListener {
                         showPopupMenu(overflowMenuAnchor, call)
                         true
@@ -941,12 +1082,24 @@ class RecentCallsAdapter(
                 }
                 //In order not to miss the icon item_recents_info
                 itemRecentsInfoHolder.apply {
-                    if (profileInfoClick != null) {
-                        setOnClickListener {
-                            if (!actModeCallback.isSelectable) {
-                                profileInfoClick.invoke(call)
-                            } else {
-                                viewClicked(call)
+                    if (showCallIcon) {
+                        if (profileInfoClick != null) {
+                            setOnClickListener {
+                                if (!actModeCallback.isSelectable) {
+                                    swipedCall(call)
+                                } else {
+                                    viewClicked(call)
+                                }
+                            }
+                        }
+                    } else {
+                        if (profileInfoClick != null) {
+                            setOnClickListener {
+                                if (!actModeCallback.isSelectable) {
+                                    profileInfoClick.invoke(call)
+                                } else {
+                                    viewClicked(call)
+                                }
                             }
                         }
                     }
@@ -990,7 +1143,7 @@ class RecentCallsAdapter(
                         val swipeLeftOrRightAction =
                             if (activity.isRTLLayout) activity.config.swipeRightAction else activity.config.swipeLeftAction
                         swipeAction(swipeLeftOrRightAction, call)
-                        slideLeftReturn(swipeLeftIcon, swipeLeftIconHolder)
+                        swipeLeftIcon.slideLeftReturn(swipeLeftIconHolder)
                         return true
                     }
 
@@ -999,18 +1152,18 @@ class RecentCallsAdapter(
                         val swipeRightOrLeftAction =
                             if (activity.isRTLLayout) activity.config.swipeLeftAction else activity.config.swipeRightAction
                         swipeAction(swipeRightOrLeftAction, call)
-                        slideRightReturn(swipeRightIcon, swipeRightIconHolder)
+                        swipeRightIcon.slideRightReturn(swipeRightIconHolder)
                         return true
                     }
 
                     override fun onSwipedActivated(swipedRight: Boolean) {
-                        if (swipedRight) slideRight(swipeRightIcon, swipeRightIconHolder)
-                        else slideLeft(swipeLeftIcon)
+                        if (swipedRight) swipeRightIcon.slideRight(swipeRightIconHolder)
+                        else swipeLeftIcon.slideLeft()
                     }
 
                     override fun onSwipedDeactivated(swipedRight: Boolean) {
-                        if (swipedRight) slideRightReturn(swipeRightIcon, swipeRightIconHolder)
-                        else slideLeftReturn(swipeLeftIcon, swipeLeftIconHolder)
+                        if (swipedRight) swipeRightIcon.slideRightReturn(swipeRightIconHolder)
+                        else swipeLeftIcon.slideLeftReturn(swipeLeftIconHolder)
                     }
                 }
             }
@@ -1023,26 +1176,6 @@ class RecentCallsAdapter(
         }
     }
 
-    private fun slideRight(view: View, parent: View) {
-        view.animate()
-            .x(parent.right - activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin) - view.width)
-    }
-
-    private fun slideLeft(view: View) {
-        view.animate()
-            .x(activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin))
-    }
-
-    private fun slideRightReturn(view: View, parent: View) {
-        view.animate()
-            .x(parent.left + activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin))
-    }
-
-    private fun slideLeftReturn(view: View, parent: View) {
-        view.animate()
-            .x(parent.width - activity.resources.getDimension(com.goodwy.commons.R.dimen.big_margin) - view.width)
-    }
-
     private inner class RecentCallDateViewHolder(val binding: ItemRecentsDateBinding) : ViewHolder(binding.root) {
         fun bind(date: CallLogItem.Date) {
             binding.dateTextView.apply {
@@ -1051,8 +1184,8 @@ class RecentCallsAdapter(
 
                 val now = DateTime.now()
                 text = when (date.dayCode) {
-                    now.millis.getDayCode() -> activity.getString(R.string.today)
-                    now.minusDays(1).millis.getDayCode() -> activity.getString(R.string.yesterday)
+                    now.millis.getDayCode() -> resources.getString(R.string.today)
+                    now.minusDays(1).millis.getDayCode() -> resources.getString(R.string.yesterday)
                     else -> date.timestamp.formatDateOrTime(
                         context = activity,
                         hideTimeOnOtherDays = true,
@@ -1158,9 +1291,9 @@ class RecentCallsAdapter(
         }
     }
 
-    fun clearColorCache() {
-        colorCache.clear()
-    }
+//    fun clearColorCache() {
+//        colorCache.clear()
+//    }
 }
 
 class RecentCallsDiffCallback : DiffUtil.ItemCallback<CallLogItem>() {

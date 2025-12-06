@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">Mēģinot veikt zvanu no citas lietojumprogrammas, atveriet numura sastādīšanas tastatūru</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Tas var pasargāt jūs no ļaunprātīgas programmatūras, kas veic zvanus bez jūsu ziņas.</string>
     <string name="number_of_recent_calls_displays">Parādīts pēdējo zvanu skaits</string>
+    <string name="number_of_recent_calls_displays_summary">Grupēšanas dēļ parādīto rindu skaits var būt mazāks.</string>
     <string name="group_calls">Zvanu grupēšana</string>
     <string name="group_all_calls">Grupējiet visus zvanus, tiks parādīts tikai pēdējais zvans</string>
     <string name="call_button_style">Zvana pogas stils</string>
     <string name="call_notes">Zvanu piezīmes</string>
     <string name="back_pressed_end_call">Darbība Atpakaļ beidz zvanu</string>
-    <string name="keep_calls_in_popup_summary">Kad uz zvaniem tiek atbildēts, tie paliek jūsu paziņojumos un netiek rādīti pilnekrāna režīmā. Tas tiek darīts, lai izvairītos no citu lietotņu pārtraukšanas, piemēram, spēlējot spēli.</string>
+    <string name="keep_calls_in_popup_summary">Pēc zvana atbildēšanas tas paliek paziņojumos un neaizpilda visu ekrānu. Tas tiek darīts, lai netraucētu citu lietotņu darbību, piemēram, spēles laikā.\nJa austiņas nav pievienotas, skaļrunis tiks ieslēgts.</string>
     <string name="busy">Aizņemts</string>
     <string name="block_calls">Bloķēt zvanus</string>
+    <string name="edit_number_before_call">Rediģēt numuru pirms zvana</string>
+    <string name="on_favorite_click">Kad noklikšķināt uz iecienītākā vienuma</string>
     <string name="call_using_same_sim">Izmantojiet to pašu SIM karti, uz kuru tika veikts iepriekšējais (pēdējais) zvans</string>
     <string name="answer_end_other_call">Atbildiet uz pašreizējo zvanu un beidziet to</string>
     <string name="quick_answers">Ātrās atbildes</string>
@@ -79,4 +82,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Atstājiet zvanus paziņojumos</string>
+    <string name="on_contact_click">Kad noklikšķināt uz kontakta</string>
+    <string name="on_recent_click">Kad noklikšķināt uz nesen veiktā zvana</string>
 </resources>

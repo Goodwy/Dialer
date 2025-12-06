@@ -56,14 +56,17 @@
     <string name="open_dialpad_when_call_from_another_app">Når du prøver å ringe fra et annet program, åpne talltastaturet</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Dette kan beskytte deg mot skadelig programvare som ringer uten at du vet det.</string>
     <string name="number_of_recent_calls_displays">Vist antall nylige anrop</string>
+    <string name="number_of_recent_calls_displays_summary">På grunn av gruppering kan antallet rader som vises være færre.</string>
     <string name="group_calls">Samtalegruppering</string>
     <string name="group_all_calls">Grupper alle anrop, kun det siste anropet vises</string>
     <string name="call_button_style">Bell Button Stil</string>
     <string name="call_notes">Anrop notater</string>
     <string name="back_pressed_end_call">Tilbake-handling avslutter samtalen</string>
-    <string name="keep_calls_in_popup_summary">Etter at anrop er besvart, forblir de i varslene dine og vises ikke i fullskjerm. Dette gjøres for å unngå å forstyrre andre apper, for eksempel mens du spiller et spill.</string>
+    <string name="keep_calls_in_popup_summary">Etter at en samtale er besvart, forblir den i varslene dine og fyller ikke hele skjermen. Dette gjøres for å unngå å forstyrre andre apper, for eksempel mens du spiller et spill.\nHvis et headset ikke er koblet til, vil høyttaleren være slått på.</string>
     <string name="busy">Travel</string>
     <string name="block_calls">Blokker samtaler</string>
+    <string name="edit_number_before_call">Rediger nummer før oppringing</string>
+    <string name="on_favorite_click">Når du klikker på en favoritt</string>
     <string name="call_using_same_sim">Bruk det samme SIM-kortet som forrige (siste) anrop ble foretatt til</string>
     <string name="answer_end_other_call">Svar på og avslutt gjeldende samtale</string>
     <string name="quick_answers">Raske svar</string>
@@ -80,4 +83,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Legg igjen anrop i varsler</string>
+    <string name="on_contact_click">Når du klikker på en kontakt</string>
+    <string name="on_recent_click">Når du klikker på en nylig samtale</string>
 </resources>

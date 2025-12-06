@@ -4,12 +4,29 @@ import android.content.Context
 import android.content.Intent
 import android.provider.CallLog.Calls
 import android.util.AttributeSet
-import androidx.recyclerview.widget.RecyclerView
 import com.goodwy.commons.dialogs.CallConfirmationDialog
-import com.goodwy.commons.extensions.*
-import com.goodwy.commons.helpers.*
+import com.goodwy.commons.extensions.baseConfig
+import com.goodwy.commons.extensions.beGone
+import com.goodwy.commons.extensions.beGoneIf
+import com.goodwy.commons.extensions.beVisible
+import com.goodwy.commons.extensions.getMyContactsCursor
+import com.goodwy.commons.extensions.getProperBackgroundColor
+import com.goodwy.commons.extensions.getSurfaceColor
+import com.goodwy.commons.extensions.hasPermission
+import com.goodwy.commons.extensions.hideKeyboard
+import com.goodwy.commons.extensions.isDynamicTheme
+import com.goodwy.commons.extensions.isSystemInDarkMode
+import com.goodwy.commons.extensions.launchActivityIntent
+import com.goodwy.commons.extensions.launchCallIntent
+import com.goodwy.commons.extensions.underlineText
+import com.goodwy.commons.helpers.CONTACT_ID
+import com.goodwy.commons.helpers.ContactsHelper
+import com.goodwy.commons.helpers.IS_PRIVATE
+import com.goodwy.commons.helpers.MyContactsContentProvider
+import com.goodwy.commons.helpers.PERMISSION_READ_CALL_LOG
+import com.goodwy.commons.helpers.SMT_PRIVATE
+import com.goodwy.commons.helpers.ensureBackgroundThread
 import com.goodwy.commons.models.contacts.Contact
-import com.goodwy.commons.views.MyRecyclerView
 import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.CallHistoryActivity
@@ -17,12 +34,21 @@ import com.goodwy.dialer.activities.MainActivity
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.adapters.RecentCallsAdapter
 import com.goodwy.dialer.databinding.FragmentRecentsBinding
-import com.goodwy.dialer.extensions.*
+import com.goodwy.dialer.extensions.callContactWithSim
+import com.goodwy.dialer.extensions.callerNotesHelper
 import com.goodwy.dialer.extensions.config
+import com.goodwy.dialer.extensions.launchSendSMSIntentRecommendation
+import com.goodwy.dialer.extensions.numberForNotes
+import com.goodwy.dialer.extensions.runAfterAnimations
+import com.goodwy.dialer.extensions.startAddContactIntent
+import com.goodwy.dialer.extensions.startContactDetailsIntent
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL_LIST
 import com.goodwy.dialer.helpers.RECENT_CALL_CACHE_SIZE
 import com.goodwy.dialer.helpers.RecentsHelper
+import com.goodwy.dialer.helpers.SWIPE_ACTION_CALL
+import com.goodwy.dialer.helpers.SWIPE_ACTION_MESSAGE
+import com.goodwy.dialer.helpers.SWIPE_ACTION_OPEN
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import com.goodwy.dialer.models.CallLogItem
 import com.goodwy.dialer.models.RecentCall
@@ -85,7 +111,9 @@ class RecentsFragment(
 
         if (needUpdate || !searchQuery.isNullOrEmpty() || activity!!.config.needUpdateRecents) {
             refreshCallLog(loadAll = false) {
-                refreshCallLog(loadAll = true)
+                binding.recentsList.runAfterAnimations {
+                    refreshCallLog(loadAll = true)
+                }
             }
         } else {
             var recents = emptyList<RecentCall>()
@@ -99,11 +127,15 @@ class RecentsFragment(
 
             if (recents.isNotEmpty()) {
                 refreshCallLogFromCache(recents) {
-                    refreshCallLog(loadAll = true)
+                    binding.recentsList.runAfterAnimations {
+                        refreshCallLog(loadAll = true)
+                    }
                 }
             } else {
                 refreshCallLog(loadAll = false) {
-                    refreshCallLog(loadAll = true)
+                    binding.recentsList.runAfterAnimations {
+                        refreshCallLog(loadAll = true)
+                    }
                 }
             }
         }
@@ -198,54 +230,30 @@ class RecentsFragment(
                     recyclerView = binding.recentsList,
                     refreshItemsListener = this,
                     showOverflowMenu = true,
+                    showCallIcon = context.config.onRecentClick == SWIPE_ACTION_OPEN,
                     hideTimeAtOtherDays = true,
                     itemDelete = { deleted ->
                         allRecentCalls = allRecentCalls.filter { it !in deleted }
                     },
                     itemClick = {
-                        val recentCall = it as RecentCall
-                        if (context.config.showCallConfirmation) {
-                            CallConfirmationDialog(activity as SimpleActivity, recentCall.name) {
-                                callRecentNumber(recentCall)
-                            }
-                        } else {
-                            callRecentNumber(recentCall)
-                        }
+                        itemClickAction(context.config.onRecentClick, it as RecentCall)
                     },
                     profileInfoClick = { recentCall ->
-                        val recentCalls = recentCall.groupedCalls as ArrayList<RecentCall>? ?: arrayListOf(recentCall)
-                        val contact = findContactByCall(recentCall)
-                        Intent(activity, CallHistoryActivity::class.java).apply {
-                            putExtra(CURRENT_RECENT_CALL, recentCall)
-                            putExtra(CURRENT_RECENT_CALL_LIST, recentCalls)
-                            putExtra(CONTACT_ID, recentCall.contactID)
-                            if (contact != null) {
-                                putExtra(IS_PRIVATE, contact.isPrivate())
-                            }
-                            activity?.launchActivityIntent(this)
-                        }
+                        actionOpen(recentCall)
                     },
                     profileIconClick = {
-                        val contact = findContactByCall(it as RecentCall)
+                        val recentCall = it as RecentCall
+                        val contact = findContactByCall(recentCall)
                         if (contact != null) {
                             activity?.startContactDetailsIntent(contact)
                         } else {
-                            addContact(it)
+                            activity?.startAddContactIntent(recentCall.phoneNumber)
                         }
                     }
                 )
 
                 binding.recentsList.adapter = recentsAdapter
                 recentsAdapter?.updateItems(recents)
-
-                if (context.areSystemAnimationsEnabled) {
-                    binding.recentsList.scheduleLayoutAnimation()
-                }
-
-                binding.recentsList.endlessScrollListener = object : MyRecyclerView.EndlessScrollListener {
-                        override fun updateTop() = Unit
-                        override fun updateBottom() = refreshCallLog()
-                    }
             } else {
                 recentsAdapter?.updateItems(recents)
             }
@@ -408,14 +416,43 @@ class RecentsFragment(
             .find { /*it.name == recentCall.name &&*/ it.doesHavePhoneNumber(recentCall.phoneNumber) }
     }
 
-    private fun addContact(recentCall: RecentCall) {
-        Intent().apply {
-            action = Intent.ACTION_INSERT_OR_EDIT
-            type = "vnd.android.cursor.item/contact"
-            putExtra(KEY_PHONE, recentCall.phoneNumber)
-            context.launchActivityIntent(this)
+    override fun myRecyclerView() = binding.recentsList
+
+    private fun itemClickAction(action: Int, call: RecentCall) {
+        when (action) {
+            SWIPE_ACTION_MESSAGE -> actionSMS(call)
+            SWIPE_ACTION_CALL -> actionCall(call)
+            SWIPE_ACTION_OPEN -> actionOpen(call)
+            else -> {}
         }
     }
 
-    override fun myRecyclerView() = binding.recentsList
+    private fun actionCall(call: RecentCall) {
+        val recentCall = call
+        if (context.config.showCallConfirmation) {
+            CallConfirmationDialog(activity as SimpleActivity, recentCall.name) {
+                callRecentNumber(recentCall)
+            }
+        } else {
+            callRecentNumber(recentCall)
+        }
+    }
+
+    private fun actionSMS(call: RecentCall) {
+        activity?.launchSendSMSIntentRecommendation(call.phoneNumber)
+    }
+
+    private fun actionOpen(call: RecentCall) {
+        val recentCalls = call.groupedCalls as ArrayList<RecentCall>? ?: arrayListOf(call)
+        val contact = findContactByCall(call)
+        Intent(activity, CallHistoryActivity::class.java).apply {
+            putExtra(CURRENT_RECENT_CALL, call)
+            putExtra(CURRENT_RECENT_CALL_LIST, recentCalls)
+            putExtra(CONTACT_ID, call.contactID)
+            if (contact != null) {
+                putExtra(IS_PRIVATE, contact.isPrivate())
+            }
+            activity?.launchActivityIntent(this)
+        }
+    }
 }

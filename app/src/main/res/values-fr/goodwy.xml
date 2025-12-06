@@ -55,14 +55,17 @@
     <string name="open_dialpad_when_call_from_another_app">Lorsque vous essayez de passer un appel depuis une autre application, ouvrez le pavé numérique</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Cela peut vous protéger des logiciels malveillants qui passent des appels à votre insu.</string>
     <string name="number_of_recent_calls_displays">Nombre d\'appels récents affichés</string>
+    <string name="number_of_recent_calls_displays_summary">En raison du regroupement, le nombre de lignes affichées peut être inférieur.</string>
     <string name="group_calls">Regroupement d\'appels</string>
     <string name="group_all_calls">Regrouper tous les appels, seul le dernier appel sera affiché</string>
     <string name="call_button_style">Style de bouton de cloche</string>
     <string name="call_notes">Notes d’appel</string>
     <string name="back_pressed_end_call">L’action de retour met fin à l’appel</string>
-    <string name="keep_calls_in_popup_summary">Une fois les appels répondus, ils restent dans vos notifications et n\'apparaissent pas en plein écran. Ceci permet d\'éviter d\'interrompre d\'autres applications, par exemple pendant une partie.</string>
+    <string name="keep_calls_in_popup_summary">Une fois l\'appel pris, il reste dans vos notifications et n\'occupe pas tout l\'écran. Ceci afin de ne pas interrompre les autres applications, par exemple pendant une partie de jeu.\n\nSi aucun casque n\'est connecté, le haut-parleur s\'active.</string>
     <string name="busy">Occupé</string>
     <string name="block_calls">Bloquer les appels</string>
+    <string name="edit_number_before_call">Modifiez le numéro avant d\'appeler</string>
+    <string name="on_favorite_click">Lorsque vous cliquez sur un favori</string>
     <string name="call_using_same_sim">Utilisez la même carte SIM que celle sur laquelle le dernier appel précédent a été passé</string>
     <string name="answer_end_other_call">Répondre à l’appel en cours et y mettre fin</string>
     <string name="quick_answers">Réponses rapides</string>
@@ -80,4 +83,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Laisser les appels dans les notifications</string>
+    <string name="on_contact_click">Lorsque vous cliquez sur un contact</string>
+    <string name="on_recent_click">Lorsque vous cliquez sur un appel récent</string>
 </resources>

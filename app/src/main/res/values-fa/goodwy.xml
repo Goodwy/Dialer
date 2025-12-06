@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">هنگام تلاش برای برقراری تماس از یک برنامه دیگر، صفحه شماره گیری را باز کنید</string>
     <string name="open_dialpad_when_call_from_another_app_summary">این می تواند از شما در برابر بدافزارهایی که بدون اطلاع شما تماس برقرار می کنند محافظت کند.</string>
     <string name="number_of_recent_calls_displays">نمایش تعداد تماس های اخیر</string>
+    <string name="number_of_recent_calls_displays_summary">به دلیل گروه‌بندی، تعداد ردیف‌های نمایش داده شده ممکن است کمتر باشد.</string>
     <string name="group_calls">گروه بندی تماس ها</string>
     <string name="group_all_calls">همه تماس ها را گروه بندی کنید، فقط آخرین تماس نشان داده می شود</string>
     <string name="call_button_style">سبک دکمه زنگ</string>
     <string name="call_notes">یادداشت های تماس</string>
     <string name="back_pressed_end_call">اقدام برگشت تماس را به پایان می رساند</string>
-    <string name="keep_calls_in_popup_summary">پس از پاسخ به تماس‌ها، در اعلان‌های شما باقی می‌مانند و به صورت تمام صفحه نشان داده نمی‌شوند. این کار برای جلوگیری از وقفه در برنامه های دیگر، مانند هنگام بازی، انجام می شود.</string>
+    <string name="keep_calls_in_popup_summary">پس از پاسخ دادن به تماس، آن تماس در اعلان‌های شما باقی می‌ماند و کل صفحه را پر نمی‌کند. این کار برای جلوگیری از ایجاد اختلال در برنامه‌های دیگر، مانند هنگام بازی، انجام می‌شود.\n\nاگر هدست متصل نباشد، بلندگو روشن خواهد شد.</string>
     <string name="busy">مشغول</string>
     <string name="block_calls">مسدود کردن تماس ها</string>
+    <string name="edit_number_before_call">ویرایش شماره قبل از تماس</string>
+    <string name="on_favorite_click">وقتی روی مورد علاقه کلیک می کنید</string>
     <string name="call_using_same_sim">از همان سیم کارتی استفاده کنید که تماس قبلی (آخر) با آن برقرار شده است</string>
     <string name="answer_end_other_call">پاسخ دادن و پایان دادن به تماس فعلی</string>
     <string name="quick_answers">پاسخ های سریع</string>
@@ -78,4 +81,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">تماس ها را در اعلان ها بگذارید</string>
+    <string name="on_contact_click">وقتی روی یک مخاطب کلیک می‌کنید</string>
+    <string name="on_recent_click">وقتی روی تماس اخیر کلیک می‌کنید</string>
 </resources>

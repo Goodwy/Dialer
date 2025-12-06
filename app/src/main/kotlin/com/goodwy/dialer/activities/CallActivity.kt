@@ -14,7 +14,9 @@ import android.media.AudioManager
 import android.net.Uri
 import android.os.*
 import android.telecom.Call
-import android.telecom.CallAudioState
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -30,7 +32,6 @@ import com.goodwy.commons.models.SimpleListItem
 import com.goodwy.dialer.R
 import com.goodwy.dialer.databinding.ActivityCallBinding
 import com.goodwy.dialer.dialogs.ChangeTextDialog
-import com.goodwy.dialer.dialogs.DynamicBottomSheetChooserDialog
 import com.goodwy.dialer.extensions.*
 import com.goodwy.dialer.helpers.*
 import com.goodwy.dialer.models.*
@@ -45,6 +46,7 @@ import kotlin.math.min
 import androidx.core.graphics.drawable.toDrawable
 import androidx.core.view.get
 import androidx.core.view.size
+import com.goodwy.dialer.helpers.CallManager.Companion.isSpeakerOn
 
 
 class CallActivity : SimpleActivity() {
@@ -52,14 +54,14 @@ class CallActivity : SimpleActivity() {
         fun getStartIntent(context: Context, needSelectSIM: Boolean = false): Intent {
             val openAppIntent = Intent(context, CallActivity::class.java)
             openAppIntent.putExtra(NEED_SELECT_SIM, needSelectSIM)
-            openAppIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_REORDER_TO_FRONT //Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT --removed it, it can cause a full screen ringing instead of notifications
+            //Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT --removed it, it can cause a full screen ringing instead of notifications
+            openAppIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             return openAppIntent
         }
     }
 
     private val binding by viewBinding(ActivityCallBinding::inflate)
 
-    private var isSpeakerOn = false
     private var isMicrophoneOff = false
     private var isCallEnded = false
     private var callContact: CallContact? = null
@@ -72,22 +74,26 @@ class CallActivity : SimpleActivity() {
     private var stopAnimation = false
     private var dialpadHeight = 0f
     private var needSelectSIM = false //true - if the call is called from a third-party application not via ACTION_CALL, for example, this is how MIUI applications do it.
+    private var audioRoutePopupMenu: PopupMenu? = null
 
-    private var audioRouteChooserDialog: DynamicBottomSheetChooserDialog? = null
-
-    @SuppressLint("MissingPermission")
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         addLockScreenFlags()
-        showTransparentTop = true
-        updateNavigationBarColor = false
         super.onCreate(savedInstanceState)
+        updateSystemBarsAppearance = false
+
         setContentView(binding.root)
 
         if (CallManager.getPhoneState() == NoCall) {
             finish()
             return
         }
+
+        setupEdgeToEdge(
+            padTopSystem = listOf(binding.callHolder),
+            padBottomSystem = listOf(binding.callHolder),
+            moveTopSystem = listOf(binding.callerAvatar, binding.onHoldStatusHolder)
+        )
 
         needSelectSIM = intent.getBooleanExtra(NEED_SELECT_SIM, false)
         if (needSelectSIM) initOutgoingCall(CallManager.getPrimaryCall()!!.details.handle)
@@ -101,26 +107,28 @@ class CallActivity : SimpleActivity() {
 
         val configBackgroundCallScreen = config.backgroundCallScreen
         if (configBackgroundCallScreen != THEME_BACKGROUND ) {
-            //TRANSPARENT_BACKGROUND || BLACK_BACKGROUND || BLUR_AVATAR || AVATAR
-            updateStatusbarColor(Color.BLACK)
-            updateNavigationBarColor(Color.BLACK)
+            window.setSystemBarsAppearance(Color.BLACK)
 
             if (configBackgroundCallScreen == BLACK_BACKGROUND) {
                 binding.callHolder.setBackgroundColor(Color.BLACK)
-            }
-
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-                if (configBackgroundCallScreen == TRANSPARENT_BACKGROUND && hasPermission(PERMISSION_READ_STORAGE)) {
-                    val wallpaperManager = WallpaperManager.getInstance(this)
-                    val wallpaperBlur = BlurFactory.fileToBlurBitmap(wallpaperManager.drawable!!, this, 0.2f, 25f)
-                    if (wallpaperBlur != null) {
-                        val drawable: Drawable = wallpaperBlur.toDrawable(resources)
-                        binding.callHolder.background = drawable
-                        binding.callHolder.background.alpha = 60
-                        if (isQPlus()) {
-                            binding.callHolder.background.colorFilter = BlendModeColorFilter(Color.DKGRAY, BlendMode.SOFT_LIGHT)
-                        } else {
-                            binding.callHolder.background.setColorFilter(Color.DKGRAY, PorterDuff.Mode.DARKEN)
+            } else if (configBackgroundCallScreen == TRANSPARENT_BACKGROUND) {
+                if (!isTiramisuPlus()) {
+                    if (hasPermission(PERMISSION_READ_STORAGE)) {
+                        try {
+                            val wallpaperManager = WallpaperManager.getInstance(this)
+                            @SuppressLint("MissingPermission")
+                            val wallpaperBlur = BlurFactory.fileToBlurBitmap(wallpaperManager.drawable!!, this, 0.2f, 25f)
+                            if (wallpaperBlur != null) {
+                                val drawable: Drawable = wallpaperBlur.toDrawable(resources)
+                                binding.callHolder.background = drawable
+                                binding.callHolder.background.alpha = 60
+                                if (isQPlus()) {
+                                    binding.callHolder.background.colorFilter = BlendModeColorFilter(Color.DKGRAY, BlendMode.SOFT_LIGHT)
+                                } else {
+                                    binding.callHolder.background.setColorFilter(Color.DKGRAY, PorterDuff.Mode.DARKEN)
+                                }
+                            }
+                        } catch (_: Exception) {
                         }
                     }
                 }
@@ -152,17 +160,12 @@ class CallActivity : SimpleActivity() {
                 }
 
                 callSimId.setTextColor(Color.WHITE.getContrastColor())
-                // Transparent status bar and navigation bar
-                setWindowTransparency(false) { statusBarSize, bottomNavigationBarSize, leftNavigationBarSize, rightNavigationBarSize ->
-                    callHolder.setPadding(leftNavigationBarSize, statusBarSize, rightNavigationBarSize, bottomNavigationBarSize)
-                }
             }
         } else {
             //THEME_BACKGROUND
             val backgroundColor = getProperBackgroundColor()
             binding.callHolder.setBackgroundColor(backgroundColor)
-            updateStatusbarColor(backgroundColor)
-            updateNavigationBarColor(backgroundColor)
+            window.setSystemBarsAppearance(backgroundColor)
 
             val properTextColor = getProperTextColor()
             binding.apply {
@@ -311,15 +314,14 @@ class CallActivity : SimpleActivity() {
         if (isOreoMr1Plus()) {
             setShowWhenLocked(false)
             setTurnScreenOn(false)
-        } else {
-            window.clearFlags(
-                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-                    or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
-                    or WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
-                    or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-                // or WindowManager.LayoutParams.FLAG_ALLOW_LOCK_WHILE_SCREEN_ON
-            )
         }
+
+        window.clearFlags(
+            WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
+                or WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+        )
 
         if (screenOnWakeLock?.isHeld == true) {
             screenOnWakeLock!!.release()
@@ -327,17 +329,19 @@ class CallActivity : SimpleActivity() {
         if (config.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
     }
 
-    @Suppress("DEPRECATION")
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
+    override fun onBackPressedCompat(): Boolean {
         if (binding.dialpadWrapper.isVisible()) {
             hideDialpad()
-            return
-        } else if (config.backPressedEndCall) {
-            endCall()
-        } else {
-            super.onBackPressed()
+            return true
         }
+
+        if (config.backPressedEndCall) {
+            endCall()
+            return true
+        }
+
+        // Allow minimizing active call - user can return via notification
+        return false
     }
 
     private fun initButtons() = binding.apply {
@@ -397,9 +401,7 @@ class CallActivity : SimpleActivity() {
 //                openBluetoothSettings()
             val supportAudioRoutes = CallManager.getSupportedAudioRoutes()
             if (supportAudioRoutes.size > 2) {
-                val isSpeakerOn = !isSpeakerOn
-                val newRoute = if (isSpeakerOn) CallAudioState.ROUTE_SPEAKER else CallAudioState.ROUTE_WIRED_OR_EARPIECE
-                CallManager.setAudioRoute(newRoute)
+                CallManager.toggleSpeakerRoute()
             }
             else toast(callToggleSpeaker.contentDescription.toString())
             maybePerformDialpadHapticFeedback(it)
@@ -785,12 +787,13 @@ class CallActivity : SimpleActivity() {
 
     private fun changeCallAudioRoute() {
         val supportAudioRoutes = CallManager.getSupportedAudioRoutes()
-        if (supportAudioRoutes.contains(AudioRoute.BLUETOOTH)) {
+        if (supportAudioRoutes.size > 2) {
             createOrUpdateAudioRouteChooser(supportAudioRoutes)
         } else {
-            val isSpeakerOn = !isSpeakerOn
-            val newRoute = if (isSpeakerOn) CallAudioState.ROUTE_SPEAKER else CallAudioState.ROUTE_WIRED_OR_EARPIECE
-            CallManager.setAudioRoute(newRoute)
+//            val isSpeakerOn = !isSpeakerOn
+//            val newRoute = if (isSpeakerOn) CallAudioState.ROUTE_SPEAKER else CallAudioState.ROUTE_WIRED_OR_EARPIECE
+//            CallManager.setAudioRoute(newRoute)
+            CallManager.toggleSpeakerRoute()
         }
     }
 
@@ -803,24 +806,70 @@ class CallActivity : SimpleActivity() {
             }
             .toTypedArray()
 
-        if (audioRouteChooserDialog?.isVisible == true) {
-            audioRouteChooserDialog?.updateChooserItems(items)
-        } else if (create) {
-            audioRouteChooserDialog = DynamicBottomSheetChooserDialog.createChooser(
-                fragmentManager = supportFragmentManager,
-                title = R.string.choose_audio_route,
-                items = items
-            ) {
-                audioRouteChooserDialog = null
-                CallManager.setAudioRoute(it.id)
+        if (audioRoutePopupMenu != null) {
+            audioRoutePopupMenu?.dismiss()
+        }
+
+        if (create) {
+            val wrapper: Context = ContextThemeWrapper(this@CallActivity, getPopupMenuTheme())
+            audioRoutePopupMenu = PopupMenu(wrapper, binding.callToggleSpeaker, Gravity.END)
+
+            items.forEach { item ->
+                audioRoutePopupMenu?.menu?.add(
+                    1,
+                    item.id,
+                    item.id,
+                    item.textRes ?: R.string.other
+                )?.setIcon(item.imageRes ?: R.drawable.ic_transparent)
+            }
+
+            audioRoutePopupMenu?.setOnMenuItemClickListener { item ->
+                CallManager.setAudioRoute(item.itemId)
+                true
+            }
+
+            if (isQPlus()) {
+                audioRoutePopupMenu?.setForceShowIcon(true)
+            }
+
+            audioRoutePopupMenu?.show()
+
+            val selected = items.first { it.selected }
+            val primaryColor = getProperPrimaryColor()
+            val textColor = getProperTextColor()
+            // icon and text coloring
+            audioRoutePopupMenu?.menu?.apply {
+                for (index in 0 until this.size) {
+                    val item = this[index]
+                    val color = if (item.itemId == selected.id) primaryColor else textColor
+
+                    //icon coloring
+                    if (isQPlus()) {
+                        item.icon!!.colorFilter = BlendModeColorFilter(
+                            color, BlendMode.SRC_IN
+                        )
+                    } else {
+                        item.icon!!.setColorFilter(color, PorterDuff.Mode.SRC_IN)
+                    }
+
+                    //text coloring
+                    val spannableString = SpannableString(item.title)
+                    spannableString.setSpan(
+                        ForegroundColorSpan(color),
+                        0,
+                        spannableString.length,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                    item.title = spannableString
+                }
             }
         }
     }
 
     private fun updateCallAudioState(route: AudioRoute?, changeProximitySensor: Boolean = true) {
         if (route != null) {
-            //If enabled, one of the users has his microphone turned off at the start of a call
-            //isMicrophoneOff = audioManager.isMicrophoneMute
+            //If enabled, one of the users has his microphone turned off at the start of a call??
+            isMicrophoneOff = audioManager.isMicrophoneMute
             updateMicrophoneButton()
 
             isSpeakerOn = route == AudioRoute.SPEAKER
@@ -840,7 +889,8 @@ class CallActivity : SimpleActivity() {
                 }
             }
             val supportAudioRoutes = CallManager.getSupportedAudioRoutes()
-            binding.callToggleSpeakerLabel.text = if (supportAudioRoutes.size == 2) getString(R.string.audio_route_speaker) else  getString(route.stringRes)
+            binding.callToggleSpeakerLabel.text =
+                if (supportAudioRoutes.size == 2) getString(R.string.audio_route_speaker) else  getString(route.stringRes)
             toggleButtonColor(binding.callToggleSpeaker, enabled = route != AudioRoute.EARPIECE && route != AudioRoute.WIRED_HEADSET)
             createOrUpdateAudioRouteChooser(supportedAudioRoutes, create = false)
 
@@ -860,6 +910,8 @@ class CallActivity : SimpleActivity() {
         audioManager.isMicrophoneMute = isMicrophoneOff
         CallManager.inCallService?.setMuted(isMicrophoneOff)
         updateMicrophoneButton()
+
+        CallNotificationManager(this).updateNotification()
     }
 
     private fun updateMicrophoneButton() {
@@ -868,15 +920,20 @@ class CallActivity : SimpleActivity() {
             callToggleMicrophone.setImageDrawable(AppCompatResources.getDrawable(this@CallActivity, drawable))
 
             val configBackgroundCallScreen = config.backgroundCallScreen
-            if (configBackgroundCallScreen == TRANSPARENT_BACKGROUND || configBackgroundCallScreen == BLUR_AVATAR || configBackgroundCallScreen == AVATAR) {
+            if (configBackgroundCallScreen == TRANSPARENT_BACKGROUND ||
+                configBackgroundCallScreen == BLUR_AVATAR ||
+                configBackgroundCallScreen == AVATAR
+            ) {
                 val color = if (isMicrophoneOff) Color.WHITE else Color.GRAY
                 callToggleMicrophone.background.applyColorFilter(color)
                 val colorIcon = if (isMicrophoneOff) Color.BLACK else Color.WHITE
                 callToggleMicrophone.applyColorFilter(colorIcon)
             }
             callToggleMicrophone.background.alpha = if (isMicrophoneOff) 255 else 60
-            callToggleMicrophone.contentDescription = getString(if (isMicrophoneOff) R.string.turn_microphone_on else R.string.turn_microphone_off)
-            //callToggleMicrophoneLabel.text = getString(if (isMicrophoneOff) R.string.turn_microphone_on else R.string.turn_microphone_off)
+            callToggleMicrophone.contentDescription =
+                getString(if (isMicrophoneOff) R.string.turn_microphone_on else R.string.turn_microphone_off)
+//            callToggleMicrophoneLabel.text =
+//                getString(if (isMicrophoneOff) R.string.turn_microphone_on else R.string.turn_microphone_off)
         }
     }
 
@@ -951,7 +1008,10 @@ class CallActivity : SimpleActivity() {
                 .subscribe()
 
             val configBackgroundCallScreen = config.backgroundCallScreen
-            if (configBackgroundCallScreen == TRANSPARENT_BACKGROUND || configBackgroundCallScreen == BLUR_AVATAR || configBackgroundCallScreen == AVATAR) {
+            if (configBackgroundCallScreen == TRANSPARENT_BACKGROUND ||
+                configBackgroundCallScreen == BLUR_AVATAR ||
+                configBackgroundCallScreen == AVATAR
+            ) {
                 val color = if (isOnHold) Color.WHITE else Color.GRAY
                 callToggleHold.background.applyColorFilter(color)
                 val colorIcon = if (isOnHold) Color.BLACK else Color.WHITE
@@ -1231,7 +1291,7 @@ class CallActivity : SimpleActivity() {
                         }
                         val acceptDrawable = AppCompatResources.getDrawable(this@CallActivity, acceptDrawableId)
 
-                        val rippleBg = AppCompatResources.getDrawable(this, R.drawable.ic_call_accept) as RippleDrawable
+                        val rippleBg = AppCompatResources.getDrawable(this@CallActivity, R.drawable.ic_call_accept) as RippleDrawable
                         val layerDrawable = rippleBg.findDrawableByLayerId(R.id.accept_call_background_holder) as LayerDrawable
                         layerDrawable.setDrawableByLayerId(R.id.accept_call_icon, acceptDrawable)
                         binding.callAccept.setImageDrawable(rippleBg)
@@ -1317,6 +1377,9 @@ class CallActivity : SimpleActivity() {
                     ongoingCallHolder.beGone()
                     incomingCallHolder.beVisible()
                     callStatusLabel.text = getString(R.string.is_calling)
+                    RxAnimation.from(binding.callStatusLabel)
+                        .shake()
+                        .subscribe()
 
                     arrayOf(
                         callDraggable, callDraggableBackground, callDraggableVertical,
@@ -1466,7 +1529,6 @@ class CallActivity : SimpleActivity() {
 
     private fun endCall(rejectWithMessage: Boolean = false, textMessage: String? = null, isBusy: Boolean = false) {
         CallManager.reject(rejectWithMessage, textMessage)
-        audioRouteChooserDialog?.dismissAllowingStateLoss()
 
         if (isBusy) toast(R.string.busy)
 
@@ -1543,36 +1605,44 @@ class CallActivity : SimpleActivity() {
     }
 
     @Suppress("DEPRECATION")
-    @SuppressLint("NewApi")
     private fun addLockScreenFlags() {
         if (isOreoMr1Plus()) {
             setShowWhenLocked(true)
             setTurnScreenOn(true)
-        } else {
-            window.addFlags(
-                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-                    or WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
-            )
-            window.addFlags(
-                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-                    or WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON
-            )
         }
 
-        (getSystemService(KEYGUARD_SERVICE) as KeyguardManager).requestDismissKeyguard(this, null)
+        window.addFlags(
+            WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED or
+                WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON or
+                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or
+                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+        )
+
+        try {
+            val keyguardManager = getSystemService(KEYGUARD_SERVICE) as KeyguardManager
+            keyguardManager.requestDismissKeyguard(this, null)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
         try {
             val powerManager = getSystemService(POWER_SERVICE) as PowerManager
-            screenOnWakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, "com.goodwy.dialer:full_wake_lock")
-            screenOnWakeLock!!.acquire(5 * 1000L)
-        } catch (_: Exception) {
+            screenOnWakeLock = powerManager.newWakeLock(
+                PowerManager.FULL_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP,
+                "com.goodwy.dialer:full_wake_lock"
+            )
+            screenOnWakeLock!!.acquire(10 * 1000L)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
     private fun enableProximitySensor() {
         if (!config.disableProximitySensor && (proximityWakeLock == null || proximityWakeLock?.isHeld == false)) {
             val powerManager = getSystemService(POWER_SERVICE) as PowerManager
-            proximityWakeLock = powerManager.newWakeLock(PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, "com.goodwy.dialer:wake_lock")
+            proximityWakeLock = powerManager.newWakeLock(
+                PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK,
+                "com.goodwy.dialer:wake_lock")
             proximityWakeLock!!.acquire(60 * MINUTE_SECONDS * 1000L)
         }
     }

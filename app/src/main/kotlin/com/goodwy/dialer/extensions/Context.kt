@@ -3,12 +3,14 @@ package com.goodwy.dialer.extensions
 import android.annotation.SuppressLint
 import android.app.*
 import android.content.Context
+import android.content.Context.KEYGUARD_SERVICE
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.AudioManager.STREAM_ALARM
+import android.media.RingtoneManager
 import android.net.Uri
 import android.os.PowerManager
 import android.telecom.TelecomManager
@@ -18,8 +20,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.goodwy.commons.extensions.*
-import com.goodwy.commons.helpers.*
+import com.goodwy.commons.extensions.launchActivityIntent
+import com.goodwy.commons.helpers.KEY_PHONE
 import com.goodwy.dialer.R
 import com.goodwy.dialer.models.SIMAccount
 import com.goodwy.dialer.BuildConfig
@@ -33,12 +35,36 @@ import com.goodwy.dialer.receivers.TimerReceiver
 import me.leolin.shortcutbadger.ShortcutBadger
 import androidx.core.net.toUri
 import androidx.core.graphics.drawable.toDrawable
+import com.goodwy.commons.extensions.getDefaultAlarmSound
+import com.goodwy.commons.extensions.getLaunchIntent
+import com.goodwy.commons.extensions.getMyContactsCursor
+import com.goodwy.commons.extensions.getProperPrimaryColor
+import com.goodwy.commons.extensions.grantReadUriPermission
+import com.goodwy.commons.extensions.notificationManager
+import com.goodwy.commons.extensions.sendSMSPendingIntent
+import com.goodwy.commons.extensions.setText
+import com.goodwy.commons.extensions.startCallPendingIntent
+import com.goodwy.commons.extensions.telecomManager
+import com.goodwy.commons.helpers.IS_RIGHT_APP
+import com.goodwy.commons.helpers.MyContactsContentProvider
+import com.goodwy.commons.helpers.SIGNAL_PACKAGE
+import com.goodwy.commons.helpers.SILENT
+import com.goodwy.commons.helpers.SimpleContactsHelper
+import com.goodwy.commons.helpers.TELEGRAM_PACKAGE
+import com.goodwy.commons.helpers.VIBER_PACKAGE
+import com.goodwy.commons.helpers.WHATSAPP_PACKAGE
+import com.goodwy.commons.models.SimpleContact
 
 val Context.config: Config get() = Config.newInstance(applicationContext)
 
-val Context.audioManager: AudioManager get() = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+val Context.audioManager: AudioManager
+    get() = getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
-val Context.powerManager: PowerManager get() = getSystemService(Context.POWER_SERVICE) as PowerManager
+val Context.powerManager: PowerManager
+    get() = getSystemService(Context.POWER_SERVICE) as PowerManager
+
+val Context.keyguardManager: KeyguardManager
+    get() = getSystemService(KEYGUARD_SERVICE) as KeyguardManager
 
 @SuppressLint("MissingPermission")
 fun Context.getAvailableSIMCardLabels(): List<SIMAccount> {
@@ -73,7 +99,7 @@ fun Context.getAvailableSIMCardLabels(): List<SIMAccount> {
 fun Context.areMultipleSIMsAvailable(): Boolean {
     return try {
         telecomManager.callCapablePhoneAccounts.size > 1
-    } catch (ignored: Exception) {
+    } catch (_: Exception) {
         false
     }
 }
@@ -84,12 +110,12 @@ fun Context.clearMissedCalls() {
         // notification cancellation triggers MissedCallNotifier.clearMissedCalls() which, in turn,
         // should update the database and reset the cached missed call count in MissedCallNotifier.java
         // https://android.googlesource.com/platform/packages/services/Telecomm/+/master/src/com/android/server/telecom/ui/MissedCallNotifierImpl.java#170
-        telecomManager.cancelMissedCallsNotification()
+//        telecomManager.cancelMissedCallsNotification()
 
-        notificationManager.cancel(420)
+//        notificationManager.cancelAll()
         updateUnreadCountBadge(0)
         RecentsHelper(this).markMissedCallsAsRead()
-    } catch (ignored: Exception) {
+    } catch (_: Exception) {
     }
 }
 
@@ -100,6 +126,15 @@ fun Context.canLaunchAccountsConfiguration(): Boolean {
 
 fun Context.launchAccountsConfiguration() {
     startActivity(Intent(TelecomManager.ACTION_CHANGE_PHONE_ACCOUNTS))
+}
+
+fun Activity.startAddContactIntent(phoneNumber: String) {
+    Intent().apply {
+        action = Intent.ACTION_INSERT_OR_EDIT
+        type = "vnd.android.cursor.item/contact"
+        putExtra(KEY_PHONE, phoneNumber)
+        launchActivityIntent(this)
+    }
 }
 
 //Goodwy
@@ -302,13 +337,13 @@ fun Context.createNewTimer(): Timer {
         seconds = 600,
         state = TimerState.Idle,
         vibrate = config.callVibration,
-        soundUri = config.timerSoundUri,
+        soundUri = getDefaultAlarmSound(RingtoneManager.TYPE_ALARM).uri,
         soundTitle = "",
-        title = config.timerTitle ?: "",
-        label = config.timerLabel ?: "",
-        description = config.timerDescription ?: "",
+        title = "Timer",
+        label = "",
+        description = "",
         createdAt = System.currentTimeMillis(),
-        channelId = config.timerChannelId,
+        channelId = "right_dialer_timer_channel",
     )
 }
 
@@ -332,5 +367,32 @@ fun Context.getNotificationBitmap(photoUri: String): Bitmap? {
             .get()
     } catch (_: Exception) {
         null
+    }
+}
+
+val Context.statusBarHeight: Int
+    @SuppressLint("InternalInsetResource", "DiscouragedApi")
+    get() {
+        var statusBarHeight = 0
+        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+        if (resourceId > 0) {
+            statusBarHeight = resources.getDimensionPixelSize(resourceId)
+        }
+        return statusBarHeight
+    }
+
+fun Context.getContactFromAddress(address: String, callback: ((contact: SimpleContact?) -> Unit)) {
+    val privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
+    SimpleContactsHelper(this).getAvailableContacts(false) {
+        var contact = it.firstOrNull { it.doesHavePhoneNumber(address) }
+        if (contact == null) {
+            val privateContacts = MyContactsContentProvider.getSimpleContacts(this, privateCursor)
+            val privateContact = privateContacts.firstOrNull { it.doesHavePhoneNumber(address) }
+            contact = privateContact
+        }
+        if (contact == null) {
+            contact = it.firstOrNull { it.phoneNumbers.map { it.value }.any { it == address } }
+        }
+        callback(contact)
     }
 }

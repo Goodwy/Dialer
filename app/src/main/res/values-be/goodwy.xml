@@ -11,9 +11,11 @@
     <string name="call_notes">Ноты для званкоў</string>
     <string name="back_pressed_end_call">Дзеянне таму завяршае выклік</string>
 
-    <string name="keep_calls_in_popup_summary">Пасля адказу на выклікі яны застаюцца ў апавяшчэннях і не адлюстроўваюцца на ўвесь экран. Гэта зроблена для таго, каб не перарываць працу іншых прыкладанняў, напрыклад падчас гульні.</string>
+    <string name="keep_calls_in_popup_summary">"Пасля адказу на выклік ён застаецца ў апавяшчэннях і не адлюстроўваецца на ўвесь экран. Гэта зроблена для таго, каб не перарываць працу іншых прыкладанняў, напрыклад падчас гульні.\nКалі не падключана гарнітура будзе ўключаны дынамік. "</string>
     <string name="busy">Занята</string>
     <string name="block_calls">Блакіраваць званкі</string>
+    <string name="edit_number_before_call">Рэдагаваць нумар перад званком</string>
+    <string name="on_favorite_click">Пры націску на абраны</string>
     <string name="call_using_same_sim">Выкарыстоўваць тую ж SIM-карту, на якую быў зроблены папярэдні (апошні) званок</string>
     <string name="show_contact_thumbnails_g">Паказаць мініяцюры кантактаў</string>
     <string name="hide_dialpad_letters_g">Схаваць літары панэлі набору</string>
@@ -62,6 +64,7 @@
     <string name="open_dialpad_when_call_from_another_app">Пры спробе здзейсніць званок з іншага прыкладання адкрываць панэль набору нумара</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Гэта можа абараніць вас ад шкоднасных праграм, якія здзяйсняюць званкі без вашага ведама.</string>
     <string name="number_of_recent_calls_displays">Якая адлюстроўваецца колькасць нядаўніх званкоў</string>
+    <string name="number_of_recent_calls_displays_summary">З улікам групоўкі якая адлюстроўваецца колькасць радкоў можа быць менш.</string>
     <string name="group_calls">Групоўка званкоў</string>
     <string name="group_all_calls">Групаваць усе званкі, будзе паказаны толькі апошні званок</string>
     <string name="call_button_style">Стыль кнопак званка</string>
@@ -81,4 +84,6 @@
     </plurals>
     <string name="missed_call_from">Прапушчаны званок ад %s</string>
     <string name="keep_calls_in_popup">Пакідаць званкі ў апавяшчэннях</string>
+    <string name="on_contact_click">Пры націску на кантакт</string>
+    <string name="on_recent_click">Пры націску на нядаўні званок</string>
 </resources>

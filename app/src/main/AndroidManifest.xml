@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
@@ -24,7 +25,6 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
-    <uses-permission android:name="com.android.vending.BILLING" />
 
     <uses-permission
         android:name="android.permission.USE_FINGERPRINT"
@@ -74,6 +74,7 @@
         android:label="@string/app_launcher_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:theme="@style/AppTheme"
+        android:hardwareAccelerated="true"
         tools:targetApi="tiramisu"
         tools:replace="android:label">
 
@@ -190,13 +191,17 @@
         <!--launchMode="singleInstance" - incoming call is not displayed correctly on the locked screen-->
         <activity
             android:name=".activities.CallActivity"
+            android:directBootAware="true"
             android:excludeFromRecents="true"
             android:configChanges="uiMode"
             android:exported="false"
+            android:hardwareAccelerated="true"
             android:label="@string/ongoing_call"
             android:launchMode="singleTask"
-            android:screenOrientation="nosensor"
-            android:showOnLockScreen="true" />
+            android:screenOrientation="portrait"
+            android:showOnLockScreen="true"
+            android:showWhenLocked="true"
+            android:turnScreenOn="true" />
 
         <activity
             android:name=".activities.CallHistoryActivity"
@@ -265,6 +270,7 @@
 
         <service
             android:name=".services.CallService"
+            android:directBootAware="true"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_INCALL_SERVICE">
@@ -308,6 +314,7 @@
 
         <receiver
             android:name=".receivers.CallActionReceiver"
+            android:directBootAware="true"
             android:enabled="true"
             android:exported="false" />
 

@@ -53,14 +53,17 @@
     <string name="open_dialpad_when_call_from_another_app">다른 애플리케이션에서 전화를 걸려고 할 때 다이얼 패드를 엽니다.</string>
     <string name="open_dialpad_when_call_from_another_app_summary">이를 통해 사용자 모르게 전화를 거는 맬웨어로부터 사용자를 보호할 수 있습니다.</string>
     <string name="number_of_recent_calls_displays">최근 통화 횟수 표시</string>
+    <string name="number_of_recent_calls_displays_summary">그룹화로 인해 표시되는 행의 수가 적을 수 있습니다.</string>
     <string name="group_calls">호출 그룹화</string>
     <string name="group_all_calls">모든 통화를 그룹화하면 마지막 통화만 표시됩니다.</string>
     <string name="call_button_style">벨 버튼 스타일</string>
     <string name="call_notes">통화 메모</string>
     <string name="back_pressed_end_call">뒤로 동작은 통화를 종료합니다.</string>
-    <string name="keep_calls_in_popup_summary">전화를 받으면 알림에 남아 전체 화면으로 표시되지 않습니다. 이는 게임 등 다른 앱의 실행을 방해하지 않기 위한 조치입니다.</string>
+    <string name="keep_calls_in_popup_summary">전화를 받으면 알림에 표시되며 전체 화면을 채우지 않습니다. 이는 게임 플레이 등 다른 앱의 실행을 방해하지 않기 위한 조치입니다.\n헤드셋이 연결되어 있지 않으면 스피커가 켜집니다.</string>
     <string name="busy">바쁘다</string>
     <string name="block_calls">통화 차단</string>
+    <string name="edit_number_before_call">전화하기 전에 번호를 수정하세요</string>
+    <string name="on_favorite_click">즐겨찾기를 클릭하면</string>
     <string name="call_using_same_sim">이전(마지막) 전화를 건 것과 동일한 SIM 카드를 사용합니다.</string>
     <string name="answer_end_other_call">현재 전화 받기 및 종료</string>
     <string name="quick_answers">빠른 답변</string>
@@ -76,4 +79,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">알림에 전화 남기기</string>
+    <string name="on_contact_click">연락처를 클릭하면</string>
+    <string name="on_recent_click">최근 통화를 클릭하면</string>
 </resources>

@@ -14,9 +14,36 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.res.ResourcesCompat
 import com.goodwy.commons.activities.BaseSimpleActivity
 import com.goodwy.commons.dialogs.CallConfirmationDialog
+import com.goodwy.commons.dialogs.PermissionRequiredDialog
 import com.goodwy.commons.dialogs.NewAppDialog
-import com.goodwy.commons.extensions.*
-import com.goodwy.commons.helpers.*
+import com.goodwy.commons.extensions.canUseFullScreenIntent
+import com.goodwy.commons.extensions.darkenColor
+import com.goodwy.commons.extensions.getContactPublicUri
+import com.goodwy.commons.extensions.getProperBackgroundColor
+import com.goodwy.commons.extensions.getProperPrimaryColor
+import com.goodwy.commons.extensions.getProperTextColor
+import com.goodwy.commons.extensions.getSurfaceColor
+import com.goodwy.commons.extensions.initiateCall
+import com.goodwy.commons.extensions.isDefaultDialer
+import com.goodwy.commons.extensions.isPackageInstalled
+import com.goodwy.commons.extensions.launchActivityIntent
+import com.goodwy.commons.extensions.launchCallIntent
+import com.goodwy.commons.extensions.launchSendSMSIntent
+import com.goodwy.commons.extensions.launchViewContactIntent
+import com.goodwy.commons.extensions.lightenColor
+import com.goodwy.commons.extensions.openFullScreenIntentSettings
+import com.goodwy.commons.extensions.openNotificationSettings
+import com.goodwy.commons.extensions.performHapticFeedback
+import com.goodwy.commons.extensions.telecomManager
+import com.goodwy.commons.helpers.CONTACT_ID
+import com.goodwy.commons.helpers.IS_PRIVATE
+import com.goodwy.commons.helpers.LICENSE_AUTOFITTEXTVIEW
+import com.goodwy.commons.helpers.LICENSE_EVENT_BUS
+import com.goodwy.commons.helpers.LICENSE_GLIDE
+import com.goodwy.commons.helpers.LICENSE_INDICATOR_FAST_SCROLL
+import com.goodwy.commons.helpers.PERMISSION_READ_PHONE_STATE
+import com.goodwy.commons.helpers.SimpleContactsHelper
+import com.goodwy.commons.helpers.ensureBackgroundThread
 import com.goodwy.commons.models.FAQItem
 import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.dialer.BuildConfig
@@ -191,6 +218,39 @@ fun SimpleActivity.showSelectSimDialog(
     }
 }
 
+fun SimpleActivity.handleFullScreenNotificationsPermission(callback: (granted: Boolean) -> Unit) {
+    handleNotificationPermission { granted ->
+        if (granted) {
+            if (canUseFullScreenIntent()) {
+                callback(true)
+            } else {
+                PermissionRequiredDialog(
+                    activity = this,
+                    textId = R.string.allow_full_screen_notifications_incoming_calls,
+                    positiveActionCallback = {
+                        @SuppressLint("NewApi")
+                        openFullScreenIntentSettings(BuildConfig.APPLICATION_ID)
+                    },
+                    negativeActionCallback = {
+                        callback(false)
+                    }
+                )
+            }
+        } else {
+            PermissionRequiredDialog(
+                activity = this,
+                textId = R.string.allow_notifications_incoming_calls,
+                positiveActionCallback = {
+                    openNotificationSettings()
+                },
+                negativeActionCallback = {
+                    callback(false)
+                }
+            )
+        }
+    }
+}
+
 //Goodwy
 fun Activity.startContactEdit(contact: Contact) {
     Intent().apply {
@@ -219,8 +279,6 @@ fun SimpleActivity.launchPurchase() {
         subscriptionIdListRu = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
         subscriptionYearIdList = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
         subscriptionYearIdListRu = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
-        playStoreInstalled = isPlayStoreInstalled(),
-        ruStoreInstalled = isRuStoreInstalled()
     )
 }
 
@@ -249,10 +307,21 @@ fun SimpleActivity.launchAbout() {
     val subscriptionYearIdX2 = BuildConfig.SUBSCRIPTION_YEAR_ID_X2
     val subscriptionYearIdX3 = BuildConfig.SUBSCRIPTION_YEAR_ID_X3
 
+    val flavorName = BuildConfig.FLAVOR
+    val storeDisplayName = when (flavorName) {
+        "gplay" -> "Google Play"
+        "foss" -> "FOSS"
+        "rustore" -> "RuStore"
+        else -> ""
+    }
+    val versionName = BuildConfig.VERSION_NAME
+    val fullVersionText = "$versionName ($storeDisplayName)"
+
     startAboutActivity(
         appNameId = R.string.app_name_g,
         licenseMask = licenses,
-        versionName = BuildConfig.VERSION_NAME,
+        versionName = fullVersionText,
+        flavorName = BuildConfig.FLAVOR,
         faqItems = faqItems,
         showFAQBeforeMail = true,
         productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
@@ -261,8 +330,6 @@ fun SimpleActivity.launchAbout() {
         subscriptionIdListRu = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
         subscriptionYearIdList = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
         subscriptionYearIdListRu = arrayListOf(subscriptionYearIdX1, subscriptionYearIdX2, subscriptionYearIdX3),
-        playStoreInstalled = isPlayStoreInstalled(),
-        ruStoreInstalled = isRuStoreInstalled()
     )
 }
 
@@ -277,7 +344,9 @@ fun SimpleActivity.showSnackbar(view: View) {
     val bgDrawable = ResourcesCompat.getDrawable(view.resources, R.drawable.button_background_16dp, null)
     snackbar.view.background = bgDrawable
     val properBackgroundColor = getProperBackgroundColor()
-    val backgroundColor = if (properBackgroundColor == Color.BLACK) getSurfaceColor().lightenColor(6) else getSurfaceColor().darkenColor(6)
+    val backgroundColor =
+        if (properBackgroundColor == Color.BLACK) getSurfaceColor().lightenColor(6)
+        else getSurfaceColor().darkenColor(6)
     snackbar.setBackgroundTint(backgroundColor)
     snackbar.setTextColor(getProperTextColor())
     snackbar.setActionTextColor(getProperPrimaryColor())

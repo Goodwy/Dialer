@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">Wanneer u probeert te bellen vanuit een andere toepassing, opent u het toetsenblok</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Hiermee wordt u beschermd tegen malware die zonder uw medeweten telefoongesprekken voert.</string>
     <string name="number_of_recent_calls_displays">Weergegeven aantal recente oproepen</string>
+    <string name="number_of_recent_calls_displays_summary">Vanwege groepering kan het aantal weergegeven rijen kleiner zijn.</string>
     <string name="group_calls">Oproepgroepering</string>
     <string name="group_all_calls">Groepeer alle oproepen, alleen de laatste oproep wordt weergegeven</string>
     <string name="call_button_style">De Stijl van de belknop</string>
     <string name="call_notes">Notities bij het gesprek</string>
     <string name="back_pressed_end_call">Actie Terug beëindigt het gesprek</string>
-    <string name="keep_calls_in_popup_summary">Nadat oproepen zijn beantwoord, blijven ze in je meldingen staan ​​en worden ze niet op volledig scherm weergegeven. Dit wordt gedaan om te voorkomen dat andere apps worden onderbroken, bijvoorbeeld tijdens het spelen van een game.</string>
+    <string name="keep_calls_in_popup_summary">Nadat een oproep is beantwoord, blijft deze in je meldingen staan ​​en vult deze niet het hele scherm. Dit wordt gedaan om te voorkomen dat andere apps worden onderbroken, bijvoorbeeld tijdens het spelen van een game.\nAls er geen headset is aangesloten, wordt de speaker ingeschakeld.</string>
     <string name="busy">Druk bezig</string>
     <string name="block_calls">Gesprekken blokkeren</string>
+    <string name="edit_number_before_call">Bewerk het nummer voordat u belt</string>
+    <string name="on_favorite_click">Wanneer u op een favoriet klikt</string>
     <string name="call_using_same_sim">Gebruik dezelfde simkaart als waarop de vorige (laatste) oproep is gedaan</string>
     <string name="answer_end_other_call">Beantwoord en beëindig het huidige gesprek</string>
     <string name="quick_answers">Snelle antwoorden</string>
@@ -78,4 +81,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Gesprekken in meldingen achterlaten</string>
+    <string name="on_contact_click">Wanneer u op een contactpersoon klikt</string>
+    <string name="on_recent_click">Wanneer u op een recent gesprek klikt</string>
 </resources>

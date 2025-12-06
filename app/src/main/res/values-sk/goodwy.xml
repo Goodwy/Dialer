@@ -55,14 +55,17 @@
     <string name="open_dialpad_when_call_from_another_app">Pri pokuse o uskutočnenie hovoru z inej aplikácie otvorte číselnú klávesnicu</string>
     <string name="open_dialpad_when_call_from_another_app_summary">To vás môže chrániť pred škodlivým softvérom, ktorý uskutočňuje hovory bez vášho vedomia.</string>
     <string name="number_of_recent_calls_displays">Zobrazený počet posledných hovorov</string>
+    <string name="number_of_recent_calls_displays_summary">Zaradi združevanja je lahko število prikazanih vrstic manjše.</string>
     <string name="group_calls">Zoskupovanie hovorov</string>
     <string name="group_all_calls">Zoskupte všetky hovory, zobrazí sa iba posledný hovor</string>
     <string name="call_button_style">Štýl zvončeka</string>
     <string name="call_notes">Poznámky k hovoru</string>
     <string name="back_pressed_end_call">Akcia Späť ukončí hovor</string>
-    <string name="keep_calls_in_popup_summary">Po prijatí hovorov zostanú vo vašich upozorneniach a nezobrazia sa na celej obrazovke. Deje sa tak, aby sa zabránilo prerušeniu iných aplikácií, napríklad pri hraní hry.</string>
+    <string name="keep_calls_in_popup_summary">Po prijatí hovoru zostane hovor v upozorneniach a nevyplní celú obrazovku. Robí sa to preto, aby sa predišlo prerušeniu iných aplikácií, napríklad počas hrania hry.\nAk nie sú pripojené slúchadlá, reproduktor sa zapne.</string>
     <string name="busy">Zaneprázdnený</string>
     <string name="block_calls">Blokovať hovory</string>
+    <string name="edit_number_before_call">Upraviť číslo pred hovorom</string>
+    <string name="on_favorite_click">Keď kliknete na obľúbenú položku</string>
     <string name="call_using_same_sim">Použite rovnakú SIM kartu, na ktorú sa uskutočnil predchádzajúci (posledný) hovor</string>
     <string name="answer_end_other_call">Prijmite a ukončite aktuálny hovor</string>
     <string name="quick_answers">Rýchle odpovede</string>
@@ -80,4 +83,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Nechajte hovory v upozorneniach</string>
+    <string name="on_contact_click">Keď kliknete na kontakt</string>
+    <string name="on_recent_click">Keď kliknete na nedávny hovor</string>
 </resources>

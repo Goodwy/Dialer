@@ -11,7 +11,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.CallLog.Calls
-import android.provider.Telephony.Sms.Intents.SECRET_CODE_ACTION
 import android.telephony.PhoneNumberFormattingTextWatcher
 import android.telephony.TelephonyManager
 import android.util.TypedValue
@@ -48,9 +47,7 @@ import java.text.Collator
 import java.util.Locale
 import kotlin.math.roundToInt
 import androidx.core.view.isGone
-import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
-import com.goodwy.commons.views.MyRecyclerView
 import com.goodwy.dialer.models.Events
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -78,20 +75,22 @@ class DialpadActivity : SimpleActivity() {
     private var isTalkBackOn = false
     private var initSearch = true
 
-    @SuppressLint("MissingSuperCall", "SetTextI18n")
-    @Suppress("LongMethod")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        updateNavigationBarColor = false
         setContentView(binding.root)
 
         binding.apply {
-            updateMaterialActivityViews(
-                mainCoordinatorLayout = dialpadCoordinator,
-                nestedView = dialpadHolder,
-                useTransparentNavigation = true,
-                useTopSearchMenu = false
+            setupEdgeToEdge(
+                padBottomSystem = listOf(
+                    dialpadClearWrapper.dialpadGridLayout,
+                    dialpadRoundWrapper.dialpadIosWrapper,
+                    dialpadRectWrapper.dialpadGridWrapper
+                ),
+                moveTopSystem = listOf(dialpadInput),
+                moveBottomSystem = listOf(dialpadRoundWrapperUp),
+//                padBottomImeAndSystem = listOf(dialpadList, dialpadHolder)
             )
+            setupMaterialScrollListener(binding.dialpadList, binding.dialpadAppbar)
         }
 
         EventBus.getDefault().register(this)
@@ -150,6 +149,7 @@ class DialpadActivity : SimpleActivity() {
 
         binding.dialpadInput.apply {
             if (config.formatPhoneNumbers) {
+                @Suppress("DEPRECATION")
                 addTextChangedListener(PhoneNumberFormattingTextWatcher(Locale.getDefault().country))
             }
             onTextChangeListener { dialpadValueChanged(it) }
@@ -166,7 +166,7 @@ class DialpadActivity : SimpleActivity() {
         storedBackgroundColor = getProperBackgroundColor()
     }
 
-    @SuppressLint("MissingSuperCall", "UnsafeIntentLaunch")
+    @SuppressLint("UnsafeIntentLaunch")
     override fun onResume() {
         super.onResume()
         if (storedDialpadStyle != config.dialpadStyle || config.needRestart ||storedBackgroundColor != getProperBackgroundColor()) {
@@ -194,13 +194,15 @@ class DialpadActivity : SimpleActivity() {
         val properBackgroundColor =
             if (isDynamicTheme() && !isSystemInDarkMode()) getSurfaceColor() else getProperBackgroundColor()
         val properPrimaryColor = getProperPrimaryColor()
-        setupToolbar(
-            toolbar = binding.dialpadToolbar,
-            toolbarNavigationIcon = NavigationIcon.Arrow,
-            statusBarColor = properBackgroundColor,
-            navigationClick = false)
+        setupTopAppBar(
+            topAppBar = binding.dialpadAppbar,
+            navigationIcon = NavigationIcon.Arrow,
+            topBarColor = properBackgroundColor,
+            navigationClick = false
+        )
         binding.dialpadRecentsList.setBackgroundColor(properBackgroundColor)
         binding.dialpadList.setBackgroundColor(properBackgroundColor)
+        binding.dialpadToolbar.setBackgroundColor(properBackgroundColor)
 
         binding.dialpadRectWrapper.root.setBackgroundColor(properBackgroundColor)
         binding.dialpadAddNumber.setTextColor(properPrimaryColor)
@@ -273,7 +275,6 @@ class DialpadActivity : SimpleActivity() {
             DIALPAD_IOS -> {
                 val properBackgroundColor =
                     if (isDynamicTheme() && !isSystemInDarkMode()) getSurfaceColor() else getProperBackgroundColor()
-                updateNavigationBarColor(properBackgroundColor)
 
                 binding.dialpadClearWrapper.root.beGone()
                 binding.dialpadRectWrapper.root.beGone()
@@ -309,7 +310,6 @@ class DialpadActivity : SimpleActivity() {
             DIALPAD_CONCEPT -> {
                 val properBackgroundColor =
                     if (isDynamicTheme() && !isSystemInDarkMode()) getSurfaceColor() else getProperBackgroundColor()
-                updateNavigationBarColor(properBackgroundColor)
 
                 binding.dialpadRectWrapper.apply {
                     dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
@@ -342,7 +342,6 @@ class DialpadActivity : SimpleActivity() {
             DIALPAD_GRID -> {
                 val surfaceColor =
                     if (isDynamicTheme() && !isSystemInDarkMode()) getProperBackgroundColor() else getSurfaceColor()
-                updateNavigationBarColor(surfaceColor)
 
                 binding.dialpadRoundWrapper.root.beGone()
                 binding.dialpadRectWrapper.root.beGone()
@@ -381,7 +380,6 @@ class DialpadActivity : SimpleActivity() {
             else -> {
                 val surfaceColor =
                     if (isDynamicTheme() && !isSystemInDarkMode()) getProperBackgroundColor() else getSurfaceColor()
-                updateNavigationBarColor(surfaceColor)
 
                 binding.dialpadRoundWrapper.root.beGone()
                 binding.dialpadRectWrapper.root.beGone()
@@ -983,16 +981,16 @@ class DialpadActivity : SimpleActivity() {
         }
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        when (CallManager.getPhoneState()) {
+    override fun onBackPressedCompat(): Boolean {
+        return when (CallManager.getPhoneState()) {
             NoCall -> {
                 if (intent.getBooleanExtra(SHOW_RECENT_CALLS_ON_DIALPAD, false)) finishAffinity()
                 else finish()
+                true
             }
             else -> {
                 startActivity(Intent(this, CallActivity::class.java))
-                super.onBackPressed()
+                true
             }
         }
     }
@@ -1027,12 +1025,7 @@ class DialpadActivity : SimpleActivity() {
     }
 
     private fun addNumberToContact() {
-        Intent().apply {
-            action = Intent.ACTION_INSERT_OR_EDIT
-            type = "vnd.android.cursor.item/contact"
-            putExtra(KEY_PHONE, binding.dialpadInput.value)
-            launchActivityIntent(this)
-        }
+        startAddContactIntent(binding.dialpadInput.value)
     }
 
     private fun dialpadPressed(char: Char, view: View?) {
@@ -1418,7 +1411,9 @@ class DialpadActivity : SimpleActivity() {
             dialpadValueChanged(binding.dialpadInput.value)
         } else if (needUpdate || config.needUpdateRecents) {
             refreshCallLog(loadAll = false) {
-                refreshCallLog(loadAll = true)
+                binding.dialpadRecentsList.runAfterAnimations {
+                    refreshCallLog(loadAll = true)
+                }
             }
         } else {
             var recents = emptyList<RecentCall>()
@@ -1432,11 +1427,15 @@ class DialpadActivity : SimpleActivity() {
 
             if (recents.isNotEmpty()) {
                 refreshCallLogFromCache(recents) {
-                    refreshCallLog(loadAll = true)
+                    binding.dialpadRecentsList.runAfterAnimations {
+                        refreshCallLog(loadAll = true)
+                    }
                 }
             } else {
                 refreshCallLog(loadAll = false) {
-                    refreshCallLog(loadAll = true)
+                    binding.dialpadRecentsList.runAfterAnimations {
+                        refreshCallLog(loadAll = true)
+                    }
                 }
             }
         }
@@ -1570,55 +1569,31 @@ class DialpadActivity : SimpleActivity() {
                 recyclerView = binding.dialpadRecentsList,
                 refreshItemsListener = null,
                 showOverflowMenu = true,
+                showCallIcon = config.onRecentClick == SWIPE_ACTION_OPEN,
                 hideTimeAtOtherDays = true,
                 isDialpad = true,
                 itemDelete = { deleted ->
                     allRecentCalls = allRecentCalls.filter { it !in deleted }
                 },
                 itemClick = {
-                    val recentCall = it as RecentCall
-                    if (config.showCallConfirmation) {
-                        CallConfirmationDialog(this, recentCall.name) {
-                            callRecentNumber(recentCall)
-                        }
-                    } else {
-                        callRecentNumber(recentCall)
-                    }
+                    itemClickAction(config.onRecentClick, it as RecentCall)
                 },
                 profileInfoClick = { recentCall ->
-                    val recentCalls = recentCall.groupedCalls as ArrayList<RecentCall>? ?: arrayListOf(recentCall)
-                    val contact = findContactByCall(recentCall)
-                    Intent(this@DialpadActivity, CallHistoryActivity::class.java).apply {
-                        putExtra(CURRENT_RECENT_CALL, recentCall)
-                        putExtra(CURRENT_RECENT_CALL_LIST, recentCalls)
-                        putExtra(CONTACT_ID, recentCall.contactID)
-                        if (contact != null) {
-                            putExtra(IS_PRIVATE, contact.isPrivate())
-                        }
-                        launchActivityIntent(this)
-                    }
+                    actionOpen(recentCall)
                 },
                 profileIconClick = {
-                    val contact = findContactByCall(it as RecentCall)
+                    val recentCall = it as RecentCall
+                    val contact = findContactByCall(recentCall)
                     if (contact != null) {
                         startContactDetailsIntent(contact)
                     } else {
-                        addContact(it)
+                        startAddContactIntent(recentCall.phoneNumber)
                     }
                 }
             )
 
             binding.dialpadRecentsList.adapter = recentsAdapter
             recentsAdapter?.updateItems(recents)
-
-            if (this.areSystemAnimationsEnabled) {
-                binding.dialpadRecentsList.scheduleLayoutAnimation()
-            }
-
-            binding.dialpadRecentsList.endlessScrollListener = object : MyRecyclerView.EndlessScrollListener {
-                override fun updateTop() = Unit
-                override fun updateBottom() = refreshCallLog()
-            }
         } else {
             recentsAdapter?.updateItems(recents)
         }
@@ -1661,11 +1636,40 @@ class DialpadActivity : SimpleActivity() {
             .find { /*it.name == recentCall.name &&*/ it.doesHavePhoneNumber(recentCall.phoneNumber) }
     }
 
-    private fun addContact(recentCall: RecentCall) {
-        Intent().apply {
-            action = Intent.ACTION_INSERT_OR_EDIT
-            type = "vnd.android.cursor.item/contact"
-            putExtra(KEY_PHONE, recentCall.phoneNumber)
+    private fun itemClickAction(action: Int, call: RecentCall) {
+        when (action) {
+            SWIPE_ACTION_MESSAGE -> actionSMS(call)
+            SWIPE_ACTION_CALL -> actionCall(call)
+            SWIPE_ACTION_OPEN -> actionOpen(call)
+            else -> {}
+        }
+    }
+
+    private fun actionCall(call: RecentCall) {
+        val recentCall = call
+        if (config.showCallConfirmation) {
+            CallConfirmationDialog(this, recentCall.name) {
+                callRecentNumber(recentCall)
+            }
+        } else {
+            callRecentNumber(recentCall)
+        }
+    }
+
+    private fun actionSMS(call: RecentCall) {
+        launchSendSMSIntentRecommendation(call.phoneNumber)
+    }
+
+    private fun actionOpen(call: RecentCall) {
+        val recentCalls = call.groupedCalls as ArrayList<RecentCall>? ?: arrayListOf(call)
+        val contact = findContactByCall(call)
+        Intent(this, CallHistoryActivity::class.java).apply {
+            putExtra(CURRENT_RECENT_CALL, call)
+            putExtra(CURRENT_RECENT_CALL_LIST, recentCalls)
+            putExtra(CONTACT_ID, call.contactID)
+            if (contact != null) {
+                putExtra(IS_PRIVATE, contact.isPrivate())
+            }
             launchActivityIntent(this)
         }
     }

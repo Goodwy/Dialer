@@ -55,14 +55,17 @@
     <string name="open_dialpad_when_call_from_another_app">Al intentar realizar una llamada desde otra aplicación, abra el teclado de marcación</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Esto puede protegerle contra malware que realiza llamadas sin su conocimiento.</string>
     <string name="number_of_recent_calls_displays">Número mostrado de llamadas recientes</string>
+    <string name="number_of_recent_calls_displays_summary">På grund av gruppering kan antalet rader som visas vara färre.</string>
     <string name="group_calls">Agrupación de llamadas</string>
     <string name="group_all_calls">Agrupar todas las llamadas, solo se mostrará la última llamada</string>
     <string name="call_button_style">Estilo de botón de campana</string>
     <string name="call_notes">Notas de la convocatoria</string>
     <string name="back_pressed_end_call">La acción de retroceso finaliza la llamada</string>
-    <string name="keep_calls_in_popup_summary">Después de responder las llamadas, estas permanecen en tus notificaciones y no aparecen en pantalla completa. Esto se hace para evitar interrumpir otras aplicaciones, como cuando juegas.</string>
+    <string name="keep_calls_in_popup_summary">Tras responder una llamada, esta permanece en tus notificaciones y no ocupa toda la pantalla. Esto se hace para evitar interrumpir otras aplicaciones, como al jugar.\nSi no hay auriculares conectados, el altavoz se activará.</string>
     <string name="busy">Ocupado</string>
     <string name="block_calls">Bloquear llamadas</string>
+    <string name="edit_number_before_call">Editar el número antes de llamar</string>
+    <string name="on_favorite_click">Al hacer clic en un favorito</string>
     <string name="call_using_same_sim">Utilice la misma tarjeta SIM a la que se realizó la (última) llamada anterior</string>
     <string name="answer_end_other_call">Responder y finalizar la llamada actual</string>
     <string name="quick_answers">Respuestas rápidas</string>
@@ -80,4 +83,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Dejar llamadas en notificaciones</string>
+    <string name="on_contact_click">Al hacer clic en un contacto</string>
+    <string name="on_recent_click">Al hacer clic en una llamada reciente</string>
 </resources>

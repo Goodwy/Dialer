@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">Ha másik alkalmazásból próbál hívást kezdeményezni, nyissa ki a tárcsázót</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Ez megvédheti Önt a rosszindulatú programoktól, amelyek az Ön tudta nélkül hívásokat kezdeményeznek.</string>
     <string name="number_of_recent_calls_displays">Megjelenített legutóbbi hívások száma</string>
+    <string name="number_of_recent_calls_displays_summary">A csoportosítás miatt a megjelenített sorok száma kevesebb lehet.</string>
     <string name="group_calls">Híváscsoportosítás</string>
     <string name="group_all_calls">Csoportosítsa az összes hívást, csak az utolsó hívás jelenik meg</string>
     <string name="call_button_style">Csengő gomb stílusa</string>
     <string name="call_notes">Hívásjegyzetek</string>
     <string name="back_pressed_end_call">A visszalépés befejezi a hívást</string>
-    <string name="keep_calls_in_popup_summary">A hívások fogadása után azok az értesítésekben maradnak, és nem jelennek meg teljes képernyőn. Ezzel elkerülhető a többi alkalmazás megszakítása, például játék közben.</string>
+    <string name="keep_calls_in_popup_summary">A hívás fogadása után az értesítések között marad, és nem tölti ki a teljes képernyőt. Ez azért van így, hogy ne zavarjon meg más alkalmazásokat, például játék közben.\n\nHa nincs csatlakoztatva headset, a hangszóró bekapcsol.</string>
     <string name="busy">Elfoglalt</string>
     <string name="block_calls">Hívások blokkolása</string>
+    <string name="edit_number_before_call">Szám szerkesztése hívás előtt</string>
+    <string name="on_favorite_click">Amikor rákattint egy kedvencre</string>
     <string name="call_using_same_sim">Használja ugyanazt a SIM-kártyát, amelyre az előző (utolsó) hívás történt</string>
     <string name="answer_end_other_call">Az aktuális hívás fogadása és befejezése</string>
     <string name="quick_answers">Gyors válaszok</string>
@@ -78,4 +81,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Hagyja a hívásokat az értesítésekben</string>
+    <string name="on_contact_click">Amikor rákattint egy névjegyre</string>
+    <string name="on_recent_click">Amikor rákattint egy legutóbbi hívásra</string>
 </resources>

@@ -11,16 +11,19 @@
     <string name="open_dialpad_when_call_from_another_app">Otvori tastaturu za biranje kada pokušate uputiti poziv iz druge aplikacije</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Ovo vas može zaštititi od zlonamjernog softvera koji upućuje pozive bez vašeg znanja</string>
     <string name="number_of_recent_calls_displays">Broj prikazanih nedavnih poziva</string>
+    <string name="number_of_recent_calls_displays_summary">Zbog grupisanja, broj prikazanih redova može biti manji.</string>
     <string name="group_calls">Grupni pozivi</string>
     <string name="group_all_calls">Grupiraj sve pozive, prikazat će se samo posljednji poziv</string>
     <string name="call_button_style">Stil dugmeta za poziv</string>
     <string name="call_notes">Bilješke o pozivu</string>
     <string name="back_pressed_end_call">Akcija nazad prekida poziv</string>
     <string name="keep_calls_in_popup">Ostavite pozive u obavještenjima</string>
-    <string name="keep_calls_in_popup_summary">Nakon što se na pozive odgovori, oni ostaju u vašim obavještenjima i ne pojavljuju se na cijelom ekranu. Ovo se radi kako bi se izbjeglo ometanje drugih aplikacija, kao što je igranje igre.</string>
+    <string name="keep_calls_in_popup_summary">Nakon što se odgovori na poziv, on ostaje u vašim obavještenjima i ne ispunjava cijeli ekran. To se radi kako bi se izbjeglo prekidanje drugih aplikacija, kao što je tokom igranja igre.\nAko slušalice nisu povezane, zvučnik će se uključiti.</string>
     <string name="busy">Zauzet</string>
     <string name="block_calls">Blokiraj pozive</string>
 
+    <string name="edit_number_before_call">Uredi broj prije poziva</string>
+    <string name="on_favorite_click">Kada kliknete na favorita</string>
     <string name="call_using_same_sim">Preferiraj istu SIM karticu na kojoj je obavljen prethodni (posljednji) poziv</string>
     <string name="answer_end_other_call">Odgovori i završi drugi poziv</string>
     <string name="quick_answers">Brzi odgovori</string>
@@ -79,4 +82,6 @@ Vaš pružatelj usluga može naplatiti dodatnu naknadu za ovu uslugu.
         <item quantity="other">%d propuštenih poziva</item>
     </plurals>
     <string name="missed_call_from">Propušteni poziv od %s</string>
+    <string name="on_contact_click">Kada kliknete na kontakt</string>
+    <string name="on_recent_click">Kada kliknete na nedavni poziv</string>
 </resources>

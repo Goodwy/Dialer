@@ -55,14 +55,17 @@
     <string name="open_dialpad_when_call_from_another_app">Quan intenteu fer una trucada des d\'una altra aplicació, obriu el teclat de marcatge</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Això us pot protegir del programari maliciós que fa trucades sense el vostre coneixement.</string>
     <string name="number_of_recent_calls_displays">Es mostra el nombre de trucades recents</string>
+    <string name="number_of_recent_calls_displays_summary">A causa de l\'agrupació, el nombre de files que es mostren pot ser menor.</string>
     <string name="group_calls">Agrupació de trucades</string>
     <string name="group_all_calls">Agrupa totes les trucades, només es mostrarà la darrera trucada</string>
     <string name="call_button_style">Estil de campana</string>
     <string name="call_notes">Notes de la trucada</string>
     <string name="back_pressed_end_call">L\'acció de retrocés finalitza la trucada</string>
-    <string name="keep_calls_in_popup_summary">Un cop s\'han contestat les trucades, es mantenen a les vostres notificacions i no apareixen a pantalla completa. Això es fa per evitar interrompre altres aplicacions, com ara mentre es juga un joc.</string>
+    <string name="keep_calls_in_popup_summary">Després de respondre una trucada, roman a les notificacions i no ocupa tota la pantalla. Això es fa per evitar interrompre altres aplicacions, com ara mentre es juga a un joc.\nSi no hi ha auriculars connectats, l\'altaveu s\'activarà.</string>
     <string name="busy">Ocupat</string>
     <string name="block_calls">Bloquejar trucades</string>
+    <string name="edit_number_before_call">Edita el número abans de trucar</string>
+    <string name="on_favorite_click">Quan feu clic a un preferit</string>
     <string name="call_using_same_sim">Utilitzeu la mateixa targeta SIM a la qual es va fer la trucada anterior (última)</string>
     <string name="answer_end_other_call">Respondre i finalitzar la trucada actual</string>
     <string name="quick_answers">Respostes ràpides</string>
@@ -80,4 +83,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Deixa les trucades a les notificacions</string>
+    <string name="on_contact_click">Quan feu clic en un contacte</string>
+    <string name="on_recent_click">Quan feu clic en una trucada recent</string>
 </resources>

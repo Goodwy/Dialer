@@ -11,16 +11,19 @@
     <string name="open_dialpad_when_call_from_another_app">Agus tú ag iarraidh glao a dhéanamh ó fheidhmchlár eile, oscail an eochaircheap diailithe</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Is féidir leis seo tú a chosaint ó malware a dhéanann glaonna gan do chuid eolais.</string>
     <string name="number_of_recent_calls_displays">Taispeánadh líon na nglaonna le déanaí</string>
+    <string name="number_of_recent_calls_displays_summary">Mar gheall ar ghrúpáil, d’fhéadfadh líon na sraitheanna a thaispeántar a bheith níos lú.</string>
     <string name="group_calls">Grúpáil glaonna</string>
     <string name="group_all_calls">Déan gach glao a ghrúpáil, ní thaispeánfar ach an glao deiridh</string>
     <string name="call_button_style">Stíl cnaipe glaonna</string>
     <string name="call_notes">Nótaí glaonna</string>
     <string name="back_pressed_end_call">Críochnaíonn an gníomh Ar Ais an glao</string>
     <string name="keep_calls_in_popup">Fág glaonna i bhfógraí</string>
-    <string name="keep_calls_in_popup_summary">Tar éis glaonna a fhreagairt, fanann siad i d\'fhógraí agus ní bhíonn siad le feiceáil ar scáileán iomlán. Déantar é seo chun cur isteach ar apps eile a sheachaint, mar shampla agus cluiche á imirt.</string>
+    <string name="keep_calls_in_popup_summary">Tar éis glao a fhreagairt, fanann sé i do fhógraí agus ní líonann sé an scáileán ar fad. Déantar é seo chun cur isteach ar aipeanna eile a sheachaint, amhail agus cluiche á imirt.\nMura bhfuil cluasáin ceangailte, cuirfear an cainteoir ar siúl.</string>
     <string name="busy">Gnóthach</string>
 
     <string name="block_calls">Cuir bac ar ghlaonna</string>
+    <string name="edit_number_before_call">Cuir an uimhir in eagar roimh an nglao</string>
+    <string name="on_favorite_click">Nuair a chliceálann tú ar rogha pearsanta</string>
     <string name="call_using_same_sim">Is fearr an SIM céanna ar a ndearnadh an glao roimhe seo (an ceann deireanach)</string>
     <string name="answer_end_other_call">Freagair &amp; deireadh a chur le glao eile</string>
     <string name="quick_answers">Freagraí tapa</string>
@@ -81,4 +84,6 @@
         <item quantity="many">%d nglao caillte</item>
     </plurals>
     <string name="missed_call_from">Glao caillte ó %s</string>
+    <string name="on_contact_click">Nuair a chliceálann tú ar theagmhálaí</string>
+    <string name="on_recent_click">Nuair a chliceálann tú ar ghlao le déanaí</string>
 </resources>

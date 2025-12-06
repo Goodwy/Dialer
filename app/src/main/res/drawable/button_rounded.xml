@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="?attr/colorPrimaryDark">
-    <item android:id="@+id/button_background_holder">
-        <layer-list>
-            <item android:id="@+id/button_background_shape">
-                <shape android:shape="rectangle">
-                    <solid android:color="?attr/colorPrimary"/>
-                    <corners android:radius="20dp"/>
-                </shape>
-            </item>
-        </layer-list>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" >
+        <shape>
+            <solid
+                android:color="@color/button_pressed_bg" />
+            <corners
+                android:radius="20dp" />
+        </shape>
     </item>
-</ripple>
+    <item>
+        <shape>
+            <gradient
+                android:startColor="@color/white"
+                android:endColor="@color/white"
+                android:angle="270" />
+            <corners
+                android:radius="20dp" />
+        </shape>
+    </item>
+</selector>

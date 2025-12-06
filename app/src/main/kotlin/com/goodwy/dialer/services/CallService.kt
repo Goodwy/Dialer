@@ -1,17 +1,22 @@
 package com.goodwy.dialer.services
 
-import android.telecom.CallAudioState
 import android.telecom.Call
+import android.telecom.CallAudioState
 import android.telecom.InCallService
+import com.goodwy.commons.extensions.canUseFullScreenIntent
+import com.goodwy.commons.extensions.hasPermission
+import com.goodwy.commons.helpers.PERMISSION_POST_NOTIFICATIONS
 import com.goodwy.dialer.activities.CallActivity
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.isOutgoing
+import com.goodwy.dialer.extensions.keyguardManager
 import com.goodwy.dialer.extensions.powerManager
 import com.goodwy.dialer.helpers.*
 import com.goodwy.dialer.models.Events
 import org.greenrobot.eventbus.EventBus
 
 class CallService : InCallService() {
+    private val context = this
     private val callNotificationManager by lazy { CallNotificationManager(this) }
 
     private val callListener = object : Call.Callback() {
@@ -22,6 +27,7 @@ class CallService : InCallService() {
             } else {
                 callNotificationManager.setupNotification()
             }
+            if (config.flashForAlerts) MyCameraImpl.newInstance(context).stopSOS()
         }
     }
 
@@ -31,38 +37,37 @@ class CallService : InCallService() {
         CallManager.inCallService = this
         call.registerCallback(callListener)
 
-        //val isScreenLocked = (getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager).isDeviceLocked
-        when {
-            !powerManager.isInteractive /*|| isScreenLocked*/ -> {
-                try {
-                    startActivity(CallActivity.getStartIntent(this))
-                    callNotificationManager.setupNotification(true)
-                } catch (_: Exception) {
-                    // seems like startActivity can throw AndroidRuntimeException and ActivityNotFoundException, not yet sure when and why, lets show a notification
-                    callNotificationManager.setupNotification()
-                }
-            }
-            call.isOutgoing() -> {
-                try {
-                    startActivity(CallActivity.getStartIntent(this, needSelectSIM = call.details.accountHandle == null))
-                    callNotificationManager.setupNotification(true)
-                } catch (_: Exception) {
-                    // seems like startActivity can throw AndroidRuntimeException and ActivityNotFoundException, not yet sure when and why, lets show a notification
-                    callNotificationManager.setupNotification()
-                }
-            }
-            config.showIncomingCallsFullScreen /*&& getPhoneSize() < 2*/ -> {
-                try {
-                    startActivity(CallActivity.getStartIntent(this))
-                    callNotificationManager.setupNotification(true)
-                } catch (_: Exception) {
-                    // seems like startActivity can throw AndroidRuntimeException and ActivityNotFoundException, not yet sure when and why, lets show a notification
-                    callNotificationManager.setupNotification()
-                }
-            }
-            else -> callNotificationManager.setupNotification()
+        // Incoming/Outgoing (locked): high priority (FSI)
+        // Incoming (unlocked): if user opted in, low priority ➜ manual activity start, otherwise high priority (FSI)
+        // Outgoing (unlocked): low priority ➜ manual activity start
+        val isOutgoing = call.isOutgoing()
+        val isIncoming = !isOutgoing
+        val isDeviceLocked = !powerManager.isInteractive || keyguardManager.isDeviceLocked
+        val lowPriority = when {
+            isDeviceLocked -> false // High priority on locked screen
+            isIncoming && !isDeviceLocked -> config.showIncomingCallsFullScreen
+            else -> true
         }
-        if (!call.isOutgoing() && !powerManager.isInteractive && config.flashForAlerts) MyCameraImpl.newInstance(this).toggleSOS()
+
+        callNotificationManager.setupNotification(lowPriority)
+        if (
+            lowPriority
+            || !hasPermission(PERMISSION_POST_NOTIFICATIONS)
+            || !canUseFullScreenIntent()
+        ) {
+            try {
+                val needSelectSIM = isOutgoing && call.details.accountHandle == null
+                startActivity(CallActivity.getStartIntent(this, needSelectSIM = needSelectSIM))
+            } catch (_: Exception) {
+                // seems like startActivity can throw AndroidRuntimeException and
+                // ActivityNotFoundException, not yet sure when and why, lets show a notification
+                callNotificationManager.setupNotification()
+            }
+        }
+
+        if (config.flashForAlerts) {
+            if (!call.isOutgoing() && isDeviceLocked) MyCameraImpl.newInstance(this).toggleSOS()
+        }
     }
 
     override fun onCallRemoved(call: Call) {
@@ -90,6 +95,11 @@ class CallService : InCallService() {
         if (audioState != null) {
             CallManager.onAudioStateChanged(audioState)
         }
+    }
+
+    override fun onSilenceRinger() {
+        super.onSilenceRinger()
+        if (config.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
     }
 
     override fun onDestroy() {

@@ -89,6 +89,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:rippleColor="@color/pressed_item_foreground"/>
 
+        <com.goodwy.commons.views.MyFloatingActionButton
+            android:id="@+id/mainCallButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/bigger_margin"
+            android:layout_marginBottom="@dimen/activity_margin"
+            android:contentDescription="@string/dialpad"
+            android:elevation="@dimen/medium_margin"
+            android:padding="@dimen/activity_margin"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            android:alpha="0"
+            android:src="@drawable/ic_phone_vector"
+            app:backgroundTint="@color/color_primary"
+            app:layout_constraintBottom_toTopOf="@+id/main_dialpad_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:rippleColor="@color/pressed_item_foreground"
+            tools:alpha="1"/>
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/mainTabsHolder"
             android:layout_width="match_parent"

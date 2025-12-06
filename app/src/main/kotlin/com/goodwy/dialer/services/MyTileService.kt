@@ -1,6 +1,5 @@
 package com.goodwy.dialer.services
 
-
 import android.annotation.SuppressLint
 import android.app.PendingIntent
 import android.app.role.RoleManager

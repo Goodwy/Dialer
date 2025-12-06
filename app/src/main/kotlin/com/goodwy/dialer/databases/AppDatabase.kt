@@ -1,12 +1,14 @@
 package com.goodwy.dialer.databases
 
 import android.content.Context
+import android.media.RingtoneManager
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.goodwy.commons.extensions.getDefaultAlarmSound
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.helpers.Converters
 import com.goodwy.dialer.interfaces.TimerDao
@@ -52,13 +54,13 @@ abstract class AppDatabase : RoomDatabase() {
                         seconds = 600,
                         state = TimerState.Idle,
                         vibrate = config.callVibration,
-                        soundUri = config.timerSoundUri,
+                        soundUri = context.getDefaultAlarmSound(RingtoneManager.TYPE_ALARM).uri,
                         soundTitle = "",
-                        title = config.timerTitle ?: "",
-                        label = config.timerLabel ?: "",
-                        description = config.timerDescription ?: "",
+                        title = "Timer",
+                        label = "",
+                        description = "",
                         createdAt = System.currentTimeMillis(),
-                        channelId = config.timerChannelId,
+                        channelId = "right_dialer_timer_channel",
                     )
                 )
             }

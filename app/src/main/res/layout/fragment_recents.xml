@@ -37,6 +37,7 @@
         android:id="@+id/recents_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
         android:layoutAnimation="@anim/layout_animation"
         android:scrollbarThumbVertical="@drawable/fastscroller_handle_vertical_gray"
         android:scrollbars="vertical"

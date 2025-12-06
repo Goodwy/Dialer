@@ -56,14 +56,17 @@
     <string name="open_dialpad_when_call_from_another_app">Ko poskušate klicati iz druge aplikacije, odprite številčnico</string>
     <string name="open_dialpad_when_call_from_another_app_summary">To vas lahko zaščiti pred zlonamerno programsko opremo, ki kliče brez vaše vednosti.</string>
     <string name="number_of_recent_calls_displays">Prikazano število zadnjih klicev</string>
+    <string name="number_of_recent_calls_displays_summary">Debido a la agrupación, el número de filas mostradas puede ser menor.</string>
     <string name="group_calls">Združevanje klicev v skupine</string>
     <string name="group_all_calls">Združi vse klice, prikazan bo samo zadnji klic</string>
     <string name="call_button_style">Slog zvonca</string>
     <string name="call_notes">Opombe o klicu</string>
     <string name="back_pressed_end_call">Dejanje nazaj konča klic</string>
-    <string name="keep_calls_in_popup_summary">Ko klice sprejmete, ostanejo v vaših obvestilih in niso prikazani na celotnem zaslonu. To storite tako, da preprečite prekinitev drugih aplikacij, na primer med igranjem igre.</string>
+    <string name="keep_calls_in_popup_summary">Ko je klic sprejet, ostane v obvestilih in ne zapolni celotnega zaslona. To se naredi zato, da se prepreči prekinitev drugih aplikacij, na primer med igranjem igre.\nČe slušalke niso priključene, se bo zvočnik vklopil.</string>
     <string name="busy">zaseden</string>
     <string name="block_calls">Blokiraj klice</string>
+    <string name="edit_number_before_call">Pred klicem uredite številko</string>
+    <string name="on_favorite_click">Ko kliknete na priljubljeno</string>
     <string name="call_using_same_sim">Uporabite isto kartico SIM, na katero je bil opravljen prejšnji (zadnji) klic</string>
     <string name="answer_end_other_call">Sprejemanje in končanje trenutnega klica</string>
     <string name="quick_answers">Hitri odgovori</string>
@@ -81,4 +84,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Pustite klice v obvestilih</string>
+    <string name="on_contact_click">Ko kliknete na stik</string>
+    <string name="on_recent_click">Ko kliknete na nedavni klic</string>
 </resources>

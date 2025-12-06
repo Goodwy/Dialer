@@ -40,7 +40,6 @@ import com.goodwy.dialer.models.RecentCall
 import kotlin.collections.ArrayList
 import kotlin.math.abs
 import androidx.core.graphics.drawable.toDrawable
-import com.goodwy.commons.extensions.setBackgroundColor
 
 class CallHistoryActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityCallHistoryBinding::inflate)
@@ -60,17 +59,10 @@ class CallHistoryActivity : SimpleActivity() {
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
-        showTransparentTop = true
-        isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        updateMaterialActivityViews(
-            binding.callHistoryWrapper,
-            binding.callHistoryHolder,
-            useTransparentNavigation = true,
-            useTopSearchMenu = false
-        )
+        setupEdgeToEdge(padBottomSystem = listOf(binding.callHistoryScrollview))
 
         currentRecentCall = intent.getSerializableExtra(CURRENT_RECENT_CALL) as? RecentCall
         if (currentRecentCall == null) {
@@ -87,7 +79,6 @@ class CallHistoryActivity : SimpleActivity() {
         }
     }
 
-    @SuppressLint("MissingSuperCall")
     override fun onResume() {
         super.onResume()
         binding.callHistoryPlaceholderContainer.beGone()

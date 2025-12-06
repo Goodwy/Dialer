@@ -6,22 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/settings_toolbar"
+    <com.goodwy.commons.views.MyAppBarLayout
+        android:id="@+id/settings_appbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:menu="@menu/menu_settings"
-        app:title="@string/settings"
-        app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle"/>
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/settings_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:menu="@menu/menu_settings"
+            app:title="@string/settings"
+            app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle" />
+    </com.goodwy.commons.views.MyAppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/settingsNestedScrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="@dimen/activity_padding_left_right"
-        android:layout_marginTop="?attr/actionBarSize"
         android:fillViewport="true"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:id="@+id/settings_holder"
@@ -299,6 +305,17 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/settings_open_dialpad_at_launch_holder"
+                        style="@style/SettingsHolderSwitchStyle">
+
+                        <com.goodwy.commons.views.MyMaterialSwitch
+                            android:id="@+id/settings_open_dialpad_at_launch"
+                            style="@style/SettingsSwitchStyle"
+                            android:text="@string/open_dialpad_by_default"
+                            app:switchPadding="@dimen/bigger_margin"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:id="@+id/settingsUseSpeechToTextHolder"
                         style="@style/SettingsHolderSwitchStyle">
 
@@ -459,17 +476,6 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:id="@+id/settings_open_dialpad_at_launch_holder"
-                        style="@style/SettingsHolderSwitchStyle">
-
-                        <com.goodwy.commons.views.MyMaterialSwitch
-                            android:id="@+id/settings_open_dialpad_at_launch"
-                            style="@style/SettingsSwitchStyle"
-                            android:text="@string/open_dialpad_by_default"
-                            app:switchPadding="@dimen/bigger_margin"/>
-                    </RelativeLayout>
-
-                    <RelativeLayout
                         android:id="@+id/settings_manage_shown_tabs_holder"
                         style="@style/SettingsHolderStyle">
 
@@ -566,7 +572,7 @@
             <TextView
                 android:id="@+id/settingsSwipeGesturesLabel"
                 style="@style/SettingsSectionLabelStyle"
-                android:text="@string/swipe_gestures"
+                android:text="@string/swipe_gestures_and_actions"
                 tools:textColor="@color/primary"/>
 
             <androidx.cardview.widget.CardView
@@ -580,6 +586,66 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/settings_on_favorite_click_holder"
+                        style="@style/SettingsHolderStyle">
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settings_on_favorite_click_label"
+                            style="@style/SettingsTextLabelStyle"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/settings_on_favorite_click"
+                            android:text="@string/on_favorite_click" />
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settings_on_favorite_click"
+                            style="@style/SettingsTextValueStyle"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/settings_margin"
+                            tools:text="@string/call" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/settings_on_recent_click_holder"
+                        style="@style/SettingsHolderStyle">
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settings_on_recent_click_label"
+                            style="@style/SettingsTextLabelStyle"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/settings_on_recent_click"
+                            android:text="@string/on_recent_click" />
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settings_on_recent_click"
+                            style="@style/SettingsTextValueStyle"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/settings_margin"
+                            tools:text="@string/call" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/settings_on_contact_click_holder"
+                        style="@style/SettingsHolderStyle">
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settings_on_contact_click_label"
+                            style="@style/SettingsTextLabelStyle"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/settings_on_contact_click"
+                            android:text="@string/on_contact_click" />
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settings_on_contact_click"
+                            style="@style/SettingsTextValueStyle"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/settings_margin"
+                            tools:text="@string/call" />
+                    </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/settingsUseSwipeToActionHolder"
@@ -759,8 +825,8 @@
                             android:id="@+id/settingsShowRecentCallsOnDialpadBeta"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/small_margin"
-                            android:layout_marginRight="@dimen/small_margin"
+                            android:layout_marginStart="@dimen/small_margin"
+                            android:layout_marginEnd="@dimen/small_margin"
                             android:layout_centerVertical="true"
                             android:layout_toStartOf="@+id/settingsShowRecentCallsOnDialpad"
                             android:background="@drawable/button_rounded_5dp"
@@ -938,8 +1004,8 @@
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:padding="4dp"
-                            android:layout_marginLeft="@dimen/small_margin"
-                            android:layout_marginRight="@dimen/small_margin"
+                            android:layout_marginStart="@dimen/small_margin"
+                            android:layout_marginEnd="@dimen/small_margin"
                             android:layout_centerVertical="true"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:layout_toStartOf="@+id/settingsKeepCallsInPopUp"
@@ -1190,8 +1256,8 @@
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:padding="4dp"
-                            android:layout_marginLeft="@dimen/small_margin"
-                            android:layout_marginRight="@dimen/small_margin"
+                            android:layout_marginStart="@dimen/small_margin"
+                            android:layout_marginEnd="@dimen/small_margin"
                             android:layout_centerVertical="true"
                             android:background="?attr/selectableItemBackgroundBorderless"
                             android:layout_toStartOf="@+id/settingsBlockCallFromAnotherApp"
@@ -1270,8 +1336,21 @@
                             style="@style/SettingsTextLabelStyle"
                             android:layout_alignParentStart="true"
                             android:layout_centerVertical="true"
-                            android:layout_toStartOf="@+id/settingsQueryLimitRecent"
+                            android:layout_toStartOf="@+id/settingsQueryLimitRecentFaq"
                             android:text="@string/number_of_recent_calls_displays"/>
+
+                        <ImageView
+                            android:id="@+id/settingsQueryLimitRecentFaq"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:padding="4dp"
+                            android:layout_marginStart="@dimen/small_margin"
+                            android:layout_marginEnd="26dp"
+                            android:layout_centerVertical="true"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:layout_toStartOf="@+id/settingsQueryLimitRecent"
+                            android:src="@drawable/ic_question_round"
+                            android:contentDescription="@string/number_of_recent_calls_displays_summary" />
 
                         <com.goodwy.commons.views.MyTextView
                             android:id="@+id/settingsQueryLimitRecent"
@@ -1509,6 +1588,7 @@
                         <com.goodwy.commons.views.MyTextView
                             android:id="@+id/settings_about_version"
                             style="@style/SettingsTextValueStyle"
+                            android:maxWidth="@dimen/settings_value_width_long"
                             android:layout_toStartOf="@+id/settingsAboutChevron"
                             android:layout_centerVertical="true"
                             tools:text="Version: 1.0.0"/>

@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">Kun yrität soittaa puhelua toisesta sovelluksesta, avaa valintanäppäimet</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Tämä voi suojata sinua haittaohjelmilta, jotka soittavat tietämättäsi.</string>
     <string name="number_of_recent_calls_displays">Näytetään viimeaikaisten puheluiden määrä</string>
+    <string name="number_of_recent_calls_displays_summary">Ryhmittelyn vuoksi näytettävien rivien määrä voi olla pienempi.</string>
     <string name="group_calls">Puhelujen ryhmittely</string>
     <string name="group_all_calls">Ryhmittele kaikki puhelut, vain viimeinen puhelu näytetään</string>
     <string name="call_button_style">Kellopainikkeen tyyli</string>
     <string name="call_notes">Puhelun muistiinpanot</string>
     <string name="back_pressed_end_call">Back-toiminto lopettaa puhelun</string>
-    <string name="keep_calls_in_popup_summary">Kun puheluihin on vastattu, ne pysyvät ilmoituksissasi eivätkä näy koko näytön kokoisina. Tämä tehdään muiden sovellusten keskeyttämisen välttämiseksi, esimerkiksi pelin pelaamisen aikana.</string>
+    <string name="keep_calls_in_popup_summary">Kun puheluun vastataan, se jää ilmoituksiin eikä täytä koko näyttöä. Tämä tehdään, jotta muita sovelluksia, kuten peliä pelatessa, ei keskeytetä.\n\nJos kuulokkeita ei ole kytketty, kaiutin kytkeytyy päälle.</string>
     <string name="busy">Kiireinen</string>
     <string name="block_calls">Estä puhelut</string>
+    <string name="edit_number_before_call">Muokkaa numeroa ennen soittoa</string>
+    <string name="on_favorite_click">Kun napsautat suosikkia</string>
     <string name="call_using_same_sim">Käytä samaa SIM-korttia, johon edellinen (viimeinen) puhelu soitettiin</string>
     <string name="answer_end_other_call">Nykyiseen puheluun vastaaminen ja sen lopettaminen</string>
     <string name="quick_answers">Nopeat vastaukset</string>
@@ -78,4 +81,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Jätä puhelut ilmoituksiin</string>
+    <string name="on_contact_click">Kun napsautat yhteystietoa</string>
+    <string name="on_recent_click">Kun napsautat viimeisintä puhelua</string>
 </resources>

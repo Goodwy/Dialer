@@ -3,7 +3,6 @@ package com.goodwy.dialer.dialogs
 import android.annotation.SuppressLint
 import android.telecom.PhoneAccountHandle
 import android.view.ViewGroup
-import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat

@@ -15,31 +15,25 @@ import android.os.Bundle
 import android.os.Handler
 import android.provider.Settings
 import android.speech.RecognizerIntent
+import android.telecom.Call
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
-import androidx.core.view.ScrollingView
-import androidx.core.view.updateLayoutParams
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.behaviorule.arturdumchev.library.pixels
 import com.google.android.material.snackbar.Snackbar
 import com.goodwy.commons.dialogs.ConfirmationDialog
-import com.goodwy.commons.dialogs.PermissionRequiredDialog
 import com.goodwy.commons.dialogs.RadioGroupDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.RadioItem
-import com.goodwy.commons.models.Release
 import com.goodwy.commons.models.contacts.Contact
-import com.goodwy.commons.views.MySearchMenu
 import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
 import com.goodwy.dialer.adapters.ViewPagerAdapter
@@ -52,7 +46,12 @@ import com.goodwy.dialer.fragments.FavoritesFragment
 import com.goodwy.dialer.fragments.MyViewPagerFragment
 import com.goodwy.dialer.fragments.RecentsFragment
 import com.goodwy.dialer.helpers.*
+import com.goodwy.dialer.models.AudioRoute
 import com.goodwy.dialer.models.Events
+import com.mikhaellopez.rxanimation.RxAnimation
+import com.mikhaellopez.rxanimation.fadeIn
+import com.mikhaellopez.rxanimation.fadeOut
+import com.mikhaellopez.rxanimation.scale
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -61,6 +60,8 @@ import java.io.InputStreamReader
 import java.util.Objects
 
 class MainActivity : SimpleActivity() {
+    override var isSearchBarEnabled = true
+
     private val binding by viewBinding(ActivityMainBinding::inflate)
 
     private var launchedDialer = false
@@ -80,21 +81,13 @@ class MainActivity : SimpleActivity() {
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
-        isMaterialActivity = true
-        updateNavigationBarColor = false
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         appLaunched(BuildConfig.APPLICATION_ID)
         setupOptionsMenu()
         refreshMenuItems()
         storeStateVariables()
-        val useBottomNavigationBar = config.bottomNavigationBar
-        updateMaterialActivityViews(
-            binding.mainCoordinator,
-            binding.mainHolder,
-            useTransparentNavigation = false,
-            useTopSearchMenu = useBottomNavigationBar
-        )
+        setupEdgeToEdge(padBottomImeAndSystem = listOf(binding.mainTabsHolder))
 
         EventBus.getDefault().register(this)
         launchedDialer = savedInstanceState?.getBoolean(OPEN_DIAL_PAD_AT_LAUNCH) ?: false
@@ -104,7 +97,11 @@ class MainActivity : SimpleActivity() {
             checkContactPermissions()
 
             if (!config.wasOverlaySnackbarConfirmed && !Settings.canDrawOverlays(this)) {
-                val snackbar = Snackbar.make(binding.mainHolder, R.string.allow_displaying_over_other_apps, Snackbar.LENGTH_INDEFINITE).setAction(R.string.ok) {
+                val snackbar = Snackbar.make(
+                    binding.mainHolder,
+                    R.string.allow_displaying_over_other_apps,
+                    Snackbar.LENGTH_INDEFINITE
+                ).setAction(R.string.ok) {
                     config.wasOverlaySnackbarConfirmed = true
                     startActivity(Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION))
                 }
@@ -118,9 +115,9 @@ class MainActivity : SimpleActivity() {
                 snackbar.show()
             }
 
-            handleNotificationPermission { granted ->
+            handleFullScreenNotificationsPermission { granted ->
                 if (!granted) {
-                    PermissionRequiredDialog(this, R.string.allow_notifications_incoming_calls, { openNotificationSettings() })
+                    toast(com.goodwy.commons.R.string.notifications_disabled)
                 } else {
                     checkWhatsNewDialog()
                 }
@@ -133,20 +130,13 @@ class MainActivity : SimpleActivity() {
             setDefaultCallerIdApp()
         }
 
+        val useBottomNavigationBar = config.bottomNavigationBar
         binding.mainMenu.apply {
             updateTitle(getAppLauncherName())
             searchBeVisibleIf(useBottomNavigationBar)
         }
 
-        // TODO TRANSPARENT Navigation Bar
         if (!useBottomNavigationBar) {
-            setWindowTransparency(true) { _, bottomNavigationBarSize, leftNavigationBarSize, rightNavigationBarSize ->
-                binding.mainCoordinator.setPadding(leftNavigationBarSize, 0, rightNavigationBarSize, 0)
-                binding.mainDialpadButton.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                    setMargins(0, 0, 0, bottomNavigationBarSize + pixels(R.dimen.activity_margin).toInt())
-                }
-            }
-
             setupTopTabs()
         } else {
             setupTabs()
@@ -164,6 +154,9 @@ class MainActivity : SimpleActivity() {
             }
             config.initCallBlockingSetup = false
         }
+
+        CallManager.addListener(callCallback)
+        binding.mainCallButton.setOnClickListener { startActivity(Intent(this, CallActivity::class.java)) }
     }
 
     override fun onResume() {
@@ -203,8 +196,6 @@ class MainActivity : SimpleActivity() {
         if (/*!isSearchOpen && */!binding.mainMenu.isSearchOpen) {
             refreshItems(true)
         }
-
-        if (isDynamicTheme() && !isSystemInDarkMode()) binding.mainHolder.setBackgroundColor(getSurfaceColor())
 
         if (binding.viewPager.adapter != null && !config.bottomNavigationBar) {
 
@@ -258,6 +249,7 @@ class MainActivity : SimpleActivity() {
 
         val useSurfaceColor = isDynamicTheme() && !isSystemInDarkMode()
         val backgroundColor = if (useSurfaceColor) getSurfaceColor() else getProperBackgroundColor()
+        if (useSurfaceColor) binding.mainHolder.setBackgroundColor(getSurfaceColor())
         getAllFragments().forEach {
             it?.setBackgroundColor(backgroundColor)
         }
@@ -317,26 +309,27 @@ class MainActivity : SimpleActivity() {
         refreshItems()
     }
 
-    @Suppress("DEPRECATION")
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        when {
+    override fun onBackPressedCompat(): Boolean {
+        return when {
             binding.mainMenu.isSearchOpen -> {
                 binding.mainMenu.closeSearch()
+                true
             }
 
             isSearchOpen && mSearchMenuItem != null -> {
                 mSearchMenuItem!!.collapseActionView()
+                true
             }
 
             else -> {
-                super.onBackPressed()
+                false
             }
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        CallManager.removeListener(callCallback)
         EventBus.getDefault().unregister(this)
     }
 
@@ -344,7 +337,7 @@ class MainActivity : SimpleActivity() {
         val currentFragment = getCurrentFragment()
         val getRecentsFragment = getRecentsFragment()
         val getFavoritesFragment = getFavoritesFragment()
-        binding.mainMenu.getToolbar().menu.apply {
+        binding.mainMenu.requireToolbar().menu.apply {
             findItem(R.id.search).isVisible = !config.bottomNavigationBar
             findItem(R.id.clear_call_history).isVisible = currentFragment == getRecentsFragment
             findItem(R.id.sort).isVisible = currentFragment != getRecentsFragment
@@ -360,8 +353,8 @@ class MainActivity : SimpleActivity() {
 
     private fun setupOptionsMenu() {
         binding.mainMenu.apply {
-            getToolbar().inflateMenu(R.menu.menu)
-            toggleHideOnScroll(false)
+            requireToolbar().inflateMenu(R.menu.menu)
+//            toggleHideOnScroll(false)
             if (config.bottomNavigationBar) {
                 if (baseConfig.useSpeechToText) {
                     isSpeechToTextAvailable = isSpeechToTextAvailable()
@@ -384,9 +377,9 @@ class MainActivity : SimpleActivity() {
                     getCurrentFragment()?.onSearchQueryChanged(text)
                     clearSearch()
                 }
-            } else setupSearch(getToolbar().menu)
+            } else setupSearch(requireToolbar().menu)
 
-            getToolbar().setOnMenuItemClickListener { menuItem ->
+            requireToolbar().setOnMenuItemClickListener { menuItem ->
                 when (menuItem.itemId) {
                     R.id.show_blocked_numbers -> showBlockedNumbers()
                     R.id.clear_call_history -> clearCallHistory()
@@ -492,7 +485,7 @@ class MainActivity : SimpleActivity() {
 
     private fun showBlockedNumbers() {
         config.showBlockedNumbers = !config.showBlockedNumbers
-        binding.mainMenu.getToolbar().menu.findItem(R.id.show_blocked_numbers).title =
+        binding.mainMenu.requireToolbar().menu.findItem(R.id.show_blocked_numbers).title =
             if (config.showBlockedNumbers) getString(R.string.hide_blocked_numbers) else getString(R.string.show_blocked_numbers)
         config.needUpdateRecents = true
         runOnUiThread {
@@ -603,16 +596,16 @@ class MainActivity : SimpleActivity() {
                 if (isDynamicTheme() && !isSystemInDarkMode()) getColoredMaterialStatusBarColor()
                 else getSurfaceColor()
             binding.mainTabsHolder.setBackgroundColor(bottomBarColor)
-            if (binding.mainTabsHolder.tabCount != 1) updateNavigationBarColor(bottomBarColor)
-            else {
-                // TODO TRANSPARENT Navigation Bar
-                setWindowTransparency(true) { _, bottomNavigationBarSize, leftNavigationBarSize, rightNavigationBarSize ->
-                    binding.mainCoordinator.setPadding(leftNavigationBarSize, 0, rightNavigationBarSize, 0)
-                    binding.mainDialpadButton.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                        setMargins(0, 0, 0, bottomNavigationBarSize + pixels(R.dimen.activity_margin).toInt())
-                    }
-                }
-            }
+//            if (binding.mainTabsHolder.tabCount != 1) updateNavigationBarColor(bottomBarColor)
+//            else {
+//                // TODO TRANSPARENT Navigation Bar
+//                setWindowTransparency(true) { _, bottomNavigationBarSize, leftNavigationBarSize, rightNavigationBarSize ->
+//                    binding.mainCoordinator.setPadding(leftNavigationBarSize, 0, rightNavigationBarSize, 0)
+//                    binding.mainDialpadButton.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+//                        setMargins(0, 0, 0, bottomNavigationBarSize + pixels(R.dimen.activity_margin).toInt())
+//                    }
+//                }
+//            }
         } else {
             // top tab bar
             val lastUsedPage = getDefaultTab()
@@ -755,42 +748,11 @@ class MainActivity : SimpleActivity() {
         val statusBarColor = if (config.changeColourTopBar) getRequiredStatusBarColor(useSurfaceColor) else backgroundColor
 
         binding.mainMenu.updateColors(statusBarColor, scrollingViewOffset)
-        setupSearchMenuScrollListenerNew(myRecyclerView, binding.mainMenu, useSurfaceColor)
-    }
-
-    private fun setupSearchMenuScrollListenerNew(scrollingView: ScrollingView?, searchMenu: MySearchMenu, surfaceColor: Boolean) {
-        this.scrollingView = scrollingView
-        this.mySearchMenu = searchMenu
-        if (scrollingView is RecyclerView) {
-            scrollingView.setOnScrollChangeListener { _, _, _, _, _ ->
-                val newScrollY = scrollingView.computeVerticalScrollOffset()
-                if (newScrollY == 0 || currentOldScrollY == 0) scrollingChanged(newScrollY, surfaceColor)
-                currentScrollY = newScrollY
-                currentOldScrollY = currentScrollY
-            }
-        }
-    }
-
-    private fun scrollingChanged(newScrollY: Int, surfaceColor: Boolean) {
-        if (newScrollY > 0 && currentOldScrollY == 0) {
-            val colorFrom = if (surfaceColor) getSurfaceColor() else getProperBackgroundColor()
-            val colorTo = getColoredMaterialStatusBarColor()
-            animateMySearchMenuColors(colorFrom, colorTo)
-        } else if (newScrollY == 0 && currentOldScrollY > 0) {
-            val colorFrom = if (surfaceColor) getSurfaceColor() else getProperBackgroundColor()
-            val colorTo = getRequiredStatusBarColor(surfaceColor)
-            animateMySearchMenuColors(colorFrom, colorTo)
-        }
-    }
-
-    private fun getStartRequiredStatusBarColor(): Int {
-        val useSurfaceColor = isDynamicTheme() && !isSystemInDarkMode()
-        val scrollingViewOffset = scrollingView?.computeVerticalScrollOffset() ?: 0
-        return if (scrollingViewOffset == 0) {
-            if (useSurfaceColor) getSurfaceColor() else getProperBackgroundColor()
-        } else {
-            getColoredMaterialStatusBarColor()
-        }
+        setupSearchMenuScrollListener(
+            scrollingView = myRecyclerView,
+            searchMenu = binding.mainMenu,
+            surfaceColor = useSurfaceColor
+        )
     }
 
     private fun setupTopTabs() {
@@ -808,8 +770,9 @@ class MainActivity : SimpleActivity() {
             if (config.showTabs and value == 0) {
                 skippedTabs++
             } else {
-                val tab = if (config.useIconTabs) binding.mainTopTabsHolder.newTab().setIcon(getTabIcon(index)) else binding.mainTopTabsHolder.newTab()
-                    .setText(getTabLabel(index))
+                val tab =
+                    if (config.useIconTabs) binding.mainTopTabsHolder.newTab().setIcon(getTabIcon(index))
+                    else binding.mainTopTabsHolder.newTab().setText(getTabLabel(index))
                 tab.contentDescription = getTabContentDescription(index)
                 val wasAlreadySelected = selectedTabIndex > -1 && selectedTabIndex == index - skippedTabs
                 val shouldSelect = !isAnySelected && wasAlreadySelected
@@ -1144,10 +1107,47 @@ class MainActivity : SimpleActivity() {
     }
 
     private fun checkWhatsNewDialog() {
-        arrayListOf<Release>().apply {
-            add(Release(700, R.string.release_700))
-            add(Release(702, R.string.release_702))
+        whatsNewList().apply {
             checkWhatsNew(this, BuildConfig.VERSION_CODE)
+        }
+    }
+
+    private val callCallback = object : CallManagerListener {
+        override fun onStateChanged() {
+            updateState()
+        }
+
+        override fun onAudioStateChanged(audioState: AudioRoute) {
+        }
+
+        override fun onPrimaryCallChanged(call: Call) {
+            updateState()
+        }
+    }
+
+    private fun updateState() {
+        val phoneState = CallManager.getPhoneState()
+        when (phoneState) {
+            is SingleCall -> {
+                RxAnimation.together(
+                    binding.mainCallButton.scale(1.1f),
+                    binding.mainCallButton.fadeIn(duration = 260),
+                ).andThen(
+                    binding.mainCallButton.scale(1f)
+                ).subscribe()
+//                val state = phoneState.call.getStateCompat()
+//                if (state == Call.STATE_RINGING) {
+//                }
+            }
+
+            is TwoCalls -> { }
+
+            else -> {
+                RxAnimation.together(
+                    binding.mainCallButton.scale(0.6f),
+                    binding.mainCallButton.fadeOut(duration = 360),
+                ).subscribe()
+            }
         }
     }
 }

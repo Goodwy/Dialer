@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">Başka bir uygulamadan arama yapmaya çalıştığınızda, arama tuşlarını açın</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Bu, bilginiz olmadan arama yapan kötü amaçlı yazılımlardan sizi koruyabilir.</string>
     <string name="number_of_recent_calls_displays">Son aramaların görüntülenen sayısı</string>
+    <string name="number_of_recent_calls_displays_summary">З урахуванням групування кількість рядків, що відображається, може бути меншою.</string>
     <string name="group_calls">Çağrı gruplaması</string>
     <string name="group_all_calls">Tüm aramaları gruplandırın, yalnızca son arama gösterilecektir</string>
     <string name="call_button_style">Zil Düğmesi Stili</string>
     <string name="call_notes">Çağrı notları</string>
     <string name="back_pressed_end_call">Geri eylemi çağrıyı sonlandırır</string>
-    <string name="keep_calls_in_popup_summary">Aramalar yanıtlandıktan sonra bildirimlerinizde kalır ve tam ekran görüntülenmez. Bu, oyun oynarken olduğu gibi diğer uygulamaların kesintiye uğramasını önlemek içindir.</string>
+    <string name="keep_calls_in_popup_summary">Bir arama yanıtlandıktan sonra bildirimlerinizde kalır ve ekranın tamamını kaplamaz. Bu, oyun oynarken olduğu gibi diğer uygulamaların kesintiye uğramasını önlemek içindir.\n\nKulaklık bağlı değilse, hoparlör açılır.</string>
     <string name="busy">Meşgul</string>
     <string name="block_calls">Çağrıları engelle</string>
+    <string name="edit_number_before_call">Aramadan önce numarayı düzenle</string>
+    <string name="on_favorite_click">Favori bir öğeye tıkladığınızda</string>
     <string name="call_using_same_sim">Önceki (son) aramanın yapıldığı SIM kartı kullanın</string>
     <string name="answer_end_other_call">Mevcut aramayı cevaplayın ve sonlandırın</string>
     <string name="quick_answers">Hızlı yanıtlar</string>
@@ -78,4 +81,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Çağrıları bildirimlerde bırakın</string>
+    <string name="on_contact_click">Bir kişiye tıkladığınızda</string>
+    <string name="on_recent_click">Son aramalardan birine tıkladığınızda</string>
 </resources>

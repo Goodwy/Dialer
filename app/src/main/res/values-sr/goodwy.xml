@@ -11,9 +11,11 @@
     <string name="call_notes">Белешке о позивима</string>
     <string name="back_pressed_end_call">Радња назад завршава позив</string>
 
-    <string name="keep_calls_in_popup_summary">Након што се на позиве одговори, они остају у вашим обавештењима и не приказују се на целом екрану. Ово се ради како би се избегло ометање других апликација, на пример док играте игру.</string>
+    <string name="keep_calls_in_popup_summary">Након што се одговори на позив, он остаје у обавештењима и не попуњава цео екран. Ово се ради како би се избегло прекидање других апликација, као што је током играња игре.\nАко слушалице нису повезане, звучник ће бити укључен.</string>
     <string name="busy">Заузето</string>
     <string name="block_calls">Блокирајте позиве</string>
+    <string name="edit_number_before_call">Измени број пре позива</string>
+    <string name="on_favorite_click">Када кликнете на омиљену ставку</string>
     <string name="call_using_same_sim">Користите исту СИМ картицу на коју је упућен претходни (последњи) позив</string>
     <string name="show_contact_thumbnails_g">Прикажи сличице контаката</string>
     <string name="hide_dialpad_letters_g">Сакриј слова на тастатури</string>
@@ -60,6 +62,7 @@
     <string name="open_dialpad_when_call_from_another_app">Када покушавате да упутите позив из друге апликације, отворите тастатуру за бирање бројева</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Ово може да вас заштити од малвера који упућује позиве без вашег знања.</string>
     <string name="number_of_recent_calls_displays">Приказан број недавних позива</string>
+    <string name="number_of_recent_calls_displays_summary">Z dôvodu zoskupovania môže byť počet zobrazených riadkov menší.</string>
     <string name="group_calls">Груписање позива</string>
     <string name="group_all_calls">Групишите све позиве, биће приказан само последњи позив</string>
     <string name="call_button_style">Стил дугмета за позив</string>
@@ -79,4 +82,6 @@
     </plurals>
     <string name="missed_call_from">Пропуштен позив од %s</string>
     <string name="keep_calls_in_popup">Оставите позиве у обавештењима</string>
+    <string name="on_contact_click">Када кликнете на контакт</string>
+    <string name="on_recent_click">Када кликнете на недавни позив</string>
 </resources>

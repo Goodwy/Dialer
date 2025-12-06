@@ -99,11 +99,11 @@ android {
         }
     }
 
-    flavorDimensions.add("variants")
+    flavorDimensions += "distribution"
     productFlavors {
-        register("core")
-        register("foss")
-        register("gplay")
+        create("gplay") { dimension = "distribution" }
+        create("foss") { dimension = "distribution" }
+        create("rustore") { dimension = "distribution" }
     }
 
     sourceSets {
@@ -166,7 +166,10 @@ dependencies {
     detektPlugins(libs.compose.detekt)
 
     //Goodwy
-    implementation(libs.goodwy.commons)
+    "gplayImplementation"(libs.goodwy.commons.gplay)
+    "fossImplementation"(libs.goodwy.commons.foss)
+    "rustoreImplementation"(libs.goodwy.commons.rustore)
+//    implementation(libs.goodwy.commons)
     implementation(libs.shortcut.badger)
     implementation(libs.behavio.rule)
     implementation(libs.rx.animation)

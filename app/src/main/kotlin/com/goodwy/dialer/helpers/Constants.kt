@@ -3,6 +3,8 @@ package com.goodwy.dialer.helpers
 import com.goodwy.commons.helpers.TAB_CALL_HISTORY
 import com.goodwy.commons.helpers.TAB_CONTACTS
 import com.goodwy.commons.helpers.TAB_FAVORITES
+import com.goodwy.commons.models.Release
+import com.goodwy.dialer.R
 
 // shared prefs
 const val SPEED_DIAL = "speed_dial"
@@ -60,6 +62,8 @@ const val CALL_BLOCK_BUTTON = "call_block_button"
 const val KEEP_CALLS_IN_POPUP = "keep_calls_in_popup"
 const val INIT_CALL_BLOCKING_SETUP = "init_call_blocking_setup"
 const val RECENT_OUTGOING_NUMBERS = "recent_outgoing_numbers"
+const val ON_RECENT_CLICK = "on_recent_click"
+const val ON_FAVORITE_CLICK = "on_favorite_click"
 
 const val ALL_TABS_MASK = TAB_CONTACTS or TAB_FAVORITES or TAB_CALL_HISTORY
 
@@ -69,6 +73,7 @@ private const val PATH = "com.goodwy.dialer.action."
 const val ACCEPT_CALL = PATH + "accept_call"
 const val DECLINE_CALL = PATH + "decline_call"
 const val MICROPHONE_CALL = PATH + "microphone_call"
+const val SPEAKER_CALL = PATH + "speaker_call"
 const val MISSED_CALLS = PATH + "missed_call"
 const val MISSED_CALL_BACK = PATH + "missed_call_back"
 const val MISSED_CALL_MESSAGE = PATH + "missed_call_message"
@@ -99,11 +104,6 @@ const val DIALPAD_CONCEPT = 3
 
 // Timer
 const val TIMER_ID = "timer_id"
-const val TIMER_SOUND_URI = "timer_sound_uri"
-const val TIMER_CHANNEL_ID = "timer_channel_id"
-const val TIMER_TITLE = "timer_title"
-const val TIMER_LABEL = "timer_label"
-const val TIMER_DESCRIPTION = "timer_description"
 const val TIMER_RUNNING_NOTIFICATION_ID = 10000
 const val INVALID_TIMER_ID = -1
 const val TIMER_MAX_REMINDER_SECS = "timer_max_reminder_secs"
@@ -134,10 +134,13 @@ const val SWIPE_ACTION_DELETE = 2
 const val SWIPE_ACTION_BLOCK = 4
 const val SWIPE_ACTION_CALL = 5
 const val SWIPE_ACTION_MESSAGE = 6
+const val SWIPE_ACTION_EDIT = 7
+const val SWIPE_ACTION_OPEN = 9
 const val SWIPE_VIBRATION = "swipe_vibration"
 const val SWIPE_RIPPLE = "swipe_ripple"
 
 // Query limit recent
+const val QUERY_LIMIT_TINY_VALUE = 200
 const val QUERY_LIMIT_SMALL_VALUE = 500
 const val QUERY_LIMIT_MEDIUM_VALUE = 1000
 const val QUERY_LIMIT_NORMAL_VALUE = 2000
@@ -168,3 +171,11 @@ const val LOCALE_EN = "en"
 const val DIALPAD_LONG_CLICK_SETTINGS_DIALPAD = 0
 const val DIALPAD_LONG_CLICK_WAIT = 1
 const val DIALPAD_LONG_CLICK_SETTINGS = 2
+
+fun whatsNewList(): ArrayList<Release> {
+    return arrayListOf<Release>().apply {
+        add(Release(700, R.string.release_700))
+        add(Release(702, R.string.release_702))
+        add(Release(800, R.string.release_800))
+    }
+}

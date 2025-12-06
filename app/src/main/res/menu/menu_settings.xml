@@ -9,5 +9,5 @@
         android:id="@+id/whats_new"
         android:title="@string/whats_new"
         android:icon="@drawable/ic_restore_vector"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 </menu>

@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">Όταν προσπαθείτε να πραγματοποιήσετε μια κλήση από άλλη εφαρμογή, ανοίξτε το πληκτρολόγιο κλήσης</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Αυτό μπορεί να σας προστατεύσει από κακόβουλο λογισμικό που πραγματοποιεί κλήσεις εν αγνοία σας.</string>
     <string name="number_of_recent_calls_displays">Εμφανιζόμενος αριθμός πρόσφατων κλήσεων</string>
+    <string name="number_of_recent_calls_displays_summary">Λόγω ομαδοποίησης, ο αριθμός των γραμμών που εμφανίζονται ενδέχεται να είναι μικρότερος.</string>
     <string name="group_calls">Ομαδοποίηση κλήσεων</string>
     <string name="group_all_calls">Ομαδοποιήστε όλες τις κλήσεις, θα εμφανιστεί μόνο η τελευταία κλήση</string>
     <string name="call_button_style">Στυλ κουμπιού καμπάνας</string>
     <string name="call_notes">Notizen für Anrufe</string>
     <string name="back_pressed_end_call">Η ενέργεια επιστροφής τερματίζει την κλήση</string>
-    <string name="keep_calls_in_popup_summary">Αφού απαντηθούν οι κλήσεις, παραμένουν στις ειδοποιήσεις σας και δεν εμφανίζονται σε πλήρη οθόνη. Αυτό γίνεται για να αποφευχθεί η διακοπή άλλων εφαρμογών, όπως κατά την αναπαραγωγή ενός παιχνιδιού.</string>
+    <string name="keep_calls_in_popup_summary">Αφού απαντηθεί μια κλήση, αυτή παραμένει στις ειδοποιήσεις σας και δεν καταλαμβάνει ολόκληρη την οθόνη. Αυτό γίνεται για να αποφευχθεί η διακοπή άλλων εφαρμογών, όπως κατά την αναπαραγωγή ενός παιχνιδιού.\nΕάν δεν είναι συνδεδεμένα ακουστικά, το ηχείο θα ενεργοποιηθεί.</string>
     <string name="busy">Απασχολημένος</string>
     <string name="block_calls">Αποκλεισμός κλήσεων</string>
+    <string name="edit_number_before_call">Επεξεργασία αριθμού πριν από την κλήση</string>
+    <string name="on_favorite_click">Όταν κάνετε κλικ σε ένα αγαπημένο</string>
     <string name="call_using_same_sim">Χρησιμοποιήστε την ίδια κάρτα SIM στην οποία πραγματοποιήθηκε η προηγούμενη (τελευταία) κλήση</string>
     <string name="answer_end_other_call">Απαντήστε και τερματίστε την τρέχουσα κλήση</string>
     <string name="quick_answers">Schnelle Antworten</string>
@@ -78,4 +81,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Αφήστε τις κλήσεις στις ειδοποιήσεις</string>
+    <string name="on_contact_click">Όταν κάνετε κλικ σε μια επαφή</string>
+    <string name="on_recent_click">Όταν κάνετε κλικ σε μια πρόσφατη κλήση</string>
 </resources>

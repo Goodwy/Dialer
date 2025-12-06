@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">ਕਿਸੇ ਹੋਰ ਐਪਲੀਕੇਸ਼ਨ ਤੋਂ ਕਾਲ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਸਮੇਂ, ਡਾਇਲ ਪੈਡ ਖੋਲ੍ਹੋ</string>
     <string name="open_dialpad_when_call_from_another_app_summary">ਇਹ ਤੁਹਾਨੂੰ ਮਾਲਵੇਅਰ ਤੋਂ ਬਚਾ ਸਕਦਾ ਹੈ ਜੋ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਤੋਂ ਬਿਨਾਂ ਕਾਲ ਕਰਦਾ ਹੈ।</string>
     <string name="number_of_recent_calls_displays">ਹਾਲੀਆ ਕਾਲਾਂ ਦੀ ਗਿਣਤੀ ਪ੍ਰਦਰਸ਼ਿਤ ਕੀਤੀ ਗਈ</string>
+    <string name="number_of_recent_calls_displays_summary">ਗਰੁੱਪਿੰਗ ਦੇ ਕਾਰਨ, ਪ੍ਰਦਰਸ਼ਿਤ ਕਤਾਰਾਂ ਦੀ ਗਿਣਤੀ ਘੱਟ ਹੋ ਸਕਦੀ ਹੈ।</string>
     <string name="group_calls">ਗਰੁੱਪਿੰਗ ਨੂੰ ਕਾਲ ਕਰੋ</string>
     <string name="group_all_calls">ਸਮੂਹ ਕਾਲਾਂ, ਸਿਰਫ਼ ਆਖਰੀ ਕਾਲ ਦਿਖਾਈ ਜਾਵੇਗੀ</string>
     <string name="call_button_style">ਕਾਲ ਬਟਨ ਸ਼ੈਲੀ</string>
     <string name="call_notes">ਕਾਲ ਨੋਟਸ</string>
     <string name="back_pressed_end_call">ਬੈਕ ਐਕਸ਼ਨ ਕਾਲ ਨੂੰ ਖਤਮ ਕਰਦਾ ਹੈ</string>
-    <string name="keep_calls_in_popup_summary">ਕਾਲਾਂ ਦਾ ਜਵਾਬ ਦਿੱਤੇ ਜਾਣ ਤੋਂ ਬਾਅਦ, ਉਹ ਤੁਹਾਡੀਆਂ ਸੂਚਨਾਵਾਂ ਵਿੱਚ ਰਹਿੰਦੀਆਂ ਹਨ ਅਤੇ ਪੂਰੀ-ਸਕ੍ਰੀਨ \'ਤੇ ਦਿਖਾਈ ਨਹੀਂ ਦਿੰਦੀਆਂ। ਇਹ ਹੋਰ ਐਪਸ ਨੂੰ ਰੋਕਣ ਲਈ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਜਿਵੇਂ ਕਿ ਇੱਕ ਗੇਮ ਖੇਡਣ ਵੇਲੇ।</string>
+    <string name="keep_calls_in_popup_summary">ਕਾਲ ਦਾ ਜਵਾਬ ਦੇਣ ਤੋਂ ਬਾਅਦ, ਇਹ ਤੁਹਾਡੀਆਂ ਸੂਚਨਾਵਾਂ ਵਿੱਚ ਰਹਿੰਦਾ ਹੈ ਅਤੇ ਪੂਰੀ ਸਕ੍ਰੀਨ ਨੂੰ ਨਹੀਂ ਭਰਦਾ। ਇਹ ਹੋਰ ਐਪਸ ਨੂੰ ਰੋਕਣ ਤੋਂ ਬਚਣ ਲਈ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਜਿਵੇਂ ਕਿ ਗੇਮ ਖੇਡਦੇ ਸਮੇਂ।\nਜੇਕਰ ਹੈੱਡਸੈੱਟ ਕਨੈਕਟ ਨਹੀਂ ਹੈ, ਤਾਂ ਸਪੀਕਰ ਚਾਲੂ ਹੋ ਜਾਵੇਗਾ।</string>
     <string name="busy">ਵਿਅਸਤ</string>
     <string name="block_calls">ਕਾਲਾਂ ਨੂੰ ਬਲੌਕ ਕਰੋ</string>
+    <string name="edit_number_before_call">ਕਾਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਨੰਬਰ ਦਾ ਸੰਪਾਦਨ ਕਰੋ</string>
+    <string name="on_favorite_click">ਜਦੋਂ ਤੁਸੀਂ ਕਿਸੇ ਮਨਪਸੰਦ \'ਤੇ ਕਲਿੱਕ ਕਰਦੇ ਹੋ</string>
     <string name="call_using_same_sim">ਉਹੀ ਸਿਮ ਕਾਰਡ ਵਰਤੋ ਜਿਸ \'ਤੇ ਪਿਛਲੀ (ਆਖਰੀ) ਕਾਲ ਕੀਤੀ ਗਈ ਸੀ</string>
     <string name="answer_end_other_call">ਮੌਜੂਦਾ ਕਾਲ ਦਾ ਜਵਾਬ ਦਿਓ ਅਤੇ ਸਮਾਪਤ ਕਰੋ</string>
     <string name="quick_answers">ਤੇਜ਼ ਜਵਾਬ</string>
@@ -78,4 +81,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">ਸੂਚਨਾਵਾਂ ਵਿੱਚ ਕਾਲਾਂ ਛੱਡੋ</string>
+    <string name="on_contact_click">ਜਦੋਂ ਤੁਸੀਂ ਕਿਸੇ ਸੰਪਰਕ \'ਤੇ ਕਲਿੱਕ ਕਰਦੇ ਹੋ</string>
+    <string name="on_recent_click">ਜਦੋਂ ਤੁਸੀਂ ਹਾਲੀਆ ਕਾਲ \'ਤੇ ਕਲਿੱਕ ਕਰਦੇ ਹੋ</string>
 </resources>

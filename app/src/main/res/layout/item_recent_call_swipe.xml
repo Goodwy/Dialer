@@ -165,7 +165,7 @@
                 android:alpha="0.6"
                 android:gravity="center|end"
                 android:maxLines="1"
-                android:paddingEnd="@dimen/medium_margin"
+                android:paddingEnd="@dimen/tiny_margin"
                 android:layout_marginTop="@dimen/medium_margin"
                 android:layout_marginBottom="@dimen/medium_margin"
                 android:textSize="@dimen/smaller_text_size"
@@ -176,12 +176,12 @@
 
             <ImageView
                 android:id="@+id/item_recents_info"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginTop="@dimen/medium_margin"
-                android:layout_marginBottom="@dimen/medium_margin"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:contentDescription="@string/show_call_details"
+                android:padding="@dimen/smaller_margin"
                 android:src="@drawable/ic_info"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="@dimen/medium_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>

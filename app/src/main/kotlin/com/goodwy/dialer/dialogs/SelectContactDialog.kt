@@ -2,13 +2,13 @@ package com.goodwy.dialer.dialogs
 
 import android.content.res.Configuration
 import android.graphics.Color
-import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
+import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.getProperText
 import com.goodwy.commons.models.contacts.Contact
-import com.goodwy.commons.views.MySearchMenu
+import com.goodwy.commons.views.MySearchMenuTop
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.SimpleActivity
 import com.goodwy.dialer.adapters.ContactsAdapter
@@ -45,15 +45,17 @@ class SelectContactDialog(val activity: SimpleActivity, val contacts: List<Conta
 
         activity.getAlertDialogBuilder()
             .setNegativeButton(R.string.cancel, null)
-            .setOnKeyListener { _, i, keyEvent ->
-                if (keyEvent.action == KeyEvent.ACTION_UP && i == KeyEvent.KEYCODE_BACK) {
-                    backPressed()
-                }
-                true
-            }
             .apply {
                 activity.setupDialogStuff(binding.root, this, R.string.choose_contact) { alertDialog ->
                     dialog = alertDialog
+                    alertDialog.onBackPressedDispatcher.addCallback(alertDialog) {
+                        if (binding.contactSearchView.isSearchOpen) {
+                            binding.contactSearchView.closeSearch()
+                        } else {
+                            isEnabled = false
+                            alertDialog.onBackPressedDispatcher.onBackPressed()
+                        }
+                    }
                 }
             }
     }
@@ -97,14 +99,14 @@ class SelectContactDialog(val activity: SimpleActivity, val contacts: List<Conta
         updateSearchViewUi()
     }
 
-    private fun MySearchMenu.updateSearchViewUi() {
-        getToolbar().beInvisible()
+    private fun MySearchMenuTop.updateSearchViewUi() {
+        requireToolbar().beInvisible()
         updateColors()
         setBackgroundColor(Color.TRANSPARENT)
-        binding.topAppBarLayout.setBackgroundColor(Color.TRANSPARENT)
+        binding.searchBarContainer.setBackgroundColor(Color.TRANSPARENT)
     }
 
-    private fun MySearchMenu.setSearchViewListeners() {
+    private fun MySearchMenuTop.setSearchViewListeners() {
         onSearchOpenListener = {
             //updateSearchViewLeftIcon(R.drawable.ic_cross_vector)
         }
@@ -170,13 +172,5 @@ class SelectContactDialog(val activity: SimpleActivity, val contacts: List<Conta
 
         letterFastscroller.beVisibleIf(contactsEmptyPlaceholder.isGone())
         letterFastscrollerThumb.beVisibleIf(contactsEmptyPlaceholder.isGone())
-    }
-
-    private fun backPressed() {
-        if (binding.contactSearchView.isSearchOpen) {
-            binding.contactSearchView.closeSearch()
-        } else {
-            dialog?.dismiss()
-        }
     }
 }

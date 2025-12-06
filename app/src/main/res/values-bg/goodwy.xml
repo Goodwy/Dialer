@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">Когато се опитвате да осъществите повикване от друго приложение, отворете клавиатурата за набиране</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Това може да ви предпази от зловреден софтуер, който извършва обаждания без ваше знание.</string>
     <string name="number_of_recent_calls_displays">Показан брой скорошни обаждания</string>
+    <string name="number_of_recent_calls_displays_summary">Поради групирането, броят на показаните редове може да е по-малък.</string>
     <string name="group_calls">Групиране на обаждания</string>
     <string name="group_all_calls">Групирайте всички повиквания, ще се покаже само последното повикване</string>
     <string name="call_button_style">Стил на звънец</string>
     <string name="call_notes">Бележки за обаждания</string>
     <string name="back_pressed_end_call">Действието \"Назад\" прекратява повикването</string>
-    <string name="keep_calls_in_popup_summary">След като обажданията бъдат отговорени, те остават във вашите известия и не се показват на цял екран. Това се прави, за да се избегне прекъсването на други приложения, като например докато играете игра.</string>
+    <string name="keep_calls_in_popup_summary">След като отговорите на обаждане, то остава в известията ви и не запълва целия екран. Това се прави, за да се избегне прекъсването на други приложения, например по време на игра.\nАко не са свързани слушалки, високоговорителят ще бъде включен.</string>
     <string name="busy">зает</string>
     <string name="block_calls">Блокиране на повиквания</string>
+    <string name="edit_number_before_call">Редактиране на номера преди обаждане</string>
+    <string name="on_favorite_click">Когато кликнете върху любим</string>
     <string name="call_using_same_sim">Използвайте същата SIM карта, към която е направено предишното (последно) обаждане</string>
     <string name="answer_end_other_call">Отговорете и прекратете текущото повикване</string>
     <string name="quick_answers">Бързи отговори</string>
@@ -78,4 +81,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Оставете обажданията в известията</string>
+    <string name="on_contact_click">Когато кликнете върху контакт</string>
+    <string name="on_recent_click">Когато кликнете върху скорошно обаждане</string>
 </resources>

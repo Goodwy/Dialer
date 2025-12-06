@@ -6,14 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/dialpadToolbar"
+    <com.goodwy.commons.views.MyAppBarLayout
+        android:id="@+id/dialpad_appbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/default_background_color"
-        app:menu="@menu/menu_dialpad"
-        app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle"
-        tools:background="@color/md_grey_black"/>
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/dialpadToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/default_background_color"
+            app:menu="@menu/menu_dialpad"
+            app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle"
+            tools:background="@color/md_grey_black" />
+    </com.goodwy.commons.views.MyAppBarLayout>
 
     <com.goodwy.commons.views.MyEditText
         android:id="@+id/dialpadInput"
@@ -35,9 +41,9 @@
         android:id="@+id/dialpadHolder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize"
         android:layout_alignParentBottom="true"
-        android:focusableInTouchMode="true">
+        android:focusableInTouchMode="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.goodwy.commons.views.MyTextView
             android:id="@+id/dialpad_add_number"

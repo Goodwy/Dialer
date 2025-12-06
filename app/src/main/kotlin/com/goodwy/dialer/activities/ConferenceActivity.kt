@@ -8,35 +8,35 @@ import com.goodwy.dialer.adapters.ConferenceCallsAdapter
 import com.goodwy.dialer.databinding.ActivityConferenceBinding
 import com.goodwy.dialer.helpers.CallManager
 import com.goodwy.dialer.helpers.NoCall
+import com.goodwy.dialer.helpers.SHOW_RECENT_CALLS_ON_DIALPAD
 
 class ConferenceActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityConferenceBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.apply {
-            updateMaterialActivityViews(conferenceCoordinator, conferenceList, useTransparentNavigation = true, useTopSearchMenu = false)
-            setupMaterialScrollListener(conferenceList, conferenceToolbar)
+            setupEdgeToEdge(padBottomSystem = listOf(conferenceList))
+            setupMaterialScrollListener(conferenceList, conferenceAppbar)
             conferenceList.adapter = ConferenceCallsAdapter(this@ConferenceActivity, conferenceList, ArrayList(CallManager.getConferenceCalls())) {}
         }
     }
 
     override fun onResume() {
         super.onResume()
-        setupToolbar(binding.conferenceToolbar, NavigationIcon.Arrow)
+        setupTopAppBar(binding.conferenceAppbar, NavigationIcon.Arrow)
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        when (CallManager.getPhoneState()) {
+    override fun onBackPressedCompat(): Boolean {
+        return when (CallManager.getPhoneState()) {
             NoCall -> {
                 finishAndRemoveTask()
+                true
             }
             else -> {
                 startActivity(Intent(this, CallActivity::class.java))
-                super.onBackPressed()
+                true
             }
         }
     }

@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">Når du prøver at foretage et opkald fra et andet program, skal du åbne opkaldstastaturet</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Dette kan beskytte dig mod malware, der foretager opkald uden din viden.</string>
     <string name="number_of_recent_calls_displays">Vist antal seneste opkald</string>
+    <string name="number_of_recent_calls_displays_summary">På grund af gruppering kan antallet af viste rækker være mindre.</string>
     <string name="group_calls">Opkaldsgruppering</string>
     <string name="group_all_calls">Gruppér alle opkald, kun det sidste opkald vises</string>
     <string name="call_button_style">Klokkeknap stil</string>
     <string name="call_notes">Opkaldsnoter</string>
     <string name="back_pressed_end_call">Tilbage-handlingen afslutter opkaldet</string>
-    <string name="keep_calls_in_popup_summary">Når opkald er besvaret, forbliver de i dine notifikationer og vises ikke i fuld skærm. Dette gøres for at undgå at afbryde andre apps, f.eks. mens du spiller et spil.</string>
+    <string name="keep_calls_in_popup_summary">Når et opkald er besvaret, forbliver det i dine notifikationer og fylder ikke hele skærmen. Dette gøres for at undgå at afbryde andre apps, f.eks. mens du spiller et spil.\nHvis der ikke er tilsluttet et headset, vil højttaleren være tændt.</string>
     <string name="busy">Optaget</string>
     <string name="block_calls">Bloker opkald</string>
+    <string name="edit_number_before_call">Rediger nummer før opkald</string>
+    <string name="on_favorite_click">Når du klikker på en favorit</string>
     <string name="call_using_same_sim">Brug det samme SIM-kort, som det forrige (sidste) opkald blev foretaget til</string>
     <string name="answer_end_other_call">Besvar og afslut det aktuelle opkald</string>
     <string name="quick_answers">Hurtige svar</string>
@@ -78,4 +81,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Efterlad opkald i notifikationer</string>
+    <string name="on_contact_click">Når du klikker på en kontakt</string>
+    <string name="on_recent_click">Når du klikker på et nyligt opkald</string>
 </resources>

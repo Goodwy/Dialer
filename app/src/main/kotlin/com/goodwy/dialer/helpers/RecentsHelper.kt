@@ -6,6 +6,8 @@ import android.content.Context
 import android.database.sqlite.SQLiteFullException
 import android.os.Build
 import android.provider.CallLog.Calls
+import android.provider.CallLog.Calls.PRESENTATION_UNAVAILABLE
+import android.provider.CallLog.Calls.PRESENTATION_UNKNOWN
 import android.telephony.PhoneNumberUtils
 import android.text.TextUtils
 import com.goodwy.commons.extensions.*
@@ -60,29 +62,43 @@ class RecentsHelper(private val context: Context) {
                         .flatMap { it.groupedCalls ?: listOf(it) }
                         .map { it.copy(groupedCalls = null) }
 
-                    val newerRecents = getRecents(
-                        contacts = contacts,
-                        selection = "${Calls.DATE} > ?",
-                        selectionParams = arrayOf("${previousRecentCalls.first().startTS}"),
-                        updateCallsCache = updateCallsCache
-                    )
+                    // We take into account the size of previous entries in the total limit
+                    val remainingLimit = queryLimit - previousRecentCalls.size
 
-                    val olderRecents = getRecents(
-                        contacts = contacts,
-                        selection = "${Calls.DATE} < ?",
-                        selectionParams = arrayOf("${previousRecentCalls.last().startTS}"),
-                        updateCallsCache = updateCallsCache
-                    )
+                    if (remainingLimit <= 0) {
+                        // If there are already enough previous entries, we return them within the limit
+                        previousRecentCalls.take(queryLimit)
+                    } else {
 
-                    newerRecents + previousRecentCalls + olderRecents
+                        val newerLimit = (queryLimit * 0.3).toInt() // 30% limit on new entries
+                        val newerRecents = getRecents(
+                            contacts = contacts,
+                            selection = "${Calls.DATE} > ?",
+                            selectionParams = arrayOf("${previousRecentCalls.first().startTS}"),
+                            updateCallsCache = updateCallsCache,
+                            limit = newerLimit
+                        )
+
+                        val olderLimit = queryLimit - newerRecents.size // Remaining limit on old entries
+                        val olderRecents = getRecents(
+                            contacts = contacts,
+                            selection = "${Calls.DATE} < ?",
+                            selectionParams = arrayOf("${previousRecentCalls.last().startTS}"),
+                            updateCallsCache = updateCallsCache,
+                            limit = olderLimit
+                        )
+
+                        newerRecents + previousRecentCalls + olderRecents
+                    }
                 } else {
-                    getRecents(contacts, updateCallsCache = updateCallsCache)
+                    getRecents(contacts, updateCallsCache = updateCallsCache, limit = queryLimit)
                 }
 
                 callback(
                     recentCalls
                         .sortedByDescending { it.startTS }
                         .distinctBy { it.id }
+//                        .take(queryLimit)
                 )
             }
         }
@@ -138,11 +154,13 @@ class RecentsHelper(private val context: Context) {
         return result
     }
 
+    @SuppressLint("NewApi")
     private fun getRecents(
         contacts: List<Contact>,
         selection: String? = null,
         selectionParams: Array<String>? = null,
         updateCallsCache: Boolean,
+        limit: Int = queryLimit
     ): List<RecentCall> {
         val recentCalls = mutableListOf<RecentCall>()
         var previousStartTS = 0L
@@ -165,8 +183,7 @@ class RecentsHelper(private val context: Context) {
             }
         }
 
-        val manufacturer = Build.MANUFACTURER.lowercase(Locale.getDefault())
-        val isHuawei = manufacturer.contains(Regex(pattern = "huawei|honor"))
+        val isHuawei = context.config.isEmui
         val voiceMailNumbers = loadVoiceMailNumbers()
 
         val projection = if (isQPlus()) {
@@ -179,6 +196,7 @@ class RecentsHelper(private val context: Context) {
                 Calls.DURATION,
                 Calls.TYPE,
                 Calls.PHONE_ACCOUNT_ID,
+                Calls.NUMBER_PRESENTATION,
                 Calls.FEATURES,
                 Calls.COUNTRY_ISO,
                 Calls.BLOCK_REASON
@@ -193,6 +211,7 @@ class RecentsHelper(private val context: Context) {
                 Calls.DURATION,
                 Calls.TYPE,
                 Calls.PHONE_ACCOUNT_ID,
+                Calls.NUMBER_PRESENTATION,
                 Calls.FEATURES,
                 Calls.COUNTRY_ISO
             )
@@ -200,7 +219,7 @@ class RecentsHelper(private val context: Context) {
 
         // https://issuetracker.google.com/issues/175198972?pli=1#comment6
         val limitedUri = contentUri.buildUpon()
-            .appendQueryParameter(Calls.LIMIT_PARAM_KEY, queryLimit.toString())
+            .appendQueryParameter(Calls.LIMIT_PARAM_KEY, limit.toString())
             .build()
         val sortOrder = "${Calls.DATE} DESC" //TODO Sort call
         val cursor = context.contentResolver.query(limitedUri, projection, selection, selectionParams, sortOrder)
@@ -214,7 +233,11 @@ class RecentsHelper(private val context: Context) {
                 val id = cursor.getIntValue(Calls._ID)
                 var isUnknownNumber = false
                 val number = cursor.getStringValueOrNull(Calls.NUMBER)
-                if (number == null || number == "-1") {
+                val presentation = cursor.getIntValueOrNull(Calls.NUMBER_PRESENTATION) ?: Calls.PRESENTATION_ALLOWED
+                val presentationBlocked = presentation == PRESENTATION_UNKNOWN
+                    || presentation == PRESENTATION_UNAVAILABLE
+                    || presentation == Calls.PRESENTATION_RESTRICTED
+                if (presentationBlocked || number.isNullOrBlank() || number == "-1") {
                     isUnknownNumber = true
                 }
 

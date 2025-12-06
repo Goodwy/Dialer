@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">Kiam vi provas voki de alia aplikaĵo, malfermu la diskpadronon</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Ĉi tio povas protekti vin kontraŭ malware, kiu faras vokojn sen via scio.</string>
     <string name="number_of_recent_calls_displays">Montrita nombro de lastatempaj vokoj</string>
+    <string name="number_of_recent_calls_displays_summary">Pro grupigo, la nombro de montrataj vicoj povas esti malpli granda.</string>
     <string name="group_calls">Voka grupigo</string>
     <string name="group_all_calls">Grupigu ĉiujn vokojn, nur la lasta voko estos montrata</string>
     <string name="call_button_style">Voka butono stilo</string>
     <string name="call_notes">Vokaj notoj</string>
     <string name="back_pressed_end_call">Reen ago finas la vokon</string>
-    <string name="keep_calls_in_popup_summary">Post kiam alvokoj estas responditaj, ili restas en viaj sciigoj kaj ne aperas plenekrane. Ĉi tio estas farita por eviti interrompi aliajn programojn, ekzemple dum ludado.</string>
+    <string name="keep_calls_in_popup_summary">Post kiam voko estas respondita, ĝi restas en viaj sciigoj kaj ne plenigas la tutan ekranon. Ĉi tio estas farita por eviti interrompon de aliaj aplikaĵoj, ekzemple dum ludado.\nSe kapaŭskultilo ne estas konektita, la laŭtparolilo estos ŝaltita.</string>
     <string name="busy">Okupita</string>
     <string name="block_calls">Bloki vokojn</string>
+    <string name="edit_number_before_call">Redakti numeron antaŭ alvoko</string>
+    <string name="on_favorite_click">Kiam vi alklakas ŝatatan</string>
     <string name="call_using_same_sim">Uzu la saman SIM-karton al kiu estis farita la antaŭa (lasta) voko</string>
     <string name="answer_end_other_call">Respondu kaj ĉesigu la nunan vokon</string>
     <string name="quick_answers">Rapidaj respondoj</string>
@@ -78,4 +81,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Lasu vokojn en sciigoj</string>
+    <string name="on_contact_click">Kiam vi alklakas kontakton</string>
+    <string name="on_recent_click">Kiam vi alklakas lastatempan vokon</string>
 </resources>

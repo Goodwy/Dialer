@@ -20,6 +20,8 @@ class CallManager {
         private var call: Call? = null
         private val calls = mutableListOf<Call>()
         private val listeners = CopyOnWriteArraySet<CallManagerListener>()
+        var isSpeakerOn: Boolean = false
+        private var previousAudioRoute: Int = CallAudioState.ROUTE_WIRED_OR_EARPIECE
 
         fun onCallAdded(call: Call) {
             this.call = call
@@ -100,7 +102,7 @@ class CallManager {
             return calls.size
         }
 
-        private fun getCallAudioState() = inCallService?.callAudioState
+        fun getCallAudioState() = inCallService?.callAudioState
 
         fun getSupportedAudioRoutes(): Array<AudioRoute> {
             return AudioRoute.entries.filter {
@@ -115,8 +117,75 @@ class CallManager {
 
         fun getCallAudioRoute() = AudioRoute.fromRoute(getCallAudioState()?.route)
 
+        fun toggleSpeakerRoute(keepCalls: Boolean = false) {
+            val currentAudioState = getCallAudioState() ?: return
+
+            if (keepCalls) {
+                if (currentAudioState.route == CallAudioState.ROUTE_EARPIECE) {
+                    setAudioRoute(CallAudioState.ROUTE_SPEAKER)
+                    isSpeakerOn = true
+                }
+            } else {
+                if (!isSpeakerOn) {
+                    // We only remember the current route if it is not dynamic
+                    if (currentAudioState.route != CallAudioState.ROUTE_SPEAKER) {
+                        previousAudioRoute = currentAudioState.route
+                    }
+                    // Turn on the speaker - save the current route
+                    setAudioRoute(CallAudioState.ROUTE_SPEAKER)
+                    isSpeakerOn = true
+                } else {
+                    // Turn off the speaker - return to the saved route
+                    val targetRoute = getOptimalAudioRoute(previousAudioRoute, currentAudioState)
+                    setAudioRoute(targetRoute)
+                    isSpeakerOn = false
+                }
+            }
+
+            // We hereby notify listeners of a change in status.
+            notifyAudioStateChanged()
+        }
+
+        private fun getOptimalAudioRoute(preferredRoute: Int, audioState: CallAudioState): Int {
+            val supportedRoutes = audioState.supportedRouteMask
+
+            // First, let's try to return to the previous route
+            if (supportedRoutes and preferredRoute != 0) {
+                return preferredRoute
+            }
+
+            // If the previous one is unavailable, use the following priority: Bluetooth -> headset -> speaker
+            return when {
+                supportedRoutes and CallAudioState.ROUTE_BLUETOOTH != 0 -> CallAudioState.ROUTE_BLUETOOTH
+                supportedRoutes and CallAudioState.ROUTE_WIRED_OR_EARPIECE != 0 -> CallAudioState.ROUTE_WIRED_OR_EARPIECE
+                else -> CallAudioState.ROUTE_SPEAKER
+            }
+        }
+
         fun setAudioRoute(newRoute: Int) {
             inCallService?.setAudioRoute(newRoute)
+
+            when (newRoute) {
+                CallAudioState.ROUTE_SPEAKER -> isSpeakerOn = true
+                else -> {
+                    if (isSpeakerOn) {
+                        isSpeakerOn = false
+                        // Update the previous route if switching from speaker
+                        if (newRoute != CallAudioState.ROUTE_SPEAKER) {
+                            previousAudioRoute = newRoute
+                        }
+                    }
+                }
+            }
+
+            notifyAudioStateChanged()
+        }
+
+        private fun notifyAudioStateChanged() {
+            val route = getCallAudioRoute() ?: return
+            for (listener in listeners) {
+                listener.onAudioStateChanged(route)
+            }
         }
 
         private fun updateState() {

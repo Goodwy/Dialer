@@ -13,6 +13,6 @@ enum class AudioRoute(val route: Int, @StringRes val stringRes: Int, @DrawableRe
     WIRED_OR_EARPIECE(CallAudioState.ROUTE_WIRED_OR_EARPIECE, R.string.audio_route_wired_or_earpiece, R.drawable.ic_volume_down_vector); //Phone or Wired headphones
 
     companion object {
-        fun fromRoute(route: Int?) = values().firstOrNull { it.route == route }
+        fun fromRoute(route: Int?) = entries.firstOrNull { it.route == route }
     }
 }

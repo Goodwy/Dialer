@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">دوسری ایپلیکیشن سے کال کرنے کی کوشش کرتے وقت، ڈائل پیڈ کھولیں۔</string>
     <string name="open_dialpad_when_call_from_another_app_summary">یہ آپ کو میلویئر سے بچا سکتا ہے جو آپ کے علم کے بغیر کال کرتا ہے۔</string>
     <string name="number_of_recent_calls_displays">حالیہ کالوں کی تعداد دکھائی گئی۔</string>
+    <string name="number_of_recent_calls_displays_summary">Din cauza grupării, numărul de rânduri afișate poate fi mai mic.</string>
     <string name="group_calls">کال گروپنگ</string>
     <string name="group_all_calls">تمام کالوں کو گروپ کریں، صرف آخری کال دکھائی جائے گی۔</string>
     <string name="call_button_style">کال بٹن کا انداز</string>
     <string name="call_notes">کال نوٹ</string>
     <string name="back_pressed_end_call">بیک ایکشن کال ختم کردا اے</string>
-    <string name="keep_calls_in_popup_summary">کالز کا جواب دینے کے بعد، وہ آپ کی اطلاعات میں رہتی ہیں اور پوری اسکرین پر ظاہر نہیں ہوتی ہیں۔ یہ دوسری ایپس میں مداخلت سے بچنے کے لیے کیا جاتا ہے، جیسے کہ گیم کھیلتے وقت۔</string>
+    <string name="keep_calls_in_popup_summary">کال کا جواب دینے کے بعد، یہ آپ کی اطلاعات میں رہتا ہے اور پوری اسکرین کو نہیں بھرتا ہے۔ یہ دوسری ایپس میں مداخلت سے بچنے کے لیے کیا جاتا ہے، جیسے کہ گیم کھیلتے وقت۔\nاگر ہیڈسیٹ منسلک نہیں ہے، تو اسپیکر آن ہو جائے گا۔</string>
     <string name="busy">مصروف</string>
     <string name="block_calls">کالیں بلاک کریں۔</string>
+    <string name="edit_number_before_call">کال کرنے سے پہلے نمبر میں ترمیم کریں۔</string>
+    <string name="on_favorite_click">جب آپ کسی پسندیدہ پر کلک کریں۔</string>
     <string name="call_using_same_sim">اوہی سم کارڈ ورتو جس تے پچھلی (آخری) کال کیتی گئی سی</string>
     <string name="answer_end_other_call">موجودہ کال کا جواب دیں اور ختم کریں۔</string>
     <string name="quick_answers">فوری جوابات</string>
@@ -78,4 +81,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">کالز کو اطلاعات میں چھوڑیں۔</string>
+    <string name="on_contact_click">جب آپ کسی رابطے پر کلک کرتے ہیں۔</string>
+    <string name="on_recent_click">جب آپ حالیہ کال پر کلک کرتے ہیں۔</string>
 </resources>

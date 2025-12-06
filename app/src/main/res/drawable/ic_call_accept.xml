@@ -9,8 +9,8 @@
             </item>
             <item
                 android:id="@+id/accept_call_icon"
-                android:bottom="@dimen/medium_margin"
                 android:drawable="@drawable/ic_phone_vector"
+                android:bottom="@dimen/medium_margin"
                 android:left="@dimen/medium_margin"
                 android:right="@dimen/medium_margin"
                 android:top="@dimen/medium_margin" />

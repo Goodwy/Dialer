@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">Başqa proqramdan zəng etməyə çalışarkən yığım panelini açın</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Bu, sizi xəbəriniz olmadan zənglər edən zərərli proqramlardan qoruya bilər.</string>
     <string name="number_of_recent_calls_displays">Son zənglərin sayı göstərilir</string>
+    <string name="number_of_recent_calls_displays_summary">Qruplaşmaya görə, göstərilən sıraların sayı daha az ola bilər.</string>
     <string name="group_calls">Zəng qruplaşdırılması</string>
     <string name="group_all_calls">Bütün zəngləri qruplaşdırın, yalnız son zəng göstəriləcək</string>
     <string name="call_button_style">Zəng düyməsi tərzi</string>
     <string name="call_notes">Zəng qeydləri</string>
     <string name="back_pressed_end_call">Geri hərəkət zəngi bitirir</string>
-    <string name="keep_calls_in_popup_summary">Zənglərə cavab verildikdən sonra onlar sizin bildirişlərinizdə qalır və tam ekranda görünmür. Bu, digər proqramların, məsələn, oyun oynayarkən müdaxilə etməmək üçün edilir.</string>
+    <string name="keep_calls_in_popup_summary">Zəngə cavab verildikdən sonra o, bildirişlərinizdə qalır və bütün ekranı doldurmur. Bu, digər proqramların, məsələn, oyun oynayarkən müdaxilə etməmək üçün edilir.\nQulaqlıq qoşulmayıbsa, dinamik işə salınacaq.</string>
     <string name="busy">Məşğul</string>
     <string name="block_calls">Zəngləri bloklayın</string>
+    <string name="edit_number_before_call">Zəng etməzdən əvvəl nömrəni redaktə edin</string>
+    <string name="on_favorite_click">Sevimlilərə kliklədiyiniz zaman</string>
     <string name="call_using_same_sim">Əvvəlki (son) zənginin edildiyi eyni SİM kartdan istifadə edin</string>
     <string name="answer_end_other_call">Cari zəngə cavab verin və bitirin</string>
     <string name="quick_answers">Sürətli cavablar</string>
@@ -78,4 +81,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Zəngləri bildirişlərdə buraxın</string>
+    <string name="on_contact_click">Kontaktı kliklədiyiniz zaman</string>
+    <string name="on_recent_click">Son zəngə kliklədiyiniz zaman</string>
 </resources>

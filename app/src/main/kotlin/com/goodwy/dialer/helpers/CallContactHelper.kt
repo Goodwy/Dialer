@@ -25,7 +25,7 @@ fun getCallContact(context: Context, call: Call?, callback: (CallContact) -> Uni
         val callContact = CallContact("", "", "", "", "")
         val handle = try {
             call?.details?.handle?.toString()
-        } catch (e: NullPointerException) {
+        } catch (_: NullPointerException) {
             null
         }
 
@@ -49,7 +49,7 @@ fun getCallContact(context: Context, call: Call?, callback: (CallContact) -> Uni
                             callContact.isVoiceMail = true
                         }
                     }
-                } catch (ignored: Exception) {
+                } catch (_: Exception) {
                 }
             }
 
@@ -79,12 +79,10 @@ fun getCallContact(context: Context, call: Call?, callback: (CallContact) -> Uni
                     callContact.name = contact.getNameToDisplay()
                     callContact.photoUri = contact.photoUri
 
-//                    if (contact.phoneNumbers.size > 1) {
-                        val specificPhoneNumber = contact.phoneNumbers.firstOrNull { it.normalizedNumber == number }
-                        if (specificPhoneNumber != null) {
-                            callContact.numberLabel = context.getPhoneNumberTypeText(specificPhoneNumber.type, specificPhoneNumber.label)
-                        }
-//                    }
+                    val specificPhoneNumber = contact.phoneNumbers.firstOrNull { it.normalizedNumber == number }
+                    if (specificPhoneNumber != null) {
+                        callContact.numberLabel = context.getPhoneNumberTypeText(specificPhoneNumber.type, specificPhoneNumber.label)
+                    }
 
                     val showCallerDescription = context.config.showCallerDescription
                     if (showCallerDescription != SHOW_CALLER_NOTHING) {
@@ -100,7 +98,8 @@ fun getCallContact(context: Context, call: Call?, callback: (CallContact) -> Uni
                         }
                     }
 
-                    callContact.isABusinessCall = contact.organization.company.isNotEmpty() &&  contact.getNameToDisplay().contains(contact.organization.company)
+                    callContact.isABusinessCall =
+                        contact.organization.company.isNotEmpty() && contact.getNameToDisplay().contains(contact.organization.company)
                 } else {
                     callContact.name = callContact.number
                 }

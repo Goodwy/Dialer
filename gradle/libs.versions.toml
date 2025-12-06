@@ -1,7 +1,7 @@
 [versions]
 #jetbrains
-geocoderVersion = "3.14"
-kotlin = "2.2.20"
+geocoderVersion = "3.18"
+kotlin = "2.2.21"
 kotlinxSerializationJson = "1.9.0"
 #KSP
 ksp = "2.2.10-2.0.2"
@@ -15,19 +15,19 @@ gradlePlugins-agp = "8.11.1"
 #Other
 indicatorFastScroll = "fe6ddbc316"
 autofitTextView = "0.2.1"
-libphonenumberVersion = "9.0.14"
+libphonenumberVersion = "9.0.18"
 #Goodwy
-right-commons = "70aad40568"
+right-commons = "c2bf2db476"
 badger = "1.1.22"
 androidx-lifecycle = "2.8.7"
 behavioRule = "1.0.1"
 rxAnimation = "2.1.1"
 rxJava3 = "3.1.5"
 room = "2.8.2"
-swipeToActionLayout = "bd1eb3c8a3"
+swipeToActionLayout = "0f7632fc36"
 #build
-app-build-compileSDKVersion = "34"
-app-build-targetSDK = "34"
+app-build-compileSDKVersion = "36"
+app-build-targetSDK = "36"
 app-build-minimumSDK = "26"
 app-build-javaVersion = "VERSION_17"
 app-build-kotlinJVMTarget = "17"
@@ -44,7 +44,9 @@ autofit-text-view = { module = "me.grantland:autofittextview", version.ref = "au
 geocoder = { module = "com.googlecode.libphonenumber:geocoder", version.ref = "geocoderVersion" }
 libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", version.ref = "libphonenumberVersion" }
 #Goodwy
-goodwy-commons = { module = "com.github.Goodwy:Goodwy-Commons", version.ref = "right-commons" }
+goodwy-commons-gplay = { module = "com.github.goodwy.goodwy-commons:commons-gplay", version.ref = "right-commons" }
+goodwy-commons-foss = { module = "com.github.goodwy.goodwy-commons:commons-foss", version.ref = "right-commons" }
+goodwy-commons-rustore = { module = "com.github.goodwy.goodwy-commons:commons-rustore", version.ref = "right-commons" }
 shortcut-badger = { module = "me.leolin:ShortcutBadger", version.ref = "badger" }
 androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }

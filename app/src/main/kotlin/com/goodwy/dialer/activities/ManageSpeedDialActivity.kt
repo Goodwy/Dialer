@@ -40,13 +40,12 @@ class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
     private var speedDialValues = mutableListOf<SpeedDial>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        isMaterialActivity = true
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
         binding.apply {
-            updateMaterialActivityViews(manageSpeedDialCoordinator, manageSpeedDialHolder, useTransparentNavigation = true, useTopSearchMenu = false)
-            setupMaterialScrollListener(manageSpeedDialScrollview, manageSpeedDialToolbar)
+            setupEdgeToEdge(padBottomSystem = listOf(manageSpeedDialScrollview))
+            setupMaterialScrollListener(binding.manageSpeedDialScrollview, binding.manageSpeedDialAppbar)
         }
 
         speedDialValues = config.getSpeedDialValues()
@@ -66,7 +65,7 @@ class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
 
     override fun onResume() {
         super.onResume()
-        setupToolbar(binding.manageSpeedDialToolbar, NavigationIcon.Arrow, navigationClick = false)
+        setupTopAppBar(binding.manageSpeedDialAppbar, NavigationIcon.Arrow, navigationClick = false)
         binding.manageSpeedDialToolbar.setNavigationOnClickListener {
             hideKeyboard()
             onBackPressed()
@@ -75,11 +74,6 @@ class ManageSpeedDialActivity : SimpleActivity(), RemoveSpeedDialListener {
 
     override fun onStop() {
         super.onStop()
-        config.speedDial = Gson().toJson(speedDialValues)
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
         config.speedDial = Gson().toJson(speedDialValues)
     }
 

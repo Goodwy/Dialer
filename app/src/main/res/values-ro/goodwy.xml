@@ -56,14 +56,17 @@
     <string name="open_dialpad_when_call_from_another_app">Când încercați să efectuați un apel dintr-o altă aplicație, deschideți tastatura de apelare</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Acest lucru vă poate proteja de programele malware care efectuează apeluri fără știrea dvs.</string>
     <string name="number_of_recent_calls_displays">Numărul afișat de apeluri recente</string>
+    <string name="number_of_recent_calls_displays_summary">С учетом группировки отображаемое количество строк может быть меньше.</string>
     <string name="group_calls">Gruparea apelurilor</string>
     <string name="group_all_calls">Grupați toate apelurile, va fi afișat doar ultimul apel</string>
     <string name="call_button_style">Stil buton clopot</string>
     <string name="call_notes">Note de apel</string>
     <string name="back_pressed_end_call">Acțiunea de întoarcere încheie apelul</string>
-    <string name="keep_calls_in_popup_summary">După ce se răspunde la apeluri, acestea rămân în notificări și nu apar pe ecran complet. Acest lucru se face pentru a evita întreruperea altor aplicații, cum ar fi în timpul jocului.</string>
+    <string name="keep_calls_in_popup_summary">După ce se răspunde la un apel, acesta rămâne în notificări și nu ocupă întregul ecran. Acest lucru se face pentru a evita întreruperea altor aplicații, cum ar fi în timpul jocului.\n\nDacă nu sunt conectate căști, difuzorul va fi pornit.</string>
     <string name="busy">Ocupat</string>
     <string name="block_calls">Blocați apelurile</string>
+    <string name="edit_number_before_call">Editați numărul înainte de apel</string>
+    <string name="on_favorite_click">Când faceți clic pe un favorit</string>
     <string name="call_using_same_sim">Utilizați aceeași cartelă SIM către care a fost efectuat apelul anterior (ultimul)</string>
     <string name="answer_end_other_call">Răspundeți și încheiați apelul curent</string>
     <string name="quick_answers">Răspunsuri rapide</string>
@@ -81,4 +84,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Lăsați apelurile în notificări</string>
+    <string name="on_contact_click">Când faceți clic pe un contact</string>
+    <string name="on_recent_click">Când dai clic pe un apel recent</string>
 </resources>

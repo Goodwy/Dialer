@@ -56,14 +56,17 @@
     <string name="open_dialpad_when_call_from_another_app">Bandydami skambinti iš kitos programos, atidarykite rinkimo klaviatūrą</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Tai gali apsaugoti jus nuo kenkėjiškų programų, kurios skambina jums nežinant.</string>
     <string name="number_of_recent_calls_displays">Rodomas paskutinių skambučių skaičius</string>
+    <string name="number_of_recent_calls_displays_summary">Dėl grupavimo rodomų eilučių skaičius gali būti mažesnis.</string>
     <string name="group_calls">Skambučių grupavimas</string>
     <string name="group_all_calls">Grupuokite visus skambučius, bus rodomas tik paskutinis skambutis</string>
     <string name="call_button_style">Varpo mygtuko stilius</string>
     <string name="call_notes">Skambučių pastabos</string>
     <string name="back_pressed_end_call">Atgalinis veiksmas užbaigia skambutį</string>
-    <string name="keep_calls_in_popup_summary">Kai į skambučius atsiliepiama, jie lieka jūsų pranešimuose ir nerodomi viso ekrano režimu. Tai daroma siekiant nepertraukti kitų programų, pvz., žaidžiant žaidimą.</string>
+    <string name="keep_calls_in_popup_summary">Atsiliepus į skambutį, jis lieka jūsų pranešimuose ir neužpildo viso ekrano. Tai daroma siekiant netrukdyti kitoms programėlėms, pavyzdžiui, žaidžiant žaidimą.\n\nJei ausinės neprijungtos, garsiakalbis bus įjungtas.</string>
     <string name="busy">Užimtas</string>
     <string name="block_calls">Blokuoti skambučius</string>
+    <string name="edit_number_before_call">Redaguoti numerį prieš skambutį</string>
+    <string name="on_favorite_click">Kai spustelėsite mėgstamiausią</string>
     <string name="call_using_same_sim">Naudokite tą pačią SIM kortelę, į kurią buvo skambinta ankstesniu (paskutiniu) skambučiu</string>
     <string name="answer_end_other_call">Atsiliepkite ir užbaikite dabartinį skambutį</string>
     <string name="quick_answers">Greiti atsakymai</string>
@@ -82,4 +85,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Palikite skambučius pranešimuose</string>
+    <string name="on_contact_click">Kai spustelėsite kontaktą</string>
+    <string name="on_recent_click">Kai spustelėsite neseniai atliktą skambutį</string>
 </resources>

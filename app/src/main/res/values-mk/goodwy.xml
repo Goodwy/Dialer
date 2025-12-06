@@ -11,16 +11,19 @@
     <string name="open_dialpad_when_call_from_another_app">Отвори ја тастатурата за бирање кога ќе се обидете да остварите повик од друга апликација</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Ова може да ве заштити од малициозен софтвер што остварува повици без ваше знаење</string>
     <string name="number_of_recent_calls_displays">Се прикажува бројот на неодамнешни повици</string>
+    <string name="number_of_recent_calls_displays_summary">Поради групирање, бројот на прикажани редови може да биде помал.</string>
     <string name="group_calls">Групни повици</string>
     <string name="group_all_calls">Групирај ги сите повици, ќе се прикаже само последниот повик</string>
     <string name="call_button_style">Стил на копче за повик</string>
     <string name="call_notes">Белешки за повици</string>
     <string name="back_pressed_end_call">Дејството за враќање го завршува повикот</string>
     <string name="keep_calls_in_popup">Оставете повици во известувања</string>
-    <string name="keep_calls_in_popup_summary">Откако ќе се одговори на повиците, тие остануваат во вашите известувања и не се појавуваат на цел екран. Ова е направено за да се избегне прекинување на други апликации, како на пример додека играте игра.</string>
+    <string name="keep_calls_in_popup_summary">Откако ќе се одговори на повикот, тој останува во вашите известувања и не го исполнува целиот екран. Ова се прави за да се избегне прекинување на други апликации, како на пример додека играте игра.\nАко слушалките не се поврзани, звучникот ќе се вклучи.</string>
     <string name="busy">Зафатено</string>
     <string name="block_calls">Блокирајте повици</string>
 
+    <string name="edit_number_before_call">Уреди го бројот пред повикот</string>
+    <string name="on_favorite_click">Кога ќе кликнете на омилено</string>
     <string name="call_using_same_sim">Преферирај ја истата SIM картичка на која беше направен претходниот (последниот) повик</string>
     <string name="answer_end_other_call">Одговори и крај на друг повик</string>
     <string name="quick_answers">Брзи одговори</string>
@@ -77,4 +80,6 @@
         <item quantity="other">%d пропуштени повици</item>
     </plurals>
     <string name="missed_call_from">Пропуштен повик од %s</string>
+    <string name="on_contact_click">Кога ќе кликнете на контакт</string>
+    <string name="on_recent_click">Кога ќе кликнете на неодамнешен повик</string>
 </resources>

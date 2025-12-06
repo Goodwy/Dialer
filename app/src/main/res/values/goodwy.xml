@@ -11,15 +11,21 @@
     <string name="open_dialpad_when_call_from_another_app">Open the dialpad when you try to make a call from another app</string>
     <string name="open_dialpad_when_call_from_another_app_summary">This can protect you from malware making calls without your knowledge</string>
     <string name="number_of_recent_calls_displays">Number of Recent Calls displays</string>
+    <string name="number_of_recent_calls_displays_summary">Depending on the grouping, the number of rows displayed may be less.</string>
     <string name="group_calls">Group calls</string>
     <string name="group_all_calls">Group all calls, only the last call will be shown</string>
     <string name="call_button_style">Call button style</string>
     <string name="call_notes">Call notes</string>
     <string name="back_pressed_end_call">Back action ends the call</string>
     <string name="keep_calls_in_popup">Keep calls in notifications</string>
-    <string name="keep_calls_in_popup_summary">After calls are answered, they remain in your notifications and don\'t appear full-screen. This is done to avoid interrupting other apps, such as while playing a game.</string>
+    <string name="keep_calls_in_popup_summary">After answering a call, it remains in notifications and is not displayed on the entire screen. This is done so as not to interrupt the operation of other applications, for example, during a game.
+If no headset is connected, the speaker will be turned on. </string>
     <string name="busy">Busy</string>
     <string name="block_calls">Block calls</string>
+    <string name="edit_number_before_call">Edit number before call</string>
+    <string name="on_contact_click">On a contact click</string>
+    <string name="on_recent_click">On a recent call click</string>
+    <string name="on_favorite_click">On a favorite click</string>
 
     <string name="call_using_same_sim">Prefer same SIM on which previous (last) call was made</string>
     <string name="answer_end_other_call">Answer &amp; end other call</string>

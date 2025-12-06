@@ -53,14 +53,17 @@
     <string name="open_dialpad_when_call_from_another_app">尝试从其他应用程序拨打电话时，打开拨号盘</string>
     <string name="open_dialpad_when_call_from_another_app_summary">这可以保护您免受在您不知情的情况下拨打电话的恶意软件的侵害。</string>
     <string name="number_of_recent_calls_displays">显示最近通话次数</string>
+    <string name="number_of_recent_calls_displays_summary">由于进行了分组，显示的行数可能会减少。</string>
     <string name="group_calls">呼叫分组</string>
     <string name="group_all_calls">将所有通话分组，仅显示最后一个通话</string>
     <string name="call_button_style">铃铛按钮样式</string>
     <string name="call_notes">通话记录</string>
     <string name="back_pressed_end_call">Back 操作结束调用</string>
-    <string name="keep_calls_in_popup_summary">接听电话后，电话会保留在通知中，不会全屏显示。这样做是为了避免打扰其他应用，例如在玩游戏时。</string>
+    <string name="keep_calls_in_popup_summary">接听电话后，来电通知会保留在通知栏中，不会占据整个屏幕。这样做是为了避免干扰其他应用，例如玩游戏时。\n\n如果未连接耳机，扬声器将自动开启。</string>
     <string name="busy">忙碌的</string>
     <string name="block_calls">拦截来电</string>
+    <string name="edit_number_before_call">通话前请先编辑号码</string>
+    <string name="on_favorite_click">当你点击收藏夹时</string>
     <string name="call_using_same_sim">使用上一次（最后一次）通话时使用的同一张 SIM 卡</string>
     <string name="answer_end_other_call">接听并结束当前通话</string>
     <string name="quick_answers">快速解答</string>
@@ -76,4 +79,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">在通知中留下通话</string>
+    <string name="on_contact_click">当您点击联系人时</string>
+    <string name="on_recent_click">点击最近的通话记录</string>
 </resources>

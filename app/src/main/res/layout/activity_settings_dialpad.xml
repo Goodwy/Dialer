@@ -6,21 +6,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/dialpad_toolbar"
+    <com.goodwy.commons.views.MyAppBarLayout
+        android:id="@+id/dialpad_appbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:title="@string/dialpad_preferences"
-        app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle"/>
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/dialpad_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/dialpad_preferences"
+            app:titleTextAppearance="@style/AppTheme.ActionBar.TitleTextStyle" />
+    </com.goodwy.commons.views.MyAppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/dialpad_nested_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingHorizontal="@dimen/activity_padding_left_right"
-        android:layout_marginTop="?attr/actionBarSize"
         android:fillViewport="true"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:id="@+id/dialpad_settings_holder"
@@ -392,8 +398,8 @@
                                 android:layout_marginHorizontal="@dimen/normal_margin"
                                 android:paddingTop="@dimen/small_margin"
                                 android:paddingBottom="@dimen/smaller_margin"
-                                android:paddingStart="@dimen/zero"
-                                android:paddingEnd="@dimen/zero"
+                                android:paddingStart="@dimen/ten_dpi"
+                                android:paddingEnd="@dimen/ten_dpi"
                                 android:progress="80"/>
                         </LinearLayout>
                     </LinearLayout>
@@ -513,8 +519,8 @@
                         android:layout_marginHorizontal="@dimen/normal_margin"
                         android:paddingTop="@dimen/small_margin"
                         android:paddingBottom="@dimen/smaller_margin"
-                        android:paddingStart="@dimen/smaller_margin"
-                        android:paddingEnd="@dimen/smaller_margin"
+                        android:paddingStart="@dimen/ten_dpi"
+                        android:paddingEnd="@dimen/ten_dpi"
                         android:progress="75"/>
 
                     <RelativeLayout
@@ -610,8 +616,8 @@
                         android:layout_marginHorizontal="@dimen/normal_margin"
                         android:paddingTop="@dimen/small_margin"
                         android:paddingBottom="@dimen/smaller_margin"
-                        android:paddingStart="@dimen/smaller_margin"
-                        android:paddingEnd="@dimen/smaller_margin"
+                        android:paddingStart="@dimen/ten_dpi"
+                        android:paddingEnd="@dimen/ten_dpi"
                         android:progress="100"/>
 
                     <RelativeLayout
@@ -707,8 +713,8 @@
                         android:layout_marginHorizontal="@dimen/normal_margin"
                         android:paddingTop="@dimen/small_margin"
                         android:paddingBottom="@dimen/smaller_margin"
-                        android:paddingStart="@dimen/smaller_margin"
-                        android:paddingEnd="@dimen/smaller_margin"
+                        android:paddingStart="@dimen/ten_dpi"
+                        android:paddingEnd="@dimen/ten_dpi"
                         android:progress="75"/>
 
                     <RelativeLayout
@@ -805,8 +811,8 @@
                         android:layout_marginBottom="@dimen/small_margin"
                         android:paddingTop="@dimen/small_margin"
                         android:paddingBottom="@dimen/smaller_margin"
-                        android:paddingStart="@dimen/smaller_margin"
-                        android:paddingEnd="@dimen/smaller_margin"
+                        android:paddingStart="@dimen/ten_dpi"
+                        android:paddingEnd="@dimen/ten_dpi"
                         android:progress="75"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

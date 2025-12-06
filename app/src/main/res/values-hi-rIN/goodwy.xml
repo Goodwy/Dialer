@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">किसी अन्य एप्लिकेशन से कॉल करने का प्रयास करते समय, डायल पैड खोलें</string>
     <string name="open_dialpad_when_call_from_another_app_summary">यह आपको मैलवेयर से बचा सकता है जो आपकी जानकारी के बिना कॉल करता है।</string>
     <string name="number_of_recent_calls_displays">हाल ही में प्रदर्शित कॉलों की संख्या</string>
+    <string name="number_of_recent_calls_displays_summary">समूहीकरण के कारण प्रदर्शित पंक्तियों की संख्या कम हो सकती है।</string>
     <string name="group_calls">कॉल ग्रुपिंग</string>
     <string name="group_all_calls">सभी कॉल्स को समूहीकृत करें, केवल अंतिम कॉल दिखाई जाएगी</string>
     <string name="call_button_style">बेल बटन स्टाइल</string>
     <string name="call_notes">कॉल नोट्स</string>
     <string name="back_pressed_end_call">वापस कार्रवाई कॉल समाप्त करती है</string>
-    <string name="keep_calls_in_popup_summary">कॉल का जवाब देने के बाद, वे आपके नोटिफिकेशन में बने रहते हैं और फ़ुल-स्क्रीन पर दिखाई नहीं देते। ऐसा इसलिए किया जाता है ताकि गेम खेलते समय, दूसरे ऐप्स में रुकावट न आए।</string>
+    <string name="keep_calls_in_popup_summary">कॉल का जवाब देने के बाद, यह आपकी सूचनाओं में बना रहता है और पूरी स्क्रीन पर दिखाई नहीं देता। ऐसा इसलिए किया जाता है ताकि गेम खेलते समय, दूसरे ऐप्स में रुकावट न आए।\nअगर हेडसेट कनेक्ट नहीं है, तो स्पीकर चालू रहेगा।</string>
     <string name="busy">व्यस्त</string>
     <string name="block_calls">कॉल ब्लॉक करें</string>
+    <string name="edit_number_before_call">कॉल करने से पहले नंबर संपादित करें</string>
+    <string name="on_favorite_click">जब आप किसी पसंदीदा पर क्लिक करते हैं</string>
     <string name="call_using_same_sim">उसी सिम कार्ड का उपयोग करें जिस पर पिछली (अंतिम) कॉल की गई थी</string>
     <string name="answer_end_other_call">वर्तमान कॉल का उत्तर दें और समाप्त करें</string>
     <string name="quick_answers">त्वरित उत्तर</string>
@@ -78,4 +81,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">कॉल को सूचनाओं में छोड़ें</string>
+    <string name="on_contact_click">जब आप किसी संपर्क पर क्लिक करते हैं</string>
+    <string name="on_recent_click">जब आप किसी हालिया कॉल पर क्लिक करते हैं</string>
 </resources>

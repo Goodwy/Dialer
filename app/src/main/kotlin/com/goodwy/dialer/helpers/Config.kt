@@ -18,6 +18,7 @@ import com.goodwy.dialer.models.CallerNote
 import com.goodwy.dialer.models.RecentCall
 import com.goodwy.dialer.models.SpeedDial
 import androidx.core.content.edit
+import com.goodwy.commons.helpers.ON_CONTACT_CLICK
 import java.util.Locale
 
 class Config(context: Context) : BaseConfig(context) {
@@ -178,7 +179,7 @@ class Config(context: Context) : BaseConfig(context) {
         set(dialpadSize) = prefs.edit { putInt(DIALPAD_SIZE, dialpadSize) }
 
     var dialpadBottomMargin: Int
-        get() = prefs.getInt(DIALPAD_BOTTOM_MARGIN, 100)
+        get() = prefs.getInt(DIALPAD_BOTTOM_MARGIN, 0)
         set(dialpadBottomMargin) = prefs.edit { putInt(DIALPAD_BOTTOM_MARGIN, dialpadBottomMargin) }
 
     var callButtonPrimarySize: Int
@@ -239,7 +240,7 @@ class Config(context: Context) : BaseConfig(context) {
     }
 
     var queryLimitRecent: Int
-        get() = prefs.getInt(QUERY_LIMIT_RECENT, QUERY_LIMIT_SMALL_VALUE)
+        get() = prefs.getInt(QUERY_LIMIT_RECENT, QUERY_LIMIT_MEDIUM_VALUE)
         set(queryLimitRecent) = prefs.edit { putInt(QUERY_LIMIT_RECENT, queryLimitRecent) }
 
     var callButtonStyle: Int
@@ -314,30 +315,19 @@ class Config(context: Context) : BaseConfig(context) {
             remove(RECENT_OUTGOING_NUMBERS).putStringSet(RECENT_OUTGOING_NUMBERS, recentOutgoingNumbers)
         }
 
+    var onRecentClick: Int
+        get() = prefs.getInt(ON_RECENT_CLICK, SWIPE_ACTION_CALL)
+        set(onRecentClick) = prefs.edit { putInt(ON_RECENT_CLICK, onRecentClick) }
+
+    var onContactClick: Int
+        get() = prefs.getInt(ON_CONTACT_CLICK, SWIPE_ACTION_CALL)
+        set(onContactClick) = prefs.edit { putInt(ON_CONTACT_CLICK, onContactClick) }
+
+    var onFavoriteClick: Int
+        get() = prefs.getInt(ON_FAVORITE_CLICK, SWIPE_ACTION_CALL)
+        set(onContactClick) = prefs.edit { putInt(ON_FAVORITE_CLICK, onContactClick) }
+
     //Timer
-    var timerSoundUri: String
-        get() = prefs.getString(
-            TIMER_SOUND_URI,
-            context.getDefaultAlarmSound(RingtoneManager.TYPE_ALARM).uri
-        )!!
-        set(timerSoundUri) = prefs.edit { putString(TIMER_SOUND_URI, timerSoundUri) }
-
-    var timerTitle: String?
-        get() = prefs.getString(TIMER_TITLE, null)
-        set(label) = prefs.edit { putString(TIMER_TITLE, label) }
-
-    var timerLabel: String?
-        get() = prefs.getString(TIMER_LABEL, null)
-        set(label) = prefs.edit { putString(TIMER_LABEL, label) }
-
-    var timerDescription: String?
-        get() = prefs.getString(TIMER_DESCRIPTION, null)
-        set(label) = prefs.edit { putString(TIMER_DESCRIPTION, label) }
-
-    var timerChannelId: String?
-        get() = prefs.getString(TIMER_CHANNEL_ID, null)
-        set(id) = prefs.edit { putString(TIMER_CHANNEL_ID, id) }
-
     var timerMaxReminderSecs: Int
         get() = prefs.getInt(TIMER_MAX_REMINDER_SECS, DEFAULT_MAX_TIMER_REMINDER_SECS)
         set(timerMaxReminderSecs) = prefs.edit {

@@ -54,14 +54,17 @@
     <string name="open_dialpad_when_call_from_another_app">Kui proovite helistada teisest rakendusest, avage valimisklahvistik</string>
     <string name="open_dialpad_when_call_from_another_app_summary">See võib teid kaitsta pahavara eest, mis helistab teie teadmata.</string>
     <string name="number_of_recent_calls_displays">Kuvatakse viimaste kõnede arv</string>
+    <string name="number_of_recent_calls_displays_summary">Grupeerimise tõttu võib kuvatavate ridade arv olla väiksem.</string>
     <string name="group_calls">Kõnede rühmitamine</string>
     <string name="group_all_calls">Grupeeri kõik kõned, kuvatakse ainult viimane kõne</string>
     <string name="call_button_style">Kellanupu stiil</string>
     <string name="call_notes">Kõne märkmed</string>
     <string name="back_pressed_end_call">Tagasitegevus lõpetab kõne</string>
-    <string name="keep_calls_in_popup_summary">Pärast kõnedele vastamist jäävad need teie märguannetesse ja neid ei kuvata täisekraanil. Seda tehakse selleks, et vältida teiste rakenduste katkestamist, näiteks mängu mängimise ajal.</string>
+    <string name="keep_calls_in_popup_summary">Pärast kõnele vastamist jääb see teie teavitustesse ega täida kogu ekraani. Seda tehakse selleks, et vältida teiste rakenduste, näiteks mängu mängimise ajal, segamist.\n\nKui peakomplekti pole ühendatud, lülitatakse kõlar sisse.</string>
     <string name="busy">Hõivatud</string>
     <string name="block_calls">Blokeeri kõned</string>
+    <string name="edit_number_before_call">Muuda numbrit enne helistamist</string>
+    <string name="on_favorite_click">Kui klõpsate lemmikul</string>
     <string name="call_using_same_sim">Kasutage sama SIM-kaarti, millele tehti eelmine (viimane) kõne</string>
     <string name="answer_end_other_call">Praegusele kõnele vastamine ja selle lõpetamine</string>
     <string name="quick_answers">Kiired vastused</string>
@@ -78,4 +81,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Jäta kõned märguannetesse</string>
+    <string name="on_contact_click">Kui klõpsate kontaktil</string>
+    <string name="on_recent_click">Kui klõpsate hiljutisel kõnel</string>
 </resources>

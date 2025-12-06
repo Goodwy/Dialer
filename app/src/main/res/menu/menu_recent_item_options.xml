@@ -19,6 +19,9 @@
         android:id="@+id/cab_copy_number"
         android:title="@string/copy_number_to_clipboard" />
     <item
+        android:id="@+id/cab_edit_number_before_call"
+        android:title="@string/edit_number_before_call" />
+    <item
         android:id="@+id/web_search"
         android:title="@string/search_the_web" />
     <item

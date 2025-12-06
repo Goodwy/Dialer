@@ -13,7 +13,7 @@
         android:id="@+id/onHoldStatusHolder"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/md_grey_white"
+        android:background="@color/hint_black"
         android:paddingStart="@dimen/normal_margin"
         android:paddingEnd="@dimen/normal_margin"
         android:visibility="gone"
@@ -62,6 +62,37 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
+        android:id="@+id/callInfo"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_margin="@dimen/big_margin"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/conference_manage"
+        android:elevation="@dimen/medium_margin"
+        android:src="@drawable/ic_info"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/onHoldStatusHolder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_goneMarginTop="56dp"
+        tools:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/addCallerNote"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_margin="@dimen/big_margin"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/add_notes"
+        android:elevation="@dimen/medium_margin"
+        android:padding="@dimen/small_margin"
+        android:src="@drawable/ic_note"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/onHoldStatusHolder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_goneMarginTop="56dp"
+        tools:visibility="visible"/>
+
+    <ImageView
         android:id="@+id/callerAvatar"
         android:layout_width="@dimen/caller_avatar_max_size"
         android:layout_height="@dimen/caller_avatar_max_size"
@@ -85,35 +116,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/callerAvatar"
         tools:text="Caller name"/>
-
-    <ImageView
-        android:id="@+id/callInfo"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_margin="@dimen/big_margin"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/conference_manage"
-        android:elevation="@dimen/medium_margin"
-        android:src="@drawable/ic_info"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/onHoldStatusHolder"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:visibility="gone"/>
-
-    <ImageView
-        android:id="@+id/addCallerNote"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_margin="@dimen/big_margin"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/add_notes"
-        android:elevation="@dimen/medium_margin"
-        android:padding="@dimen/small_margin"
-        android:src="@drawable/ic_note"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/onHoldStatusHolder"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:visibility="visible"/>
 
     <com.goodwy.commons.views.MyTextView
         android:id="@+id/callerDescription"
@@ -584,12 +586,12 @@
             android:orientation="vertical"
             android:scaleX="0.7"
             android:scaleY="0.7"
+            android:alpha="0"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/callEnd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="gone">
+            app:layout_constraintTop_toTopOf="parent">
 
             <RelativeLayout
                 android:id="@+id/dialpad_input_holder"

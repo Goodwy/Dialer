@@ -56,14 +56,17 @@
     <string name="open_dialpad_when_call_from_another_app">Podczas próby wykonania połączenia z innej aplikacji otwórz klawiaturę numeryczną</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Może to zapewnić Ci ochronę przed złośliwym oprogramowaniem, które wykonuje połączenia bez Twojej wiedzy.</string>
     <string name="number_of_recent_calls_displays">Wyświetlana liczba ostatnich połączeń</string>
+    <string name="number_of_recent_calls_displays_summary">Ze względu na grupowanie liczba wyświetlanych wierszy może być mniejsza.</string>
     <string name="group_calls">Grupowanie połączeń</string>
     <string name="group_all_calls">Zgrupuj wszystkie połączenia, będzie wyświetlane tylko ostatnie połączenie</string>
     <string name="call_button_style">Styl przycisku dzwonka</string>
     <string name="call_notes">Notatki z rozmów</string>
     <string name="back_pressed_end_call">Akcja wsteczna kończy połączenie</string>
-    <string name="keep_calls_in_popup_summary">Po odebraniu połączenia pozostają one w powiadomieniach i nie wyświetlają się na pełnym ekranie. Ma to na celu uniknięcie zakłócania działania innych aplikacji, na przykład podczas grania w grę.</string>
+    <string name="keep_calls_in_popup_summary">Po odebraniu połączenia pozostaje ono w powiadomieniach i nie wypełnia całego ekranu. Ma to na celu uniknięcie zakłócania działania innych aplikacji, na przykład podczas grania w grę.\nJeśli zestaw słuchawkowy nie jest podłączony, głośnik zostanie włączony.</string>
     <string name="busy">Zajęty</string>
     <string name="block_calls">Blokuj połączenia</string>
+    <string name="edit_number_before_call">Edytuj numer przed połączeniem</string>
+    <string name="on_favorite_click">Kiedy klikniesz na ulubione</string>
     <string name="call_using_same_sim">Użyj tej samej karty SIM, na którą wykonano poprzednie (ostatnie) połączenie</string>
     <string name="answer_end_other_call">Odbieranie i kończenie bieżącego połączenia</string>
     <string name="quick_answers">Szybkie odpowiedzi</string>
@@ -81,4 +84,6 @@
     </plurals>
     <string name="missed_call_from">Missed call from %s</string>
     <string name="keep_calls_in_popup">Pozostaw połączenia w powiadomieniach</string>
+    <string name="on_contact_click">Po kliknięciu kontaktu</string>
+    <string name="on_recent_click">Kiedy klikniesz na ostatnie połączenie</string>
 </resources>

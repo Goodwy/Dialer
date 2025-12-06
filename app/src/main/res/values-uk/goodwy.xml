@@ -11,15 +11,18 @@
     <string name="open_dialpad_when_call_from_another_app">При спробі здійснити дзвінок з іншої програми відкривати панель набору номера</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Це може захистити вас від шкідливих програм, які здійснюють дзвінки без вашого відома.</string>
     <string name="number_of_recent_calls_displays">Кількість недавніх дзвінків, що відображається</string>
+    <string name="number_of_recent_calls_displays_summary">گروپ بندی کی وجہ سے، دکھائی جانے والی قطاروں کی تعداد کم ہو سکتی ہے۔</string>
     <string name="group_calls">Угруповання дзвінків</string>
     <string name="group_all_calls">Групувати всі дзвінки, буде показано лише останній дзвінок</string>
     <string name="call_button_style">Стиль кнопки дзвінка</string>
     <string name="call_notes">Нотатки про дзвінки</string>
     <string name="back_pressed_end_call">Дія назад завершує виклик</string>
 
-    <string name="keep_calls_in_popup_summary">Після відповіді на дзвінки вони залишаються в сповіщеннях та не відображаються на весь екран. Це зроблено для того, щоб не переривати роботу інших програм, наприклад, під час гри.</string>
+    <string name="keep_calls_in_popup_summary">"Після відповіді на дзвінок він залишається в повідомленнях і не з'являється на весь екран. Це зроблено для того, щоб не переривати роботу інших програм, наприклад, під час гри.\nЯкщо не підключено гарнітуру, буде увімкнено динамік. "</string>
     <string name="busy">Зайнято</string>
     <string name="block_calls">Блокувати дзвінки</string>
+    <string name="edit_number_before_call">Редагувати номер перед дзвінком</string>
+    <string name="on_favorite_click">При натисканні на обраний</string>
     <string name="call_using_same_sim">Використовувати ту саму SIM-картку, на яку було зроблено попередній (останній) дзвінок</string>
     <string name="answer_end_other_call">Відповідь на поточний дзвінок і його завершення</string>
     <string name="quick_answers">Швидкі відповіді</string>
@@ -79,4 +82,6 @@
     </plurals>
     <string name="missed_call_from">Пропущений дзвінок від %s</string>
     <string name="keep_calls_in_popup">Залишати дзвінки в повідомленнях</string>
+    <string name="on_contact_click">При натисканні на контакт</string>
+    <string name="on_recent_click">При натисканні на недавній дзвінок</string>
 </resources>

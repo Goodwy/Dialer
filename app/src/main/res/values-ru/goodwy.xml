@@ -11,16 +11,19 @@
     <string name="open_dialpad_when_call_from_another_app">При попытке совершить звонок из другого приложения открывать панель набора номера</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Это может защитить вас от вредоносных программ, совершающих звонки без вашего ведома.</string>
     <string name="number_of_recent_calls_displays">Отображаемое количество недавних звонков</string>
+    <string name="number_of_recent_calls_displays_summary">Због груписања, број приказаних редова може бити мањи.</string>
     <string name="group_calls">Группировка звонков</string>
     <string name="group_all_calls">Группировать все звонки, будет показан только последний звонок</string>
     <string name="call_button_style">Стиль кнопок звонка</string>
     <string name="call_notes">Заметки о звонках</string>
     <string name="back_pressed_end_call">Действие назад завершает вызов</string>
     <string name="keep_calls_in_popup">Оставлять звонки в уведомлениях</string>
-    <string name="keep_calls_in_popup_summary">После ответа на вызовы они остаются в уведомлениях и не отображаются на весь экран. Это сделано для того, чтобы не прерывать работу других приложений, например, во время игры.</string>
+    <string name="keep_calls_in_popup_summary">"После ответа на вызов он остается в уведомлениях и не отображается на весь экран. Это сделано для того, чтобы не прерывать работу других приложений, например, во время игры.\nЕсли не подключена гарнитура будет включен динамик. "</string>
     <string name="busy">Занято</string>
 
     <string name="block_calls">Блокировать звонки</string>
+    <string name="edit_number_before_call">Изменить номер перед звонком</string>
+    <string name="on_favorite_click">При нажатии на избранный</string>
     <string name="call_using_same_sim">Использовать ту же SIM-карту, на которую был сделан предыдущий (последний) звонок</string>
     <string name="answer_end_other_call">Ответить и завершить текущий вызов</string>
     <string name="quick_answers">Быстрые ответы</string>
@@ -79,4 +82,6 @@
         <item quantity="many">%d пропущенных звонков</item>
     </plurals>
     <string name="missed_call_from">Пропущенный звонок от %s</string>
+    <string name="on_contact_click">При нажатии на контакт</string>
+    <string name="on_recent_click">При нажатии на недавний звонок</string>
 </resources>
