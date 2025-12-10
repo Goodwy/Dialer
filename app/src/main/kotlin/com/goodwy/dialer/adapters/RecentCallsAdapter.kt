@@ -19,7 +19,6 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.behaviorule.arturdumchev.library.pixels
 import com.bumptech.glide.Glide
@@ -258,18 +257,6 @@ class RecentCallsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //Add a bottom margin for the last element so that it does not block the floating button
-        if (position == currentList.lastIndex){
-            val params = holder.itemView.layoutParams as RecyclerView.LayoutParams
-            val margin = activity.resources.getDimension(com.goodwy.commons.R.dimen.shortcut_size).toInt()
-            params.bottomMargin = margin
-            holder.itemView.layoutParams = params
-        } else {
-            val params = holder.itemView.layoutParams as RecyclerView.LayoutParams
-            params.bottomMargin = 0
-            holder.itemView.layoutParams = params
-        }
-
         val callRecord = currentList[position]
         when (holder) {
             is RecentCallDateViewHolder -> holder.bind(callRecord as CallLogItem.Date)

@@ -2,8 +2,12 @@ package com.goodwy.dialer.fragments
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Rect
 import android.provider.CallLog.Calls
 import android.util.AttributeSet
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import com.goodwy.commons.dialogs.CallConfirmationDialog
 import com.goodwy.commons.extensions.baseConfig
 import com.goodwy.commons.extensions.beGone
@@ -252,6 +256,8 @@ class RecentsFragment(
                     }
                 )
 
+                recentsAdapter?.addBottomPadding(64)
+
                 binding.recentsList.adapter = recentsAdapter
                 recentsAdapter?.updateItems(recents)
             } else {
@@ -453,6 +459,20 @@ class RecentsFragment(
                 putExtra(IS_PRIVATE, contact.isPrivate())
             }
             activity?.launchActivityIntent(this)
+        }
+    }
+}
+
+class BottomSpaceDecoration(private val spaceHeight: Int) : RecyclerView.ItemDecoration() {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
+        val position = parent.getChildAdapterPosition(view)
+        if (position == parent.adapter?.itemCount?.minus(1) ?: 0) {
+            outRect.bottom = spaceHeight
         }
     }
 }

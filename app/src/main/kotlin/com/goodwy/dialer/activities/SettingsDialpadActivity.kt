@@ -21,6 +21,7 @@ import com.behaviorule.arturdumchev.library.pixels
 import com.behaviorule.arturdumchev.library.setHeight
 import com.goodwy.commons.dialogs.ColorPickerDialog
 import com.goodwy.commons.dialogs.RadioGroupDialog
+import com.goodwy.commons.dialogs.RadioGroupIconDialog
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.RadioItem
@@ -999,7 +1000,13 @@ class SettingsDialpadActivity : SimpleActivity() {
                 RadioItem(DIALPAD_CONCEPT, getString(R.string.concept_theme_g))
             )
 
-            RadioGroupDialog(this@SettingsDialpadActivity, items, config.dialpadStyle, R.string.theme) {
+            RadioGroupDialog(
+                this@SettingsDialpadActivity,
+                items,
+                config.dialpadStyle,
+                R.string.theme,
+                defaultItemId = DIALPAD_ORIGINAL
+            ) {
                 if (it as Int == DIALPAD_IOS) {
                     if (pro) {
                         binding.dialpadClearWrapper.root.beGone()
@@ -1253,9 +1260,17 @@ class SettingsDialpadActivity : SimpleActivity() {
             for (i in supportedLanguages.indices) {
                 items.add(RadioItem(i, getLanguageName(supportedLanguages[i])!!))
             }
-            val checkedItemId = if (config.dialpadSecondaryLanguage == LANGUAGE_SYSTEM) SECONDARY_LANGUAGE_SYSTEM_ID else supportedLanguages.indexOf(config.dialpadSecondaryLanguage)
+            val checkedItemId =
+                if (config.dialpadSecondaryLanguage == LANGUAGE_SYSTEM) SECONDARY_LANGUAGE_SYSTEM_ID
+                else supportedLanguages.indexOf(config.dialpadSecondaryLanguage)
 
-            RadioGroupDialog(this@SettingsDialpadActivity, items, checkedItemId, R.string.secondary_dialpad_language) {
+            RadioGroupDialog(
+                this@SettingsDialpadActivity,
+                items,
+                checkedItemId,
+                R.string.secondary_dialpad_language,
+                defaultItemId = SECONDARY_LANGUAGE_SYSTEM_ID
+            ) {
                 val index = it as Int
                 if (index == -2) {
                     config.dialpadSecondaryLanguage = LANGUAGE_SYSTEM
@@ -1287,12 +1302,12 @@ class SettingsDialpadActivity : SimpleActivity() {
         binding.settingsDialpadSecondaryTypefaceHolder.setOnClickListener {
             val items = arrayListOf(
                 RadioItem(Typeface.NORMAL, getString(R.string.typeface_normal)),
-                RadioItem(Typeface.BOLD, getString(R.string.typeface_bold)),
-                RadioItem(Typeface.ITALIC, getString(R.string.typeface_italic)),
-                RadioItem(Typeface.BOLD_ITALIC, getString(R.string.typeface_bold_italic)),
+                RadioItem(Typeface.BOLD, getString(R.string.typeface_bold), icon = R.drawable.ic_bold),
+                RadioItem(Typeface.ITALIC, getString(R.string.typeface_italic), icon = R.drawable.ic_italic),
+                RadioItem(Typeface.BOLD_ITALIC, getString(R.string.typeface_bold_italic), icon = R.drawable.ic_bold_italic),
             )
 
-            RadioGroupDialog(
+            RadioGroupIconDialog(
                 this@SettingsDialpadActivity,
                 items,
                 config.dialpadSecondaryTypeface,

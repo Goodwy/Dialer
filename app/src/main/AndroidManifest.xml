@@ -189,6 +189,7 @@
         </activity>
 
         <!--launchMode="singleInstance" - incoming call is not displayed correctly on the locked screen-->
+        <!--android:showWhenLocked="true" - do not add-->
         <activity
             android:name=".activities.CallActivity"
             android:directBootAware="true"
@@ -200,7 +201,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:showOnLockScreen="true"
-            android:showWhenLocked="true"
             android:turnScreenOn="true" />
 
         <activity

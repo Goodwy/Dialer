@@ -3,7 +3,6 @@ package com.goodwy.dialer.models
 import java.io.Serializable
 import com.goodwy.commons.helpers.DAY_SECONDS
 
-
 @kotlinx.serialization.Serializable
 sealed class CallLogItem : Serializable {
     data class Date(
