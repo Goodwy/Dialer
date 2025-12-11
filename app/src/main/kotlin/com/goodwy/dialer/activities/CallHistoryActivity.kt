@@ -1269,8 +1269,6 @@ class CallHistoryActivity : SimpleActivity() {
 
     private fun updateDefaultSIMButton(call: RecentCall) {
         val background = getProperTextColor()
-        val sim1 = config.simIconsColors[1]
-        val sim2 = config.simIconsColors[2]
         val phoneNumber = call.phoneNumber.replace("+","%2B")
         val simList = getAvailableSIMCardLabels()
         binding.apply {
@@ -1285,6 +1283,9 @@ class CallHistoryActivity : SimpleActivity() {
             defaultSim2Id.setTextColor(Color.BLACK)
 
             if (simList.size > 1) {
+                val sim1 = simList[0].color
+                val sim2 = simList[1].color
+
                 if ((config.getCustomSIM("tel:$phoneNumber") ?: "") == simList[0].handle && !call.isUnknownNumber) {
                     defaultSim1Icon.background.setTint(sim1)
                     defaultSim1Icon.background.alpha = 255

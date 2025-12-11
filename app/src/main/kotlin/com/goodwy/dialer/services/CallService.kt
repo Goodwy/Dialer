@@ -3,6 +3,7 @@ package com.goodwy.dialer.services
 import android.telecom.Call
 import android.telecom.CallAudioState
 import android.telecom.InCallService
+import com.goodwy.commons.extensions.baseConfig
 import com.goodwy.commons.extensions.canUseFullScreenIntent
 import com.goodwy.commons.extensions.hasPermission
 import com.goodwy.commons.helpers.PERMISSION_POST_NOTIFICATIONS
@@ -27,7 +28,7 @@ class CallService : InCallService() {
             } else {
                 callNotificationManager.setupNotification()
             }
-            if (config.flashForAlerts) MyCameraImpl.newInstance(context).stopSOS()
+            if (baseConfig.flashForAlerts) MyCameraImpl.newInstance(context).stopSOS()
         }
     }
 
@@ -64,10 +65,6 @@ class CallService : InCallService() {
                 callNotificationManager.setupNotification()
             }
         }
-
-        if (config.flashForAlerts) {
-            if (!call.isOutgoing() && isDeviceLocked) MyCameraImpl.newInstance(this).toggleSOS()
-        }
     }
 
     override fun onCallRemoved(call: Call) {
@@ -87,7 +84,7 @@ class CallService : InCallService() {
             }
         }
 
-        if (config.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
+        if (baseConfig.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
     }
 
     override fun onCallAudioStateChanged(audioState: CallAudioState?) {
@@ -99,13 +96,13 @@ class CallService : InCallService() {
 
     override fun onSilenceRinger() {
         super.onSilenceRinger()
-        if (config.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
+        if (baseConfig.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         callNotificationManager.cancelNotification()
-        if (config.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
+        if (baseConfig.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
     }
 }
 

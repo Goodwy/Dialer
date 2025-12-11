@@ -79,13 +79,18 @@ fun Context.getAvailableSIMCardLabels(): List<SIMAccount> {
                 label += " ($address)"
             }
 
+            val simColor = try {
+                config.simIconsColors[index + 1]
+            } catch (_: Exception) {
+                phoneAccount.highlightColor
+            }
             simAccounts.add(
                 SIMAccount(
                     id = index + 1,
                     handle = phoneAccount.accountHandle,
                     label = label,
                     phoneNumber = address.substringAfter("tel:"),
-                    color = phoneAccount.highlightColor
+                    color = simColor
                 )
             )
         }

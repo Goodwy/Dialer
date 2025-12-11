@@ -99,7 +99,12 @@ class CallActivity : SimpleActivity() {
         if (needSelectSIM) initOutgoingCall(CallManager.getPrimaryCall()!!.details.handle)
 
         initButtons()
-        audioManager.mode = AudioManager.MODE_IN_CALL
+
+        try {
+            audioManager.mode = AudioManager.MODE_IN_CALL
+        } catch (_: Exception) {
+        }
+
         CallManager.addListener(callCallback)
         updateTextColors(binding.callHolder)
 
@@ -276,6 +281,15 @@ class CallActivity : SimpleActivity() {
                 ).forEach {
                     it.beGone()
                 }
+            }
+        }
+
+        if (config.flashForAlerts) {
+            val phoneState = CallManager.getPhoneState()
+            if (phoneState is SingleCall) {
+                val call = phoneState.call
+                val isDeviceLocked = !powerManager.isInteractive || keyguardManager.isDeviceLocked
+                if (!call.isOutgoing() && isDeviceLocked) MyCameraImpl.newInstance(this).toggleSOS()
             }
         }
     }

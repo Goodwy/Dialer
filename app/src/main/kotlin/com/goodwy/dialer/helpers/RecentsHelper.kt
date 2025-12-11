@@ -174,13 +174,7 @@ class RecentsHelper(private val context: Context) {
         }
         val accountIdToSimColorMap = HashMap<String, Int>()
         context.getAvailableSIMCardLabels().forEach {
-            accountIdToSimColorMap[it.handle.id] = when (it.id) {
-                1 -> context.config.simIconsColors[1]
-                2 -> context.config.simIconsColors[2]
-                3 -> context.config.simIconsColors[3]
-                4 -> context.config.simIconsColors[4]
-                else -> context.config.simIconsColors[0]
-            }
+            accountIdToSimColorMap[it.handle.id] = it.color
         }
 
         val isHuawei = context.config.isEmui

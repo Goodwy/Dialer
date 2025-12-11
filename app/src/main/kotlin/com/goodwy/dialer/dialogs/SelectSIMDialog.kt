@@ -42,14 +42,13 @@ class SelectSIMDialog(
                     setOnClickListener { selectedSIM(SIMAccount.handle, SIMAccount.label) }
                 }
                 dialogRadioButtonIcon.apply {
-                    val simColor = if (indexText in 1..4) activity.config.simIconsColors[indexText] else activity.config.simIconsColors[0]
                     val res = when (indexText) {
                         1 -> R.drawable.ic_sim_one
                         2 -> R.drawable.ic_sim_two
                         else -> R.drawable.ic_sim_vector
                     }
                     val drawable = ResourcesCompat.getDrawable(resources, res, activity.theme)?.apply {
-                        applyColorFilter(simColor)
+                        applyColorFilter(SIMAccount.color)
                     }
                     setImageDrawable(drawable)
                 }
