@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">Konturskyder</string>
     <string name="answer_slider_vertical">Lodret skyder</string>
 
-    <string name="show_recent_calls">Vis seneste opkald</string>
+    <string name="show_recent_calls">Vis og søg efter de seneste opkald</string>
+    <string name="search_contacts_in_dialpad">Søg efter kontakter, når du ringer til et nummer</string>
     <string name="open_dialpad_when_call_from_another_app">Når du prøver at foretage et opkald fra et andet program, skal du åbne opkaldstastaturet</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Dette kan beskytte dig mod malware, der foretager opkald uden din viden.</string>
     <string name="number_of_recent_calls_displays">Vist antal seneste opkald</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">Klokkeknap stil</string>
     <string name="call_notes">Opkaldsnoter</string>
     <string name="back_pressed_end_call">Tilbage-handlingen afslutter opkaldet</string>
-    <string name="keep_calls_in_popup_summary">Når et opkald er besvaret, forbliver det i dine notifikationer og fylder ikke hele skærmen. Dette gøres for at undgå at afbryde andre apps, f.eks. mens du spiller et spil.\nHvis der ikke er tilsluttet et headset, vil højttaleren være tændt.</string>
+    <string name="keep_calls_in_popup_summary">Når du besvarer et opkald, forbliver det i dine notifikationer og vises ikke i fuld skærm. Dette gøres for at undgå at afbryde andre apps, f.eks. mens du spiller et spil.</string>
+    <string name="turn_on_speaker_in_popup">Tænd højttaleren automatisk</string>
+    <string name="turn_on_speaker_in_popup_summary">Hvis der ikke er tilsluttet et headset, vil højttaleren være tændt.</string>
     <string name="busy">Optaget</string>
     <string name="block_calls">Bloker opkald</string>
     <string name="edit_number_before_call">Rediger nummer før opkald</string>

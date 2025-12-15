@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">Kontur kaydırıcısı</string>
     <string name="answer_slider_vertical">Şaquli Sürgü</string>
 
-    <string name="show_recent_calls">Son zəngləri göstərin</string>
+    <string name="show_recent_calls">Son zəngləri göstərin və axtarın</string>
+    <string name="search_contacts_in_dialpad">Nömrə yığarkən kontaktları axtarın</string>
     <string name="open_dialpad_when_call_from_another_app">Başqa proqramdan zəng etməyə çalışarkən yığım panelini açın</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Bu, sizi xəbəriniz olmadan zənglər edən zərərli proqramlardan qoruya bilər.</string>
     <string name="number_of_recent_calls_displays">Son zənglərin sayı göstərilir</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">Zəng düyməsi tərzi</string>
     <string name="call_notes">Zəng qeydləri</string>
     <string name="back_pressed_end_call">Geri hərəkət zəngi bitirir</string>
-    <string name="keep_calls_in_popup_summary">Zəngə cavab verildikdən sonra o, bildirişlərinizdə qalır və bütün ekranı doldurmur. Bu, digər proqramların, məsələn, oyun oynayarkən müdaxilə etməmək üçün edilir.\nQulaqlıq qoşulmayıbsa, dinamik işə salınacaq.</string>
+    <string name="keep_calls_in_popup_summary">Zəngə cavab verdikdən sonra o, bildirişlərinizdə qalır və tam ekranda görünmür. Bu, digər proqramların, məsələn, oyun oynayarkən müdaxilə etməmək üçün edilir.</string>
+    <string name="turn_on_speaker_in_popup">Dinamiki avtomatik yandırın</string>
+    <string name="turn_on_speaker_in_popup_summary">Heç bir qulaqlıq qoşulmayıbsa, dinamik işə salınacaq.</string>
     <string name="busy">Məşğul</string>
     <string name="block_calls">Zəngləri bloklayın</string>
     <string name="edit_number_before_call">Zəng etməzdən əvvəl nömrəni redaktə edin</string>

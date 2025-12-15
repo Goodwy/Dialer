@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">आउटलाइन स्लाइडर</string>
     <string name="answer_slider_vertical">वर्टिकल स्लाइडर</string>
 
-    <string name="show_recent_calls">हाल की कॉल दिखाएँ</string>
+    <string name="show_recent_calls">हाल ही में की गई कॉलों को दिखाएं और खोजें</string>
+    <string name="search_contacts_in_dialpad">नंबर डायल करते समय संपर्कों में खोजें</string>
     <string name="open_dialpad_when_call_from_another_app">किसी अन्य एप्लिकेशन से कॉल करने का प्रयास करते समय, डायल पैड खोलें</string>
     <string name="open_dialpad_when_call_from_another_app_summary">यह आपको मैलवेयर से बचा सकता है जो आपकी जानकारी के बिना कॉल करता है।</string>
     <string name="number_of_recent_calls_displays">हाल ही में प्रदर्शित कॉलों की संख्या</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">बेल बटन स्टाइल</string>
     <string name="call_notes">कॉल नोट्स</string>
     <string name="back_pressed_end_call">वापस कार्रवाई कॉल समाप्त करती है</string>
-    <string name="keep_calls_in_popup_summary">कॉल का जवाब देने के बाद, यह आपकी सूचनाओं में बना रहता है और पूरी स्क्रीन पर दिखाई नहीं देता। ऐसा इसलिए किया जाता है ताकि गेम खेलते समय, दूसरे ऐप्स में रुकावट न आए।\nअगर हेडसेट कनेक्ट नहीं है, तो स्पीकर चालू रहेगा।</string>
+    <string name="keep_calls_in_popup_summary">कॉल का जवाब देने के बाद, यह नोटिफिकेशन में रहता है और फुल स्क्रीन पर दिखाई नहीं देता। ऐसा इसलिए किया जाता है ताकि गेम खेलते समय अन्य ऐप्स में कोई रुकावट न आए।</string>
+    <string name="turn_on_speaker_in_popup">स्पीकर को स्वचालित रूप से चालू करें</string>
+    <string name="turn_on_speaker_in_popup_summary">यदि कोई हेडसेट कनेक्ट नहीं है, तो स्पीकर चालू हो जाएगा।</string>
     <string name="busy">व्यस्त</string>
     <string name="block_calls">कॉल ब्लॉक करें</string>
     <string name="edit_number_before_call">कॉल करने से पहले नंबर संपादित करें</string>

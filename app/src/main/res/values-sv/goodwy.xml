@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">Konturreglage</string>
     <string name="answer_slider_vertical">Vertikal skjutreglage</string>
 
-    <string name="show_recent_calls">Visa senaste samtal</string>
+    <string name="show_recent_calls">Visa och sök efter senaste samtal</string>
+    <string name="search_contacts_in_dialpad">Sök kontakter när du ringer ett nummer</string>
     <string name="open_dialpad_when_call_from_another_app">Öppna knappsatsen när du försöker ringa ett samtal från ett annat program</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Detta kan skydda dig från skadlig programvara som ringer utan din vetskap.</string>
     <string name="number_of_recent_calls_displays">Antalet senaste samtal visas</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">Klockknapp stil</string>
     <string name="call_notes">Anteckningar om samtal</string>
     <string name="back_pressed_end_call">Bakåtåtgärd avslutar samtalet</string>
-    <string name="keep_calls_in_popup_summary">När ett samtal besvaras finns det kvar i dina aviseringar och fyller inte hela skärmen. Detta görs för att undvika att störa andra appar, till exempel när du spelar ett spel.\nOm ett headset inte är anslutet kommer högtalaren att vara påslagen.</string>
+    <string name="keep_calls_in_popup_summary">När du svarar på ett samtal finns det kvar i dina aviseringar och visas inte i helskärm. Detta görs för att undvika att störa andra appar, till exempel när du spelar ett spel.</string>
+    <string name="turn_on_speaker_in_popup">Slå på högtalaren automatiskt</string>
+    <string name="turn_on_speaker_in_popup_summary">Om inget headset är anslutet kommer högtalaren att vara påslagen.</string>
     <string name="busy">Upptagen</string>
     <string name="block_calls">Blockera samtal</string>
     <string name="edit_number_before_call">Redigera nummer före samtal</string>

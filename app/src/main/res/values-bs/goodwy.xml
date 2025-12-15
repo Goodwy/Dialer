@@ -7,7 +7,8 @@
     <string name="missed_calls_g">Propušteni pozivi</string>
     <string name="missed_call_notifications_g">Obavještenja o propuštenim pozivima</string>
     <string name="call_start_end_vibration">Vibracija kada poziv počne i završi</string>
-    <string name="show_recent_calls">Prikaži nedavne pozive</string>
+    <string name="show_recent_calls">Prikaz i pretraživanje nedavnih poziva</string>
+    <string name="search_contacts_in_dialpad">Pretraživanje kontakata prilikom biranja broja</string>
     <string name="open_dialpad_when_call_from_another_app">Otvori tastaturu za biranje kada pokušate uputiti poziv iz druge aplikacije</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Ovo vas može zaštititi od zlonamjernog softvera koji upućuje pozive bez vašeg znanja</string>
     <string name="number_of_recent_calls_displays">Broj prikazanih nedavnih poziva</string>
@@ -18,7 +19,9 @@
     <string name="call_notes">Bilješke o pozivu</string>
     <string name="back_pressed_end_call">Akcija nazad prekida poziv</string>
     <string name="keep_calls_in_popup">Ostavite pozive u obavještenjima</string>
-    <string name="keep_calls_in_popup_summary">Nakon što se odgovori na poziv, on ostaje u vašim obavještenjima i ne ispunjava cijeli ekran. To se radi kako bi se izbjeglo prekidanje drugih aplikacija, kao što je tokom igranja igre.\nAko slušalice nisu povezane, zvučnik će se uključiti.</string>
+    <string name="keep_calls_in_popup_summary">Nakon što odgovorite na poziv, on ostaje u vašim obavještenjima i ne prikazuje se preko cijelog ekrana. To se radi kako bi se izbjeglo prekidanje drugih aplikacija, na primjer tokom igranja igre.</string>
+    <string name="turn_on_speaker_in_popup">Automatsko uključivanje zvučnika</string>
+    <string name="turn_on_speaker_in_popup_summary">Ako slušalice nisu povezane, zvučnik će se uključiti.</string>
     <string name="busy">Zauzet</string>
     <string name="block_calls">Blokiraj pozive</string>
 

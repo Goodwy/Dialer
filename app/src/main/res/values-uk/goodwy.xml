@@ -7,7 +7,8 @@
     <string name="missed_calls_g">Пропущених дзвінків</string>
     <string name="missed_call_notifications_g">Повідомлення про пропущені дзвінки</string>
     <string name="call_start_end_vibration">Вібрація під час початку та завершення виклику</string>
-    <string name="show_recent_calls">Показувати недавні дзвінки</string>
+    <string name="show_recent_calls">Показувати та шукати останні дзвінки</string>
+    <string name="search_contacts_in_dialpad">Пошук контактів під час набору номера</string>
     <string name="open_dialpad_when_call_from_another_app">При спробі здійснити дзвінок з іншої програми відкривати панель набору номера</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Це може захистити вас від шкідливих програм, які здійснюють дзвінки без вашого відома.</string>
     <string name="number_of_recent_calls_displays">Кількість недавніх дзвінків, що відображається</string>
@@ -18,7 +19,9 @@
     <string name="call_notes">Нотатки про дзвінки</string>
     <string name="back_pressed_end_call">Дія назад завершує виклик</string>
 
-    <string name="keep_calls_in_popup_summary">"Після відповіді на дзвінок він залишається в повідомленнях і не з'являється на весь екран. Це зроблено для того, щоб не переривати роботу інших програм, наприклад, під час гри.\nЯкщо не підключено гарнітуру, буде увімкнено динамік. "</string>
+    <string name="keep_calls_in_popup_summary">Після відповіді на дзвінок він залишається в повідомленнях і не з\'являється на весь екран. Це зроблено для того, щоб не переривати роботу інших програм, наприклад, під час гри.</string>
+    <string name="turn_on_speaker_in_popup">Вмикати автоматично динамік</string>
+    <string name="turn_on_speaker_in_popup_summary">Якщо гарнітура не підключена, динамік увімкнеться.</string>
     <string name="busy">Зайнято</string>
     <string name="block_calls">Блокувати дзвінки</string>
     <string name="edit_number_before_call">Редагувати номер перед дзвінком</string>

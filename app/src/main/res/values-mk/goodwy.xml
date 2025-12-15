@@ -7,7 +7,8 @@
     <string name="missed_calls_g">Пропуштени повици</string>
     <string name="missed_call_notifications_g">Известувања за пропуштени повици</string>
     <string name="call_start_end_vibration">Вибрирај кога ќе започне и заврши повикот</string>
-    <string name="show_recent_calls">Прикажи неодамнешни повици</string>
+    <string name="show_recent_calls">Прикажи и пребарај неодамнешни повици</string>
+    <string name="search_contacts_in_dialpad">Пребарување контакти при бирање број</string>
     <string name="open_dialpad_when_call_from_another_app">Отвори ја тастатурата за бирање кога ќе се обидете да остварите повик од друга апликација</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Ова може да ве заштити од малициозен софтвер што остварува повици без ваше знаење</string>
     <string name="number_of_recent_calls_displays">Се прикажува бројот на неодамнешни повици</string>
@@ -18,7 +19,9 @@
     <string name="call_notes">Белешки за повици</string>
     <string name="back_pressed_end_call">Дејството за враќање го завршува повикот</string>
     <string name="keep_calls_in_popup">Оставете повици во известувања</string>
-    <string name="keep_calls_in_popup_summary">Откако ќе се одговори на повикот, тој останува во вашите известувања и не го исполнува целиот екран. Ова се прави за да се избегне прекинување на други апликации, како на пример додека играте игра.\nАко слушалките не се поврзани, звучникот ќе се вклучи.</string>
+    <string name="keep_calls_in_popup_summary">Откако ќе одговорите на повик, тој останува во вашите известувања и не се појавува на цел екран. Ова се прави за да се избегне прекинување на други апликации, како на пример додека играте игра.</string>
+    <string name="turn_on_speaker_in_popup">Вклучи го звучникот автоматски</string>
+    <string name="turn_on_speaker_in_popup_summary">Ако не се поврзани слушалки, звучникот ќе се вклучи.</string>
     <string name="busy">Зафатено</string>
     <string name="block_calls">Блокирајте повици</string>
 

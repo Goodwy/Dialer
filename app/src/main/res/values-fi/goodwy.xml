@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">Liukusäädin ääriviivalla</string>
     <string name="answer_slider_vertical">Pystysuora liukusäädin</string>
 
-    <string name="show_recent_calls">Näytä viimeisimmät puhelut</string>
+    <string name="show_recent_calls">Näytä ja hae viimeisimmät puhelut</string>
+    <string name="search_contacts_in_dialpad">Hae yhteystietoja numeroa valittaessa</string>
     <string name="open_dialpad_when_call_from_another_app">Kun yrität soittaa puhelua toisesta sovelluksesta, avaa valintanäppäimet</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Tämä voi suojata sinua haittaohjelmilta, jotka soittavat tietämättäsi.</string>
     <string name="number_of_recent_calls_displays">Näytetään viimeaikaisten puheluiden määrä</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">Kellopainikkeen tyyli</string>
     <string name="call_notes">Puhelun muistiinpanot</string>
     <string name="back_pressed_end_call">Back-toiminto lopettaa puhelun</string>
-    <string name="keep_calls_in_popup_summary">Kun puheluun vastataan, se jää ilmoituksiin eikä täytä koko näyttöä. Tämä tehdään, jotta muita sovelluksia, kuten peliä pelatessa, ei keskeytetä.\n\nJos kuulokkeita ei ole kytketty, kaiutin kytkeytyy päälle.</string>
+    <string name="keep_calls_in_popup_summary">Kun vastaat puheluun, se pysyy ilmoituksissasi eikä näy koko näytön kokoisena. Tämä tehdään, jotta vältytään keskeyttämästä muita sovelluksia, kuten pelin pelaamista.</string>
+    <string name="turn_on_speaker_in_popup">Käynnistä kaiutin automaattisesti</string>
+    <string name="turn_on_speaker_in_popup_summary">Jos kuulokkeita ei ole kytketty, kaiutin kytkeytyy päälle.</string>
     <string name="busy">Kiireinen</string>
     <string name="block_calls">Estä puhelut</string>
     <string name="edit_number_before_call">Muokkaa numeroa ennen soittoa</string>

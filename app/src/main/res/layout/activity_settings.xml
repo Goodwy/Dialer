@@ -810,47 +810,25 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:id="@+id/settingsShowRecentCallsOnDialpadHolder"
+                        android:id="@+id/settingsSearchContactsInDialpadHolder"
                         style="@style/SettingsHolderSwitchStyle">
 
-                        <com.goodwy.commons.views.MyTextView
-                            android:id="@+id/settingsShowRecentCallsOnDialpadLabel"
+                        <com.goodwy.commons.views.MyMaterialSwitch
+                            android:id="@+id/settingsSearchContactsInDialpad"
                             style="@style/SettingsSwitchStyle"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:layout_toStartOf="@+id/settingsShowRecentCallsOnDialpadBeta"
-                            android:text="@string/show_recent_calls" />
+                            android:text="@string/search_contacts_in_dialpad"
+                            app:switchPadding="@dimen/bigger_margin"/>
+                    </RelativeLayout>
 
-                        <TextView
-                            android:id="@+id/settingsShowRecentCallsOnDialpadBeta"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/small_margin"
-                            android:layout_marginEnd="@dimen/small_margin"
-                            android:layout_centerVertical="true"
-                            android:layout_toStartOf="@+id/settingsShowRecentCallsOnDialpad"
-                            android:background="@drawable/button_rounded_5dp"
-                            android:backgroundTint="@color/red_call"
-                            android:clickable="false"
-                            android:paddingTop="@dimen/tiny_margin"
-                            android:paddingBottom="@dimen/tiny_margin"
-                            android:paddingStart="5dp"
-                            android:paddingEnd="5dp"
-                            android:text="@string/beta"
-                            android:textSize="12sp"
-                            android:textColor="@color/white"
-                            android:textAllCaps="true"
-                            android:textStyle="bold"
-                            android:includeFontPadding="false"/>
+                    <RelativeLayout
+                        android:id="@+id/settingsShowRecentCallsOnDialpadHolder"
+                        style="@style/SettingsHolderSwitchStyle">
 
                         <com.goodwy.commons.views.MyMaterialSwitch
                             android:id="@+id/settingsShowRecentCallsOnDialpad"
                             style="@style/SettingsSwitchStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            app:switchPadding="@dimen/bigger_margin" />
+                            android:text="@string/show_recent_calls"
+                            app:switchPadding="@dimen/bigger_margin"/>
                     </RelativeLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -987,40 +965,93 @@
                             app:switchPadding="@dimen/bigger_margin"/>
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:id="@+id/settingsKeepCallsInPopUpHolder"
-                        style="@style/SettingsHolderSwitchStyle">
+                    <LinearLayout
+                        android:id="@+id/settingsKeepCallsInPopUpWrapper"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/smaller_margin"
+                        android:layout_marginBottom="@dimen/smaller_margin"
+                        android:layout_marginHorizontal="@dimen/smaller_margin"
+                        android:orientation="vertical"
+                        android:background="@drawable/button_background_11dp"
+                        tools:backgroundTint="@color/activated_item_foreground">
 
-                        <com.goodwy.commons.views.MyTextView
-                            android:id="@+id/settingsKeepCallsInPopUpLabel"
-                            style="@style/SettingsTextLabelStyle"
-                            android:layout_alignParentStart="true"
-                            android:layout_centerVertical="true"
-                            android:layout_toStartOf="@+id/settingsKeepCallsInPopUpFaq"
-                            android:text="@string/keep_calls_in_popup" />
+                        <RelativeLayout
+                            android:id="@+id/settingsKeepCallsInPopUpHolder"
+                            style="@style/SettingsHolderSwitchStyle"
+                            android:background="@drawable/ripple_all_corners_11dp"
+                            android:paddingStart="@dimen/smaller_margin"
+                            android:paddingEnd="@dimen/smaller_margin">
 
-                        <ImageView
-                            android:id="@+id/settingsKeepCallsInPopUpFaq"
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:padding="4dp"
-                            android:layout_marginStart="@dimen/small_margin"
-                            android:layout_marginEnd="@dimen/small_margin"
-                            android:layout_centerVertical="true"
-                            android:background="?attr/selectableItemBackgroundBorderless"
-                            android:layout_toStartOf="@+id/settingsKeepCallsInPopUp"
-                            android:src="@drawable/ic_question_round"
-                            android:contentDescription="@string/keep_calls_in_popup" />
+                            <com.goodwy.commons.views.MyTextView
+                                android:id="@+id/settingsKeepCallsInPopUpLabel"
+                                style="@style/SettingsTextLabelStyle"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:layout_toStartOf="@+id/settingsKeepCallsInPopUpFaq"
+                                android:text="@string/keep_calls_in_popup" />
 
-                        <com.goodwy.commons.views.MyMaterialSwitch
-                            android:id="@+id/settingsKeepCallsInPopUp"
-                            style="@style/SettingsSwitchStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            app:switchPadding="@dimen/bigger_margin" />
-                    </RelativeLayout>
+                            <ImageView
+                                android:id="@+id/settingsKeepCallsInPopUpFaq"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:padding="4dp"
+                                android:layout_marginStart="@dimen/small_margin"
+                                android:layout_marginEnd="@dimen/small_margin"
+                                android:layout_centerVertical="true"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:layout_toStartOf="@+id/settingsKeepCallsInPopUp"
+                                android:src="@drawable/ic_question_round"
+                                android:contentDescription="@string/keep_calls_in_popup" />
+
+                            <com.goodwy.commons.views.MyMaterialSwitch
+                                android:id="@+id/settingsKeepCallsInPopUp"
+                                style="@style/SettingsSwitchStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                app:switchPadding="@dimen/bigger_margin" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/settingsTurnOnSpeakerInPopupHolder"
+                            style="@style/SettingsHolderSwitchStyle"
+                            android:background="@drawable/ripple_all_corners_11dp"
+                            android:paddingStart="@dimen/smaller_margin"
+                            android:paddingEnd="@dimen/smaller_margin">
+
+                            <com.goodwy.commons.views.MyTextView
+                                android:id="@+id/settingsTurnOnSpeakerInPopupLabel"
+                                style="@style/SettingsTextLabelStyle"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:layout_toStartOf="@+id/settingsTurnOnSpeakerInPopupFaq"
+                                android:text="@string/turn_on_speaker_in_popup" />
+
+                            <ImageView
+                                android:id="@+id/settingsTurnOnSpeakerInPopupFaq"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:padding="4dp"
+                                android:layout_marginStart="@dimen/small_margin"
+                                android:layout_marginEnd="@dimen/small_margin"
+                                android:layout_centerVertical="true"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:layout_toStartOf="@+id/settingsTurnOnSpeakerInPopup"
+                                android:src="@drawable/ic_question_round"
+                                android:contentDescription="@string/turn_on_speaker_in_popup" />
+
+                            <com.goodwy.commons.views.MyMaterialSwitch
+                                android:id="@+id/settingsTurnOnSpeakerInPopup"
+                                style="@style/SettingsSwitchStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                app:switchPadding="@dimen/bigger_margin" />
+                        </RelativeLayout>
+                    </LinearLayout>
 
                     <RelativeLayout
                         android:id="@+id/settingsBackPressedEndCallHolder"

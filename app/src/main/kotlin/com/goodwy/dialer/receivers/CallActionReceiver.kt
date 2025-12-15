@@ -20,7 +20,9 @@ class CallActionReceiver : BroadcastReceiver() {
             ACCEPT_CALL -> {
                 if (!context.config.keepCallsInPopUp) context.startActivity(CallActivity.getStartIntent(context))
                 CallManager.accept()
-                if (context.config.keepCallsInPopUp) CallManager.toggleSpeakerRoute(true)
+                if (context.config.keepCallsInPopUp && context.config.turnOnSpeakerInPopup) {
+                    CallManager.toggleSpeakerRoute(true)
+                }
             }
 
             MICROPHONE_CALL -> {

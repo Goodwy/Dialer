@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">Outline slider</string>
     <string name="answer_slider_vertical">Vertical slider</string>
 
-    <string name="show_recent_calls">Dangos galwadau diweddar</string>
+    <string name="show_recent_calls">Dangos a chwilio am alwadau diweddar</string>
+    <string name="search_contacts_in_dialpad">Chwilio am gysylltiadau wrth ddeialu rhif</string>
     <string name="open_dialpad_when_call_from_another_app">Wrth geisio gwneud galwad o raglen arall, agorwch y pad deialu</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Gall hyn eich amddiffyn rhag malware sy\'n gwneud galwadau heb yn wybod ichi.</string>
     <string name="number_of_recent_calls_displays">Wedi dangos nifer y galwadau diweddar</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">Bell Button Arddull</string>
     <string name="call_notes">Nodiadau galw</string>
     <string name="back_pressed_end_call">Gweithredu cefn yn dod â\'r alwad i ben</string>
-    <string name="keep_calls_in_popup_summary">Ar ôl ateb galwad, mae\'n aros yn eich hysbysiadau ac nid yw\'n llenwi\'r sgrin gyfan. Gwneir hyn i osgoi ymyrryd ag apiau eraill, fel wrth chwarae gêm.\nOs nad yw clustffon wedi\'i gysylltu, bydd y siaradwr yn cael ei droi ymlaen.</string>
+    <string name="keep_calls_in_popup_summary">Ar ôl i chi ateb galwad, mae\'n aros yn eich hysbysiadau ac nid yw\'n ymddangos yn sgrin lawn. Gwneir hyn i osgoi tarfu ar apiau eraill, fel wrth chwarae gêm.</string>
+    <string name="turn_on_speaker_in_popup">Troi\'r siaradwr ymlaen yn awtomatig</string>
+    <string name="turn_on_speaker_in_popup_summary">Os nad oes clustffon wedi\'i gysylltu, bydd y siaradwr yn cael ei droi ymlaen.</string>
     <string name="busy">Prysur</string>
     <string name="block_calls">Rhwystro galwadau</string>
     <string name="edit_number_before_call">Golygu rhif cyn galw</string>

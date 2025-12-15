@@ -51,7 +51,8 @@
     <string name="answer_slider_outline">מחוון מתאר</string>
     <string name="answer_slider_vertical">מחוון אנכי</string>
 
-    <string name="show_recent_calls">הצג שיחות אחרונות</string>
+    <string name="show_recent_calls">הצגה וחיפוש של שיחות אחרונות</string>
+    <string name="search_contacts_in_dialpad">חיפוש אנשי קשר בעת חיוג למספר</string>
     <string name="open_dialpad_when_call_from_another_app">בעת ניסיון לבצע שיחה מאפליקציה אחרת, פתח את לוח החיוג</string>
     <string name="open_dialpad_when_call_from_another_app_summary">זה יכול להגן עליך מפני תוכנות זדוניות שמבצעות שיחות ללא ידיעתך.</string>
     <string name="number_of_recent_calls_displays">הוצג מספר השיחות האחרונות</string>
@@ -61,7 +62,9 @@
     <string name="call_button_style">סגנון לחצן פעמון</string>
     <string name="call_notes">Notizen für Anrufe</string>
     <string name="back_pressed_end_call">פעולת החזרה מסיימת את השיחה</string>
-    <string name="keep_calls_in_popup_summary">לאחר מענה לשיחה, היא נשארת בהתראות שלך ואינה ממלאת את כל המסך. הדבר נעשה כדי למנוע הפרעה לאפליקציות אחרות, כמו למשל בזמן משחק.\nאם לא מחוברת אוזניות, הרמקול יופעל.</string>
+    <string name="keep_calls_in_popup_summary">לאחר שתענה לשיחה, היא נשארת בהתראות שלך ולא תופיע במסך מלא. זה נעשה כדי למנוע הפרעה לאפליקציות אחרות, כמו למשל בזמן משחק.</string>
+    <string name="turn_on_speaker_in_popup">הפעלת הרמקול באופן אוטומטי</string>
+    <string name="turn_on_speaker_in_popup_summary">אם לא מחוברות אוזניות, הרמקול יופעל.</string>
     <string name="busy">עָסוּק</string>
     <string name="block_calls">חסום שיחות</string>
     <string name="edit_number_before_call">עריכת מספר לפני השיחה</string>

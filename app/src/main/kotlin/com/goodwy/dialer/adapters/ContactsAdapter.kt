@@ -389,9 +389,16 @@ class ContactsAdapter(
 
     override fun onViewRecycled(holder: ViewHolder) {
         super.onViewRecycled(holder)
+//        if (!activity.isDestroyed && !activity.isFinishing) {
+//            Binding.getByItemViewType(holder.itemViewType, activity.config.useSwipeToAction).bind(holder.itemView).apply {
+//                Glide.with(activity).clear(itemContactImage)
+//            }
+//        }
+        // Fix: NullPointerException: Missing required view with ID: com.goodwy.dialer:id/item_contact_holder
         if (!activity.isDestroyed && !activity.isFinishing) {
-            Binding.getByItemViewType(holder.itemViewType, activity.config.useSwipeToAction).bind(holder.itemView).apply {
-                Glide.with(activity).clear(itemContactImage)
+            val imageView = holder.itemView.findViewById<ImageView>(R.id.item_contact_image)
+            if (imageView != null) {
+                Glide.with(activity).clear(imageView)
             }
         }
     }

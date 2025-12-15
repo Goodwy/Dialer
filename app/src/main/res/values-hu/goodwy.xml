@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">Körvonal csúszka</string>
     <string name="answer_slider_vertical">Függőleges csúszka</string>
 
-    <string name="show_recent_calls">Legutóbbi hívások megjelenítése</string>
+    <string name="show_recent_calls">Legutóbbi hívások megjelenítése és keresése</string>
+    <string name="search_contacts_in_dialpad">Névjegyek keresése szám tárcsázásakor</string>
     <string name="open_dialpad_when_call_from_another_app">Ha másik alkalmazásból próbál hívást kezdeményezni, nyissa ki a tárcsázót</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Ez megvédheti Önt a rosszindulatú programoktól, amelyek az Ön tudta nélkül hívásokat kezdeményeznek.</string>
     <string name="number_of_recent_calls_displays">Megjelenített legutóbbi hívások száma</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">Csengő gomb stílusa</string>
     <string name="call_notes">Hívásjegyzetek</string>
     <string name="back_pressed_end_call">A visszalépés befejezi a hívást</string>
-    <string name="keep_calls_in_popup_summary">A hívás fogadása után az értesítések között marad, és nem tölti ki a teljes képernyőt. Ez azért van így, hogy ne zavarjon meg más alkalmazásokat, például játék közben.\n\nHa nincs csatlakoztatva headset, a hangszóró bekapcsol.</string>
+    <string name="keep_calls_in_popup_summary">Miután fogadsz egy hívást, az az értesítések között marad, és nem jelenik meg teljes képernyőn. Erre azért van szükség, hogy ne zavarjon meg más alkalmazásokat, például játék közben.</string>
+    <string name="turn_on_speaker_in_popup">Hangszóró automatikus bekapcsolása</string>
+    <string name="turn_on_speaker_in_popup_summary">Ha nincs csatlakoztatva fejhallgató, a hangszóró bekapcsol.</string>
     <string name="busy">Elfoglalt</string>
     <string name="block_calls">Hívások blokkolása</string>
     <string name="edit_number_before_call">Szám szerkesztése hívás előtt</string>

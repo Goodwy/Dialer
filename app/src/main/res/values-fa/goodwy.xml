@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">لغزنده طرح کلی</string>
     <string name="answer_slider_vertical">لغزنده عمودی</string>
 
-    <string name="show_recent_calls">نمایش تماس های اخیر</string>
+    <string name="show_recent_calls">نمایش و جستجوی تماس‌های اخیر</string>
+    <string name="search_contacts_in_dialpad">جستجوی مخاطبین هنگام شماره گیری</string>
     <string name="open_dialpad_when_call_from_another_app">هنگام تلاش برای برقراری تماس از یک برنامه دیگر، صفحه شماره گیری را باز کنید</string>
     <string name="open_dialpad_when_call_from_another_app_summary">این می تواند از شما در برابر بدافزارهایی که بدون اطلاع شما تماس برقرار می کنند محافظت کند.</string>
     <string name="number_of_recent_calls_displays">نمایش تعداد تماس های اخیر</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">سبک دکمه زنگ</string>
     <string name="call_notes">یادداشت های تماس</string>
     <string name="back_pressed_end_call">اقدام برگشت تماس را به پایان می رساند</string>
-    <string name="keep_calls_in_popup_summary">پس از پاسخ دادن به تماس، آن تماس در اعلان‌های شما باقی می‌ماند و کل صفحه را پر نمی‌کند. این کار برای جلوگیری از ایجاد اختلال در برنامه‌های دیگر، مانند هنگام بازی، انجام می‌شود.\n\nاگر هدست متصل نباشد، بلندگو روشن خواهد شد.</string>
+    <string name="keep_calls_in_popup_summary">بعد از اینکه به یک تماس پاسخ می‌دهید، آن تماس در اعلان‌های شما باقی می‌ماند و به صورت تمام صفحه نمایش داده نمی‌شود. این کار برای جلوگیری از ایجاد اختلال در برنامه‌های دیگر، مانند هنگام بازی، انجام می‌شود.</string>
+    <string name="turn_on_speaker_in_popup">روشن کردن خودکار بلندگو</string>
+    <string name="turn_on_speaker_in_popup_summary">اگر هدستی وصل نباشد، بلندگو روشن خواهد شد.</string>
     <string name="busy">مشغول</string>
     <string name="block_calls">مسدود کردن تماس ها</string>
     <string name="edit_number_before_call">ویرایش شماره قبل از تماس</string>

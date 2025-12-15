@@ -51,7 +51,8 @@
     <string name="answer_slider_outline">Posúvač obrysu</string>
     <string name="answer_slider_vertical">Vertikálny posúvač</string>
 
-    <string name="show_recent_calls">Zobraziť posledné hovory</string>
+    <string name="show_recent_calls">Zobraziť a vyhľadať posledné hovory</string>
+    <string name="search_contacts_in_dialpad">Vyhľadávanie kontaktov pri vytáčaní čísla</string>
     <string name="open_dialpad_when_call_from_another_app">Pri pokuse o uskutočnenie hovoru z inej aplikácie otvorte číselnú klávesnicu</string>
     <string name="open_dialpad_when_call_from_another_app_summary">To vás môže chrániť pred škodlivým softvérom, ktorý uskutočňuje hovory bez vášho vedomia.</string>
     <string name="number_of_recent_calls_displays">Zobrazený počet posledných hovorov</string>
@@ -61,7 +62,9 @@
     <string name="call_button_style">Štýl zvončeka</string>
     <string name="call_notes">Poznámky k hovoru</string>
     <string name="back_pressed_end_call">Akcia Späť ukončí hovor</string>
-    <string name="keep_calls_in_popup_summary">Po prijatí hovoru zostane hovor v upozorneniach a nevyplní celú obrazovku. Robí sa to preto, aby sa predišlo prerušeniu iných aplikácií, napríklad počas hrania hry.\nAk nie sú pripojené slúchadlá, reproduktor sa zapne.</string>
+    <string name="keep_calls_in_popup_summary">Po prijatí hovoru zostane hovor v upozorneniach a nezobrazí sa na celej obrazovke. Robí sa to preto, aby sa predišlo prerušeniu iných aplikácií, napríklad počas hrania hry.</string>
+    <string name="turn_on_speaker_in_popup">Automatické zapnutie reproduktora</string>
+    <string name="turn_on_speaker_in_popup_summary">Ak nie sú pripojené žiadne slúchadlá, reproduktor sa zapne.</string>
     <string name="busy">Zaneprázdnený</string>
     <string name="block_calls">Blokovať hovory</string>
     <string name="edit_number_before_call">Upraviť číslo pred hovorom</string>

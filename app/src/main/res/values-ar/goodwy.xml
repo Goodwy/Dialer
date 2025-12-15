@@ -54,7 +54,8 @@
     <string name="answer_slider_outline">شريط تمرير المخطط التفصيلي</string>
     <string name="answer_slider_vertical">شريط التمرير العمودي</string>
 
-    <string name="show_recent_calls">إظهار المكالمات الأخيرة</string>
+    <string name="show_recent_calls">عرض وبحث المكالمات الأخيرة</string>
+    <string name="search_contacts_in_dialpad">ابحث عن جهات الاتصال عند الاتصال برقم</string>
     <string name="open_dialpad_when_call_from_another_app">عند محاولة إجراء مكالمة من تطبيق آخر، افتح لوحة الاتصال</string>
     <string name="open_dialpad_when_call_from_another_app_summary">يمكن أن يحميك هذا من البرامج الضارة التي تقوم بإجراء مكالمات دون علمك.</string>
     <string name="number_of_recent_calls_displays">عرض عدد المكالمات الأخيرة</string>
@@ -64,7 +65,9 @@
     <string name="call_button_style">نمط زر الجرس</string>
     <string name="call_notes">ملاحظات المكالمات</string>
     <string name="back_pressed_end_call">الإجراء الخلفي ينهي المكالمة</string>
-    <string name="keep_calls_in_popup_summary">بعد الرد على المكالمة، تبقى ضمن إشعاراتك ولا تملأ الشاشة بأكملها. هذا لتجنب مقاطعة التطبيقات الأخرى، مثل أثناء اللعب.\n\nفي حال عدم توصيل سماعة الرأس، سيتم تشغيل مكبر الصوت.</string>
+    <string name="keep_calls_in_popup_summary">بعد الرد على مكالمة، تبقى ضمن الإشعارات ولا تظهر بملء الشاشة. هذا الإجراء يهدف إلى تجنب مقاطعة التطبيقات الأخرى، مثلاً أثناء اللعب.</string>
+    <string name="turn_on_speaker_in_popup">تشغيل مكبر الصوت تلقائياً</string>
+    <string name="turn_on_speaker_in_popup_summary">في حال عدم توصيل سماعة رأس، سيتم تشغيل مكبر الصوت.</string>
     <string name="busy">مشغول</string>
     <string name="block_calls">حظر المكالمات</string>
     <string name="edit_number_before_call">تعديل الرقم قبل الاتصال</string>

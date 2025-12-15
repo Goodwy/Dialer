@@ -51,7 +51,8 @@
     <string name="answer_slider_outline">Slider avec contour</string>
     <string name="answer_slider_vertical">Slider vertical</string>
 
-    <string name="show_recent_calls">Afficher les appels récents</string>
+    <string name="show_recent_calls">Afficher et rechercher les appels récents</string>
+    <string name="search_contacts_in_dialpad">Rechercher des contacts en composant un numéro</string>
     <string name="open_dialpad_when_call_from_another_app">Lorsque vous essayez de passer un appel depuis une autre application, ouvrez le pavé numérique</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Cela peut vous protéger des logiciels malveillants qui passent des appels à votre insu.</string>
     <string name="number_of_recent_calls_displays">Nombre d\'appels récents affichés</string>
@@ -61,7 +62,9 @@
     <string name="call_button_style">Style de bouton de cloche</string>
     <string name="call_notes">Notes d’appel</string>
     <string name="back_pressed_end_call">L’action de retour met fin à l’appel</string>
-    <string name="keep_calls_in_popup_summary">Une fois l\'appel pris, il reste dans vos notifications et n\'occupe pas tout l\'écran. Ceci afin de ne pas interrompre les autres applications, par exemple pendant une partie de jeu.\n\nSi aucun casque n\'est connecté, le haut-parleur s\'active.</string>
+    <string name="keep_calls_in_popup_summary">Une fois l\'appel répondu, il reste dans vos notifications et ne s\'affiche pas en plein écran. Ceci afin de ne pas interrompre d\'autres applications, par exemple pendant une partie de jeu.</string>
+    <string name="turn_on_speaker_in_popup">Allumer automatiquement le haut-parleur</string>
+    <string name="turn_on_speaker_in_popup_summary">Si aucun casque n\'est connecté, le haut-parleur sera allumé.</string>
     <string name="busy">Occupé</string>
     <string name="block_calls">Bloquer les appels</string>
     <string name="edit_number_before_call">Modifiez le numéro avant d\'appeler</string>

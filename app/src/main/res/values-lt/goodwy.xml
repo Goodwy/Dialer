@@ -52,7 +52,8 @@
     <string name="answer_slider_outline">Kontūro slankiklis</string>
     <string name="answer_slider_vertical">Vertikalus slankiklis</string>
 
-    <string name="show_recent_calls">Rodyti paskutinius skambučius</string>
+    <string name="show_recent_calls">Rodyti ir ieškoti naujausių skambučių</string>
+    <string name="search_contacts_in_dialpad">Ieškoti kontaktų renkant numerį</string>
     <string name="open_dialpad_when_call_from_another_app">Bandydami skambinti iš kitos programos, atidarykite rinkimo klaviatūrą</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Tai gali apsaugoti jus nuo kenkėjiškų programų, kurios skambina jums nežinant.</string>
     <string name="number_of_recent_calls_displays">Rodomas paskutinių skambučių skaičius</string>
@@ -62,7 +63,9 @@
     <string name="call_button_style">Varpo mygtuko stilius</string>
     <string name="call_notes">Skambučių pastabos</string>
     <string name="back_pressed_end_call">Atgalinis veiksmas užbaigia skambutį</string>
-    <string name="keep_calls_in_popup_summary">Atsiliepus į skambutį, jis lieka jūsų pranešimuose ir neužpildo viso ekrano. Tai daroma siekiant netrukdyti kitoms programėlėms, pavyzdžiui, žaidžiant žaidimą.\n\nJei ausinės neprijungtos, garsiakalbis bus įjungtas.</string>
+    <string name="keep_calls_in_popup_summary">Atsiliepus į skambutį, jis lieka pranešimuose ir nerodomas per visą ekraną. Taip daroma siekiant netrukdyti kitoms programoms, pvz., žaidžiant žaidimą.</string>
+    <string name="turn_on_speaker_in_popup">Įjungti garsiakalbį automatiškai</string>
+    <string name="turn_on_speaker_in_popup_summary">Jei ausinės neprijungtos, garsiakalbis įsijungs.</string>
     <string name="busy">Užimtas</string>
     <string name="block_calls">Blokuoti skambučius</string>
     <string name="edit_number_before_call">Redaguoti numerį prieš skambutį</string>

@@ -52,7 +52,8 @@
     <string name="answer_slider_outline">Slider cu contur</string>
     <string name="answer_slider_vertical">Slider vertical</string>
 
-    <string name="show_recent_calls">Afișați apelurile recente</string>
+    <string name="show_recent_calls">Afișați și căutați apeluri recente</string>
+    <string name="search_contacts_in_dialpad">Căutați contacte atunci când formați un număr</string>
     <string name="open_dialpad_when_call_from_another_app">Când încercați să efectuați un apel dintr-o altă aplicație, deschideți tastatura de apelare</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Acest lucru vă poate proteja de programele malware care efectuează apeluri fără știrea dvs.</string>
     <string name="number_of_recent_calls_displays">Numărul afișat de apeluri recente</string>
@@ -62,7 +63,9 @@
     <string name="call_button_style">Stil buton clopot</string>
     <string name="call_notes">Note de apel</string>
     <string name="back_pressed_end_call">Acțiunea de întoarcere încheie apelul</string>
-    <string name="keep_calls_in_popup_summary">După ce se răspunde la un apel, acesta rămâne în notificări și nu ocupă întregul ecran. Acest lucru se face pentru a evita întreruperea altor aplicații, cum ar fi în timpul jocului.\n\nDacă nu sunt conectate căști, difuzorul va fi pornit.</string>
+    <string name="keep_calls_in_popup_summary">După ce răspunzi la un apel, acesta rămâne în notificări și nu apare pe tot ecranul. Acest lucru se face pentru a evita întreruperea altor aplicații, de exemplu în timp ce te joci.</string>
+    <string name="turn_on_speaker_in_popup">Porniți automat difuzorul</string>
+    <string name="turn_on_speaker_in_popup_summary">Dacă nu sunt conectate căști, difuzorul va fi pornit.</string>
     <string name="busy">Ocupat</string>
     <string name="block_calls">Blocați apelurile</string>
     <string name="edit_number_before_call">Editați numărul înainte de apel</string>

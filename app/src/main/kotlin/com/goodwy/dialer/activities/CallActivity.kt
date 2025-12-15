@@ -63,6 +63,7 @@ class CallActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityCallBinding::inflate)
 
     private var isMicrophoneOff = false
+    private var isMicrophoneInitialized = false
     private var isCallEnded = false
     private var callContact: CallContact? = null
     private var proximityWakeLock: PowerManager.WakeLock? = null
@@ -546,8 +547,12 @@ class CallActivity : SimpleActivity() {
         } else {
             callDraggableBackground.background.alpha = 51 // 20%
         }
-        val colorBg = if (configBackgroundCallScreen == TRANSPARENT_BACKGROUND || configBackgroundCallScreen == BLUR_AVATAR || configBackgroundCallScreen == AVATAR || configBackgroundCallScreen == BLACK_BACKGROUND) Color.WHITE
-            else getProperTextColor()
+        val colorBg =
+            if (configBackgroundCallScreen == TRANSPARENT_BACKGROUND
+                || configBackgroundCallScreen == BLUR_AVATAR
+                || configBackgroundCallScreen == AVATAR
+                || configBackgroundCallScreen == BLACK_BACKGROUND
+                ) Color.WHITE else getProperTextColor()
         callDraggableBackgroundIcon.drawable.mutate().setTint(getColor(R.color.green_call))
         callDraggableBackgroundIcon.background.mutate().setTint(colorBg)
         callDraggableBackground.background.mutate().setTint(colorBg)
@@ -698,8 +703,12 @@ class CallActivity : SimpleActivity() {
         }
 
         val configBackgroundCallScreen = config.backgroundCallScreen
-        val colorBg = if (configBackgroundCallScreen == TRANSPARENT_BACKGROUND || configBackgroundCallScreen == BLUR_AVATAR || configBackgroundCallScreen == AVATAR || configBackgroundCallScreen == BLACK_BACKGROUND) Color.WHITE
-        else getProperTextColor()
+        val colorBg =
+            if (configBackgroundCallScreen == TRANSPARENT_BACKGROUND
+                || configBackgroundCallScreen == BLUR_AVATAR
+                || configBackgroundCallScreen == AVATAR
+                || configBackgroundCallScreen == BLACK_BACKGROUND
+            ) Color.WHITE else getProperTextColor()
         callDraggableVertical.drawable.mutate().setTint(getColor(R.color.green_call))
         callDraggableVertical.background.mutate().setTint(colorBg)
         //callDraggableVertical.background.alpha = 51 // 20%
@@ -708,7 +717,7 @@ class CallActivity : SimpleActivity() {
         callDraggableVertical.setOnTouchListener { _, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    dragDownX = event.y
+//                    dragDownX = event.y
                     //callDraggableBackground.animate().alpha(0f)
                     stopAnimation = true
                     callDownArrow.animate().alpha(0f)
@@ -882,8 +891,11 @@ class CallActivity : SimpleActivity() {
 
     private fun updateCallAudioState(route: AudioRoute?, changeProximitySensor: Boolean = true) {
         if (route != null) {
-            //If enabled, one of the users has his microphone turned off at the start of a call??
-            isMicrophoneOff = audioManager.isMicrophoneMute
+            //If enabled, one of the users (OnePlus 13r, Oxygen 16OS) has his microphone turned off at the start of a call??
+            //isMicrophoneOff = audioManager.isMicrophoneMute
+            if (isMicrophoneInitialized) isMicrophoneOff = audioManager.isMicrophoneMute
+            else isMicrophoneInitialized = true
+
             updateMicrophoneButton()
 
             isSpeakerOn = route == AudioRoute.SPEAKER

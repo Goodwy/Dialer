@@ -49,7 +49,8 @@
     <string name="answer_slider_outline">Penggeser garis luar</string>
     <string name="answer_slider_vertical">Penggeser Vertikal</string>
 
-    <string name="show_recent_calls">Tampilkan panggilan terbaru</string>
+    <string name="show_recent_calls">Tampilkan dan cari panggilan terbaru</string>
+    <string name="search_contacts_in_dialpad">Cari kontak saat melakukan panggilan nomor</string>
     <string name="open_dialpad_when_call_from_another_app">Saat mencoba melakukan panggilan dari aplikasi lain, buka papan tombol</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Ini dapat melindungi Anda dari malware yang melakukan panggilan tanpa sepengetahuan Anda.</string>
     <string name="number_of_recent_calls_displays">Menampilkan jumlah panggilan terbaru</string>
@@ -59,7 +60,9 @@
     <string name="call_button_style">Gaya tombol panggil</string>
     <string name="call_notes">Catatan panggilan</string>
     <string name="back_pressed_end_call">Aksi kembali mengakhiri panggilan</string>
-    <string name="keep_calls_in_popup_summary">Setelah panggilan dijawab, panggilan tersebut tetap ada di notifikasi Anda dan tidak memenuhi seluruh layar. Hal ini dilakukan untuk menghindari gangguan pada aplikasi lain, seperti saat bermain game.\nJika headset tidak terhubung, speaker akan menyala.</string>
+    <string name="keep_calls_in_popup_summary">Setelah Anda menjawab panggilan, panggilan tersebut tetap ada di notifikasi Anda dan tidak muncul dalam layar penuh. Hal ini dilakukan untuk menghindari gangguan pada aplikasi lain, seperti saat bermain game.</string>
+    <string name="turn_on_speaker_in_popup">Speaker menyala secara otomatis</string>
+    <string name="turn_on_speaker_in_popup_summary">Jika tidak ada headset yang terhubung, speaker akan diaktifkan.</string>
     <string name="busy">Sibuk</string>
     <string name="block_calls">Blokir panggilan</string>
     <string name="edit_number_before_call">Edit nomor sebelum menelepon</string>

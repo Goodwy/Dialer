@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">ਆਊਟਲਾਈਨ ਸਲਾਈਡਰ</string>
     <string name="answer_slider_vertical">ਵਰਟੀਕਲ ਸਲਾਈਡਰ</string>
 
-    <string name="show_recent_calls">ਹਾਲੀਆ ਕਾਲਾਂ ਦਿਖਾਓ</string>
+    <string name="show_recent_calls">ਹਾਲੀਆ ਕਾਲਾਂ ਦਿਖਾਓ ਅਤੇ ਖੋਜੋ</string>
+    <string name="search_contacts_in_dialpad">ਨੰਬਰ ਡਾਇਲ ਕਰਦੇ ਸਮੇਂ ਸੰਪਰਕ ਖੋਜੋ</string>
     <string name="open_dialpad_when_call_from_another_app">ਕਿਸੇ ਹੋਰ ਐਪਲੀਕੇਸ਼ਨ ਤੋਂ ਕਾਲ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਸਮੇਂ, ਡਾਇਲ ਪੈਡ ਖੋਲ੍ਹੋ</string>
     <string name="open_dialpad_when_call_from_another_app_summary">ਇਹ ਤੁਹਾਨੂੰ ਮਾਲਵੇਅਰ ਤੋਂ ਬਚਾ ਸਕਦਾ ਹੈ ਜੋ ਤੁਹਾਡੀ ਜਾਣਕਾਰੀ ਤੋਂ ਬਿਨਾਂ ਕਾਲ ਕਰਦਾ ਹੈ।</string>
     <string name="number_of_recent_calls_displays">ਹਾਲੀਆ ਕਾਲਾਂ ਦੀ ਗਿਣਤੀ ਪ੍ਰਦਰਸ਼ਿਤ ਕੀਤੀ ਗਈ</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">ਕਾਲ ਬਟਨ ਸ਼ੈਲੀ</string>
     <string name="call_notes">ਕਾਲ ਨੋਟਸ</string>
     <string name="back_pressed_end_call">ਬੈਕ ਐਕਸ਼ਨ ਕਾਲ ਨੂੰ ਖਤਮ ਕਰਦਾ ਹੈ</string>
-    <string name="keep_calls_in_popup_summary">ਕਾਲ ਦਾ ਜਵਾਬ ਦੇਣ ਤੋਂ ਬਾਅਦ, ਇਹ ਤੁਹਾਡੀਆਂ ਸੂਚਨਾਵਾਂ ਵਿੱਚ ਰਹਿੰਦਾ ਹੈ ਅਤੇ ਪੂਰੀ ਸਕ੍ਰੀਨ ਨੂੰ ਨਹੀਂ ਭਰਦਾ। ਇਹ ਹੋਰ ਐਪਸ ਨੂੰ ਰੋਕਣ ਤੋਂ ਬਚਣ ਲਈ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਜਿਵੇਂ ਕਿ ਗੇਮ ਖੇਡਦੇ ਸਮੇਂ।\nਜੇਕਰ ਹੈੱਡਸੈੱਟ ਕਨੈਕਟ ਨਹੀਂ ਹੈ, ਤਾਂ ਸਪੀਕਰ ਚਾਲੂ ਹੋ ਜਾਵੇਗਾ।</string>
+    <string name="keep_calls_in_popup_summary">ਜਦੋਂ ਤੁਸੀਂ ਕਾਲ ਦਾ ਜਵਾਬ ਦਿੰਦੇ ਹੋ, ਤਾਂ ਇਹ ਤੁਹਾਡੀਆਂ ਸੂਚਨਾਵਾਂ ਵਿੱਚ ਰਹਿੰਦਾ ਹੈ ਅਤੇ ਪੂਰੀ-ਸਕ੍ਰੀਨ ਵਿੱਚ ਨਹੀਂ ਦਿਖਾਈ ਦਿੰਦਾ। ਇਹ ਹੋਰ ਐਪਾਂ ਨੂੰ ਰੋਕਣ ਤੋਂ ਬਚਣ ਲਈ ਕੀਤਾ ਜਾਂਦਾ ਹੈ, ਜਿਵੇਂ ਕਿ ਗੇਮ ਖੇਡਦੇ ਸਮੇਂ।</string>
+    <string name="turn_on_speaker_in_popup">ਸਪੀਕਰ ਆਪਣੇ ਆਪ ਚਾਲੂ ਕਰੋ</string>
+    <string name="turn_on_speaker_in_popup_summary">ਜੇਕਰ ਕੋਈ ਹੈੱਡਸੈੱਟ ਕਨੈਕਟ ਨਹੀਂ ਹੈ, ਤਾਂ ਸਪੀਕਰ ਚਾਲੂ ਹੋ ਜਾਵੇਗਾ।</string>
     <string name="busy">ਵਿਅਸਤ</string>
     <string name="block_calls">ਕਾਲਾਂ ਨੂੰ ਬਲੌਕ ਕਰੋ</string>
     <string name="edit_number_before_call">ਕਾਲ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਨੰਬਰ ਦਾ ਸੰਪਾਦਨ ਕਰੋ</string>

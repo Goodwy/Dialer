@@ -52,7 +52,8 @@
     <string name="answer_slider_outline">Orisni drsnik</string>
     <string name="answer_slider_vertical">Navpični drsnik</string>
 
-    <string name="show_recent_calls">Prikaži nedavne klice</string>
+    <string name="show_recent_calls">Prikaz in iskanje nedavnih klicev</string>
+    <string name="search_contacts_in_dialpad">Iskanje stikov pri klicanju številke</string>
     <string name="open_dialpad_when_call_from_another_app">Ko poskušate klicati iz druge aplikacije, odprite številčnico</string>
     <string name="open_dialpad_when_call_from_another_app_summary">To vas lahko zaščiti pred zlonamerno programsko opremo, ki kliče brez vaše vednosti.</string>
     <string name="number_of_recent_calls_displays">Prikazano število zadnjih klicev</string>
@@ -62,7 +63,9 @@
     <string name="call_button_style">Slog zvonca</string>
     <string name="call_notes">Opombe o klicu</string>
     <string name="back_pressed_end_call">Dejanje nazaj konča klic</string>
-    <string name="keep_calls_in_popup_summary">Ko je klic sprejet, ostane v obvestilih in ne zapolni celotnega zaslona. To se naredi zato, da se prepreči prekinitev drugih aplikacij, na primer med igranjem igre.\nČe slušalke niso priključene, se bo zvočnik vklopil.</string>
+    <string name="keep_calls_in_popup_summary">Ko sprejmete klic, ta ostane v obvestilih in se ne prikaže v celozaslonskem načinu. To storite, da ne prekinjate drugih aplikacij, na primer med igranjem igre.</string>
+    <string name="turn_on_speaker_in_popup">Samodejni vklop zvočnika</string>
+    <string name="turn_on_speaker_in_popup_summary">Če slušalke niso priključene, se bo zvočnik vklopil.</string>
     <string name="busy">zaseden</string>
     <string name="block_calls">Blokiraj klice</string>
     <string name="edit_number_before_call">Pred klicem uredite številko</string>

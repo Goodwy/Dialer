@@ -52,7 +52,8 @@
     <string name="answer_slider_outline">Suwak konspektu</string>
     <string name="answer_slider_vertical">Pionowy suwak</string>
 
-    <string name="show_recent_calls">Pokaż ostatnie połączenia</string>
+    <string name="show_recent_calls">Pokaż i wyszukaj ostatnie połączenia</string>
+    <string name="search_contacts_in_dialpad">Wyszukaj kontakty podczas wybierania numeru</string>
     <string name="open_dialpad_when_call_from_another_app">Podczas próby wykonania połączenia z innej aplikacji otwórz klawiaturę numeryczną</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Może to zapewnić Ci ochronę przed złośliwym oprogramowaniem, które wykonuje połączenia bez Twojej wiedzy.</string>
     <string name="number_of_recent_calls_displays">Wyświetlana liczba ostatnich połączeń</string>
@@ -62,7 +63,9 @@
     <string name="call_button_style">Styl przycisku dzwonka</string>
     <string name="call_notes">Notatki z rozmów</string>
     <string name="back_pressed_end_call">Akcja wsteczna kończy połączenie</string>
-    <string name="keep_calls_in_popup_summary">Po odebraniu połączenia pozostaje ono w powiadomieniach i nie wypełnia całego ekranu. Ma to na celu uniknięcie zakłócania działania innych aplikacji, na przykład podczas grania w grę.\nJeśli zestaw słuchawkowy nie jest podłączony, głośnik zostanie włączony.</string>
+    <string name="keep_calls_in_popup_summary">Po odebraniu połączenia pozostaje ono w powiadomieniach i nie wyświetla się na pełnym ekranie. Ma to na celu uniknięcie zakłócania działania innych aplikacji, na przykład podczas grania w grę.</string>
+    <string name="turn_on_speaker_in_popup">Włącz głośnik automatycznie</string>
+    <string name="turn_on_speaker_in_popup_summary">Jeśli zestaw słuchawkowy nie jest podłączony, głośnik zostanie włączony.</string>
     <string name="busy">Zajęty</string>
     <string name="block_calls">Blokuj połączenia</string>
     <string name="edit_number_before_call">Edytuj numer przed połączeniem</string>

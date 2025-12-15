@@ -49,7 +49,8 @@
     <string name="answer_slider_outline">แถบเลื่อนเค้าร่าง</string>
     <string name="answer_slider_vertical">แถบเลื่อนแนวตั้ง</string>
 
-    <string name="show_recent_calls">แสดงการโทรล่าสุด</string>
+    <string name="show_recent_calls">แสดงและค้นหาบันทึกการโทรล่าสุด</string>
+    <string name="search_contacts_in_dialpad">ค้นหาข้อมูลผู้ติดต่อขณะโทรออก</string>
     <string name="open_dialpad_when_call_from_another_app">เมื่อพยายามโทรออกจากแอปพลิเคชันอื่น ให้เปิดแป้นกดหมายเลข</string>
     <string name="open_dialpad_when_call_from_another_app_summary">นี่สามารถปกป้องคุณจากมัลแวร์ที่โทรออกโดยที่คุณไม่รู้ตัว</string>
     <string name="number_of_recent_calls_displays">แสดงจำนวนการโทรล่าสุด</string>
@@ -59,7 +60,9 @@
     <string name="call_button_style">รูปแบบปุ่มกระดิ่ง</string>
     <string name="call_notes">บันทึกการโทร</string>
     <string name="back_pressed_end_call">การดําเนินการย้อนกลับจะสิ้นสุดการโทร</string>
-    <string name="keep_calls_in_popup_summary">หลังจากรับสายแล้ว เสียงจะยังคงอยู่ในการแจ้งเตือนและไม่แสดงเต็มหน้าจอ เพื่อป้องกันเสียงรบกวนจากแอปอื่นๆ เช่น ขณะเล่นเกม\nหากไม่ได้เชื่อมต่อชุดหูฟัง ลำโพงจะเปิดอยู่</string>
+    <string name="keep_calls_in_popup_summary">หลังจากรับสายแล้ว สายนั้นจะยังคงอยู่ในแถบแจ้งเตือนและจะไม่แสดงแบบเต็มหน้าจอ เพื่อป้องกันไม่ให้รบกวนแอปพลิเคชันอื่น ๆ เช่น ขณะเล่นเกม</string>
+    <string name="turn_on_speaker_in_popup">เปิดลำโพงอัตโนมัติ</string>
+    <string name="turn_on_speaker_in_popup_summary">หากไม่ได้เชื่อมต่อหูฟัง ลำโพงจะเปิดใช้งาน</string>
     <string name="busy">ยุ่ง</string>
     <string name="block_calls">บล็อกการโทร</string>
     <string name="edit_number_before_call">แก้ไขหมายเลขก่อนโทร</string>

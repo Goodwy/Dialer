@@ -51,7 +51,8 @@
     <string name="answer_slider_outline">Slider com contorno</string>
     <string name="answer_slider_vertical">Controlo deslizante vertical</string>
 
-    <string name="show_recent_calls">Mostrar chamadas recentes</string>
+    <string name="show_recent_calls">Exibir e pesquisar chamadas recentes</string>
+    <string name="search_contacts_in_dialpad">Pesquisar contatos ao discar um número</string>
     <string name="open_dialpad_when_call_from_another_app">Ao tentar fazer uma chamada de outro aplicativo, abra o teclado de discagem</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Isso pode protegê-lo de malware que faz chamadas sem o seu conhecimento.</string>
     <string name="number_of_recent_calls_displays">Número exibido de chamadas recentes</string>
@@ -61,7 +62,9 @@
     <string name="call_button_style">Estilo de botão de anel</string>
     <string name="call_notes">Notas de chamada</string>
     <string name="back_pressed_end_call">A ação de retorno termina a chamada</string>
-    <string name="keep_calls_in_popup_summary">Após uma chamada ser atendida, ela permanece em suas notificações e não preenche a tela inteira. Isso é feito para evitar interromper outros aplicativos, como durante um jogo.\nSe um fone de ouvido não estiver conectado, o alto-falante será ativado.</string>
+    <string name="keep_calls_in_popup_summary">Após atender uma chamada, ela permanece nas suas notificações e não aparece em tela cheia. Isso é feito para evitar interromper outros aplicativos, como enquanto você está jogando.</string>
+    <string name="turn_on_speaker_in_popup">Ligar o alto-falante automaticamente</string>
+    <string name="turn_on_speaker_in_popup_summary">Se nenhum fone de ouvido estiver conectado, o alto-falante será ativado.</string>
     <string name="busy">Ocupado</string>
     <string name="block_calls">Bloquear chamadas</string>
     <string name="edit_number_before_call">Edite o número antes de ligar.</string>

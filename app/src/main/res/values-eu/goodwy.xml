@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">Outline slider</string>
     <string name="answer_slider_vertical">Vertical slider</string>
 
-    <string name="show_recent_calls">Erakutsi azken deiak</string>
+    <string name="show_recent_calls">Erakutsi eta bilatu azken deiak</string>
+    <string name="search_contacts_in_dialpad">Bilatu kontaktuak zenbaki bat markatzean</string>
     <string name="open_dialpad_when_call_from_another_app">Beste aplikazio batetik dei bat egiten saiatzen zarenean, ireki teklatua</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Horrek zuk jakin gabe deiak egiten dituen malwaretik babestu zaitu.</string>
     <string name="number_of_recent_calls_displays">Bistaratu diren azken deien kopurua</string>
@@ -59,7 +60,9 @@
     <string name="group_all_calls">Talde dei guztiak, azken deia bakarrik erakutsiko da</string>
     <string name="call_button_style">Deitzeko botoiaren estiloa</string>
     <string name="call_notes">Dei-oharrak</string>
-    <string name="keep_calls_in_popup_summary">Deiari erantzun ondoren, jakinarazpenetan geratzen da eta ez du pantaila osoa betetzen. Hori beste aplikazio batzuk etetea saihesteko egiten da, adibidez, joko bat jolasten ari zaren bitartean.\n\nAurikularrak konektatuta ez badaude, bozgorailua piztuta egongo da.</string>
+    <string name="keep_calls_in_popup_summary">Dei bati erantzun ondoren, jakinarazpenetan geratuko da eta ez da pantaila osoan agertuko. Hori beste aplikazio batzuk etenik ez izateko egiten da, adibidez, joko bat jolasten ari zaren bitartean.</string>
+    <string name="turn_on_speaker_in_popup">Bozgorailua automatikoki piztu</string>
+    <string name="turn_on_speaker_in_popup_summary">Entzungailurik konektatuta ez badago, bozgorailua piztuta egongo da.</string>
     <string name="busy">Lanpetuta</string>
     <string name="block_calls">Blokeatu deiak</string>
     <string name="edit_number_before_call">Editatu zenbakia deitu aurretik</string>

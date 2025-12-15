@@ -7,7 +7,8 @@
     <string name="missed_calls_g">Пропущенных звонков</string>
     <string name="missed_call_notifications_g">Уведомления о пропущенных звонках</string>
     <string name="call_start_end_vibration">Вибрация при начале и завершении звонка</string>
-    <string name="show_recent_calls">Показывать недавние звонки</string>
+    <string name="show_recent_calls">Показывать и искать последние звонки</string>
+    <string name="search_contacts_in_dialpad">Поиск контактов при наборе номера</string>
     <string name="open_dialpad_when_call_from_another_app">При попытке совершить звонок из другого приложения открывать панель набора номера</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Это может защитить вас от вредоносных программ, совершающих звонки без вашего ведома.</string>
     <string name="number_of_recent_calls_displays">Отображаемое количество недавних звонков</string>
@@ -18,7 +19,9 @@
     <string name="call_notes">Заметки о звонках</string>
     <string name="back_pressed_end_call">Действие назад завершает вызов</string>
     <string name="keep_calls_in_popup">Оставлять звонки в уведомлениях</string>
-    <string name="keep_calls_in_popup_summary">"После ответа на вызов он остается в уведомлениях и не отображается на весь экран. Это сделано для того, чтобы не прерывать работу других приложений, например, во время игры.\nЕсли не подключена гарнитура будет включен динамик. "</string>
+    <string name="keep_calls_in_popup_summary">После ответа на вызов он остается в уведомлениях и не отображается на весь экран. Это сделано для того, чтобы не прерывать работу других приложений, например, во время игры.</string>
+    <string name="turn_on_speaker_in_popup">Включать автоматически динамик</string>
+    <string name="turn_on_speaker_in_popup_summary">Если гарнитура не подключена, включится динамик.</string>
     <string name="busy">Занято</string>
 
     <string name="block_calls">Блокировать звонки</string>

@@ -49,7 +49,8 @@
     <string name="answer_slider_outline">아웃라인 슬라이더</string>
     <string name="answer_slider_vertical">수직 슬라이더</string>
 
-    <string name="show_recent_calls">최근 통화 표시</string>
+    <string name="show_recent_calls">최근 통화 내역을 표시하고 검색합니다.</string>
+    <string name="search_contacts_in_dialpad">전화번호를 걸 때 연락처를 검색하세요</string>
     <string name="open_dialpad_when_call_from_another_app">다른 애플리케이션에서 전화를 걸려고 할 때 다이얼 패드를 엽니다.</string>
     <string name="open_dialpad_when_call_from_another_app_summary">이를 통해 사용자 모르게 전화를 거는 맬웨어로부터 사용자를 보호할 수 있습니다.</string>
     <string name="number_of_recent_calls_displays">최근 통화 횟수 표시</string>
@@ -59,7 +60,9 @@
     <string name="call_button_style">벨 버튼 스타일</string>
     <string name="call_notes">통화 메모</string>
     <string name="back_pressed_end_call">뒤로 동작은 통화를 종료합니다.</string>
-    <string name="keep_calls_in_popup_summary">전화를 받으면 알림에 표시되며 전체 화면을 채우지 않습니다. 이는 게임 플레이 등 다른 앱의 실행을 방해하지 않기 위한 조치입니다.\n헤드셋이 연결되어 있지 않으면 스피커가 켜집니다.</string>
+    <string name="keep_calls_in_popup_summary">전화를 받으면 알림 목록에만 표시되고 전체 화면으로 나타나지 않습니다. 이는 게임 플레이 중과 같은 다른 앱 사용을 방해하지 않기 위한 조치입니다.</string>
+    <string name="turn_on_speaker_in_popup">스피커 자동 켜기</string>
+    <string name="turn_on_speaker_in_popup_summary">헤드셋이 연결되어 있지 않으면 스피커가 켜집니다.</string>
     <string name="busy">바쁘다</string>
     <string name="block_calls">통화 차단</string>
     <string name="edit_number_before_call">전화하기 전에 번호를 수정하세요</string>

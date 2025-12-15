@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">Outline slider</string>
     <string name="answer_slider_vertical">Vertical slider</string>
 
-    <string name="show_recent_calls">Rādīt pēdējos zvanus</string>
+    <string name="show_recent_calls">Rādīt un meklēt nesenos zvanus</string>
+    <string name="search_contacts_in_dialpad">Meklēt kontaktpersonas, zvanot uz numuru</string>
     <string name="open_dialpad_when_call_from_another_app">Mēģinot veikt zvanu no citas lietojumprogrammas, atveriet numura sastādīšanas tastatūru</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Tas var pasargāt jūs no ļaunprātīgas programmatūras, kas veic zvanus bez jūsu ziņas.</string>
     <string name="number_of_recent_calls_displays">Parādīts pēdējo zvanu skaits</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">Zvana pogas stils</string>
     <string name="call_notes">Zvanu piezīmes</string>
     <string name="back_pressed_end_call">Darbība Atpakaļ beidz zvanu</string>
-    <string name="keep_calls_in_popup_summary">Pēc zvana atbildēšanas tas paliek paziņojumos un neaizpilda visu ekrānu. Tas tiek darīts, lai netraucētu citu lietotņu darbību, piemēram, spēles laikā.\nJa austiņas nav pievienotas, skaļrunis tiks ieslēgts.</string>
+    <string name="keep_calls_in_popup_summary">Pēc zvana atbildēšanas tas paliek paziņojumos un netiek rādīts pilnekrāna režīmā. Tas tiek darīts, lai netraucētu citu lietotņu darbību, piemēram, spēles spēlēšanas laikā.</string>
+    <string name="turn_on_speaker_in_popup">Automātiski ieslēgt skaļruni</string>
+    <string name="turn_on_speaker_in_popup_summary">Ja austiņas nav pievienotas, skaļrunis tiks ieslēgts.</string>
     <string name="busy">Aizņemts</string>
     <string name="block_calls">Bloķēt zvanus</string>
     <string name="edit_number_before_call">Rediģēt numuru pirms zvana</string>

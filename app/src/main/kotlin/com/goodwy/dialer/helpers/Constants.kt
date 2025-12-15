@@ -56,10 +56,12 @@ const val SIM_DIALOG_STYLE = "sim_dialog_style"
 const val DIALPAD_SECONDARY_TYPEFACE = "dialpad_secondary_typeface"
 const val DIALPAD_HASHTAG_LONG_CLICK = "dialpad_hashtag_long_click"
 const val DIALPAD_CLEAR_WHEN_START_CALL = "dialpad_clear_when_start_call"
+const val SEARCH_CONTACT_IN_DIALPAD = "search_contacts_in_dialpad"
 const val CALLER_NOTES = "caller_notes"
 const val BACK_PRESSED_END_CALL = "back_pressed_end_call"
 const val CALL_BLOCK_BUTTON = "call_block_button"
 const val KEEP_CALLS_IN_POPUP = "keep_calls_in_popup"
+const val TURN_ON_SPEAKER_IN_POPUP = "turn_on_speaker_in_popup"
 const val INIT_CALL_BLOCKING_SETUP = "init_call_blocking_setup"
 const val RECENT_OUTGOING_NUMBERS = "recent_outgoing_numbers"
 const val ON_RECENT_CLICK = "on_recent_click"
@@ -177,5 +179,6 @@ fun whatsNewList(): ArrayList<Release> {
         add(Release(700, R.string.release_700))
         add(Release(702, R.string.release_702))
         add(Release(800, R.string.release_800))
+        add(Release(803, R.string.release_803))
     }
 }

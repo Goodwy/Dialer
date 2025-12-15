@@ -11,7 +11,9 @@
     <string name="call_notes">Белешке о позивима</string>
     <string name="back_pressed_end_call">Радња назад завршава позив</string>
 
-    <string name="keep_calls_in_popup_summary">Након што се одговори на позив, он остаје у обавештењима и не попуњава цео екран. Ово се ради како би се избегло прекидање других апликација, као што је током играња игре.\nАко слушалице нису повезане, звучник ће бити укључен.</string>
+    <string name="keep_calls_in_popup_summary">Након што одговорите на позив, он остаје у обавештењима и не приказује се преко целог екрана. То се ради како би се избегло прекидање других апликација, као што је време играња игре.</string>
+    <string name="turn_on_speaker_in_popup">Аутоматски укључи звучник</string>
+    <string name="turn_on_speaker_in_popup_summary">Ако нису повезане слушалице, звучник ће се укључити.</string>
     <string name="busy">Заузето</string>
     <string name="block_calls">Блокирајте позиве</string>
     <string name="edit_number_before_call">Измени број пре позива</string>
@@ -58,7 +60,8 @@
     <string name="answer_slider">Клизач</string>
     <string name="answer_slider_outline">Оквирни клизач</string>
     <string name="answer_slider_vertical">Вертикални клизач</string>
-    <string name="show_recent_calls">Прикажи недавне позиве</string>
+    <string name="show_recent_calls">Прикажи и претражи скорашње позиве</string>
+    <string name="search_contacts_in_dialpad">Претрага контаката приликом бирања броја</string>
     <string name="open_dialpad_when_call_from_another_app">Када покушавате да упутите позив из друге апликације, отворите тастатуру за бирање бројева</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Ово може да вас заштити од малвера који упућује позиве без вашег знања.</string>
     <string name="number_of_recent_calls_displays">Приказан број недавних позива</string>

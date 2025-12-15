@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">Slider με περίγραμμα</string>
     <string name="answer_slider_vertical">Κάθετο ρυθμιστικό</string>
 
-    <string name="show_recent_calls">Εμφάνιση πρόσφατων κλήσεων</string>
+    <string name="show_recent_calls">Εμφάνιση και αναζήτηση πρόσφατων κλήσεων</string>
+    <string name="search_contacts_in_dialpad">Αναζήτηση επαφών κατά την κλήση ενός αριθμού</string>
     <string name="open_dialpad_when_call_from_another_app">Όταν προσπαθείτε να πραγματοποιήσετε μια κλήση από άλλη εφαρμογή, ανοίξτε το πληκτρολόγιο κλήσης</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Αυτό μπορεί να σας προστατεύσει από κακόβουλο λογισμικό που πραγματοποιεί κλήσεις εν αγνοία σας.</string>
     <string name="number_of_recent_calls_displays">Εμφανιζόμενος αριθμός πρόσφατων κλήσεων</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">Στυλ κουμπιού καμπάνας</string>
     <string name="call_notes">Notizen für Anrufe</string>
     <string name="back_pressed_end_call">Η ενέργεια επιστροφής τερματίζει την κλήση</string>
-    <string name="keep_calls_in_popup_summary">Αφού απαντηθεί μια κλήση, αυτή παραμένει στις ειδοποιήσεις σας και δεν καταλαμβάνει ολόκληρη την οθόνη. Αυτό γίνεται για να αποφευχθεί η διακοπή άλλων εφαρμογών, όπως κατά την αναπαραγωγή ενός παιχνιδιού.\nΕάν δεν είναι συνδεδεμένα ακουστικά, το ηχείο θα ενεργοποιηθεί.</string>
+    <string name="keep_calls_in_popup_summary">Αφού απαντήσετε σε μια κλήση, αυτή παραμένει στις ειδοποιήσεις σας και δεν εμφανίζεται σε πλήρη οθόνη. Αυτό γίνεται για να αποφευχθεί η διακοπή άλλων εφαρμογών, όπως κατά την αναπαραγωγή ενός παιχνιδιού.</string>
+    <string name="turn_on_speaker_in_popup">Αυτόματη ενεργοποίηση ηχείου</string>
+    <string name="turn_on_speaker_in_popup_summary">Εάν δεν είναι συνδεδεμένα ακουστικά, το ηχείο θα ενεργοποιηθεί.</string>
     <string name="busy">Απασχολημένος</string>
     <string name="block_calls">Αποκλεισμός κλήσεων</string>
     <string name="edit_number_before_call">Επεξεργασία αριθμού πριν από την κλήση</string>

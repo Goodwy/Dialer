@@ -49,7 +49,8 @@
     <string name="answer_slider_outline">Thanh trượt phác thảo</string>
     <string name="answer_slider_vertical">Thanh trượt dọc</string>
 
-    <string name="show_recent_calls">Hiển thị các cuộc gọi gần đây</string>
+    <string name="show_recent_calls">Hiển thị và tìm kiếm các cuộc gọi gần đây</string>
+    <string name="search_contacts_in_dialpad">Tìm kiếm danh bạ khi quay số</string>
     <string name="open_dialpad_when_call_from_another_app">Khi cố gắng thực hiện cuộc gọi từ một ứng dụng khác, hãy mở bàn phím quay số</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Tính năng này có thể bảo vệ bạn khỏi phần mềm độc hại thực hiện cuộc gọi mà bạn không hề hay biết.</string>
     <string name="number_of_recent_calls_displays">Hiển thị số cuộc gọi gần đây</string>
@@ -59,7 +60,9 @@
     <string name="call_button_style">Kiểu nút chuông</string>
     <string name="call_notes">Ghi chú cuộc gọi</string>
     <string name="back_pressed_end_call">Hành động quay lại kết thúc cuộc gọi</string>
-    <string name="keep_calls_in_popup_summary">Sau khi trả lời cuộc gọi, thông báo sẽ vẫn hiển thị trong phần thông báo chứ không chiếm toàn bộ màn hình. Điều này nhằm tránh làm gián đoạn các ứng dụng khác, chẳng hạn như khi đang chơi game.\nNếu tai nghe không được kết nối, loa ngoài sẽ được bật.</string>
+    <string name="keep_calls_in_popup_summary">Sau khi bạn trả lời cuộc gọi, cuộc gọi đó vẫn hiển thị trong thông báo và không hiện toàn màn hình. Điều này nhằm tránh làm gián đoạn các ứng dụng khác, ví dụ như khi đang chơi game.</string>
+    <string name="turn_on_speaker_in_popup">Tự động bật loa</string>
+    <string name="turn_on_speaker_in_popup_summary">Nếu không có tai nghe nào được kết nối, loa sẽ tự động bật.</string>
     <string name="busy">Bận</string>
     <string name="block_calls">Chặn cuộc gọi</string>
     <string name="edit_number_before_call">Chỉnh sửa số trước khi gọi</string>

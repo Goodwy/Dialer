@@ -52,7 +52,8 @@
     <string name="answer_slider_outline">Glidebryter for omriss</string>
     <string name="answer_slider_vertical">Vertikal glidebryter</string>
 
-    <string name="show_recent_calls">Vis nylige anrop</string>
+    <string name="show_recent_calls">Vis og søk i nylige anrop</string>
+    <string name="search_contacts_in_dialpad">Søk i kontakter når du ringer et nummer</string>
     <string name="open_dialpad_when_call_from_another_app">Når du prøver å ringe fra et annet program, åpne talltastaturet</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Dette kan beskytte deg mot skadelig programvare som ringer uten at du vet det.</string>
     <string name="number_of_recent_calls_displays">Vist antall nylige anrop</string>
@@ -62,7 +63,9 @@
     <string name="call_button_style">Bell Button Stil</string>
     <string name="call_notes">Anrop notater</string>
     <string name="back_pressed_end_call">Tilbake-handling avslutter samtalen</string>
-    <string name="keep_calls_in_popup_summary">Etter at en samtale er besvart, forblir den i varslene dine og fyller ikke hele skjermen. Dette gjøres for å unngå å forstyrre andre apper, for eksempel mens du spiller et spill.\nHvis et headset ikke er koblet til, vil høyttaleren være slått på.</string>
+    <string name="keep_calls_in_popup_summary">Etter at du har besvart et anrop, forblir det i varslene dine og vises ikke i fullskjerm. Dette gjøres for å unngå å forstyrre andre apper, for eksempel mens du spiller et spill.</string>
+    <string name="turn_on_speaker_in_popup">Slå på høyttaleren automatisk</string>
+    <string name="turn_on_speaker_in_popup_summary">Hvis ingen hodetelefoner er tilkoblet, vil høyttaleren være slått på.</string>
     <string name="busy">Travel</string>
     <string name="block_calls">Blokker samtaler</string>
     <string name="edit_number_before_call">Rediger nummer før oppringing</string>

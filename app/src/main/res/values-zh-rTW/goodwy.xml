@@ -49,7 +49,8 @@
     <string name="answer_slider_outline">大綱滑塊</string>
     <string name="answer_slider_vertical">垂直滑塊</string>
 
-    <string name="show_recent_calls">顯示最近通話</string>
+    <string name="show_recent_calls">顯示並搜尋最近的通話記錄</string>
+    <string name="search_contacts_in_dialpad">撥打電話時搜尋聯絡人</string>
     <string name="open_dialpad_when_call_from_another_app">嘗試從其他應用程式撥打電話時，打開撥號盤</string>
     <string name="open_dialpad_when_call_from_another_app_summary">這可以保護您免受在您不知情的情況下撥打電話的惡意軟體的侵害。</string>
     <string name="number_of_recent_calls_displays">顯示最近通話次數</string>
@@ -59,7 +60,9 @@
     <string name="call_button_style">鈴鐺按鈕樣式</string>
     <string name="call_notes">通話記錄</string>
     <string name="back_pressed_end_call">Back 操作結束調用</string>
-    <string name="keep_calls_in_popup_summary">接聽電話後，來電通知會保留在通知欄中，不會佔據整個螢幕。這樣做是為了避免干擾其他應用，例如玩遊戲時。\n\n如果未連接耳機，揚聲器將自動開啟。</string>
+    <string name="keep_calls_in_popup_summary">接聽電話後，來電會保留在通知欄中，不會全螢幕顯示。這樣做是為了避免干擾其他應用，例如玩遊戲時。</string>
+    <string name="turn_on_speaker_in_popup">自動開啟揚聲器</string>
+    <string name="turn_on_speaker_in_popup_summary">如果沒有連接耳機，揚聲器將自動開啟。</string>
     <string name="busy">忙碌的</string>
     <string name="block_calls">攔截來電</string>
     <string name="edit_number_before_call">通話前請先編輯號碼</string>

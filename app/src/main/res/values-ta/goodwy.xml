@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">அவுட்லைன் ஸ்லைடர்</string>
     <string name="answer_slider_vertical">செங்குத்து ஸ்லைடர்</string>
 
-    <string name="show_recent_calls">சமீபத்திய அழைப்புகளைக் காட்டு</string>
+    <string name="show_recent_calls">சமீபத்திய அழைப்புகளைக் காட்டு மற்றும் தேடு</string>
+    <string name="search_contacts_in_dialpad">எண்ணை டயல் செய்யும்போது தொடர்புகளைத் தேடுங்கள்</string>
     <string name="open_dialpad_when_call_from_another_app">மற்றொரு பயன்பாட்டிலிருந்து அழைப்பை மேற்கொள்ள முயற்சிக்கும்போது, ​​டயல் பேடைத் திறக்கவும்</string>
     <string name="open_dialpad_when_call_from_another_app_summary">இது உங்களுக்குத் தெரியாமல் அழைப்புகளைச் செய்யும் தீம்பொருளிலிருந்து உங்களைப் பாதுகாக்கும்.</string>
     <string name="number_of_recent_calls_displays">சமீபத்திய அழைப்புகளின் எண்ணிக்கை காட்டப்பட்டது</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">அழைப்பு பொத்தான் நடை</string>
     <string name="call_notes">அழைப்பு குறிப்புகள்</string>
     <string name="back_pressed_end_call">பின் நடவடிக்கை அழைப்பை முடிக்கிறது</string>
-    <string name="keep_calls_in_popup_summary">ஒரு அழைப்புக்குப் பதிலளித்த பிறகு, அது உங்கள் அறிவிப்புகளிலேயே இருக்கும், மேலும் முழுத் திரையையும் நிரப்பாது. கேம் விளையாடும்போது போன்ற பிற பயன்பாடுகள் குறுக்கிடுவதைத் தவிர்க்க இது செய்யப்படுகிறது.\nஹெட்செட் இணைக்கப்படவில்லை என்றால், ஸ்பீக்கர் இயக்கப்படும்.</string>
+    <string name="keep_calls_in_popup_summary">நீங்கள் ஒரு அழைப்பிற்கு பதிலளித்த பிறகு, அது உங்கள் அறிவிப்புகளிலேயே இருக்கும், மேலும் முழுத்திரையில் தோன்றாது. கேம் விளையாடும்போது போன்ற பிற பயன்பாடுகளுக்கு இடையூறு ஏற்படுவதைத் தவிர்க்க இது செய்யப்படுகிறது.</string>
+    <string name="turn_on_speaker_in_popup">ஸ்பீக்கரை தானாக இயக்கு</string>
+    <string name="turn_on_speaker_in_popup_summary">ஹெட்செட் இணைக்கப்படவில்லை என்றால், ஸ்பீக்கர் இயக்கப்படும்.</string>
     <string name="busy">பிஸி</string>
     <string name="block_calls">அழைப்புகளைத் தடு</string>
     <string name="edit_number_before_call">அழைப்பதற்கு முன் எண்ணைத் திருத்து</string>

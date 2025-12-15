@@ -7,7 +7,8 @@
     <string name="missed_calls_g">মিসড কল</string>
     <string name="missed_call_notifications_g">মিসড কল বিজ্ঞপ্তি</string>
     <string name="call_start_end_vibration">কল শুরু এবং শেষ করার সময় কম্পন করুন</string>
-    <string name="show_recent_calls">সাম্প্রতিক কলগুলি দেখান</string>
+    <string name="show_recent_calls">সাম্প্রতিক কলগুলি দেখান এবং অনুসন্ধান করুন</string>
+    <string name="search_contacts_in_dialpad">কোনও নম্বর ডায়াল করার সময় পরিচিতি খুঁজুন</string>
     <string name="open_dialpad_when_call_from_another_app">অন্য অ্যাপ থেকে কল করার চেষ্টা করার সময় ডায়ালপ্যাড খুলুন</string>
     <string name="open_dialpad_when_call_from_another_app_summary">এটি আপনাকে ম্যালওয়্যার ব্যবহার না করে কল করা থেকে রক্ষা করতে পারে আপনার জ্ঞান।</string>
     <string name="number_of_recent_calls_displays">সাম্প্রতিক কলের সংখ্যা প্রদর্শন করুন</string>
@@ -18,7 +19,9 @@
     <string name="call_notes">কল নোট</string>
     <string name="back_pressed_end_call">ব্যাক অ্যাকশন কল শেষ করে</string>
     <string name="keep_calls_in_popup">বিজ্ঞপ্তিতে কল ছেড়ে দিন</string>
-    <string name="keep_calls_in_popup_summary">কল রিসিভ করার পর, এটি আপনার নোটিফিকেশনে থেকে যায় এবং পুরো স্ক্রিনে প্রবেশ করে না। এটি করা হয় যাতে অন্যান্য অ্যাপের সাথে কোনও বিঘ্ন না ঘটে, যেমন গেম খেলার সময়।\nযদি হেডসেট সংযুক্ত না থাকে, তাহলে স্পিকার চালু থাকবে।</string>
+    <string name="keep_calls_in_popup_summary">আপনি কল রিসিভ করার পরেও, এটি আপনার নোটিফিকেশনে থেকে যায় এবং পূর্ণ-স্ক্রিনে দেখা যায় না। এটি করা হয় যাতে অন্যান্য অ্যাপগুলি বাধাগ্রস্ত না হয়, যেমন গেম খেলার সময়।</string>
+    <string name="turn_on_speaker_in_popup">স্পিকার স্বয়ংক্রিয়ভাবে চালু করুন</string>
+    <string name="turn_on_speaker_in_popup_summary">যদি কোনও হেডসেট সংযুক্ত না থাকে, তাহলে স্পিকারটি চালু হবে।</string>
     <string name="busy">ব্যস্ত</string>
 
     <string name="block_calls">কল ব্লক করুন</string>

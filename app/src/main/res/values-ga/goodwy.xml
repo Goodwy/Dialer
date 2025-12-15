@@ -7,7 +7,8 @@
     <string name="missed_calls_g">Glaonna caillte</string>
     <string name="missed_call_notifications_g">Fógraí glaonna caillte</string>
     <string name="call_start_end_vibration">Creathaigh nuair a thosaíonn agus a chríochnaíonn do ghlao</string>
-    <string name="show_recent_calls">Taispeáin glaonna le déanaí</string>
+    <string name="show_recent_calls">Taispeáin agus cuardaigh glaonna le déanaí</string>
+    <string name="search_contacts_in_dialpad">Cuardaigh teagmhálacha agus uimhir á dhiailiú</string>
     <string name="open_dialpad_when_call_from_another_app">Agus tú ag iarraidh glao a dhéanamh ó fheidhmchlár eile, oscail an eochaircheap diailithe</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Is féidir leis seo tú a chosaint ó malware a dhéanann glaonna gan do chuid eolais.</string>
     <string name="number_of_recent_calls_displays">Taispeánadh líon na nglaonna le déanaí</string>
@@ -18,7 +19,9 @@
     <string name="call_notes">Nótaí glaonna</string>
     <string name="back_pressed_end_call">Críochnaíonn an gníomh Ar Ais an glao</string>
     <string name="keep_calls_in_popup">Fág glaonna i bhfógraí</string>
-    <string name="keep_calls_in_popup_summary">Tar éis glao a fhreagairt, fanann sé i do fhógraí agus ní líonann sé an scáileán ar fad. Déantar é seo chun cur isteach ar aipeanna eile a sheachaint, amhail agus cluiche á imirt.\nMura bhfuil cluasáin ceangailte, cuirfear an cainteoir ar siúl.</string>
+    <string name="keep_calls_in_popup_summary">Tar éis duit glao a fhreagairt, fanann sé i do fhógraí agus ní thaispeántar é i lánscáileán. Déantar é seo chun cur isteach ar aipeanna eile a sheachaint, amhail agus cluiche á imirt agat.</string>
+    <string name="turn_on_speaker_in_popup">Cas an cainteoir air go huathoibríoch</string>
+    <string name="turn_on_speaker_in_popup_summary">Mura bhfuil cluasáin ceangailte, cuirfear an cainteoir ar siúl.</string>
     <string name="busy">Gnóthach</string>
 
     <string name="block_calls">Cuir bac ar ghlaonna</string>

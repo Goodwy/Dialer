@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">Anahatlı kaydırıcı</string>
     <string name="answer_slider_vertical">Dikey kaydırıcı</string>
 
-    <string name="show_recent_calls">Son aramaları göster</string>
+    <string name="show_recent_calls">Son aramaları göster ve ara</string>
+    <string name="search_contacts_in_dialpad">Numara çevirirken kişileri ara</string>
     <string name="open_dialpad_when_call_from_another_app">Başka bir uygulamadan arama yapmaya çalıştığınızda, arama tuşlarını açın</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Bu, bilginiz olmadan arama yapan kötü amaçlı yazılımlardan sizi koruyabilir.</string>
     <string name="number_of_recent_calls_displays">Son aramaların görüntülenen sayısı</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">Zil Düğmesi Stili</string>
     <string name="call_notes">Çağrı notları</string>
     <string name="back_pressed_end_call">Geri eylemi çağrıyı sonlandırır</string>
-    <string name="keep_calls_in_popup_summary">Bir arama yanıtlandıktan sonra bildirimlerinizde kalır ve ekranın tamamını kaplamaz. Bu, oyun oynarken olduğu gibi diğer uygulamaların kesintiye uğramasını önlemek içindir.\n\nKulaklık bağlı değilse, hoparlör açılır.</string>
+    <string name="keep_calls_in_popup_summary">Bir aramayı cevapladıktan sonra, arama bildirimlerinizde kalır ve tam ekran olarak görünmez. Bu, oyun oynarken olduğu gibi diğer uygulamaların çalışmasını kesintiye uğratmamak için yapılır.</string>
+    <string name="turn_on_speaker_in_popup">Hoparlörü otomatik olarak aç</string>
+    <string name="turn_on_speaker_in_popup_summary">Kulaklık bağlı değilse, hoparlör açılacaktır.</string>
     <string name="busy">Meşgul</string>
     <string name="block_calls">Çağrıları engelle</string>
     <string name="edit_number_before_call">Aramadan önce numarayı düzenle</string>

@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">Плъзгач за контур</string>
     <string name="answer_slider_vertical">Вертикален плъзгач</string>
 
-    <string name="show_recent_calls">Показване на последните обаждания</string>
+    <string name="show_recent_calls">Показване и търсене на скорошни повиквания</string>
+    <string name="search_contacts_in_dialpad">Търсене на контакти при набиране на номер</string>
     <string name="open_dialpad_when_call_from_another_app">Когато се опитвате да осъществите повикване от друго приложение, отворете клавиатурата за набиране</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Това може да ви предпази от зловреден софтуер, който извършва обаждания без ваше знание.</string>
     <string name="number_of_recent_calls_displays">Показан брой скорошни обаждания</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">Стил на звънец</string>
     <string name="call_notes">Бележки за обаждания</string>
     <string name="back_pressed_end_call">Действието \"Назад\" прекратява повикването</string>
-    <string name="keep_calls_in_popup_summary">След като отговорите на обаждане, то остава в известията ви и не запълва целия екран. Това се прави, за да се избегне прекъсването на други приложения, например по време на игра.\nАко не са свързани слушалки, високоговорителят ще бъде включен.</string>
+    <string name="keep_calls_in_popup_summary">След като отговорите на повикване, то остава в известията ви и не се показва на цял екран. Това се прави, за да се избегне прекъсването на други приложения, например докато играете игра.</string>
+    <string name="turn_on_speaker_in_popup">Автоматично включване на високоговорителя</string>
+    <string name="turn_on_speaker_in_popup_summary">Ако няма свързани слушалки, високоговорителят ще се включи.</string>
     <string name="busy">зает</string>
     <string name="block_calls">Блокиране на повиквания</string>
     <string name="edit_number_before_call">Редактиране на номера преди обаждане</string>

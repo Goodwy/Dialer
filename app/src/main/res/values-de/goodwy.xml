@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">Schieberegler mit Umrandung</string>
     <string name="answer_slider_vertical">Vertikaler Schieberegler</string>
 
-    <string name="show_recent_calls">Letzte Anrufe anzeigen</string>
+    <string name="show_recent_calls">Letzte Anrufe anzeigen und durchsuchen</string>
+    <string name="search_contacts_in_dialpad">Kontakte suchen, während eine Nummer gewählt wird</string>
     <string name="open_dialpad_when_call_from_another_app">Wenn Sie versuchen, einen Anruf aus einer anderen Anwendung zu tätigen, öffnen Sie die Wähltastatur</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Dies kann Sie vor Malware schützen, die ohne Ihr Wissen Anrufe tätigt.</string>
     <string name="number_of_recent_calls_displays">Angezeigte Anzahl der letzten Anrufe</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">Klingelknopf-Stil</string>
     <string name="call_notes">Notizen für Anrufe</string>
     <string name="back_pressed_end_call">Die Zurück-Aktion beendet den Anruf</string>
-    <string name="keep_calls_in_popup_summary">Nachdem ein Anruf angenommen wurde, bleibt er in Ihren Benachrichtigungen erhalten und füllt nicht den gesamten Bildschirm aus. Dies dient dazu, andere Apps, beispielsweise beim Spielen, nicht zu unterbrechen.\nWenn kein Headset angeschlossen ist, wird der Lautsprecher eingeschaltet.</string>
+    <string name="keep_calls_in_popup_summary">Nachdem Sie einen Anruf angenommen haben, bleibt dieser in Ihren Benachrichtigungen erhalten und wird nicht im Vollbildmodus angezeigt. Dies dient dazu, die Nutzung anderer Apps, beispielsweise beim Spielen, nicht zu unterbrechen.</string>
+    <string name="turn_on_speaker_in_popup">Lautsprecher automatisch einschalten</string>
+    <string name="turn_on_speaker_in_popup_summary">Wenn kein Headset angeschlossen ist, wird der Lautsprecher eingeschaltet.</string>
     <string name="busy">Beschäftigt</string>
     <string name="block_calls">Anrufe blockieren</string>
     <string name="edit_number_before_call">Nummer vor dem Anruf bearbeiten</string>

@@ -51,7 +51,8 @@
     <string name="answer_slider_outline">Deslizador con contorno</string>
     <string name="answer_slider_vertical">Deslizador vertical</string>
 
-    <string name="show_recent_calls">Mostrar llamadas recientes</string>
+    <string name="show_recent_calls">Mostrar y buscar llamadas recientes</string>
+    <string name="search_contacts_in_dialpad">Buscar contactos al marcar un número</string>
     <string name="open_dialpad_when_call_from_another_app">Al intentar realizar una llamada desde otra aplicación, abra el teclado de marcación</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Esto puede protegerle contra malware que realiza llamadas sin su conocimiento.</string>
     <string name="number_of_recent_calls_displays">Número mostrado de llamadas recientes</string>
@@ -61,7 +62,9 @@
     <string name="call_button_style">Estilo de botón de campana</string>
     <string name="call_notes">Notas de la convocatoria</string>
     <string name="back_pressed_end_call">La acción de retroceso finaliza la llamada</string>
-    <string name="keep_calls_in_popup_summary">Tras responder una llamada, esta permanece en tus notificaciones y no ocupa toda la pantalla. Esto se hace para evitar interrumpir otras aplicaciones, como al jugar.\nSi no hay auriculares conectados, el altavoz se activará.</string>
+    <string name="keep_calls_in_popup_summary">Después de responder una llamada, esta permanece en tus notificaciones y no aparece en pantalla completa. Esto se hace para evitar interrumpir otras aplicaciones, como cuando juegas.</string>
+    <string name="turn_on_speaker_in_popup">Encender el altavoz automáticamente</string>
+    <string name="turn_on_speaker_in_popup_summary">Si no hay ningún auricular conectado, se encenderá el altavoz.</string>
     <string name="busy">Ocupado</string>
     <string name="block_calls">Bloquear llamadas</string>
     <string name="edit_number_before_call">Editar el número antes de llamar</string>

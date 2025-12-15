@@ -49,7 +49,8 @@
     <string name="answer_slider_outline">アウトライン スライダー</string>
     <string name="answer_slider_vertical">垂直スライダー</string>
 
-    <string name="show_recent_calls">最近の通話を表示</string>
+    <string name="show_recent_calls">最近の通話を表示および検索する</string>
+    <string name="search_contacts_in_dialpad">番号をダイヤルするときに連絡先を検索する</string>
     <string name="open_dialpad_when_call_from_another_app">他のアプリケーションから電話をかける場合は、ダイヤルパッドを開きます</string>
     <string name="open_dialpad_when_call_from_another_app_summary">これにより、知らないうちに電話をかけてくるマルウェアから保護されます。</string>
     <string name="number_of_recent_calls_displays">最近の通話回数の表示</string>
@@ -59,7 +60,9 @@
     <string name="call_button_style">ベルボタンスタイル</string>
     <string name="call_notes">通話メモ</string>
     <string name="back_pressed_end_call">戻るアクションは通話を終了します</string>
-    <string name="keep_calls_in_popup_summary">通話終了後、通知は画面全体に表示されず、通知に残ります。これは、ゲームプレイ中など、他のアプリの動作を中断させないためです。\nヘッドセットが接続されていない場合は、スピーカーがオンになります。</string>
+    <string name="keep_calls_in_popup_summary">電話に出た後も、通知は画面全体に表示されず、通知は通知リストに残ります。これは、ゲーム中など他のアプリの動作を中断させないためです。</string>
+    <string name="turn_on_speaker_in_popup">スピーカーを自動的にオンにする</string>
+    <string name="turn_on_speaker_in_popup_summary">ヘッドセットが接続されていない場合は、スピーカーがオンになります。</string>
     <string name="busy">忙しい</string>
     <string name="block_calls">通話をブロックする</string>
     <string name="edit_number_before_call">通話前に番号を編集する</string>

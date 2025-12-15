@@ -11,7 +11,9 @@
     <string name="call_notes">Ноты для званкоў</string>
     <string name="back_pressed_end_call">Дзеянне таму завяршае выклік</string>
 
-    <string name="keep_calls_in_popup_summary">"Пасля адказу на выклік ён застаецца ў апавяшчэннях і не адлюстроўваецца на ўвесь экран. Гэта зроблена для таго, каб не перарываць працу іншых прыкладанняў, напрыклад падчас гульні.\nКалі не падключана гарнітура будзе ўключаны дынамік. "</string>
+    <string name="keep_calls_in_popup_summary">Пасля адказу на выклік ён застаецца ў апавяшчэннях і не адлюстроўваецца на ўвесь экран. Гэта зроблена для таго, каб не перарываць працу іншых прыкладанняў, напрыклад падчас гульні.</string>
+    <string name="turn_on_speaker_in_popup">Уключаць аўтаматычна дынамік</string>
+    <string name="turn_on_speaker_in_popup_summary">Калі гарнітура не падключана, дынамік будзе ўключаны.</string>
     <string name="busy">Занята</string>
     <string name="block_calls">Блакіраваць званкі</string>
     <string name="edit_number_before_call">Рэдагаваць нумар перад званком</string>
@@ -60,7 +62,8 @@
     <string name="answer_slider_outline">Слайдэр з контурам</string>
     <string name="answer_slider_vertical">Вертыкальны слайдэр</string>
 
-    <string name="show_recent_calls">Паказваць нядаўнія званкі</string>
+    <string name="show_recent_calls">Паказваць і шукаць апошнія званкі</string>
+    <string name="search_contacts_in_dialpad">Пошук кантактаў пры наборы нумара</string>
     <string name="open_dialpad_when_call_from_another_app">Пры спробе здзейсніць званок з іншага прыкладання адкрываць панэль набору нумара</string>
     <string name="open_dialpad_when_call_from_another_app_summary">Гэта можа абараніць вас ад шкоднасных праграм, якія здзяйсняюць званкі без вашага ведама.</string>
     <string name="number_of_recent_calls_displays">Якая адлюстроўваецца колькасць нядаўніх званкоў</string>

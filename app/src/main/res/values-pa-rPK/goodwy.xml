@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">آؤٹ لائن سلائیڈر</string>
     <string name="answer_slider_vertical">عمودی سلائیڈر</string>
 
-    <string name="show_recent_calls">حالیہ کالیں دکھائیں۔</string>
+    <string name="show_recent_calls">حالیہ کالز دکھائیں اور تلاش کریں۔</string>
+    <string name="search_contacts_in_dialpad">نمبر ڈائل کرتے وقت رابطے تلاش کریں۔</string>
     <string name="open_dialpad_when_call_from_another_app">دوسری ایپلیکیشن سے کال کرنے کی کوشش کرتے وقت، ڈائل پیڈ کھولیں۔</string>
     <string name="open_dialpad_when_call_from_another_app_summary">یہ آپ کو میلویئر سے بچا سکتا ہے جو آپ کے علم کے بغیر کال کرتا ہے۔</string>
     <string name="number_of_recent_calls_displays">حالیہ کالوں کی تعداد دکھائی گئی۔</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">کال بٹن کا انداز</string>
     <string name="call_notes">کال نوٹ</string>
     <string name="back_pressed_end_call">بیک ایکشن کال ختم کردا اے</string>
-    <string name="keep_calls_in_popup_summary">کال کا جواب دینے کے بعد، یہ آپ کی اطلاعات میں رہتا ہے اور پوری اسکرین کو نہیں بھرتا ہے۔ یہ دوسری ایپس میں مداخلت سے بچنے کے لیے کیا جاتا ہے، جیسے کہ گیم کھیلتے وقت۔\nاگر ہیڈسیٹ منسلک نہیں ہے، تو اسپیکر آن ہو جائے گا۔</string>
+    <string name="keep_calls_in_popup_summary">کال کا جواب دینے کے بعد، یہ آپ کی اطلاعات میں رہتا ہے اور پوری اسکرین پر ظاہر نہیں ہوتا ہے۔ یہ دوسری ایپس میں مداخلت سے بچنے کے لیے کیا جاتا ہے، جیسے کہ گیم کھیلتے وقت۔</string>
+    <string name="turn_on_speaker_in_popup">اسپیکر کو خود بخود آن کریں۔</string>
+    <string name="turn_on_speaker_in_popup_summary">اگر کوئی ہیڈسیٹ منسلک نہیں ہے، تو اسپیکر آن ہو جائے گا۔</string>
     <string name="busy">مصروف</string>
     <string name="block_calls">کالیں بلاک کریں۔</string>
     <string name="edit_number_before_call">کال کرنے سے پہلے نمبر میں ترمیم کریں۔</string>

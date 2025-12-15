@@ -51,7 +51,8 @@
     <string name="answer_slider_outline">Klizač obrisa</string>
     <string name="answer_slider_vertical">Okomiti klizač</string>
 
-    <string name="show_recent_calls">Prikaži nedavne pozive</string>
+    <string name="show_recent_calls">Prikaz i pretraživanje nedavnih poziva</string>
+    <string name="search_contacts_in_dialpad">Pretraživanje kontakata prilikom biranja broja</string>
     <string name="open_dialpad_when_call_from_another_app">Kada pokušavate uputiti poziv iz druge aplikacije, otvorite brojčanik</string>
     <string name="open_dialpad_when_call_from_another_app_summary">To vas može zaštititi od zlonamjernog softvera koji upućuje pozive bez vašeg znanja.</string>
     <string name="number_of_recent_calls_displays">Prikazani broj nedavnih poziva</string>
@@ -61,7 +62,9 @@
     <string name="call_button_style">Stil gumba zvona</string>
     <string name="call_notes">Bilješke o pozivima</string>
     <string name="back_pressed_end_call">Akcija Natrag završava poziv</string>
-    <string name="keep_calls_in_popup_summary">Nakon što se na poziv odgovori, on ostaje u obavijestima i ne ispunjava cijeli zaslon. To se radi kako bi se izbjeglo prekidanje drugih aplikacija, primjerice tijekom igranja igre.\nAko slušalice nisu spojene, zvučnik će se uključiti.</string>
+    <string name="keep_calls_in_popup_summary">Nakon što odgovorite na poziv, on ostaje u obavijestima i ne prikazuje se preko cijelog zaslona. To se radi kako bi se izbjeglo prekidanje drugih aplikacija, na primjer tijekom igranja igre.</string>
+    <string name="turn_on_speaker_in_popup">Automatsko uključivanje zvučnika</string>
+    <string name="turn_on_speaker_in_popup_summary">Ako nisu spojene slušalice, zvučnik će se uključiti.</string>
     <string name="busy">Zauzet</string>
     <string name="block_calls">Blokiraj pozive</string>
     <string name="edit_number_before_call">Uredi broj prije poziva</string>

@@ -50,7 +50,8 @@
     <string name="answer_slider_outline">ഔട്ട്‌ലൈൻ സ്ലൈഡർ</string>
     <string name="answer_slider_vertical">ലംബ സ്ലൈഡർ</string>
 
-    <string name="show_recent_calls">സമീപകാല കോളുകൾ കാണിക്കുക</string>
+    <string name="show_recent_calls">സമീപകാല കോളുകൾ കാണിക്കുകയും തിരയുകയും ചെയ്യുക</string>
+    <string name="search_contacts_in_dialpad">ഒരു നമ്പർ ഡയൽ ചെയ്യുമ്പോൾ കോൺടാക്റ്റുകൾ തിരയുക</string>
     <string name="open_dialpad_when_call_from_another_app">മറ്റൊരു ആപ്ലിക്കേഷനിൽ നിന്ന് കോൾ ചെയ്യാൻ ശ്രമിക്കുമ്പോൾ, ഡയൽ പാഡ് തുറക്കുക</string>
     <string name="open_dialpad_when_call_from_another_app_summary">നിങ്ങളുടെ അറിവില്ലാതെ കോളുകൾ ചെയ്യുന്ന ക്ഷുദ്രവെയറിൽ നിന്ന് ഇത് നിങ്ങളെ സംരക്ഷിക്കും.</string>
     <string name="number_of_recent_calls_displays">സമീപകാല കോളുകളുടെ എണ്ണം പ്രദർശിപ്പിച്ചു</string>
@@ -60,7 +61,9 @@
     <string name="call_button_style">കോൾ ബട്ടൺ ശൈലി</string>
     <string name="call_notes">കോൾ കുറിപ്പുകൾ</string>
     <string name="back_pressed_end_call">ബാക്ക് ആക്ഷൻ കോൾ അവസാനിപ്പിക്കുന്നു</string>
-    <string name="keep_calls_in_popup_summary">ഒരു കോളിന് മറുപടി നൽകിയതിനു ശേഷവും, അത് നിങ്ങളുടെ അറിയിപ്പുകളിൽ തന്നെ തുടരും, മുഴുവൻ സ്‌ക്രീനിലും ദൃശ്യമാകില്ല. ഗെയിം കളിക്കുമ്പോൾ പോലുള്ള മറ്റ് ആപ്പുകളെ തടസ്സപ്പെടുത്താതിരിക്കാനാണ് ഇത് ചെയ്യുന്നത്.\nഹെഡ്‌സെറ്റ് കണക്റ്റ് ചെയ്തിട്ടില്ലെങ്കിൽ, സ്പീക്കർ ഓണാക്കും.</string>
+    <string name="keep_calls_in_popup_summary">നിങ്ങൾ ഒരു കോളിന് മറുപടി നൽകിയതിനു ശേഷവും, അത് നിങ്ങളുടെ അറിയിപ്പുകളിൽ തന്നെ തുടരും, പൂർണ്ണ സ്‌ക്രീനിൽ ദൃശ്യമാകില്ല. ഗെയിം കളിക്കുമ്പോൾ പോലുള്ള മറ്റ് ആപ്പുകളെ തടസ്സപ്പെടുത്തുന്നത് ഒഴിവാക്കുന്നതിനാണ് ഇത് ചെയ്യുന്നത്.</string>
+    <string name="turn_on_speaker_in_popup">സ്പീക്കർ സ്വയമേവ ഓണാക്കുക</string>
+    <string name="turn_on_speaker_in_popup_summary">ഹെഡ്‌സെറ്റ് ബന്ധിപ്പിച്ചിട്ടില്ലെങ്കിൽ, സ്പീക്കർ ഓണാകും.</string>
     <string name="busy">തിരക്ക്</string>
     <string name="block_calls">കോളുകൾ തടയുക</string>
     <string name="edit_number_before_call">കോൾ ചെയ്യുന്നതിന് മുമ്പ് നമ്പർ എഡിറ്റ് ചെയ്യുക</string>

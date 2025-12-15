@@ -3,6 +3,11 @@
     <string name="app_name_g">Right Dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
+    <string name="release_803">
+        Added ‘Search for contacts when dialing a number’ option\n
+        Fixed vertical slider for answering calls\n
+        Fixed bugs, improved stability
+    </string>
     <string name="release_800">
         Compatibility updates for Android 15 &amp; 16\n
         Changed the logic of styles\n

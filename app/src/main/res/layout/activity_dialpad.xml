@@ -64,24 +64,6 @@
             app:layout_constraintStart_toStartOf="parent"
             tools:visibility="visible"/>
 
-        <com.goodwy.commons.views.MyTextView
-            android:id="@+id/dialpad_placeholder"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:alpha="0.8"
-            android:gravity="center"
-            android:paddingStart="@dimen/activity_margin"
-            android:paddingTop="@dimen/section_margin"
-            android:paddingEnd="@dimen/activity_margin"
-            android:text="@string/no_items_found"
-            android:textSize="@dimen/normal_text_size"
-            android:textStyle="italic"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dialpad_add_number"
-            tools:visibility="visible"/>
-
         <com.goodwy.commons.views.MyRecyclerView
             android:id="@+id/dialpadList"
             android:layout_width="match_parent"
@@ -104,6 +86,24 @@
             app:layoutManager="com.goodwy.commons.views.MyLinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dialpad_add_number"/>
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/dialpad_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:paddingStart="@dimen/activity_margin"
+            android:paddingTop="@dimen/section_margin"
+            android:paddingEnd="@dimen/activity_margin"
+            android:text="@string/no_items_found"
+            android:textSize="@dimen/normal_text_size"
+            android:textStyle="italic"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dialpad_add_number"
+            tools:visibility="visible"/>
 
         <com.reddit.indicatorfastscroll.FastScrollerView
             android:id="@+id/letter_fastscroller"
