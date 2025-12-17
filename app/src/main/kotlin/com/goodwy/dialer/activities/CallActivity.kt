@@ -289,7 +289,7 @@ class CallActivity : SimpleActivity() {
             val phoneState = CallManager.getPhoneState()
             if (phoneState is SingleCall) {
                 val call = phoneState.call
-                val isDeviceLocked = !powerManager.isInteractive || keyguardManager.isDeviceLocked
+                val isDeviceLocked = !powerManager.isInteractive //|| keyguardManager.isDeviceLocked
                 if (!call.isOutgoing() && isDeviceLocked) MyCameraImpl.newInstance(this).toggleSOS()
             }
         }

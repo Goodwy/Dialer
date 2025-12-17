@@ -28,7 +28,10 @@ class CallService : InCallService() {
             } else {
                 callNotificationManager.setupNotification()
             }
-            if (baseConfig.flashForAlerts) MyCameraImpl.newInstance(context).stopSOS()
+
+            try {
+                if (baseConfig.flashForAlerts) MyCameraImpl.newInstance(context).stopSOS()
+            } catch (_: Exception) { }
         }
     }
 
@@ -43,14 +46,13 @@ class CallService : InCallService() {
         // Outgoing (unlocked): low priority ➜ manual activity start
         val isOutgoing = call.isOutgoing()
         val isIncoming = !isOutgoing
-        val isDeviceLocked = !powerManager.isInteractive || keyguardManager.isDeviceLocked
+        val isDeviceLocked = !powerManager.isInteractive //|| keyguardManager.isDeviceLocked
         val lowPriority = when {
             isDeviceLocked -> false // High priority on locked screen
             isIncoming && !isDeviceLocked -> config.showIncomingCallsFullScreen
             else -> true
         }
 
-        callNotificationManager.setupNotification(lowPriority)
         if (
             lowPriority
             || !hasPermission(PERMISSION_POST_NOTIFICATIONS)
@@ -62,9 +64,10 @@ class CallService : InCallService() {
             } catch (_: Exception) {
                 // seems like startActivity can throw AndroidRuntimeException and
                 // ActivityNotFoundException, not yet sure when and why, lets show a notification
-                callNotificationManager.setupNotification()
+//                callNotificationManager.setupNotification()
             }
         }
+        callNotificationManager.setupNotification(lowPriority)
     }
 
     override fun onCallRemoved(call: Call) {
@@ -84,7 +87,9 @@ class CallService : InCallService() {
             }
         }
 
-        if (baseConfig.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
+        try {
+            if (baseConfig.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
+        } catch (_: Exception) { }
     }
 
     override fun onCallAudioStateChanged(audioState: CallAudioState?) {
@@ -96,13 +101,19 @@ class CallService : InCallService() {
 
     override fun onSilenceRinger() {
         super.onSilenceRinger()
-        if (baseConfig.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
+
+        try {
+            if (baseConfig.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
+        } catch (_: Exception) { }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         callNotificationManager.cancelNotification()
-        if (baseConfig.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
+
+        try {
+            if (baseConfig.flashForAlerts) MyCameraImpl.newInstance(this).stopSOS()
+        } catch (_: Exception) { }
     }
 }
 

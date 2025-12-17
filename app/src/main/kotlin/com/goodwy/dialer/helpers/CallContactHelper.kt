@@ -68,9 +68,13 @@ fun getCallContact(context: Context, call: Call?, callback: (CallContact) -> Uni
                     }
                 }
 
-                callContact.number = if (context.config.formatPhoneNumbers) {
-                    number.formatPhoneNumber()
-                } else {
+                callContact.number = try {
+                    if (context.config.formatPhoneNumbers) {
+                        number.formatPhoneNumber()
+                    } else {
+                        number
+                    }
+                } catch (_: Exception) {
                     number
                 }
 
@@ -84,7 +88,7 @@ fun getCallContact(context: Context, call: Call?, callback: (CallContact) -> Uni
                         callContact.numberLabel = context.getPhoneNumberTypeText(specificPhoneNumber.type, specificPhoneNumber.label)
                     }
 
-                    val showCallerDescription = context.config.showCallerDescription
+                    val showCallerDescription = try { context.config.showCallerDescription }  catch (_: Exception) { SHOW_CALLER_COMPANY }
                     if (showCallerDescription != SHOW_CALLER_NOTHING) {
                         if (contact.organization.company.isNotEmpty() && showCallerDescription == SHOW_CALLER_COMPANY) {
                             if (contact.organization.jobPosition.isNotEmpty()) {
