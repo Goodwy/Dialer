@@ -254,12 +254,14 @@ class CallManager {
         }
 
         fun merge() {
-            val conferenceableCalls = call!!.conferenceableCalls
-            if (conferenceableCalls.isNotEmpty()) {
-                call!!.conference(conferenceableCalls.first())
-            } else {
-                if (call!!.hasCapability(Call.Details.CAPABILITY_MERGE_CONFERENCE)) {
-                    call!!.mergeConference()
+            if (call != null) {
+                val conferenceableCalls = call!!.conferenceableCalls
+                if (conferenceableCalls.isNotEmpty()) {
+                    call!!.conference(conferenceableCalls.first())
+                } else {
+                    if (call!!.hasCapability(Call.Details.CAPABILITY_MERGE_CONFERENCE)) {
+                        call!!.mergeConference()
+                    }
                 }
             }
         }

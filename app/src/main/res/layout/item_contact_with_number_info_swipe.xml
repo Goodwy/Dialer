@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="@dimen/min_row_height"
-            android:paddingStart="@dimen/larger_margin"
+            android:paddingStart="@dimen/activity_margin"
             android:paddingTop="@dimen/medium_margin"
             android:background="@color/theme_black_background_color">
 
@@ -67,7 +67,6 @@
                 android:id="@+id/item_contact_image"
                 android:layout_width="@dimen/normal_icon_size"
                 android:layout_height="@dimen/normal_icon_size"
-                android:padding="@dimen/tiny_margin"
                 android:layout_marginBottom="@dimen/medium_margin"
                 android:src="@drawable/ic_person_vector"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -108,9 +107,9 @@
 
             <FrameLayout
                 android:id="@+id/item_contact_info_holder"
-                android:layout_width="72dp"
+                android:layout_width="76dp"
                 android:layout_height="0dp"
-                android:layout_marginBottom="@dimen/medium_margin"
+                android:layout_marginTop="-8dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -118,10 +117,12 @@
 
                 <ImageView
                     android:id="@+id/item_contact_info"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
                     android:layout_gravity="center_vertical|end"
-                    android:layout_marginEnd="@dimen/activity_margin"
+                    android:contentDescription="@string/contact_details"
+                    android:padding="@dimen/smaller_margin"
+                    android:layout_marginEnd="@dimen/medium_margin"
                     android:src="@drawable/ic_info" />
             </FrameLayout>
 

@@ -25,6 +25,7 @@ import com.goodwy.commons.extensions.getProperTextColor
 import com.goodwy.commons.extensions.getSurfaceColor
 import com.goodwy.commons.extensions.initiateCall
 import com.goodwy.commons.extensions.isDefaultDialer
+import com.goodwy.commons.extensions.isNewApp
 import com.goodwy.commons.extensions.isPackageInstalled
 import com.goodwy.commons.extensions.launchActivityIntent
 import com.goodwy.commons.extensions.launchCallIntent
@@ -386,5 +387,22 @@ fun Activity.startContactDetailsIntentRecommendation(contact: Contact) {
         }
     } else {
         startContactDetailsIntent(contact)
+    }
+}
+
+fun Activity.newAppRecommendation() {
+    if (!isNewApp()) {
+        if ((0..config.newAppRecommendationDialogCount).random() == 2) {
+            val packageName = "enohp.ywdoog.ved".reversed()
+            NewAppDialog(
+                activity = this,
+                packageName = packageName,
+                title = getString(com.goodwy.strings.R.string.notification_of_new_application),
+                text = "AlRight Phone",
+                drawable = AppCompatResources.getDrawable(this, com.goodwy.commons.R.drawable.ic_dialer_new),
+                showSubtitle = true
+            ) {
+            }
+        }
     }
 }

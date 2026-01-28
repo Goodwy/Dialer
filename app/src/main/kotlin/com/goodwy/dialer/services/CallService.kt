@@ -61,10 +61,11 @@ class CallService : InCallService() {
             try {
                 val needSelectSIM = isOutgoing && call.details.accountHandle == null
                 startActivity(CallActivity.getStartIntent(this, needSelectSIM = needSelectSIM))
-            } catch (_: Exception) {
+            } catch (e: Exception) {
                 // seems like startActivity can throw AndroidRuntimeException and
                 // ActivityNotFoundException, not yet sure when and why, lets show a notification
 //                callNotificationManager.setupNotification()
+                context.baseConfig.lastError = "CallService: $e"
             }
         }
         callNotificationManager.setupNotification(lowPriority)
@@ -73,13 +74,13 @@ class CallService : InCallService() {
     override fun onCallRemoved(call: Call) {
         super.onCallRemoved(call)
         call.unregisterCallback(callListener)
-//        callNotificationManager.cancelNotification()
+        callNotificationManager.cancelNotification()
         val wasPrimaryCall = call == CallManager.getPrimaryCall()
         CallManager.onCallRemoved(call)
         EventBus.getDefault().post(Events.RefreshCallLog)
         if (CallManager.getPhoneState() == NoCall) {
             CallManager.inCallService = null
-            callNotificationManager.cancelNotification()
+//            callNotificationManager.cancelNotification()
         } else {
             callNotificationManager.setupNotification()
             if (wasPrimaryCall) {

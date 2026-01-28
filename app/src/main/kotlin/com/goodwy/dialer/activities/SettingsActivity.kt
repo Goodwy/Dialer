@@ -143,6 +143,7 @@ class SettingsActivity : SimpleActivity() {
         setupOnRecentClick()
         setupOnContactClick()
         setupUseSwipeToAction()
+        setupSwipeWidth()
         setupSwipeVibration()
         setupSwipeRipple()
         setupSwipeRightAction()
@@ -180,6 +181,8 @@ class SettingsActivity : SimpleActivity() {
 
         setupBlockCallFromAnotherApp()
 
+        setupShowSearchBar()
+
         setupGroupCalls()
         setupGroupSubsequentCalls()
         setupQueryLimitRecent()
@@ -214,6 +217,7 @@ class SettingsActivity : SimpleActivity() {
                 settingsCallsLabel,
                 settingsNotificationsLabel,
                 settingsSecurityLabel,
+                settingsTopAppBarLabel,
                 settingsListViewLabel,
                 settingsBackupsLabel,
                 settingsOtherLabel).forEach {
@@ -229,6 +233,7 @@ class SettingsActivity : SimpleActivity() {
                 settingsCallsHolder,
                 settingsNotificationsHolder,
                 settingsSecurityHolder,
+                settingsTopAppBarHolder,
                 settingsListViewHolder,
                 settingsBackupsHolder,
                 settingsOtherHolder
@@ -305,7 +310,7 @@ class SettingsActivity : SimpleActivity() {
         binding.settingsCustomizeColorsHolder.setOnClickListener {
             startCustomizationActivity(
                 showAccentColor = true,
-                isCollection = isOrWasThankYouInstalled() || isCollection(),
+                isCollection = isOrWasThankYouInstalled(false) || isCollection(),
                 productIdList = arrayListOf(productIdX1, productIdX2, productIdX3),
                 productIdListRu = arrayListOf(productIdX1, productIdX2, productIdX3),
                 subscriptionIdList = arrayListOf(subscriptionIdX1, subscriptionIdX2, subscriptionIdX3),
@@ -476,6 +481,15 @@ class SettingsActivity : SimpleActivity() {
                 binding.settingsNavigationBarStyle.text = getNavigationBarStyleText()
                 binding.settingsChangeColourTopBarHolder.beVisibleIf(config.bottomNavigationBar)
             }
+        }
+    }
+
+    private fun setupShowSearchBar() = binding.apply {
+        settingsShowSearchBar.isChecked = config.showSearchBar
+        settingsShowSearchBarHolder.setOnClickListener {
+            settingsShowSearchBar.toggle()
+            config.showSearchBar = settingsShowSearchBar.isChecked
+            config.needRestart = true
         }
     }
 
@@ -1617,8 +1631,43 @@ class SettingsActivity : SimpleActivity() {
         }
     }
 
+    private fun setupSwipeWidth() = binding.apply {
+        settingsSwipeWidthHolder.beVisibleIf(config.useSwipeToAction)
+        settingsSwipeWidth.text = getSwipeWidthText(config.swipeToActionWidth)
+        settingsSwipeWidthHolder.setOnClickListener {
+            val items = arrayListOf(
+                RadioItem(2, "1/2"),
+                RadioItem(3, "1/3"),
+                RadioItem(4, "1/4"),
+                RadioItem(5, "1/5"),
+            )
+
+            RadioGroupIconDialog(
+                this@SettingsActivity,
+                items,
+                config.swipeToActionWidth,
+                R.string.swipe_width,
+                defaultItemId = 2
+            ) {
+                config.swipeToActionWidth = it as Int
+                config.needRestart = true
+                settingsSwipeWidth.text = getSwipeWidthText(config.swipeToActionWidth)
+            }
+        }
+    }
+
+    private fun getSwipeWidthText(swipeWidth: Int): String {
+        return when (swipeWidth) {
+            3 -> "1/3"
+            4 -> "1/4"
+            5 -> "1/5"
+            else -> "1/2"
+        }
+    }
+
     private fun updateSwipeToActionVisible() {
         binding.apply {
+            settingsSwipeWidthHolder.beVisibleIf(config.useSwipeToAction)
             settingsSwipeVibrationHolder.beVisibleIf(config.useSwipeToAction)
             settingsSwipeRippleHolder.beVisibleIf(config.useSwipeToAction)
             settingsSwipeRightActionHolder.beVisibleIf(config.useSwipeToAction)
@@ -1845,6 +1894,6 @@ class SettingsActivity : SimpleActivity() {
     }
 
     private fun checkPro(collection: Boolean = true) =
-        if (collection) isOrWasThankYouInstalled() || isPro() || isCollection()
-        else isOrWasThankYouInstalled() || isPro()
+        if (collection) isOrWasThankYouInstalled(false) || isPro() || isCollection()
+        else isOrWasThankYouInstalled(false) || isPro()
 }

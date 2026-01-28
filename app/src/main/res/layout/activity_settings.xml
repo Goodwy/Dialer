@@ -679,6 +679,26 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/settings_swipe_width_holder"
+                        style="@style/SettingsHolderStyle">
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settings_swipe_width_label"
+                            style="@style/SettingsTextLabelStyle"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_toStartOf="@+id/settings_swipe_width"
+                            android:text="@string/swipe_width" />
+
+                        <com.goodwy.commons.views.MyTextView
+                            android:id="@+id/settings_swipe_width"
+                            style="@style/SettingsTextValueStyle"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="@dimen/settings_margin"
+                            tools:text="1/2" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:id="@+id/settingsSwipeVibrationHolder"
                         style="@style/SettingsHolderSwitchStyle">
 
@@ -1302,6 +1322,37 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
+                            app:switchPadding="@dimen/bigger_margin" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/settingsTopAppBarLabel"
+                style="@style/SettingsSectionLabelStyle"
+                android:text="@string/top_app_bar"
+                tools:textColor="@color/primary"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/settingsTopAppBarHolder"
+                style="@style/SettingsSectionHolder"
+                app:cardCornerRadius="@dimen/activity_margin"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:id="@+id/settingsTopAppBarWrapper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/settingsShowSearchBarHolder"
+                        style="@style/SettingsHolderSwitchStyle">
+
+                        <com.goodwy.commons.views.MyMaterialSwitch
+                            android:id="@+id/settingsShowSearchBar"
+                            style="@style/SettingsSwitchStyle"
+                            android:text="@string/show_search_bar"
                             app:switchPadding="@dimen/bigger_margin" />
                     </RelativeLayout>
                 </LinearLayout>

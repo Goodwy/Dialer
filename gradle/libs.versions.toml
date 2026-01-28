@@ -17,7 +17,7 @@ indicatorFastScroll = "fe6ddbc316"
 autofitTextView = "0.2.1"
 libphonenumberVersion = "9.0.18"
 #Goodwy
-right-commons = "5c55d3f6cc"
+right-commons = "395c45c606"
 badger = "1.1.22"
 androidx-lifecycle = "2.8.7"
 behavioRule = "1.0.1"
@@ -47,6 +47,7 @@ libphonenumber = { module = "com.googlecode.libphonenumber:libphonenumber", vers
 goodwy-commons-gplay = { module = "com.github.goodwy.goodwy-commons:commons-gplay", version.ref = "right-commons" }
 goodwy-commons-foss = { module = "com.github.goodwy.goodwy-commons:commons-foss", version.ref = "right-commons" }
 goodwy-commons-rustore = { module = "com.github.goodwy.goodwy-commons:commons-rustore", version.ref = "right-commons" }
+goodwy-commons-hms = { module = "com.github.goodwy.goodwy-commons:commons-hms", version.ref = "right-commons" }
 shortcut-badger = { module = "me.leolin:ShortcutBadger", version.ref = "badger" }
 androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewModel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }

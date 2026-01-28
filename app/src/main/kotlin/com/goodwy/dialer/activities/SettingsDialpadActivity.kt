@@ -194,8 +194,8 @@ class SettingsDialpadActivity : SimpleActivity() {
         setupDialpadStyle()
         setupSimCardColorList()
         setupPrimarySimCard()
-        setupShowVoicemailIcon()
         setupHideDialpadLetters()
+        setupShowVoicemailIcon()
         setupDialpadSecondaryLanguage()
         setupDialpadSecondaryTypeface()
         setupDialpadHashtagLongClick()
@@ -240,7 +240,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                         if (isDynamicTheme() && !isSystemInDarkMode()) getSurfaceColor() else getProperBackgroundColor()
 
                     dialpadRoundWrapper.apply {
-                        dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
+                        dialpadVoicemail.beVisibleIf(config.showVoicemailIcon && !config.hideDialpadLetters)
                         dialpadIosHolder.setBackgroundColor(properBackgroundColor)
 
                         dialpadIosHolder.alpha = 0.5f
@@ -267,7 +267,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                         if (isDynamicTheme() && !isSystemInDarkMode()) getSurfaceColor() else getProperBackgroundColor()
 
                     dialpadRectWrapper.apply {
-                        dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
+                        dialpadVoicemail.beVisibleIf(config.showVoicemailIcon && !config.hideDialpadLetters)
                         dialpadGridHolder.setBackgroundColor(properBackgroundColor)
 
                         dialpadGridHolder.alpha = 0.5f
@@ -291,7 +291,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                         if (isDynamicTheme() && !isSystemInDarkMode()) getProperBackgroundColor() else getSurfaceColor()
 
                     dialpadClearWrapper.apply {
-                        dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
+                        dialpadVoicemail.beVisibleIf(config.showVoicemailIcon && !config.hideDialpadLetters)
                         dialpadGridHolder.setBackgroundColor(surfaceColor)
 
                         dialpadGridHolder.alpha = 0.5f
@@ -316,7 +316,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                         if (isDynamicTheme() && !isSystemInDarkMode()) getProperBackgroundColor() else getSurfaceColor()
 
                     dialpadClearWrapper.apply {
-                        dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
+                        dialpadVoicemail.beVisibleIf(config.showVoicemailIcon && !config.hideDialpadLetters)
                         dialpadGridHolder.setBackgroundColor(surfaceColor)
 
                         dialpadGridHolder.alpha = 0.5f
@@ -1210,18 +1210,6 @@ class SettingsDialpadActivity : SimpleActivity() {
         } else binding.settingsPrimarySimCardHolder.beGone()
     }
 
-    private fun setupShowVoicemailIcon() {
-        binding.apply {
-            settingsShowVoicemailIcon.isChecked = config.showVoicemailIcon
-            settingsShowVoicemailIconHolder.setOnClickListener {
-                settingsShowVoicemailIcon.toggle()
-                config.showVoicemailIcon = settingsShowVoicemailIcon.isChecked
-                initStyle()
-                showDialpad()
-            }
-        }
-    }
-
     private fun setupHideDialpadLetters() {
         binding.apply {
             settingsHideDialpadLetters.isChecked = config.hideDialpadLetters
@@ -1230,6 +1218,20 @@ class SettingsDialpadActivity : SimpleActivity() {
                 config.hideDialpadLetters = settingsHideDialpadLetters.isChecked
                 binding.settingsDialpadSecondaryLanguageHolder.beGoneIf(config.hideDialpadLetters)
                 binding.settingsDialpadSecondaryTypefaceHolder.beGoneIf(config.hideDialpadLetters)
+                settingsShowVoicemailIconHolder.beVisibleIf(!config.hideDialpadLetters)
+                initStyle()
+                showDialpad()
+            }
+        }
+    }
+
+    private fun setupShowVoicemailIcon() {
+        binding.apply {
+            settingsShowVoicemailIconHolder.beVisibleIf(!config.hideDialpadLetters)
+            settingsShowVoicemailIcon.isChecked = config.showVoicemailIcon
+            settingsShowVoicemailIconHolder.setOnClickListener {
+                settingsShowVoicemailIcon.toggle()
+                config.showVoicemailIcon = settingsShowVoicemailIcon.isChecked
                 initStyle()
                 showDialpad()
             }
@@ -1458,5 +1460,5 @@ class SettingsDialpadActivity : SimpleActivity() {
             .subscribe()
     }
 
-    private fun checkPro() = isOrWasThankYouInstalled() || isPro() || isCollection()
+    private fun checkPro() = isOrWasThankYouInstalled(false) || isPro() || isCollection()
 }

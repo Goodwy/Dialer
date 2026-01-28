@@ -582,7 +582,7 @@ class ContactsAdapter(
                     swipeLeftIconHolder!!.setWidth(width)
                     swipeRightIconHolder!!.setWidth(width)
                 } else {
-                    val halfScreenWidth = activity.resources.displayMetrics.widthPixels / 2
+                    val halfScreenWidth = activity.resources.displayMetrics.widthPixels / activity.config.swipeToActionWidth
                     val swipeWidth = activity.resources.getDimension(com.goodwy.commons.R.dimen.swipe_width)
                     if (swipeWidth > halfScreenWidth) {
                         swipeRightIconHolder!!.setWidth(halfScreenWidth)

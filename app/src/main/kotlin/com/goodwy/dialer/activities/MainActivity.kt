@@ -2,7 +2,13 @@ package com.goodwy.dialer.activities
 
 import android.annotation.SuppressLint
 import android.app.SearchManager
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.content.Intent.ACTION_SEND
+import android.content.Intent.ACTION_SENDTO
+import android.content.Intent.EXTRA_EMAIL
+import android.content.Intent.EXTRA_SUBJECT
+import android.content.Intent.EXTRA_TEXT
 import android.content.pm.ShortcutInfo
 import android.content.res.Configuration
 import android.graphics.Color
@@ -24,6 +30,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.SearchView
+import androidx.core.net.toUri
 import androidx.core.view.MenuItemCompat
 import androidx.viewpager.widget.ViewPager
 import com.behaviorule.arturdumchev.library.pixels
@@ -58,6 +65,7 @@ import org.greenrobot.eventbus.ThreadMode
 import me.grantland.widget.AutofitHelper
 import java.io.InputStreamReader
 import java.util.Objects
+import kotlin.and
 
 class MainActivity : SimpleActivity() {
     override var isSearchBarEnabled = true
@@ -84,10 +92,17 @@ class MainActivity : SimpleActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         appLaunched(BuildConfig.APPLICATION_ID)
+
+        val showTabs = config.showTabs
+        val oneTabs: Boolean = showTabs and TAB_FAVORITES == 0 && showTabs and TAB_CONTACTS == 0
+        setupEdgeToEdge(
+            padBottomImeAndSystem = listOf(binding.mainTabsHolder),
+            moveBottomSystem = if (oneTabs) listOf(binding.mainDialpadButton) else emptyList()
+        )
+
         setupOptionsMenu()
         refreshMenuItems()
         storeStateVariables()
-        setupEdgeToEdge(padBottomImeAndSystem = listOf(binding.mainTabsHolder))
 
         EventBus.getDefault().register(this)
         launchedDialer = savedInstanceState?.getBoolean(OPEN_DIAL_PAD_AT_LAUNCH) ?: false
@@ -133,7 +148,7 @@ class MainActivity : SimpleActivity() {
         val useBottomNavigationBar = config.bottomNavigationBar
         binding.mainMenu.apply {
             updateTitle(getAppLauncherName())
-            searchBeVisibleIf(useBottomNavigationBar)
+            searchBeVisibleIf(useBottomNavigationBar && config.showSearchBar)
         }
 
         if (!useBottomNavigationBar) {
@@ -256,6 +271,8 @@ class MainActivity : SimpleActivity() {
         if (getCurrentFragment() is RecentsFragment) clearMissedCalls()
 
         checkShortcuts()
+        checkErrorDialog()
+        newAppRecommendation()
     }
 
     override fun onPause() {
@@ -865,7 +882,7 @@ class MainActivity : SimpleActivity() {
 //                    clearMissedCalls()
 //                }
 
-                if (config.openSearch) {
+                if (config.openSearch && config.showSearchBar) {
                     if (getCurrentFragment() is ContactsFragment) {
                         binding.mainMenu.requestFocusAndShowKeyboard()
                     }
@@ -1147,6 +1164,40 @@ class MainActivity : SimpleActivity() {
                     binding.mainCallButton.scale(0.6f),
                     binding.mainCallButton.fadeOut(duration = 360),
                 ).subscribe()
+            }
+        }
+    }
+
+    private fun checkErrorDialog() {
+        if (baseConfig.lastError != "") {
+            ConfirmationDialog(
+                this,
+                "An error occurred while the application was running. Please send us this error so we can fix it.",
+                positive = R.string.send_email
+            ) {
+                val body = "Dialer : LastError"
+                val address = getMyMailString()
+                val lastError = baseConfig.lastError
+
+                val emailIntent = Intent(ACTION_SEND).apply {
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_EMAIL, arrayOf(address))
+                    putExtra(Intent.EXTRA_SUBJECT, body)
+                    putExtra(Intent.EXTRA_TEXT, lastError)
+
+                    // set the type for better compatibility
+                    type = "message/rfc822"
+                }
+
+                try {
+                    startActivity(Intent.createChooser(emailIntent, "Send email"))
+                } catch (_: ActivityNotFoundException) {
+                    toast(R.string.no_app_found)
+                } catch (e: Exception) {
+                    showErrorToast(e)
+                }
+
+                baseConfig.lastError = ""
             }
         }
     }

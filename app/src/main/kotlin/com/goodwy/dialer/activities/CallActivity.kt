@@ -76,6 +76,7 @@ class CallActivity : SimpleActivity() {
     private var dialpadHeight = 0f
     private var needSelectSIM = false //true - if the call is called from a third-party application not via ACTION_CALL, for example, this is how MIUI applications do it.
     private var audioRoutePopupMenu: PopupMenu? = null
+    private var needHapticFeedback = true
 
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -1528,6 +1529,7 @@ class CallActivity : SimpleActivity() {
         binding.incomingCallHolder.beGone()
         binding.ongoingCallHolder.beVisible()
         binding.callEnd.beVisible()
+        needHapticFeedback = true
     }
 
     private fun callRinging() {
@@ -1541,7 +1543,7 @@ class CallActivity : SimpleActivity() {
         binding.callEnd.beVisible()
         callDurationHandler.removeCallbacks(updateCallDurationTask)
         callDurationHandler.post(updateCallDurationTask)
-        maybePerformCallHapticFeedback(binding.callerNameLabel)
+        if (needHapticFeedback) maybePerformCallHapticFeedback(binding.callerNameLabel)
 //        if (config.flashForAlerts) MyCameraImpl.newInstance(this).toggleSOS()
     }
 
@@ -1740,6 +1742,7 @@ class CallActivity : SimpleActivity() {
     }
 
     private fun maybePerformCallHapticFeedback(view: View?) {
+        needHapticFeedback = false
         if (config.callStartEndVibration) {
             view?.performHapticFeedback()
         }

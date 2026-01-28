@@ -337,6 +337,10 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getInt(ON_FAVORITE_CLICK, SWIPE_ACTION_CALL)
         set(onContactClick) = prefs.edit { putInt(ON_FAVORITE_CLICK, onContactClick) }
 
+    var filterRecentCalls: Int
+        get() = prefs.getInt(FILTER_RECENT_CALLS, 0) //Calls.MISSED_TYPE
+        set(filterRecentCalls) = prefs.edit { putInt(FILTER_RECENT_CALLS, filterRecentCalls) }
+
     //Timer
     var timerMaxReminderSecs: Int
         get() = prefs.getInt(TIMER_MAX_REMINDER_SECS, DEFAULT_MAX_TIMER_REMINDER_SECS)

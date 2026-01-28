@@ -104,6 +104,7 @@ android {
         create("gplay") { dimension = "distribution" }
         create("foss") { dimension = "distribution" }
         create("rustore") { dimension = "distribution" }
+        create("hms") { dimension = "distribution" }
     }
 
     sourceSets {
@@ -169,6 +170,7 @@ dependencies {
     "gplayImplementation"(libs.goodwy.commons.gplay)
     "fossImplementation"(libs.goodwy.commons.foss)
     "rustoreImplementation"(libs.goodwy.commons.rustore)
+    "hmsImplementation"(libs.goodwy.commons.hms)
 //    implementation(libs.goodwy.commons)
     implementation(libs.shortcut.badger)
     implementation(libs.behavio.rule)

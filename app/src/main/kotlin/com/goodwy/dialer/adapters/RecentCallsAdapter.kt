@@ -285,6 +285,9 @@ class RecentCallsAdapter(
     override fun submitList(list: List<CallLogItem>?) {
         val layoutManager = recyclerView.layoutManager!!
         val recyclerViewState = layoutManager.onSaveInstanceState()
+        val listFilter =
+            if (activity.config.filterRecentCalls == 0) list
+            else list?.filterIsInstance<RecentCall>()?.filter { it.type == activity.config.filterRecentCalls }
         super.submitList(list) {
             layoutManager.onRestoreInstanceState(recyclerViewState)
         }
@@ -1111,7 +1114,7 @@ class RecentCallsAdapter(
                 itemRecentsHolder.setDirectionEnabled(SwipeDirection.Left, swipeLeftAction != SWIPE_ACTION_NONE)
                 itemRecentsHolder.setDirectionEnabled(SwipeDirection.Right, swipeRightAction != SWIPE_ACTION_NONE)
 
-                val halfScreenWidth = activity.resources.displayMetrics.widthPixels / 2
+                val halfScreenWidth = activity.resources.displayMetrics.widthPixels / activity.config.swipeToActionWidth
                 val swipeWidth = activity.resources.getDimension(com.goodwy.commons.R.dimen.swipe_width)
                 if (swipeWidth > halfScreenWidth) {
                     swipeRightIconHolder.setWidth(halfScreenWidth)

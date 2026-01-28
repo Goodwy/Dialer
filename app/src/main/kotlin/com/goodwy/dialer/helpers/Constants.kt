@@ -66,6 +66,7 @@ const val INIT_CALL_BLOCKING_SETUP = "init_call_blocking_setup"
 const val RECENT_OUTGOING_NUMBERS = "recent_outgoing_numbers"
 const val ON_RECENT_CLICK = "on_recent_click"
 const val ON_FAVORITE_CLICK = "on_favorite_click"
+const val FILTER_RECENT_CALLS = "filter_recent_calls"
 
 const val ALL_TABS_MASK = TAB_CONTACTS or TAB_FAVORITES or TAB_CALL_HISTORY
 
@@ -180,5 +181,6 @@ fun whatsNewList(): ArrayList<Release> {
         add(Release(702, R.string.release_702))
         add(Release(800, R.string.release_800))
         add(Release(803, R.string.release_803))
+        add(Release(811, R.string.release_811))
     }
 }

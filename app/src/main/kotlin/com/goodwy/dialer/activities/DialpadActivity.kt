@@ -279,7 +279,7 @@ class DialpadActivity : SimpleActivity() {
                 binding.dialpadClearWrapper.root.beGone()
                 binding.dialpadRectWrapper.root.beGone()
                 binding.dialpadRoundWrapper.apply {
-                    dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
+                    dialpadVoicemail.beVisibleIf(config.showVoicemailIcon && !config.hideDialpadLetters)
                     dialpadIosHolder.beVisible()
                     dialpadIosHolder.setBackgroundColor(properBackgroundColor)
 
@@ -312,7 +312,7 @@ class DialpadActivity : SimpleActivity() {
                     if (isDynamicTheme() && !isSystemInDarkMode()) getSurfaceColor() else getProperBackgroundColor()
 
                 binding.dialpadRectWrapper.apply {
-                    dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
+                    dialpadVoicemail.beVisibleIf(config.showVoicemailIcon && !config.hideDialpadLetters)
                     dialpadGridWrapper.setBackgroundColor(properBackgroundColor)
 
                     arrayOf(
@@ -339,7 +339,7 @@ class DialpadActivity : SimpleActivity() {
                 binding.dialpadRoundWrapper.root.beGone()
                 binding.dialpadRectWrapper.root.beGone()
                 binding.dialpadClearWrapper.apply {
-                    dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
+                    dialpadVoicemail.beVisibleIf(config.showVoicemailIcon && !config.hideDialpadLetters)
                     dialpadGridHolder.beVisible()
                     dialpadGridHolder.setBackgroundColor(surfaceColor)
 
@@ -377,7 +377,7 @@ class DialpadActivity : SimpleActivity() {
                 binding.dialpadRoundWrapper.root.beGone()
                 binding.dialpadRectWrapper.root.beGone()
                 binding.dialpadClearWrapper.apply {
-                    dialpadVoicemail.beVisibleIf(config.showVoicemailIcon)
+                    dialpadVoicemail.beVisibleIf(config.showVoicemailIcon && !config.hideDialpadLetters)
                     dialpadGridHolder.beVisible()
                     root.setBackgroundColor(surfaceColor)
 

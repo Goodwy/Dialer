@@ -3,6 +3,15 @@
     <string name="app_name_g">Right Dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
+    <string name="release_811">
+        Call filtering added\n
+        Added ‘Swipe width’ option\n
+        Added ‘Show search bar’ option\n
+        Changed swipe behavior, removed inertia\n
+        Added the ability to send debug information for certain errors\n
+        Fixed a bug causing call notifications to freeze\n
+        Fixed bugs, improved stability
+    </string>
     <string name="release_803">
         Added ‘Search for contacts when dialing a number’ option\n
         Fixed vertical slider for answering calls\n

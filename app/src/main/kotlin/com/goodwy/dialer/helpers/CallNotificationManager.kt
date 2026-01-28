@@ -34,13 +34,21 @@ class CallNotificationManager(private val context: Context) {
 
     private val notificationManager = context.notificationManager
     private val callContactAvatarHelper = CallContactAvatarHelper(context)
+    // Flag to prevent notification display after service closure
+    private var isServiceActive = false
 
     fun updateNotification() {
         setupNotification(false)
     }
 
     fun setupNotification(lowPriority: Boolean = false) {
-        if (isSPlus()) setupNotificationNew(lowPriority) else setupNotificationOld(lowPriority)
+        isServiceActive = true
+        try {
+            if (isSPlus()) setupNotificationNew(lowPriority) else setupNotificationOld(lowPriority)
+        } catch (e: Exception) {
+            setupNotificationForError(lowPriority)
+            context.baseConfig.lastError = "CallNotificationManager: $e"
+        }
     }
 
     @SuppressLint("NewApi")
@@ -172,8 +180,12 @@ class CallNotificationManager(private val context: Context) {
 
             val notification = builder.build()
             // it's rare but possible for the call state to change by now
-            if (CallManager.getState() == callState) {
+            // We verify that the call still exists in CallManager.
+            if (isServiceActive && CallManager.getPrimaryCall() != null && CallManager.getState() == callState) {
                 notificationManager.notify(CALL_NOTIFICATION_ID, notification)
+            } else {
+                // If the call is no longer there, we turn off the notification just in case
+                notificationManager.cancel(CALL_NOTIFICATION_ID)
             }
         }
     }
@@ -194,6 +206,7 @@ class CallNotificationManager(private val context: Context) {
     }
 
     fun cancelNotification() {
+        isServiceActive = false
         notificationManager.cancel(CALL_NOTIFICATION_ID)
     }
 
@@ -345,12 +358,103 @@ class CallNotificationManager(private val context: Context) {
 
                 val notification = builder.build()
                 // it's rare but possible for the call state to change by now
-                if (CallManager.getState() == callState) {
+                // We verify that the call still exists in CallManager.
+                if (isServiceActive && CallManager.getPrimaryCall() != null && CallManager.getState() == callState) {
                     notificationManager.notify(CALL_NOTIFICATION_ID, notification)
+                } else {
+                    // If the call is no longer there, we turn off the notification just in case
+                    notificationManager.cancel(CALL_NOTIFICATION_ID)
                 }
             }
         } catch (_: Exception) {
             setupNotificationOld(lowPriority)
+        }
+    }
+
+    @SuppressLint("NewApi")
+    fun setupNotificationForError(lowPriority: Boolean) {
+        getCallContact(context.applicationContext, CallManager.getPrimaryCall()) { callContact ->
+            val callContactAvatar = callContactAvatarHelper.getCallContactAvatar(callContact.photoUri)
+            val callState = CallManager.getState()
+            val isHighPriority = callState == Call.STATE_RINGING && !lowPriority
+            val channelId = if (isHighPriority) "right_dialer_call_high_priority" else "right_dialer_call"
+            val importance = if (isHighPriority) IMPORTANCE_HIGH else IMPORTANCE_DEFAULT
+            val name = if (isHighPriority) {
+                context.getString(R.string.call_notification_channel_high_priority)
+            } else {
+                context.getString(R.string.call_notification_channel)
+            }
+
+            NotificationChannel(channelId, name, importance).apply {
+                lockscreenVisibility = Notification.VISIBILITY_PUBLIC
+                setSound(null, null)
+                notificationManager.createNotificationChannel(this)
+            }
+
+            val openAppIntent = CallActivity.getStartIntent(context)
+            //requestCode - NON_FULL_SCREEN = 0, FULL_SCREEN = 1, BUBBLE = 2
+            val openAppPendingIntent = PendingIntent.getActivity(context, 1, openAppIntent, PendingIntent.FLAG_MUTABLE)
+
+            val acceptCallIntent = Intent(context, CallActionReceiver::class.java)
+            acceptCallIntent.action = ACCEPT_CALL
+            val acceptPendingIntent =
+                PendingIntent.getBroadcast(context, ACCEPT_CALL_CODE, acceptCallIntent, PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_MUTABLE)
+
+            val declineCallIntent = Intent(context, CallActionReceiver::class.java)
+            declineCallIntent.action = DECLINE_CALL
+            val declinePendingIntent =
+                PendingIntent.getBroadcast(context, DECLINE_CALL_CODE, declineCallIntent, PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_MUTABLE)
+
+            var callerName = callContact.name.ifEmpty { context.getString(R.string.unknown_caller) }
+            if (callContact.numberLabel.isNotEmpty()) {
+                callerName += " - ${callContact.numberLabel}"
+            }
+
+            val icon: Icon? = if (callContactAvatar == null) null
+            else Icon.createWithAdaptiveBitmap(callContactAvatar)
+
+            val person: Person = Person.Builder()
+                .setName(callerName)
+                .setIcon(icon)
+                .build()
+
+            val style = if (callState == Call.STATE_RINGING) {
+                Notification.CallStyle.forIncomingCall(person, declinePendingIntent, acceptPendingIntent)
+            } else {
+                Notification.CallStyle.forOngoingCall(person, declinePendingIntent)
+            }
+
+            val builder = Notification.Builder(context, channelId)
+                .setFullScreenIntent(openAppPendingIntent, isHighPriority)
+                .setSmallIcon(R.drawable.ic_phone_vector)
+                .setContentIntent(openAppPendingIntent)
+                .setCategory(Notification.CATEGORY_CALL)
+                .setOngoing(true)
+                .setTimeoutAfter(-1)
+                .setUsesChronometer(callState == Call.STATE_ACTIVE)
+                .setChannelId(channelId)
+                .setStyle(style)
+                .addPerson(person)
+
+            if (false /*callState != Call.STATE_RINGING*/) {
+                val microphoneCallIntent = Intent(context, CallActionReceiver::class.java)
+                microphoneCallIntent.action = MICROPHONE_CALL
+                val microphonePendingIntent =
+                    PendingIntent.getBroadcast(context, DECLINE_CALL_CODE, microphoneCallIntent, PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_MUTABLE)
+                val microphoneMuteIcon = if (context.audioManager.isMicrophoneMute) R.drawable.ic_microphone_off_vector else R.drawable.ic_microphone_vector
+                val microphoneCallAction = Notification.Action.Builder(microphoneMuteIcon, context.getString(R.string.mute), microphonePendingIntent)
+                builder.addAction(microphoneCallAction.build())
+            }
+
+            val notification = builder.build()
+            // it's rare but possible for the call state to change by now
+            // We verify that the call still exists in CallManager.
+            if (isServiceActive && CallManager.getPrimaryCall() != null && CallManager.getState() == callState) {
+                notificationManager.notify(CALL_NOTIFICATION_ID, notification)
+            } else {
+                // If the call is no longer there, we turn off the notification just in case
+                notificationManager.cancel(CALL_NOTIFICATION_ID)
+            }
         }
     }
 }
