@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Aldoni atendon (;)</string>
+    <string name="rejected">Malakceptita</string>
+    <string name="dialpad_buttons_color">Koloro de butonoj de la klavarklavaro</string>
     <string name="audio_route_earpiece_g">Το ακουστικό της συσκευής\</string>
     <string name="open_speed_dial_manage">Malfermi la rapidan telefonadon administri?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Right Dialer nur montras kontaktojn, kiuj havas telefonnumeron asociitan kun ili. Kontaktoj sen telefonnumero ne estas montrataj en la apo.</string>
+    <string name="slider_style">Ŝovilo-stilo</string>
+    <string name="slider_style_summary">La ŝovilo estas uzata nur kiam la ekrano estas ŝlosita.</string>
     <string name="answer_style">Stilo de Respondbutono</string>
     <string name="buttons">Butonoj</string>
     <string name="answer_slider">Slider</string>
+    <string name="answer_slider_classic">Klasika glitŝovilo</string>
     <string name="answer_slider_outline">Konturna glitilo</string>
     <string name="answer_slider_vertical">Vertikala Glitilo</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">Lasu vokojn en sciigoj</string>
     <string name="on_contact_click">Kiam vi alklakas kontakton</string>
     <string name="on_recent_click">Kiam vi alklakas lastatempan vokon</string>
+    <string name="add_pause">Aldoni 2-sekundan paŭzon (,)</string>
+    <string name="missed">Maltrafita</string>
+    <string name="incoming">Alvenanta</string>
+    <string name="outgoing">Eliranta</string>
 </resources>

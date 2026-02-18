@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Adicionar espera (;)</string>
+    <string name="rejected">Rejeitado</string>
+    <string name="dialpad_buttons_color">Cor dos botões do teclado de discagem</string>
     <string name="audio_route_earpiece_g">O fone de ouvido do dispositivo</string>
     <string name="open_speed_dial_manage">Abrir o gerenciamento da discagem rápida?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">O Discador Direito exibe apenas contatos que tenham um número de telefone associado. Contatos sem número de telefone não são exibidos no aplicativo.</string>
+    <string name="slider_style">Estilo deslizante</string>
+    <string name="slider_style_summary">O controle deslizante só é usado quando a tela está bloqueada.</string>
     <string name="answer_style">Estilo da resposta</string>
     <string name="buttons">Botões</string>
     <string name="answer_slider">Botão deslizante</string>
+    <string name="answer_slider_classic">Controle deslizante clássico</string>
     <string name="answer_slider_outline">Controle deslizante com contorno</string>
     <string name="answer_slider_vertical">Controle deslizante vertical</string>
 
@@ -87,4 +93,8 @@
     <string name="keep_calls_in_popup">Deixar chamadas nas notificações</string>
     <string name="on_contact_click">Ao clicar em um contato</string>
     <string name="on_recent_click">Ao clicar em uma chamada recente</string>
+    <string name="add_pause">Adicionar pausa de 2 segundos (,)</string>
+    <string name="missed">Perdido</string>
+    <string name="incoming">Entrada</string>
+    <string name="outgoing">Extrovertido</string>
 </resources>

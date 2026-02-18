@@ -246,6 +246,13 @@ class CallHistoryActivity : SimpleActivity() {
                 blockButton.text = getString(R.string.block_number)
                 blockButton.setTextColor(red)
             }
+
+            val typeface = FontHelper.getTypeface(this@CallHistoryActivity)
+            arrayOf(
+                binding.oneButton, binding.twoButton, binding.threeButton, binding.fourButton, blockButton
+            ).forEach {
+                it.setTypeface(typeface)
+            }
         }
     }
 

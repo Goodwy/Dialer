@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">انتظار شامل کریں (؛)</string>
+    <string name="rejected">مسترد</string>
+    <string name="dialpad_buttons_color">ڈائل پیڈ بٹنوں کا رنگ</string>
     <string name="audio_route_earpiece_g">آلہ کا ایئر پیس</string>
     <string name="open_speed_dial_manage">سپیڈ ڈائل کا انتظام کھولیں؟</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">دائیں ڈائلر صرف ان رابطوں کو دکھاتا ہے جن کے ساتھ فون نمبر منسلک ہوتا ہے۔ فون نمبر کے بغیر رابطے ایپ میں ظاہر نہیں ہوتے ہیں۔</string>
+    <string name="slider_style">سلائیڈر انداز</string>
+    <string name="slider_style_summary">سلائیڈر صرف اس وقت استعمال ہوتا ہے جب اسکرین مقفل ہو۔</string>
     <string name="answer_style">جواب بٹن کا انداز</string>
     <string name="buttons">بٹن</string>
     <string name="answer_slider">سلائیڈر</string>
+    <string name="answer_slider_classic">کلاسیکی سلائیڈر</string>
     <string name="answer_slider_outline">آؤٹ لائن سلائیڈر</string>
     <string name="answer_slider_vertical">عمودی سلائیڈر</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">کالز کو اطلاعات میں چھوڑیں۔</string>
     <string name="on_contact_click">جب آپ کسی رابطے پر کلک کرتے ہیں۔</string>
     <string name="on_recent_click">جب آپ حالیہ کال پر کلک کرتے ہیں۔</string>
+    <string name="add_pause">2 سیکنڈ کا وقفہ شامل کریں (،)</string>
+    <string name="missed">چھوٹ گیا۔</string>
+    <string name="incoming">آنے والا</string>
+    <string name="outgoing">باہر جانے والا</string>
 </resources>

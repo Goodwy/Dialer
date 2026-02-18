@@ -52,6 +52,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Додај чекање (;)</string>
+    <string name="rejected">Одбиено</string>
+    <string name="dialpad_buttons_color">Боја на копчињата на тастатурата за бирање</string>
     <string name="audio_route_earpiece_g">Слушалка на уредот</string>
     <string name="open_speed_dial_manage">Да се отвори менаџерот за брзо бирање?</string>
 
@@ -71,9 +74,12 @@
     <string name="faq_3_text_g">Десниот бирач ги прикажува само контактите што имаат телефонски број поврзан со нив. Контактите без телефонски број не се прикажуваат во апликацијата.</string>
 
     <!-- Answer style -->
+    <string name="slider_style">Стил на лизгач</string>
+    <string name="slider_style_summary">Лизгачот се користи само кога екранот е заклучен.</string>
     <string name="answer_style">Стил на одговор</string>
     <string name="buttons">Копчиња</string>
     <string name="answer_slider">Лизгач</string>
+    <string name="answer_slider_classic">Класичен лизгач</string>
     <string name="answer_slider_outline">Лизгач на контура</string>
     <string name="answer_slider_vertical">Вертикален лизгач</string>
 
@@ -85,4 +91,8 @@
     <string name="missed_call_from">Пропуштен повик од %s</string>
     <string name="on_contact_click">Кога ќе кликнете на контакт</string>
     <string name="on_recent_click">Кога ќе кликнете на неодамнешен повик</string>
+    <string name="add_pause">Додај пауза од 2 секунди (,)</string>
+    <string name="missed">Пропуштено</string>
+    <string name="incoming">Дојдовни</string>
+    <string name="outgoing">Појдовни</string>
 </resources>

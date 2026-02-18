@@ -15,8 +15,8 @@ import android.view.Gravity
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.SimpleItemAnimator
@@ -288,7 +288,7 @@ class RecentCallsAdapter(
         val listFilter =
             if (activity.config.filterRecentCalls == 0) list
             else list?.filterIsInstance<RecentCall>()?.filter { it.type == activity.config.filterRecentCalls }
-        super.submitList(list) {
+        super.submitList(listFilter) {
             layoutManager.onRestoreInstanceState(recyclerViewState)
         }
     }
@@ -697,6 +697,7 @@ class RecentCallsAdapter(
                     text = nameToShow
                     setTextColor(if (call.type == Calls.MISSED_TYPE) missedCallColor else textColor)
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize)
+                    isSelected = true
                 }
 
                 var numberToShow =
@@ -920,6 +921,7 @@ class RecentCallsAdapter(
                     text = nameToShow
                     setTextColor(if (call.type == Calls.MISSED_TYPE) missedCallColor else textColor)
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize)
+                    isSelected = true
                 }
 
                 var numberToShow =

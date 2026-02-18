@@ -53,6 +53,13 @@
             Your service provider may charge an additional fee for this service.
         ]]>
     </string>
+    <string name="add_pause">Add 2-sec pause (,)</string>
+    <string name="add_wait">Add wait (;)</string>
+    <string name="missed">Missed</string>
+    <string name="incoming">Incoming</string>
+    <string name="outgoing">Outgoing</string>
+    <string name="rejected">Rejected</string>
+    <string name="dialpad_buttons_color">Dialpad buttons color</string>
 
     <string name="audio_route_earpiece_g">Device\'s earpiece</string>
     <string name="open_speed_dial_manage">Open the speed dial manager?</string>
@@ -73,9 +80,12 @@
     <string name="faq_3_text_g">Right Dialer only displays contacts that have a phone number associated with them. Contacts without a phone number are not shown in the app.</string>
 
     <!-- Answer style -->
+    <string name="slider_style">Slider style</string>
+    <string name="slider_style_summary">The slider is only used when the screen is locked</string>
     <string name="answer_style">Answer style</string>
     <string name="buttons">Buttons</string>
     <string name="answer_slider">Slider</string>
+    <string name="answer_slider_classic">Classic slider</string>
     <string name="answer_slider_outline">Outline slider</string>
     <string name="answer_slider_vertical">Vertical slider</string>
 

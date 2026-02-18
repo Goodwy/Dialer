@@ -430,16 +430,18 @@ class DialpadActivity : SimpleActivity() {
                     it.beGone()
                 }
             } else {
+                val typeface = FontHelper.getTypeface(this@DialpadActivity)
+
                 dialpad1Letters.apply {
                     beInvisible()
-                    setTypeface(null, config.dialpadSecondaryTypeface)
+                    setTypeface(typeface, config.dialpadSecondaryTypeface)
                 }
                 arrayOf(
                     dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters, dialpad6Letters,
                     dialpad7Letters, dialpad8Letters, dialpad9Letters
                 ).forEach {
                     it.beVisible()
-                    it.setTypeface(null, config.dialpadSecondaryTypeface)
+                    it.setTypeface(typeface, config.dialpadSecondaryTypeface)
                 }
 
                 val langPref = config.dialpadSecondaryLanguage
@@ -631,16 +633,18 @@ class DialpadActivity : SimpleActivity() {
                     it.beGone()
                 }
             } else {
+                val typeface = FontHelper.getTypeface(this@DialpadActivity)
+
                 dialpad1IosLetters.apply {
                     beInvisible()
-                    setTypeface(null, config.dialpadSecondaryTypeface)
+                    setTypeface(typeface, config.dialpadSecondaryTypeface)
                 }
                 arrayOf(
                     dialpad2IosLetters, dialpad3IosLetters, dialpad4IosLetters, dialpad5IosLetters,
                     dialpad6IosLetters, dialpad7IosLetters, dialpad8IosLetters, dialpad9IosLetters
                 ).forEach {
                     it.beVisible()
-                    it.setTypeface(null, config.dialpadSecondaryTypeface)
+                    it.setTypeface(typeface, config.dialpadSecondaryTypeface)
                 }
 
                 val langPref = config.dialpadSecondaryLanguage
@@ -773,16 +777,18 @@ class DialpadActivity : SimpleActivity() {
                     it.beGone()
                 }
             } else {
+                val typeface = FontHelper.getTypeface(this@DialpadActivity)
+
                 dialpad1Letters.apply {
                     beInvisible()
-                    setTypeface(null, config.dialpadSecondaryTypeface)
+                    setTypeface(typeface, config.dialpadSecondaryTypeface)
                 }
                 arrayOf(
                     dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
                     dialpad6Letters, dialpad7Letters, dialpad8Letters, dialpad9Letters
                 ).forEach {
                     it.beVisible()
-                    it.setTypeface(null, config.dialpadSecondaryTypeface)
+                    it.setTypeface(typeface, config.dialpadSecondaryTypeface)
                 }
 
                 val langPref = config.dialpadSecondaryLanguage

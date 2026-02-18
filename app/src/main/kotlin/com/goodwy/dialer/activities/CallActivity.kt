@@ -20,7 +20,7 @@ import android.text.style.ForegroundColorSpan
 import android.view.*
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.PopupMenu
+import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.children
@@ -894,8 +894,13 @@ class CallActivity : SimpleActivity() {
         if (route != null) {
             //If enabled, one of the users (OnePlus 13r, Oxygen 16OS) has his microphone turned off at the start of a call??
             //isMicrophoneOff = audioManager.isMicrophoneMute
-            if (isMicrophoneInitialized) isMicrophoneOff = audioManager.isMicrophoneMute
-            else isMicrophoneInitialized = true
+            if (!isMicrophoneInitialized) {
+                isMicrophoneOff = false
+                isMicrophoneInitialized = true
+
+                audioManager.isMicrophoneMute = false
+                CallManager.inCallService?.setMuted(false)
+            } else isMicrophoneOff = audioManager.isMicrophoneMute
 
             updateMicrophoneButton()
 
@@ -1225,23 +1230,23 @@ class CallActivity : SimpleActivity() {
                     text = callNote.note
                 }
                 setOnClickListener {
-                    changeNoteDialog(number)
+                    changeNoteDialog(number, name)
                 }
             }
 
             addCallerNote.apply {
                 setOnClickListener {
-                    changeNoteDialog(number)
+                    changeNoteDialog(number, name)
                 }
             }
         }
     }
 
-    private fun changeNoteDialog(number: String) {
+    private fun changeNoteDialog(number: String, name: String) {
         val callerNote = callerNotesHelper.getCallerNotes(number)
         ChangeTextDialog(
             activity = this@CallActivity,
-            title = number.normalizeString(),
+            title = name,
             currentText = callerNote?.note,
             maxLength = CALLER_NOTES_MAX_LENGTH,
             showNeutralButton = true,

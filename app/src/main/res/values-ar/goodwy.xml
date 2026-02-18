@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">أضف الانتظار (;)</string>
+    <string name="rejected">مرفوض</string>
+    <string name="dialpad_buttons_color">لون أزرار لوحة الاتصال</string>
     <string name="audio_route_earpiece_g">سماعة أذن الجهاز</string>
     <string name="open_speed_dial_manage">فتح إدارة الاتصال السريع؟</string>
 
@@ -48,9 +51,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">يعرض تطبيق Right Dialer جهات الاتصال المرتبطة برقم هاتف فقط. لا تُعرض جهات الاتصال التي لا تحتوي على رقم هاتف في التطبيق.</string>
+    <string name="slider_style">نمط المنزلق</string>
+    <string name="slider_style_summary">لا يُستخدم شريط التمرير إلا عندما تكون الشاشة مقفلة.</string>
     <string name="answer_style">نمط زر الإجابة</string>
     <string name="buttons">الأزرار</string>
     <string name="answer_slider">شريط التمرير</string>
+    <string name="answer_slider_classic">شريط تمرير كلاسيكي</string>
     <string name="answer_slider_outline">شريط تمرير المخطط التفصيلي</string>
     <string name="answer_slider_vertical">شريط التمرير العمودي</string>
 
@@ -94,4 +100,8 @@
     <string name="keep_calls_in_popup">ترك المكالمات في الإشعارات</string>
     <string name="on_contact_click">عند النقر على جهة اتصال</string>
     <string name="on_recent_click">عند النقر على مكالمة حديثة</string>
+    <string name="add_pause">أضف وقفة لمدة ثانيتين (,)</string>
+    <string name="missed">مٌفتَقد</string>
+    <string name="incoming">وارد</string>
+    <string name="outgoing">صادر</string>
 </resources>

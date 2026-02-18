@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Lägg till väntan (;)</string>
+    <string name="rejected">Avvisad</string>
+    <string name="dialpad_buttons_color">Färg på knapparna på knappsatsen</string>
     <string name="audio_route_earpiece_g">Enhetens hörsnäcka</string>
     <string name="open_speed_dial_manage">Öppna kortnummerhanteringen?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Höger uppringare visar bara kontakter som har ett telefonnummer kopplat till dem. Kontakter utan telefonnummer visas inte i appen.</string>
+    <string name="slider_style">Slider-stil</string>
+    <string name="slider_style_summary">Skjutreglaget används bara när skärmen är låst.</string>
     <string name="answer_style">Svarsknappstil</string>
     <string name="buttons">Knappar</string>
     <string name="answer_slider">Slider</string>
+    <string name="answer_slider_classic">Klassisk skjutreglage</string>
     <string name="answer_slider_outline">Konturreglage</string>
     <string name="answer_slider_vertical">Vertikal skjutreglage</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">Lämna samtal i aviseringar</string>
     <string name="on_contact_click">När du klickar på en kontakt</string>
     <string name="on_recent_click">När du klickar på ett nyligen samtal</string>
+    <string name="add_pause">Lägg till 2 sekunders paus (,)</string>
+    <string name="missed">Missade</string>
+    <string name="incoming">Inkommande</string>
+    <string name="outgoing">Utgående</string>
 </resources>

@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">കാത്തിരിപ്പ് (;) ചേർക്കുക</string>
+    <string name="rejected">നിരസിച്ചു</string>
+    <string name="dialpad_buttons_color">ഡയൽപാഡ് ബട്ടണുകളുടെ നിറം</string>
     <string name="audio_route_earpiece_g">ഉപകരണത്തിന്റെ ഇയർപീസ്</string>
     <string name="open_speed_dial_manage">സ്പീഡ് ഡയൽ മാനേജ് തുറക്കണോ?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">റൈറ്റ് ഡയലർ, അവരുമായി ബന്ധപ്പെട്ട ഒരു ഫോൺ നമ്പറുള്ള കോൺടാക്റ്റുകൾ മാത്രമേ പ്രദർശിപ്പിക്കൂ. ഫോൺ നമ്പർ ഇല്ലാത്ത കോൺടാക്റ്റുകൾ ആപ്പിൽ പ്രദർശിപ്പിക്കില്ല.</string>
+    <string name="slider_style">സ്ലൈഡർ ശൈലി</string>
+    <string name="slider_style_summary">സ്ക്രീൻ ലോക്ക് ചെയ്തിരിക്കുമ്പോൾ മാത്രമേ സ്ലൈഡർ ഉപയോഗിക്കൂ.</string>
     <string name="answer_style">ഉത്തര ബട്ടൺ ശൈലി</string>
     <string name="buttons">ബട്ടണുകൾ</string>
     <string name="answer_slider">സ്ലൈഡർ</string>
+    <string name="answer_slider_classic">ക്ലാസിക് സ്ലൈഡർ</string>
     <string name="answer_slider_outline">ഔട്ട്‌ലൈൻ സ്ലൈഡർ</string>
     <string name="answer_slider_vertical">ലംബ സ്ലൈഡർ</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">അറിയിപ്പുകളിൽ കോളുകൾ വിടുക</string>
     <string name="on_contact_click">ഒരു കോൺടാക്റ്റിൽ ക്ലിക്ക് ചെയ്യുമ്പോൾ</string>
     <string name="on_recent_click">നിങ്ങൾ ഒരു സമീപകാല കോളിൽ ക്ലിക്ക് ചെയ്യുമ്പോൾ</string>
+    <string name="add_pause">2 സെക്കൻഡ് താൽക്കാലികമായി നിർത്തുക (,)</string>
+    <string name="missed">നഷ്ടപ്പെട്ടു</string>
+    <string name="incoming">ഇൻകമിംഗ്</string>
+    <string name="outgoing">ഔട്ട്ഗോയിംഗ്</string>
 </resources>

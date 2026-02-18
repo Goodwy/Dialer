@@ -5,10 +5,6 @@ import android.app.SearchManager
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.Intent.ACTION_SEND
-import android.content.Intent.ACTION_SENDTO
-import android.content.Intent.EXTRA_EMAIL
-import android.content.Intent.EXTRA_SUBJECT
-import android.content.Intent.EXTRA_TEXT
 import android.content.pm.ShortcutInfo
 import android.content.res.Configuration
 import android.graphics.Color
@@ -30,7 +26,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.SearchView
-import androidx.core.net.toUri
 import androidx.core.view.MenuItemCompat
 import androidx.viewpager.widget.ViewPager
 import com.behaviorule.arturdumchev.library.pixels
@@ -65,7 +60,6 @@ import org.greenrobot.eventbus.ThreadMode
 import me.grantland.widget.AutofitHelper
 import java.io.InputStreamReader
 import java.util.Objects
-import kotlin.and
 
 class MainActivity : SimpleActivity() {
     override var isSearchBarEnabled = true
@@ -93,8 +87,8 @@ class MainActivity : SimpleActivity() {
         setContentView(binding.root)
         appLaunched(BuildConfig.APPLICATION_ID)
 
-        val showTabs = config.showTabs
-        val oneTabs: Boolean = showTabs and TAB_FAVORITES == 0 && showTabs and TAB_CONTACTS == 0
+        val useBottomNavigationBar = config.bottomNavigationBar
+        val oneTabs: Boolean = getAllFragments().size == 1 || !useBottomNavigationBar
         setupEdgeToEdge(
             padBottomImeAndSystem = listOf(binding.mainTabsHolder),
             moveBottomSystem = if (oneTabs) listOf(binding.mainDialpadButton) else emptyList()
@@ -145,7 +139,6 @@ class MainActivity : SimpleActivity() {
             setDefaultCallerIdApp()
         }
 
-        val useBottomNavigationBar = config.bottomNavigationBar
         binding.mainMenu.apply {
             updateTitle(getAppLauncherName())
             searchBeVisibleIf(useBottomNavigationBar && config.showSearchBar)
@@ -208,10 +201,6 @@ class MainActivity : SimpleActivity() {
             storedStartNameWithSurname = config.startNameWithSurname
         }
 
-        if (/*!isSearchOpen && */!binding.mainMenu.isSearchOpen) {
-            refreshItems(true)
-        }
-
         if (binding.viewPager.adapter != null && !config.bottomNavigationBar) {
 
             if (config.needRestart) {
@@ -242,6 +231,10 @@ class MainActivity : SimpleActivity() {
             getAllFragments().forEach {
                 it?.setupColors(properTextColor, properPrimaryColor, getProperAccentColor())
             }
+        }
+
+        if (/*!isSearchOpen && */!binding.mainMenu.isSearchOpen) {
+            refreshItems(true)
         }
 
         val configFontSize = config.fontSize
@@ -574,7 +567,8 @@ class MainActivity : SimpleActivity() {
                                 }
 
                                 if (number != null) {
-                                    this.handlePermission(PERMISSION_CALL_PHONE) { hasPermission ->
+                                    val hasPermission = hasPermission(PERMISSION_CALL_PHONE)
+//                                    this.handlePermission(PERMISSION_CALL_PHONE) { hasPermission ->
                                         val action = if (hasPermission) Intent.ACTION_CALL else Intent.ACTION_DIAL
                                         val intent = Intent(action).apply {
                                             data = Uri.fromParts("tel", number, null)
@@ -587,7 +581,7 @@ class MainActivity : SimpleActivity() {
                                             .setIntent(intent)
                                             .build()
                                         this.shortcutManager.pushDynamicShortcut(shortcut)
-                                    }
+//                                    }
                                 }
                             }
                         }
@@ -613,16 +607,6 @@ class MainActivity : SimpleActivity() {
                 if (isDynamicTheme() && !isSystemInDarkMode()) getColoredMaterialStatusBarColor()
                 else getSurfaceColor()
             binding.mainTabsHolder.setBackgroundColor(bottomBarColor)
-//            if (binding.mainTabsHolder.tabCount != 1) updateNavigationBarColor(bottomBarColor)
-//            else {
-//                // TODO TRANSPARENT Navigation Bar
-//                setWindowTransparency(true) { _, bottomNavigationBarSize, leftNavigationBarSize, rightNavigationBarSize ->
-//                    binding.mainCoordinator.setPadding(leftNavigationBarSize, 0, rightNavigationBarSize, 0)
-//                    binding.mainDialpadButton.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-//                        setMargins(0, 0, 0, bottomNavigationBarSize + pixels(R.dimen.activity_margin).toInt())
-//                    }
-//                }
-//            }
         } else {
             // top tab bar
             val lastUsedPage = getDefaultTab()
@@ -1175,7 +1159,9 @@ class MainActivity : SimpleActivity() {
                 "An error occurred while the application was running. Please send us this error so we can fix it.",
                 positive = R.string.send_email
             ) {
-                val body = "Dialer : LastError"
+                val appName = getString(R.string.app_name)
+                val versionName = BuildConfig.VERSION_NAME
+                val body = "$appName($versionName) : LastError"
                 val address = getMyMailString()
                 val lastError = baseConfig.lastError
 

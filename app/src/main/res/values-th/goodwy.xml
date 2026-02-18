@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">เพิ่มการรอ (;)</string>
+    <string name="rejected">ถูกปฏิเสธ</string>
+    <string name="dialpad_buttons_color">สีของปุ่มแป้นกดหมายเลข</string>
     <string name="audio_route_earpiece_g">หูฟังของอุปกรณ์</string>
     <string name="open_speed_dial_manage">เปิดจัดการการโทรด่วน?</string>
 
@@ -43,9 +46,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Right Dialer จะแสดงเฉพาะรายชื่อติดต่อที่มีหมายเลขโทรศัพท์ที่เชื่อมโยงกับรายชื่อนั้นเท่านั้น รายชื่อติดต่อที่ไม่มีหมายเลขโทรศัพท์จะไม่แสดงในแอป</string>
+    <string name="slider_style">สไตล์สไลเดอร์</string>
+    <string name="slider_style_summary">แถบเลื่อนจะใช้งานได้เฉพาะเมื่อหน้าจอล็อกอยู่เท่านั้น</string>
     <string name="answer_style">รูปแบบปุ่มรับสาย</string>
     <string name="buttons">ปุ่ม</string>
     <string name="answer_slider">แถบเลื่อน</string>
+    <string name="answer_slider_classic">สไลเดอร์แบบคลาสสิก</string>
     <string name="answer_slider_outline">แถบเลื่อนเค้าร่าง</string>
     <string name="answer_slider_vertical">แถบเลื่อนแนวตั้ง</string>
 
@@ -84,4 +90,8 @@
     <string name="keep_calls_in_popup">ฝากสายไว้ในการแจ้งเตือน</string>
     <string name="on_contact_click">เมื่อคุณคลิกที่ผู้ติดต่อ</string>
     <string name="on_recent_click">เมื่อคุณคลิกบนการโทรล่าสุด</string>
+    <string name="add_pause">เพิ่มการหยุดชั่วคราว 2 วินาที (,)</string>
+    <string name="missed">พลาด</string>
+    <string name="incoming">ขาเข้า</string>
+    <string name="outgoing">ขาออก</string>
 </resources>

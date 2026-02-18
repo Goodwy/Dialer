@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">प्रतीक्षा जोड़ें (;)</string>
+    <string name="rejected">अस्वीकार कर दिया</string>
+    <string name="dialpad_buttons_color">डायलपैड बटन का रंग</string>
     <string name="audio_route_earpiece_g">डिवाइस का इयरपीस</string>
     <string name="open_speed_dial_manage">स्पीड डायल मैनेज खोलें?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">राइट डायलर केवल उन्हीं संपर्कों को प्रदर्शित करता है जिनके साथ फ़ोन नंबर जुड़ा होता है। जिन संपर्कों के साथ फ़ोन नंबर नहीं जुड़ा होता, वे ऐप में प्रदर्शित नहीं होते।</string>
+    <string name="slider_style">स्लाइडर शैली</string>
+    <string name="slider_style_summary">स्लाइडर का उपयोग केवल तभी किया जाता है जब स्क्रीन लॉक हो।</string>
     <string name="answer_style">उत्तर शैली</string>
     <string name="buttons">बटन</string>
     <string name="answer_slider">स्लाइडर</string>
+    <string name="answer_slider_classic">क्लासिक स्लाइडर</string>
     <string name="answer_slider_outline">आउटलाइन स्लाइडर</string>
     <string name="answer_slider_vertical">वर्टिकल स्लाइडर</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">कॉल को सूचनाओं में छोड़ें</string>
     <string name="on_contact_click">जब आप किसी संपर्क पर क्लिक करते हैं</string>
     <string name="on_recent_click">जब आप किसी हालिया कॉल पर क्लिक करते हैं</string>
+    <string name="add_pause">2 सेकंड का विराम जोड़ें (,)</string>
+    <string name="missed">चुक होना</string>
+    <string name="incoming">आने वाली</string>
+    <string name="outgoing">जावक</string>
 </resources>

@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">添加等待（;）</string>
+    <string name="rejected">已拒絕</string>
+    <string name="dialpad_buttons_color">撥號盤按鍵顏色</string>
     <string name="audio_route_earpiece_g">Device\'s earpiece</string>
     <string name="open_speed_dial_manage">Open the speed dial manage?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">右側撥號器僅顯示已關聯電話號碼的聯絡人。沒有電話號碼的聯絡人不會顯示在應用程式中。</string>
+    <string name="slider_style">滑桿樣式</string>
+    <string name="slider_style_summary">只有在螢幕鎖定時才能使用滑桿。</string>
     <string name="answer_style">Answer style</string>
     <string name="buttons">Buttons</string>
     <string name="answer_slider">Slider</string>
+    <string name="answer_slider_classic">經典滑桿</string>
     <string name="answer_slider_outline">Outline slider</string>
     <string name="answer_slider_vertical">Vertical slider</string>
 
@@ -85,4 +91,8 @@
     <string name="keep_calls_in_popup">在通知中留下通話</string>
     <string name="on_contact_click">當您點擊聯絡人時</string>
     <string name="on_recent_click">點擊最近的通話記錄</string>
+    <string name="add_pause">新增 2 秒暫停（，）</string>
+    <string name="missed">錯過</string>
+    <string name="incoming">即將到來</string>
+    <string name="outgoing">外向</string>
 </resources>

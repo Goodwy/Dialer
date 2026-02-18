@@ -9,7 +9,6 @@ import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.commons.views.MyGridLayoutManager
 import com.goodwy.commons.views.MyLinearLayoutManager
-import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.MainActivity
 import com.goodwy.dialer.activities.SimpleActivity
@@ -76,11 +75,11 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
     }
 
     override fun refreshItems(invalidate: Boolean, needUpdate: Boolean, callback: (() -> Unit)?) {
+        val privateCursor = context?.getMyContactsCursor(favoritesOnly = true, withPhoneNumbersOnly = true)
         ContactsHelper(context).getContacts { contacts ->
             allContacts = contacts
 
             if (SMT_PRIVATE !in context.baseConfig.ignoredContactSources) {
-                val privateCursor = context?.getMyContactsCursor(favoritesOnly = true, withPhoneNumbersOnly = true)
                 val privateContacts = MyContactsContentProvider.getContacts(context, privateCursor).map {
                     it.copy(starred = 1)
                 }

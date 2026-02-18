@@ -1,53 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.goodwy.dialer.fragments.RecentsFragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/recents_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.goodwy.commons.views.MyTextView
-        android:id="@+id/recents_placeholder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:alpha="0.8"
-        android:gravity="center"
-        android:paddingStart="@dimen/activity_margin"
-        android:paddingTop="@dimen/activity_margin"
-        android:paddingEnd="@dimen/activity_margin"
-        android:text="@string/no_previous_calls"
-        android:textSize="@dimen/bigger_text_size"
-        android:textStyle="italic"
-        android:visibility="gone" />
-
-    <com.goodwy.commons.views.MyTextView
-        android:id="@+id/recents_placeholder_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/recents_placeholder"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/ripple_all_corners"
-        android:gravity="center"
-        android:padding="@dimen/activity_margin"
-        android:text="@string/request_access"
-        android:textSize="@dimen/bigger_text_size"
-        android:visibility="gone" />
-
-    <com.goodwy.commons.views.MyRecyclerView
-        android:id="@+id/recents_list"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:layoutAnimation="@anim/layout_animation"
-        android:scrollbarThumbVertical="@drawable/fastscroller_handle_vertical_gray"
-        android:scrollbars="vertical"
-        app:layoutManager="com.goodwy.commons.views.MyLinearLayoutManager" />
+        android:fillViewport="true">
 
-<!--    <com.google.android.material.progressindicator.CircularProgressIndicator-->
-<!--        android:id="@+id/progress_indicator"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:indeterminate="true"-->
-<!--        app:trackCornerRadius="@dimen/small_margin" />-->
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/recents_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:layout_centerHorizontal="true"
+            android:alpha="0.8"
+            android:gravity="center"
+            android:paddingStart="@dimen/activity_margin"
+            android:paddingTop="@dimen/activity_margin"
+            android:paddingEnd="@dimen/activity_margin"
+            android:text="@string/no_previous_calls"
+            android:textSize="@dimen/bigger_text_size"
+            android:textStyle="italic"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+        <com.goodwy.commons.views.MyTextView
+            android:id="@+id/recents_placeholder_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="122dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/ripple_all_corners"
+            android:gravity="center"
+            android:padding="@dimen/activity_margin"
+            android:text="@string/request_access"
+            android:textSize="@dimen/bigger_text_size"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/recents_filters_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stateListAnimator="@null"
+            android:background="@android:color/transparent"
+            app:liftOnScroll="false"
+            app:elevation="0dp">
+
+            <HorizontalScrollView
+                android:id="@+id/recents_filters_holder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="always"
+                android:scrollbars="none"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:clipToPadding="false"
+                app:layout_scrollFlags="scroll|enterAlways|snap">
+
+                <include
+                    android:id="@+id/recents_filters"
+                    layout="@layout/layout_recents_filters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </HorizontalScrollView>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.goodwy.commons.views.MyRecyclerView
+            android:id="@+id/recents_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:layoutAnimation="@anim/layout_animation"
+            android:scrollbarThumbVertical="@drawable/fastscroller_handle_vertical_gray"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layoutManager="com.goodwy.commons.views.MyLinearLayoutManager" />
+
+        <!--    <com.google.android.material.progressindicator.CircularProgressIndicator-->
+        <!--        android:id="@+id/progress_indicator"-->
+        <!--        android:layout_width="wrap_content"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:layout_centerInParent="true"-->
+        <!--        android:indeterminate="true"-->
+        <!--        app:trackCornerRadius="@dimen/small_margin" />-->
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </com.goodwy.dialer.fragments.RecentsFragment>

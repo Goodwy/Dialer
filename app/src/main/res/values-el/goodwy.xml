@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Προσθήκη αναμονής (;)</string>
+    <string name="rejected">Απορρίφθηκε</string>
+    <string name="dialpad_buttons_color">Χρώμα κουμπιών πληκτρολογίου κλήσης</string>
     <string name="audio_route_earpiece_g">Ακουστικό της συσκευής</string>
     <string name="open_speed_dial_manage">Ανοίξτε την ταχεία κλήση διαχείριση;</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Το Right Dialer εμφανίζει μόνο τις επαφές που έχουν έναν αριθμό τηλεφώνου που σχετίζεται με αυτές. Οι επαφές χωρίς αριθμό τηλεφώνου δεν εμφανίζονται στην εφαρμογή.</string>
+    <string name="slider_style">Στυλ ρυθμιστικού</string>
+    <string name="slider_style_summary">Το ρυθμιστικό χρησιμοποιείται μόνο όταν η οθόνη είναι κλειδωμένη.</string>
     <string name="answer_style">Στυλ κουμπιού απάντησης</string>
     <string name="buttons">Μπουτόν</string>
     <string name="answer_slider">Slider</string>
+    <string name="answer_slider_classic">Κλασικό ρυθμιστικό</string>
     <string name="answer_slider_outline">Slider με περίγραμμα</string>
     <string name="answer_slider_vertical">Κάθετο ρυθμιστικό</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">Αφήστε τις κλήσεις στις ειδοποιήσεις</string>
     <string name="on_contact_click">Όταν κάνετε κλικ σε μια επαφή</string>
     <string name="on_recent_click">Όταν κάνετε κλικ σε μια πρόσφατη κλήση</string>
+    <string name="add_pause">Προσθήκη παύσης 2 δευτερολέπτων (,)</string>
+    <string name="missed">Χάθηκε</string>
+    <string name="incoming">Εισερχόμενος</string>
+    <string name="outgoing">Εξερχόμενος</string>
 </resources>

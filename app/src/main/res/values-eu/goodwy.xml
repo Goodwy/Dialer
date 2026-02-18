@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Gehitu itxaron (;)</string>
+    <string name="rejected">Baztertua</string>
+    <string name="dialpad_buttons_color">Markagailuko botoien kolorea</string>
     <string name="audio_route_earpiece_g">Device\'s earpiece</string>
     <string name="open_speed_dial_manage">Open the speed dial manage?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Eskuineko markatzaileak haiei lotutako telefono-zenbaki bat duten kontaktuak soilik bistaratzen ditu. Telefono-zenbakirik gabeko kontaktuak ez dira aplikazioan bistaratzen.</string>
+    <string name="slider_style">Graduatzaile estiloa</string>
+    <string name="slider_style_summary">Irristailua pantaila blokeatuta dagoenean bakarrik erabiltzen da.</string>
     <string name="answer_style">Answer style</string>
     <string name="buttons">Buttons</string>
     <string name="answer_slider">Slider</string>
+    <string name="answer_slider_classic">Irristailu klasikoa</string>
     <string name="answer_slider_outline">Outline slider</string>
     <string name="answer_slider_vertical">Vertical slider</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">Utzi deiak jakinarazpenetan</string>
     <string name="on_contact_click">Kontaktu batean klik egiten duzunean</string>
     <string name="on_recent_click">Azken dei batean klik egiten duzunean</string>
+    <string name="add_pause">Gehitu 2 segundoko etenaldia (,)</string>
+    <string name="missed">Galdua</string>
+    <string name="incoming">Sarrerako</string>
+    <string name="outgoing">Irteerakoa</string>
 </resources>

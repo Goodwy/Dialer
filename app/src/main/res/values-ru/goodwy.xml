@@ -52,6 +52,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Добавить ожидание (;)</string>
+    <string name="rejected">Отклоненные</string>
+    <string name="dialpad_buttons_color">Цвет кнопок набора номера</string>
     <string name="audio_route_earpiece_g">Телефон</string>
     <string name="open_speed_dial_manage">Открыть управление быстрым вызовом?</string>
 
@@ -72,9 +75,12 @@
     <string name="faq_3_text_g">Right Dialer показывает только контакты, к которым привязан номер телефона. Контакты без телефонного номера не отображаются в приложении.</string>
 
     <!-- Answer style -->
+    <string name="slider_style">Стиль слайдера</string>
+    <string name="slider_style_summary">Слайдер используется только при заблокированном экране</string>
     <string name="answer_style">Стиль кнопок ответа</string>
     <string name="buttons">Кнопки</string>
     <string name="answer_slider">Слайдер</string>
+    <string name="answer_slider_classic">Классический слайдер</string>
     <string name="answer_slider_outline">Слайдер с контуром</string>
     <string name="answer_slider_vertical">Вертикальный слайдер</string>
 
@@ -87,4 +93,8 @@
     <string name="missed_call_from">Пропущенный звонок от %s</string>
     <string name="on_contact_click">При нажатии на контакт</string>
     <string name="on_recent_click">При нажатии на недавний звонок</string>
+    <string name="add_pause">Добавить 2-секундную паузу (,)</string>
+    <string name="missed">Пропущенные</string>
+    <string name="incoming">Входящие</string>
+    <string name="outgoing">Исходящие</string>
 </resources>

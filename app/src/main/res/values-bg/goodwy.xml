@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Добавяне на чакане (;)</string>
+    <string name="rejected">Отхвърлено</string>
+    <string name="dialpad_buttons_color">Цвят на бутоните на цифровата клавиатура</string>
     <string name="audio_route_earpiece_g">Слушалката на устройството</string>
     <string name="open_speed_dial_manage">Отваряне на управлението на бързото набиране?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Right Dialer показва само контакти, които имат свързан с тях телефонен номер. Контакти без телефонен номер не се показват в приложението.</string>
+    <string name="slider_style">Стил на плъзгача</string>
+    <string name="slider_style_summary">Плъзгачът се използва само когато екранът е заключен.</string>
     <string name="answer_style">Стил на бутона за отговор</string>
     <string name="buttons">Бутони</string>
     <string name="answer_slider">Плъзгач</string>
+    <string name="answer_slider_classic">Класически слайдер</string>
     <string name="answer_slider_outline">Плъзгач за контур</string>
     <string name="answer_slider_vertical">Вертикален плъзгач</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">Оставете обажданията в известията</string>
     <string name="on_contact_click">Когато кликнете върху контакт</string>
     <string name="on_recent_click">Когато кликнете върху скорошно обаждане</string>
+    <string name="add_pause">Добавяне на 2-секундна пауза (,)</string>
+    <string name="missed">Пропуснато</string>
+    <string name="incoming">Входящи</string>
+    <string name="outgoing">Изходящ</string>
 </resources>

@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Přidat čekání (;)</string>
+    <string name="rejected">Zamítnuto</string>
+    <string name="dialpad_buttons_color">Barva tlačítek číselníku</string>
     <string name="audio_route_earpiece_g">Sluchátko zařízení</string>
     <string name="open_speed_dial_manage">Otevřít správu rychlého vytáčení?</string>
 
@@ -45,9 +48,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Pravé vytáčení zobrazuje pouze kontakty, ke kterým je přiřazeno telefonní číslo. Kontakty bez telefonního čísla se v aplikaci nezobrazují.</string>
+    <string name="slider_style">Styl posuvníku</string>
+    <string name="slider_style_summary">Posuvník se používá pouze tehdy, když je obrazovka uzamčena.</string>
     <string name="answer_style">Styl tlačítka odpovědi</string>
     <string name="buttons">Tlačítka</string>
     <string name="answer_slider">Posuvník</string>
+    <string name="answer_slider_classic">Klasický posuvník</string>
     <string name="answer_slider_outline">Posuvník obrysu</string>
     <string name="answer_slider_vertical">Vertikální posuvník</string>
 
@@ -88,4 +94,8 @@
     <string name="keep_calls_in_popup">Nechte hovory v oznámeních</string>
     <string name="on_contact_click">Když kliknete na kontakt</string>
     <string name="on_recent_click">Když kliknete na nedávný hovor</string>
+    <string name="add_pause">Přidat 2sekundovou pauzu (,)</string>
+    <string name="missed">Zmeškané</string>
+    <string name="incoming">Přicházející</string>
+    <string name="outgoing">Odchozí</string>
 </resources>

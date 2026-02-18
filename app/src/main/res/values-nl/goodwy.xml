@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Voeg een wachtteken (;) toe.</string>
+    <string name="rejected">Afgewezen</string>
+    <string name="dialpad_buttons_color">Kleur van de toetsen op het numerieke toetsenbord</string>
     <string name="audio_route_earpiece_g">Het oortelefoontje van het apparaat</string>
     <string name="open_speed_dial_manage">Open de snelkiesknop beheren?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Rechterkiezer toont alleen contacten met een telefoonnummer. Contacten zonder telefoonnummer worden niet weergegeven in de app.</string>
+    <string name="slider_style">Schuifregelaarstijl</string>
+    <string name="slider_style_summary">De schuifregelaar wordt alleen gebruikt wanneer het scherm vergrendeld is.</string>
     <string name="answer_style">Antwoordknopstijl</string>
     <string name="buttons">Bedingstoestsen</string>
     <string name="answer_slider">Schuiven</string>
+    <string name="answer_slider_classic">Klassieke schuifregelaar</string>
     <string name="answer_slider_outline">Schuiven voor overzicht</string>
     <string name="answer_slider_vertical">Verticale schuifregelaar</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">Gesprekken in meldingen achterlaten</string>
     <string name="on_contact_click">Wanneer u op een contactpersoon klikt</string>
     <string name="on_recent_click">Wanneer u op een recent gesprek klikt</string>
+    <string name="add_pause">Voeg een pauze van 2 seconden toe (,)</string>
+    <string name="missed">Gemist</string>
+    <string name="incoming">Inkomend</string>
+    <string name="outgoing">Uitgaand</string>
 </resources>

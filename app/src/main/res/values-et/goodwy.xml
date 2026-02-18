@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Lisa ootama (;)</string>
+    <string name="rejected">Tagasilükatud</string>
+    <string name="dialpad_buttons_color">Valimisklaviatuuri nuppude värv</string>
     <string name="audio_route_earpiece_g">Seadme kuular</string>
     <string name="open_speed_dial_manage">Kas avada kiirvalimise haldamine?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Paremvalija kuvab ainult need kontaktid, millel on seotud telefoninumber. Ilma telefoninumbrita kontakte rakenduses ei kuvata.</string>
+    <string name="slider_style">Liuguri stiil</string>
+    <string name="slider_style_summary">Liugurit kasutatakse ainult siis, kui ekraan on lukus.</string>
     <string name="answer_style">Vastusenupu stiil</string>
     <string name="buttons">Nupud</string>
     <string name="answer_slider">Liugur</string>
+    <string name="answer_slider_classic">Klassikaline liugur</string>
     <string name="answer_slider_outline">Liigendi liugur</string>
     <string name="answer_slider_vertical">Vertikaalne liugur</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">Jäta kõned märguannetesse</string>
     <string name="on_contact_click">Kui klõpsate kontaktil</string>
     <string name="on_recent_click">Kui klõpsate hiljutisel kõnel</string>
+    <string name="add_pause">Lisa 2-sekundiline paus (,)</string>
+    <string name="missed">Vastamata</string>
+    <string name="incoming">Sissetulev</string>
+    <string name="outgoing">Väljaminev</string>
 </resources>

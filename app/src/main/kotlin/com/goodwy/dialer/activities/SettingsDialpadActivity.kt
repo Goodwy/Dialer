@@ -358,16 +358,18 @@ class SettingsDialpadActivity : SimpleActivity() {
                     it.beGone()
                 }
             } else {
+                val typeface = FontHelper.getTypeface(this@SettingsDialpadActivity)
+
                 dialpad1Letters.apply {
                     beInvisible()
-                    setTypeface(null, config.dialpadSecondaryTypeface)
+                    setTypeface(typeface, config.dialpadSecondaryTypeface)
                 }
                 arrayOf(
                     dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters, dialpad6Letters,
                     dialpad7Letters, dialpad8Letters, dialpad9Letters
                 ).forEach {
                     it.beVisible()
-                    it.setTypeface(null, config.dialpadSecondaryTypeface)
+                    it.setTypeface(typeface, config.dialpadSecondaryTypeface)
                 }
 
                 if (!DialpadT9.Initialized) {
@@ -511,16 +513,18 @@ class SettingsDialpadActivity : SimpleActivity() {
                     it.beGone()
                 }
             } else {
+                val typeface = FontHelper.getTypeface(this@SettingsDialpadActivity)
+
                 dialpad1Letters.apply {
                     beInvisible()
-                    setTypeface(null, config.dialpadSecondaryTypeface)
+                    setTypeface(typeface, config.dialpadSecondaryTypeface)
                 }
                 arrayOf(
                     dialpad2Letters, dialpad3Letters, dialpad4Letters, dialpad5Letters,
                     dialpad6Letters, dialpad7Letters, dialpad8Letters, dialpad9Letters
                 ).forEach {
                     it.beVisible()
-                    it.setTypeface(null, config.dialpadSecondaryTypeface)
+                    it.setTypeface(typeface, config.dialpadSecondaryTypeface)
                 }
 
                 if (!DialpadT9.Initialized) {
@@ -610,16 +614,18 @@ class SettingsDialpadActivity : SimpleActivity() {
                     it.beGone()
                 }
             } else {
+                val typeface = FontHelper.getTypeface(this@SettingsDialpadActivity)
+
                 dialpad1IosLetters.apply {
                     beInvisible()
-                    setTypeface(null, config.dialpadSecondaryTypeface)
+                    setTypeface(typeface, config.dialpadSecondaryTypeface)
                 }
                 arrayOf(
                     dialpad2IosLetters, dialpad3IosLetters, dialpad4IosLetters, dialpad5IosLetters,
                     dialpad6IosLetters, dialpad7IosLetters, dialpad8IosLetters, dialpad9IosLetters
                 ).forEach {
                     it.beVisible()
-                    it.setTypeface(null, config.dialpadSecondaryTypeface)
+                    it.setTypeface(typeface, config.dialpadSecondaryTypeface)
                 }
 
 
@@ -1443,7 +1449,7 @@ class SettingsDialpadActivity : SimpleActivity() {
 
     private fun updatePro(isPro: Boolean = checkPro()) {
         binding.apply {
-            dialpadPurchaseThankYouHolder.beGoneIf(isPro)
+            dialpadPurchaseThankYouHolder.beGoneIf(checkPro(false))
 
             arrayOf(
                 settingsSimCardColor1Holder,
@@ -1460,5 +1466,7 @@ class SettingsDialpadActivity : SimpleActivity() {
             .subscribe()
     }
 
-    private fun checkPro() = isOrWasThankYouInstalled(false) || isPro() || isCollection()
+    private fun checkPro(collection: Boolean = resources.getBoolean(R.bool.show_collection)) =
+        if (collection) isOrWasThankYouInstalled(false) || isPro() || isCollection()
+        else isOrWasThankYouInstalled(false) || isPro()
 }

@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">添加等待（;）</string>
+    <string name="rejected">已拒绝</string>
+    <string name="dialpad_buttons_color">拨号盘按键颜色</string>
     <string name="audio_route_earpiece_g">设备的耳机</string>
     <string name="open_speed_dial_manage">打开快速拨号管理？</string>
 
@@ -43,9 +46,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">右侧拨号器仅显示已关联电话号码的联系人。没有电话号码的联系人不会显示在应用中。</string>
+    <string name="slider_style">滑块样式</string>
+    <string name="slider_style_summary">只有在屏幕锁定时才能使用滑块。</string>
     <string name="answer_style">接听按钮样式</string>
     <string name="buttons">按钮样式</string>
     <string name="answer_slider">滑块样式</string>
+    <string name="answer_slider_classic">经典滑块</string>
     <string name="answer_slider_outline">带大纲的滑块</string>
     <string name="answer_slider_vertical">垂直滑块</string>
 
@@ -84,4 +90,8 @@
     <string name="keep_calls_in_popup">在通知中留下通话</string>
     <string name="on_contact_click">当您点击联系人时</string>
     <string name="on_recent_click">点击最近的通话记录</string>
+    <string name="add_pause">添加 2 秒暂停（，）</string>
+    <string name="missed">错过</string>
+    <string name="incoming">即将到来</string>
+    <string name="outgoing">外向</string>
 </resources>

@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Lisää odotus (;)</string>
+    <string name="rejected">Hylätty</string>
+    <string name="dialpad_buttons_color">Valintapaneelin painikkeiden väri</string>
     <string name="audio_route_earpiece_g">Laitteen kuuloke</string>
     <string name="open_speed_dial_manage">Avaa pikavalinnan hallinta?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Oikea valinta näyttää vain yhteystiedot, joihin on liitetty puhelinnumero. Yhteystiedot, joissa ei ole puhelinnumeroa, eivät näy sovelluksessa.</string>
+    <string name="slider_style">Liukusäätimen tyyli</string>
+    <string name="slider_style_summary">Liukusäädintä käytetään vain, kun näyttö on lukittu.</string>
     <string name="answer_style">Vastauspainikkeen tyyli</string>
     <string name="buttons">Painikkeet</string>
     <string name="answer_slider">Slider</string>
+    <string name="answer_slider_classic">Klassinen liukusäädin</string>
     <string name="answer_slider_outline">Liukusäädin ääriviivalla</string>
     <string name="answer_slider_vertical">Pystysuora liukusäädin</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">Jätä puhelut ilmoituksiin</string>
     <string name="on_contact_click">Kun napsautat yhteystietoa</string>
     <string name="on_recent_click">Kun napsautat viimeisintä puhelua</string>
+    <string name="add_pause">Lisää 2 sekunnin tauko (,)</string>
+    <string name="missed">Jäi väliin</string>
+    <string name="incoming">Saapuvat</string>
+    <string name="outgoing">Lähtevä</string>
 </resources>

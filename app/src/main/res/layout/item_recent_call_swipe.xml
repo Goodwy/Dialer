@@ -79,8 +79,11 @@
                 android:layout_marginTop="@dimen/medium_margin"
                 android:layout_marginStart="@dimen/medium_margin"
                 android:layout_marginEnd="@dimen/small_margin"
-                android:ellipsize="end"
-                android:maxLines="1"
+                android:ellipsize="marquee"
+                android:focusable="false"
+                android:marqueeRepeatLimit="3"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
                 android:textSize="@dimen/normal_text_size"
                 android:textDirection="firstStrongLtr"
                 android:textAlignment="viewStart"
@@ -88,6 +91,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/item_recents_date_time"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toTopOf="@+id/item_recents_type"
+                app:layout_constraintHorizontal_weight="2"
                 tools:text="John Doe"/>
 
             <ImageView
@@ -159,7 +163,7 @@
 
             <TextView
                 android:id="@+id/item_recents_date_time"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:alpha="0.6"
                 android:gravity="center|end"
@@ -167,9 +171,11 @@
                 android:layout_marginTop="@dimen/medium_margin"
                 android:layout_marginBottom="@dimen/medium_margin"
                 android:textSize="@dimen/smaller_text_size"
+                app:layout_constraintStart_toEndOf="@+id/item_recents_name"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/item_recents_info"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintHorizontal_weight="1"
                 tools:text="31.12"/>
 
             <ImageView

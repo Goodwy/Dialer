@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Engadir espera (;)</string>
+    <string name="rejected">Rexeitado</string>
+    <string name="dialpad_buttons_color">Cor dos botóns do teclado numérico</string>
     <string name="audio_route_earpiece_g">Auricular do dispositivo</string>
     <string name="open_speed_dial_manage">Queres abrir a xestión de marcación rápida?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">O marcador dereito só mostra os contactos que teñen un número de teléfono asociado a eles. Os contactos sen número de teléfono non se amosan na aplicación.</string>
+    <string name="slider_style">Estilo do control deslizante</string>
+    <string name="slider_style_summary">O control deslizante só se usa cando a pantalla está bloqueada.</string>
     <string name="answer_style">Estilo do botón de resposta</string>
     <string name="buttons">Botóns</string>
     <string name="answer_slider">Control deslizante</string>
+    <string name="answer_slider_classic">Control deslizante clásico</string>
     <string name="answer_slider_outline">Control deslizante de esquema</string>
     <string name="answer_slider_vertical">Deslizador vertical</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">Deixa as chamadas nas notificacións</string>
     <string name="on_contact_click">Ao facer clic nun contacto</string>
     <string name="on_recent_click">Ao facer clic nunha chamada recente</string>
+    <string name="add_pause">Engadir unha pausa de 2 segundos (,)</string>
+    <string name="missed">Perdido</string>
+    <string name="incoming">Entrante</string>
+    <string name="outgoing">Saínte</string>
 </resources>

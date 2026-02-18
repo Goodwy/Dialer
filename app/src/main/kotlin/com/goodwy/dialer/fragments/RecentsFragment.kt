@@ -2,19 +2,24 @@ package com.goodwy.dialer.fragments
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Rect
 import android.provider.CallLog.Calls
 import android.util.AttributeSet
 import android.view.View
+import androidx.core.graphics.ColorUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.goodwy.commons.dialogs.CallConfirmationDialog
 import com.goodwy.commons.extensions.baseConfig
 import com.goodwy.commons.extensions.beGone
 import com.goodwy.commons.extensions.beGoneIf
 import com.goodwy.commons.extensions.beVisible
+import com.goodwy.commons.extensions.getContrastColor
 import com.goodwy.commons.extensions.getMyContactsCursor
 import com.goodwy.commons.extensions.getProperBackgroundColor
+import com.goodwy.commons.extensions.getProperPrimaryColor
+import com.goodwy.commons.extensions.getProperTextColor
 import com.goodwy.commons.extensions.getSurfaceColor
 import com.goodwy.commons.extensions.hasPermission
 import com.goodwy.commons.extensions.hideKeyboard
@@ -22,9 +27,11 @@ import com.goodwy.commons.extensions.isDynamicTheme
 import com.goodwy.commons.extensions.isSystemInDarkMode
 import com.goodwy.commons.extensions.launchActivityIntent
 import com.goodwy.commons.extensions.launchCallIntent
+import com.goodwy.commons.extensions.normalizeString
 import com.goodwy.commons.extensions.underlineText
 import com.goodwy.commons.helpers.CONTACT_ID
 import com.goodwy.commons.helpers.ContactsHelper
+import com.goodwy.commons.helpers.FontHelper
 import com.goodwy.commons.helpers.IS_PRIVATE
 import com.goodwy.commons.helpers.MyContactsContentProvider
 import com.goodwy.commons.helpers.PERMISSION_READ_CALL_LOG
@@ -48,6 +55,8 @@ import com.goodwy.dialer.extensions.startAddContactIntent
 import com.goodwy.dialer.extensions.startContactDetailsIntent
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL_LIST
+import com.goodwy.dialer.helpers.DialpadT9
+import com.goodwy.dialer.helpers.LANGUAGE_SYSTEM
 import com.goodwy.dialer.helpers.RECENT_CALL_CACHE_SIZE
 import com.goodwy.dialer.helpers.RecentsHelper
 import com.goodwy.dialer.helpers.SWIPE_ACTION_CALL
@@ -56,7 +65,9 @@ import com.goodwy.dialer.helpers.SWIPE_ACTION_OPEN
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import com.goodwy.dialer.models.CallLogItem
 import com.goodwy.dialer.models.RecentCall
+import com.google.android.material.button.MaterialButton
 import com.google.gson.Gson
+import java.util.Locale
 
 class RecentsFragment(
     context: Context, attributeSet: AttributeSet,
@@ -79,6 +90,7 @@ class RecentsFragment(
         val useSurfaceColor = context.isDynamicTheme() && !context.isSystemInDarkMode()
         val backgroundColor = if (useSurfaceColor) context.getSurfaceColor() else context.getProperBackgroundColor()
         binding.recentsFragment.setBackgroundColor(backgroundColor)
+        binding.recentsFiltersHolder.setBackgroundColor(backgroundColor)
 
         val placeholderResId = if (context.hasPermission(PERMISSION_READ_CALL_LOG)) {
             R.string.no_previous_calls
@@ -93,6 +105,119 @@ class RecentsFragment(
                 requestCallLogPermission()
             }
         }
+
+        updateFilterButton()
+        binding.recentsFilters.apply {
+            val typeface = FontHelper.getTypeface(context)
+
+            allCalls.setTypeface(typeface)
+            allCalls.setOnClickListener {
+                if (context.config.filterRecentCalls != 0) {
+                    context.config.filterRecentCalls = 0
+                    updateItems()
+                    updateFilterButton()
+                }
+            }
+
+            missedCalls.setTypeface(typeface)
+            missedCalls.setOnClickListener {
+                if (context.config.filterRecentCalls != Calls.MISSED_TYPE) {
+                    context.config.filterRecentCalls = Calls.MISSED_TYPE
+                    updateItems()
+                    updateFilterButton()
+                }
+            }
+
+            incomingCalls.setTypeface(typeface)
+            incomingCalls.setOnClickListener {
+                if (context.config.filterRecentCalls != Calls.INCOMING_TYPE) {
+                    context.config.filterRecentCalls = Calls.INCOMING_TYPE
+                    updateItems()
+                    updateFilterButton()
+                }
+            }
+
+            outgoingCalls.setTypeface(typeface)
+            outgoingCalls.setOnClickListener {
+                if (context.config.filterRecentCalls != Calls.OUTGOING_TYPE) {
+                    context.config.filterRecentCalls = Calls.OUTGOING_TYPE
+                    updateItems()
+                    updateFilterButton()
+                }
+            }
+
+            rejectedCalls.setTypeface(typeface)
+            rejectedCalls.setOnClickListener {
+                if (context.config.filterRecentCalls != Calls.REJECTED_TYPE) {
+                    context.config.filterRecentCalls = Calls.REJECTED_TYPE
+                    updateItems()
+                    updateFilterButton()
+                }
+            }
+        }
+    }
+
+    private fun updateFilterButton() {
+        binding.recentsFilters.apply {
+            when (context.config.filterRecentCalls) {
+                Calls.MISSED_TYPE -> {
+                    allCalls.setFilterDisableColor()
+                    missedCalls.setFilterEnableColor()
+                    incomingCalls.setFilterDisableColor()
+                    outgoingCalls.setFilterDisableColor()
+                    rejectedCalls.setFilterDisableColor()
+                }
+
+                Calls.INCOMING_TYPE -> {
+                    allCalls.setFilterDisableColor()
+                    missedCalls.setFilterDisableColor()
+                    incomingCalls.setFilterEnableColor()
+                    outgoingCalls.setFilterDisableColor()
+                    rejectedCalls.setFilterDisableColor()
+                }
+
+                Calls.OUTGOING_TYPE -> {
+                    allCalls.setFilterDisableColor()
+                    missedCalls.setFilterDisableColor()
+                    incomingCalls.setFilterDisableColor()
+                    outgoingCalls.setFilterEnableColor()
+                    rejectedCalls.setFilterDisableColor()
+                }
+
+                Calls.REJECTED_TYPE -> {
+                    allCalls.setFilterDisableColor()
+                    missedCalls.setFilterDisableColor()
+                    incomingCalls.setFilterDisableColor()
+                    outgoingCalls.setFilterDisableColor()
+                    rejectedCalls.setFilterEnableColor()
+                }
+
+                else -> {
+                    allCalls.setFilterEnableColor()
+                    missedCalls.setFilterDisableColor()
+                    incomingCalls.setFilterDisableColor()
+                    outgoingCalls.setFilterDisableColor()
+                    rejectedCalls.setFilterDisableColor()
+                }
+            }
+        }
+    }
+
+    private fun MaterialButton.setFilterEnableColor() {
+        val primaryColor = context.getProperPrimaryColor()
+
+        setBackgroundColor(primaryColor)
+        setTextColor(primaryColor.getContrastColor())
+        strokeColor = ColorStateList.valueOf(Color.TRANSPARENT)
+    }
+
+    private fun MaterialButton.setFilterDisableColor() {
+        val textColor = context.getProperTextColor()
+        val colorWithAlpha = ColorUtils.setAlphaComponent(textColor, 102) //40%
+
+        setBackgroundColor(Color.TRANSPARENT)
+        setTextColor(textColor)
+        strokeColor = ColorStateList.valueOf(colorWithAlpha)
     }
 
     override fun setupColors(textColor: Int, primaryColor: Int, accentColor: Int) {
@@ -156,6 +281,11 @@ class RecentsFragment(
         updateSearchResult()
     }
 
+    fun updateItems() {
+        if (searchQuery != null) updateSearchResult()
+        else recentsAdapter?.updateItems(allRecentCalls)
+    }
+
     @Suppress("UNCHECKED_CAST")
     private fun updateSearchResult() {
         ensureBackgroundThread {
@@ -168,6 +298,48 @@ class RecentsFragment(
                         it.nickname.contains(fixedText, true) ||
                         it.company.contains(fixedText, true) ||
                         it.jobPosition.contains(fixedText, true)
+                }
+                .sortedWith(
+                    compareByDescending<RecentCall> { it.dayCode }
+                        .thenByDescending { it.name.startsWith(fixedText, true) }
+                        .thenByDescending { it.startTS }
+                )
+
+            prepareCallLog(recentCalls) {
+                activity?.runOnUiThread {
+                    showOrHidePlaceholder(recentCalls.isEmpty())
+                    recentsAdapter?.updateItems(it, fixedText)
+                }
+            }
+        }
+    }
+
+    private fun updateSearchDialpadResult() {
+        ensureBackgroundThread {
+            val fixedText = searchQuery!!.trim().replace("\\s+".toRegex(), " ")
+            val recentCalls = allRecentCalls
+                .filterIsInstance<RecentCall>()
+                .filter { recentCall ->
+                    val langPref = context.config.dialpadSecondaryLanguage ?: ""
+                    val langLocale = Locale.getDefault().language
+                    val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
+                    val lang = if (isAutoLang) langLocale else langPref
+
+                    val convertedName = DialpadT9.convertLettersToNumbers(
+                        recentCall.name.normalizeString().uppercase(), lang)
+                    val convertedNameWithoutSpaces = convertedName.filterNot { it.isWhitespace() }
+                    val convertedNickname = DialpadT9.convertLettersToNumbers(
+                        recentCall.nickname.normalizeString().uppercase(), lang)
+                    val convertedCompany = DialpadT9.convertLettersToNumbers(
+                        recentCall.company.normalizeString().uppercase(), lang)
+                    val convertedJobPosition = DialpadT9.convertLettersToNumbers(
+                        recentCall.jobPosition.normalizeString().uppercase(), lang)
+
+                    recentCall.doesContainPhoneNumber(fixedText)
+                        || (convertedName.contains(fixedText, true))
+                        || (convertedNameWithoutSpaces.contains(fixedText, true))
+                        || (convertedNickname.contains(fixedText, true))
+                        || (convertedCompany.contains(fixedText, true))
                 }
                 .sortedWith(
                     compareByDescending<RecentCall> { it.dayCode }

@@ -35,6 +35,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Додај чекање (;)</string>
+    <string name="rejected">Одбијено</string>
+    <string name="dialpad_buttons_color">Боја дугмади нумеричке тастатуре</string>
     <string name="audio_route_earpiece_g">Слушалица уређаја</string>
     <string name="open_speed_dial_manage">Отворити управљање брзим бирањем?</string>
 
@@ -55,9 +58,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Десни бирач приказује само контакте са којима је придружен телефонски број. Контакти без телефонског броја се не приказују у апликацији.</string>
+    <string name="slider_style">Стил клизача</string>
+    <string name="slider_style_summary">Клизач се користи само када је екран закључан.</string>
     <string name="answer_style">Стил дугмета за одговор</string>
     <string name="buttons">Дугмад</string>
     <string name="answer_slider">Клизач</string>
+    <string name="answer_slider_classic">Класични клизач</string>
     <string name="answer_slider_outline">Оквирни клизач</string>
     <string name="answer_slider_vertical">Вертикални клизач</string>
     <string name="show_recent_calls">Прикажи и претражи скорашње позиве</string>
@@ -87,4 +93,8 @@
     <string name="keep_calls_in_popup">Оставите позиве у обавештењима</string>
     <string name="on_contact_click">Када кликнете на контакт</string>
     <string name="on_recent_click">Када кликнете на недавни позив</string>
+    <string name="add_pause">Додај паузу од 2 секунде (,)</string>
+    <string name="missed">Пропуштено</string>
+    <string name="incoming">Долазни</string>
+    <string name="outgoing">Одлазни</string>
 </resources>

@@ -1,29 +1,29 @@
 [versions]
 #jetbrains
-geocoderVersion = "3.18"
-kotlin = "2.2.21"
-kotlinxSerializationJson = "1.9.0"
+geocoderVersion = "3.23"
+kotlin = "2.3.10"
+kotlinxSerializationJson = "1.10.0"
 #KSP
-ksp = "2.2.10-2.0.2"
+ksp = "2.3.5"
 #Detekt
 detekt = "1.23.8"
-detektCompose = "0.4.27"
+detektCompose = "0.4.28"
 #Eventbus
 eventbus = "3.3.1"
 #Gradle
-gradlePlugins-agp = "8.11.1"
+gradlePlugins-agp = "9.0.0"
 #Other
 indicatorFastScroll = "fe6ddbc316"
 autofitTextView = "0.2.1"
-libphonenumberVersion = "9.0.18"
+libphonenumberVersion = "9.0.23"
 #Goodwy
-right-commons = "395c45c606"
+right-commons = "924ca53025"
 badger = "1.1.22"
-androidx-lifecycle = "2.8.7"
+androidx-lifecycle = "2.10.0"
 behavioRule = "1.0.1"
 rxAnimation = "2.1.1"
 rxJava3 = "3.1.5"
-room = "2.8.2"
+room = "2.8.4"
 swipeToActionLayout = "0f7632fc36"
 #build
 app-build-compileSDKVersion = "36"
@@ -65,7 +65,6 @@ lifecycle = [
 ]
 [plugins]
 android = { id = "com.android.application", version.ref = "gradlePlugins-agp" }
-kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }

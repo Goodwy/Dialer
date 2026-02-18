@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">הוסף המתנה (;)</string>
+    <string name="rejected">נִדחֶה</string>
+    <string name="dialpad_buttons_color">צבע לחצני לוח החיוג</string>
     <string name="audio_route_earpiece_g">האפרכסת של המכשיר</string>
     <string name="open_speed_dial_manage">לפתוח את החיוג המהיר לנהל?</string>
 
@@ -45,9 +48,12 @@
 
     <!-- סגנון תשובה -->
     <string name="faq_3_text_g">חייגן ימני מציג רק אנשי קשר שיש להם מספר טלפון המשויך אליהם. אנשי קשר ללא מספר טלפון אינם מוצגים באפליקציה.</string>
+    <string name="slider_style">סגנון מחוון</string>
+    <string name="slider_style_summary">המחוון משמש רק כאשר המסך נעול.</string>
     <string name="answer_style">סגנון כפתור תשובה</string>
     <string name="buttons">כפתורים</string>
     <string name="answer_slider">מחוון</string>
+    <string name="answer_slider_classic">סליידר קלאסי</string>
     <string name="answer_slider_outline">מחוון מתאר</string>
     <string name="answer_slider_vertical">מחוון אנכי</string>
 
@@ -88,4 +94,8 @@
     <string name="keep_calls_in_popup">השאר שיחות בהתראות</string>
     <string name="on_contact_click">כשאתה לוחץ על איש קשר</string>
     <string name="on_recent_click">כשאתה לוחץ על שיחה אחרונה</string>
+    <string name="add_pause">הוסף הפסקה של 2 שניות (,)</string>
+    <string name="missed">החמצה</string>
+    <string name="incoming">נִכנָס</string>
+    <string name="outgoing">יוֹצֵא</string>
 </resources>

@@ -26,6 +26,9 @@
     </string>
 
     .
+    <string name="add_wait">Adăugați așteptare (;)</string>
+    <string name="rejected">Respins</string>
+    <string name="dialpad_buttons_color">Culoarea butoanelor tastaturii numerice</string>
     <string name="audio_route_earpiece_g">Auricularul dispozitivului</string>
     <string name="open_speed_dial_manage">Deschideți gestionarea apelării rapide?</string>
 
@@ -46,9 +49,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Right Dialer afișează numai contactele care au asociat un număr de telefon. Contactele fără număr de telefon nu sunt afișate în aplicație.</string>
+    <string name="slider_style">Stilul cursorului</string>
+    <string name="slider_style_summary">Cursorul este utilizat doar când ecranul este blocat.</string>
     <string name="answer_style">Stilul butonului de răspuns</string>.
     <string name="buttons">Butoni</string>.
     <string name="answer_slider">Slider</string>.
+    <string name="answer_slider_classic">Cursor clasic</string>
     <string name="answer_slider_outline">Slider cu contur</string>
     <string name="answer_slider_vertical">Slider vertical</string>
 
@@ -89,4 +95,8 @@
     <string name="keep_calls_in_popup">Lăsați apelurile în notificări</string>
     <string name="on_contact_click">Când faceți clic pe un contact</string>
     <string name="on_recent_click">Când dai clic pe un apel recent</string>
+    <string name="add_pause">Adăugați o pauză de 2 secunde (,)</string>
+    <string name="missed">Ratat</string>
+    <string name="incoming">Solicitare</string>
+    <string name="outgoing">Ieșire</string>
 </resources>

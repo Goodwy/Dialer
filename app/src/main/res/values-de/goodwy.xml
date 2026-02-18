@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Füge wait (;) hinzu.</string>
+    <string name="rejected">Abgelehnt</string>
+    <string name="dialpad_buttons_color">Farbe der Wähltasten</string>
     <string name="audio_route_earpiece_g">Kopfhörer des Geräts</string>
     <string name="open_speed_dial_manage">Öffnen Sie die Kurzwahlverwaltung?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Right Dialer zeigt nur Kontakte an, denen eine Telefonnummer zugeordnet ist. Kontakte ohne Telefonnummer werden in der App nicht angezeigt.</string>
+    <string name="slider_style">Schieberegler-Stil</string>
+    <string name="slider_style_summary">Der Schieberegler wird nur verwendet, wenn der Bildschirm gesperrt ist.</string>
     <string name="answer_style">Antworttaste Stil</string>
     <string name="buttons">Buttons</string>
     <string name="answer_slider">Schieberegler</string>
+    <string name="answer_slider_classic">Klassischer Schieberegler</string>
     <string name="answer_slider_outline">Schieberegler mit Umrandung</string>
     <string name="answer_slider_vertical">Vertikaler Schieberegler</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">Anrufe in Benachrichtigungen hinterlassen</string>
     <string name="on_contact_click">Wenn Sie auf einen Kontakt klicken</string>
     <string name="on_recent_click">Wenn Sie auf einen kürzlich geführten Anruf klicken</string>
+    <string name="add_pause">Füge eine 2-Sekunden-Pause hinzu (,)</string>
+    <string name="missed">Verpasst</string>
+    <string name="incoming">Eingehend</string>
+    <string name="outgoing">Ausgehend</string>
 </resources>

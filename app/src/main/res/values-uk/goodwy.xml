@@ -51,6 +51,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Додати очікування (;)</string>
+    <string name="rejected">Відхилені</string>
+    <string name="dialpad_buttons_color">Колір кнопок цифрової панелі</string>
     <string name="audio_route_earpiece_g">Телефон</string>
     <string name="open_speed_dial_manage">Відкрити управління швидким викликом?</string>
 
@@ -71,9 +74,12 @@
     <string name="faq_3_text_g">Right Dialer показує лише контакти, до яких прив\'язаний телефонний номер. Контакти без телефонного номера не відображаються у програмі.</string>
 
     <!-- Answer style -->
+    <string name="slider_style">Стиль слайдера</string>
+    <string name="slider_style_summary">Слайдер використовується лише при заблокованому екрані</string>
     <string name="answer_style">Стиль кнопок відповіді</string>
     <string name="buttons">Кнопки</string>
     <string name="answer_slider">Слайдер</string>
+    <string name="answer_slider_classic">Класичний слайдер</string>
     <string name="answer_slider_outline">Слайдер з контуром</string>
     <string name="answer_slider_vertical">Вертикальний слайдер</string>
 
@@ -87,4 +93,8 @@
     <string name="keep_calls_in_popup">Залишати дзвінки в повідомленнях</string>
     <string name="on_contact_click">При натисканні на контакт</string>
     <string name="on_recent_click">При натисканні на недавній дзвінок</string>
+    <string name="add_pause">Додати 2-секундну паузу (,)</string>
+    <string name="missed">Пропущені</string>
+    <string name="incoming">Вхідні</string>
+    <string name="outgoing">Вихідні</string>
 </resources>

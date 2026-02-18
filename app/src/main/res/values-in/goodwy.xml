@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Tambahkan tunggu (;)</string>
+    <string name="rejected">Ditolak</string>
+    <string name="dialpad_buttons_color">warna tombol dialpad</string>
     <string name="audio_route_earpiece_g">Lubang suara perangkat</string>
     <string name="open_speed_dial_manage">Buka pengaturan panggilan cepat?</string>
 
@@ -43,9 +46,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Right Dialer hanya menampilkan kontak yang memiliki nomor telepon terkait. Kontak tanpa nomor telepon tidak akan ditampilkan di aplikasi.</string>
+    <string name="slider_style">Gaya geser</string>
+    <string name="slider_style_summary">Penggeser hanya digunakan saat layar terkunci.</string>
     <string name="answer_style">Gaya Tombol Jawab</string>
     <string name="buttons">Tombol</string>
     <string name="answer_slider">Penggeser</string>
+    <string name="answer_slider_classic">Slider klasik</string>
     <string name="answer_slider_outline">Penggeser garis luar</string>
     <string name="answer_slider_vertical">Penggeser Vertikal</string>
 
@@ -84,4 +90,8 @@
     <string name="keep_calls_in_popup">Biarkan panggilan di notifikasi</string>
     <string name="on_contact_click">Saat Anda mengklik kontak</string>
     <string name="on_recent_click">Saat Anda mengklik panggilan terbaru</string>
+    <string name="add_pause">Tambahkan jeda 2 detik (,)</string>
+    <string name="missed">Dirindukan</string>
+    <string name="incoming">Masuk</string>
+    <string name="outgoing">Ramah</string>
 </resources>

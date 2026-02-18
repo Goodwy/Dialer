@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Gözləmə əlavə edin (;)</string>
+    <string name="rejected">Rədd edildi</string>
+    <string name="dialpad_buttons_color">Yığım paneli düymələrinin rəngi</string>
     <string name="audio_route_earpiece_g">Cihazın qulaqcığı</string>
     <string name="open_speed_dial_manage">Sürətli yığım idarəsi açılsın?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Right Dialer yalnız onlarla əlaqəli telefon nömrəsi olan kontaktları göstərir. Telefon nömrəsi olmayan kontaktlar proqramda göstərilmir.</string>
+    <string name="slider_style">Slayder stili</string>
+    <string name="slider_style_summary">Sürgü yalnız ekran kilidləndikdə istifadə olunur.</string>
     <string name="answer_style">Cavab Düyməsi Üslubu</string>
     <string name="buttons">Düymələr</string>
     <string name="answer_slider">Slayder</string>
+    <string name="answer_slider_classic">Klassik sürgü</string>
     <string name="answer_slider_outline">Kontur kaydırıcısı</string>
     <string name="answer_slider_vertical">Şaquli Sürgü</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">Zəngləri bildirişlərdə buraxın</string>
     <string name="on_contact_click">Kontaktı kliklədiyiniz zaman</string>
     <string name="on_recent_click">Son zəngə kliklədiyiniz zaman</string>
+    <string name="add_pause">2 saniyəlik fasilə əlavə edin (,)</string>
+    <string name="missed">Buraxıldı</string>
+    <string name="incoming">Daxil olanlar</string>
+    <string name="outgoing">Gedən</string>
 </resources>

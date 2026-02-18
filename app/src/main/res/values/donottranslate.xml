@@ -1,10 +1,14 @@
 <resources>
     <string name="package_name">com.goodwy.dialer</string>
-    <string name="app_name_g">Right Dialer</string>
+    <string name="app_name">Right Dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
-    <string name="release_811">
+    <string name="release_820">
         Call filtering added\n
+        Added ‘App font’ option\n
+        Fixed bugs, improved stability
+    </string>
+    <string name="release_811">
         Added ‘Swipe width’ option\n
         Added ‘Show search bar’ option\n
         Changed swipe behavior, removed inertia\n

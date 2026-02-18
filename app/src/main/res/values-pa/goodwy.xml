@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">ਉਡੀਕ (;) ਸ਼ਾਮਲ ਕਰੋ</string>
+    <string name="rejected">ਅਸਵੀਕਾਰ ਕੀਤਾ ਗਿਆ</string>
+    <string name="dialpad_buttons_color">ਡਾਇਲਪੈਡ ਬਟਨਾਂ ਦਾ ਰੰਗ</string>
     <string name="audio_route_earpiece_g">ਡਿਵਾਈਸ ਦਾ ਈਅਰਪੀਸ</string>
     <string name="open_speed_dial_manage">ਸਪੀਡ ਡਾਇਲ ਪ੍ਰਬੰਧਨ ਨੂੰ ਖੋਲ੍ਹਣਾ ਹੈ?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">ਸੱਜਾ ਡਾਇਲਰ ਸਿਰਫ਼ ਉਹਨਾਂ ਸੰਪਰਕਾਂ ਨੂੰ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਦਾ ਹੈ ਜਿਹਨਾਂ ਨਾਲ ਉਹਨਾਂ ਦਾ ਫ਼ੋਨ ਨੰਬਰ ਜੁੜਿਆ ਹੁੰਦਾ ਹੈ। ਬਿਨਾਂ ਫ਼ੋਨ ਨੰਬਰ ਦੇ ਸੰਪਰਕ ਐਪ ਵਿੱਚ ਪ੍ਰਦਰਸ਼ਿਤ ਨਹੀਂ ਹੁੰਦੇ ਹਨ।</string>
+    <string name="slider_style">ਸਲਾਈਡਰ ਸ਼ੈਲੀ</string>
+    <string name="slider_style_summary">ਸਲਾਈਡਰ ਸਿਰਫ਼ ਉਦੋਂ ਹੀ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ ਜਦੋਂ ਸਕ੍ਰੀਨ ਲਾਕ ਹੁੰਦੀ ਹੈ।</string>
     <string name="answer_style">ਜਵਾਬ ਸ਼ੈਲੀ</string>
     <string name="buttons">ਬਟਨ</string>
     <string name="answer_slider">ਸਲਾਈਡਰ</string>
+    <string name="answer_slider_classic">ਕਲਾਸਿਕ ਸਲਾਈਡਰ</string>
     <string name="answer_slider_outline">ਆਊਟਲਾਈਨ ਸਲਾਈਡਰ</string>
     <string name="answer_slider_vertical">ਵਰਟੀਕਲ ਸਲਾਈਡਰ</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">ਸੂਚਨਾਵਾਂ ਵਿੱਚ ਕਾਲਾਂ ਛੱਡੋ</string>
     <string name="on_contact_click">ਜਦੋਂ ਤੁਸੀਂ ਕਿਸੇ ਸੰਪਰਕ \'ਤੇ ਕਲਿੱਕ ਕਰਦੇ ਹੋ</string>
     <string name="on_recent_click">ਜਦੋਂ ਤੁਸੀਂ ਹਾਲੀਆ ਕਾਲ \'ਤੇ ਕਲਿੱਕ ਕਰਦੇ ਹੋ</string>
+    <string name="add_pause">2-ਸਕਿੰਟ ਦਾ ਵਿਰਾਮ (,) ਸ਼ਾਮਲ ਕਰੋ</string>
+    <string name="missed">ਖੁੰਝ ਗਿਆ</string>
+    <string name="incoming">ਆਉਣ ਵਾਲਾ</string>
+    <string name="outgoing">ਆਊਟਗੋਇੰਗ</string>
 </resources>

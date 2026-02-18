@@ -52,6 +52,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Cuir fanacht leis (;)</string>
+    <string name="rejected">Diúltaithe</string>
+    <string name="dialpad_buttons_color">Dath cnaipí an eochaircheap</string>
     <string name="audio_route_earpiece_g">Cluasán an ghléis</string>
     <string name="open_speed_dial_manage">An bainisteoir luasghéaraithe a oscailt?</string>
 
@@ -73,9 +76,12 @@
     <string name="faq_3_text_g">Ní thaispeánann Dialóir Ceart ach teagmhálaithe a bhfuil uimhir theileafóin bainteach leo. Ní thaispeántar teagmhálacha gan uimhir theileafóin san aip.</string>
 
     <!-- Answer style -->
+    <string name="slider_style">Stíl sleamhnáin</string>
+    <string name="slider_style_summary">Ní úsáidtear an sleamhnán ach amháin nuair a bhíonn an scáileán faoi ghlas.</string>
     <string name="answer_style">Stíl freagra</string>
     <string name="buttons">Cnaipí</string>
     <string name="answer_slider">Sleamhnán</string>
+    <string name="answer_slider_classic">Sleamhnán clasaiceach</string>
     <string name="answer_slider_outline">Sleamhnán imlíne</string>
     <string name="answer_slider_vertical">Sleamhnán ingearach</string>
 
@@ -89,4 +95,8 @@
     <string name="missed_call_from">Glao caillte ó %s</string>
     <string name="on_contact_click">Nuair a chliceálann tú ar theagmhálaí</string>
     <string name="on_recent_click">Nuair a chliceálann tú ar ghlao le déanaí</string>
+    <string name="add_pause">Cuir sos 2 soicind leis (,)</string>
+    <string name="missed">Caillte</string>
+    <string name="incoming">Ag teacht isteach</string>
+    <string name="outgoing">Ag imeacht</string>
 </resources>

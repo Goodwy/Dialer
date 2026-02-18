@@ -5,15 +5,10 @@ import java.io.FileInputStream
 
 plugins {
     alias(libs.plugins.android)
-    alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.detekt)
     base
-}
-
-base {
-    archivesName.set("dialer")
 }
 
 val keystorePropertiesFile: File = rootProject.file("keystore.properties")
@@ -32,6 +27,11 @@ fun hasSigningVars(): Boolean {
         && providers.environmentVariable("SIGNING_STORE_PASSWORD").orNull != null
 }
 
+base {
+    val versionCode = project.property("VERSION_CODE").toString().toInt()
+    archivesName = "dialer-$versionCode"
+}
+
 android {
     compileSdk = project.libs.versions.app.build.compileSDKVersion.get().toInt()
 
@@ -41,7 +41,6 @@ android {
         targetSdk = project.libs.versions.app.build.targetSDK.get().toInt()
         versionName = project.property("VERSION_NAME").toString()
         versionCode = project.property("VERSION_CODE").toString().toInt()
-        setProperty("archivesBaseName", "dialer-$versionCode")
         buildConfigField("String", "RIGHT_APP_KEY", "\"${properties["RIGHT_APP_KEY"]}\"")
         buildConfigField("String", "PRODUCT_ID_X1", "\"${properties["PRODUCT_ID_X1"]}\"")
         buildConfigField("String", "PRODUCT_ID_X2", "\"${properties["PRODUCT_ID_X2"]}\"")
@@ -108,7 +107,7 @@ android {
     }
 
     sourceSets {
-        getByName("main").java.srcDirs("src/main/kotlin")
+        getByName("main").java.directories.add("src/main/kotlin")
     }
 
     compileOptions {

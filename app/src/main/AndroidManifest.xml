@@ -45,6 +45,12 @@
         android:required="false" />
 
     <queries>
+        <package android:name="dev.goodwy.phone.debug" />
+        <package android:name="dev.goodwy.phone" />
+        <package android:name="dev.goodwy.messages.debug" />
+        <package android:name="dev.goodwy.messages" />
+        <package android:name="dev.goodwy.contacts.debug" />
+        <package android:name="dev.goodwy.contacts" />
         <package android:name="com.goodwy.dialer.debug" />
         <package android:name="com.goodwy.dialer" />
         <package android:name="com.goodwy.contacts.debug" />

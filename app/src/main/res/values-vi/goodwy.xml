@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Thêm chờ (;)</string>
+    <string name="rejected">Vật bị loại bỏ</string>
+    <string name="dialpad_buttons_color">Màu sắc các nút bàn phím</string>
     <string name="audio_route_earpiece_g">Tai nghe của thiết bị</string>
     <string name="open_speed_dial_manage">Mở quản lý quay số nhanh?</string>
 
@@ -43,9 +46,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Right Dialer chỉ hiển thị những liên hệ có số điện thoại được liên kết. Những liên hệ không có số điện thoại sẽ không được hiển thị trong ứng dụng.</string>
+    <string name="slider_style">Kiểu thanh trượt</string>
+    <string name="slider_style_summary">Thanh trượt chỉ được sử dụng khi màn hình bị khóa.</string>
     <string name="answer_style">Phong cách trả lời</string>
     <string name="buttons">Các nút</string>
     <string name="answer_slider">Thanh trượt</string>
+    <string name="answer_slider_classic">Thanh trượt cổ điển</string>
     <string name="answer_slider_outline">Thanh trượt phác thảo</string>
     <string name="answer_slider_vertical">Thanh trượt dọc</string>
 
@@ -84,4 +90,8 @@
     <string name="keep_calls_in_popup">Để lại cuộc gọi trong thông báo</string>
     <string name="on_contact_click">Khi bạn nhấp vào một liên hệ</string>
     <string name="on_recent_click">Khi bạn nhấp vào cuộc gọi gần đây</string>
+    <string name="add_pause">Thêm khoảng dừng 2 giây (,)</string>
+    <string name="missed">Bỏ lỡ</string>
+    <string name="incoming">Đang đến</string>
+    <string name="outgoing">Hướng ngoại</string>
 </resources>

@@ -27,6 +27,9 @@
     </string>
 
     .
+    <string name="add_wait">Legg til ventetid (;)</string>
+    <string name="rejected">Avvist</string>
+    <string name="dialpad_buttons_color">Farge på knappene på tastaturet</string>
     <string name="audio_route_earpiece_g">Enhetens øretelefon</string>
     <string name="open_speed_dial_manage">Åpne hurtigvalget?</string>
 
@@ -46,9 +49,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Høyre oppringer viser bare kontakter som har et telefonnummer knyttet til seg. Kontakter uten telefonnummer vises ikke i appen.</string>
+    <string name="slider_style">Glidebryterstil</string>
+    <string name="slider_style_summary">Glidebryteren brukes bare når skjermen er låst.</string>
     <string name="answer_style">Svarstil</string>
     <string name="buttons">Knapper</string>
     <string name="answer_slider">Glidebryter</string>
+    <string name="answer_slider_classic">Klassisk glidebryter</string>
     <string name="answer_slider_outline">Glidebryter for omriss</string>
     <string name="answer_slider_vertical">Vertikal glidebryter</string>
 
@@ -88,4 +94,8 @@
     <string name="keep_calls_in_popup">Legg igjen anrop i varsler</string>
     <string name="on_contact_click">Når du klikker på en kontakt</string>
     <string name="on_recent_click">Når du klikker på en nylig samtale</string>
+    <string name="add_pause">Legg til 2-sekunders pause (,)</string>
+    <string name="missed">Gå glipp av</string>
+    <string name="incoming">Innkommende</string>
+    <string name="outgoing">Utgående</string>
 </resources>

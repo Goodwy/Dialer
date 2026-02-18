@@ -1355,6 +1355,17 @@
                             android:text="@string/show_search_bar"
                             app:switchPadding="@dimen/bigger_margin" />
                     </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/settingsChangeColourTopBarHolder"
+                        style="@style/SettingsHolderSwitchStyle">
+
+                        <com.goodwy.commons.views.MyMaterialSwitch
+                            android:id="@+id/settingsChangeColourTopBar"
+                            style="@style/SettingsSwitchStyle"
+                            android:text="@string/change_top_bar_colour_when_scrolling"
+                            app:switchPadding="@dimen/bigger_margin" />
+                    </RelativeLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -1526,17 +1537,6 @@
                             style="@style/SettingsSwitchStyle"
                             android:text="@string/relative_date"
                             app:switchPadding="@dimen/bigger_margin"/>
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/settingsChangeColourTopBarHolder"
-                        style="@style/SettingsHolderSwitchStyle">
-
-                        <com.goodwy.commons.views.MyMaterialSwitch
-                            android:id="@+id/settingsChangeColourTopBar"
-                            style="@style/SettingsSwitchStyle"
-                            android:text="@string/change_top_bar_colour_when_scrolling"
-                            app:switchPadding="@dimen/bigger_margin" />
                     </RelativeLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

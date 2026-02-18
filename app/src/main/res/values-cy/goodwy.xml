@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Ychwanegu aros (;)</string>
+    <string name="rejected">Wedi\'i wrthod</string>
+    <string name="dialpad_buttons_color">Lliw botymau pad deialu</string>
     <string name="audio_route_earpiece_g">Device\'s earpiece</string>
     <string name="open_speed_dial_manage">Open the speed dial manage?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Dim ond cysylltiadau sydd â rhif ffôn sy\'n gysylltiedig â nhw y mae Right Dialer yn eu dangos. Nid yw cysylltiadau heb rif ffôn yn cael eu harddangos yn yr app.</string>
+    <string name="slider_style">Arddull llithrydd</string>
+    <string name="slider_style_summary">Dim ond pan fydd y sgrin wedi\'i chloi y defnyddir y llithrydd.</string>
     <string name="answer_style">Answer style</string>
     <string name="buttons">Buttons</string>
     <string name="answer_slider">Slider</string>
+    <string name="answer_slider_classic">Sleidydd clasurol</string>
     <string name="answer_slider_outline">Outline slider</string>
     <string name="answer_slider_vertical">Vertical slider</string>
 
@@ -89,4 +95,8 @@
     <string name="keep_calls_in_popup">Gadael galwadau mewn hysbysiadau</string>
     <string name="on_contact_click">Pan gliciwch ar gyswllt</string>
     <string name="on_recent_click">Pan gliciwch ar alwad ddiweddar</string>
+    <string name="add_pause">Ychwanegu saib 2 eiliad (,)</string>
+    <string name="missed">Collwyd</string>
+    <string name="incoming">Yn dod i mewn</string>
+    <string name="outgoing">Allanol</string>
 </resources>

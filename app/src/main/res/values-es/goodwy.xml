@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Añadir espera (;)</string>
+    <string name="rejected">Rechazado</string>
+    <string name="dialpad_buttons_color">Color de los botones del teclado de marcación</string>
     <string name="audio_route_earpiece_g">Auricular del dispositivo</string>
     <string name="open_speed_dial_manage">¿Abrir la administración de marcación rápida?</string>
 
@@ -45,9 +48,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Right Dialer solo muestra los contactos que tienen un número de teléfono asociado. Los contactos sin número de teléfono no se muestran en la aplicación.</string>
+    <string name="slider_style">Estilo deslizante</string>
+    <string name="slider_style_summary">El control deslizante solo se utiliza cuando la pantalla está bloqueada.</string>
     <string name="answer_style">Estilo del botón de respuesta</string>
     <string name="buttons">Botones</string>
     <string name="answer_slider">Deslizador</string>
+    <string name="answer_slider_classic">Control deslizante clásico</string>
     <string name="answer_slider_outline">Deslizador con contorno</string>
     <string name="answer_slider_vertical">Deslizador vertical</string>
 
@@ -88,4 +94,8 @@
     <string name="keep_calls_in_popup">Dejar llamadas en notificaciones</string>
     <string name="on_contact_click">Al hacer clic en un contacto</string>
     <string name="on_recent_click">Al hacer clic en una llamada reciente</string>
+    <string name="add_pause">Añadir pausa de 2 segundos (,)</string>
+    <string name="missed">Omitido</string>
+    <string name="incoming">Entrante</string>
+    <string name="outgoing">Extrovertido</string>
 </resources>

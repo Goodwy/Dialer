@@ -52,6 +52,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">অপেক্ষা করুন (;) যোগ করুন</string>
+    <string name="rejected">প্রত্যাখ্যাত</string>
+    <string name="dialpad_buttons_color">ডায়ালপ্যাড বোতামের রঙ</string>
     <string name="audio_route_earpiece_g">ফোন</string>
     <string name="open_speed_dial_manage">স্পিড ডায়াল ম্যানেজমেন্ট খুলবেন?</string>
 
@@ -72,9 +75,12 @@
     <string name="faq_3_text_g">ডান ডায়ালার শুধুমাত্র সেই পরিচিতিগুলি প্রদর্শন করে যেগুলির সাথে একটি ফোন নম্বর যুক্ত থাকে৷ ফোন নম্বর ছাড়া পরিচিতি অ্যাপটিতে প্রদর্শিত হয় না।</string>
 
     <!-- Answer style -->
+    <string name="slider_style">স্লাইডার স্টাইল</string>
+    <string name="slider_style_summary">স্লাইডারটি কেবল তখনই ব্যবহার করা হয় যখন স্ক্রিন লক থাকে।</string>
     <string name="answer_style">উত্তর বোতামের ধরণ</string>
     <string name="buttons">বোতাম</string>
     <string name="answer_slider">স্লাইডার</string>
+    <string name="answer_slider_classic">ক্লাসিক স্লাইডার</string>
     <string name="answer_slider_outline">আউটলাইন সহ স্লাইডার</string>
     <string name="answer_slider_vertical">উল্লম্ব স্লাইডার</string>
 
@@ -86,4 +92,8 @@
     <string name="missed_call_from">%s থেকে মিসড কল</string>
     <string name="on_contact_click">যখন আপনি কোনও পরিচিতিতে ক্লিক করেন</string>
     <string name="on_recent_click">যখন আপনি একটি সাম্প্রতিক কলে ক্লিক করেন</string>
+    <string name="add_pause">২-সেকেন্ডের বিরতি যোগ করুন (,)</string>
+    <string name="missed">মিস করা হয়েছে</string>
+    <string name="incoming">ইনকামিং</string>
+    <string name="outgoing">বহির্গামী</string>
 </resources>

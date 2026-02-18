@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Afegeix espera (;)</string>
+    <string name="rejected">Rebutjat</string>
+    <string name="dialpad_buttons_color">Color dels botons del teclat de marcatge</string>
     <string name="audio_route_earpiece_g">Auricular del dispositiu</string>
     <string name="open_speed_dial_manage">Obriu la gestió del marcatge ràpid?</string>
 
@@ -45,9 +48,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">El marcador dret només mostra els contactes que tenen un número de telèfon associat. Els contactes sense número de telèfon no es mostren a l\'aplicació.</string>
+    <string name="slider_style">Estil de control lliscant</string>
+    <string name="slider_style_summary">El control lliscant només s\'utilitza quan la pantalla està bloquejada.</string>
     <string name="answer_style">Estil del botó de resposta</string>
     <string name="buttons">Botons</string>
     <string name="answer_slider">Lliscant</string>
+    <string name="answer_slider_classic">Control lliscant clàssic</string>
     <string name="answer_slider_outline">Control lliscant d\'esquema</string>
     <string name="answer_slider_vertical">Lliscant vertical</string>
 
@@ -88,4 +94,8 @@
     <string name="keep_calls_in_popup">Deixa les trucades a les notificacions</string>
     <string name="on_contact_click">Quan feu clic en un contacte</string>
     <string name="on_recent_click">Quan feu clic en una trucada recent</string>
+    <string name="add_pause">Afegeix una pausa de 2 segons (,)</string>
+    <string name="missed">Perdut</string>
+    <string name="incoming">Entrant</string>
+    <string name="outgoing">Sortint</string>
 </resources>

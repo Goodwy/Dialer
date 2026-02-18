@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">대기 시간을 추가합니다(;)</string>
+    <string name="rejected">거절됨</string>
+    <string name="dialpad_buttons_color">다이얼패드 버튼 색상</string>
     <string name="audio_route_earpiece_g">장치의 이어피스</string>
     <string name="open_speed_dial_manage">단축 다이얼 관리를 열겠습니까? </string>
 
@@ -43,9 +46,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Right Dialer는 전화번호가 연결된 연락처만 표시합니다. 전화번호가 없는 연락처는 앱에 표시되지 않습니다.</string>
+    <string name="slider_style">슬라이더 스타일</string>
+    <string name="slider_style_summary">슬라이더는 화면이 잠겨 있을 때만 사용됩니다.</string>
     <string name="answer_style">답변 스타일</string>
     <string name="buttons">버튼</string>
     <string name="answer_slider">슬라이더</string>
+    <string name="answer_slider_classic">클래식 슬라이더</string>
     <string name="answer_slider_outline">아웃라인 슬라이더</string>
     <string name="answer_slider_vertical">수직 슬라이더</string>
 
@@ -83,4 +89,8 @@
     <string name="on_contact_click">연락처를 클릭하면</string>
     <string name="on_recent_click">최근 통화를 클릭하면</string>
     <string name="on_favorite_click">즐겨찾기를 클릭하면</string>
+    <string name="add_pause">2초 간격을 추가합니다(쉼표).</string>
+    <string name="missed">놓쳤어요</string>
+    <string name="incoming">들어오는</string>
+    <string name="outgoing">나가는</string>
 </resources>

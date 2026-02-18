@@ -35,6 +35,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Дадаць чаканне (;)</string>
+    <string name="rejected">Адхіленыя</string>
+    <string name="dialpad_buttons_color">Колер кнопак лічбавай панэлі</string>
     <string name="audio_route_earpiece_g">Тэлефон</string>
     <string name="open_speed_dial_manage">Адкрыць кіраванне хуткім наборам?</string>
 
@@ -56,9 +59,12 @@
     <string name="faq_3_text_g">Right Dialer паказвае толькі кантакты, да якіх прывязаны нумар тэлефона. Кантакты без тэлефоннага нумара не адлюстроўваюцца ў дадатку.</string>
 
     <!-- Answer style -->
+    <string name="slider_style">Стыль слайдара</string>
+    <string name="slider_style_summary">Слайдэр выкарыстоўваецца толькі пры заблакаваным экране</string>
     <string name="answer_style">Стыль кнопак адказу</string>
     <string name="buttons">Кнопкі</string>
     <string name="answer_slider">Слайдэр</string>
+    <string name="answer_slider_classic">Класічны слайдар</string>
     <string name="answer_slider_outline">Слайдэр з контурам</string>
     <string name="answer_slider_vertical">Вертыкальны слайдэр</string>
 
@@ -89,4 +95,8 @@
     <string name="keep_calls_in_popup">Пакідаць званкі ў апавяшчэннях</string>
     <string name="on_contact_click">Пры націску на кантакт</string>
     <string name="on_recent_click">Пры націску на нядаўні званок</string>
+    <string name="add_pause">Дадаць 2-секундную паўзу (,)</string>
+    <string name="missed">Прапушчаныя</string>
+    <string name="incoming">Уваходныя</string>
+    <string name="outgoing">Выходныя</string>
 </resources>

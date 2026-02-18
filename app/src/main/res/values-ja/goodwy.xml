@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">待機（;）を追加</string>
+    <string name="rejected">拒否されました</string>
+    <string name="dialpad_buttons_color">ダイヤルパッドボタンの色</string>
     <string name="audio_route_earpiece_g">デバイスのイヤーピース</string>
     <string name="open_speed_dial_manage">短縮ダイヤル管理を開きますか?</string>
 
@@ -43,9 +46,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Right Dialer は、電話番号が関連付けられている連絡先のみを表示します。電話番号が関連付けられていない連絡先はアプリに表示されません。</string>
+    <string name="slider_style">スライダースタイル</string>
+    <string name="slider_style_summary">スライダーは画面がロックされている場合にのみ使用されます。</string>
     <string name="answer_style">回答ボタンのスタイル</string>
     <string name="buttons">ボタン</string>
     <string name="answer_slider">スライダー</string>
+    <string name="answer_slider_classic">クラシックスライダー</string>
     <string name="answer_slider_outline">アウトライン スライダー</string>
     <string name="answer_slider_vertical">垂直スライダー</string>
 
@@ -84,4 +90,8 @@
     <string name="keep_calls_in_popup">通知に通話を残す</string>
     <string name="on_contact_click">連絡先をクリックすると</string>
     <string name="on_recent_click">最近の通話をクリックすると</string>
+    <string name="add_pause">2秒間の一時停止を追加（,）</string>
+    <string name="missed">逃した</string>
+    <string name="incoming">着信</string>
+    <string name="outgoing">発信</string>
 </resources>

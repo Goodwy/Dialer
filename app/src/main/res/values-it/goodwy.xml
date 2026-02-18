@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Aggiungi attesa (;)</string>
+    <string name="rejected">Respinto</string>
+    <string name="dialpad_buttons_color">Colore dei pulsanti del tastierino</string>
     <string name="audio_route_earpiece_g">Auricolare del dispositivo</string>
     <string name="open_speed_dial_manage">Aprire la composizione rapida gestire?</string>
 
@@ -45,9 +48,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Right Dialer mostra solo i contatti a cui è associato un numero di telefono. I contatti senza numero di telefono non vengono visualizzati nell\'app.</string>
+    <string name="slider_style">Stile cursore</string>
+    <string name="slider_style_summary">Il cursore viene utilizzato solo quando lo schermo è bloccato.</string>
     <string name="answer_style">Stile di risposta</string>
     <string name="buttons">Bottoni</string>
     <string name="answer_slider">Slider</string>
+    <string name="answer_slider_classic">Slider classico</string>
     <string name="answer_slider_outline">Slider contorno</string>
     <string name="answer_slider_vertical">Slider verticale</string>
 
@@ -88,4 +94,8 @@
     <string name="keep_calls_in_popup">Lascia le chiamate nelle notifiche</string>
     <string name="on_contact_click">Quando clicchi su un contatto</string>
     <string name="on_recent_click">Quando fai clic su una chiamata recente</string>
+    <string name="add_pause">Aggiungi una pausa di 2 secondi (,)</string>
+    <string name="missed">Mancato</string>
+    <string name="incoming">In arrivo</string>
+    <string name="outgoing">In uscita</string>
 </resources>

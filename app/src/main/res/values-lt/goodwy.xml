@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Pridėti laukimą (;)</string>
+    <string name="rejected">Atmesta</string>
+    <string name="dialpad_buttons_color">Rinkiklio mygtukų spalva</string>
     <string name="audio_route_earpiece_g">Įrenginio ausinės</string>
     <string name="open_speed_dial_manage">Atidaryti greitojo rinkimo valdymą?</string>
 
@@ -46,9 +49,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Dešinysis rinkiklis rodo tik tuos kontaktus, kurie turi susietą telefono numerį. Kontaktai be telefono numerio programoje nerodomi.</string>
+    <string name="slider_style">Slankiklio stilius</string>
+    <string name="slider_style_summary">Slankiklis naudojamas tik tada, kai ekranas užrakintas.</string>
     <string name="answer_style">Atsakymo mygtuko stilius</string>
     <string name="buttons">Mygtukai</string>
     <string name="answer_slider">Slankiklis</string>
+    <string name="answer_slider_classic">Klasikinis slankiklis</string>
     <string name="answer_slider_outline">Kontūro slankiklis</string>
     <string name="answer_slider_vertical">Vertikalus slankiklis</string>
 
@@ -90,4 +96,8 @@
     <string name="keep_calls_in_popup">Palikite skambučius pranešimuose</string>
     <string name="on_contact_click">Kai spustelėsite kontaktą</string>
     <string name="on_recent_click">Kai spustelėsite neseniai atliktą skambutį</string>
+    <string name="add_pause">Pridėti 2 sekundžių pauzę (,)</string>
+    <string name="missed">Praleista</string>
+    <string name="incoming">Įeinantis</string>
+    <string name="outgoing">Išeinantis</string>
 </resources>

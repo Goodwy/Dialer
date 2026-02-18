@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Bekleme ekle (;)</string>
+    <string name="rejected">Reddedilmiş</string>
+    <string name="dialpad_buttons_color">Tuş takımı düğmelerinin rengi</string>
     <string name="audio_route_earpiece_g">Cihazın kulaklığı</string>
     <string name="open_speed_dial_manage">Hızlı arama yönetimini mi açın?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Sağ Çevirici yalnızca telefon numarasıyla ilişkilendirilmiş kişileri görüntüler. Telefon numarası olmayan kişiler uygulamada görüntülenmez.</string>
+    <string name="slider_style">Kaydırıcı stili</string>
+    <string name="slider_style_summary">Kaydırıcı yalnızca ekran kilitliyken kullanılır.</string>
     <string name="answer_style">Cevap düğmesi stili</string>
     <string name="buttons">Düğmeler</string>
     <string name="answer_slider">Slider</string>
+    <string name="answer_slider_classic">Klasik kaydırıcı</string>
     <string name="answer_slider_outline">Anahatlı kaydırıcı</string>
     <string name="answer_slider_vertical">Dikey kaydırıcı</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">Çağrıları bildirimlerde bırakın</string>
     <string name="on_contact_click">Bir kişiye tıkladığınızda</string>
     <string name="on_recent_click">Son aramalardan birine tıkladığınızda</string>
+    <string name="add_pause">2 saniyelik duraklama ekle (,)</string>
+    <string name="missed">Kaçırıldı</string>
+    <string name="incoming">Gelen</string>
+    <string name="outgoing">Dışa dönük</string>
 </resources>

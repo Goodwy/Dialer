@@ -5,9 +5,9 @@ import android.telecom.CallScreeningService
 import com.goodwy.commons.extensions.baseConfig
 import com.goodwy.commons.extensions.getMyContactsCursor
 import com.goodwy.commons.extensions.isNumberBlocked
-import com.goodwy.commons.extensions.normalizePhoneNumber
 import com.goodwy.commons.helpers.BLOCKING_TYPE_REJECT
 import com.goodwy.commons.helpers.BLOCKING_TYPE_SILENCE
+import com.goodwy.commons.helpers.ContactLookupResult
 import com.goodwy.commons.helpers.SimpleContactsHelper
 import com.goodwy.commons.helpers.isQPlus
 import com.goodwy.dialer.extensions.config
@@ -24,13 +24,13 @@ class SimpleCallScreeningService : CallScreeningService() {
                 respondToCall(callDetails, isBlocked = false)
             }
 
-            number != null && isNumberBlocked(number.normalizePhoneNumber()) && baseConfig.blockingEnabled -> {
+            number != null && isNumberBlocked(number) && baseConfig.blockingEnabled -> {
                 if (baseConfig.doNotBlockContactsAndRecent) {
-                    val simpleContactsHelper = SimpleContactsHelper(this)
-                    val privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
-                    simpleContactsHelper.exists(number, privateCursor) { exists ->
-                        if (number in config.recentOutgoingNumbers) respondToCall(callDetails, isBlocked = false)
-                        else respondToCall(callDetails, isBlocked = !exists)
+                    if (number in config.recentOutgoingNumbers) respondToCall(callDetails, isBlocked = false)
+                    else {
+                        val privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
+                        val result = SimpleContactsHelper(this).existsSync(number, privateCursor)
+                        respondToCall(callDetails, isBlocked = result == ContactLookupResult.NotFound)
                     }
                 } else {
                     respondToCall(callDetails, isBlocked = true)
@@ -38,11 +38,11 @@ class SimpleCallScreeningService : CallScreeningService() {
             }
 
             number != null && baseConfig.blockUnknownNumbers && baseConfig.blockingEnabled -> {
-                val simpleContactsHelper = SimpleContactsHelper(this)
-                val privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
-                simpleContactsHelper.exists(number, privateCursor) { exists ->
-                    if (number in config.recentOutgoingNumbers) respondToCall(callDetails, isBlocked = false)
-                    else respondToCall(callDetails, isBlocked = !exists)
+                if (number in config.recentOutgoingNumbers) respondToCall(callDetails, isBlocked = false)
+                else {
+                    val privateCursor = getMyContactsCursor(favoritesOnly = false, withPhoneNumbersOnly = true)
+                    val result = SimpleContactsHelper(this).existsSync(number, privateCursor)
+                    respondToCall(callDetails, isBlocked = result == ContactLookupResult.NotFound)
                 }
             }
 

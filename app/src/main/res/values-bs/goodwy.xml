@@ -52,6 +52,9 @@ Vaš pružatelj usluga može naplatiti dodatnu naknadu za ovu uslugu.
         ]]>
     </string>
 
+    <string name="add_wait">Dodaj čekanje (;)</string>
+    <string name="rejected">Odbijeno</string>
+    <string name="dialpad_buttons_color">Boja dugmadi na numeričkoj tastaturi</string>
     <string name="audio_route_earpiece_g">Slušalica uređaja</string>
     <string name="open_speed_dial_manage">Otvoriti upravitelj brzog biranja?</string>
 
@@ -72,9 +75,12 @@ Vaš pružatelj usluga može naplatiti dodatnu naknadu za ovu uslugu.
     <string name="faq_3_text_g">Desni birač prikazuje samo kontakte koji imaju pridruženi telefonski broj. Kontakti bez telefonskog broja se ne prikazuju u aplikaciji.</string>
 
     <!-- Answer style -->
+    <string name="slider_style">Stil klizača</string>
+    <string name="slider_style_summary">Klizač se koristi samo kada je ekran zaključan.</string>
     <string name="answer_style">Stil odgovora</string>
     <string name="buttons">Dugmad</string>
     <string name="answer_slider">Klizač</string>
+    <string name="answer_slider_classic">Klasični klizač</string>
     <string name="answer_slider_outline">Klizač za obris</string>
     <string name="answer_slider_vertical">Vertikalni klizač</string>
 
@@ -87,4 +93,8 @@ Vaš pružatelj usluga može naplatiti dodatnu naknadu za ovu uslugu.
     <string name="missed_call_from">Propušteni poziv od %s</string>
     <string name="on_contact_click">Kada kliknete na kontakt</string>
     <string name="on_recent_click">Kada kliknete na nedavni poziv</string>
+    <string name="add_pause">Dodaj pauzu od 2 sekunde (,)</string>
+    <string name="missed">Propušteno</string>
+    <string name="incoming">Dolazni</string>
+    <string name="outgoing">Odlazni</string>
 </resources>

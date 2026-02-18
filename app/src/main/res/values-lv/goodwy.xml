@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Pievienot gaidīšanas režīmu (;)</string>
+    <string name="rejected">Noraidīts</string>
+    <string name="dialpad_buttons_color">Ciparnīcas pogu krāsa</string>
     <string name="audio_route_earpiece_g">Device\'s earpiece</string>
     <string name="open_speed_dial_manage">Open the speed dial manage?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Labais numura sastādītājs parāda tikai tās kontaktpersonas, kurām ir piesaistīts tālruņa numurs. Kontaktpersonas bez tālruņa numura lietotnē netiek rādītas.</string>
+    <string name="slider_style">Slīdņa stils</string>
+    <string name="slider_style_summary">Slīdnis tiek izmantots tikai tad, kad ekrāns ir bloķēts.</string>
     <string name="answer_style">Answer style</string>
     <string name="buttons">Buttons</string>
     <string name="answer_slider">Slider</string>
+    <string name="answer_slider_classic">Klasisks slīdnis</string>
     <string name="answer_slider_outline">Outline slider</string>
     <string name="answer_slider_vertical">Vertical slider</string>
 
@@ -87,4 +93,8 @@
     <string name="keep_calls_in_popup">Atstājiet zvanus paziņojumos</string>
     <string name="on_contact_click">Kad noklikšķināt uz kontakta</string>
     <string name="on_recent_click">Kad noklikšķināt uz nesen veiktā zvana</string>
+    <string name="add_pause">Pievienot 2 sekunžu pauzi (,)</string>
+    <string name="missed">Nepamanīts</string>
+    <string name="incoming">Ienākošie</string>
+    <string name="outgoing">Izejošais</string>
 </resources>

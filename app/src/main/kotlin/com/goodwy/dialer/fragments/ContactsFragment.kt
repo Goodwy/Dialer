@@ -7,7 +7,6 @@ import com.goodwy.commons.adapters.MyRecyclerViewAdapter
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.contacts.Contact
-import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.MainActivity
 import com.goodwy.dialer.activities.SimpleActivity
@@ -26,7 +25,6 @@ import com.goodwy.dialer.helpers.SWIPE_ACTION_EDIT
 import com.goodwy.dialer.helpers.SWIPE_ACTION_MESSAGE
 import com.goodwy.dialer.helpers.SWIPE_ACTION_OPEN
 import com.goodwy.dialer.interfaces.RefreshItemsListener
-import com.goodwy.dialer.models.RecentCall
 
 class ContactsFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment<MyViewPagerFragment.LettersInnerBinding>(context, attributeSet),
     RefreshItemsListener {

@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Dodaj čakanje (;)</string>
+    <string name="rejected">Zavrnjeno</string>
+    <string name="dialpad_buttons_color">Barva gumbov številčnice</string>
     <string name="audio_route_earpiece_g">Slušalka naprave</string>
     <string name="open_speed_dial_manage">Odprite upravljanje hitrega izbiranja?</string>
 
@@ -46,9 +49,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Desni klicalnik prikaže samo stike, ki imajo povezano telefonsko številko. Stiki brez telefonske številke niso prikazani v aplikaciji.</string>
+    <string name="slider_style">Slog drsnika</string>
+    <string name="slider_style_summary">Drsnik se uporablja samo, ko je zaslon zaklenjen.</string>
     <string name="answer_style">Slog gumba za odgovor</string>
     <string name="buttons">Gumbi</string>
     <string name="answer_slider">Drsnik</string>
+    <string name="answer_slider_classic">Klasični drsnik</string>
     <string name="answer_slider_outline">Orisni drsnik</string>
     <string name="answer_slider_vertical">Navpični drsnik</string>
 
@@ -89,4 +95,8 @@
     <string name="keep_calls_in_popup">Pustite klice v obvestilih</string>
     <string name="on_contact_click">Ko kliknete na stik</string>
     <string name="on_recent_click">Ko kliknete na nedavni klic</string>
+    <string name="add_pause">Dodaj 2-sekundni premor (,)</string>
+    <string name="missed">Zamujeno</string>
+    <string name="incoming">Dohodni</string>
+    <string name="outgoing">Odhodni</string>
 </resources>

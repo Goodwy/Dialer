@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">காத்திருப்பு நேரத்தைச் சேர் (;)</string>
+    <string name="rejected">நிராகரிக்கப்பட்டது</string>
+    <string name="dialpad_buttons_color">டயல்பேட் பொத்தான்களின் நிறம்</string>
     <string name="audio_route_earpiece_g">சாதனத்தின் இயர்பீஸ்</string>
     <string name="open_speed_dial_manage">வேக டயலை நிர்வகிப்பதைத் திறக்கவா?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">வலது டயலர் தொடர்புள்ள தொலைபேசி எண்ணைக் கொண்ட தொடர்புகளை மட்டுமே காண்பிக்கும். ஃபோன் எண் இல்லாத தொடர்புகள் பயன்பாட்டில் காட்டப்படாது.</string>
+    <string name="slider_style">ஸ்லைடர் ஸ்டைல்</string>
+    <string name="slider_style_summary">திரை பூட்டப்பட்டிருக்கும் போது மட்டுமே ஸ்லைடர் பயன்படுத்தப்படும்.</string>
     <string name="answer_style">பதில் நடை</string>
     <string name="buttons">பொத்தான்கள்</string>
     <string name="answer_slider">ஸ்லைடர்</string>
+    <string name="answer_slider_classic">கிளாசிக் ஸ்லைடர்</string>
     <string name="answer_slider_outline">அவுட்லைன் ஸ்லைடர்</string>
     <string name="answer_slider_vertical">செங்குத்து ஸ்லைடர்</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">அறிவிப்புகளில் அழைப்புகளை விடுங்கள்</string>
     <string name="on_contact_click">நீங்கள் ஒரு தொடர்பைக் கிளிக் செய்யும்போது</string>
     <string name="on_recent_click">நீங்கள் சமீபத்திய அழைப்பைக் கிளிக் செய்யும்போது</string>
+    <string name="add_pause">2-வினாடி இடைநிறுத்தத்தைச் சேர்க்கவும் (,)</string>
+    <string name="missed">தவறவிட்டது</string>
+    <string name="incoming">உள்வரும்</string>
+    <string name="outgoing">வெளிச்செல்லும்</string>
 </resources>

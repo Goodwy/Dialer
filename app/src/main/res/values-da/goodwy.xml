@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Tilføj ventetid (;)</string>
+    <string name="rejected">Afvist</string>
+    <string name="dialpad_buttons_color">Farve på knapperne på tastaturet</string>
     <string name="audio_route_earpiece_g">Enhedens ørestykke</string>
     <string name="open_speed_dial_manage">Åbn hurtigopkaldsstyringen?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Right Dialer viser kun kontakter, der har et telefonnummer tilknyttet dem. Kontakter uden telefonnummer vises ikke i appen.</string>
+    <string name="slider_style">Slider-stil</string>
+    <string name="slider_style_summary">Skyderen bruges kun, når skærmen er låst.</string>
     <string name="answer_style">Svarknapstil</string>
     <string name="buttons">Knapper</string>
     <string name="answer_slider">Slider</string>
+    <string name="answer_slider_classic">Klassisk slider</string>
     <string name="answer_slider_outline">Konturskyder</string>
     <string name="answer_slider_vertical">Lodret skyder</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">Efterlad opkald i notifikationer</string>
     <string name="on_contact_click">Når du klikker på en kontakt</string>
     <string name="on_recent_click">Når du klikker på et nyligt opkald</string>
+    <string name="add_pause">Tilføj 2 sekunders pause (,)</string>
+    <string name="missed">Misset</string>
+    <string name="incoming">Indgående</string>
+    <string name="outgoing">Udgående</string>
 </resources>

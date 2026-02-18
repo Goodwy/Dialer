@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">اضافه کردن صبر (;)</string>
+    <string name="rejected">رد شد</string>
+    <string name="dialpad_buttons_color">رنگ دکمه‌های صفحه شماره‌گیری</string>
     <string name="audio_route_earpiece_g">گوشی دستگاه</string>
     <string name="open_speed_dial_manage">مدیریت شماره گیری سریع را باز کنید؟</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">Right Dialer فقط مخاطبینی را نمایش می دهد که شماره تلفن مرتبط با آنها دارند. مخاطبین بدون شماره تلفن در برنامه نمایش داده نمی شوند.</string>
+    <string name="slider_style">سبک کشویی</string>
+    <string name="slider_style_summary">این اسلایدر فقط زمانی استفاده می‌شود که صفحه قفل باشد.</string>
     <string name="answer_style">سبک پاسخ</string>
     <string name="buttons">دکمه‌ها</string>
     <string name="answer_slider">لغزنده</string>
+    <string name="answer_slider_classic">اسلایدر کلاسیک</string>
     <string name="answer_slider_outline">لغزنده طرح کلی</string>
     <string name="answer_slider_vertical">لغزنده عمودی</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">تماس ها را در اعلان ها بگذارید</string>
     <string name="on_contact_click">وقتی روی یک مخاطب کلیک می‌کنید</string>
     <string name="on_recent_click">وقتی روی تماس اخیر کلیک می‌کنید</string>
+    <string name="add_pause">اضافه کردن مکث ۲ ثانیه‌ای (،)</string>
+    <string name="missed">از دست رفته</string>
+    <string name="incoming">ورودی</string>
+    <string name="outgoing">خروجی</string>
 </resources>

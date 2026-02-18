@@ -25,6 +25,9 @@
         ]]>
     </string>
 
+    <string name="add_wait">Várakozás hozzáadása (;)</string>
+    <string name="rejected">Elutasítva</string>
+    <string name="dialpad_buttons_color">Tárcsázógombok színe</string>
     <string name="audio_route_earpiece_g">Az eszköz fülhallgatója</string>
     <string name="open_speed_dial_manage">Nyissa meg a gyorstárcsázási kezelést?</string>
 
@@ -44,9 +47,12 @@
 
     <!-- Answer style -->
     <string name="faq_3_text_g">A Jobb oldali tárcsázó csak azokat a névjegyeket jeleníti meg, amelyekhez telefonszám van társítva. A telefonszám nélküli névjegyek nem jelennek meg az alkalmazásban.</string>
+    <string name="slider_style">Csúszka stílus</string>
+    <string name="slider_style_summary">A csúszka csak zárolt képernyő esetén használható.</string>
     <string name="answer_style">Válasz gombstílus</string>
     <string name="buttons">Gombok</string>
     <string name="answer_slider">Csúszka</string>
+    <string name="answer_slider_classic">Klasszikus csúszka</string>
     <string name="answer_slider_outline">Körvonal csúszka</string>
     <string name="answer_slider_vertical">Függőleges csúszka</string>
 
@@ -86,4 +92,8 @@
     <string name="keep_calls_in_popup">Hagyja a hívásokat az értesítésekben</string>
     <string name="on_contact_click">Amikor rákattint egy névjegyre</string>
     <string name="on_recent_click">Amikor rákattint egy legutóbbi hívásra</string>
+    <string name="add_pause">2 másodperces szünet hozzáadása (,)</string>
+    <string name="missed">Elmulasztott</string>
+    <string name="incoming">Bejövő</string>
+    <string name="outgoing">Kimenő</string>
 </resources>
