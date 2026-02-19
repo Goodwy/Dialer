@@ -10,3 +10,4 @@ keystore.jks
 keystore.properties
 fastlane/report.xml
 .kotlin/
+agconnect-services.json
