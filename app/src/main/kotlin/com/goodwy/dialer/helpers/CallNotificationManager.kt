@@ -46,8 +46,9 @@ class CallNotificationManager(private val context: Context) {
         try {
             if (isSPlus()) setupNotificationNew(lowPriority) else setupNotificationOld(lowPriority)
         } catch (e: Exception) {
+            cancelNotification()
+            context.baseConfig.lastError = "CallNotificationManager().setupNotification(): $e"
             setupNotificationForError(lowPriority)
-            context.baseConfig.lastError = "CallNotificationManager: $e"
         }
     }
 
@@ -366,7 +367,9 @@ class CallNotificationManager(private val context: Context) {
                     notificationManager.cancel(CALL_NOTIFICATION_ID)
                 }
             }
-        } catch (_: Exception) {
+        } catch (e: Exception) {
+            cancelNotification()
+            context.baseConfig.lastError = "CallNotificationManager().setupNotificationNew(): $e"
             setupNotificationOld(lowPriority)
         }
     }

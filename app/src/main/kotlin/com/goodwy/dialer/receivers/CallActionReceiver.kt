@@ -26,11 +26,13 @@ class CallActionReceiver : BroadcastReceiver() {
             }
 
             MICROPHONE_CALL -> {
-//                val isMicrophoneMute = context.audioManager.isMicrophoneMute
-//                CallManager.inCallService?.setMuted(!isMicrophoneMute)
+                val newMuteState = !CallManager.isMicrophoneMuted
+                CallManager.isMicrophoneMuted = newMuteState
 
-                val audioManager = context.audioManager
-                audioManager.isMicrophoneMute = !audioManager.isMicrophoneMute
+                // Apply status to service and audio manager
+                CallManager.inCallService?.setMuted(newMuteState)
+                context.audioManager.isMicrophoneMute = newMuteState
+
                 CallNotificationManager(context).updateNotification()
             }
 

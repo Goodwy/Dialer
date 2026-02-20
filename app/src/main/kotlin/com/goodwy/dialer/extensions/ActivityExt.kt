@@ -139,7 +139,7 @@ fun SimpleActivity.launchAbout() {
         "gplay" -> "Google Play"
         "foss" -> "FOSS"
         "rustore" -> "RuStore"
-        else -> ""
+        else -> "Huawei"
     }
     val versionName = BuildConfig.VERSION_NAME
     val fullVersionText = "$versionName ($storeDisplayName)"

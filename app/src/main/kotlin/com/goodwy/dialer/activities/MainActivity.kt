@@ -126,7 +126,7 @@ class MainActivity : SimpleActivity() {
 
             handleFullScreenNotificationsPermission { granted ->
                 if (!granted) {
-                    toast(com.goodwy.commons.R.string.notifications_disabled)
+                    toast(R.string.notifications_disabled)
                 } else {
                     checkWhatsNewDialog()
                 }
@@ -169,6 +169,12 @@ class MainActivity : SimpleActivity() {
 
     override fun onResume() {
         super.onResume()
+        // Checking for active calls
+        if (CallManager.getPhoneState() == NoCall) {
+            // If there are no calls, delete the call notification.
+            CallNotificationManager(this).cancelNotification()
+        }
+
         if (storedShowTabs != config.showTabs || storedShowPhoneNumbers != config.showPhoneNumbers) {
             System.exit(0)
             return
@@ -1123,6 +1129,9 @@ class MainActivity : SimpleActivity() {
 
         override fun onPrimaryCallChanged(call: Call) {
             updateState()
+        }
+
+        override fun onMuteChanged(isMuted: Boolean) {
         }
     }
 

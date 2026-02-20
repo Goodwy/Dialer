@@ -59,6 +59,7 @@ import com.goodwy.commons.extensions.slideRightReturn
 import com.goodwy.commons.extensions.toast
 import com.goodwy.commons.extensions.updateMarginWithBase
 import com.goodwy.commons.helpers.CONTACT_ID
+import com.goodwy.commons.helpers.ELLIPSIZE_MODE_END
 import com.goodwy.commons.helpers.IS_PRIVATE
 import com.goodwy.commons.helpers.IS_RIGHT_APP
 import com.goodwy.commons.helpers.PERMISSION_WRITE_CALL_LOG
@@ -123,6 +124,7 @@ class RecentCallsAdapter(
     private lateinit var incomingMissedCallIcon: Drawable
     private lateinit var blockedCallIcon: Drawable
     var fontSize: Float = activity.getTextSize()
+    private var ellipsizeMode = activity.config.ellipsizeMode
     private val areMultipleSIMsAvailable = activity.areMultipleSIMsAvailable()
     private val missedCallColor = resources.getColor(R.color.red_missed, activity.theme)
     private var secondaryTextColor = textColor.adjustAlpha(0.6f)
@@ -698,6 +700,9 @@ class RecentCallsAdapter(
                     setTextColor(if (call.type == Calls.MISSED_TYPE) missedCallColor else textColor)
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize)
                     isSelected = true
+                    val ellipsizeConfig =
+                        if (ellipsizeMode == ELLIPSIZE_MODE_END) TextUtils.TruncateAt.END else TextUtils.TruncateAt.MARQUEE
+                    ellipsize = ellipsizeConfig
                 }
 
                 var numberToShow =
@@ -922,6 +927,9 @@ class RecentCallsAdapter(
                     setTextColor(if (call.type == Calls.MISSED_TYPE) missedCallColor else textColor)
                     setTextSize(TypedValue.COMPLEX_UNIT_PX, currentFontSize)
                     isSelected = true
+                    val ellipsizeConfig =
+                        if (ellipsizeMode == ELLIPSIZE_MODE_END) TextUtils.TruncateAt.END else TextUtils.TruncateAt.MARQUEE
+                    ellipsize = ellipsizeConfig
                 }
 
                 var numberToShow =

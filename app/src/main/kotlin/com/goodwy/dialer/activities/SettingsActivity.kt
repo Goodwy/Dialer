@@ -186,6 +186,7 @@ class SettingsActivity : SimpleActivity() {
         setupShowDividers()
         setupShowContactThumbnails()
         setupContactThumbnailsSize()
+        setupEllipsizeMode()
         setupShowPhoneNumbers()
         setupStartNameWithSurname()
         setupShowNicknameInsteadNames()
@@ -620,6 +621,35 @@ class SettingsActivity : SimpleActivity() {
             CONTACT_THUMBNAILS_SIZE_MEDIUM -> com.goodwy.commons.R.string.medium
             CONTACT_THUMBNAILS_SIZE_LARGE -> com.goodwy.commons.R.string.large
             else -> com.goodwy.commons.R.string.extra_large
+        }
+    )
+
+    private fun setupEllipsizeMode() = binding.apply {
+        settingsEllipsizeMode.text = getEllipsizeModeText()
+        settingsEllipsizeModeHolder.setOnClickListener {
+            val items = arrayListOf(
+                RadioItem(ELLIPSIZE_MODE_END, getString(com.goodwy.strings.R.string.cut_off)),
+                RadioItem(ELLIPSIZE_MODE_MARQUEE, getString(com.goodwy.strings.R.string.auto_scroll)),
+            )
+
+            RadioGroupDialog(
+                this@SettingsActivity,
+                items,
+                config.ellipsizeMode,
+                com.goodwy.strings.R.string.long_text_behavior,
+                defaultItemId = ELLIPSIZE_MODE_END
+            ) {
+                config.ellipsizeMode = it as Int
+                settingsEllipsizeMode.text = getEllipsizeModeText()
+                config.needRestart = true
+            }
+        }
+    }
+
+    private fun getEllipsizeModeText() = getString(
+        when (baseConfig.ellipsizeMode) {
+            ELLIPSIZE_MODE_END -> com.goodwy.strings.R.string.cut_off
+            else -> com.goodwy.strings.R.string.auto_scroll
         }
     )
 
@@ -1809,7 +1839,7 @@ class SettingsActivity : SimpleActivity() {
             "gplay" -> "Google Play"
             "foss" -> "FOSS"
             "rustore" -> "RuStore"
-            else -> ""
+            else -> "Huawei"
         }
         val versionName = BuildConfig.VERSION_NAME
         val fullVersionText = "Version: $versionName ($storeDisplayName)"

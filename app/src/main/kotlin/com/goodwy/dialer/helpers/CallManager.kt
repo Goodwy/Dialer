@@ -282,6 +282,18 @@ class CallManager {
                 call?.stopDtmfTone()
             }, DIALPAD_TONE_LENGTH_MS)
         }
+
+        var isMicrophoneMuted: Boolean = false
+            set(value) {
+                field = value
+                notifyMuteChanged(value)
+            }
+
+        private fun notifyMuteChanged(isMuted: Boolean) {
+            for (listener in CallManager.Companion.listeners) {
+                listener.onMuteChanged(isMuted)
+            }
+        }
     }
 }
 
@@ -289,6 +301,7 @@ interface CallManagerListener {
     fun onStateChanged()
     fun onAudioStateChanged(audioState: AudioRoute)
     fun onPrimaryCallChanged(call: Call)
+    fun onMuteChanged(isMuted: Boolean)
 }
 
 sealed class PhoneState

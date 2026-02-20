@@ -3,6 +3,10 @@
     <string name="app_name">Right Dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
+    <string name="release_822">
+        Added ‘Long Text Behavior’ option\n
+        Fixed bugs, improved stability
+    </string>
     <string name="release_820">
         Call filtering added\n
         Added ‘App font’ option\n

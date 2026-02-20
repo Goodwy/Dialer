@@ -94,7 +94,7 @@ class CallActivity : SimpleActivity() {
         setupEdgeToEdge(
             padTopSystem = listOf(binding.callHolder),
             padBottomSystem = listOf(binding.callHolder),
-            moveTopSystem = listOf(binding.callerAvatar, binding.onHoldStatusHolder)
+            //moveTopSystem = listOf(binding.callerAvatar, binding.onHoldStatusHolder)
         )
 
         needSelectSIM = intent.getBooleanExtra(NEED_SELECT_SIM, false)
@@ -938,6 +938,7 @@ class CallActivity : SimpleActivity() {
 
     private fun toggleMicrophone() {
         isMicrophoneOff = !isMicrophoneOff
+        CallManager.isMicrophoneMuted = isMicrophoneOff
 
         audioManager.isMicrophoneMute = isMicrophoneOff
         CallManager.inCallService?.setMuted(isMicrophoneOff)
@@ -1623,6 +1624,13 @@ class CallActivity : SimpleActivity() {
             callDurationHandler.removeCallbacks(updateCallDurationTask)
             updateCallContactInfo(call)
             updateState()
+        }
+
+        override fun onMuteChanged(isMuted: Boolean) {
+            runOnUiThread {
+                isMicrophoneOff = isMuted
+                updateMicrophoneButton()
+            }
         }
     }
 
