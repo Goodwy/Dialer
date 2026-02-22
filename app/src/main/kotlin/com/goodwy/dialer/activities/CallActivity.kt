@@ -895,12 +895,14 @@ class CallActivity : SimpleActivity() {
             //If enabled, one of the users (OnePlus 13r, Oxygen 16OS) has his microphone turned off at the start of a call??
             //isMicrophoneOff = audioManager.isMicrophoneMute
             if (!isMicrophoneInitialized) {
-                isMicrophoneOff = false
-                isMicrophoneInitialized = true
-
                 audioManager.isMicrophoneMute = false
                 CallManager.inCallService?.setMuted(false)
-            } else isMicrophoneOff = audioManager.isMicrophoneMute
+                isMicrophoneOff = false
+                isMicrophoneInitialized = true
+            } else {
+                audioManager.isMicrophoneMute = isMicrophoneOff
+                CallManager.inCallService?.setMuted(isMicrophoneOff)
+            }
 
             updateMicrophoneButton()
 

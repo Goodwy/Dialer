@@ -3,6 +3,9 @@
     <string name="app_name">Right Dialer</string>
 
     <!-- Release notes --><!-- TODO changelog -->
+    <string name="release_823">
+        Fixed microphone performance during calls on some devices\n
+    </string>
     <string name="release_822">
         Added ‘Long Text Behavior’ option\n
         Fixed bugs, improved stability
