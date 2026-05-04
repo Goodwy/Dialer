@@ -689,7 +689,7 @@ class SettingsActivity : SimpleActivity() {
                 items = items,
                 checkedItemId = config.contactColorList,
                 defaultItemId = LBC_ANDROID,
-                titleId = com.goodwy.strings.R.string.overflow_icon
+                titleId = com.goodwy.strings.R.string.contact_color_list
             ) { wasPositivePressed, newValue ->
                 if (wasPositivePressed) {
                     if (config.contactColorList != newValue) {

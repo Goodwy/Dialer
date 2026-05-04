@@ -171,9 +171,24 @@ class CallNotificationManager(private val context: Context) {
                 .setCustomContentView(collapsedView)
                 .setOngoing(true)
                 .setTimeoutAfter(-1)
-                .setUsesChronometer(callState == Call.STATE_ACTIVE)
+//                .setUsesChronometer(callState == Call.STATE_ACTIVE)
                 .setChannelId(channelId)
                 .setStyle(Notification.DecoratedCustomViewStyle())
+
+            if (callState == Call.STATE_ACTIVE) {
+                val connectTime = CallManager.getCallConnectTime()
+                if (connectTime > 0) {
+                    builder.setWhen(connectTime)
+                    builder.setUsesChronometer(true)
+                    builder.setShowWhen(true)
+                } else {
+                    builder.setUsesChronometer(false)
+                    builder.setShowWhen(false)
+                }
+            } else {
+                builder.setUsesChronometer(false)
+                builder.setShowWhen(false)
+            }
 
             if (isHighPriority) {
                 builder.setFullScreenIntent(openAppPendingIntent, true)
@@ -286,10 +301,25 @@ class CallNotificationManager(private val context: Context) {
                     .setCategory(Notification.CATEGORY_CALL)
                     .setOngoing(true)
                     .setTimeoutAfter(-1)
-                    .setUsesChronometer(callState == Call.STATE_ACTIVE)
+//                    .setUsesChronometer(callState == Call.STATE_ACTIVE)
                     .setChannelId(channelId)
                     .setStyle(style)
                     .addPerson(person)
+
+                if (callState == Call.STATE_ACTIVE) {
+                    val connectTime = CallManager.getCallConnectTime()
+                    if (connectTime > 0) {
+                        builder.setWhen(connectTime)
+                        builder.setUsesChronometer(true)
+                        builder.setShowWhen(true)
+                    } else {
+                        builder.setUsesChronometer(false)
+                        builder.setShowWhen(false)
+                    }
+                } else {
+                    builder.setUsesChronometer(false)
+                    builder.setShowWhen(false)
+                }
 
                 // Dynamic microphone and speaker icon for active call
                 if (callState != Call.STATE_RINGING) {

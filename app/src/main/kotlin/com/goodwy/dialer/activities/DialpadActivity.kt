@@ -1193,7 +1193,7 @@ class DialpadActivity : SimpleActivity() {
             allowLongClick = false,
             itemClick = {
                 startCallWithConfirmationCheck(it as Contact)
-                if (config.showCallConfirmation) clearInputWithDelay()
+                if (config.dialpadClearWhenStartCall) clearInputWithDelay()
             },
             profileIconClick = {
                 startContactDetailsIntent(it as Contact)
@@ -1589,6 +1589,7 @@ class DialpadActivity : SimpleActivity() {
                 },
                 itemClick = {
                     itemClickAction(config.onRecentClick, it as RecentCall)
+                    if (config.dialpadClearWhenStartCall) clearInputWithDelay()
                 },
                 profileInfoClick = { recentCall ->
                     actionOpen(recentCall)

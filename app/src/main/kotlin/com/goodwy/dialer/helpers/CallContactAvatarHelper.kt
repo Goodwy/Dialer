@@ -10,15 +10,19 @@ import androidx.core.net.toUri
 import androidx.core.graphics.createBitmap
 
 class CallContactAvatarHelper(private val context: Context) {
-    fun getCallContactAvatar(photoUri: String?, round: Boolean = true): Bitmap? {
+    fun getCallContactAvatar(photoUri: String?, round: Boolean = true, width: Int = 0, height: Int = 0): Bitmap? {
         var bitmap: Bitmap? = null
         if (photoUri?.isNotEmpty() == true) {
             val photoUriParse = photoUri.toUri()
             try {
                 val contentResolver = context.contentResolver
                 bitmap = if (isQPlus()) {
-                    val tmbSize = context.resources.getDimension(R.dimen.list_avatar_size).toInt()
-                    contentResolver.loadThumbnail(photoUriParse, Size(tmbSize, tmbSize), null)
+                    if (round) {
+                        val tmbSize = context.resources.getDimension(R.dimen.list_avatar_size).toInt()
+                        contentResolver.loadThumbnail(photoUriParse, Size(tmbSize, tmbSize), null)
+                    } else {
+                        contentResolver.loadThumbnail(photoUriParse, Size(width, height), null)
+                    }
                 } else {
                     MediaStore.Images.Media.getBitmap(contentResolver, photoUriParse)
                 }

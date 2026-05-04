@@ -26,7 +26,7 @@
     </string>
 
     <string name="add_wait">Bekleme ekle (;)</string>
-    <string name="rejected">Reddedilmiş</string>
+    <string name="rejected">Reddedilen</string>
     <string name="dialpad_buttons_color">Tuş takımı düğmelerinin rengi</string>
     <string name="audio_route_earpiece_g">Cihazın kulaklığı</string>
     <string name="open_speed_dial_manage">Hızlı arama yönetimini mi açın?</string>
@@ -63,7 +63,7 @@
     <string name="number_of_recent_calls_displays">Son aramaların görüntülenen sayısı</string>
     <string name="number_of_recent_calls_displays_summary">З урахуванням групування кількість рядків, що відображається, може бути меншою.</string>
     <string name="group_calls">Çağrı gruplaması</string>
-    <string name="group_all_calls">Tüm aramaları gruplandırın, yalnızca son arama gösterilecektir</string>
+    <string name="group_all_calls">Tümü aramaları gruplandırın, yalnızca son arama gösterilecektir</string>
     <string name="call_button_style">Zil Düğmesi Stili</string>
     <string name="call_notes">Çağrı notları</string>
     <string name="back_pressed_end_call">Geri eylemi çağrıyı sonlandırır</string>
@@ -93,7 +93,7 @@
     <string name="on_contact_click">Bir kişiye tıkladığınızda</string>
     <string name="on_recent_click">Son aramalardan birine tıkladığınızda</string>
     <string name="add_pause">2 saniyelik duraklama ekle (,)</string>
-    <string name="missed">Kaçırıldı</string>
+    <string name="missed">Cevapsız</string>
     <string name="incoming">Gelen</string>
-    <string name="outgoing">Dışa dönük</string>
+    <string name="outgoing">Giden</string>
 </resources>

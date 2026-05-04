@@ -290,8 +290,17 @@ class CallManager {
             }
 
         private fun notifyMuteChanged(isMuted: Boolean) {
-            for (listener in CallManager.Companion.listeners) {
+            for (listener in listeners) {
                 listener.onMuteChanged(isMuted)
+            }
+        }
+
+        fun getCallConnectTime(): Long {
+            val primaryCall = getPrimaryCall()
+            return if (primaryCall != null && primaryCall.getStateCompat() == Call.STATE_ACTIVE) {
+                primaryCall.details.connectTimeMillis
+            } else {
+                0
             }
         }
     }
