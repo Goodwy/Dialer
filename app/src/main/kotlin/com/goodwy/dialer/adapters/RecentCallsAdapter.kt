@@ -89,6 +89,8 @@ import com.goodwy.dialer.extensions.startCallWithConfirmationCheck
 import com.goodwy.dialer.extensions.startContactDetailsIntentRecommendation
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL_LIST
+import com.goodwy.dialer.helpers.FILTER_RECENT_CALLS_ALL
+import com.goodwy.dialer.helpers.FILTER_RECENT_CALLS_CONTACTS
 import com.goodwy.dialer.helpers.RecentsHelper
 import com.goodwy.dialer.helpers.SWIPE_ACTION_BLOCK
 import com.goodwy.dialer.helpers.SWIPE_ACTION_DELETE
@@ -288,8 +290,13 @@ class RecentCallsAdapter(
         val layoutManager = recyclerView.layoutManager!!
         val recyclerViewState = layoutManager.onSaveInstanceState()
         val listFilter =
-            if (activity.config.filterRecentCalls == 0) list
-            else list?.filterIsInstance<RecentCall>()?.filter { it.type == activity.config.filterRecentCalls }
+            when (activity.config.filterRecentCalls) {
+                FILTER_RECENT_CALLS_ALL -> list
+                FILTER_RECENT_CALLS_CONTACTS -> list?.filterIsInstance<RecentCall>()
+                    ?.filter { it.contactID != null }
+                else -> list?.filterIsInstance<RecentCall>()
+                    ?.filter { it.type == activity.config.filterRecentCalls }
+            }
         super.submitList(listFilter) {
             layoutManager.onRestoreInstanceState(recyclerViewState)
         }

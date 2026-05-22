@@ -23,4 +23,16 @@
         <package android:name="com.goodwy.keyboard.debug" />
     </queries>
 
+    <application android:icon="@mipmap/ic_launcher">
+
+        <meta-data
+            android:name="console_app_id_value"
+            android:value="309929407" />
+
+        <meta-data
+            android:name="sdk_pay_scheme_value"
+            android:value="com.goodwy.dialer.scheme" />
+
+    </application>
+
 </manifest>

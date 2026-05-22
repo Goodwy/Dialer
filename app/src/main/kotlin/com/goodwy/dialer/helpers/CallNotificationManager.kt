@@ -303,6 +303,7 @@ class CallNotificationManager(private val context: Context) {
                     .setTimeoutAfter(-1)
 //                    .setUsesChronometer(callState == Call.STATE_ACTIVE)
                     .setChannelId(channelId)
+                    .setColorized(true)
                     .setStyle(style)
                     .addPerson(person)
 

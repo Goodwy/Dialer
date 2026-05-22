@@ -338,7 +338,7 @@ class Config(context: Context) : BaseConfig(context) {
         set(onContactClick) = prefs.edit { putInt(ON_FAVORITE_CLICK, onContactClick) }
 
     var filterRecentCalls: Int
-        get() = prefs.getInt(FILTER_RECENT_CALLS, 0) //Calls.MISSED_TYPE
+        get() = prefs.getInt(FILTER_RECENT_CALLS, FILTER_RECENT_CALLS_ALL) //Calls.MISSED_TYPE
         set(filterRecentCalls) = prefs.edit { putInt(FILTER_RECENT_CALLS, filterRecentCalls) }
 
     //Timer

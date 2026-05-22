@@ -56,6 +56,8 @@ import com.goodwy.dialer.extensions.startContactDetailsIntent
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL_LIST
 import com.goodwy.dialer.helpers.DialpadT9
+import com.goodwy.dialer.helpers.FILTER_RECENT_CALLS_ALL
+import com.goodwy.dialer.helpers.FILTER_RECENT_CALLS_CONTACTS
 import com.goodwy.dialer.helpers.LANGUAGE_SYSTEM
 import com.goodwy.dialer.helpers.RECENT_CALL_CACHE_SIZE
 import com.goodwy.dialer.helpers.RecentsHelper
@@ -112,8 +114,8 @@ class RecentsFragment(
 
             allCalls.setTypeface(typeface)
             allCalls.setOnClickListener {
-                if (context.config.filterRecentCalls != 0) {
-                    context.config.filterRecentCalls = 0
+                if (context.config.filterRecentCalls != FILTER_RECENT_CALLS_ALL) {
+                    context.config.filterRecentCalls = FILTER_RECENT_CALLS_ALL
                     updateItems()
                     updateFilterButton()
                 }
@@ -125,6 +127,10 @@ class RecentsFragment(
                     context.config.filterRecentCalls = Calls.MISSED_TYPE
                     updateItems()
                     updateFilterButton()
+                } else {
+                    context.config.filterRecentCalls = FILTER_RECENT_CALLS_ALL
+                    updateItems()
+                    updateFilterButton()
                 }
             }
 
@@ -132,6 +138,10 @@ class RecentsFragment(
             incomingCalls.setOnClickListener {
                 if (context.config.filterRecentCalls != Calls.INCOMING_TYPE) {
                     context.config.filterRecentCalls = Calls.INCOMING_TYPE
+                    updateItems()
+                    updateFilterButton()
+                } else {
+                    context.config.filterRecentCalls = FILTER_RECENT_CALLS_ALL
                     updateItems()
                     updateFilterButton()
                 }
@@ -143,6 +153,10 @@ class RecentsFragment(
                     context.config.filterRecentCalls = Calls.OUTGOING_TYPE
                     updateItems()
                     updateFilterButton()
+                } else {
+                    context.config.filterRecentCalls = FILTER_RECENT_CALLS_ALL
+                    updateItems()
+                    updateFilterButton()
                 }
             }
 
@@ -150,6 +164,23 @@ class RecentsFragment(
             rejectedCalls.setOnClickListener {
                 if (context.config.filterRecentCalls != Calls.REJECTED_TYPE) {
                     context.config.filterRecentCalls = Calls.REJECTED_TYPE
+                    updateItems()
+                    updateFilterButton()
+                } else {
+                    context.config.filterRecentCalls = FILTER_RECENT_CALLS_ALL
+                    updateItems()
+                    updateFilterButton()
+                }
+            }
+
+            contactCalls.setTypeface(typeface)
+            contactCalls.setOnClickListener {
+                if (context.config.filterRecentCalls != FILTER_RECENT_CALLS_CONTACTS) {
+                    context.config.filterRecentCalls = FILTER_RECENT_CALLS_CONTACTS
+                    updateItems()
+                    updateFilterButton()
+                } else {
+                    context.config.filterRecentCalls = FILTER_RECENT_CALLS_ALL
                     updateItems()
                     updateFilterButton()
                 }
@@ -166,6 +197,7 @@ class RecentsFragment(
                     incomingCalls.setFilterDisableColor()
                     outgoingCalls.setFilterDisableColor()
                     rejectedCalls.setFilterDisableColor()
+                    contactCalls.setFilterDisableColor()
                 }
 
                 Calls.INCOMING_TYPE -> {
@@ -174,6 +206,7 @@ class RecentsFragment(
                     incomingCalls.setFilterEnableColor()
                     outgoingCalls.setFilterDisableColor()
                     rejectedCalls.setFilterDisableColor()
+                    contactCalls.setFilterDisableColor()
                 }
 
                 Calls.OUTGOING_TYPE -> {
@@ -182,6 +215,7 @@ class RecentsFragment(
                     incomingCalls.setFilterDisableColor()
                     outgoingCalls.setFilterEnableColor()
                     rejectedCalls.setFilterDisableColor()
+                    contactCalls.setFilterDisableColor()
                 }
 
                 Calls.REJECTED_TYPE -> {
@@ -190,14 +224,25 @@ class RecentsFragment(
                     incomingCalls.setFilterDisableColor()
                     outgoingCalls.setFilterDisableColor()
                     rejectedCalls.setFilterEnableColor()
+                    contactCalls.setFilterDisableColor()
                 }
 
-                else -> {
+                FILTER_RECENT_CALLS_CONTACTS -> {
+                    allCalls.setFilterDisableColor()
+                    missedCalls.setFilterDisableColor()
+                    incomingCalls.setFilterDisableColor()
+                    outgoingCalls.setFilterDisableColor()
+                    rejectedCalls.setFilterDisableColor()
+                    contactCalls.setFilterEnableColor()
+                }
+
+                else -> { //FILTER_RECENT_CALLS_ALL
                     allCalls.setFilterEnableColor()
                     missedCalls.setFilterDisableColor()
                     incomingCalls.setFilterDisableColor()
                     outgoingCalls.setFilterDisableColor()
                     rejectedCalls.setFilterDisableColor()
+                    contactCalls.setFilterDisableColor()
                 }
             }
         }

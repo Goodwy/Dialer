@@ -63,6 +63,7 @@ fun Activity.startContactDetailsIntent(contact: Contact) {
                 ContactsContract.Contacts.CONTENT_LOOKUP_URI,
                 "vnd.android.cursor.dir/person"
             )
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             launchActivityIntent(this)
         }
     } else {
@@ -72,7 +73,13 @@ fun Activity.startContactDetailsIntent(contact: Contact) {
             val publicUri =
                 Uri.withAppendedPath(ContactsContract.Contacts.CONTENT_LOOKUP_URI, lookupKey)
             runOnUiThread {
-                launchViewContactIntent(publicUri)
+//                launchViewContactIntent(publicUri)
+                Intent().apply {
+                    action = ContactsContract.QuickContact.ACTION_QUICK_CONTACT
+                    data = publicUri
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    launchActivityIntent(this)
+                }
             }
         }
     }

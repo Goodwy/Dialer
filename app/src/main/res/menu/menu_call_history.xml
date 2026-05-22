@@ -21,6 +21,11 @@
         android:title="@string/clear_call_history"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/qr_code"
+        android:icon="@drawable/ic_qr_code"
+        android:title="@string/qr_code"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/share"
         android:icon="@drawable/ic_share_vector"
         android:title="@string/share"

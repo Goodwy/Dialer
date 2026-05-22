@@ -2,7 +2,7 @@
 
 <img src="app/src/main/res/drawable/ic_launcher.png" width="120" alt="App icon"/>
 
-# Right Phone
+# Right Dialer
 <a href='https://play.google.com/store/apps/details?id=com.goodwy.dialer'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height=80/></a>
 </div>
 

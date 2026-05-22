@@ -40,6 +40,7 @@ import com.goodwy.dialer.models.RecentCall
 import kotlin.collections.ArrayList
 import kotlin.math.abs
 import androidx.core.graphics.drawable.toDrawable
+import com.goodwy.commons.dialogs.QrCodeDialog
 
 class CallHistoryActivity : SimpleActivity() {
     private val binding by viewBinding(ActivityCallHistoryBinding::inflate)
@@ -310,6 +311,24 @@ class CallHistoryActivity : SimpleActivity() {
 
             findItem(R.id.delete).setOnMenuItemClickListener {
                 askConfirmRemove()
+                true
+            }
+
+            findItem(R.id.qr_code).setOnMenuItemClickListener {
+                if (contact != null) {
+                    showContactQrCode(contact!!)
+                } else {
+                    val exporter = VcfExporter()
+                    val vCard =
+                        exporter.generateSimpleVCard(currentRecentCall!!.name, currentRecentCall!!.phoneNumber)
+
+                    QrCodeDialog(
+                        activity = this@CallHistoryActivity,
+                        message = currentRecentCall!!.name,
+                        content = vCard,
+                        dialogTitle = getString(com.goodwy.commons.R.string.qr_code)
+                    ) {}
+                }
                 true
             }
 

@@ -9,7 +9,7 @@
         android:id="@+id/choose_wrapper"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="all_calls,missed_calls,incoming_calls,outgoing_calls,rejected_calls"
+        app:constraint_referenced_ids="all_calls,missed_calls,incoming_calls,outgoing_calls,rejected_calls,contact_calls"
         app:flow_horizontalGap="@dimen/smaller_margin"
         app:flow_wrapMode="none"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,6 +67,17 @@
         android:paddingHorizontal="@dimen/activity_margin"
         android:paddingVertical="0dp"
         android:text="@string/rejected"
+        android:includeFontPadding="false"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        app:cornerRadius="12dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/contact_calls"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:paddingHorizontal="@dimen/activity_margin"
+        android:paddingVertical="0dp"
+        android:text="@string/contacts_tab"
         android:includeFontPadding="false"
         style="@style/Widget.Material3.Button.OutlinedButton"
         app:cornerRadius="12dp" />
