@@ -1152,13 +1152,18 @@ class DialpadActivity : SimpleActivity() {
 
         val text = if (config.formatPhoneNumbers) textFormat.removeNumberFormatting() else textFormat
 
-        val collator = Collator.getInstance(sysLocale())
-        val filtered = allContacts.filter { contact ->
-            val langPref = config.dialpadSecondaryLanguage ?: ""
-            val langLocale = Locale.getDefault().language
-            val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
-            val lang = if (isAutoLang) langLocale else langPref
+        val langPref = config.dialpadSecondaryLanguage ?: ""
+        val langLocale = Locale.getDefault().language
+        val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
+        val lang = if (isAutoLang) langLocale else langPref
 
+        val collator = Collator.getInstance(sysLocale())
+        val callCounts = HashMap<String, Int>()
+        allRecentCalls.forEach { call ->
+            val key = call.phoneNumber.normalizePhoneNumber()
+            if (key.isNotEmpty()) callCounts[key] = (callCounts[key] ?: 0) + 1
+        }
+        val filtered = allContacts.filter { contact ->
             val convertedName = DialpadT9.convertLettersToNumbers(
                 contact.name.normalizeString().uppercase(), lang)
             val convertedNameWithoutSpaces = convertedName.filterNot { it.isWhitespace() }
@@ -1177,9 +1182,16 @@ class DialpadActivity : SimpleActivity() {
                 || (convertedNameToDisplayWithoutSpaces.contains(text, true))
                 || (convertedNickname.contains(text, true))
                 || (convertedCompany.contains(text, true))
-        }.sortedWith(compareBy(collator) {
-            it.getNameToDisplay()
-        }).toMutableList() as ArrayList<Contact>
+        }.sortedWith(
+            compareByDescending<Contact> {
+                DialpadT9.convertLettersToNumbers(
+                    it.getNameToDisplay().normalizeString().uppercase(), lang)
+                    .filterNot { c -> c.isWhitespace() }
+                    .startsWith(text)
+            }.thenByDescending { contact ->
+                contact.phoneNumbers.maxOfOrNull { callCounts[it.value.normalizePhoneNumber()] ?: 0 } ?: 0
+            }.thenBy(collator) { it.getNameToDisplay() }
+        ).toMutableList() as ArrayList<Contact>
 
 //        binding.letterFastscroller.setupWithContacts(binding.dialpadList, filtered)
 
