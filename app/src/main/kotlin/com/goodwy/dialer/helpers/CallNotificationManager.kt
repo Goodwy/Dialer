@@ -44,7 +44,18 @@ class CallNotificationManager(private val context: Context) {
     fun setupNotification(lowPriority: Boolean = false) {
         isServiceActive = true
         try {
-            if (isSPlus()) setupNotificationNew(lowPriority) else setupNotificationOld(lowPriority)
+            // CallStyle on Android 12+ gives us the rich incoming-call experience
+            // (full-screen intent banner, lock-screen card, system-styled accept/decline).
+            // But for ongoing calls the extra action chips (Speaker, Mute) get
+            // restyled by OEM skins like Samsung OneUI into white-on-white in dark
+            // mode. The custom RemoteView layout used by setupNotificationOld renders
+            // those buttons with our own colors, so it reads fine on every OEM.
+            val isRinging = CallManager.getState() == Call.STATE_RINGING
+            if (isSPlus() && isRinging) {
+                setupNotificationNew(lowPriority)
+            } else {
+                setupNotificationOld(lowPriority)
+            }
         } catch (e: Exception) {
             cancelNotification()
             context.baseConfig.lastError = "CallNotificationManager().setupNotification(): $e"
