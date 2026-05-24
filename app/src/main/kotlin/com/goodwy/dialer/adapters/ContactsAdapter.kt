@@ -411,7 +411,7 @@ class ContactsAdapter(
         val originalPos = IntArray(digits.length)
         var written = 0
         digits.forEachIndexed { i, c ->
-            if (!c.isWhitespace()) {
+            if (c.isDigit()) {
                 compressed.append(c)
                 originalPos[written++] = i
             }

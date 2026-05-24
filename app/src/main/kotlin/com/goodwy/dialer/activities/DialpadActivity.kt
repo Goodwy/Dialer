@@ -1166,27 +1166,31 @@ class DialpadActivity : SimpleActivity() {
         val filtered = allContacts.filter { contact ->
             val convertedName = DialpadT9.convertLettersToNumbers(
                 contact.name.normalizeString().uppercase(), lang)
-            val convertedNameWithoutSpaces = convertedName.filterNot { it.isWhitespace() }
+            val convertedNameDigitsOnly = convertedName.filter { it.isDigit() }
             val convertedNickname = DialpadT9.convertLettersToNumbers(
                 contact.nickname.normalizeString().uppercase(), lang)
+            val convertedNicknameDigitsOnly = convertedNickname.filter { it.isDigit() }
             val convertedCompany = DialpadT9.convertLettersToNumbers(
                 contact.organization.company.normalizeString().uppercase(), lang)
+            val convertedCompanyDigitsOnly = convertedCompany.filter { it.isDigit() }
             val convertedNameToDisplay = DialpadT9.convertLettersToNumbers(
                 contact.getNameToDisplay().normalizeString().uppercase(), lang)
-            val convertedNameToDisplayWithoutSpaces = convertedNameToDisplay.filterNot { it.isWhitespace() }
+            val convertedNameToDisplayDigitsOnly = convertedNameToDisplay.filter { it.isDigit() }
 
             contact.doesContainPhoneNumber(text, convertLetters = true, search = true)
                 || (convertedName.contains(text, true))
-                || (convertedNameWithoutSpaces.contains(text, true))
+                || (convertedNameDigitsOnly.contains(text, true))
                 || (convertedNameToDisplay.contains(text, true))
-                || (convertedNameToDisplayWithoutSpaces.contains(text, true))
+                || (convertedNameToDisplayDigitsOnly.contains(text, true))
                 || (convertedNickname.contains(text, true))
+                || (convertedNicknameDigitsOnly.contains(text, true))
                 || (convertedCompany.contains(text, true))
+                || (convertedCompanyDigitsOnly.contains(text, true))
         }.sortedWith(
             compareByDescending<Contact> {
                 DialpadT9.convertLettersToNumbers(
                     it.getNameToDisplay().normalizeString().uppercase(), lang)
-                    .filterNot { c -> c.isWhitespace() }
+                    .filter { c -> c.isDigit() }
                     .startsWith(text)
             }.thenByDescending { contact ->
                 contact.phoneNumbers.maxOfOrNull { callCounts[it.value.normalizePhoneNumber()] ?: 0 } ?: 0
