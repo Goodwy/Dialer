@@ -56,6 +56,10 @@ import kotlin.hashCode
 
 class CallActivity : SimpleActivity() {
     companion object {
+        // Audio-route ints (CallAudioState.ROUTE_*) max out below 16; offset Bluetooth
+        // per-device menu ids well above that so they can't collide.
+        private const val BLUETOOTH_DEVICE_MENU_ID_BASE = 1000
+
         fun getStartIntent(context: Context, needSelectSIM: Boolean = false): Intent {
             val openAppIntent = Intent(context, CallActivity::class.java)
             openAppIntent.putExtra(NEED_SELECT_SIM, needSelectSIM)
@@ -828,12 +832,40 @@ class CallActivity : SimpleActivity() {
 
     private fun createOrUpdateAudioRouteChooser(routes: Array<AudioRoute>, create: Boolean = true) {
         val callAudioRoute = CallManager.getCallAudioRoute()
-        val items = routes
-            .sortedByDescending { it.route }
-            .map {
-                SimpleListItem(id = it.route, textRes = it.stringRes, imageRes = it.iconRes, selected = it == callAudioRoute)
+        val btDevices = CallManager.getSupportedBluetoothDevices()
+        val activeBtDevice = CallManager.getActiveBluetoothDevice()
+
+        // When more than one Bluetooth device is paired and available, expand the single
+        // "Bluetooth" entry into one row per device so the user can pick a specific one.
+        val items = mutableListOf<SimpleListItem>()
+        routes.sortedByDescending { it.route }.forEach { route ->
+            if (route == AudioRoute.BLUETOOTH && btDevices.size > 1) {
+                btDevices.forEachIndexed { index, device ->
+                    val name = try {
+                        device.name ?: getString(R.string.audio_route_bluetooth)
+                    } catch (_: SecurityException) {
+                        getString(R.string.audio_route_bluetooth)
+                    }
+                    items.add(
+                        SimpleListItem(
+                            id = BLUETOOTH_DEVICE_MENU_ID_BASE + index,
+                            text = name,
+                            imageRes = route.iconRes,
+                            selected = device == activeBtDevice
+                        )
+                    )
+                }
+            } else {
+                items.add(
+                    SimpleListItem(
+                        id = route.route,
+                        textRes = route.stringRes,
+                        imageRes = route.iconRes,
+                        selected = route == callAudioRoute
+                    )
+                )
             }
-            .toTypedArray()
+        }
 
         if (audioRoutePopupMenu != null) {
             audioRoutePopupMenu?.dismiss()
@@ -844,16 +876,22 @@ class CallActivity : SimpleActivity() {
             audioRoutePopupMenu = PopupMenu(wrapper, binding.callToggleSpeaker, Gravity.END)
 
             items.forEach { item ->
+                val title = item.text ?: getString(item.textRes ?: R.string.other)
                 audioRoutePopupMenu?.menu?.add(
                     1,
                     item.id,
                     item.id,
-                    item.textRes ?: R.string.other
+                    title
                 )?.setIcon(item.imageRes ?: R.drawable.ic_transparent)
             }
 
             audioRoutePopupMenu?.setOnMenuItemClickListener { item ->
-                CallManager.setAudioRoute(item.itemId)
+                val deviceIndex = item.itemId - BLUETOOTH_DEVICE_MENU_ID_BASE
+                if (deviceIndex in btDevices.indices) {
+                    CallManager.setBluetoothDevice(btDevices[deviceIndex])
+                } else {
+                    CallManager.setAudioRoute(item.itemId)
+                }
                 true
             }
 
@@ -863,7 +901,7 @@ class CallActivity : SimpleActivity() {
 
             audioRoutePopupMenu?.show()
 
-            val selected = items.first { it.selected }
+            val selected = items.firstOrNull { it.selected } ?: items.first()
             val primaryColor = getProperPrimaryColor()
             val textColor = getProperTextColor()
             // icon and text coloring
