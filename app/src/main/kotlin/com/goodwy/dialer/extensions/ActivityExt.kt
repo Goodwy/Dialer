@@ -14,6 +14,7 @@ import com.goodwy.commons.extensions.launchActivityIntent
 import com.goodwy.commons.extensions.launchSendSMSIntent
 import com.goodwy.commons.extensions.launchViewContactIntent
 import com.goodwy.commons.extensions.showSupportSnackbar
+import com.goodwy.commons.extensions.toast
 import com.goodwy.commons.helpers.CONTACT_ID
 import com.goodwy.commons.helpers.FIRST_CONTACT_ID
 import com.goodwy.commons.helpers.IS_PRIVATE
@@ -195,6 +196,31 @@ fun Activity.launchSendSMSIntentRecommendation(recipient: String) {
         }
     } else {
         launchSendSMSIntent(recipient)
+    }
+}
+
+fun Activity.launchSendWhatsAppIntent(phoneNumber: String) {
+    val digits = phoneNumber.filter { it.isDigit() }
+    if (digits.isEmpty()) {
+        toast(R.string.no_app_found)
+        return
+    }
+    val uri = Uri.parse("https://wa.me/$digits")
+    // Prefer WhatsApp, fall back to WhatsApp Business, then the system chooser.
+    val preferredPackages = listOf("com.whatsapp", "com.whatsapp.w4b")
+    val installed = preferredPackages.firstOrNull { isPackageInstalled(it) }
+    val intent = Intent(Intent.ACTION_VIEW, uri).apply {
+        if (installed != null) setPackage(installed)
+    }
+    try {
+        startActivity(intent)
+    } catch (_: android.content.ActivityNotFoundException) {
+        // Retry without a package restriction so the system can offer a browser fallback.
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW, uri))
+        } catch (_: android.content.ActivityNotFoundException) {
+            toast(R.string.no_app_found)
+        }
     }
 }
 

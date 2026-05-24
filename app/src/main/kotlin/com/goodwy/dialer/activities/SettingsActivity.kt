@@ -1573,6 +1573,7 @@ class SettingsActivity : SimpleActivity() {
             val items = arrayListOf(
                 RadioItem(SWIPE_ACTION_CALL, getString(R.string.call), icon = R.drawable.ic_phone_vector),
                 RadioItem(SWIPE_ACTION_MESSAGE, getString(R.string.send_sms), icon = R.drawable.ic_messages),
+                RadioItem(SWIPE_ACTION_WHATSAPP, getString(R.string.send_whatsapp), icon = R.drawable.ic_whatsapp_mono_vector),
                 RadioItem(SWIPE_ACTION_OPEN, getString(R.string.view_contact_details), icon = R.drawable.ic_info),
                 RadioItem(SWIPE_ACTION_EDIT, getString(R.string.edit_contact), icon = com.goodwy.commons.R.drawable.ic_edit_vector),
                 RadioItem(SWIPE_ACTION_NONE, getString(com.goodwy.commons.R.string.nothing)),
@@ -1598,6 +1599,7 @@ class SettingsActivity : SimpleActivity() {
             val items = arrayListOf(
                 RadioItem(SWIPE_ACTION_CALL, getString(R.string.call), icon = R.drawable.ic_phone_vector),
                 RadioItem(SWIPE_ACTION_MESSAGE, getString(R.string.send_sms), icon = R.drawable.ic_messages),
+                RadioItem(SWIPE_ACTION_WHATSAPP, getString(R.string.send_whatsapp), icon = R.drawable.ic_whatsapp_mono_vector),
                 RadioItem(SWIPE_ACTION_OPEN, getString(R.string.show_call_details), icon = R.drawable.ic_info),
                 RadioItem(SWIPE_ACTION_NONE, getString(com.goodwy.commons.R.string.nothing)),
             )
@@ -1622,6 +1624,7 @@ class SettingsActivity : SimpleActivity() {
             val items = arrayListOf(
                 RadioItem(SWIPE_ACTION_CALL, getString(R.string.call), icon = R.drawable.ic_phone_vector),
                 RadioItem(SWIPE_ACTION_MESSAGE, getString(R.string.send_sms), icon = R.drawable.ic_messages),
+                RadioItem(SWIPE_ACTION_WHATSAPP, getString(R.string.send_whatsapp), icon = R.drawable.ic_whatsapp_mono_vector),
                 RadioItem(SWIPE_ACTION_OPEN, getString(R.string.view_contact_details), icon = R.drawable.ic_info),
                 RadioItem(SWIPE_ACTION_EDIT, getString(R.string.edit_contact), icon = com.goodwy.commons.R.drawable.ic_edit_vector),
                 RadioItem(SWIPE_ACTION_NONE, getString(com.goodwy.commons.R.string.nothing)),
@@ -1645,6 +1648,7 @@ class SettingsActivity : SimpleActivity() {
         when (currentConfig) {
             SWIPE_ACTION_CALL -> R.string.call
             SWIPE_ACTION_MESSAGE -> R.string.send_sms
+            SWIPE_ACTION_WHATSAPP -> R.string.send_whatsapp
             SWIPE_ACTION_OPEN -> if (isContact) R.string.view_contact_details else R.string.show_call_details
             SWIPE_ACTION_EDIT -> R.string.edit_contact
             else -> com.goodwy.commons.R.string.nothing
@@ -1740,6 +1744,7 @@ class SettingsActivity : SimpleActivity() {
                 RadioItem(SWIPE_ACTION_BLOCK, getString(R.string.block_number), icon = R.drawable.ic_block_vector),
                 RadioItem(SWIPE_ACTION_CALL, getString(R.string.call), icon = R.drawable.ic_phone_vector),
                 RadioItem(SWIPE_ACTION_MESSAGE, getString(R.string.send_sms), icon = R.drawable.ic_messages),
+                RadioItem(SWIPE_ACTION_WHATSAPP, getString(R.string.send_whatsapp), icon = R.drawable.ic_whatsapp_mono_vector),
                 RadioItem(SWIPE_ACTION_NONE, getString(com.goodwy.commons.R.string.nothing)),
             )
 
@@ -1773,6 +1778,7 @@ class SettingsActivity : SimpleActivity() {
                     RadioItem(SWIPE_ACTION_BLOCK, getString(R.string.block_number), icon = R.drawable.ic_block_vector),
                     RadioItem(SWIPE_ACTION_CALL, getString(R.string.call), icon = R.drawable.ic_phone_vector),
                     RadioItem(SWIPE_ACTION_MESSAGE, getString(R.string.send_sms), icon = R.drawable.ic_messages),
+                    RadioItem(SWIPE_ACTION_WHATSAPP, getString(R.string.send_whatsapp), icon = R.drawable.ic_whatsapp_mono_vector),
                     RadioItem(SWIPE_ACTION_NONE, getString(com.goodwy.commons.R.string.nothing)),
                 )
 
@@ -1808,6 +1814,7 @@ class SettingsActivity : SimpleActivity() {
             SWIPE_ACTION_BLOCK -> R.string.block_number
             SWIPE_ACTION_CALL -> R.string.call
             SWIPE_ACTION_MESSAGE -> R.string.send_sms
+            SWIPE_ACTION_WHATSAPP -> R.string.send_whatsapp
             else -> com.goodwy.commons.R.string.nothing
         }
     )

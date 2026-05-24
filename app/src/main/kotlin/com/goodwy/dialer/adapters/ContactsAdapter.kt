@@ -822,6 +822,7 @@ class ContactsAdapter(
         return when (swipeAction) {
             SWIPE_ACTION_DELETE -> com.goodwy.commons.R.drawable.ic_delete_outline
             SWIPE_ACTION_MESSAGE -> R.drawable.ic_messages
+            SWIPE_ACTION_WHATSAPP -> R.drawable.ic_whatsapp_mono_vector
             SWIPE_ACTION_BLOCK -> R.drawable.ic_block_vector
             else -> R.drawable.ic_phone_vector
         }
@@ -833,6 +834,7 @@ class ContactsAdapter(
         return when (swipeAction) {
             SWIPE_ACTION_DELETE -> resources.getColor(R.color.red_call, activity.theme)
             SWIPE_ACTION_MESSAGE -> resources.getColor(R.color.ic_messages, activity.theme)
+            SWIPE_ACTION_WHATSAPP -> resources.getColor(R.color.whatsapp_green, activity.theme)
             SWIPE_ACTION_BLOCK -> resources.getColor(R.color.swipe_purple, activity.theme)
             else -> simColor
         }
@@ -842,6 +844,7 @@ class ContactsAdapter(
         when (swipeAction) {
             SWIPE_ACTION_DELETE -> swipedDelete(contact)
             SWIPE_ACTION_MESSAGE -> swipedSMS(contact)
+            SWIPE_ACTION_WHATSAPP -> swipedWhatsApp(contact)
             SWIPE_ACTION_BLOCK -> swipedBlock(contact)
             else -> swipedCall(contact)
         }
@@ -858,6 +861,10 @@ class ContactsAdapter(
 
     private fun swipedSMS(contact: Contact) {
         activity.initiateCall(contact) { activity.launchSendSMSIntentRecommendation(it) }
+    }
+
+    private fun swipedWhatsApp(contact: Contact) {
+        activity.initiateCall(contact) { activity.launchSendWhatsAppIntent(it) }
     }
 
     private fun swipedBlock(contact: Contact) {
