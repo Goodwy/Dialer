@@ -304,6 +304,9 @@ class CallNotificationManager(private val context: Context) {
 //                    .setUsesChronometer(callState == Call.STATE_ACTIVE)
                     .setChannelId(channelId)
                     .setColorized(true)
+                    // Give the system (and OEM skins like Samsung OneUI) an explicit accent
+                    // color so action chips don't end up rendered as white-on-white in dark mode.
+                    .setColor(context.getProperPrimaryColor())
                     .setStyle(style)
                     .addPerson(person)
 
