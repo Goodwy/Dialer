@@ -465,25 +465,11 @@ class ContactsAdapter(
                     if (normalizedName.contains(normalizedSearchText, true)) {
                         name.highlightTextPart(normalizedSearchText, properPrimaryColor)
                     } else {
-                        var spacedTextToHighlight = textToHighlight
-                        val strippedName = PhoneNumberUtils.convertKeypadLettersToDigits(name.filterNot { it.isWhitespace() })
-                        val startIndex = strippedName.indexOf(textToHighlight)
-
-                        if (strippedName.contains(textToHighlight) && strippedName != name) {
-                            for (i in 0..spacedTextToHighlight.length) {
-                                if (name.toCharArray().size > startIndex + i) {
-                                    if (name[startIndex + i].isWhitespace()) {
-                                        spacedTextToHighlight = spacedTextToHighlight.replaceRange(i, i, " ")
-                                    }
-                                }
-                            }
-                        }
-
                         val langPref = activity.config.dialpadSecondaryLanguage ?: ""
                         val langLocale = Locale.getDefault().language
                         val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
                         val lang = if (isAutoLang) langLocale else langPref
-                        name.highlightTextFromNumbers(spacedTextToHighlight, properPrimaryColor, lang)
+                        name.highlightTextFromNumbers(textToHighlight, properPrimaryColor, lang)
                     }
                 }
             }
