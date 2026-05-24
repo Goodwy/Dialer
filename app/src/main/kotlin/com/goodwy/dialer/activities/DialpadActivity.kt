@@ -1187,13 +1187,13 @@ class DialpadActivity : SimpleActivity() {
                 || (convertedCompany.contains(text, true))
                 || (convertedCompanyDigitsOnly.contains(text, true))
         }.sortedWith(
-            compareByDescending<Contact> {
+            compareByDescending<Contact> { contact ->
+                contact.phoneNumbers.maxOfOrNull { callCounts[it.value.normalizePhoneNumber()] ?: 0 } ?: 0
+            }.thenByDescending {
                 DialpadT9.convertLettersToNumbers(
                     it.getNameToDisplay().normalizeString().uppercase(), lang)
                     .filter { c -> c.isDigit() }
                     .startsWith(text)
-            }.thenByDescending { contact ->
-                contact.phoneNumbers.maxOfOrNull { callCounts[it.value.normalizePhoneNumber()] ?: 0 } ?: 0
             }.thenBy(collator) { it.getNameToDisplay() }
         ).toMutableList() as ArrayList<Contact>
 
