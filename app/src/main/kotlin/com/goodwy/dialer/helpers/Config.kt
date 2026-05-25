@@ -178,6 +178,10 @@ class Config(context: Context) : BaseConfig(context) {
         get() = prefs.getInt(DIALPAD_SIZE, 100)
         set(dialpadSize) = prefs.edit { putInt(DIALPAD_SIZE, dialpadSize) }
 
+    var dialpadNumberFontSize: Int
+        get() = prefs.getInt(DIALPAD_NUMBER_FONT_SIZE, 100)
+        set(value) = prefs.edit { putInt(DIALPAD_NUMBER_FONT_SIZE, value) }
+
     var dialpadBottomMargin: Int
         get() = prefs.getInt(DIALPAD_BOTTOM_MARGIN, 0)
         set(dialpadBottomMargin) = prefs.edit { putInt(DIALPAD_BOTTOM_MARGIN, dialpadBottomMargin) }

@@ -185,6 +185,7 @@ class DialpadActivity : SimpleActivity() {
         speedDialValues = config.getSpeedDialValues()
         initStyle()
         updateDialpadSize()
+        updateDialpadNumberFontSize()
         if (config.dialpadStyle == DIALPAD_GRID || config.dialpadStyle == DIALPAD_ORIGINAL) updateCallButtonSize()
         setupOptionsMenu()
         refreshMenuItems()
@@ -907,6 +908,29 @@ class DialpadActivity : SimpleActivity() {
         DIALPAD_IOS -> binding.dialpadRoundWrapper.root
         DIALPAD_CONCEPT -> binding.dialpadRectWrapper.root
         else -> binding.dialpadClearWrapper.root
+    }
+
+    private fun updateDialpadNumberFontSize() {
+        val basePx = resources.getDimension(R.dimen.dialpad_text_size)
+        val scaled = basePx * (config.dialpadNumberFontSize / 100f)
+        binding.dialpadClearWrapper.apply {
+            listOf(dialpad1, dialpad2, dialpad3, dialpad4, dialpad5,
+                dialpad6, dialpad7, dialpad8, dialpad9, dialpad0, dialpadPlus).forEach {
+                it.setTextSize(TypedValue.COMPLEX_UNIT_PX, scaled)
+            }
+        }
+        binding.dialpadRectWrapper.apply {
+            listOf(dialpad1, dialpad2, dialpad3, dialpad4, dialpad5,
+                dialpad6, dialpad7, dialpad8, dialpad9, dialpad0, dialpadPlus).forEach {
+                it.setTextSize(TypedValue.COMPLEX_UNIT_PX, scaled)
+            }
+        }
+        binding.dialpadRoundWrapper.apply {
+            listOf(dialpad1Ios, dialpad2Ios, dialpad3Ios, dialpad4Ios, dialpad5Ios,
+                dialpad6Ios, dialpad7Ios, dialpad8Ios, dialpad9Ios, dialpad0Ios, dialpadPlusIos).forEach {
+                it.setTextSize(TypedValue.COMPLEX_UNIT_PX, scaled)
+            }
+        }
     }
 
     private fun updateDialpadSize() {
