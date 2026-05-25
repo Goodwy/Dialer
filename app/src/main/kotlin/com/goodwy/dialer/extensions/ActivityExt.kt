@@ -205,22 +205,13 @@ fun Activity.launchSendWhatsAppIntent(phoneNumber: String) {
         toast(R.string.no_app_found)
         return
     }
-    val uri = Uri.parse("https://wa.me/$digits")
-    // Prefer WhatsApp, fall back to WhatsApp Business, then the system chooser.
-    val preferredPackages = listOf("com.whatsapp", "com.whatsapp.w4b")
-    val installed = preferredPackages.firstOrNull { isPackageInstalled(it) }
-    val intent = Intent(Intent.ACTION_VIEW, uri).apply {
-        if (installed != null) setPackage(installed)
-    }
+    val pkg = listOf("com.whatsapp", "com.whatsapp.w4b").firstOrNull { isPackageInstalled(it) }
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://wa.me/$digits"))
+    if (pkg != null) intent.setPackage(pkg)
     try {
         startActivity(intent)
     } catch (_: android.content.ActivityNotFoundException) {
-        // Retry without a package restriction so the system can offer a browser fallback.
-        try {
-            startActivity(Intent(Intent.ACTION_VIEW, uri))
-        } catch (_: android.content.ActivityNotFoundException) {
-            toast(R.string.no_app_found)
-        }
+        toast(R.string.no_app_found)
     }
 }
 
