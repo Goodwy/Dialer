@@ -44,12 +44,8 @@ class CallNotificationManager(private val context: Context) {
     fun setupNotification(lowPriority: Boolean = false) {
         isServiceActive = true
         try {
-            // CallStyle on Android 12+ gives us the rich incoming-call experience
-            // (full-screen intent banner, lock-screen card, system-styled accept/decline).
-            // But for ongoing calls the extra action chips (Speaker, Mute) get
-            // restyled by OEM skins like Samsung OneUI into white-on-white in dark
-            // mode. The custom RemoteView layout used by setupNotificationOld renders
-            // those buttons with our own colors, so it reads fine on every OEM.
+            // Use CallStyle (Android 12+) only for ringing; the custom RemoteView
+            // path keeps ongoing-call action buttons readable on OEMs like Samsung.
             val isRinging = CallManager.getState() == Call.STATE_RINGING
             if (isSPlus() && isRinging) {
                 setupNotificationNew(lowPriority)
@@ -152,19 +148,21 @@ class CallNotificationManager(private val context: Context) {
                  // Speaker button settings
                 val speakerIcon =
                     if (isSpeakerOn) R.drawable.ic_volume_up_vector else R.drawable.ic_volume_down_vector
-                setImageViewResource(R.id.notification_speaker_button, speakerIcon)
+                setImageViewResource(R.id.notification_speaker_icon, speakerIcon)
                 val speakerLabel =
                     if (isSpeakerOn) context.getString(R.string.turn_speaker_off)
                     else context.getString(R.string.turn_speaker_on)
+                setTextViewText(R.id.notification_speaker_label, speakerLabel)
                 setContentDescription(R.id.notification_speaker_button, speakerLabel)
                 setOnClickPendingIntent(R.id.notification_speaker_button, speakerPendingIntent)
                  // Microphone button settings
                 val microphoneIcon =
                     if (isMicrophoneMute) R.drawable.ic_microphone_off_vector else R.drawable.ic_microphone_vector
-                setImageViewResource(R.id.notification_mute_button, microphoneIcon)
+                setImageViewResource(R.id.notification_mute_icon, microphoneIcon)
                 val microphoneLabel =
                     if (isMicrophoneMute) context.getString(R.string.unmute)
                     else context.getString(R.string.mute)
+                setTextViewText(R.id.notification_mute_label, microphoneLabel)
                 setContentDescription(R.id.notification_mute_button, microphoneLabel)
                 setOnClickPendingIntent(R.id.notification_mute_button, microphonePendingIntent)
 
