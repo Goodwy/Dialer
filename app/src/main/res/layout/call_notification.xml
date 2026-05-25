@@ -106,11 +106,11 @@
             android:contentDescription="@string/hang_up"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/small_margin">
+            android:paddingHorizontal="@dimen/smaller_margin">
 
             <ImageView
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:src="@drawable/ic_phone_down_vector"
                 android:tint="@android:color/white"
                 android:contentDescription="@null"/>
@@ -118,7 +118,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
+                android:layout_marginStart="4dp"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:text="@string/hang_up"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"/>
@@ -129,27 +131,27 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/call_notification_button_size"
             android:layout_weight="1"
-            android:layout_marginStart="@dimen/small_margin"
             android:layout_marginEnd="@dimen/smaller_margin"
             android:background="@drawable/button_rounded"
             android:backgroundTint="@color/primary"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/small_margin">
+            android:paddingHorizontal="@dimen/smaller_margin">
 
             <ImageView
                 android:id="@+id/notification_speaker_icon"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:src="@drawable/ic_volume_down_vector"
                 android:tint="@android:color/white"
                 android:contentDescription="@null"/>
 
             <TextView
-                android:id="@+id/notification_speaker_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
+                android:layout_marginStart="4dp"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:text="@string/audio_route_speaker"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"/>
@@ -160,27 +162,27 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/call_notification_button_size"
             android:layout_weight="1"
-            android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginEnd="@dimen/smaller_margin"
+            android:layout_marginEnd="@dimen/small_margin"
             android:background="@drawable/button_rounded"
             android:backgroundTint="@color/call_button_mute"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/small_margin">
+            android:paddingHorizontal="@dimen/smaller_margin">
 
             <ImageView
                 android:id="@+id/notification_mute_icon"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:src="@drawable/ic_microphone_vector"
                 android:tint="@android:color/white"
                 android:contentDescription="@null"/>
 
             <TextView
-                android:id="@+id/notification_mute_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
+                android:layout_marginStart="4dp"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:text="@string/mute"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"/>

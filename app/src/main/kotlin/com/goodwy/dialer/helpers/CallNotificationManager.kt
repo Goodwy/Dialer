@@ -145,25 +145,23 @@ class CallNotificationManager(private val context: Context) {
                 // Active call (microphone/speaker)
                 setVisibleIf(R.id.notification_actions_call_holder, callState != Call.STATE_RINGING)
                 setOnClickPendingIntent(R.id.notification_decline_call_button, declinePendingIntent)
-                 // Speaker button settings
+                 // Speaker button settings - icon toggles to reflect state, label stays short
                 val speakerIcon =
                     if (isSpeakerOn) R.drawable.ic_volume_up_vector else R.drawable.ic_volume_down_vector
                 setImageViewResource(R.id.notification_speaker_icon, speakerIcon)
-                val speakerLabel =
+                val speakerDescription =
                     if (isSpeakerOn) context.getString(R.string.turn_speaker_off)
                     else context.getString(R.string.turn_speaker_on)
-                setTextViewText(R.id.notification_speaker_label, speakerLabel)
-                setContentDescription(R.id.notification_speaker_button, speakerLabel)
+                setContentDescription(R.id.notification_speaker_button, speakerDescription)
                 setOnClickPendingIntent(R.id.notification_speaker_button, speakerPendingIntent)
-                 // Microphone button settings
+                 // Microphone button settings - icon toggles, label stays short
                 val microphoneIcon =
                     if (isMicrophoneMute) R.drawable.ic_microphone_off_vector else R.drawable.ic_microphone_vector
                 setImageViewResource(R.id.notification_mute_icon, microphoneIcon)
-                val microphoneLabel =
+                val microphoneDescription =
                     if (isMicrophoneMute) context.getString(R.string.unmute)
                     else context.getString(R.string.mute)
-                setTextViewText(R.id.notification_mute_label, microphoneLabel)
-                setContentDescription(R.id.notification_mute_button, microphoneLabel)
+                setContentDescription(R.id.notification_mute_button, microphoneDescription)
                 setOnClickPendingIntent(R.id.notification_mute_button, microphonePendingIntent)
 
                 if (callContactAvatar != null) {
