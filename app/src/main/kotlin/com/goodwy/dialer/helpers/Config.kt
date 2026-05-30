@@ -151,7 +151,7 @@ class Config(context: Context) : BaseConfig(context) {
 
     //Goodwy
     var showIncomingCallsFullScreen: Boolean
-        get() = prefs.getBoolean(SHOW_INCOMING_CALLS_FULL_SCREEN, false)
+        get() = prefs.getBoolean(SHOW_INCOMING_CALLS_FULL_SCREEN, true)
         set(showIncomingCallsFullScreen) = prefs.edit { putBoolean(SHOW_INCOMING_CALLS_FULL_SCREEN, showIncomingCallsFullScreen) }
 
     var transparentCallScreen: Boolean  //not used
