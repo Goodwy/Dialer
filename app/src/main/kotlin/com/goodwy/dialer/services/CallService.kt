@@ -57,8 +57,16 @@ class CallService : InCallService() {
             else -> true
         }
 
+        // When the device is locked we ALSO start the activity directly, not just rely on
+        // the full-screen-intent notification. Some OEM skins (e.g. Samsung OneUI) demote
+        // the FSI to a silent notification, so the lock-screen call UI never appears and
+        // the user has to unlock to answer. The default dialer gets a brief background-
+        // activity-start grace window during onCallAdded, so this direct start is allowed.
+        // CallActivity is singleTask + REORDER_TO_FRONT, so if both the direct start and
+        // the FSI fire we still end up with a single instance.
         if (
             lowPriority
+            || isDeviceLocked
             || !hasPermission(PERMISSION_POST_NOTIFICATIONS)
             || !canUseFullScreenIntent()
         ) {
