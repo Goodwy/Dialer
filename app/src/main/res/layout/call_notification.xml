@@ -19,8 +19,8 @@
 
     <ImageView
         android:id="@+id/notification_thumbnail"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_person_vector"/>
@@ -29,18 +29,18 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginStart="@dimen/normal_margin"
-        android:layout_marginEnd="@dimen/small_margin"
+        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/tiny_margin"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/notification_caller_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
+            android:maxLines="2"
             android:ellipsize="end"
             android:textStyle="bold"
-            android:textSize="14sp"
+            android:textSize="13sp"
             android:textColor="@android:color/white"
             android:textDirection="firstStrongLtr"
             tools:text="+966 11 522 2222"/>
@@ -78,37 +78,37 @@
 
         <ImageView
             android:id="@+id/notification_speaker_button"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginStart="@dimen/tiny_margin"
             android:contentDescription="@string/audio_route_speaker"
             android:background="@drawable/button_rounded"
             android:backgroundTint="@color/primary"
-            android:padding="8dp"
+            android:padding="6dp"
             android:src="@drawable/ic_volume_down_vector"
             android:tint="@android:color/white"/>
 
         <ImageView
             android:id="@+id/notification_mute_button"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginStart="@dimen/tiny_margin"
             android:contentDescription="@string/mute"
             android:background="@drawable/button_rounded"
             android:backgroundTint="@color/call_button_mute"
-            android:padding="8dp"
+            android:padding="6dp"
             android:src="@drawable/ic_microphone_vector"
             android:tint="@android:color/white"/>
 
         <ImageView
             android:id="@+id/notification_decline_call_button"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginStart="@dimen/tiny_margin"
             android:contentDescription="@string/hang_up"
             android:background="@drawable/button_rounded"
             android:backgroundTint="@color/red_missed"
-            android:padding="8dp"
+            android:padding="6dp"
             android:src="@drawable/ic_phone_down_vector"
             android:tint="@android:color/white"/>
     </LinearLayout>
@@ -123,25 +123,25 @@
 
         <ImageView
             android:id="@+id/notification_decline_call"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginStart="@dimen/tiny_margin"
             android:contentDescription="@string/decline"
             android:background="@drawable/button_rounded"
             android:backgroundTint="@color/red_missed"
-            android:padding="8dp"
+            android:padding="6dp"
             android:src="@drawable/ic_phone_down_vector"
             android:tint="@android:color/white"/>
 
         <ImageView
             android:id="@+id/notification_accept_call"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginStart="@dimen/tiny_margin"
             android:contentDescription="@string/accept"
             android:background="@drawable/button_rounded"
             android:backgroundTint="@color/green_call"
-            android:padding="8dp"
+            android:padding="6dp"
             android:src="@drawable/ic_phone_vector"
             android:tint="@android:color/white"/>
     </LinearLayout>
