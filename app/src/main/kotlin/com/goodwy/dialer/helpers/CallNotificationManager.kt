@@ -129,8 +129,28 @@ class CallNotificationManager(private val context: Context) {
 
             val isMicrophoneMute = context.audioManager.isMicrophoneMute
             val isSpeakerOn = CallManager.getCallAudioRoute() == AudioRoute.SPEAKER
+            val connectTime = CallManager.getCallConnectTime()
+            val showChronometer = callState == Call.STATE_ACTIVE && connectTime > 0
+            val avatarBitmap = callContactAvatar?.let { callContactAvatarHelper.getCircularBitmap(it) }
 
             val collapsedView = RemoteViews(context.packageName, R.layout.call_notification).apply {
+                // Caller info on the left of the row.
+                setTextViewText(R.id.notification_caller_name, callerName)
+                if (showChronometer) {
+                    setViewVisibility(R.id.notification_chronometer, VISIBLE)
+                    setViewVisibility(R.id.notification_call_status, android.view.View.GONE)
+                    val base = android.os.SystemClock.elapsedRealtime() -
+                        (System.currentTimeMillis() - connectTime)
+                    setChronometer(R.id.notification_chronometer, base, null, true)
+                } else {
+                    setViewVisibility(R.id.notification_chronometer, android.view.View.GONE)
+                    setViewVisibility(R.id.notification_call_status, VISIBLE)
+                    setTextViewText(R.id.notification_call_status, context.getString(contentTextId))
+                }
+                if (avatarBitmap != null) {
+                    setImageViewBitmap(R.id.notification_thumbnail, avatarBitmap)
+                }
+
                 // Incoming call (accept/reject)
                 setVisibleIf(R.id.notification_actions_holder, callState == Call.STATE_RINGING)
                 setOnClickPendingIntent(R.id.notification_decline_call, declinePendingIntent)
@@ -139,19 +159,19 @@ class CallNotificationManager(private val context: Context) {
                 // Active call (microphone/speaker)
                 setVisibleIf(R.id.notification_actions_call_holder, callState != Call.STATE_RINGING)
                 setOnClickPendingIntent(R.id.notification_decline_call_button, declinePendingIntent)
-                 // Speaker button settings - icon toggles to reflect state, label stays short
+
                 val speakerIcon =
                     if (isSpeakerOn) R.drawable.ic_volume_up_vector else R.drawable.ic_volume_down_vector
-                setImageViewResource(R.id.notification_speaker_icon, speakerIcon)
+                setImageViewResource(R.id.notification_speaker_button, speakerIcon)
                 val speakerDescription =
                     if (isSpeakerOn) context.getString(R.string.turn_speaker_off)
                     else context.getString(R.string.turn_speaker_on)
                 setContentDescription(R.id.notification_speaker_button, speakerDescription)
                 setOnClickPendingIntent(R.id.notification_speaker_button, speakerPendingIntent)
-                 // Microphone button settings - icon toggles, label stays short
+
                 val microphoneIcon =
                     if (isMicrophoneMute) R.drawable.ic_microphone_off_vector else R.drawable.ic_microphone_vector
-                setImageViewResource(R.id.notification_mute_icon, microphoneIcon)
+                setImageViewResource(R.id.notification_mute_button, microphoneIcon)
                 val microphoneDescription =
                     if (isMicrophoneMute) context.getString(R.string.unmute)
                     else context.getString(R.string.mute)
@@ -159,38 +179,21 @@ class CallNotificationManager(private val context: Context) {
                 setOnClickPendingIntent(R.id.notification_mute_button, microphonePendingIntent)
             }
 
-            // Title + status live in the system notification header so the custom
-            // view stays short enough to render fully in the collapsed shade.
-            val avatarBitmap = callContactAvatar?.let { callContactAvatarHelper.getCircularBitmap(it) }
             val builder = Notification.Builder(context, channelId)
                 .setSmallIcon(R.drawable.ic_phone_vector)
                 .setContentIntent(openAppPendingIntent)
-                .setContentTitle(callerName)
-                .setContentText(context.getString(contentTextId))
                 .setCategory(Notification.CATEGORY_CALL)
                 .setCustomContentView(collapsedView)
                 .setCustomBigContentView(collapsedView)
                 .setOngoing(true)
                 .setTimeoutAfter(-1)
-//                .setUsesChronometer(callState == Call.STATE_ACTIVE)
                 .setChannelId(channelId)
                 .setStyle(Notification.DecoratedCustomViewStyle())
-            if (avatarBitmap != null) builder.setLargeIcon(avatarBitmap)
 
-            if (callState == Call.STATE_ACTIVE) {
-                val connectTime = CallManager.getCallConnectTime()
-                if (connectTime > 0) {
-                    builder.setWhen(connectTime)
-                    builder.setUsesChronometer(true)
-                    builder.setShowWhen(true)
-                } else {
-                    builder.setUsesChronometer(false)
-                    builder.setShowWhen(false)
-                }
-            } else {
-                builder.setUsesChronometer(false)
-                builder.setShowWhen(false)
-            }
+            // The chronometer is rendered by the Chronometer widget inside the custom
+            // view, so the system-header chronometer is intentionally disabled here.
+            builder.setUsesChronometer(false)
+            builder.setShowWhen(false)
 
             if (isHighPriority) {
                 builder.setFullScreenIntent(openAppPendingIntent, true)
