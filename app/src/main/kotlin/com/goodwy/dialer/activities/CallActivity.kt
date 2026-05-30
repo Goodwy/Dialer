@@ -841,17 +841,18 @@ class CallActivity : SimpleActivity() {
         val activeBtDevice = CallManager.getActiveBluetoothDevice()
 
         // Reading BluetoothDevice.name requires BLUETOOTH_CONNECT at runtime on Android 12+.
-        // Ask for it once when the picker is opened with multiple devices, so the next
-        // open shows real device names instead of generic fallback labels.
-        if (btDevices.size > 1) {
+        // Ask for it once when the picker is opened with any Bluetooth device present, so
+        // the next open shows the real device name instead of a generic fallback label.
+        if (btDevices.isNotEmpty()) {
             requestBluetoothConnectPermissionIfNeeded()
         }
 
-        // When more than one Bluetooth device is paired and available, expand the single
-        // "Bluetooth" entry into one row per device so the user can pick a specific one.
+        // When at least one Bluetooth device is enumerable, replace the generic
+        // "Bluetooth" row with the actual device name(s) so the user always sees
+        // which device they are picking.
         val items = mutableListOf<SimpleListItem>()
         routes.sortedByDescending { it.route }.forEach { route ->
-            if (route == AudioRoute.BLUETOOTH && btDevices.size > 1) {
+            if (route == AudioRoute.BLUETOOTH && btDevices.isNotEmpty()) {
                 btDevices.forEachIndexed { index, device ->
                     items.add(
                         SimpleListItem(
