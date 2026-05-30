@@ -131,12 +131,6 @@ class CallNotificationManager(private val context: Context) {
             val isSpeakerOn = CallManager.getCallAudioRoute() == AudioRoute.SPEAKER
 
             val collapsedView = RemoteViews(context.packageName, R.layout.call_notification).apply {
-                setText(R.id.notification_caller_name, callerName)
-                if (callerNumberType != "") {
-                    setViewVisibility(R.id.notification_caller_number_type, VISIBLE)
-                    setText(R.id.notification_caller_number_type, callerNumberType)
-                }
-                setText(R.id.notification_call_status, context.getString(contentTextId))
                 // Incoming call (accept/reject)
                 setVisibleIf(R.id.notification_actions_holder, callState == Call.STATE_RINGING)
                 setOnClickPendingIntent(R.id.notification_decline_call, declinePendingIntent)
@@ -163,24 +157,25 @@ class CallNotificationManager(private val context: Context) {
                     else context.getString(R.string.mute)
                 setContentDescription(R.id.notification_mute_button, microphoneDescription)
                 setOnClickPendingIntent(R.id.notification_mute_button, microphonePendingIntent)
-
-                if (callContactAvatar != null) {
-                    setImageViewBitmap(
-                        R.id.notification_thumbnail,
-                        callContactAvatarHelper.getCircularBitmap(callContactAvatar))
-                }
             }
 
+            // Title + status live in the system notification header so the custom
+            // view stays short enough to render fully in the collapsed shade.
+            val avatarBitmap = callContactAvatar?.let { callContactAvatarHelper.getCircularBitmap(it) }
             val builder = Notification.Builder(context, channelId)
                 .setSmallIcon(R.drawable.ic_phone_vector)
                 .setContentIntent(openAppPendingIntent)
+                .setContentTitle(callerName)
+                .setContentText(context.getString(contentTextId))
                 .setCategory(Notification.CATEGORY_CALL)
                 .setCustomContentView(collapsedView)
+                .setCustomBigContentView(collapsedView)
                 .setOngoing(true)
                 .setTimeoutAfter(-1)
 //                .setUsesChronometer(callState == Call.STATE_ACTIVE)
                 .setChannelId(channelId)
                 .setStyle(Notification.DecoratedCustomViewStyle())
+            if (avatarBitmap != null) builder.setLargeIcon(avatarBitmap)
 
             if (callState == Call.STATE_ACTIVE) {
                 val connectTime = CallManager.getCallConnectTime()
