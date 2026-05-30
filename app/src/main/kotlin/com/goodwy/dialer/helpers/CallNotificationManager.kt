@@ -312,6 +312,29 @@ class CallNotificationManager(private val context: Context) {
                     .setStyle(style)
                     .addPerson(person)
 
+                // Surface accept/decline directly to Wear OS / Galaxy Watch so the watch
+                // shows the call even when its companion app's per-app allow-list
+                // doesn't auto-enroll a non-stock dialer. The CallStyle pending intents
+                // are still used for the phone side; this extender just duplicates them
+                // explicitly for the wearable surface.
+                if (callState == Call.STATE_RINGING) {
+                    val acceptAction = Notification.Action.Builder(
+                        Icon.createWithResource(context, R.drawable.ic_phone_vector),
+                        context.getString(R.string.accept),
+                        acceptPendingIntent
+                    ).build()
+                    val declineAction = Notification.Action.Builder(
+                        Icon.createWithResource(context, R.drawable.ic_phone_down_vector),
+                        context.getString(R.string.decline),
+                        declinePendingIntent
+                    ).build()
+                    @Suppress("DEPRECATION")
+                    Notification.WearableExtender()
+                        .addAction(acceptAction)
+                        .addAction(declineAction)
+                        .extend(builder)
+                }
+
                 if (callState == Call.STATE_ACTIVE) {
                     val connectTime = CallManager.getCallConnectTime()
                     if (connectTime > 0) {
