@@ -19,8 +19,8 @@
 
     <ImageView
         android:id="@+id/notification_thumbnail"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_person_vector"/>
@@ -29,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginStart="@dimen/small_margin"
+        android:layout_marginStart="@dimen/tiny_margin"
         android:layout_marginEnd="@dimen/tiny_margin"
         android:orientation="vertical">
 
@@ -40,7 +40,7 @@
             android:maxLines="2"
             android:ellipsize="end"
             android:textStyle="bold"
-            android:textSize="13sp"
+            android:textSize="12sp"
             android:textColor="@android:color/white"
             android:textDirection="firstStrongLtr"
             tools:text="+966 11 522 2222"/>
@@ -52,7 +52,7 @@
             android:maxLines="1"
             android:ellipsize="end"
             android:alpha="0.8"
-            android:textSize="12sp"
+            android:textSize="11sp"
             android:textColor="@android:color/white"
             tools:text="Ongoing call"/>
 
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:alpha="0.8"
-            android:textSize="12sp"
+            android:textSize="11sp"
             android:textColor="@android:color/white"
             android:visibility="gone"
             tools:text="00:08"
