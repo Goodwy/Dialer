@@ -1,6 +1,8 @@
 package com.goodwy.dialer.helpers
 
 import android.annotation.SuppressLint
+import android.bluetooth.BluetoothDevice
+import android.os.Build
 import android.os.Handler
 import android.telecom.Call
 import android.telecom.CallAudioState
@@ -116,6 +118,35 @@ class CallManager {
         }
 
         fun getCallAudioRoute() = AudioRoute.fromRoute(getCallAudioState()?.route)
+
+        // Per-Bluetooth-device selection. Available since Android 9 (API 28); on older
+        // releases we fall back to the generic Bluetooth route handled by the system.
+        fun getSupportedBluetoothDevices(): List<BluetoothDevice> {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                getCallAudioState()?.supportedBluetoothDevices?.toList().orEmpty()
+            } else {
+                emptyList()
+            }
+        }
+
+        fun getActiveBluetoothDevice(): BluetoothDevice? {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                getCallAudioState()?.activeBluetoothDevice
+            } else {
+                null
+            }
+        }
+
+        fun setBluetoothDevice(device: BluetoothDevice) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                inCallService?.requestBluetoothAudio(device)
+                isSpeakerOn = false
+                previousAudioRoute = CallAudioState.ROUTE_BLUETOOTH
+                notifyAudioStateChanged()
+            } else {
+                setAudioRoute(CallAudioState.ROUTE_BLUETOOTH)
+            }
+        }
 
         fun toggleSpeakerRoute(keepCalls: Boolean = false) {
             val currentAudioState = getCallAudioState() ?: return

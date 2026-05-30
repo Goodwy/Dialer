@@ -1,136 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<!--
+    Single-row notification layout modelled after the Samsung stock dialer
+    notification: avatar on the left, caller info column in the middle, and a
+    cluster of small round icon buttons on the right. Stays compact enough to
+    render fully in the collapsed shade so the user can tap Hang up / Speaker /
+    Mute without expanding.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/notification_holder"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:background="#fff">
-
-    <TextView
-        android:id="@+id/notification_caller_name"
-        style="@style/TextAppearance.Compat.Notification.Title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/smaller_margin"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/notification_thumbnail"
-        android:textSize="@dimen/bigger_text_size"
-        android:textStyle="bold"
-        android:textDirection="firstStrongLtr"
-        tools:text="Caller name"/>
-
-    <TextView
-        android:id="@+id/notification_caller_number_type"
-        style="@style/TextAppearance.Compat.Notification.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/notification_caller_name"
-        android:layout_marginStart="@dimen/smaller_margin"
-        android:layout_toStartOf="@+id/notification_thumbnail"
-        android:layout_toEndOf="@+id/notification_caller_name"
-        android:alpha="0.8"
-        android:visibility="gone"
-        tools:text="Mobile"/>
-
-    <TextView
-        android:id="@+id/notification_call_status"
-        style="@style/TextAppearance.Compat.Notification.Title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/notification_caller_name"
-        android:layout_marginStart="@dimen/smaller_margin"
-        android:alpha="0.8"
-        tools:text="123 456 789"/>
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/small_margin"
+    android:gravity="center_vertical"
+    tools:background="#222">
 
     <ImageView
         android:id="@+id/notification_thumbnail"
-        android:layout_width="@dimen/list_avatar_size"
-        android:layout_height="@dimen/list_avatar_size"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="@dimen/smaller_margin"/>
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="@null"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_person_vector"/>
 
     <LinearLayout
-        android:id="@+id/notification_actions_holder"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/notification_call_status"
-        android:layout_marginTop="@dimen/activity_margin"
-        android:orientation="horizontal">
+        android:layout_weight="1"
+        android:layout_marginStart="@dimen/tiny_margin"
+        android:layout_marginEnd="@dimen/tiny_margin"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/notification_decline_call"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/call_notification_button_size"
-            android:layout_weight="1"
-            android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginEnd="@dimen/smaller_margin"
-            android:contentDescription="@string/decline"
-            android:background="@drawable/button_rounded"
-            android:backgroundTint="@color/red_missed"
-            android:padding="@dimen/small_margin"
-            android:src="@drawable/ic_phone_down_vector"/>
+        <TextView
+            android:id="@+id/notification_caller_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:textDirection="firstStrongLtr"
+            tools:text="+966 11 522 2222"/>
 
-        <ImageView
-            android:id="@+id/notification_accept_call"
+        <TextView
+            android:id="@+id/notification_call_status"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/call_notification_button_size"
-            android:layout_weight="1"
-            android:layout_marginStart="@dimen/smaller_margin"
-            android:layout_marginEnd="@dimen/small_margin"
-            android:contentDescription="@string/accept"
-            android:background="@drawable/button_rounded"
-            android:backgroundTint="@color/green_call"
-            android:padding="@dimen/small_margin"
-            android:src="@drawable/ic_phone_vector"/>
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:alpha="0.8"
+            android:textSize="11sp"
+            android:textColor="@android:color/white"
+            tools:text="Ongoing call"/>
+
+        <Chronometer
+            android:id="@+id/notification_chronometer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.8"
+            android:textSize="11sp"
+            android:textColor="@android:color/white"
+            android:visibility="gone"
+            tools:text="00:08"
+            tools:visibility="visible"/>
     </LinearLayout>
 
+    <!-- Ongoing call (Speaker / Mute / Hang up) -->
     <LinearLayout
         android:id="@+id/notification_actions_call_holder"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/notification_actions_holder"
-        android:layout_marginTop="@dimen/activity_margin"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/notification_decline_call_button"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/call_notification_button_size"
-            android:layout_weight="2"
-            android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginEnd="@dimen/smaller_margin"
-            android:contentDescription="@string/decline"
-            android:background="@drawable/button_rounded"
-            android:backgroundTint="@color/red_missed"
-            android:padding="@dimen/small_margin"
-            android:src="@drawable/ic_phone_down_vector"/>
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/notification_speaker_button"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/call_notification_button_size"
-            android:layout_weight="1"
-            android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginEnd="@dimen/smaller_margin"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="@dimen/tiny_margin"
             android:contentDescription="@string/audio_route_speaker"
             android:background="@drawable/button_rounded"
             android:backgroundTint="@color/primary"
-            android:padding="@dimen/small_margin"
-            android:src="@drawable/ic_volume_down_vector"/>
+            android:padding="6dp"
+            android:src="@drawable/ic_volume_down_vector"
+            android:tint="@android:color/white"/>
 
         <ImageView
             android:id="@+id/notification_mute_button"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/call_notification_button_size"
-            android:layout_weight="1"
-            android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginEnd="@dimen/smaller_margin"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="@dimen/tiny_margin"
             android:contentDescription="@string/mute"
             android:background="@drawable/button_rounded"
-            android:backgroundTint="@color/primary"
-            android:padding="@dimen/small_margin"
-            android:src="@drawable/ic_microphone_vector"/>
+            android:backgroundTint="@color/call_button_mute"
+            android:padding="6dp"
+            android:src="@drawable/ic_microphone_vector"
+            android:tint="@android:color/white"/>
+
+        <ImageView
+            android:id="@+id/notification_decline_call_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="@dimen/tiny_margin"
+            android:contentDescription="@string/hang_up"
+            android:background="@drawable/button_rounded"
+            android:backgroundTint="@color/red_missed"
+            android:padding="6dp"
+            android:src="@drawable/ic_phone_down_vector"
+            android:tint="@android:color/white"/>
     </LinearLayout>
-</RelativeLayout>
+
+    <!-- Incoming call (Decline / Accept) -->
+    <LinearLayout
+        android:id="@+id/notification_actions_holder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/notification_decline_call"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="@dimen/tiny_margin"
+            android:contentDescription="@string/decline"
+            android:background="@drawable/button_rounded"
+            android:backgroundTint="@color/red_missed"
+            android:padding="6dp"
+            android:src="@drawable/ic_phone_down_vector"
+            android:tint="@android:color/white"/>
+
+        <ImageView
+            android:id="@+id/notification_accept_call"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="@dimen/tiny_margin"
+            android:contentDescription="@string/accept"
+            android:background="@drawable/button_rounded"
+            android:backgroundTint="@color/green_call"
+            android:padding="6dp"
+            android:src="@drawable/ic_phone_vector"
+            android:tint="@android:color/white"/>
+    </LinearLayout>
+</LinearLayout>

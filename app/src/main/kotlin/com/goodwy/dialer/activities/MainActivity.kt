@@ -81,6 +81,21 @@ class MainActivity : SimpleActivity() {
     private var storedContactShortcuts = ArrayList<Contact>()
     private var isSpeechToTextAvailable = false
 
+    // CallService posts RefreshCallLog as soon as the call is removed from the
+    // Telecom stack, but Android writes the call-log entry asynchronously a
+    // moment later. This observer fires when the call log actually changes, so
+    // the recents tab shows the new entry without the user having to wait.
+    private val callLogObserver = object : android.database.ContentObserver(
+        android.os.Handler(android.os.Looper.getMainLooper())
+    ) {
+        override fun onChange(selfChange: Boolean) {
+            super.onChange(selfChange)
+            if (isDestroyed || isFinishing) return
+            config.needUpdateRecents = true
+            getRecentsFragment()?.refreshItems(needUpdate = true)
+        }
+    }
+
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -173,6 +188,16 @@ class MainActivity : SimpleActivity() {
         if (CallManager.getPhoneState() == NoCall) {
             // If there are no calls, delete the call notification.
             CallNotificationManager(this).cancelNotification()
+        }
+
+        try {
+            contentResolver.registerContentObserver(
+                android.provider.CallLog.Calls.CONTENT_URI,
+                true,
+                callLogObserver
+            )
+        } catch (_: SecurityException) {
+            // Call-log permission not granted yet; nothing to observe.
         }
 
         if (storedShowTabs != config.showTabs || storedShowPhoneNumbers != config.showPhoneNumbers) {
@@ -276,6 +301,10 @@ class MainActivity : SimpleActivity() {
 
     override fun onPause() {
         super.onPause()
+        try {
+            contentResolver.unregisterContentObserver(callLogObserver)
+        } catch (_: Exception) {
+        }
         storeStateVariables()
         config.lastUsedViewPagerPage = binding.viewPager.currentItem
     }

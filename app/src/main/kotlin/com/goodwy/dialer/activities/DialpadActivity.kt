@@ -185,6 +185,7 @@ class DialpadActivity : SimpleActivity() {
         speedDialValues = config.getSpeedDialValues()
         initStyle()
         updateDialpadSize()
+        updateDialpadNumberFontSize()
         if (config.dialpadStyle == DIALPAD_GRID || config.dialpadStyle == DIALPAD_ORIGINAL) updateCallButtonSize()
         setupOptionsMenu()
         refreshMenuItems()
@@ -909,6 +910,29 @@ class DialpadActivity : SimpleActivity() {
         else -> binding.dialpadClearWrapper.root
     }
 
+    private fun updateDialpadNumberFontSize() {
+        val basePx = resources.getDimension(R.dimen.dialpad_text_size)
+        val scaled = basePx * (config.dialpadNumberFontSize / 100f)
+        binding.dialpadClearWrapper.apply {
+            listOf(dialpad1, dialpad2, dialpad3, dialpad4, dialpad5,
+                dialpad6, dialpad7, dialpad8, dialpad9, dialpad0, dialpadPlus).forEach {
+                it.setTextSize(TypedValue.COMPLEX_UNIT_PX, scaled)
+            }
+        }
+        binding.dialpadRectWrapper.apply {
+            listOf(dialpad1, dialpad2, dialpad3, dialpad4, dialpad5,
+                dialpad6, dialpad7, dialpad8, dialpad9, dialpad0, dialpadPlus).forEach {
+                it.setTextSize(TypedValue.COMPLEX_UNIT_PX, scaled)
+            }
+        }
+        binding.dialpadRoundWrapper.apply {
+            listOf(dialpad1Ios, dialpad2Ios, dialpad3Ios, dialpad4Ios, dialpad5Ios,
+                dialpad6Ios, dialpad7Ios, dialpad8Ios, dialpad9Ios, dialpad0Ios, dialpadPlusIos).forEach {
+                it.setTextSize(TypedValue.COMPLEX_UNIT_PX, scaled)
+            }
+        }
+    }
+
     private fun updateDialpadSize() {
         val size = config.dialpadSize
         val view = when (config.dialpadStyle) {
@@ -1152,34 +1176,50 @@ class DialpadActivity : SimpleActivity() {
 
         val text = if (config.formatPhoneNumbers) textFormat.removeNumberFormatting() else textFormat
 
-        val collator = Collator.getInstance(sysLocale())
-        val filtered = allContacts.filter { contact ->
-            val langPref = config.dialpadSecondaryLanguage ?: ""
-            val langLocale = Locale.getDefault().language
-            val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
-            val lang = if (isAutoLang) langLocale else langPref
+        val langPref = config.dialpadSecondaryLanguage ?: ""
+        val langLocale = Locale.getDefault().language
+        val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
+        val lang = if (isAutoLang) langLocale else langPref
 
+        val collator = Collator.getInstance(sysLocale())
+        val callCounts = HashMap<String, Int>()
+        allRecentCalls.forEach { call ->
+            val key = call.phoneNumber.normalizePhoneNumber()
+            if (key.isNotEmpty()) callCounts[key] = (callCounts[key] ?: 0) + 1
+        }
+        val filtered = allContacts.filter { contact ->
             val convertedName = DialpadT9.convertLettersToNumbers(
                 contact.name.normalizeString().uppercase(), lang)
-            val convertedNameWithoutSpaces = convertedName.filterNot { it.isWhitespace() }
+            val convertedNameDigitsOnly = convertedName.filter { it.isDigit() }
             val convertedNickname = DialpadT9.convertLettersToNumbers(
                 contact.nickname.normalizeString().uppercase(), lang)
+            val convertedNicknameDigitsOnly = convertedNickname.filter { it.isDigit() }
             val convertedCompany = DialpadT9.convertLettersToNumbers(
                 contact.organization.company.normalizeString().uppercase(), lang)
+            val convertedCompanyDigitsOnly = convertedCompany.filter { it.isDigit() }
             val convertedNameToDisplay = DialpadT9.convertLettersToNumbers(
                 contact.getNameToDisplay().normalizeString().uppercase(), lang)
-            val convertedNameToDisplayWithoutSpaces = convertedNameToDisplay.filterNot { it.isWhitespace() }
+            val convertedNameToDisplayDigitsOnly = convertedNameToDisplay.filter { it.isDigit() }
 
             contact.doesContainPhoneNumber(text, convertLetters = true, search = true)
                 || (convertedName.contains(text, true))
-                || (convertedNameWithoutSpaces.contains(text, true))
+                || (convertedNameDigitsOnly.contains(text, true))
                 || (convertedNameToDisplay.contains(text, true))
-                || (convertedNameToDisplayWithoutSpaces.contains(text, true))
+                || (convertedNameToDisplayDigitsOnly.contains(text, true))
                 || (convertedNickname.contains(text, true))
+                || (convertedNicknameDigitsOnly.contains(text, true))
                 || (convertedCompany.contains(text, true))
-        }.sortedWith(compareBy(collator) {
-            it.getNameToDisplay()
-        }).toMutableList() as ArrayList<Contact>
+                || (convertedCompanyDigitsOnly.contains(text, true))
+        }.sortedWith(
+            compareByDescending<Contact> { contact ->
+                contact.phoneNumbers.maxOfOrNull { callCounts[it.value.normalizePhoneNumber()] ?: 0 } ?: 0
+            }.thenByDescending {
+                DialpadT9.convertLettersToNumbers(
+                    it.getNameToDisplay().normalizeString().uppercase(), lang)
+                    .filter { c -> c.isDigit() }
+                    .startsWith(text)
+            }.thenBy(collator) { it.getNameToDisplay() }
+        ).toMutableList() as ArrayList<Contact>
 
 //        binding.letterFastscroller.setupWithContacts(binding.dialpadList, filtered)
 

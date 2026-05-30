@@ -47,7 +47,10 @@ class CallService : InCallService() {
         // Outgoing (unlocked): low priority ➜ manual activity start
         val isOutgoing = call.isOutgoing()
         val isIncoming = !isOutgoing
-        val isDeviceLocked = !powerManager.isInteractive //|| keyguardManager.isDeviceLocked
+        // Use both checks so a phone that is locked but with the screen on (e.g. user
+        // tapped power to look at the lock screen) still counts as locked and gets
+        // the high-priority/FSI treatment.
+        val isDeviceLocked = !powerManager.isInteractive || keyguardManager.isDeviceLocked
         val lowPriority = when {
             isDeviceLocked -> false // High priority on locked screen
             isIncoming && !isDeviceLocked -> config.showIncomingCallsFullScreen
