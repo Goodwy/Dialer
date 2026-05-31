@@ -84,4 +84,9 @@
     <string name="call_notification_channel">Opkaldsstatus</string>
     <string name="call_notification_channel_high_priority">Opkaldsstatus (høj prioritet)</string>
     <string name="calling_accounts">Opkaldskonti</string>
+    <string name="send_whatsapp">Send WhatsApp</string>
+    <string name="hang_up">Læg på</string>
+    <string name="dialpad_number_font_size">Skriftstørrelse for tal</string>
+    <string name="create_new_contact">Opret ny kontakt</string>
+    <string name="add_to_existing_contact">Føj til eksisterende kontakt</string>
 </resources>

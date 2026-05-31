@@ -77,4 +77,9 @@
     <string name="faq_2_text">Debido a restricións do sistema, as chamadas de emerxencia só se poden facer usando o marcador propio ou app do teléfono. Para asegurar que as chamadas de emerxencia funcionan correctamente tes que manter a app do sistema activada.</string>
     <string name="faq_3_title">Por que faltan algúns dos meus contactos na app?</string>
     <string name="faq_3_text">Fossify Phone só mostra os contactos que teñen un número de teléfono asociado a eles. Os contactos sen número de teléfono non se mostran.</string>
+    <string name="send_whatsapp">Enviar WhatsApp</string>
+    <string name="hang_up">Colgar</string>
+    <string name="dialpad_number_font_size">Tamaño da letra dos números</string>
+    <string name="create_new_contact">Crear un contacto novo</string>
+    <string name="add_to_existing_contact">Engadir a un contacto existente</string>
 </resources>

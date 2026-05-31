@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>    <string name="send_whatsapp">Anfon WhatsApp</string>
+    <string name="hang_up">Rhoi\'r ffôn i lawr</string>
+    <string name="dialpad_number_font_size">Maint ffont y rhifau</string>
+    <string name="create_new_contact">Creu cyswllt newydd</string>
+    <string name="add_to_existing_contact">Ychwanegu at gyswllt presennol</string>
+</resources>

@@ -77,4 +77,9 @@
     <string name="call_notification_channel">Kõne olek</string>
     <string name="call_notification_channel_high_priority">Kõne olek (ülioluline)</string>
     <string name="calling_accounts">Kõnekontod</string>
+    <string name="send_whatsapp">Saada WhatsApp</string>
+    <string name="hang_up">Lõpeta kõne</string>
+    <string name="dialpad_number_font_size">Numbrite fondi suurus</string>
+    <string name="create_new_contact">Loo uus kontakt</string>
+    <string name="add_to_existing_contact">Lisa olemasolevale kontaktile</string>
 </resources>

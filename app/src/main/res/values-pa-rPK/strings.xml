@@ -9,4 +9,9 @@
     <string name="hashtag">ہیش‌ٹیگ</string>
     <string name="call_number">کال دا نمبر</string>
     <string name="dialer">فون دائک</string>
+    <string name="send_whatsapp">WhatsApp بھیجو</string>
+    <string name="hang_up">کال ختم کرو</string>
+    <string name="dialpad_number_font_size">نمبر فونٹ سائز</string>
+    <string name="create_new_contact">نواں رابطہ بناؤ</string>
+    <string name="add_to_existing_contact">موجودہ رابطے وچ شامل کرو</string>
 </resources>

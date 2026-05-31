@@ -77,4 +77,9 @@
     <string name="call_notification_channel">Estat de la trucada</string>
     <string name="call_notification_channel_high_priority">Estat de la trucada (alta prioritat)</string>
     <string name="calling_accounts">Comptes de trucades</string>
+    <string name="send_whatsapp">Envia WhatsApp</string>
+    <string name="hang_up">Penja</string>
+    <string name="dialpad_number_font_size">Mida de la lletra dels números</string>
+    <string name="create_new_contact">Crea un contacte nou</string>
+    <string name="add_to_existing_contact">Afegeix a un contacte existent</string>
 </resources>

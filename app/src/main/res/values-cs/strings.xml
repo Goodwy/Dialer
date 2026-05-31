@@ -77,4 +77,9 @@
     <string name="call_notification_channel">Stav hovoru</string>
     <string name="call_notification_channel_high_priority">Stav hovoru (vysoká priorita)</string>
     <string name="calling_accounts">Účty volání</string>
+    <string name="send_whatsapp">Odeslat WhatsApp</string>
+    <string name="hang_up">Zavěsit</string>
+    <string name="dialpad_number_font_size">Velikost písma číslic</string>
+    <string name="create_new_contact">Vytvořit nový kontakt</string>
+    <string name="add_to_existing_contact">Přidat k existujícímu kontaktu</string>
 </resources>

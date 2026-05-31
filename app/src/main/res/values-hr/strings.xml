@@ -77,4 +77,9 @@
     <string name="call_notification_channel">Status poziva</string>
     <string name="call_notification_channel_high_priority">Status poziva (visoki prioritet)</string>
     <string name="calling_accounts">Računi pozivanja</string>
+    <string name="send_whatsapp">Pošalji WhatsApp</string>
+    <string name="hang_up">Prekini poziv</string>
+    <string name="dialpad_number_font_size">Veličina fonta brojeva</string>
+    <string name="create_new_contact">Stvori novi kontakt</string>
+    <string name="add_to_existing_contact">Dodaj u postojeći kontakt</string>
 </resources>

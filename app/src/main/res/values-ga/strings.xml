@@ -77,4 +77,9 @@
     <string name="call_notification_channel">Stádas glaonna</string>
     <string name="call_notification_channel_high_priority">Stádas glao (tosaíocht ard)</string>
     <string name="calling_accounts">Cuntais ghlaonna</string>
+    <string name="send_whatsapp">Seol WhatsApp</string>
+    <string name="hang_up">Croch suas</string>
+    <string name="dialpad_number_font_size">Clómhéid na n-uimhreacha</string>
+    <string name="create_new_contact">Cruthaigh teagmháil nua</string>
+    <string name="add_to_existing_contact">Cuir le teagmháil atá ann</string>
 </resources>

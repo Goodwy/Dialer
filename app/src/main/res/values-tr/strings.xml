@@ -77,4 +77,9 @@
     <string name="call_notification_channel">Arama durumu</string>
     <string name="call_notification_channel_high_priority">Arama durumu (yüksek öncelik)</string>
     <string name="calling_accounts">Arama hesapları</string>
+    <string name="send_whatsapp">WhatsApp gönder</string>
+    <string name="hang_up">Kapat</string>
+    <string name="dialpad_number_font_size">Rakam yazı tipi boyutu</string>
+    <string name="create_new_contact">Yeni kişi oluştur</string>
+    <string name="add_to_existing_contact">Mevcut kişiye ekle</string>
 </resources>

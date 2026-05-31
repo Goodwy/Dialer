@@ -77,4 +77,9 @@
     <string name="call_notification_channel_high_priority">Statut d\'appel (haute priorité)</string>
     <string name="call_notification_channel">Statut d\'appel</string>
     <string name="calling_accounts">Comptes d\'appel</string>
+    <string name="send_whatsapp">Envoyer WhatsApp</string>
+    <string name="hang_up">Raccrocher</string>
+    <string name="dialpad_number_font_size">Taille de police des chiffres</string>
+    <string name="create_new_contact">Créer un nouveau contact</string>
+    <string name="add_to_existing_contact">Ajouter à un contact existant</string>
 </resources>
