@@ -142,6 +142,18 @@ fun Activity.startAddContactIntent(phoneNumber: String) {
     }
 }
 
+// Opens a blank new-contact form with the number pre-filled. ACTION_INSERT always
+// creates a new contact, unlike ACTION_INSERT_OR_EDIT which some OEM contacts apps
+// (e.g. Samsung) treat as add-to-existing only.
+fun Activity.startCreateNewContactIntent(phoneNumber: String) {
+    Intent().apply {
+        action = Intent.ACTION_INSERT
+        type = android.provider.ContactsContract.Contacts.CONTENT_TYPE
+        putExtra(android.provider.ContactsContract.Intents.Insert.PHONE, phoneNumber)
+        launchActivityIntent(this)
+    }
+}
+
 //Goodwy
 fun Context.updateUnreadCountBadge(count: Int) {
     if (count == 0) {

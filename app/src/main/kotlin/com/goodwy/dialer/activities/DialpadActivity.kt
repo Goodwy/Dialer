@@ -26,6 +26,8 @@ import com.behaviorule.arturdumchev.library.setHeight
 import com.goodwy.commons.dialogs.CallConfirmationDialog
 import com.goodwy.commons.dialogs.ConfirmationAdvancedDialog
 import com.goodwy.commons.dialogs.ConfirmationDialog
+import com.goodwy.commons.dialogs.RadioGroupDialog
+import com.goodwy.commons.models.RadioItem
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.contacts.Contact
@@ -1055,7 +1057,19 @@ class DialpadActivity : SimpleActivity() {
     }
 
     private fun addNumberToContact() {
-        startAddContactIntent(binding.dialpadInput.value)
+        val number = binding.dialpadInput.value
+        val createNew = 0
+        val addExisting = 1
+        val items = arrayListOf(
+            RadioItem(createNew, getString(R.string.create_new_contact)),
+            RadioItem(addExisting, getString(R.string.add_to_existing_contact))
+        )
+        RadioGroupDialog(this, items) {
+            when (it as Int) {
+                createNew -> startCreateNewContactIntent(number)
+                addExisting -> startAddContactIntent(number)
+            }
+        }
     }
 
     private fun dialpadPressed(char: Char, view: View?) {
