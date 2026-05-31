@@ -44,10 +44,11 @@ class CallNotificationManager(private val context: Context) {
     fun setupNotification(lowPriority: Boolean = false) {
         isServiceActive = true
         try {
-            // Use CallStyle (Android 12+) only for ringing; the custom RemoteView
-            // path keeps ongoing-call action buttons readable on OEMs like Samsung.
-            val isRinging = CallManager.getState() == Call.STATE_RINGING
-            if (isSPlus() && isRinging) {
+            // Use CallStyle on Android 12+ for both ringing and ongoing calls. It renders
+            // the contact avatar as the large left icon with the app icon badged (the
+            // WhatsApp look) and themes the primary buttons natively. The custom RemoteView
+            // path is kept only for Android 11 and below.
+            if (isSPlus()) {
                 setupNotificationNew(lowPriority)
             } else {
                 setupNotificationOld(lowPriority)
