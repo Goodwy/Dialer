@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Single-row notification layout modelled after the Samsung stock dialer
-    notification: avatar on the left, caller info column in the middle, and a
-    cluster of small round icon buttons on the right. Stays compact enough to
-    render fully in the collapsed shade so the user can tap Hang up / Speaker /
-    Mute without expanding.
+    Single-row notification layout. The contact avatar is shown by the system as
+    the notification large icon (WhatsApp style, with the app icon badged), so
+    this view only holds the caller info column and the action buttons. Stays
+    compact enough to render fully in the collapsed shade so the user can tap
+    Hang up / Speaker / Mute without expanding.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,23 +13,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:padding="@dimen/small_margin"
+    android:paddingVertical="@dimen/small_margin"
     android:gravity="center_vertical"
     tools:background="#222">
-
-    <ImageView
-        android:id="@+id/notification_thumbnail"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:contentDescription="@null"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_person_vector"/>
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginStart="@dimen/tiny_margin"
         android:layout_marginEnd="@dimen/tiny_margin"
         android:orientation="vertical">
 

@@ -131,7 +131,25 @@ class CallNotificationManager(private val context: Context) {
             val isSpeakerOn = CallManager.getCallAudioRoute() == AudioRoute.SPEAKER
             val connectTime = CallManager.getCallConnectTime()
             val showChronometer = callState == Call.STATE_ACTIVE && connectTime > 0
-            val avatarBitmap = callContactAvatar?.let { callContactAvatarHelper.getCircularBitmap(it) }
+
+            // Build the large icon shown on the left of the notification, WhatsApp style:
+            // the contact photo when available, otherwise a colored letter/company icon.
+            // The system badges the small phone icon onto it automatically.
+            val largeIcon: Icon? = try {
+                if (callContactAvatar != null) {
+                    Icon.createWithBitmap(callContactAvatarHelper.getCircularBitmap(callContactAvatar))
+                } else {
+                    val contactName = callContact.name.ifEmpty { context.getString(R.string.unknown_caller) }
+                    val image = when {
+                        callContact.number == callContact.name -> SimpleContactsHelper(context).getColoredContactIcon(contactName).convertToBitmap()
+                        callContact.isABusinessCall -> SimpleContactsHelper(context).getColoredCompanyIcon(contactName).convertToBitmap()
+                        else -> SimpleContactsHelper(context).getContactLetterIcon(contactName)
+                    }
+                    Icon.createWithBitmap(image)
+                }
+            } catch (_: Exception) {
+                null
+            }
 
             val collapsedView = RemoteViews(context.packageName, R.layout.call_notification).apply {
                 // Caller info on the left of the row.
@@ -146,9 +164,6 @@ class CallNotificationManager(private val context: Context) {
                     setViewVisibility(R.id.notification_chronometer, android.view.View.GONE)
                     setViewVisibility(R.id.notification_call_status, VISIBLE)
                     setTextViewText(R.id.notification_call_status, context.getString(contentTextId))
-                }
-                if (avatarBitmap != null) {
-                    setImageViewBitmap(R.id.notification_thumbnail, avatarBitmap)
                 }
 
                 // Incoming call (accept/reject)
@@ -181,6 +196,7 @@ class CallNotificationManager(private val context: Context) {
 
             val builder = Notification.Builder(context, channelId)
                 .setSmallIcon(R.drawable.ic_phone_vector)
+                .setLargeIcon(largeIcon)
                 .setContentIntent(openAppPendingIntent)
                 .setCategory(Notification.CATEGORY_CALL)
                 .setCustomContentView(collapsedView)
