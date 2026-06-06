@@ -26,8 +26,6 @@ import com.behaviorule.arturdumchev.library.setHeight
 import com.goodwy.commons.dialogs.CallConfirmationDialog
 import com.goodwy.commons.dialogs.ConfirmationAdvancedDialog
 import com.goodwy.commons.dialogs.ConfirmationDialog
-import com.goodwy.commons.dialogs.RadioGroupDialog
-import com.goodwy.commons.models.RadioItem
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.*
 import com.goodwy.commons.models.contacts.Contact
@@ -915,24 +913,7 @@ class DialpadActivity : SimpleActivity() {
     private fun updateDialpadNumberFontSize() {
         val basePx = resources.getDimension(R.dimen.dialpad_text_size)
         val scaled = basePx * (config.dialpadNumberFontSize / 100f)
-        binding.dialpadClearWrapper.apply {
-            listOf(dialpad1, dialpad2, dialpad3, dialpad4, dialpad5,
-                dialpad6, dialpad7, dialpad8, dialpad9, dialpad0, dialpadPlus).forEach {
-                it.setTextSize(TypedValue.COMPLEX_UNIT_PX, scaled)
-            }
-        }
-        binding.dialpadRectWrapper.apply {
-            listOf(dialpad1, dialpad2, dialpad3, dialpad4, dialpad5,
-                dialpad6, dialpad7, dialpad8, dialpad9, dialpad0, dialpadPlus).forEach {
-                it.setTextSize(TypedValue.COMPLEX_UNIT_PX, scaled)
-            }
-        }
-        binding.dialpadRoundWrapper.apply {
-            listOf(dialpad1Ios, dialpad2Ios, dialpad3Ios, dialpad4Ios, dialpad5Ios,
-                dialpad6Ios, dialpad7Ios, dialpad8Ios, dialpad9Ios, dialpad0Ios, dialpadPlusIos).forEach {
-                it.setTextSize(TypedValue.COMPLEX_UNIT_PX, scaled)
-            }
-        }
+        applyDialpadNumberFontSize(binding.dialpadClearWrapper, binding.dialpadRectWrapper, binding.dialpadRoundWrapper, scaled)
     }
 
     private fun updateDialpadSize() {
@@ -1057,19 +1038,7 @@ class DialpadActivity : SimpleActivity() {
     }
 
     private fun addNumberToContact() {
-        val number = binding.dialpadInput.value
-        val createNew = 0
-        val addExisting = 1
-        val items = arrayListOf(
-            RadioItem(createNew, getString(R.string.create_new_contact)),
-            RadioItem(addExisting, getString(R.string.add_to_existing_contact))
-        )
-        RadioGroupDialog(this, items) {
-            when (it as Int) {
-                createNew -> startCreateNewContactIntent(number)
-                addExisting -> startAddContactIntent(number)
-            }
-        }
+        startAddNumberToContact(binding.dialpadInput.value)
     }
 
     private fun dialpadPressed(char: Char, view: View?) {
@@ -1654,7 +1623,7 @@ class DialpadActivity : SimpleActivity() {
                     if (contact != null) {
                         startContactDetailsIntent(contact)
                     } else {
-                        startAddContactIntent(recentCall.phoneNumber)
+                        startAddNumberToContact(recentCall.phoneNumber)
                     }
                 }
             )

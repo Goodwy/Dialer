@@ -52,7 +52,7 @@ import com.goodwy.dialer.extensions.launchSendSMSIntentRecommendation
 import com.goodwy.dialer.extensions.launchSendWhatsAppIntent
 import com.goodwy.dialer.extensions.numberForNotes
 import com.goodwy.dialer.extensions.runAfterAnimations
-import com.goodwy.dialer.extensions.startAddContactIntent
+import com.goodwy.dialer.extensions.startAddNumberToContact
 import com.goodwy.dialer.extensions.startContactDetailsIntent
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL_LIST
@@ -470,7 +470,7 @@ class RecentsFragment(
                         if (contact != null) {
                             activity?.startContactDetailsIntent(contact)
                         } else {
-                            activity?.startAddContactIntent(recentCall.phoneNumber)
+                            activity?.startAddNumberToContact(recentCall.phoneNumber)
                         }
                     }
                 )

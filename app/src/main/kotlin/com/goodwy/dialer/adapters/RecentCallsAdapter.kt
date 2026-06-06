@@ -85,7 +85,7 @@ import com.goodwy.dialer.extensions.getDayCode
 import com.goodwy.dialer.extensions.launchSendSMSIntentRecommendation
 import com.goodwy.dialer.extensions.launchSendWhatsAppIntent
 import com.goodwy.dialer.extensions.setWidth
-import com.goodwy.dialer.extensions.startAddContactIntent
+import com.goodwy.dialer.extensions.startAddNumberToContact
 import com.goodwy.dialer.extensions.startCallWithConfirmationCheck
 import com.goodwy.dialer.extensions.startContactDetailsIntentRecommendation
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL
@@ -412,7 +412,7 @@ class RecentCallsAdapter(
     private fun addNumberToContact() {
         val phoneNumber = getSelectedPhoneNumber() ?: return
         val formatPhoneNumber = if (activity.config.formatPhoneNumbers) phoneNumber.formatPhoneNumber() else phoneNumber
-        activity.startAddContactIntent(formatPhoneNumber)
+        activity.startAddNumberToContact(formatPhoneNumber)
     }
 
     private fun sendSMS() {

@@ -19,7 +19,6 @@ import com.goodwy.commons.helpers.isSPlus
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.CallActivity
 import com.goodwy.dialer.extensions.audioManager
-import com.goodwy.dialer.extensions.getCountryByNumber
 import com.goodwy.dialer.models.AudioRoute
 import com.goodwy.dialer.receivers.CallActionReceiver
 
@@ -115,14 +114,7 @@ class CallNotificationManager(private val context: Context) {
                 PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_MUTABLE
             )
 
-            var callerName = callContact.name.ifEmpty { context.getString(R.string.unknown_caller) }
-            if (callContact.numberLabel.isNotEmpty()) {
-                callerName += " - ${callContact.numberLabel}"
-            }
-
-            val callerNumberType = if (callContact.name == callContact.number) {
-                callContact.number.getCountryByNumber()
-            } else callContact.numberLabel
+            val callerName = callContact.name.ifEmpty { context.getString(R.string.unknown_caller) }
 
             val contentTextId = when (callState) {
                 Call.STATE_RINGING -> R.string.is_calling
@@ -156,10 +148,13 @@ class CallNotificationManager(private val context: Context) {
                 null
             }
 
+            // Badge the app icon onto the avatar's bottom-right corner (WhatsApp / CallStyle look).
+            val badgedAvatar = avatarBitmap?.let { callContactAvatarHelper.getBadgedAvatar(it) }
+
             val collapsedView = RemoteViews(context.packageName, R.layout.call_notification).apply {
-                // Contact avatar on the left of the row.
-                if (avatarBitmap != null) {
-                    setImageViewBitmap(R.id.notification_thumbnail, avatarBitmap)
+                // Contact avatar (with app-icon badge) on the left of the row.
+                if (badgedAvatar != null) {
+                    setImageViewBitmap(R.id.notification_thumbnail, badgedAvatar)
                 }
                 setTextViewText(R.id.notification_caller_name, callerName)
                 if (showChronometer) {
@@ -183,9 +178,14 @@ class CallNotificationManager(private val context: Context) {
                 setVisibleIf(R.id.notification_actions_call_holder, callState != Call.STATE_RINGING)
                 setOnClickPendingIntent(R.id.notification_decline_call_button, declinePendingIntent)
 
+                // Neutral grey when off, accent when toggled on (Samsung-style).
                 val speakerIcon =
                     if (isSpeakerOn) R.drawable.ic_volume_up_vector else R.drawable.ic_volume_down_vector
                 setImageViewResource(R.id.notification_speaker_button, speakerIcon)
+                setInt(
+                    R.id.notification_speaker_button, "setBackgroundResource",
+                    if (isSpeakerOn) R.drawable.bg_notification_btn_active else R.drawable.bg_notification_btn_inactive
+                )
                 val speakerDescription =
                     if (isSpeakerOn) context.getString(R.string.turn_speaker_off)
                     else context.getString(R.string.turn_speaker_on)
@@ -195,6 +195,10 @@ class CallNotificationManager(private val context: Context) {
                 val microphoneIcon =
                     if (isMicrophoneMute) R.drawable.ic_microphone_off_vector else R.drawable.ic_microphone_vector
                 setImageViewResource(R.id.notification_mute_button, microphoneIcon)
+                setInt(
+                    R.id.notification_mute_button, "setBackgroundResource",
+                    if (isMicrophoneMute) R.drawable.bg_notification_btn_active else R.drawable.bg_notification_btn_inactive
+                )
                 val microphoneDescription =
                     if (isMicrophoneMute) context.getString(R.string.unmute)
                     else context.getString(R.string.mute)

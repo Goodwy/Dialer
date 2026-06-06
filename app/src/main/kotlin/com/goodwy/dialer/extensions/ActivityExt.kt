@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.provider.ContactsContract
+import android.util.TypedValue
 import android.view.View
 import androidx.appcompat.content.res.AppCompatResources
 import com.goodwy.commons.dialogs.NewAppDialog
@@ -29,6 +30,9 @@ import com.goodwy.commons.models.contacts.Contact
 import com.goodwy.dialer.BuildConfig
 import com.goodwy.dialer.R
 import com.goodwy.dialer.activities.SimpleActivity
+import com.goodwy.dialer.databinding.DialpadGridBinding
+import com.goodwy.dialer.databinding.DialpadRectangleBinding
+import com.goodwy.dialer.databinding.DialpadRoundBinding
 
 fun SimpleActivity.launchCreateNewContactIntent() {
     Intent().apply {
@@ -238,6 +242,34 @@ fun Activity.startContactDetailsIntentRecommendation(contact: Contact) {
         }
     } else {
         startContactDetailsIntent(contact)
+    }
+}
+
+// Applies the configured dialpad-number font size to every digit/plus key across the three
+// dialpad styles. Shared by DialpadActivity and SettingsDialpadActivity.
+fun applyDialpadNumberFontSize(
+    clearWrapper: DialpadGridBinding,
+    rectWrapper: DialpadRectangleBinding,
+    roundWrapper: DialpadRoundBinding,
+    scaledPx: Float,
+) {
+    clearWrapper.apply {
+        listOf(dialpad1, dialpad2, dialpad3, dialpad4, dialpad5,
+            dialpad6, dialpad7, dialpad8, dialpad9, dialpad0, dialpadPlus).forEach {
+            it.setTextSize(TypedValue.COMPLEX_UNIT_PX, scaledPx)
+        }
+    }
+    rectWrapper.apply {
+        listOf(dialpad1, dialpad2, dialpad3, dialpad4, dialpad5,
+            dialpad6, dialpad7, dialpad8, dialpad9, dialpad0, dialpadPlus).forEach {
+            it.setTextSize(TypedValue.COMPLEX_UNIT_PX, scaledPx)
+        }
+    }
+    roundWrapper.apply {
+        listOf(dialpad1Ios, dialpad2Ios, dialpad3Ios, dialpad4Ios, dialpad5Ios,
+            dialpad6Ios, dialpad7Ios, dialpad8Ios, dialpad9Ios, dialpad0Ios, dialpadPlusIos).forEach {
+            it.setTextSize(TypedValue.COMPLEX_UNIT_PX, scaledPx)
+        }
     }
 }
 

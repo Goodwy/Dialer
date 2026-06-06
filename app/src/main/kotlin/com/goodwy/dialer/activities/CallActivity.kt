@@ -961,6 +961,20 @@ class CallActivity : SimpleActivity() {
         }
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        // The picker requests BLUETOOTH_CONNECT lazily the first time it is opened with a
+        // Bluetooth device present. Device names only become readable once it is granted,
+        // so rebuild and re-open the picker here instead of waiting for a second open.
+        if (requestCode == BT_CONNECT_REQUEST_CODE &&
+            grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED) {
+            val supportedAudioRoutes = CallManager.getSupportedAudioRoutes()
+            if (supportedAudioRoutes.size > 2) {
+                createOrUpdateAudioRouteChooser(supportedAudioRoutes, create = true)
+            }
+        }
+    }
+
     private fun updateCallAudioState(route: AudioRoute?, changeProximitySensor: Boolean = true) {
         if (route != null) {
             //If enabled, one of the users (OnePlus 13r, Oxygen 16OS) has his microphone turned off at the start of a call??
@@ -1130,12 +1144,7 @@ class CallActivity : SimpleActivity() {
     private fun addContact() {
         val number = callContact?.number?.ifEmpty { "" } ?: ""
         val formatNumber = if (config.formatPhoneNumbers) number.formatPhoneNumber() else number
-        Intent().apply {
-            action = Intent.ACTION_INSERT_OR_EDIT
-            type = "vnd.android.cursor.item/contact"
-            putExtra(KEY_PHONE, formatNumber)
-            launchActivityIntent(this)
-        }
+        startAddNumberToContact(formatNumber)
     }
 
     @Suppress("DEPRECATION")
@@ -1465,6 +1474,8 @@ class CallActivity : SimpleActivity() {
         } else if (phoneState is TwoCalls) {
             updateCallState(phoneState.active)
             updateCallOnHoldState(phoneState.onHold, phoneState.active)
+            // Keep the screen on while a 2nd call is ringing (call waiting).
+            if (phoneState.active.getStateCompat() == Call.STATE_RINGING) changeProximitySensor = false
         }
 
         runOnUiThread {
@@ -1475,54 +1486,31 @@ class CallActivity : SimpleActivity() {
 
     private fun updateCallOnHoldState(call: Call?, callActive: Call? = null) {
         val hasCallOnHold = call != null
+        // Call waiting: the primary/active call is actually a 2nd call that is still ringing.
+        // The standard incoming UI (shown via callRinging) already presents the NEW caller with
+        // the configured answer style, so here we only surface the "answer & end other call"
+        // shortcut and keep the original call in the on-hold banner.
+        val isCallWaiting = hasCallOnHold && callActive?.getStateCompat() == Call.STATE_RINGING
+
         if (hasCallOnHold) {
             getCallContact(applicationContext, call) { contact ->
                 runOnUiThread {
                     binding.onHoldCallerName.text = getContactNameOrNumber(contact)
                 }
             }
+        }
 
-            // A second call has been received but not yet accepted
-            if (call.getStateCompat() == Call.REJECT_REASON_UNWANTED) {
-                binding.apply {
-                    ongoingCallHolder.beGone()
-                    incomingCallHolder.beVisible()
-                    callStatusLabel.text = getString(R.string.is_calling)
-                    RxAnimation.from(binding.callStatusLabel)
-                        .shake()
-                        .subscribe()
-
-                    arrayOf(
-                        callDraggable, callDraggableBackground, callDraggableVertical,
-                        callLeftArrow, callRightArrow,
-                        callUpArrow, callDownArrow
-                    ).forEach {
-                        it.beGone()
-                    }
-
-
-                    callDecline.beVisible()
-                    callDecline.setOnClickListener {
-                        endCall()
-                    }
-
-                    callAccept.beVisible()
-                    callAccept.setOnClickListener {
-                        acceptCall()
-                    }
-
-                    callAcceptAndDecline.apply {
-                        beVisible()
-                        setText(R.string.answer_end_other_call)
-                        setOnClickListener {
-                            acceptCall()
-                            callActive?.disconnect()
-                        }
-                    }
+        if (isCallWaiting) {
+            binding.callAcceptAndDecline.apply {
+                beVisible()
+                setText(R.string.answer_end_other_call)
+                setOnClickListener {
+                    acceptCall()
+                    call?.disconnect()
                 }
             }
-        } else {
-            if (config.callBlockButton) binding.callAcceptAndDecline.apply {
+        } else if (!hasCallOnHold && config.callBlockButton) {
+            binding.callAcceptAndDecline.apply {
                 beVisible()
                 setText(R.string.block_number)
                 setOnClickListener {
@@ -1544,7 +1532,9 @@ class CallActivity : SimpleActivity() {
         binding.apply {
             onHoldStatusHolder.beVisibleIf(hasCallOnHold)
             controlsSingleCall.beVisibleIf(!hasCallOnHold && dialpadWrapper.isGone())
-            controlsTwoCalls.beVisibleIf(hasCallOnHold && dialpadWrapper.isGone())
+            // While a 2nd call is ringing the incoming UI is shown, so keep the two-call
+            // controls hidden until that waiting call is actually answered.
+            controlsTwoCalls.beVisibleIf(hasCallOnHold && !isCallWaiting && dialpadWrapper.isGone())
         }
     }
 
@@ -1620,6 +1610,9 @@ class CallActivity : SimpleActivity() {
 
     private fun callRinging() {
         binding.incomingCallHolder.beVisible()
+        // Hide the in-call controls so a 2nd (waiting) call fully takes over with the
+        // incoming UI; for a first incoming call the ongoing holder is already hidden.
+        binding.ongoingCallHolder.beGone()
     }
 
     private fun callStarted() {

@@ -20,8 +20,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.goodwy.commons.dialogs.RadioGroupDialog
 import com.goodwy.commons.extensions.launchActivityIntent
 import com.goodwy.commons.helpers.KEY_PHONE
+import com.goodwy.commons.models.RadioItem
 import com.goodwy.dialer.R
 import com.goodwy.dialer.models.SIMAccount
 import com.goodwy.dialer.BuildConfig
@@ -151,6 +153,24 @@ fun Activity.startCreateNewContactIntent(phoneNumber: String) {
         type = android.provider.ContactsContract.Contacts.CONTENT_TYPE
         putExtra(android.provider.ContactsContract.Intents.Insert.PHONE, phoneNumber)
         launchActivityIntent(this)
+    }
+}
+
+// Single entry point for "add unsaved number to contacts": lets the user choose
+// between creating a new contact and adding to an existing one, so every add-contact
+// button behaves the same (and works on OEMs that otherwise force add-to-existing).
+fun Activity.startAddNumberToContact(phoneNumber: String) {
+    val createNew = 0
+    val addExisting = 1
+    val items = arrayListOf(
+        RadioItem(createNew, getString(R.string.create_new_contact)),
+        RadioItem(addExisting, getString(R.string.add_to_existing_contact))
+    )
+    RadioGroupDialog(this, items) {
+        when (it as Int) {
+            createNew -> startCreateNewContactIntent(phoneNumber)
+            addExisting -> startAddContactIntent(phoneNumber)
+        }
     }
 }
 
