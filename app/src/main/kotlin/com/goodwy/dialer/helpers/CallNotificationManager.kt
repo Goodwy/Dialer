@@ -9,6 +9,8 @@ import android.app.PendingIntent
 import android.app.Person
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
+import android.graphics.Color
 import android.graphics.drawable.Icon
 import android.telecom.Call
 import android.view.View.VISIBLE
@@ -129,10 +131,9 @@ class CallNotificationManager(private val context: Context) {
             val connectTime = CallManager.getCallConnectTime()
             val showChronometer = callState == Call.STATE_ACTIVE && connectTime > 0
 
-            // Build the avatar shown on the left of the notification row, WhatsApp style:
-            // the contact photo when available, otherwise a colored letter/company icon.
-            // Drawn inside the custom view (not via setLargeIcon, which the system would
-            // push to the right of a custom-content notification).
+            // The avatar is shown as the system LARGE ICON so the collapsed notification is
+            // fully system-rendered (readable in any theme, a single icon with the app badge),
+            // WhatsApp style. Fall back to a colored letter/company icon when there is no photo.
             val avatarBitmap: android.graphics.Bitmap? = try {
                 if (callContactAvatar != null) {
                     callContactAvatarHelper.getCircularBitmap(callContactAvatar)
@@ -147,16 +148,28 @@ class CallNotificationManager(private val context: Context) {
             } catch (_: Exception) {
                 null
             }
-
             // Badge the app icon onto the avatar's bottom-right corner (WhatsApp / CallStyle look).
             val badgedAvatar = avatarBitmap?.let { callContactAvatarHelper.getBadgedAvatar(it) }
 
-            val collapsedView = RemoteViews(context.packageName, R.layout.call_notification).apply {
-                // Contact avatar (with app-icon badge) on the left of the row.
+            val statusText = context.getString(contentTextId)
+
+            // A custom RemoteView does not reliably inherit the notification-shade theme, so set
+            // the expanded-view text colors explicitly from the system dark/light mode.
+            val isNightMode = (context.resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+            val primaryTextColor = if (isNightMode) Color.WHITE else Color.parseColor("#DD000000")
+            val secondaryTextColor = if (isNightMode) Color.parseColor("#B3FFFFFF") else Color.parseColor("#8A000000")
+
+            // Expanded ("big") view only: the caller line plus the three action buttons. The
+            // collapsed view is the standard system template built from the fields below.
+            val bigView = RemoteViews(context.packageName, R.layout.call_notification).apply {
                 if (badgedAvatar != null) {
                     setImageViewBitmap(R.id.notification_thumbnail, badgedAvatar)
                 }
                 setTextViewText(R.id.notification_caller_name, callerName)
+                setTextColor(R.id.notification_caller_name, primaryTextColor)
+                setTextColor(R.id.notification_call_status, secondaryTextColor)
+                setTextColor(R.id.notification_chronometer, secondaryTextColor)
                 if (showChronometer) {
                     setViewVisibility(R.id.notification_chronometer, VISIBLE)
                     setViewVisibility(R.id.notification_call_status, android.view.View.GONE)
@@ -166,26 +179,21 @@ class CallNotificationManager(private val context: Context) {
                 } else {
                     setViewVisibility(R.id.notification_chronometer, android.view.View.GONE)
                     setViewVisibility(R.id.notification_call_status, VISIBLE)
-                    setTextViewText(R.id.notification_call_status, context.getString(contentTextId))
+                    setTextViewText(R.id.notification_call_status, statusText)
                 }
 
-                // Incoming call (accept/reject)
+                // Incoming call (pre-Android-12 fallback): accept/reject
                 setVisibleIf(R.id.notification_actions_holder, callState == Call.STATE_RINGING)
                 setOnClickPendingIntent(R.id.notification_decline_call, declinePendingIntent)
                 setOnClickPendingIntent(R.id.notification_accept_call, acceptPendingIntent)
 
-                // Active call (microphone/speaker)
+                // Ongoing call: speaker / mute / hang up
                 setVisibleIf(R.id.notification_actions_call_holder, callState != Call.STATE_RINGING)
                 setOnClickPendingIntent(R.id.notification_decline_call_button, declinePendingIntent)
 
-                // Neutral grey when off, accent when toggled on (Samsung-style).
                 val speakerIcon =
                     if (isSpeakerOn) R.drawable.ic_volume_up_vector else R.drawable.ic_volume_down_vector
                 setImageViewResource(R.id.notification_speaker_button, speakerIcon)
-                setInt(
-                    R.id.notification_speaker_button, "setBackgroundResource",
-                    if (isSpeakerOn) R.drawable.bg_notification_btn_active else R.drawable.bg_notification_btn_inactive
-                )
                 val speakerDescription =
                     if (isSpeakerOn) context.getString(R.string.turn_speaker_off)
                     else context.getString(R.string.turn_speaker_on)
@@ -195,10 +203,6 @@ class CallNotificationManager(private val context: Context) {
                 val microphoneIcon =
                     if (isMicrophoneMute) R.drawable.ic_microphone_off_vector else R.drawable.ic_microphone_vector
                 setImageViewResource(R.id.notification_mute_button, microphoneIcon)
-                setInt(
-                    R.id.notification_mute_button, "setBackgroundResource",
-                    if (isMicrophoneMute) R.drawable.bg_notification_btn_active else R.drawable.bg_notification_btn_inactive
-                )
                 val microphoneDescription =
                     if (isMicrophoneMute) context.getString(R.string.unmute)
                     else context.getString(R.string.mute)
@@ -208,19 +212,35 @@ class CallNotificationManager(private val context: Context) {
 
             val builder = Notification.Builder(context, channelId)
                 .setSmallIcon(R.drawable.ic_phone_vector)
+                .setLargeIcon(badgedAvatar)
+                .setContentTitle(callerName)
+                .setContentText(statusText)
                 .setContentIntent(openAppPendingIntent)
                 .setCategory(Notification.CATEGORY_CALL)
-                .setCustomContentView(collapsedView)
-                .setCustomBigContentView(collapsedView)
+                // Standard collapsed view (system-rendered: large-icon avatar + title + text,
+                // readable in any theme) plus a custom EXPANDED view that carries the buttons.
+                // No DecoratedCustomViewStyle, so the collapsed view is never a custom RemoteView.
+                .setCustomBigContentView(bigView)
                 .setOngoing(true)
                 .setTimeoutAfter(-1)
                 .setChannelId(channelId)
-                .setStyle(Notification.DecoratedCustomViewStyle())
 
-            // The chronometer is rendered by the Chronometer widget inside the custom
-            // view, so the system-header chronometer is intentionally disabled here.
-            builder.setUsesChronometer(false)
-            builder.setShowWhen(false)
+            // Pre-Android-12 ringing fallback: also use the custom view collapsed so Accept /
+            // Decline stay inline in the heads-up (Android 12+ ringing uses CallStyle instead,
+            // and ongoing calls keep the clean standard collapsed view with buttons-on-expand).
+            if (callState == Call.STATE_RINGING) {
+                builder.setCustomContentView(bigView)
+            }
+
+            // Show the live call duration in the collapsed view's time slot for active calls.
+            if (showChronometer) {
+                builder.setWhen(connectTime)
+                builder.setUsesChronometer(true)
+                builder.setShowWhen(true)
+            } else {
+                builder.setUsesChronometer(false)
+                builder.setShowWhen(false)
+            }
 
             if (isHighPriority) {
                 builder.setFullScreenIntent(openAppPendingIntent, true)

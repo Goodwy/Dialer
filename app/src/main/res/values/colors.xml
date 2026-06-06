@@ -8,7 +8,7 @@
     <color name="call_button_mute">#FF607D8B</color>
     <color name="default_call_background">#FF454545</color>
     <color name="notification_icon">@color/dark_grey</color>
-    <!-- Ongoing-call notification action buttons: neutral grey when off, accent when toggled on -->
-    <color name="notification_button_bg">#FF5F6368</color>
-    <color name="notification_button_active">#FF1A73E8</color>
+    <!-- Ongoing-call notification action buttons: subtle translucent circle + monochrome icon -->
+    <color name="notification_button_subtle">#4D808080</color>
+    <color name="notification_button_icon">#FF9E9E9E</color>
 </resources>
