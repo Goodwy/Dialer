@@ -41,11 +41,14 @@ class CallNotificationManager(private val context: Context) {
     fun setupNotification(lowPriority: Boolean = false) {
         isServiceActive = true
         try {
-            // Android 12+ : the official CallStyle template for both incoming and ongoing calls
-            // (avatar with app badge, "Incoming/Ongoing call" header, and icon+text call buttons
-            // — Decline/Answer when ringing, Hang up + Speaker/Mute while in a call).
-            // Android 8-11 : a standard Material notification, since CallStyle needs API 31+.
-            if (isSPlus()) {
+            // Ringing: CallStyle (Android 12+) renders the avatar + badge and the BUILT-IN
+            // Decline/Answer pills correctly on every skin.
+            // Ongoing: a standard Material notification, NOT CallStyle. CallStyle's *extra*
+            // actions (Speaker/Mute — which are not built-in call buttons) render white-on-white
+            // on Samsung OneUI; a standard notification's actions are always system-themed and
+            // readable.
+            val isRinging = CallManager.getState() == Call.STATE_RINGING
+            if (isSPlus() && isRinging) {
                 setupNotificationNew(lowPriority)
             } else {
                 setupNotificationOld(lowPriority)
