@@ -191,24 +191,33 @@ class CallNotificationManager(private val context: Context) {
                     ).build()
                 )
             } else {
+                // Use Unicode glyphs as the action labels instead of words. The standard
+                // notification renders an action title in a system-themed color, so these glyphs
+                // stay readable on Samsung OneUI (unlike CallStyle's extra-action buttons). The
+                // glyph also reflects the current speaker/mute state. Easy to swap for any other
+                // character from utf8icons.com.
+                val speakerGlyph = if (isSpeakerOn) "🔊" else "🔈"
+                val muteGlyph = if (isMicrophoneMute) "🔇" else "🎤"
+                val hangUpGlyph = "📵"
+
                 val speakerIcon = if (isSpeakerOn) R.drawable.ic_volume_up_vector else R.drawable.ic_volume_down_vector
                 builder.addAction(
                     Notification.Action.Builder(
                         Icon.createWithResource(context, speakerIcon),
-                        context.getString(R.string.audio_route_speaker), speakerPendingIntent
+                        speakerGlyph, speakerPendingIntent
                     ).build()
                 )
                 val microphoneIcon = if (isMicrophoneMute) R.drawable.ic_microphone_off_vector else R.drawable.ic_microphone_vector
                 builder.addAction(
                     Notification.Action.Builder(
                         Icon.createWithResource(context, microphoneIcon),
-                        context.getString(if (isMicrophoneMute) R.string.unmute else R.string.mute), microphonePendingIntent
+                        muteGlyph, microphonePendingIntent
                     ).build()
                 )
                 builder.addAction(
                     Notification.Action.Builder(
                         Icon.createWithResource(context, R.drawable.ic_phone_down_vector),
-                        context.getString(R.string.hang_up), declinePendingIntent
+                        hangUpGlyph, declinePendingIntent
                     ).build()
                 )
             }
