@@ -41,15 +41,11 @@ class CallNotificationManager(private val context: Context) {
     fun setupNotification(lowPriority: Boolean = false) {
         isServiceActive = true
         try {
-            // Ringing: CallStyle (Android 12+) gives the WhatsApp avatar layout and
-            // system-themed, always-readable Answer/Decline buttons.
-            // Ongoing: the custom RemoteView path is used instead, because CallStyle's
-            // extra Speaker/Mute actions get rendered by some OEM skins (Samsung OneUI)
-            // as white-on-white text pills with no icons. The custom view draws those
-            // as readable colored buttons with icons and still shows the avatar on the
-            // left of the content.
-            val isRinging = CallManager.getState() == Call.STATE_RINGING
-            if (isSPlus() && isRinging) {
+            // Android 12+ : the official CallStyle template for both incoming and ongoing calls
+            // (avatar with app badge, "Incoming/Ongoing call" header, and icon+text call buttons
+            // — Decline/Answer when ringing, Hang up + Speaker/Mute while in a call).
+            // Android 8-11 : a standard Material notification, since CallStyle needs API 31+.
+            if (isSPlus()) {
                 setupNotificationNew(lowPriority)
             } else {
                 setupNotificationOld(lowPriority)
