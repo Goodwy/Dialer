@@ -2,7 +2,6 @@ package com.goodwy.dialer.helpers
 
 import android.content.Context
 import android.graphics.*
-import android.graphics.drawable.Drawable
 import android.provider.MediaStore
 import android.util.Size
 import com.goodwy.commons.helpers.isQPlus
@@ -50,44 +49,4 @@ class CallContactAvatarHelper(private val context: Context) {
         return output
     }
 
-    // Composites the app launcher icon as a small badge in the bottom-right corner of the
-    // caller avatar (the same look CallStyle gives for free on the ringing notification).
-    // Fully self-guarding: this runs on a background thread outside the notification's
-    // try/catch, so any drawing/OOM failure must degrade to the plain avatar, never crash.
-    fun getBadgedAvatar(avatar: Bitmap): Bitmap {
-        return try {
-            val size = avatar.width
-            if (size <= 0) return avatar
-            val appIcon = context.packageManager.getApplicationIcon(context.packageName)
-
-            val output = createBitmap(size, size)
-            val canvas = Canvas(output)
-            canvas.drawBitmap(avatar, 0f, 0f, null)
-
-            val badgeDiameter = size * 0.42f
-            val ring = badgeDiameter * 0.08f
-            val center = size - badgeDiameter / 2f
-
-            val ringPaint = Paint().apply {
-                isAntiAlias = true
-                color = Color.WHITE
-            }
-            canvas.drawCircle(center, center, badgeDiameter / 2f, ringPaint)
-
-            val iconSize = (badgeDiameter - 2 * ring).toInt().coerceAtLeast(1)
-            val iconBitmap = getCircularBitmap(drawableToBitmap(appIcon, iconSize))
-            canvas.drawBitmap(iconBitmap, center - iconSize / 2f, center - iconSize / 2f, null)
-            output
-        } catch (_: Exception) {
-            avatar
-        }
-    }
-
-    private fun drawableToBitmap(drawable: Drawable, sizePx: Int): Bitmap {
-        val bitmap = createBitmap(sizePx, sizePx)
-        val canvas = Canvas(bitmap)
-        drawable.setBounds(0, 0, sizePx, sizePx)
-        drawable.draw(canvas)
-        return bitmap
-    }
 }

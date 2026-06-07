@@ -7,7 +7,6 @@
     <dimen name="incoming_call_button_size">72dp</dimen>
     <dimen name="incoming_call_draggable_background_size">82dp</dimen>
     <dimen name="call_notification_button_size">35dp</dimen>
-    <dimen name="notification_call_button_size">44dp</dimen>
     <dimen name="caller_avatar_max_size">100dp</dimen>
     <dimen name="caller_avatar_max_size_small">78dp</dimen>
     <dimen name="end_call_button_margin">34dp</dimen>

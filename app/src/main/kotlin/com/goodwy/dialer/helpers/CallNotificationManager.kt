@@ -9,12 +9,8 @@ import android.app.PendingIntent
 import android.app.Person
 import android.content.Context
 import android.content.Intent
-import android.content.res.Configuration
-import android.graphics.Color
 import android.graphics.drawable.Icon
 import android.telecom.Call
-import android.view.View.VISIBLE
-import android.widget.RemoteViews
 import com.goodwy.commons.extensions.*
 import com.goodwy.commons.helpers.SimpleContactsHelper
 import com.goodwy.commons.helpers.isSPlus
@@ -116,123 +112,61 @@ class CallNotificationManager(private val context: Context) {
                 PendingIntent.FLAG_CANCEL_CURRENT or PendingIntent.FLAG_MUTABLE
             )
 
-            val callerName = callContact.name.ifEmpty { context.getString(R.string.unknown_caller) }
+            // Standard Material notification anatomy (no custom view), so the system renders
+            // everything and it stays readable + correctly badged on every OEM skin:
+            //   small icon = app icon, app name = automatic, sub text = call type (header),
+            //   content title = contact name (empty when not saved), content text = phone number,
+            //   large icon = contact avatar / general icon (system badges the app icon on it),
+            //   actions = Speaker / Mute / Hang up (Decline / Accept while ringing).
+            val isSavedContact = callContact.name.isNotEmpty() && callContact.name != callContact.number
+            val contentTitle = if (isSavedContact) callContact.name else ""
+            val phoneNumber = callContact.number
 
-            val contentTextId = when (callState) {
+            val callTypeId = when (callState) {
                 Call.STATE_RINGING -> R.string.is_calling
                 Call.STATE_DIALING -> R.string.dialing
                 Call.STATE_DISCONNECTED -> R.string.call_ended
                 Call.STATE_DISCONNECTING -> R.string.call_ending
                 else -> R.string.ongoing_call
             }
+            val callType = context.getString(callTypeId)
 
             val isMicrophoneMute = context.audioManager.isMicrophoneMute
             val isSpeakerOn = CallManager.getCallAudioRoute() == AudioRoute.SPEAKER
             val connectTime = CallManager.getCallConnectTime()
             val showChronometer = callState == Call.STATE_ACTIVE && connectTime > 0
 
-            // The avatar is shown as the system LARGE ICON so the collapsed notification is
-            // fully system-rendered (readable in any theme, a single icon with the app badge),
-            // WhatsApp style. Fall back to a colored letter/company icon when there is no photo.
-            val avatarBitmap: android.graphics.Bitmap? = try {
+            // Large icon: the contact photo, otherwise a colored general icon. The system draws
+            // the small (app) icon badged on its corner automatically, so no manual compositing.
+            val largeIcon: android.graphics.Bitmap? = try {
                 if (callContactAvatar != null) {
                     callContactAvatarHelper.getCircularBitmap(callContactAvatar)
                 } else {
-                    val contactName = callContact.name.ifEmpty { context.getString(R.string.unknown_caller) }
+                    val placeholderName = callContact.name.ifEmpty { context.getString(R.string.unknown_caller) }
                     when {
-                        callContact.number == callContact.name -> SimpleContactsHelper(context).getColoredContactIcon(contactName).convertToBitmap()
-                        callContact.isABusinessCall -> SimpleContactsHelper(context).getColoredCompanyIcon(contactName).convertToBitmap()
-                        else -> SimpleContactsHelper(context).getContactLetterIcon(contactName)
+                        callContact.number == callContact.name -> SimpleContactsHelper(context).getColoredContactIcon(placeholderName).convertToBitmap()
+                        callContact.isABusinessCall -> SimpleContactsHelper(context).getColoredCompanyIcon(placeholderName).convertToBitmap()
+                        else -> SimpleContactsHelper(context).getContactLetterIcon(placeholderName)
                     }
                 }
             } catch (_: Exception) {
                 null
             }
-            // Badge the app icon onto the avatar's bottom-right corner (WhatsApp / CallStyle look).
-            val badgedAvatar = avatarBitmap?.let { callContactAvatarHelper.getBadgedAvatar(it) }
-
-            val statusText = context.getString(contentTextId)
-
-            // A custom RemoteView does not reliably inherit the notification-shade theme, so set
-            // the expanded-view text colors explicitly from the system dark/light mode.
-            val isNightMode = (context.resources.configuration.uiMode and
-                Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
-            val primaryTextColor = if (isNightMode) Color.WHITE else Color.parseColor("#DD000000")
-            val secondaryTextColor = if (isNightMode) Color.parseColor("#B3FFFFFF") else Color.parseColor("#8A000000")
-
-            // Expanded ("big") view only: the caller line plus the three action buttons. The
-            // collapsed view is the standard system template built from the fields below.
-            val bigView = RemoteViews(context.packageName, R.layout.call_notification).apply {
-                if (badgedAvatar != null) {
-                    setImageViewBitmap(R.id.notification_thumbnail, badgedAvatar)
-                }
-                setTextViewText(R.id.notification_caller_name, callerName)
-                setTextColor(R.id.notification_caller_name, primaryTextColor)
-                setTextColor(R.id.notification_call_status, secondaryTextColor)
-                setTextColor(R.id.notification_chronometer, secondaryTextColor)
-                if (showChronometer) {
-                    setViewVisibility(R.id.notification_chronometer, VISIBLE)
-                    setViewVisibility(R.id.notification_call_status, android.view.View.GONE)
-                    val base = android.os.SystemClock.elapsedRealtime() -
-                        (System.currentTimeMillis() - connectTime)
-                    setChronometer(R.id.notification_chronometer, base, null, true)
-                } else {
-                    setViewVisibility(R.id.notification_chronometer, android.view.View.GONE)
-                    setViewVisibility(R.id.notification_call_status, VISIBLE)
-                    setTextViewText(R.id.notification_call_status, statusText)
-                }
-
-                // Incoming call (pre-Android-12 fallback): accept/reject
-                setVisibleIf(R.id.notification_actions_holder, callState == Call.STATE_RINGING)
-                setOnClickPendingIntent(R.id.notification_decline_call, declinePendingIntent)
-                setOnClickPendingIntent(R.id.notification_accept_call, acceptPendingIntent)
-
-                // Ongoing call: speaker / mute / hang up
-                setVisibleIf(R.id.notification_actions_call_holder, callState != Call.STATE_RINGING)
-                setOnClickPendingIntent(R.id.notification_decline_call_button, declinePendingIntent)
-
-                val speakerIcon =
-                    if (isSpeakerOn) R.drawable.ic_volume_up_vector else R.drawable.ic_volume_down_vector
-                setImageViewResource(R.id.notification_speaker_button, speakerIcon)
-                val speakerDescription =
-                    if (isSpeakerOn) context.getString(R.string.turn_speaker_off)
-                    else context.getString(R.string.turn_speaker_on)
-                setContentDescription(R.id.notification_speaker_button, speakerDescription)
-                setOnClickPendingIntent(R.id.notification_speaker_button, speakerPendingIntent)
-
-                val microphoneIcon =
-                    if (isMicrophoneMute) R.drawable.ic_microphone_off_vector else R.drawable.ic_microphone_vector
-                setImageViewResource(R.id.notification_mute_button, microphoneIcon)
-                val microphoneDescription =
-                    if (isMicrophoneMute) context.getString(R.string.unmute)
-                    else context.getString(R.string.mute)
-                setContentDescription(R.id.notification_mute_button, microphoneDescription)
-                setOnClickPendingIntent(R.id.notification_mute_button, microphonePendingIntent)
-            }
 
             val builder = Notification.Builder(context, channelId)
                 .setSmallIcon(R.drawable.ic_phone_vector)
-                .setLargeIcon(badgedAvatar)
-                .setContentTitle(callerName)
-                .setContentText(statusText)
+                .setLargeIcon(largeIcon)
+                .setSubText(callType)
+                .setContentTitle(contentTitle)
+                .setContentText(phoneNumber)
                 .setContentIntent(openAppPendingIntent)
                 .setCategory(Notification.CATEGORY_CALL)
-                // Standard collapsed view (system-rendered: large-icon avatar + title + text,
-                // readable in any theme) plus a custom EXPANDED view that carries the buttons.
-                // No DecoratedCustomViewStyle, so the collapsed view is never a custom RemoteView.
-                .setCustomBigContentView(bigView)
                 .setOngoing(true)
+                .setOnlyAlertOnce(true)
                 .setTimeoutAfter(-1)
                 .setChannelId(channelId)
 
-            // Pre-Android-12 ringing fallback: also use the custom view collapsed so Accept /
-            // Decline stay inline in the heads-up (Android 12+ ringing uses CallStyle instead,
-            // and ongoing calls keep the clean standard collapsed view with buttons-on-expand).
-            if (callState == Call.STATE_RINGING) {
-                builder.setCustomContentView(bigView)
-            }
-
-            // Show the live call duration in the collapsed view's time slot for active calls.
+            // Live call duration in the time slot for active calls.
             if (showChronometer) {
                 builder.setWhen(connectTime)
                 builder.setUsesChronometer(true)
@@ -240,6 +174,44 @@ class CallNotificationManager(private val context: Context) {
             } else {
                 builder.setUsesChronometer(false)
                 builder.setShowWhen(false)
+            }
+
+            // Behavior area: actions. While ringing show Decline / Accept; otherwise Speaker /
+            // Mute / Hang up. Icons reflect the current speaker/mute state.
+            if (callState == Call.STATE_RINGING) {
+                builder.addAction(
+                    Notification.Action.Builder(
+                        Icon.createWithResource(context, R.drawable.ic_phone_down_vector),
+                        context.getString(R.string.decline), declinePendingIntent
+                    ).build()
+                )
+                builder.addAction(
+                    Notification.Action.Builder(
+                        Icon.createWithResource(context, R.drawable.ic_phone_vector),
+                        context.getString(R.string.accept), acceptPendingIntent
+                    ).build()
+                )
+            } else {
+                val speakerIcon = if (isSpeakerOn) R.drawable.ic_volume_up_vector else R.drawable.ic_volume_down_vector
+                builder.addAction(
+                    Notification.Action.Builder(
+                        Icon.createWithResource(context, speakerIcon),
+                        context.getString(R.string.audio_route_speaker), speakerPendingIntent
+                    ).build()
+                )
+                val microphoneIcon = if (isMicrophoneMute) R.drawable.ic_microphone_off_vector else R.drawable.ic_microphone_vector
+                builder.addAction(
+                    Notification.Action.Builder(
+                        Icon.createWithResource(context, microphoneIcon),
+                        context.getString(if (isMicrophoneMute) R.string.unmute else R.string.mute), microphonePendingIntent
+                    ).build()
+                )
+                builder.addAction(
+                    Notification.Action.Builder(
+                        Icon.createWithResource(context, R.drawable.ic_phone_down_vector),
+                        context.getString(R.string.hang_up), declinePendingIntent
+                    ).build()
+                )
             }
 
             if (isHighPriority) {
