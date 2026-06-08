@@ -1487,9 +1487,11 @@ class CallActivity : SimpleActivity() {
     private fun updateCallOnHoldState(call: Call?, callActive: Call? = null) {
         val hasCallOnHold = call != null
         // Call waiting: the primary/active call is actually a 2nd call that is still ringing.
-        // The standard incoming UI (shown via callRinging) already presents the NEW caller with
-        // the configured answer style, so here we only surface the "answer & end other call"
-        // shortcut and keep the original call in the on-hold banner.
+        // The standard incoming UI (shown via callRinging) presents the NEW caller. We force plain
+        // Accept/Decline buttons here instead of the answer-style slider: the slider's drag bounds
+        // and arrow base positions are captured once by a one-shot layout listener when the call
+        // screen is first created (with the incoming UI hidden), so they are invalid on this
+        // re-shown call-waiting screen — the arrows would otherwise fly across the display.
         val isCallWaiting = hasCallOnHold && callActive?.getStateCompat() == Call.STATE_RINGING
 
         if (hasCallOnHold) {
@@ -1501,12 +1503,25 @@ class CallActivity : SimpleActivity() {
         }
 
         if (isCallWaiting) {
-            binding.callAcceptAndDecline.apply {
-                beVisible()
-                setText(R.string.answer_end_other_call)
-                setOnClickListener {
-                    acceptCall()
-                    call?.disconnect()
+            binding.apply {
+                arrayOf(
+                    callDraggable, callDraggableBackground, callDraggableVertical,
+                    callLeftArrow, callRightArrow, callUpArrow, callDownArrow
+                ).forEach { it.beGone() }
+
+                callDecline.beVisible()
+                callDecline.setOnClickListener { endCall() }
+
+                callAccept.beVisible()
+                callAccept.setOnClickListener { acceptCall() }
+
+                callAcceptAndDecline.apply {
+                    beVisible()
+                    setText(R.string.answer_end_other_call)
+                    setOnClickListener {
+                        acceptCall()
+                        call?.disconnect()
+                    }
                 }
             }
         } else if (!hasCallOnHold && config.callBlockButton) {
