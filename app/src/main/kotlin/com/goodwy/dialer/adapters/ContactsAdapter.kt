@@ -406,14 +406,21 @@ class ContactsAdapter(
     private fun String.highlightTextFromNumbers(textToHighlight: String, primaryColor: Int, language: String): SpannableString {
         val spannableString = SpannableString(this)
         val digits = DialpadT9.convertLettersToNumbers(this.uppercase(), language)
-        if (digits.contains(textToHighlight)) {
-            //offsetting the characters to be extracted, by the number of first non-letter or non-numeric characters.
-            val lettersAndNumbers = Regex("[^A-Za-z0-9 ]")
-            val firstSymbol = lettersAndNumbers.replace(this, "").firstOrNull()
-            val offsetIndex = if (firstSymbol != null) this.indexOf(firstSymbol, 0, true) else 0
 
-            val startIndex = digits.indexOf(textToHighlight, 0, true) + offsetIndex
-            val endIndex = (startIndex + textToHighlight.length).coerceAtMost(length)
+        val compressed = StringBuilder(digits.length)
+        val originalPos = IntArray(digits.length)
+        var written = 0
+        digits.forEachIndexed { i, c ->
+            if (c.isDigit()) {
+                compressed.append(c)
+                originalPos[written++] = i
+            }
+        }
+        val start = compressed.indexOf(textToHighlight, 0, ignoreCase = true)
+        if (start >= 0) {
+            val startIndex = originalPos[start]
+            val endCompressed = (start + textToHighlight.length - 1).coerceAtMost(written - 1)
+            val endIndex = (originalPos[endCompressed] + 1).coerceAtMost(length)
             try {
                 spannableString.setSpan(ForegroundColorSpan(primaryColor), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_INCLUSIVE)
             } catch (_: IndexOutOfBoundsException) {
@@ -458,25 +465,11 @@ class ContactsAdapter(
                     if (normalizedName.contains(normalizedSearchText, true)) {
                         name.highlightTextPart(normalizedSearchText, properPrimaryColor)
                     } else {
-                        var spacedTextToHighlight = textToHighlight
-                        val strippedName = PhoneNumberUtils.convertKeypadLettersToDigits(name.filterNot { it.isWhitespace() })
-                        val startIndex = strippedName.indexOf(textToHighlight)
-
-                        if (strippedName.contains(textToHighlight) && strippedName != name) {
-                            for (i in 0..spacedTextToHighlight.length) {
-                                if (name.toCharArray().size > startIndex + i) {
-                                    if (name[startIndex + i].isWhitespace()) {
-                                        spacedTextToHighlight = spacedTextToHighlight.replaceRange(i, i, " ")
-                                    }
-                                }
-                            }
-                        }
-
                         val langPref = activity.config.dialpadSecondaryLanguage ?: ""
                         val langLocale = Locale.getDefault().language
                         val isAutoLang = DialpadT9.getSupportedSecondaryLanguages().contains(langLocale) && langPref == LANGUAGE_SYSTEM
                         val lang = if (isAutoLang) langLocale else langPref
-                        name.highlightTextFromNumbers(spacedTextToHighlight, properPrimaryColor, lang)
+                        name.highlightTextFromNumbers(textToHighlight, properPrimaryColor, lang)
                     }
                 }
             }
