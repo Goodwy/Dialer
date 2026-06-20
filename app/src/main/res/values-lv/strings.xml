@@ -15,4 +15,9 @@
     <string name="clear_call_history">Notīrīt zvanu vēsturi</string>
     <string name="show_call_details">Rādīt informāciju par zvanu</string>
     <string name="dialpad">Ciparnīca</string>
+    <string name="send_whatsapp">Sūtīt WhatsApp</string>
+    <string name="hang_up">Beigt zvanu</string>
+    <string name="dialpad_number_font_size">Ciparu fonta lielums</string>
+    <string name="create_new_contact">Izveidot jaunu kontaktu</string>
+    <string name="add_to_existing_contact">Pievienot esošam kontaktam</string>
 </resources>

@@ -77,4 +77,9 @@
     <string name="call_notification_channel">Puhelun tila</string>
     <string name="call_notification_channel_high_priority">Puhelun tila (korkea prioriteetti)</string>
     <string name="calling_accounts">Puhelintilit</string>
+    <string name="send_whatsapp">Lähetä WhatsApp</string>
+    <string name="hang_up">Lopeta puhelu</string>
+    <string name="dialpad_number_font_size">Numeroiden fonttikoko</string>
+    <string name="create_new_contact">Luo uusi yhteystieto</string>
+    <string name="add_to_existing_contact">Lisää olemassa olevaan yhteystietoon</string>
 </resources>

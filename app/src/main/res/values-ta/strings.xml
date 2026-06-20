@@ -69,4 +69,9 @@
     <string name="audio_route_speaker">ஒலிப்பெருக்கி</string>
     <string name="audio_route_earpiece">செவிப்பொறி</string>
     <string name="call_split">அழைப்புகளை பிரித்தெடுக்கவும்</string>
+    <string name="send_whatsapp">WhatsApp அனுப்பு</string>
+    <string name="hang_up">அழைப்பை முடி</string>
+    <string name="dialpad_number_font_size">எண் எழுத்துரு அளவு</string>
+    <string name="create_new_contact">புதிய தொடர்பை உருவாக்கு</string>
+    <string name="add_to_existing_contact">ஏற்கனவே உள்ள தொடர்பில் சேர்</string>
 </resources>

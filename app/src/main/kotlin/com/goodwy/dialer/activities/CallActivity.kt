@@ -1,11 +1,15 @@
 package com.goodwy.dialer.activities
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.KeyguardManager
 import android.app.WallpaperManager
+import android.bluetooth.BluetoothDevice
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.Configuration
+import androidx.core.content.ContextCompat
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.LayerDrawable
@@ -56,6 +60,11 @@ import kotlin.hashCode
 
 class CallActivity : SimpleActivity() {
     companion object {
+        // Audio-route ints (CallAudioState.ROUTE_*) max out below 16; offset Bluetooth
+        // per-device menu ids well above that so they can't collide.
+        private const val BLUETOOTH_DEVICE_MENU_ID_BASE = 1000
+        private const val BT_CONNECT_REQUEST_CODE = 1001
+
         fun getStartIntent(context: Context, needSelectSIM: Boolean = false): Intent {
             val openAppIntent = Intent(context, CallActivity::class.java)
             openAppIntent.putExtra(NEED_SELECT_SIM, needSelectSIM)
@@ -828,12 +837,43 @@ class CallActivity : SimpleActivity() {
 
     private fun createOrUpdateAudioRouteChooser(routes: Array<AudioRoute>, create: Boolean = true) {
         val callAudioRoute = CallManager.getCallAudioRoute()
-        val items = routes
-            .sortedByDescending { it.route }
-            .map {
-                SimpleListItem(id = it.route, textRes = it.stringRes, imageRes = it.iconRes, selected = it == callAudioRoute)
+        val btDevices = CallManager.getSupportedBluetoothDevices()
+        val activeBtDevice = CallManager.getActiveBluetoothDevice()
+
+        // Reading BluetoothDevice.name requires BLUETOOTH_CONNECT at runtime on Android 12+.
+        // Ask for it once when the picker is opened with any Bluetooth device present, so
+        // the next open shows the real device name instead of a generic fallback label.
+        if (btDevices.isNotEmpty()) {
+            requestBluetoothConnectPermissionIfNeeded()
+        }
+
+        // When at least one Bluetooth device is enumerable, replace the generic
+        // "Bluetooth" row with the actual device name(s) so the user always sees
+        // which device they are picking.
+        val items = mutableListOf<SimpleListItem>()
+        routes.sortedByDescending { it.route }.forEach { route ->
+            if (route == AudioRoute.BLUETOOTH && btDevices.isNotEmpty()) {
+                btDevices.forEachIndexed { index, device ->
+                    items.add(
+                        SimpleListItem(
+                            id = BLUETOOTH_DEVICE_MENU_ID_BASE + index,
+                            text = getBluetoothDeviceLabel(device, index),
+                            imageRes = route.iconRes,
+                            selected = device == activeBtDevice
+                        )
+                    )
+                }
+            } else {
+                items.add(
+                    SimpleListItem(
+                        id = route.route,
+                        textRes = route.stringRes,
+                        imageRes = route.iconRes,
+                        selected = route == callAudioRoute
+                    )
+                )
             }
-            .toTypedArray()
+        }
 
         if (audioRoutePopupMenu != null) {
             audioRoutePopupMenu?.dismiss()
@@ -844,16 +884,22 @@ class CallActivity : SimpleActivity() {
             audioRoutePopupMenu = PopupMenu(wrapper, binding.callToggleSpeaker, Gravity.END)
 
             items.forEach { item ->
+                val title = item.text ?: getString(item.textRes ?: R.string.other)
                 audioRoutePopupMenu?.menu?.add(
                     1,
                     item.id,
                     item.id,
-                    item.textRes ?: R.string.other
+                    title
                 )?.setIcon(item.imageRes ?: R.drawable.ic_transparent)
             }
 
             audioRoutePopupMenu?.setOnMenuItemClickListener { item ->
-                CallManager.setAudioRoute(item.itemId)
+                val deviceIndex = item.itemId - BLUETOOTH_DEVICE_MENU_ID_BASE
+                if (deviceIndex in btDevices.indices) {
+                    CallManager.setBluetoothDevice(btDevices[deviceIndex])
+                } else {
+                    CallManager.setAudioRoute(item.itemId)
+                }
                 true
             }
 
@@ -863,7 +909,7 @@ class CallActivity : SimpleActivity() {
 
             audioRoutePopupMenu?.show()
 
-            val selected = items.first { it.selected }
+            val selected = items.firstOrNull { it.selected } ?: items.first()
             val primaryColor = getProperPrimaryColor()
             val textColor = getProperTextColor()
             // icon and text coloring
@@ -891,6 +937,40 @@ class CallActivity : SimpleActivity() {
                     )
                     item.title = spannableString
                 }
+            }
+        }
+    }
+
+    private fun getBluetoothDeviceLabel(device: BluetoothDevice, index: Int): String {
+        return try {
+            val alias = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) device.alias else null
+            alias?.takeIf { it.isNotBlank() }
+                ?: device.name?.takeIf { it.isNotBlank() }
+                ?: "${getString(R.string.audio_route_bluetooth)} ${index + 1}"
+        } catch (_: SecurityException) {
+            "${getString(R.string.audio_route_bluetooth)} ${index + 1}"
+        }
+    }
+
+    private fun requestBluetoothConnectPermissionIfNeeded() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) return
+        val granted = ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) ==
+            PackageManager.PERMISSION_GRANTED
+        if (!granted) {
+            requestPermissions(arrayOf(Manifest.permission.BLUETOOTH_CONNECT), BT_CONNECT_REQUEST_CODE)
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        // The picker requests BLUETOOTH_CONNECT lazily the first time it is opened with a
+        // Bluetooth device present. Device names only become readable once it is granted,
+        // so rebuild and re-open the picker here instead of waiting for a second open.
+        if (requestCode == BT_CONNECT_REQUEST_CODE &&
+            grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED) {
+            val supportedAudioRoutes = CallManager.getSupportedAudioRoutes()
+            if (supportedAudioRoutes.size > 2) {
+                createOrUpdateAudioRouteChooser(supportedAudioRoutes, create = true)
             }
         }
     }
@@ -1064,12 +1144,7 @@ class CallActivity : SimpleActivity() {
     private fun addContact() {
         val number = callContact?.number?.ifEmpty { "" } ?: ""
         val formatNumber = if (config.formatPhoneNumbers) number.formatPhoneNumber() else number
-        Intent().apply {
-            action = Intent.ACTION_INSERT_OR_EDIT
-            type = "vnd.android.cursor.item/contact"
-            putExtra(KEY_PHONE, formatNumber)
-            launchActivityIntent(this)
-        }
+        startAddNumberToContact(formatNumber)
     }
 
     @Suppress("DEPRECATION")
@@ -1399,6 +1474,8 @@ class CallActivity : SimpleActivity() {
         } else if (phoneState is TwoCalls) {
             updateCallState(phoneState.active)
             updateCallOnHoldState(phoneState.onHold, phoneState.active)
+            // Keep the screen on while a 2nd call is ringing (call waiting).
+            if (phoneState.active.getStateCompat() == Call.STATE_RINGING) changeProximitySensor = false
         }
 
         runOnUiThread {
@@ -1409,54 +1486,46 @@ class CallActivity : SimpleActivity() {
 
     private fun updateCallOnHoldState(call: Call?, callActive: Call? = null) {
         val hasCallOnHold = call != null
+        // Call waiting: the primary/active call is actually a 2nd call that is still ringing.
+        // The standard incoming UI (shown via callRinging) presents the NEW caller. We force plain
+        // Accept/Decline buttons here instead of the answer-style slider: the slider's drag bounds
+        // and arrow base positions are captured once by a one-shot layout listener when the call
+        // screen is first created (with the incoming UI hidden), so they are invalid on this
+        // re-shown call-waiting screen — the arrows would otherwise fly across the display.
+        val isCallWaiting = hasCallOnHold && callActive?.getStateCompat() == Call.STATE_RINGING
+
         if (hasCallOnHold) {
             getCallContact(applicationContext, call) { contact ->
                 runOnUiThread {
                     binding.onHoldCallerName.text = getContactNameOrNumber(contact)
                 }
             }
+        }
 
-            // A second call has been received but not yet accepted
-            if (call.getStateCompat() == Call.REJECT_REASON_UNWANTED) {
-                binding.apply {
-                    ongoingCallHolder.beGone()
-                    incomingCallHolder.beVisible()
-                    callStatusLabel.text = getString(R.string.is_calling)
-                    RxAnimation.from(binding.callStatusLabel)
-                        .shake()
-                        .subscribe()
+        if (isCallWaiting) {
+            binding.apply {
+                arrayOf(
+                    callDraggable, callDraggableBackground, callDraggableVertical,
+                    callLeftArrow, callRightArrow, callUpArrow, callDownArrow
+                ).forEach { it.beGone() }
 
-                    arrayOf(
-                        callDraggable, callDraggableBackground, callDraggableVertical,
-                        callLeftArrow, callRightArrow,
-                        callUpArrow, callDownArrow
-                    ).forEach {
-                        it.beGone()
-                    }
+                callDecline.beVisible()
+                callDecline.setOnClickListener { endCall() }
 
+                callAccept.beVisible()
+                callAccept.setOnClickListener { acceptCall() }
 
-                    callDecline.beVisible()
-                    callDecline.setOnClickListener {
-                        endCall()
-                    }
-
-                    callAccept.beVisible()
-                    callAccept.setOnClickListener {
+                callAcceptAndDecline.apply {
+                    beVisible()
+                    setText(R.string.answer_end_other_call)
+                    setOnClickListener {
                         acceptCall()
-                    }
-
-                    callAcceptAndDecline.apply {
-                        beVisible()
-                        setText(R.string.answer_end_other_call)
-                        setOnClickListener {
-                            acceptCall()
-                            callActive?.disconnect()
-                        }
+                        call?.disconnect()
                     }
                 }
             }
-        } else {
-            if (config.callBlockButton) binding.callAcceptAndDecline.apply {
+        } else if (!hasCallOnHold && config.callBlockButton) {
+            binding.callAcceptAndDecline.apply {
                 beVisible()
                 setText(R.string.block_number)
                 setOnClickListener {
@@ -1478,7 +1547,9 @@ class CallActivity : SimpleActivity() {
         binding.apply {
             onHoldStatusHolder.beVisibleIf(hasCallOnHold)
             controlsSingleCall.beVisibleIf(!hasCallOnHold && dialpadWrapper.isGone())
-            controlsTwoCalls.beVisibleIf(hasCallOnHold && dialpadWrapper.isGone())
+            // While a 2nd call is ringing the incoming UI is shown, so keep the two-call
+            // controls hidden until that waiting call is actually answered.
+            controlsTwoCalls.beVisibleIf(hasCallOnHold && !isCallWaiting && dialpadWrapper.isGone())
         }
     }
 
@@ -1554,6 +1625,9 @@ class CallActivity : SimpleActivity() {
 
     private fun callRinging() {
         binding.incomingCallHolder.beVisible()
+        // Hide the in-call controls so a 2nd (waiting) call fully takes over with the
+        // incoming UI; for a first incoming call the ongoing holder is already hidden.
+        binding.ongoingCallHolder.beGone()
     }
 
     private fun callStarted() {

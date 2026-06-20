@@ -69,4 +69,9 @@
     <string name="audio_route_bluetooth">Bluetooth</string>
     <string name="app_launcher_name">Telefon</string>
     <string name="hashtag">Diez</string>
+    <string name="send_whatsapp">Trimite WhatsApp</string>
+    <string name="hang_up">Închide</string>
+    <string name="dialpad_number_font_size">Dimensiunea fontului cifrelor</string>
+    <string name="create_new_contact">Creează un contact nou</string>
+    <string name="add_to_existing_contact">Adaugă la un contact existent</string>
 </resources>

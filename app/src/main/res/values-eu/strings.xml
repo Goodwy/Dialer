@@ -77,4 +77,9 @@
     <string name="call_notification_channel">Deiaren egoera</string>
     <string name="call_notification_channel_high_priority">Deiaren egoera (lehentasun handia)</string>
     <string name="calling_accounts">Deien kontuak</string>
+    <string name="send_whatsapp">Bidali WhatsApp</string>
+    <string name="hang_up">Eseki</string>
+    <string name="dialpad_number_font_size">Zenbakien letra-tamaina</string>
+    <string name="create_new_contact">Sortu kontaktu berria</string>
+    <string name="add_to_existing_contact">Gehitu lehendik dagoen kontaktuari</string>
 </resources>

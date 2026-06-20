@@ -76,8 +76,10 @@ class SettingsDialpadActivity : SimpleActivity() {
         }
 
         updateDialpadSize()
+        updateDialpadNumberFontSize()
         updateDialpadBottomMargin()
         setupDialpadSize()
+        setupDialpadNumberFontSize()
         setupDialpadBottomMargin()
 
         if (config.dialpadStyle == DIALPAD_GRID || config.dialpadStyle == DIALPAD_ORIGINAL) updateCallButtonSize()
@@ -158,6 +160,7 @@ class SettingsDialpadActivity : SimpleActivity() {
                 dialpadRoundWrapper.dialpadAsteriskIos, dialpadRoundWrapper.dialpadHashtagIos,
                 toneVolumeMinus, toneVolumePlus,
                 dialpadSizeMinus, dialpadSizePlus,
+                dialpadNumberFontSizeMinus, dialpadNumberFontSizePlus,
                 dialpadBottomMarginMinus, dialpadBottomMarginPlus,
                 buttonSizeMinus, buttonSizePlus,
                 buttonSecondSizeMinus, buttonSecondSizePlus,
@@ -177,13 +180,13 @@ class SettingsDialpadActivity : SimpleActivity() {
             val onBackground = properBackgroundColor.getContrastColor()
             val buttonBackground = onBackground.adjustAlpha(0.2f)
             arrayOf(
-                toneVolumeButtons, dialpadSizeButtons, dialpadBottomMarginButtons,
+                toneVolumeButtons, dialpadSizeButtons, dialpadNumberFontSizeButtons, dialpadBottomMarginButtons,
                 buttonSizeButtons, buttonSecondSizeButtons
             ).forEach {
                 it.background.applyColorFilter(buttonBackground)
             }
             arrayOf(
-                toneVolumeDivider, dialpadSizeDivider, dialpadBottomMarginDivider,
+                toneVolumeDivider, dialpadSizeDivider, dialpadNumberFontSizeDivider, dialpadBottomMarginDivider,
                 buttonSizeDivider, buttonSecondSizeDivider
             ).forEach {
                 it.background.applyColorFilter(properTextColor)
@@ -756,6 +759,52 @@ class SettingsDialpadActivity : SimpleActivity() {
                 }
             })
         }
+    }
+
+    private fun setupDialpadNumberFontSize() {
+        binding.apply {
+            val progress = config.dialpadNumberFontSize
+            dialpadNumberFontSize.progress = progress
+            dialpadNumberFontSizeValue.text = "$progress %"
+            dialpadNumberFontSize.min = 50
+
+            dialpadNumberFontSizeMinus.setOnClickListener { dialpadNumberFontSize.progress -= 1; showDialpad() }
+            dialpadNumberFontSizeValue.setOnClickListener { dialpadNumberFontSize.progress = 100; showDialpad() }
+            dialpadNumberFontSizePlus.setOnClickListener { dialpadNumberFontSize.progress += 1; showDialpad() }
+
+            dialpadNumberFontSize.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+                override fun onStartTrackingTouch(seekBar: SeekBar) {
+                    hideDialpadHandler.removeCallbacks(updateHideDialpadTask)
+                    val view = when (config.dialpadStyle) {
+                        DIALPAD_IOS -> dialpadRoundWrapper.root
+                        DIALPAD_CONCEPT -> dialpadRectWrapper.root
+                        else -> dialpadClearWrapper.root
+                    }
+                    view.beVisible()
+                }
+
+                override fun onStopTrackingTouch(seekBar: SeekBar) {
+                    val view = when (config.dialpadStyle) {
+                        DIALPAD_IOS -> dialpadRoundWrapper.root
+                        DIALPAD_CONCEPT -> dialpadRectWrapper.root
+                        else -> dialpadClearWrapper.root
+                    }
+                    view.beGone()
+                }
+
+                override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+                    updateDialpadNumberFontSize(progress)
+                    config.dialpadNumberFontSize = progress
+                }
+            })
+        }
+    }
+
+    private fun updateDialpadNumberFontSize(percent: Int = config.dialpadNumberFontSize) {
+        binding.dialpadNumberFontSizeValue.text = "$percent %"
+        val basePx = resources.getDimension(R.dimen.dialpad_text_size)
+        val scaled = basePx * (percent / 100f)
+        applyDialpadNumberFontSize(binding.dialpadClearWrapper, binding.dialpadRectWrapper, binding.dialpadRoundWrapper, scaled)
     }
 
     private fun setupDialpadBottomMargin() {

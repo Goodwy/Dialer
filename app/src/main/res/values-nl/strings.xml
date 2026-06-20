@@ -77,4 +77,9 @@
     <string name="call_notification_channel_high_priority">Oproepstatus (hoge prioriteit)</string>
     <string name="call_notification_channel">Oproepstatus</string>
     <string name="calling_accounts">Oproepaccounts</string>
+    <string name="send_whatsapp">WhatsApp versturen</string>
+    <string name="hang_up">Ophangen</string>
+    <string name="dialpad_number_font_size">Lettergrootte van cijfers</string>
+    <string name="create_new_contact">Nieuw contact maken</string>
+    <string name="add_to_existing_contact">Aan bestaand contact toevoegen</string>
 </resources>

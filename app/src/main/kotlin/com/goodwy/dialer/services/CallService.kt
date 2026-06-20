@@ -42,14 +42,23 @@ class CallService : InCallService() {
         CallManager.inCallService = this
         call.registerCallback(callListener)
 
-        // Incoming/Outgoing (locked): high priority (FSI)
-        // Incoming (unlocked): if user opted in, low priority ➜ manual activity start, otherwise high priority (FSI)
-        // Outgoing (unlocked): low priority ➜ manual activity start
+        // lowPriority == true  ➜ start the call activity directly + post a quiet notification
+        // lowPriority == false ➜ rely on the high-priority full-screen-intent notification
+        //
+        // Locked: start the activity directly. Relying on the FSI alone was unreliable on
+        // some OEM skins (Samsung OneUI demoted it to a silent notification, so nothing
+        // showed over the lock screen). The default dialer gets a brief background-activity-
+        // start grace window during onCallAdded, so the direct start is allowed, and the
+        // quiet notification avoids a duplicate heads-up banner over our own full screen.
+        // Incoming (unlocked): honour the user's "show incoming calls full screen" setting.
+        // Outgoing (unlocked): start the activity directly.
         val isOutgoing = call.isOutgoing()
         val isIncoming = !isOutgoing
-        val isDeviceLocked = !powerManager.isInteractive //|| keyguardManager.isDeviceLocked
+        // Use both checks so a phone that is locked but with the screen on (e.g. user
+        // tapped power to look at the lock screen) still counts as locked.
+        val isDeviceLocked = !powerManager.isInteractive || keyguardManager.isDeviceLocked
         val lowPriority = when {
-            isDeviceLocked -> false // High priority on locked screen
+            isDeviceLocked -> true
             isIncoming && !isDeviceLocked -> config.showIncomingCallsFullScreen
             else -> true
         }

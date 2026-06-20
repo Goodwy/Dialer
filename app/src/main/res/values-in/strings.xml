@@ -74,4 +74,9 @@
     <string name="faq_2_title">Mengapa panggilan darurat tidak berfungsi dengan baik?</string>
     <string name="faq_2_text">Karena pembatasan sistem, panggilan darurat hanya dapat dilakukan melalui aplikasi dialer atau telepon bawaan sistem Anda. Untuk memastikan panggilan darurat berfungsi dengan baik, Anda perlu mempertahankan aplikasi sistem terpasang dan aktif.</string>
     <string name="faq_3_title">Kenapa beberapa kontak saya hilang dari aplikasi?</string>
+    <string name="send_whatsapp">Kirim WhatsApp</string>
+    <string name="hang_up">Akhiri panggilan</string>
+    <string name="dialpad_number_font_size">Ukuran font angka</string>
+    <string name="create_new_contact">Buat kontak baru</string>
+    <string name="add_to_existing_contact">Tambahkan ke kontak yang ada</string>
 </resources>

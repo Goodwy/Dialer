@@ -48,4 +48,5 @@ class CallContactAvatarHelper(private val context: Context) {
         canvas.drawBitmap(bitmap, rect, rect, paint)
         return output
     }
+
 }

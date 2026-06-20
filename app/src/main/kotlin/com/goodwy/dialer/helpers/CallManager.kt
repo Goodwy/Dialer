@@ -1,6 +1,8 @@
 package com.goodwy.dialer.helpers
 
 import android.annotation.SuppressLint
+import android.bluetooth.BluetoothDevice
+import android.os.Build
 import android.os.Handler
 import android.telecom.Call
 import android.telecom.CallAudioState
@@ -61,10 +63,17 @@ class CallManager {
                 0 -> NoCall
                 1 -> SingleCall(calls.first())
                 2 -> {
+                    val ringing = calls.find { it.getStateCompat() == Call.STATE_RINGING }
                     val active = calls.find { it.getStateCompat() == Call.STATE_ACTIVE }
                     val newCall = calls.find { it.getStateCompat() == Call.STATE_CONNECTING || it.getStateCompat() == Call.STATE_DIALING }
                     val onHold = calls.find { it.getStateCompat() == Call.STATE_HOLDING }
-                    if (active != null && newCall != null) {
+                    if (ringing != null) {
+                        // Call waiting: a 2nd call is ringing while another call is in progress.
+                        // Surface the ringing call as the primary/active one so the incoming UI
+                        // shows the NEW caller and honors the configured answer style; the other
+                        // call becomes the secondary shown in the on-hold banner.
+                        TwoCalls(ringing, calls.first { it != ringing })
+                    } else if (active != null && newCall != null) {
                         TwoCalls(newCall, active)
                     } else if (newCall != null && onHold != null) {
                         TwoCalls(newCall, onHold)
@@ -116,6 +125,35 @@ class CallManager {
         }
 
         fun getCallAudioRoute() = AudioRoute.fromRoute(getCallAudioState()?.route)
+
+        // Per-Bluetooth-device selection. Available since Android 9 (API 28); on older
+        // releases we fall back to the generic Bluetooth route handled by the system.
+        fun getSupportedBluetoothDevices(): List<BluetoothDevice> {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                getCallAudioState()?.supportedBluetoothDevices?.toList().orEmpty()
+            } else {
+                emptyList()
+            }
+        }
+
+        fun getActiveBluetoothDevice(): BluetoothDevice? {
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                getCallAudioState()?.activeBluetoothDevice
+            } else {
+                null
+            }
+        }
+
+        fun setBluetoothDevice(device: BluetoothDevice) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                inCallService?.requestBluetoothAudio(device)
+                isSpeakerOn = false
+                previousAudioRoute = CallAudioState.ROUTE_BLUETOOTH
+                notifyAudioStateChanged()
+            } else {
+                setAudioRoute(CallAudioState.ROUTE_BLUETOOTH)
+            }
+        }
 
         fun toggleSpeakerRoute(keepCalls: Boolean = false) {
             val currentAudioState = getCallAudioState() ?: return

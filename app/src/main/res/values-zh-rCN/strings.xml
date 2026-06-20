@@ -77,4 +77,9 @@
     <string name="call_notification_channel">通话状态</string>
     <string name="call_notification_channel_high_priority">通话状态（高优先级）</string>
     <string name="calling_accounts">通话账号</string>
+    <string name="send_whatsapp">发送 WhatsApp</string>
+    <string name="hang_up">挂断</string>
+    <string name="dialpad_number_font_size">数字字体大小</string>
+    <string name="create_new_contact">创建新联系人</string>
+    <string name="add_to_existing_contact">添加到现有联系人</string>
 </resources>

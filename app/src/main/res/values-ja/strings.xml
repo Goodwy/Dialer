@@ -77,4 +77,9 @@
     <string name="faq_2_text">システムの制限により、緊急通報はシステムのデフォルトのダイヤラーまたは電話アプリからのみ可能です。緊急通報が正しく機能するには、システムアプリをインストールし、有効にしておく必要があります。</string>
     <string name="faq_3_title">一部の連絡先がアプリから消えてしまうのはなぜですか?</string>
     <string name="faq_3_text">Fossify Phone は、電話番号が関連付けられている連絡先のみを表示します。電話番号が関連付けられていない連絡先はアプリに表示されませ ん 。</string>
+    <string name="send_whatsapp">WhatsApp を送信</string>
+    <string name="hang_up">通話を終了</string>
+    <string name="dialpad_number_font_size">数字のフォントサイズ</string>
+    <string name="create_new_contact">新しい連絡先を作成</string>
+    <string name="add_to_existing_contact">既存の連絡先に追加</string>
 </resources>

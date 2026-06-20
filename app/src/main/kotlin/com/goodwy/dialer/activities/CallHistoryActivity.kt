@@ -568,12 +568,7 @@ class CallHistoryActivity : SimpleActivity() {
 
     private fun addContact() {
         val phoneNumber = if (config.formatPhoneNumbers) currentRecentCall!!.phoneNumber.formatPhoneNumber() else currentRecentCall!!.phoneNumber
-        Intent().apply {
-            action = Intent.ACTION_INSERT_OR_EDIT
-            type = "vnd.android.cursor.item/contact"
-            putExtra(KEY_PHONE, phoneNumber)
-            launchActivityIntent(this)
-        }
+        startAddNumberToContact(phoneNumber)
     }
 
     private fun setupMenuForContact() {

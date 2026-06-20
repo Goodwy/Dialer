@@ -49,9 +49,10 @@ import com.goodwy.dialer.extensions.callContactWithSim
 import com.goodwy.dialer.extensions.callerNotesHelper
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.launchSendSMSIntentRecommendation
+import com.goodwy.dialer.extensions.launchSendWhatsAppIntent
 import com.goodwy.dialer.extensions.numberForNotes
 import com.goodwy.dialer.extensions.runAfterAnimations
-import com.goodwy.dialer.extensions.startAddContactIntent
+import com.goodwy.dialer.extensions.startAddNumberToContact
 import com.goodwy.dialer.extensions.startContactDetailsIntent
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL
 import com.goodwy.dialer.helpers.CURRENT_RECENT_CALL_LIST
@@ -64,6 +65,7 @@ import com.goodwy.dialer.helpers.RecentsHelper
 import com.goodwy.dialer.helpers.SWIPE_ACTION_CALL
 import com.goodwy.dialer.helpers.SWIPE_ACTION_MESSAGE
 import com.goodwy.dialer.helpers.SWIPE_ACTION_OPEN
+import com.goodwy.dialer.helpers.SWIPE_ACTION_WHATSAPP
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 import com.goodwy.dialer.models.CallLogItem
 import com.goodwy.dialer.models.RecentCall
@@ -468,7 +470,7 @@ class RecentsFragment(
                         if (contact != null) {
                             activity?.startContactDetailsIntent(contact)
                         } else {
-                            activity?.startAddContactIntent(recentCall.phoneNumber)
+                            activity?.startAddNumberToContact(recentCall.phoneNumber)
                         }
                     }
                 )
@@ -644,6 +646,7 @@ class RecentsFragment(
     private fun itemClickAction(action: Int, call: RecentCall) {
         when (action) {
             SWIPE_ACTION_MESSAGE -> actionSMS(call)
+            SWIPE_ACTION_WHATSAPP -> actionWhatsApp(call)
             SWIPE_ACTION_CALL -> actionCall(call)
             SWIPE_ACTION_OPEN -> actionOpen(call)
             else -> {}
@@ -663,6 +666,10 @@ class RecentsFragment(
 
     private fun actionSMS(call: RecentCall) {
         activity?.launchSendSMSIntentRecommendation(call.phoneNumber)
+    }
+
+    private fun actionWhatsApp(call: RecentCall) {
+        activity?.launchSendWhatsAppIntent(call.phoneNumber)
     }
 
     private fun actionOpen(call: RecentCall) {

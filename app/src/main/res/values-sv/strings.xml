@@ -77,4 +77,9 @@
     <string name="call_notification_channel_high_priority">Samtalsstatus (hög prioritet)</string>
     <string name="calling_accounts">Konton för samtal</string>
     <string name="faq_2_text">På grund av systembegränsningar går det bara att ringa nödsamtal via systemets standardtelefonapp. För att säkerställa att nödsamtal fungerar korrekt måste du låta systemappen vara installerad och aktiverad.</string>
+    <string name="send_whatsapp">Skicka WhatsApp</string>
+    <string name="hang_up">Lägg på</string>
+    <string name="dialpad_number_font_size">Teckenstorlek för siffror</string>
+    <string name="create_new_contact">Skapa ny kontakt</string>
+    <string name="add_to_existing_contact">Lägg till i befintlig kontakt</string>
 </resources>

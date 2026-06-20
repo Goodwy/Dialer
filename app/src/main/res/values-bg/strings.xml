@@ -77,4 +77,9 @@
     <string name="call_notification_channel">Състояние на обаждането</string>
     <string name="call_notification_channel_high_priority">Състояние на обаждането (приоритетно)</string>
     <string name="calling_accounts">Профили за обаждания</string>
+    <string name="send_whatsapp">Изпрати WhatsApp</string>
+    <string name="hang_up">Затвори</string>
+    <string name="dialpad_number_font_size">Размер на шрифта на цифрите</string>
+    <string name="create_new_contact">Създаване на нов контакт</string>
+    <string name="add_to_existing_contact">Добавяне към съществуващ контакт</string>
 </resources>

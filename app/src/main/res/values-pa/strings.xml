@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>    <string name="send_whatsapp">WhatsApp ਭੇਜੋ</string>
+    <string name="hang_up">ਕਾਲ ਖਤਮ ਕਰੋ</string>
+    <string name="dialpad_number_font_size">ਨੰਬਰ ਫੌਂਟ ਆਕਾਰ</string>
+    <string name="create_new_contact">ਨਵਾਂ ਸੰਪਰਕ ਬਣਾਓ</string>
+    <string name="add_to_existing_contact">ਮੌਜੂਦਾ ਸੰਪਰਕ ਵਿੱਚ ਸ਼ਾਮਲ ਕਰੋ</string>
+</resources>

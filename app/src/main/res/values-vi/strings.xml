@@ -77,4 +77,9 @@
     <string name="faq_3_title">Tại sao một số liên hệ của tôi không thấy trên app?</string>
     <string name="faq_3_text">Fossify Phone chỉ hiển thị các liên hệ đã liên kết số điện thoại. Các liên hệ không có số điện thoại sẽ không được hiển thị trong app.</string>
     <string name="calling_accounts">Tài khoản cuộc gọi</string>
+    <string name="send_whatsapp">Gửi WhatsApp</string>
+    <string name="hang_up">Gác máy</string>
+    <string name="dialpad_number_font_size">Cỡ chữ của số</string>
+    <string name="create_new_contact">Tạo liên hệ mới</string>
+    <string name="add_to_existing_contact">Thêm vào liên hệ hiện có</string>
 </resources>

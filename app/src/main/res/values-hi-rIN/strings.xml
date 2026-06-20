@@ -82,4 +82,9 @@
     <!-- FAQ -->
     <string name='faq_1_title'>मैं इनकमिंग कॉल सुनता हूं, लेकिन स्क्रीन चालू नहीं होती। मैं क्या कर सकता हूँ?</string>
     <string name='faq_1_text'>ऐसे मुद्दों के कई डिवाइस और सिस्टम विशिष्ट कारण हो सकते हैं, सामान्य तौर पर कहना मुश्किल है। आपको अपनी डिवाइस सेटिंग्स में चारों ओर देखना चाहिए और सुनिश्चित करना चाहिए कि ऐप को पृष्ठभूमि में पॉप अप करने और अन्य ऐप्स पर प्रदर्शित होने की अनुमति है।</string>
+    <string name="send_whatsapp">WhatsApp भेजें</string>
+    <string name="hang_up">कॉल समाप्त करें</string>
+    <string name="dialpad_number_font_size">संख्या फ़ॉन्ट आकार</string>
+    <string name="create_new_contact">नया संपर्क बनाएँ</string>
+    <string name="add_to_existing_contact">मौजूदा संपर्क में जोड़ें</string>
 </resources>

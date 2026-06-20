@@ -77,4 +77,9 @@
     <string name="call_notification_channel">Стан дзвінка</string>
     <string name="call_notification_channel_high_priority">Стан виклику (високий пріоритет)</string>
     <string name="calling_accounts">Облікові записи для дзвінків</string>
+    <string name="send_whatsapp">Надіслати WhatsApp</string>
+    <string name="hang_up">Завершити виклик</string>
+    <string name="dialpad_number_font_size">Розмір шрифту цифр</string>
+    <string name="create_new_contact">Створити новий контакт</string>
+    <string name="add_to_existing_contact">Додати до наявного контакту</string>
 </resources>

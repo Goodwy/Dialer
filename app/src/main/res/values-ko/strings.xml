@@ -69,4 +69,9 @@
     <string name="import_call_history">통화 기록 가져오기</string>
     <string name="faq_1_text">이러한 문제는 다양한 기기 및 시스템 별 이유가 있을 수 있어 일반적으로 말하기 어렵습니다. 기기 설정을 살펴보고 백그라운드에서 앱이 팝업되도록 허용되어 있는지, 다른 앱 위에 표시되도록 허용되어 있는지 확인해야 합니다.</string>
     <string name="asterisk">별표</string>
+    <string name="send_whatsapp">WhatsApp 보내기</string>
+    <string name="hang_up">통화 종료</string>
+    <string name="dialpad_number_font_size">숫자 글꼴 크기</string>
+    <string name="create_new_contact">새 연락처 만들기</string>
+    <string name="add_to_existing_contact">기존 연락처에 추가</string>
 </resources>

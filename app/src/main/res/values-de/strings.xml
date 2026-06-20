@@ -77,4 +77,9 @@
     <string name="call_notification_channel">Anrufstatus</string>
     <string name="call_notification_channel_high_priority">Anrufstatus (hohe Priorität)</string>
     <string name="calling_accounts">Anrufkonten</string>
+    <string name="send_whatsapp">WhatsApp senden</string>
+    <string name="hang_up">Auflegen</string>
+    <string name="dialpad_number_font_size">Schriftgröße der Ziffern</string>
+    <string name="create_new_contact">Neuen Kontakt erstellen</string>
+    <string name="add_to_existing_contact">Zu bestehendem Kontakt hinzufügen</string>
 </resources>

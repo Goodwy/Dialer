@@ -151,7 +151,7 @@ class Config(context: Context) : BaseConfig(context) {
 
     //Goodwy
     var showIncomingCallsFullScreen: Boolean
-        get() = prefs.getBoolean(SHOW_INCOMING_CALLS_FULL_SCREEN, false)
+        get() = prefs.getBoolean(SHOW_INCOMING_CALLS_FULL_SCREEN, true)
         set(showIncomingCallsFullScreen) = prefs.edit { putBoolean(SHOW_INCOMING_CALLS_FULL_SCREEN, showIncomingCallsFullScreen) }
 
     var transparentCallScreen: Boolean  //not used
@@ -177,6 +177,10 @@ class Config(context: Context) : BaseConfig(context) {
     var dialpadSize: Int
         get() = prefs.getInt(DIALPAD_SIZE, 100)
         set(dialpadSize) = prefs.edit { putInt(DIALPAD_SIZE, dialpadSize) }
+
+    var dialpadNumberFontSize: Int
+        get() = prefs.getInt(DIALPAD_NUMBER_FONT_SIZE, 100)
+        set(value) = prefs.edit { putInt(DIALPAD_NUMBER_FONT_SIZE, value) }
 
     var dialpadBottomMargin: Int
         get() = prefs.getInt(DIALPAD_BOTTOM_MARGIN, 0)

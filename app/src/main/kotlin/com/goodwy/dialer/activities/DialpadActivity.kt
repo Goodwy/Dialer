@@ -185,6 +185,7 @@ class DialpadActivity : SimpleActivity() {
         speedDialValues = config.getSpeedDialValues()
         initStyle()
         updateDialpadSize()
+        updateDialpadNumberFontSize()
         if (config.dialpadStyle == DIALPAD_GRID || config.dialpadStyle == DIALPAD_ORIGINAL) updateCallButtonSize()
         setupOptionsMenu()
         refreshMenuItems()
@@ -909,6 +910,12 @@ class DialpadActivity : SimpleActivity() {
         else -> binding.dialpadClearWrapper.root
     }
 
+    private fun updateDialpadNumberFontSize() {
+        val basePx = resources.getDimension(R.dimen.dialpad_text_size)
+        val scaled = basePx * (config.dialpadNumberFontSize / 100f)
+        applyDialpadNumberFontSize(binding.dialpadClearWrapper, binding.dialpadRectWrapper, binding.dialpadRoundWrapper, scaled)
+    }
+
     private fun updateDialpadSize() {
         val size = config.dialpadSize
         val view = when (config.dialpadStyle) {
@@ -1031,7 +1038,7 @@ class DialpadActivity : SimpleActivity() {
     }
 
     private fun addNumberToContact() {
-        startAddContactIntent(binding.dialpadInput.value)
+        startAddNumberToContact(binding.dialpadInput.value)
     }
 
     private fun dialpadPressed(char: Char, view: View?) {
@@ -1616,7 +1623,7 @@ class DialpadActivity : SimpleActivity() {
                     if (contact != null) {
                         startContactDetailsIntent(contact)
                     } else {
-                        startAddContactIntent(recentCall.phoneNumber)
+                        startAddNumberToContact(recentCall.phoneNumber)
                     }
                 }
             )

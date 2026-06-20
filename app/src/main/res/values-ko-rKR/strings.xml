@@ -82,4 +82,9 @@
     <!-- FAQ -->
     <string name="faq_1_title">수신 전화 소리가 들리지만 화면이 켜지지 않습니다. 어떻게 해야 하나요? </string>
     <string name="faq_1_text">이러한 문제는 기기 및 시스템별로 다양한 원인이 있을 수 있으므로 일반적으로 말하기는 어렵습니다. 기기 설정을 살펴보고 앱이 백그라운드에서 팝업되도록 허용되어 있는지, 다른 앱 위에 표시되도록 허용되어 있는지 확인해야 합니다.</string>
+    <string name="send_whatsapp">WhatsApp 보내기</string>
+    <string name="hang_up">통화 종료</string>
+    <string name="dialpad_number_font_size">숫자 글꼴 크기</string>
+    <string name="create_new_contact">새 연락처 만들기</string>
+    <string name="add_to_existing_contact">기존 연락처에 추가</string>
 </resources>

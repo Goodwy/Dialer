@@ -77,4 +77,9 @@
     <string name="faq_2_text">เนื่องจากข้อจำกัดของระบบ การโทรฉุกเฉินจึงสามารถทำได้ผ่านแอปโทรศัพท์หรือแอปโทรศัพท์เริ่มต้นของระบบเท่านั้น เพื่อให้แน่ใจว่าการโทรฉุกเฉินจะทำงานได้อย่างถูกต้อง คุณต้องติดตั้งและเปิดใช้งานแอประบบไว้เสมอ</string>
     <string name="faq_3_title">เหตุใดข้อมูลติดต่อบางส่วนของฉันจึงหายไปจากแอป?</string>
     <string name="faq_3_text">Fossify Phone จะแสดงเฉพาะรายชื่อติดต่อที่มีหมายเลขโทรศัพท์ที่เชื่อมโยงอยู่เท่านั้น รายชื่อติดต่อที่ไม่มีหมายเลขโทรศัพท์จะไม่แสดงในแอป</string>
+    <string name="send_whatsapp">ส่ง WhatsApp</string>
+    <string name="hang_up">วางสาย</string>
+    <string name="dialpad_number_font_size">ขนาดฟอนต์ตัวเลข</string>
+    <string name="create_new_contact">สร้างผู้ติดต่อใหม่</string>
+    <string name="add_to_existing_contact">เพิ่มไปยังผู้ติดต่อที่มีอยู่</string>
 </resources>

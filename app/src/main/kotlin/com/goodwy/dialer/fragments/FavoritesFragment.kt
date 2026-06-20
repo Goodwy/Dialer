@@ -17,6 +17,7 @@ import com.goodwy.dialer.databinding.FragmentFavoritesBinding
 import com.goodwy.dialer.databinding.FragmentLettersLayoutBinding
 import com.goodwy.dialer.extensions.config
 import com.goodwy.dialer.extensions.launchSendSMSIntentRecommendation
+import com.goodwy.dialer.extensions.launchSendWhatsAppIntent
 import com.goodwy.dialer.extensions.setupWithContacts
 import com.goodwy.dialer.extensions.startCallWithConfirmationCheck
 import com.goodwy.dialer.extensions.startContactDetailsIntent
@@ -27,6 +28,7 @@ import com.goodwy.dialer.helpers.SWIPE_ACTION_CALL
 import com.goodwy.dialer.helpers.SWIPE_ACTION_EDIT
 import com.goodwy.dialer.helpers.SWIPE_ACTION_MESSAGE
 import com.goodwy.dialer.helpers.SWIPE_ACTION_OPEN
+import com.goodwy.dialer.helpers.SWIPE_ACTION_WHATSAPP
 import com.goodwy.dialer.interfaces.RefreshItemsListener
 
 class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPagerFragment<MyViewPagerFragment.LettersInnerBinding>(context, attributeSet),
@@ -265,6 +267,7 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
     private fun itemClickAction(action: Int, contact: Contact) {
         when (action) {
             SWIPE_ACTION_MESSAGE -> actionSMS(contact)
+            SWIPE_ACTION_WHATSAPP -> actionWhatsApp(contact)
             SWIPE_ACTION_CALL -> actionCall(contact)
             SWIPE_ACTION_OPEN -> actionOpen(contact)
             SWIPE_ACTION_EDIT -> activity?.startContactEdit(contact)
@@ -278,6 +281,10 @@ class FavoritesFragment(context: Context, attributeSet: AttributeSet) : MyViewPa
 
     private fun actionSMS(contact: Contact) {
         activity?.initiateCall(contact) { activity?.launchSendSMSIntentRecommendation(it) }
+    }
+
+    private fun actionWhatsApp(contact: Contact) {
+        activity?.initiateCall(contact) { activity?.launchSendWhatsAppIntent(it) }
     }
 
     private fun actionOpen(contact: Contact) {

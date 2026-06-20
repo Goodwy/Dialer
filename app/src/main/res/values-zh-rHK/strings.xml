@@ -77,4 +77,9 @@
     <string name="faq_2_text">因為系統限制，緊急電話只能透過系統預設的撥號程式或電話應用程式撥打。為了確保緊急通話正常運作，您需要維持系統應用程式已安裝並啟用。</string>
     <string name="faq_3_title">為什麼我的部份聯絡人從應用程式中消失了？</string>
     <string name="faq_3_text">Fossify Phone 只會顯示有電話號碼的聯絡人。沒有電話號碼的聯絡人不會顯示在應用程式中。</string>
+    <string name="send_whatsapp">傳送 WhatsApp</string>
+    <string name="hang_up">掛斷</string>
+    <string name="dialpad_number_font_size">數字字體大小</string>
+    <string name="create_new_contact">建立新聯絡人</string>
+    <string name="add_to_existing_contact">加入現有聯絡人</string>
 </resources>

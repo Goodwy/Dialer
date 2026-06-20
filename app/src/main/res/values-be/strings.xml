@@ -57,4 +57,9 @@
     <string name="disable_swipe_to_answer">Выкарыстоўваць націсканне замест перацягвання пры адказе на ўваходныя выклікі</string>
     <string name="show_incoming_calls_full_screen">Заўсёды паказваць уваходныя выклікі ў поўнаэкранным рэжыме</string>
     <string name="app_launcher_name">Тэлефон</string>
+    <string name="send_whatsapp">Адправіць WhatsApp</string>
+    <string name="hang_up">Завяршыць выклік</string>
+    <string name="dialpad_number_font_size">Памер шрыфта лічбаў</string>
+    <string name="create_new_contact">Стварыць новы кантакт</string>
+    <string name="add_to_existing_contact">Дадаць у існуючы кантакт</string>
 </resources>

@@ -77,4 +77,9 @@
     <string name="call_notification_channel">סטטוס שיחה</string>
     <string name="call_notification_channel_high_priority">סטטוס שיחה (עדיפות גבוהה)</string>
     <string name="calling_accounts">חשבונות שיחות</string>
+    <string name="send_whatsapp">שליחת WhatsApp</string>
+    <string name="hang_up">ניתוק שיחה</string>
+    <string name="dialpad_number_font_size">גודל גופן הספרות</string>
+    <string name="create_new_contact">יצירת איש קשר חדש</string>
+    <string name="add_to_existing_contact">הוספה לאיש קשר קיים</string>
 </resources>
